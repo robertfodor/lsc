@@ -3,5 +3,3 @@ language:
   ui:
     chapter_name: "Chapter "
 delete_merged_file: true
-edit: https://github.com/robertfodor/lsc/dev/%s
-view: https://github.com/robertfodor/lsc/gh-pages/%s
