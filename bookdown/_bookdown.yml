@@ -1,0 +1,5 @@
+book_filename: "learning_stats_with_cogstat"
+language:
+  ui:
+    chapter_name: "Chapter "
+delete_merged_file: true

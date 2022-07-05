@@ -1,0 +1,17 @@
+# Foreword {.unnumbered #foreword}
+
+## How CogStat came about {.unnumbered #foreword_cogstat}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit accumsan justo, a tincidunt risus gravida eget. Vivamus accumsan ipsum nisi, at fermentum turpis volutpat sit amet. Nunc cursus vulputate placerat. Vestibulum sit amet tempus tellus. Pellentesque massa nibh, semper at nulla ac, auctor efficitur odio. Aliquam rutrum felis velit, quis mollis lacus dictum et. Suspendisse semper rhoncus augue, nec dignissim quam faucibus quis. Quisque rhoncus quis urna at vehicula.
+
+Ut sit amet orci neque. Praesent quis facilisis mauris, auctor molestie diam. Pellentesque at massa turpis. Sed elementum, elit non mollis elementum, erat justo luctus odio, sit amet molestie erat neque eget velit. Pellentesque eget ante quis lorem facilisis porta maximus a mi. Sed nec libero consectetur, pharetra felis eu, suscipit ligula. Mauris risus turpis, pellentesque ac vulputate quis, scelerisque nec nulla. Nunc vitae nunc sed ligula tincidunt aliquet. Aliquam lacus eros, posuere ac nulla vitae, blandit interdum sapien. Morbi hendrerit, dolor sit amet malesuada venenatis, erat dolor auctor neque, at imperdiet enim nibh vel est. Etiam id porta leo, eget suscipit sapien. Pellentesque cursus, quam sit amet blandit gravida, diam ante pellentesque neque, at fermentum turpis lectus in neque.
+
+\newpage
+
+## An Introduction to Automatic Statistical Analysis {.unnumbered #intro_to_autostat}
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit accumsan justo, a tincidunt risus gravida eget. Vivamus accumsan ipsum nisi, at fermentum turpis volutpat sit amet. Nunc cursus vulputate placerat. Vestibulum sit amet tempus tellus. Pellentesque massa nibh, semper at nulla ac, auctor efficitur odio. Aliquam rutrum felis velit, quis mollis lacus dictum et. Suspendisse semper rhoncus augue, nec dignissim quam faucibus quis. Quisque rhoncus quis urna at vehicula.
+
+Ut sit amet orci neque. Praesent quis facilisis mauris, auctor molestie diam. Pellentesque at massa turpis. Sed elementum, elit non mollis elementum, erat justo luctus odio, sit amet molestie erat neque eget velit. Pellentesque eget ante quis lorem facilisis porta maximus a mi. Sed nec libero consectetur, pharetra felis eu, suscipit ligula. Mauris risus turpis, pellentesque ac vulputate quis, scelerisque nec nulla. Nunc vitae nunc sed ligula tincidunt aliquet. Aliquam lacus eros, posuere ac nulla vitae, blandit interdum sapien. Morbi hendrerit, dolor sit amet malesuada venenatis, erat dolor auctor neque, at imperdiet enim nibh vel est. Etiam id porta leo, eget suscipit sapien. Pellentesque cursus, quam sit amet blandit gravida, diam ante pellentesque neque, at fermentum turpis lectus in neque.
+
+In ut massa sollicitudin, viverra nibh at, placerat ex. Praesent vel porta sem, non pretium enim. Cras et pellentesque tellus. Integer lobortis lorem vitae libero gravida, non consequat arcu venenatis. Vivamus sapien tortor, aliquam sit amet tincidunt sed, rhoncus at nisl. Phasellus interdum sit amet dolor commodo laoreet. Fusce sit amet erat odio. Aenean condimentum faucibus egestas. In posuere ut turpis vel finibus.
