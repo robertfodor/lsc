@@ -1,9 +1,0 @@
-tab:simpsontable
-fig:berkeley
-why-do-we-learn-statistics
-whywhywhy
-the-curse-of-belief-bias
-the-cautionary-tale-of-simpsons-paradox
-statistics-in-psychology
-statistics-in-everyday-life
-theres-more-to-research-methods-than-statistics
