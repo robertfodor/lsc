@@ -1,6 +1,4 @@
-# Foreword {.unnumbered #foreword}
-
-## How CogStat came about {.unnumbered #foreword_cogstat}
+# How CogStat came about {#foreword_cogstat}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit accumsan justo, a tincidunt risus gravida eget. Vivamus accumsan ipsum nisi, at fermentum turpis volutpat sit amet. Nunc cursus vulputate placerat. Vestibulum sit amet tempus tellus. Pellentesque massa nibh, semper at nulla ac, auctor efficitur odio. Aliquam rutrum felis velit, quis mollis lacus dictum et. Suspendisse semper rhoncus augue, nec dignissim quam faucibus quis. Quisque rhoncus quis urna at vehicula.
 
@@ -8,7 +6,7 @@ Ut sit amet orci neque. Praesent quis facilisis mauris, auctor molestie diam. Pe
 
 \newpage
 
-## An Introduction to Automatic Statistical Analysis {.unnumbered #intro_to_autostat}
+# An Introduction to Automatic Statistical Analysis {#intro_to_autostat}
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean suscipit accumsan justo, a tincidunt risus gravida eget. Vivamus accumsan ipsum nisi, at fermentum turpis volutpat sit amet. Nunc cursus vulputate placerat. Vestibulum sit amet tempus tellus. Pellentesque massa nibh, semper at nulla ac, auctor efficitur odio. Aliquam rutrum felis velit, quis mollis lacus dictum et. Suspendisse semper rhoncus augue, nec dignissim quam faucibus quis. Quisque rhoncus quis urna at vehicula.
 
