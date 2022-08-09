@@ -1,8 +1,6 @@
-# (PART\*) INTRODUCTION {-}
+# (PART\*) INTRODUCTIONS {-}
 
-# Why do we learn statistics? {}
-
-## On the psychology of statistics{#whywhywhy}
+# Why do we learn statistics?{#whywhywhy}
 
 To the surprise of many students, statistics is a fairly significant part of a psychological education. To the surprise of no-one, statistics is very rarely the *favourite* part of one's psychological education. Not surprisingly, there's a pretty large proportion of the student base that isn't happy about the fact that psychology has so much statistics in it. A big part of this issue at hand relates to the very idea of statistics.
 
@@ -10,7 +8,7 @@ To the surprise of many students, statistics is a fairly significant part of a p
 
 The best answer is a really simple one: we don't trust ourselves enough. We worry that we're human, and susceptible to all of the biases, temptations and frailties that humans suffer from. Much of statistics is basically a safeguard. Using "common sense" to evaluate evidence means trusting gut instincts, relying on verbal arguments and on using the raw power of human reason to come up with the right answer. Most scientists don't think this approach is likely to work.
 
-### The curse of belief bias
+## The curse of belief bias{.unlisted .unnumbered}
 
 Our minds are quite amazing things, and we seem to be capable of the most incredible feats of thought and reason. Psychologists have shown over the years is that we really do find it hard to be neutral, to evaluate evidence impartially and without being swayed by pre-existing biases. A good example of this is the ***belief bias effect*** in logical reasoning: if you ask people to decide whether a particular argument is logically valid (i.e., conclusion would be true if the premises were true), we tend to be influenced by the believability of the conclusion, even when we shouldn't. For instance, here's a valid argument where the conclusion is believable:
 
@@ -40,25 +38,24 @@ And finally, an invalid argument with an unbelievable conclusion:
 
 Now, suppose that people really are perfectly able to set aside their pre-existing biases about what is true and what isn't, and purely evaluate an argument on its logical merits. We'd expect 100% of people to say that the valid arguments are valid, and 0% of people to say that the invalid arguments are valid. So if you ran an experiment looking at this, you'd expect to see data like this:
 
-
-|          | conclusion feels true| conclusion feels false |
-|------------------ |:--------------------:|:----------------------:|
-|argument is valid |100% say "valid"   |100% say "valid"    |
-|argument is invalid|0% say "valid"    |0% say "valid"     |
+|  | conclusion feels true| conclusion feels false |
+|-------- |:--------:|:--------:|
+|argument is valid |100% say "valid"|100% say "valid"|
+|argument is invalid|0% say "valid"|0% say "valid"|
 
 If the psychological data looked like this (or even a good approximation to this), we might feel safe in just trusting our gut instincts. That is, it'd be perfectly okay just to let scientists evaluate data based on their common sense, and not bother with all this murky statistics stuff.
 
 In a classic study, @Evans1983 ran an experiment looking at exactly this. What they found is that when pre-existing biases (i.e., beliefs) were in agreement with the structure of the data, everything went the way you'd hope:
 
 |          | conclusion feels true| conclusion feels false |
-|------------------ |:--------------------:|:----------------------:|
+|-------- |:--------:|:--------|
 |argument is valid |92% say "valid"    |            |
 |argument is invalid|           |8% say "valid"     |
 
 Not perfect, but that's pretty good. But look what happens when our intuitive feelings about the truth of the conclusion run against the logical structure of the argument:
 
 |          | conclusion feels true| conclusion feels false |
-|------------------ |:--------------------:|:----------------------:|
+|-------- |:--------:|:--------:|
 |argument is valid |92% say "valid"    |**46% say "valid"**   |
 |argument is invalid|**92% say "valid"**  |8% say "valid"     |
 
@@ -66,14 +63,14 @@ Apparently, when people are presented with a strong argument that contradicts ou
 
 It's just *too easy* for us to "believe what we want to believe"; so if we want to "believe in the data" instead, we're going to need a bit of help to keep our personal biases under control. That's what statistics does: it helps keep us honest. 
 
-## The Simpson's paradox
+## The Simpson's paradox – A cautionary tale{.unlisted .unnumbered}
 
 In 1973, the University of California, Berkeley had some worries about the admissions of students into their postgraduate courses. Specifically, the thing that caused the problem was that the gender breakdown of their admissions, which looked like this:
 
-|    | Number of applicants | Percent admitted |
+|   | Number of applicants | Percent admitted |
 |-------|:--------------------:|:----------------:|
-|Males |8442         |46%        |
-|Females|4321         |35%        |
+|Males |8442 |46% |
+|Females|4321 |35% |
 
 Given that there were nearly 13,000 applicants, a difference of 9% in admission rates between males and females is just way too big to be a coincidence. When people started looking more carefully at the admissions data [@Bickel1975] on a department by department basis, it turned out that most of the departments actually had a slightly *higher* success rate for female applicants than for male applicants. Table \@ref(tab:simpsontable) shows the admission figures for the six largest departments:
 
@@ -99,15 +96,15 @@ When doing research, there are *lots* of subtle, counterintuitive traps lying in
 knitr::include_graphics("resources/berkeley-1.png")
 ```
 
-Statistics only solves *part* of the problem. Remember that we started all this with the concern that Berkeley's admissions processes might be unfairly biased against female applicants. When we looked at the "aggregated" data, it did seem like the university was discriminating against women, but when we "disaggregate" and looked at the individual behaviour of all the departments, it turned out that the actual departments were, if anything, slightly biased in favour of women. The gender bias in total admissions was caused by the fact that women tended to self-select for harder departments. Postgraduate admissions are determined at the level of the individual department (and there are good reasons to do that), and at the level of individual departments, the decisions are more or less unbiased (the weak bias in favour of females at that level is small, and not consistent across departments). Since the university can't dictate which departments people choose to apply to, and the decision making takes place at the level of the department it can hardly be held accountable for any biases that those choices produce. 
+Statistics only solves *part* of the problem. Remember that we started all this with the concern that Berkeley's admissions processes might be unfairly biased against female applicants. When we looked at the "aggregated" data, it did seem like the university was discriminating against women, but when we "disaggregate" and looked at the individual behaviour of all the departments, it turned out that the actual departments were, if anything, slightly biased in favour of women. The gender bias in total admissions was caused by the fact that women tended to self-select for harder departments. Postgraduate admissions are determined at the level of the individual department (and there are good reasons to do that), and at the level of individual departments, the decisions are more or less unbiased (the weak bias in favour of females at that level is small, and not consistent across departments). Since the university can't dictate which departments people choose to apply to, and the decision making takes place at the level of the department it can hardly be held accountable for any biases that those choices produce.
 
 If we're interested in this from a more sociological and psychological perspective, we might want to ask *why* there are such strong gender differences in applications. Why do males tend to apply to engineering more often than females, and why is this reversed for the English department? And why is it it the case that the departments that tend to have a female-application bias tend to have lower overall admission rates than those departments that have a male-application bias? Might this not still reflect a gender bias, even though every single department is itself unbiased? It might. Suppose, hypothetically, that males preferred to apply to "hard sciences" and females prefer "humanities". And suppose further that the reason for why the humanities departments have low admission rates is because the government doesn't want to fund the humanities (Ph.D. places, for instance, are often tied to government funded research projects). Does that constitute a gender bias? Or just an unenlightened view of the value of the humanities? What if someone at a high level in the government cut the humanities funds because they felt that the humanities are "useless chick stuff". That seems pretty *blatantly* gender biased. None of this falls within the purview of statistics, but it matters to the research project. If you're interested in the overall structural effects of subtle gender biases, then you probably want to look at *both* the aggregated and disaggregated data. If you're interested in the decision making process at Berkeley itself then you're probably only interested in the disaggregated data. 
 
 In short there are a lot of critical questions that you can't answer with statistics, but the answers to those questions will have a huge impact on how you analyse and interpret data. And this is the reason why you should always think of statistics as a *tool* to help you learn about your data, no more and no less. It's a powerful tool to that end, but there's no substitute for careful thought.
 
-## Statistics in psychology
+## Statistics in psychology{.unlisted .unnumbered}
 
-We hope that the discussion above helped explain why science in general is so focused on statistics. But we're guessing that you have a lot more questions about what role statistics plays in psychology, and specifically why psychology classes always devote so many lectures to stats. So here's my attempt to answer a few of them...
+We hope that the discussion above helped explain why science in general is so focused on statistics. But we're guessing that you have a lot more questions about what role statistics plays in psychology, and specifically why psychology classes always devote so many lectures to stats. So here's an attempt to answer a few of them...
 
 **Why does psychology have so much statistics?**
 
@@ -131,7 +128,7 @@ Note that a lot of these reasons generalise beyond researchers. If you want to b
 
 Statistics should matter to you in the same way that statistics should matter to *everyone*: we live in the 21st century, and data are *everywhere*. Frankly, given the world in which we live these days, a basic knowledge of statistics is pretty damn close to a survival tool! Which is the topic of the next section...
 
-## There's more to research methods than statistics
+## There's more to research methods than statistics{.unlisted .unnumbered}
 
 Most research methods courses will cover a lot of topics that relate much more to the pragmatics of research design, and in particular the issues that you encounter when trying to do research with humans. Most student fears relate to the statistics part of the course. Hopefully you are convinced that statistics matters, and more importantly, that it's not to be feared.
 

@@ -8,12 +8,14 @@ bookdown::gitbook:
         <li><a href="./">Learning Statistics with CogStat</a></li>
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+      collapse: section
+      number_sections: true
+      fig_caption: yes
     toc_depth: 2
     toolbar:
       position: static
     download: no
-    number_sections: true
-    fig_caption: yes
+    
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex

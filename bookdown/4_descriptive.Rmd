@@ -1,0 +1,37 @@
+# (PART\*) UNDERSTANDING YOUR DATA{-}
+
+# Exploring a Variable
+
+## Measures of central tendency{#centraltendency}
+
+### The mean{#mean}
+
+### The median{#median}
+
+### Mean or median? What's the difference?
+
+### A real life example{#housingpriceexample}
+
+### Trimmed mean{#trimmedmean}
+
+### Mode{#mode}
+
+## Measures of variability{#var}
+
+### Range{#range}
+
+### Interquartile range
+
+### Mean absolute deviation{#aad}
+
+### Variance
+
+### Standard deviation{#sd}
+
+### Median absolute deviation{#mad}
+
+### Which measure to use?
+
+## Skew and kurtosis{#skewandkurtosis}
+
+## Exploring a variable in CogStat
