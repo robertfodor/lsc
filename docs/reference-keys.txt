@@ -25,7 +25,7 @@ external-validity
 construct-validity
 face-validity
 ecological-validity
-confounds-artifacts-and-other-threats-to-validity
+confounds-artefacts-and-other-threats-to-validity
 history-effects
 maturation-effects
 repeated-testing-effects

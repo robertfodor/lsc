@@ -20,7 +20,7 @@ description: '*Learning Statistics with CogStat* covers the contents of an intro
   statistical analysis performed in CogStat.'
 ---
 
-# About this book {.unnumbered}
+# About this book{.unnumbered}
 
 **This book is work-in-progress.**
 
@@ -28,7 +28,7 @@ description: '*Learning Statistics with CogStat* covers the contents of an intro
 
 Cogstat is a statistics software written in Python by Attila Krajcsi^[Attila Krajcsi – [Github](https://github.com/krajcsi) | [![](resources/orcid_16x16.png)](https://orcid.org/0000-0001-9792-9091) 0000-0001-9792-9091] and developed with the help of supporters. Its distinct advantage is automatic hypothesis test selection and chart creation with an APA style output to suit the needs of psychology researchers and students.
 
-## Licensing {.unlisted .unnumbered}
+## Licensing{.unlisted .unnumbered}
 
 This book is published under a Creative Commons BY-SA license (CC BY-SA) version 4.0. This means that this book can be reused, remixed, retained, revised and redistributed (including commercially) as long as appropriate credit is given to the authors. If you remix, or modify the original version of this open textbook, you must redistribute all versions of this open textbook under the same license - CC BY-SA. 
 
