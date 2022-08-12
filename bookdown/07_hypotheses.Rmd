@@ -1,4 +1,4 @@
-# (PART\*) HYPOTHESIS TESTING{-}
+# (PART\*) INFERENTIAL STATISTICS{-}
 
 # Hypothesis testing
 

@@ -2,6 +2,9 @@ tab:simpsontable
 fig:berkeley
 tab:scalescont
 tab:ivdv
+fig:loadaflsmall
+fig:rawaflsmall
+fig:histogramaflsmall
 whywhywhy
 researchdesign
 measurement
@@ -43,6 +46,9 @@ cogstat_intro
 foreword_cogstat
 autostat
 gettingstarted
+installing-cogstat
+loading-data
+saving-and-exporting-your-results
 exploring-a-variable
 centraltendency
 mean
@@ -60,7 +66,6 @@ sd
 mad
 which-measure-to-use
 skewandkurtosis
-exploring-a-variable-in-cogstat
 introduction-to-probability
 correl
 the-strength-and-direction-of-a-relationship
