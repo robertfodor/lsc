@@ -115,7 +115,7 @@ Knowing how to calculate means and medians is only a part of the story. You also
 - If your data are *[ordinal scale](#ordinalscale)*, you're more likely to want to use the median than the mean. The median only uses the order information in your data (i.e., which numbers are larger) but doesn't depend on the precise numbers involved. That's precisely the situation that applies when your data are ordinal scale. Conversely, the mean makes use of the precise numeric values assigned to the observations, so it's not appropriate for ordinal data.
 - For *[interval](#intervalscale)* and *[ratio scale](#ratioscale)* data, either one is generally acceptable. Which one you pick depends a bit on what you're trying to achieve. The mean has the advantage of using all the information in the data (which is useful when you don't have a lot of data), but it's very susceptible to extreme values, as we'll see in Section \@ref(trimmedmean).
 
-Let's expand on that last part a little. One consequence is that there are systematic differences between the mean and the median when the histogram is asymmetric (skewed; see Section \@ref(skewandkurtosis)). This is illustrated in Figure \@ref(fig:meanmedian) notice that the median (right hand side) is located closer to the "body" of the histogram, whereas the mean (left hand side) gets dragged towards the "tail" (where the extreme values are). To give a concrete example, suppose Bob (income \$50,000), Kate (income \$60,000) and Jane (income \$65,000) are sitting at a table: the average income at the table is \$58,333 and the median income is \$60,000. Then Bill sits down with them (income \$100,000,000). The average income has now jumped to \$25,043,750 but the median rises only to \$62,500. If you're interested in looking at the overall income at the table, the mean might be the right answer; but if you're interested in what counts as a typical income at the table, the median would be a better choice here.
+Let's expand on that last part a little. One consequence is that there are systematic differences between the mean and the median when the histogram is asymmetric (skewed; see Section \@ref(skewnesskurtosis)). This is illustrated in Figure \@ref(fig:meanmedian) notice that the median (right hand side) is located closer to the "body" of the histogram, whereas the mean (left hand side) gets dragged towards the "tail" (where the extreme values are). To give a concrete example, suppose Bob (income \$50,000), Kate (income \$60,000) and Jane (income \$65,000) are sitting at a table: the average income at the table is \$58,333 and the median income is \$60,000. Then Bill sits down with them (income \$100,000,000). The average income has now jumped to \$25,043,750 but the median rises only to \$62,500. If you're interested in looking at the overall income at the table, the mean might be the right answer; but if you're interested in what counts as a typical income at the table, the median would be a better choice here.
 
 ### Trimmed mean{#trimmedmean}
 
@@ -133,7 +133,7 @@ When faced with a situation where some of the most extreme-valued observations m
 
 Generally, we describe a trimmed mean in terms of the percentage of observations on either side that are discarded. So, for instance, a 10% trimmed mean discards the largest 10% of the observations *and* the smallest 10% of the observations and then takes the mean of the remaining 80% of the observations. Not surprisingly, the 0% trimmed mean is just the regular mean, and the 50% trimmed mean is the median. In that sense, trimmed means provide a whole family of central tendency measures that span the range from the mean to the median.
 
-For our toy example above, we have 10 observations. So a 10% trimmed mean is calculated by ignoring the largest value (i.e. `12`) and the smallest value (i.e. `-15`) and taking the mean of the remaining values. 
+For our toy example above, we have 10 observations. So a 10% trimmed mean is calculated by ignoring the largest value (i.e. $12$) and the smallest value (i.e. $-15$) and taking the mean of the remaining values. 
 
 > `Mean: 4.1`\
 > `Median: 5.5`
@@ -158,46 +158,111 @@ knitr::include_graphics("resources/frequency_aflsmall.png")
 
 While it's generally true that the mode is most often calculated when you have [nominal scale](#nominalscale) data -- because means and medians are useless for those sorts of variables --, there are some situations in which you do want to know the mode of an [ordinal](#ordinalscale), [interval](#intervalscale) or [ratio scale](#ratioscale) variable.
 
-For instance, let's look at our `afl.margins` variable we loaded into CogStat. This variable is clearly ratio scale, and so in most situations the mean or the median is the measure of central tendency that you want. But consider this scenario... a friend of yours is offering a bet. They pick a football game at random, and (without knowing who is playing) you have to guess the *exact* margin. If you guess correctly, you win \$50. If you don't, you lose \$1. There are no consolation prizes for "almost" getting the right answer. You have to guess exactly the right margin^[This is called a "0-1 loss function", meaning that you either win (1) or you lose (0), with no middle ground.] For this bet, the mean and the median are completely useless to you. It is the mode that you should bet on. So, we look at the frequency table offered by the result set: the data suggest you should bet on a `3.0` point margin, and since this was observed in 8 of the 176 games (4.5% of games -- the *relative frequency*), the odds are firmly in your favour.
+For instance, let's look at our `afl.margins` variable we loaded into CogStat. This variable is clearly ratio scale, and so in most situations the mean or the median is the measure of central tendency that you want. But consider this scenario... a friend of yours is offering a bet. They pick a football game at random, and (without knowing who is playing) you have to guess the *exact* margin. If you guess correctly, you win \$50. If you don't, you lose \$1. There are no consolation prizes for "almost" getting the right answer. You have to guess exactly the right margin^[This is called a "0-1 loss function", meaning that you either win (1) or you lose (0), with no middle ground.] For this bet, the mean and the median are completely useless to you. It is the mode that you should bet on. So, we look at the frequency table offered by the result set: the data suggest you should bet on a $3.0$ point margin, and since this was observed in 8 of the 176 games (4.5% of games -- the *relative frequency*), the odds are firmly in your favour.
 
 ## Measures of variability{#var}
 
+The statistics that we've discussed so far all relate to *central tendency*. They all talk about which values are "in the middle" or "popular" in the data. However, central tendency is not the only type of summary statistic that we want to calculate. The second thing that we really want is a measure of the **variability** of the data. That is, how "spread out" are the data? How "far" away from the mean or median do the observed values tend to be? For now, let's assume that the data are interval or ratio scale, so we'll continue to use the `afl.margins` data. We'll use this data to discuss several different measures of spread, each with different strengths and weaknesses. 
+
 ### Range{#range}
 
-### Interquartile range
+The **range** of a variable is very simple: it's the largest value minus the smallest value. For the AFL winning margins data, the maximum value is $116$, and the minimum is $0$, so the range is:
 
-### Mean absolute deviation{#aad}
+$$116-0=\mathbf{116}$$
+
+CogStat automatically calculates all these values (see Figure \@ref(fig:histogramaflsmall)), so there is nothing we need to do about this, only to understand what it implies.
+
+Although the range is the simplest way to quantify the notion of "variability", it's one of the worst. Recall from our discussion of the mean that we want our summary measure to be robust. If the data set has one or two extremely bad values in it, we'd like our statistics not to be unduly influenced by these cases. Let us look once again at our toy example of a data set containing very extreme outliers:
+$$
+-100,2,3,4,5,6,7,8,9,10
+$$
+
+It is clear that the range is not robust since this has a range of $110$, but if the outlier was removed, we would have a range of only $8$.
+
+### Interquartile range{#IQR}
+
+The **interquartile range** (IQR) is like the range, but instead of calculating the difference between the largest and smallest value, it calculates the difference between the 25th and 75th quantile.
+
+Probably you already know what a **quantile** is (or more commonly called **percentile**), but if not: the 10th percentile of a data set is the smallest number $x$ such that 10% of the data is less than $x$. In fact, we've already come across the idea: the median of a data set is its 50th quantile/percentile! **Quartile** is another specific term used for the 25th (lower), 50th (median), and 75th (upper) percentile, as it is splitting the data set into four (hence '*quart-*') equal parts.^[It'd be remiss if we didn't mention *quintiles*, which is splitting the data set into five equal parts, with the split points being the 20th, 40th, 60th, and 80th percentiles. And there are *tertiles* and *deciles* -- but now we're just getting sidetracked.]
+
+CogStat provides you with both the 25th (`Lower quartile`) and 75th quantiles (`Upper quartile`):
+
+> `Upper quartile: 50.5`\
+> `Lower quartile: 12.8`
+
+We can see that the interquartile range for the 2010 AFL winning margins data is:
+$$
+50.5 - 12.8 = \mathbf{37.7}
+$$
+
+While it's obvious how to interpret the range, it's a little less obvious how to interpret the IQR. The simplest way to think about it is like this: the interquartile range is the range spanned by the "middle half" of the data. That is, one quarter of the data falls below the 25th percentile, one quarter of the data is above the 75th percentile, leaving the "middle half" of the data lying in between the two. And the IQR is the range covered by that middle half.
+
+### Mean absolute deviation (currently unsupported){#aad}
+
+The two measures we've looked at so far, the range and the interquartile range, both rely on the idea that we can measure the spread of the data by looking at quantiles. However, this isn't the only way to think about the problem. A different approach is to select some meaningful reference point (usually the mean or the median) and then report the "typical" deviations from that. What do we mean by "typical" deviation? Usually, the mean or median value of these deviations. In practice, this leads to two different measures, the "mean absolute deviation" (from the mean) and the "median absolute deviation" (from the median). The measure based on the median seems to be used in statistics and might be the better of the two, but it's less frequently used in psychology, per Danielle's observation. The measure based on the mean occasionally shows up in psychology; hence we will cover this measure in this chapter.
+
+One useful thing about **mean absolute deviation** is that the name tells you exactly how to calculate it. Let's think about our AFL winning margins data, and once again we'll start by pretending that there's only 5 games in total, with winning margins of 56, 31, 56, 8 and 32. Since our calculations rely on an examination of the deviation from some reference point (in this case, the mean), the first thing we need to look up is the mean, $\bar{X}$. For these five observations, our mean is $\bar{X} = 36.6$. The next step is to convert each of our observations $X_i$ into a deviation score. We do this by calculating the difference between the observation $X_i$ and the mean $\bar{X}$. That is, the deviation score is defined to be $X_i - \bar{X}$. For the first observation in our sample, this is equal to $56 - 36.6 = 19.4$. The next step in the process is to convert these deviations to absolute deviations. Mathematically, we would denote the absolute value of $-3$ as $|-3|$, and so we say that $|-3| = 3$. We use the absolute value function here because we don't care whether the value is higher than the mean or lower than the mean; we're just interested in how *close* it is to the mean. To help make this process as obvious as possible, the table below shows these calculations for all five observations:
+
+```{r echo=FALSE}
+knitr::kable(rbind(
+ c("winning margin, game 1", "$X_1$", "56 points"),
+ c("winning margin, game 2", "$X_2$", "31 points"),
+ c("winning margin, game 3", "$X_3$", "56 points"),
+ c("winning margin, game 4", "$X_4$", "8 points"),
+ c("winning margin, game 5", "$X_5$", "32 points")),
+col.names = c("the observation", "its symbol", "the observed value"),
+ booktabs = TRUE)
+
+```
+
+Now that we have calculated the absolute deviation score for every observation in the data set, we only have to calculate the mean of these scores. Let's do that:
+$$
+\frac{19.4 + 5.6 + 19.4 + 28.6 + 4.6}{5} = 15.52
+$$
+And we're done. The mean absolute deviation for these five scores is 15.52. 
+
+However, while our calculations for this little example are at an end, we do have a couple of things left to talk about. Firstly, we should really try to write down a proper mathematical formula. But in order to do this, we need some mathematical notation to refer to the mean absolute deviation. Irritatingly, "mean absolute deviation" and "median absolute deviation" have the same acronym (MAD), which leads to a certain amount of ambiguity. What we'll do is use AAD instead, short for *average* absolute deviation. Now that we have some unambiguous notation, here's the formula that describes what we just calculated:
+$$
+\mbox{}(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}|
+$$
+
+The last thing we must discuss is how to calculate AAD in CogStat. Currently, the software does not automatically compute this, and no manual interventions exist. This calculation might get added in a future release if needed.
 
 ### Variance
 
+
+
 ### Standard deviation{#sd}
 
-### Median absolute deviation{#mad}
+### Median absolute deviation (currently unsupported){#mad}
 
 ### Which measure to use?
 
-## Skew and kurtosis{#skewandkurtosis}
+## Skewness and kurtosis{#skewnesskurtosis}
 
 ## Summary: descriptives
 
 As you've seen in this chapter...
 
 ```{r echo=FALSE}
+library(kableExtra)
 knitr::kable(rbind(
-              c("Mean", "35.3"),
-              c("Standard deviation", ""),
-              c("Skewness", ""),
-              c("Kurtosis", ""),
-              c("Range", ""),
-              c("Maximum", ""),
-              c("Upper quartile", ""),
-              c("Median", "30.5"),
-              c("Lower quartile", ""),
-              c("Minimum", "")
+              c("[Mean](#mean)", "35.3", "Average -- the \"centre of gravity\" of the data"),
+              c("[Standard deviation](#sd)", "26.0", ""),
+              c("[Skewness](#skewnesskurtosis)", "0.8", ""),
+              c("[Kurtosis](#skewnesskurtosis)", "0.1", ""),
+              c("[Range](#range)", "116.0", "The spread of the data set between the maximum and minimum values"),
+              c("[Maximum](#range)", "116.0", "The highest value in the data set"),
+              c("[Upper quartile](#IQR)", "50.5", "25% of the data points reside at and above this value"),
+              c("[Median](#median)", "30.5", "This is the value of the data point in the middle (or the average of the two middle points in case of even number of data points). 50-50% of data points reside at above and below this value"),
+              c("[Lower quartile](#IQR)", "12.8", "25% of the data points reside at and below this value"),
+              c("[Minimum](#range)", "0.0", "The lowest value in the data set")
               ),
-  col.names = c("", "afl.margins"),
+  col.names = c("", "afl.margins", "Meaning"),
   booktabs = TRUE,
-  caption = 'Descriptives for the variable'
-  )
+  caption = 'Descriptives for the variable',
+  align = c("l", "c", "l")
+  ) %>%
+  column_spec(1, width_min = '1.5in')
 
 ```
