@@ -50,6 +50,8 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 
@@ -168,14 +170,14 @@ div.csl-indent {
 <li class="chapter" data-level="4.2" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#var"><i class="fa fa-check"></i><b>4.2</b> Measures of variability</a>
 <ul>
 <li class="chapter" data-level="4.2.1" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#range"><i class="fa fa-check"></i><b>4.2.1</b> Range</a></li>
-<li class="chapter" data-level="4.2.2" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#interquartile-range"><i class="fa fa-check"></i><b>4.2.2</b> Interquartile range</a></li>
-<li class="chapter" data-level="4.2.3" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#aad"><i class="fa fa-check"></i><b>4.2.3</b> Mean absolute deviation</a></li>
+<li class="chapter" data-level="4.2.2" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#IQR"><i class="fa fa-check"></i><b>4.2.2</b> Interquartile range</a></li>
+<li class="chapter" data-level="4.2.3" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#aad"><i class="fa fa-check"></i><b>4.2.3</b> Mean absolute deviation (currently unsupported)</a></li>
 <li class="chapter" data-level="4.2.4" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#variance"><i class="fa fa-check"></i><b>4.2.4</b> Variance</a></li>
 <li class="chapter" data-level="4.2.5" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#sd"><i class="fa fa-check"></i><b>4.2.5</b> Standard deviation</a></li>
-<li class="chapter" data-level="4.2.6" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#mad"><i class="fa fa-check"></i><b>4.2.6</b> Median absolute deviation</a></li>
+<li class="chapter" data-level="4.2.6" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#mad"><i class="fa fa-check"></i><b>4.2.6</b> Median absolute deviation (currently unsupported)</a></li>
 <li class="chapter" data-level="4.2.7" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#which-measure-to-use"><i class="fa fa-check"></i><b>4.2.7</b> Which measure to use?</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#skewandkurtosis"><i class="fa fa-check"></i><b>4.3</b> Skew and kurtosis</a></li>
+<li class="chapter" data-level="4.3" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#skewnesskurtosis"><i class="fa fa-check"></i><b>4.3</b> Skewness and kurtosis</a></li>
 <li class="chapter" data-level="4.4" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#summary-descriptives"><i class="fa fa-check"></i><b>4.4</b> Summary: descriptives</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="introduction-to-probability.html"><a href="introduction-to-probability.html"><i class="fa fa-check"></i><b>5</b> Introduction to probability</a></li>
@@ -343,7 +345,7 @@ Figure 4.4: An illustration of the difference between how the mean and the media
 <li>If your data are <em><a href="researchdesign.html#ordinalscale">ordinal scale</a></em>, you’re more likely to want to use the median than the mean. The median only uses the order information in your data (i.e., which numbers are larger) but doesn’t depend on the precise numbers involved. That’s precisely the situation that applies when your data are ordinal scale. Conversely, the mean makes use of the precise numeric values assigned to the observations, so it’s not appropriate for ordinal data.</li>
 <li>For <em><a href="researchdesign.html#intervalscale">interval</a></em> and <em><a href="researchdesign.html#ratioscale">ratio scale</a></em> data, either one is generally acceptable. Which one you pick depends a bit on what you’re trying to achieve. The mean has the advantage of using all the information in the data (which is useful when you don’t have a lot of data), but it’s very susceptible to extreme values, as we’ll see in Section <a href="exploring-a-variable.html#trimmedmean">4.1.4</a>.</li>
 </ul>
-<p>Let’s expand on that last part a little. One consequence is that there are systematic differences between the mean and the median when the histogram is asymmetric (skewed; see Section <a href="exploring-a-variable.html#skewandkurtosis">4.3</a>). This is illustrated in Figure <a href="exploring-a-variable.html#fig:meanmedian">4.4</a> notice that the median (right hand side) is located closer to the “body” of the histogram, whereas the mean (left hand side) gets dragged towards the “tail” (where the extreme values are). To give a concrete example, suppose Bob (income $50,000), Kate (income $60,000) and Jane (income $65,000) are sitting at a table: the average income at the table is $58,333 and the median income is $60,000. Then Bill sits down with them (income $100,000,000). The average income has now jumped to $25,043,750 but the median rises only to $62,500. If you’re interested in looking at the overall income at the table, the mean might be the right answer; but if you’re interested in what counts as a typical income at the table, the median would be a better choice here.</p>
+<p>Let’s expand on that last part a little. One consequence is that there are systematic differences between the mean and the median when the histogram is asymmetric (skewed; see Section <a href="exploring-a-variable.html#skewnesskurtosis">4.3</a>). This is illustrated in Figure <a href="exploring-a-variable.html#fig:meanmedian">4.4</a> notice that the median (right hand side) is located closer to the “body” of the histogram, whereas the mean (left hand side) gets dragged towards the “tail” (where the extreme values are). To give a concrete example, suppose Bob (income $50,000), Kate (income $60,000) and Jane (income $65,000) are sitting at a table: the average income at the table is $58,333 and the median income is $60,000. Then Bill sits down with them (income $100,000,000). The average income has now jumped to $25,043,750 but the median rises only to $62,500. If you’re interested in looking at the overall income at the table, the mean might be the right answer; but if you’re interested in what counts as a typical income at the table, the median would be a better choice here.</p>
 </div>
 <div id="trimmedmean" class="section level3 hasAnchor" number="4.1.4">
 <h3><span class="header-section-number">4.1.4</span> Trimmed mean<a href="exploring-a-variable.html#trimmedmean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -358,7 +360,7 @@ If you were to observe this in a real-life data set, you’d probably suspect th
 The <span class="math inline">\(-15\)</span> looks suspicious, but not as much as that <span class="math inline">\(-100\)</span> did. In this case, it’s a little trickier. It <em>might</em> be a legitimate observation; it might not.</p>
 <p>When faced with a situation where some of the most extreme-valued observations might not be quite trustworthy, the mean is not necessarily a good measure of central tendency. It is highly sensitive to one or two extreme values and thus is not considered a <em>robust</em> measure. One remedy that we’ve seen is to use the median. A more general solution is to use a “trimmed mean”. To calculate a trimmed mean, what you do is “discard” the most extreme examples on both ends (i.e., the largest and the smallest) and then take the mean of everything else. The goal is to preserve the best characteristics of the mean and the median: just like a median, you aren’t highly influenced by extreme outliers, but like the mean, you “use” more than one of the observations.</p>
 <p>Generally, we describe a trimmed mean in terms of the percentage of observations on either side that are discarded. So, for instance, a 10% trimmed mean discards the largest 10% of the observations <em>and</em> the smallest 10% of the observations and then takes the mean of the remaining 80% of the observations. Not surprisingly, the 0% trimmed mean is just the regular mean, and the 50% trimmed mean is the median. In that sense, trimmed means provide a whole family of central tendency measures that span the range from the mean to the median.</p>
-<p>For our toy example above, we have 10 observations. So a 10% trimmed mean is calculated by ignoring the largest value (i.e. <code>12</code>) and the smallest value (i.e. <code>-15</code>) and taking the mean of the remaining values.</p>
+<p>For our toy example above, we have 10 observations. So a 10% trimmed mean is calculated by ignoring the largest value (i.e. <span class="math inline">\(12\)</span>) and the smallest value (i.e. <span class="math inline">\(-15\)</span>) and taking the mean of the remaining values.</p>
 <blockquote>
 <p><code>Mean: 4.1</code><br />
 <code>Median: 5.5</code></p>
@@ -381,19 +383,88 @@ Figure 4.5: The frequency table sorts non-nominal values from lowest to highest.
 </p>
 </div>
 <p>While it’s generally true that the mode is most often calculated when you have <a href="researchdesign.html#nominalscale">nominal scale</a> data – because means and medians are useless for those sorts of variables –, there are some situations in which you do want to know the mode of an <a href="researchdesign.html#ordinalscale">ordinal</a>, <a href="researchdesign.html#intervalscale">interval</a> or <a href="researchdesign.html#ratioscale">ratio scale</a> variable.</p>
-<p>For instance, let’s look at our <code>afl.margins</code> variable we loaded into CogStat. This variable is clearly ratio scale, and so in most situations the mean or the median is the measure of central tendency that you want. But consider this scenario… a friend of yours is offering a bet. They pick a football game at random, and (without knowing who is playing) you have to guess the <em>exact</em> margin. If you guess correctly, you win $50. If you don’t, you lose $1. There are no consolation prizes for “almost” getting the right answer. You have to guess exactly the right margin<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> For this bet, the mean and the median are completely useless to you. It is the mode that you should bet on. So, we look at the frequency table offered by the result set: the data suggest you should bet on a <code>3.0</code> point margin, and since this was observed in 8 of the 176 games (4.5% of games – the <em>relative frequency</em>), the odds are firmly in your favour.</p>
+<p>For instance, let’s look at our <code>afl.margins</code> variable we loaded into CogStat. This variable is clearly ratio scale, and so in most situations the mean or the median is the measure of central tendency that you want. But consider this scenario… a friend of yours is offering a bet. They pick a football game at random, and (without knowing who is playing) you have to guess the <em>exact</em> margin. If you guess correctly, you win $50. If you don’t, you lose $1. There are no consolation prizes for “almost” getting the right answer. You have to guess exactly the right margin<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> For this bet, the mean and the median are completely useless to you. It is the mode that you should bet on. So, we look at the frequency table offered by the result set: the data suggest you should bet on a <span class="math inline">\(3.0\)</span> point margin, and since this was observed in 8 of the 176 games (4.5% of games – the <em>relative frequency</em>), the odds are firmly in your favour.</p>
 </div>
 </div>
 <div id="var" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> Measures of variability<a href="exploring-a-variable.html#var" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The statistics that we’ve discussed so far all relate to <em>central tendency</em>. They all talk about which values are “in the middle” or “popular” in the data. However, central tendency is not the only type of summary statistic that we want to calculate. The second thing that we really want is a measure of the <strong>variability</strong> of the data. That is, how “spread out” are the data? How “far” away from the mean or median do the observed values tend to be? For now, let’s assume that the data are interval or ratio scale, so we’ll continue to use the <code>afl.margins</code> data. We’ll use this data to discuss several different measures of spread, each with different strengths and weaknesses.</p>
 <div id="range" class="section level3 hasAnchor" number="4.2.1">
 <h3><span class="header-section-number">4.2.1</span> Range<a href="exploring-a-variable.html#range" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>range</strong> of a variable is very simple: it’s the largest value minus the smallest value. For the AFL winning margins data, the maximum value is <span class="math inline">\(116\)</span>, and the minimum is <span class="math inline">\(0\)</span>, so the range is:</p>
+<p><span class="math display">\[116-0=\mathbf{116}\]</span></p>
+<p>CogStat automatically calculates all these values (see Figure <a href="exploring-a-variable.html#fig:histogramaflsmall">4.3</a>), so there is nothing we need to do about this, only to understand what it implies.</p>
+<p>Although the range is the simplest way to quantify the notion of “variability”, it’s one of the worst. Recall from our discussion of the mean that we want our summary measure to be robust. If the data set has one or two extremely bad values in it, we’d like our statistics not to be unduly influenced by these cases. Let us look once again at our toy example of a data set containing very extreme outliers:
+<span class="math display">\[
+-100,2,3,4,5,6,7,8,9,10
+\]</span></p>
+<p>It is clear that the range is not robust since this has a range of <span class="math inline">\(110\)</span>, but if the outlier was removed, we would have a range of only <span class="math inline">\(8\)</span>.</p>
 </div>
-<div id="interquartile-range" class="section level3 hasAnchor" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Interquartile range<a href="exploring-a-variable.html#interquartile-range" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="IQR" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Interquartile range<a href="exploring-a-variable.html#IQR" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>interquartile range</strong> (IQR) is like the range, but instead of calculating the difference between the largest and smallest value, it calculates the difference between the 25th and 75th quantile.</p>
+<p>Probably you already know what a <strong>quantile</strong> is (or more commonly called <strong>percentile</strong>), but if not: the 10th percentile of a data set is the smallest number <span class="math inline">\(x\)</span> such that 10% of the data is less than <span class="math inline">\(x\)</span>. In fact, we’ve already come across the idea: the median of a data set is its 50th quantile/percentile! <strong>Quartile</strong> is another specific term used for the 25th (lower), 50th (median), and 75th (upper) percentile, as it is splitting the data set into four (hence ‘<em>quart-</em>’) equal parts.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
+<p>CogStat provides you with both the 25th (<code>Lower quartile</code>) and 75th quantiles (<code>Upper quartile</code>):</p>
+<blockquote>
+<p><code>Upper quartile: 50.5</code><br />
+<code>Lower quartile: 12.8</code></p>
+</blockquote>
+<p>We can see that the interquartile range for the 2010 AFL winning margins data is:
+<span class="math display">\[
+50.5 - 12.8 = \mathbf{37.7}
+\]</span></p>
+<p>While it’s obvious how to interpret the range, it’s a little less obvious how to interpret the IQR. The simplest way to think about it is like this: the interquartile range is the range spanned by the “middle half” of the data. That is, one quarter of the data falls below the 25th percentile, one quarter of the data is above the 75th percentile, leaving the “middle half” of the data lying in between the two. And the IQR is the range covered by that middle half.</p>
 </div>
 <div id="aad" class="section level3 hasAnchor" number="4.2.3">
-<h3><span class="header-section-number">4.2.3</span> Mean absolute deviation<a href="exploring-a-variable.html#aad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">4.2.3</span> Mean absolute deviation (currently unsupported)<a href="exploring-a-variable.html#aad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The two measures we’ve looked at so far, the range and the interquartile range, both rely on the idea that we can measure the spread of the data by looking at quantiles. However, this isn’t the only way to think about the problem. A different approach is to select some meaningful reference point (usually the mean or the median) and then report the “typical” deviations from that. What do we mean by “typical” deviation? Usually, the mean or median value of these deviations. In practice, this leads to two different measures, the “mean absolute deviation” (from the mean) and the “median absolute deviation” (from the median). The measure based on the median seems to be used in statistics and might be the better of the two, but it’s less frequently used in psychology, per Danielle’s observation. The measure based on the mean occasionally shows up in psychology; hence we will cover this measure in this chapter.</p>
+<p>One useful thing about <strong>mean absolute deviation</strong> is that the name tells you exactly how to calculate it. Let’s think about our AFL winning margins data, and once again we’ll start by pretending that there’s only 5 games in total, with winning margins of 56, 31, 56, 8 and 32. Since our calculations rely on an examination of the deviation from some reference point (in this case, the mean), the first thing we need to look up is the mean, <span class="math inline">\(\bar{X}\)</span>. For these five observations, our mean is <span class="math inline">\(\bar{X} = 36.6\)</span>. The next step is to convert each of our observations <span class="math inline">\(X_i\)</span> into a deviation score. We do this by calculating the difference between the observation <span class="math inline">\(X_i\)</span> and the mean <span class="math inline">\(\bar{X}\)</span>. That is, the deviation score is defined to be <span class="math inline">\(X_i - \bar{X}\)</span>. For the first observation in our sample, this is equal to <span class="math inline">\(56 - 36.6 = 19.4\)</span>. The next step in the process is to convert these deviations to absolute deviations. Mathematically, we would denote the absolute value of <span class="math inline">\(-3\)</span> as <span class="math inline">\(|-3|\)</span>, and so we say that <span class="math inline">\(|-3| = 3\)</span>. We use the absolute value function here because we don’t care whether the value is higher than the mean or lower than the mean; we’re just interested in how <em>close</em> it is to the mean. To help make this process as obvious as possible, the table below shows these calculations for all five observations:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">the observation</th>
+<th align="left">its symbol</th>
+<th align="left">the observed value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">winning margin, game 1</td>
+<td align="left"><span class="math inline">\(X_1\)</span></td>
+<td align="left">56 points</td>
+</tr>
+<tr class="even">
+<td align="left">winning margin, game 2</td>
+<td align="left"><span class="math inline">\(X_2\)</span></td>
+<td align="left">31 points</td>
+</tr>
+<tr class="odd">
+<td align="left">winning margin, game 3</td>
+<td align="left"><span class="math inline">\(X_3\)</span></td>
+<td align="left">56 points</td>
+</tr>
+<tr class="even">
+<td align="left">winning margin, game 4</td>
+<td align="left"><span class="math inline">\(X_4\)</span></td>
+<td align="left">8 points</td>
+</tr>
+<tr class="odd">
+<td align="left">winning margin, game 5</td>
+<td align="left"><span class="math inline">\(X_5\)</span></td>
+<td align="left">32 points</td>
+</tr>
+</tbody>
+</table>
+<p>Now that we have calculated the absolute deviation score for every observation in the data set, we only have to calculate the mean of these scores. Let’s do that:
+<span class="math display">\[
+\frac{19.4 + 5.6 + 19.4 + 28.6 + 4.6}{5} = 15.52
+\]</span>
+And we’re done. The mean absolute deviation for these five scores is 15.52.</p>
+<p>However, while our calculations for this little example are at an end, we do have a couple of things left to talk about. Firstly, we should really try to write down a proper mathematical formula. But in order to do this, we need some mathematical notation to refer to the mean absolute deviation. Irritatingly, “mean absolute deviation” and “median absolute deviation” have the same acronym (MAD), which leads to a certain amount of ambiguity. What we’ll do is use AAD instead, short for <em>average</em> absolute deviation. Now that we have some unambiguous notation, here’s the formula that describes what we just calculated:
+<span class="math display">\[
+\mbox{}(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}|
+\]</span></p>
+<p>The last thing we must discuss is how to calculate AAD in CogStat. Currently, the software does not automatically compute this, and no manual interventions exist. This calculation might get added in a future release if needed.</p>
 </div>
 <div id="variance" class="section level3 hasAnchor" number="4.2.4">
 <h3><span class="header-section-number">4.2.4</span> Variance<a href="exploring-a-variable.html#variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -402,66 +473,141 @@ Figure 4.5: The frequency table sorts non-nominal values from lowest to highest.
 <h3><span class="header-section-number">4.2.5</span> Standard deviation<a href="exploring-a-variable.html#sd" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
 <div id="mad" class="section level3 hasAnchor" number="4.2.6">
-<h3><span class="header-section-number">4.2.6</span> Median absolute deviation<a href="exploring-a-variable.html#mad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">4.2.6</span> Median absolute deviation (currently unsupported)<a href="exploring-a-variable.html#mad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
 <div id="which-measure-to-use" class="section level3 hasAnchor" number="4.2.7">
 <h3><span class="header-section-number">4.2.7</span> Which measure to use?<a href="exploring-a-variable.html#which-measure-to-use" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
 </div>
-<div id="skewandkurtosis" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Skew and kurtosis<a href="exploring-a-variable.html#skewandkurtosis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="skewnesskurtosis" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Skewness and kurtosis<a href="exploring-a-variable.html#skewnesskurtosis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </div>
 <div id="summary-descriptives" class="section level2 hasAnchor" number="4.4">
 <h2><span class="header-section-number">4.4</span> Summary: descriptives<a href="exploring-a-variable.html#summary-descriptives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>As you’ve seen in this chapter…</p>
 <table>
-<caption><span id="tab:unnamed-chunk-2">Table 4.1: </span>Descriptives for the variable</caption>
+<caption>
+<span id="tab:unnamed-chunk-3">Table 4.1: </span>Descriptives for the variable
+</caption>
 <thead>
-<tr class="header">
-<th align="left"></th>
-<th align="left">afl.margins</th>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+afl.margins
+</th>
+<th style="text-align:left;">
+Meaning
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">Mean</td>
-<td align="left">35.3</td>
+<tr>
+<td style="text-align:left;min-width: 1.5in; ">
+<a href="exploring-a-variable.html#mean">Mean</a>
+</td>
+<td style="text-align:center;">
+35.3
+</td>
+<td style="text-align:left;">
+Average – the “centre of gravity” of the data
+</td>
 </tr>
-<tr class="even">
-<td align="left">Standard deviation</td>
-<td align="left"></td>
+<tr>
+<td style="text-align:left;min-width: 1.5in; ">
+<a href="exploring-a-variable.html#sd">Standard deviation</a>
+</td>
+<td style="text-align:center;">
+26.0
+</td>
+<td style="text-align:left;">
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Skewness</td>
-<td align="left"></td>
+<tr>
+<td style="text-align:left;min-width: 1.5in; ">
+<a href="exploring-a-variable.html#skewnesskurtosis">Skewness</a>
+</td>
+<td style="text-align:center;">
+0.8
+</td>
+<td style="text-align:left;">
+</td>
 </tr>
-<tr class="even">
-<td align="left">Kurtosis</td>
-<td align="left"></td>
+<tr>
+<td style="text-align:left;min-width: 1.5in; ">
+<a href="exploring-a-variable.html#skewnesskurtosis">Kurtosis</a>
+</td>
+<td style="text-align:center;">
+0.1
+</td>
+<td style="text-align:left;">
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Range</td>
-<td align="left"></td>
+<tr>
+<td style="text-align:left;min-width: 1.5in; ">
+<a href="exploring-a-variable.html#range">Range</a>
+</td>
+<td style="text-align:center;">
+116.0
+</td>
+<td style="text-align:left;">
+The spread of the data set between the maximum and minimum values
+</td>
 </tr>
-<tr class="even">
-<td align="left">Maximum</td>
-<td align="left"></td>
+<tr>
+<td style="text-align:left;min-width: 1.5in; ">
+<a href="exploring-a-variable.html#range">Maximum</a>
+</td>
+<td style="text-align:center;">
+116.0
+</td>
+<td style="text-align:left;">
+The highest value in the data set
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Upper quartile</td>
-<td align="left"></td>
+<tr>
+<td style="text-align:left;min-width: 1.5in; ">
+<a href="exploring-a-variable.html#IQR">Upper quartile</a>
+</td>
+<td style="text-align:center;">
+50.5
+</td>
+<td style="text-align:left;">
+25% of the data points reside at and above this value
+</td>
 </tr>
-<tr class="even">
-<td align="left">Median</td>
-<td align="left">30.5</td>
+<tr>
+<td style="text-align:left;min-width: 1.5in; ">
+<a href="exploring-a-variable.html#median">Median</a>
+</td>
+<td style="text-align:center;">
+30.5
+</td>
+<td style="text-align:left;">
+This is the value of the data point in the middle (or the average of the two middle points in case of even number of data points). 50-50% of data points reside at above and below this value
+</td>
 </tr>
-<tr class="odd">
-<td align="left">Lower quartile</td>
-<td align="left"></td>
+<tr>
+<td style="text-align:left;min-width: 1.5in; ">
+<a href="exploring-a-variable.html#IQR">Lower quartile</a>
+</td>
+<td style="text-align:center;">
+12.8
+</td>
+<td style="text-align:left;">
+25% of the data points reside at and below this value
+</td>
 </tr>
-<tr class="even">
-<td align="left">Minimum</td>
-<td align="left"></td>
+<tr>
+<td style="text-align:left;min-width: 1.5in; ">
+<a href="exploring-a-variable.html#range">Minimum</a>
+</td>
+<td style="text-align:center;">
+0.0
+</td>
+<td style="text-align:left;">
+The lowest value in the data set
+</td>
 </tr>
 </tbody>
 </table>
@@ -476,6 +622,7 @@ Figure 4.5: The frequency table sorts non-nominal values from lowest to highest.
 <li id="fn11"><p><em>medianus</em> is Latin for “the one in the middle”, originating from the word <em>medius</em>, meaning “the middle”.<a href="exploring-a-variable.html#fnref11" class="footnote-back">↩︎</a></p></li>
 <li id="fn12"><p>Or at least, the basic statistical theory. These days, a whole subfield of statistics called <em>robust statistics</em> tries to grapple with the messiness of real data and develop the theory that can cope with it.<a href="exploring-a-variable.html#fnref12" class="footnote-back">↩︎</a></p></li>
 <li id="fn13"><p>This is called a “0-1 loss function”, meaning that you either win (1) or you lose (0), with no middle ground.<a href="exploring-a-variable.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p>It’d be remiss if we didn’t mention <em>quintiles</em>, which is splitting the data set into five equal parts, with the split points being the 20th, 40th, 60th, and 80th percentiles. And there are <em>tertiles</em> and <em>deciles</em> – but now we’re just getting sidetracked.<a href="exploring-a-variable.html#fnref14" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

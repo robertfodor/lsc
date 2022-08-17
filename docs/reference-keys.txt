@@ -7,7 +7,7 @@ fig:rawaflsmall
 fig:histogramaflsmall
 fig:meanmedian
 fig:freqaflsmall
-tab:unnamed-chunk-2
+tab:unnamed-chunk-3
 whywhywhy
 researchdesign
 measurement
@@ -61,13 +61,13 @@ trimmedmean
 mode
 var
 range
-interquartile-range
+IQR
 aad
 variance
 sd
 mad
 which-measure-to-use
-skewandkurtosis
+skewnesskurtosis
 summary-descriptives
 introduction-to-probability
 correl
