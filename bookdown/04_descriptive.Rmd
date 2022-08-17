@@ -197,7 +197,7 @@ $$
 
 While it's obvious how to interpret the range, it's a little less obvious how to interpret the IQR. The simplest way to think about it is like this: the interquartile range is the range spanned by the "middle half" of the data. That is, one quarter of the data falls below the 25th percentile, one quarter of the data is above the 75th percentile, leaving the "middle half" of the data lying in between the two. And the IQR is the range covered by that middle half.
 
-### Mean absolute deviation (currently unsupported){#aad}
+### Mean absolute deviation{#aad}
 
 The two measures we've looked at so far, the range and the interquartile range, both rely on the idea that we can measure the spread of the data by looking at quantiles. However, this isn't the only way to think about the problem. A different approach is to select some meaningful reference point (usually the mean or the median) and then report the "typical" deviations from that. What do we mean by "typical" deviation? Usually, the mean or median value of these deviations. In practice, this leads to two different measures, the "mean absolute deviation" (from the mean) and the "median absolute deviation" (from the median). The measure based on the median seems to be used in statistics and might be the better of the two, but it's less frequently used in psychology, per Danielle's observation. The measure based on the mean occasionally shows up in psychology; hence we will cover this measure in this chapter.
 
@@ -226,31 +226,199 @@ $$
 \mbox{}(X) = \frac{1}{N} \sum_{i = 1}^N |X_i - \bar{X}|
 $$
 
-The last thing we must discuss is how to calculate AAD in CogStat. Currently, the software does not automatically compute this, and no manual interventions exist. This calculation might get added in a future release if needed.
+The last thing we must discuss is how to calculate AAD in CogStat. Currently, the software does not automatically compute this, and no manual interventions exist. This calculation might get added in a future release if needed, but if you bear with us for two more chapters, you'll see a more useful measure instead.
 
 ### Variance
 
+Although the mean absolute deviation measure has its uses, it's not the best measure of variability. From a purely mathematical perspective, there are some solid reasons to prefer squared deviations over absolute deviations. With square deviations, we obtain a measure called **variance**.
 
+The variance of a data set $X$ is sometimes written as $\mbox{Var}(X)$, but it's more commonly denoted $s^2$. The reason for this will become clearer shortly. The formula that we use to calculate the variance of a set of observations is as follows:
+$$
+\mbox{Var}(X) = \frac{1}{N} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2
+$$
+$$\mbox{Var}(X) = \frac{\sum_{i=1}^N \left( X_i - \bar{X} \right)^2}{N}$$
+As you can see, it's basically the same formula that we used to calculate the mean absolute deviation, except that instead of using "absolute deviations", we use "squared deviations". For this reason, the variance is sometimes referred to as the "mean square deviation".
+
+Variances are *additive*. Here's what that means: suppose we have two variables ($X$ and $Y$), whose variances are $\mbox{Var}(X)$ and $\mbox{Var}(Y)$ respectively. Now imagine we want to define a new variable $Z$ that is the sum of the two, $Z = X+Y$. As it turns out, the variance of $Z$ is equal to $\mbox{Var}(X) + \mbox{Var}(Y)$. This is a *very* useful property, but it's not true of the other measures.
+
+Now that we've got the basic idea let's look at a concrete example. Once again, let's use the first five AFL games as our data. If we follow the same approach that we took last time, we end up with the following table:
+
+```{r echo=FALSE}
+knitr::kable(rbind(c(1 , 56 , 19.4 , 376.36),
+ c(2 , 31 , -5.6 , 31.36),
+ c(3 , 56 , 19.4 , 376.36),
+ c(4 , 8 , -28.6 , 817.96),
+ c(5 , 32 , -4.6 , 21.16)),
+col.names = c( 
+ "$i$ [which game]",
+ "$X_i$ [value]",
+ "$X_i - \\bar{X}$ [deviation from mean]",
+ "$(X_i - \\bar{X})^2$ [absolute squared deviation]"),
+ booktabs = TRUE)
+```
+
+That last column contains all of our squared deviations, so all we have to do is average them.
+
+$$
+\frac{( 376.36 + 31.36 + 376.36 + 817.96 + 21.16 )}{5} = 324.64
+$$
+
+Exciting, isn't it? Now, let's tackle the burning question you're probably thinking: What does a variance of 324.64 mean? How do you *interpret* the variance? Descriptive statistics are supposed to describe things, after all, and right now, the variance is really just a gibberish number. Unfortunately, the reason why we haven't given you the human-friendly interpretation of the variance is that there really isn't one. This is the most serious problem with the variance. Although it has some elegant mathematical properties that suggest that it really is a fundamental quantity for expressing variation, it's utterly useless if you want to communicate with an actual human. Variances are completely uninterpretable in terms of the original variable. All the numbers have been squared, and they don't mean anything anymore. This is a huge issue.
+
+CogStat will not attempt to interpret the variance nor will it give you the raw value. But the next chapter will show you another measure instead: the *standard deviation*.
 
 ### Standard deviation{#sd}
 
-### Median absolute deviation (currently unsupported){#mad}
+Suppose you would like to have a measure expressed in the same units as the data itself (i.e. points, not points-squared). What should you do? The solution to the problem is obvious: take the square root of the variance, known as the **standard deviation**, also called the "root mean squared deviation", or RMSD. This solves our problem fairly neatly: while nobody has a clue what "a variance of 324.68 points-squared" really means, it's much easier to understand "a standard deviation of 18.01 points" since it's expressed in the original units. It is traditional to refer to the standard deviation of a sample of data as $s$, though "**SD**" and "**Std dev.**" are also used at times. Because the standard deviation is equal to the square root of the variance, you probably won't be surprised to see that the formula is:
+$$
+s = \sqrt{ \frac{1}{N} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2 }
+$$
+
+Because the standard deviation is derived from the variance, and the variance is a quantity that has little to no meaning that makes sense to us humans, the standard deviation doesn't have a simple interpretation. As a consequence, most of us rely on a simple rule of thumb: in general, you should expect 68% of the data to fall within 1 standard deviation (1 sigma) of the mean, 95% of the data to fall within 2 standard deviation (2 sigmas) of the mean, and 99.7% of the data to fall within 3 standard deviations (3 sigmas) of the mean. This rule tends to work pretty well most of the time, but it's not exact: it's actually calculated based on an *assumption* that the histogram is symmetric and "bell shaped", i.e. the data are *normally* distributed, which is an important concept that we'll discuss more in Chapter \@ref(probability).
+
+So how do we interpret standard deviation? Basically, if the standard deviation is small (relatively closer to zero), then the data are clustered close to the mean. Conversely, if the standard deviation is large (relatively closer to the interquartile range), then the data are more spread out.
+
+As you can tell from the AFL winning margins histogram in Figure \@ref(fig:histogramaflsmall), this isn't exactly true of our data! Even so, the rule is approximately correct. As it turns out, 65.3% of the AFL margins data fall within one standard deviation of the mean.
+
+### Median absolute deviation {#mad}
+
+The last measure of variability to talk about is the **median absolute deviation** (MAD). The basic idea behind MAD is identical to the one behind the mean absolute deviation (Section \@ref(aad)). The difference is that you use the median everywhere. 
+
+This has a straightforward interpretation: every observation in the data set lies some distance away from the typical value (the median). So the MAD is an attempt to describe a *typical deviation from a typical value* in the data set. It wouldn't be unreasonable to interpret the MAD value of $19.5$ for our AFL data by saying something like this:
+
+>The median winning margin in 2010 was 30.5, indicating that a typical game involved a winning margin of about 30 points. However, there was a fair amount of variation from game to game: the MAD value was 19.5, indicating that a typical winning margin would differ from this median value by about 19-20 points.
+
+In the same way that the mean is very sensitive to extreme values, so is the standard deviation. So, in much the same way that people sometimes use the median as a "robust" way of calculating "something that is like the mean", it's not uncommon to use MAD as a method for calculating "something that is like the standard deviation". Unfortunately, the *raw* MAD value doesn't do this. Our raw MAD value is 19.5, and our standard deviation was 26.07. Under the assumption again that the data are normally distributed, you can multiply the raw MAD value by 1.4826 and obtain a number that is directly comparable to the standard deviation. That's really *not* true for our `afl.margins` data, so in this case I wouldn't try to use the MAD value this way.
+
+As standard deviation is used almost all of the time in psychology research, CogStat will not be calculating MAD for you.
 
 ### Which measure to use?
 
+We've discussed quite a few measures of spread (range, IQR, MAD, variance and standard deviation) and hinted at their strengths and weaknesses. Here's a quick summary:
+
+- *Range*. Gives you the full spread of the data. It's very vulnerable to outliers, and as a consequence, it isn't often used unless you have good reasons to care about the extremes in the data.
+- *Interquartile range*. Tells you where the "middle half" of the data sits. It's pretty robust and complements the median nicely. This is used a lot.
+- *Mean absolute deviation*. Tells you how far "on average" the observations are from the mean. It's very interpretable but has a few minor issues that make it less attractive to statisticians than the standard deviation. Used sometimes, but not often.
+- *Variance*. Tells you the average squared deviation from the mean. It's mathematically elegant and is probably the "right" way to describe variation around the mean, but it's completely uninterpretable because it doesn't use the same units as the data. Almost never used except as a mathematical tool, but it's buried "under the hood" of a very large number of statistical tools.
+- *Standard deviation*. This is the square root of the variance. It's fairly elegant mathematically, and it's expressed in the same units as the data, so it can be interpreted pretty well. In situations where the mean is the measure of central tendency, this is the default. This is by far the most popular measure of variation. 
+- *Median absolute deviation*. The typical (i.e., median) deviation from the median value. In the raw form, it's simple and interpretable; in the corrected form, it's a robust way to estimate the standard deviation for some kinds of data sets. Not used very often, but it does get reported sometimes.
+
+In short, the IQR and the standard deviation are easily the two most common measures used to report the variability of the data. Still, there are situations in which range or other measures are used.
+
 ## Skewness and kurtosis{#skewnesskurtosis}
+
+There are two more descriptive statistics that you will sometimes see reported in the psychological literature, known as **skewness** and **kurtosis**. In practice, neither is used nearly as frequently as the central tendency and variability measures we've discussed. Skewness is critical, so you see it mentioned a fair bit.
+
+```{r skewness, fig.cap="An illustration of skewness. On the left we have a negatively skewed data set (skewness $= -.93$), in the middle we have a data set with no skew (technically, skewness $= -.006$), and on the right we have a positively skewed data set (skewness $= .93$).", echo=FALSE}
+library(psych)
+
+ x1 <- rbeta(n = 100000, shape1= 10, shape2 = 2)
+ x2 <- rbeta(n = 100000, shape1= 10, shape2 = 10)
+ x3 <- rbeta(n = 100000, shape1= 2, shape2 = 10)
+ X <- list(x1,x2,x3)
+
+ plot.new()
+ old <- par(no.readonly = TRUE)
+ par(mfrow=c(1,3))
+
+ ttl = c("Negative Skew", "No Skew", "Positive Skew")
+
+ for (i in 1:3) {
+
+ hist(x = X[[i]],
+ breaks = seq(0,1,.05),
+ xlab = "",
+ ylab = "",
+ main = ttl[i],
+ axes = FALSE,
+ col = "cornflowerblue",
+ border = "white",
+ font.main = 1
+ )
+
+ }
+ par( old )
+```
+
+Since it's the more interesting of the two, let's start by talking about the **skewness**. Skewness is basically a measure of asymmetry, and the easiest way to explain it is by drawing some pictures. As Figure \@ref(fig:skewness) illustrates, if the data tend to have a lot of extreme small values (i.e., the lower tail is "longer" than the upper tail) and not so many extremely large values (left panel), then we say that the data are *negatively skewed*. On the other hand, if there are more extremely large values than extremely small ones (right panel) we say that the data are *positively skewed*. That's the qualitative idea behind skewness. The actual formula for the skewness of a data set is as follows
+$$
+\mbox{skewness}(X) = \frac{1}{N \hat{\sigma}^3} \sum_{i=1}^N (X_i - \bar{X})^3
+$$
+where $N$ is the number of observations, $\bar{X}$ is the sample mean, and $\hat{\sigma}$ is the standard deviation (the "divide by $N-1$" version, that is).
+
+Not surprisingly, it turns out that the AFL winning margins data is fairly skewed: $0.8$.
+
+Put simply, **kurtosis** is a measure of the "pointiness" of a data set, as illustrated in Figure \@ref(fig:kurtosis).
+
+```{r kurtosis, fig.cap="An illustration of kurtosis. On the left, we have a \"platykurtic\" data set (kurtosis = $-.95$), meaning that the data set is \"too flat\". In the middle we have a \"mesokurtic\" data set (kurtosis is almost exactly 0), which means that the pointiness of the data is just about right. Finally, on the right, we have a \"leptokurtic\" data set (kurtosis $= 2.12$) indicating that the data set is \"too pointy\". Note that kurtosis is measured with respect to a normal curve (black line)", echo=FALSE}
+
+ #x1 <- c(rexp(n = 5000, rate =2), -rexp(n = 5000, rate =2) )
+ x3 <- c(rnorm(n = 50000, mean =0, sd = 1), (runif(n = 50000)-.5)+rnorm(50000,0,.1) )*1.6
+ x2 <- rnorm(n = 100000, mean = 0, sd = 1)*1.2
+ x1 <- (runif(n = 100000) + rnorm(100000, mean =0, sd = .1) -.5)*4
+ X <- list(x1,x2,x3)
+
+ plot.new()
+ old <- par(no.readonly = TRUE)
+ par(mfrow=c(1,3))
+
+ ttl = c( 'Platykurtic\n("too flat")','Mesokurtic', 'Leptokurtic\n("too pointy")')
+
+ for (i in 1:3) {
+
+
+ hist(x = X[[i]],
+ breaks = seq(-20.5,20.5,.5),
+ ylim =c(0,.45),
+ xlim = c(-5,5),
+ xlab = "",
+ ylab = "",
+ main = ttl[i],
+ axes = FALSE,
+ freq = FALSE,
+ col = "cornflowerblue",
+ font.main=1,
+ border = "white"
+ )
+
+ lines(x <- seq(-4,4,.01), y = dnorm(x, mean(X[[i]]), sd(X[[i]])), 
+ lwd = 2, lty = 1, col = "black")
+
+ }
+ par( old )
+
+```
+
+By convention, we say that the "normal curve" (black lines) has zero kurtosis, so the pointiness of a data set is assessed relative to this curve. In this Figure, the data on the left is not pointy enough, so the kurtosis is negative, and we call the data *platykurtic*. The data on the right are too pointy, so the kurtosis is positive and we say that the data is *leptokurtic*. But the data in the middle are just pointy enough, so we say that it is *mesokurtic* and has kurtosis zero. This is summarised in the table below:
+
+```{r echo=FALSE}
+knitr::kable(rbind(
+ c("too flat" , "platykurtic", "negative"),
+ c("just pointy enough", "mesokurtic", "zero"),
+ c("too pointy", "leptokurtic", "positive")),
+
+col.names = c("informal term", "technical name", "kurtosis value"),
+ booktabs = TRUE)
+```
+
+The equation for kurtosis is similar in spirit to the formulas we've seen already for the variance and the skewness. Except that where the variance involved squared deviations and the skewness involved cubed deviations, the kurtosis involves raising the deviations to the fourth power:^[The "$-3$" part is something that statisticians tack on to ensure that the normal curve has kurtosis zero. It looks a bit funny, just sticking a "-3" at the end of the formula, but there are good mathematical reasons for doing this.]
+$$
+\mbox{kurtosis}(X) = \frac{1}{N \hat\sigma^4} \sum_{i=1}^N \left( X_i - \bar{X} \right)^4 - 3
+$$
+
+When reading the automatically calculated kurtosis value from our CogStat result set, we discover that the AFL winning margins data is just pointy enough: $0.1$.
 
 ## Summary: descriptives
 
-As you've seen in this chapter...
+We have covered some key aspects of how to summarise what we have learned about the data. As a summary, the following table lists the measures that CogStat will calculate for you, with a brief explanation of what they are and how they are used.
 
 ```{r echo=FALSE}
 library(kableExtra)
 knitr::kable(rbind(
               c("[Mean](#mean)", "35.3", "Average -- the \"centre of gravity\" of the data"),
-              c("[Standard deviation](#sd)", "26.0", ""),
-              c("[Skewness](#skewnesskurtosis)", "0.8", ""),
-              c("[Kurtosis](#skewnesskurtosis)", "0.1", ""),
+              c("[Standard deviation](#sd)", "26.0", "How clustered is the data around the mean (smaller figure means more clustered, larger figure closer to interquartile range means more spread out)"),
+              c("[Skewness](#skewnesskurtosis)", "0.8", "The assymetry of the data compared to a normal distribution (bell curve)"),
+              c("[Kurtosis](#skewnesskurtosis)", "0.1", "Pointiness of the data. Smaller figure means more pointy, larger figure means less pointy"),
               c("[Range](#range)", "116.0", "The spread of the data set between the maximum and minimum values"),
               c("[Maximum](#range)", "116.0", "The highest value in the data set"),
               c("[Upper quartile](#IQR)", "50.5", "25% of the data points reside at and above this value"),
@@ -260,9 +428,9 @@ knitr::kable(rbind(
               ),
   col.names = c("", "afl.margins", "Meaning"),
   booktabs = TRUE,
-  caption = 'Descriptives for the variable',
+  caption = "Descriptives for the variable",
   align = c("l", "c", "l")
   ) %>%
-  column_spec(1, width_min = '1.5in')
+  column_spec(1, width_min = "1.5in")
 
 ```

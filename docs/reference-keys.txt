@@ -7,7 +7,9 @@ fig:rawaflsmall
 fig:histogramaflsmall
 fig:meanmedian
 fig:freqaflsmall
-tab:unnamed-chunk-3
+fig:skewness
+fig:kurtosis
+tab:unnamed-chunk-5
 whywhywhy
 researchdesign
 measurement
@@ -69,7 +71,7 @@ mad
 which-measure-to-use
 skewnesskurtosis
 summary-descriptives
-introduction-to-probability
+probability
 correl
 the-strength-and-direction-of-a-relationship
 pearsons-correlation-coefficient
