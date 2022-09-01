@@ -15,9 +15,6 @@ fig:pantsprob
 tab:probrules
 tab:distformulas
 fig:binomial1
-fig:binomial2a
-fig:binomial2b
-tab:pdistnames
 fig:normdist
 fig:normmean
 fig:normsd
@@ -98,7 +95,6 @@ basicprobability
 introducing-probability-distributions
 binomial
 introducing-the-binomial
-working-with-the-binomial-distribution-in-r
 normal
 density
 otherdists
