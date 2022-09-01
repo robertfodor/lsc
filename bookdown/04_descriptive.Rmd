@@ -1,4 +1,4 @@
-# (PART\*) UNDERSTANDING YOUR DATA{-}
+# (PART\*) DESCRIPTIVE STATISTICS{-}
 
 # Exploring a variable
 
