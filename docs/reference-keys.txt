@@ -23,7 +23,6 @@ fig:sdnorm2
 fig:tdist
 fig:chisqdist
 fig:Fdist
-fig:variaterelations
 whywhywhy
 researchdesign
 measurement
@@ -92,7 +91,6 @@ the-frequentist-view
 the-bayesian-view
 whats-the-difference-and-who-is-right
 basicprobability
-introducing-probability-distributions
 distributions
 binomial
 normal

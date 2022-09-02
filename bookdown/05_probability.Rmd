@@ -1,6 +1,6 @@
 # (PART\*) INFERENTIAL STATISTICS{-}
 
-# Introduction to probability {#probability}
+# Probability and distributions {#probability}
 
 Up to this point in the book, we've discussed some critical ideas in experimental design and talked a little about how you can summarise a data set. To many people, this is all there is to statistics: it's about calculating averages, collecting all the numbers, drawing pictures, and putting them all in a report somewhere. Kind of like stamp collecting, but with numbers. However, statistics cover much more than that. Descriptive statistics is one of the less significant parts of statistics and one of the least powerful. The more valuable part of statistics is that it provides tools that let you make *inferences* about data. 
 
@@ -125,8 +125,6 @@ In any case, while Danielle personally prefers the Bayesian view, the majority o
 
 Although there are ideological arguments between Bayesians and frequentists, it turns out that people mostly agree on the rules that probabilities should obey. There are lots of different ways of arriving at these rules. The most commonly used approach is based on the work of Andrey Kolmogorov, one of the great Soviet mathematicians of the 20th century. Without going into a lot of detail, we'll try to give you a sense of how it works.
 
-### Introducing probability distributions
-
 Let's assume we own five pairs of pants: three pairs of jeans, the bottom half of a suit, and a pair of tracksuit pants. Let's call them $X_1$, $X_2$, $X_3$, $X_4$ and $X_5$. Now, on any given day, we pick out exactly one pair of pants. If we were to describe this situation using the language of probability theory, we would refer to each pair of pants (i.e., each $X$) as an **elementary event**. The key characteristic of elementary events is that every time we make an observation (e.g., every time we put on a pair of pants), then the outcome will be one and only one of these events. As said, we only wear exactly one pair of pants, so it satisfies this constraint. Similarly, the set of all possible events is called a **sample space**.
 
 Okay, now that we have a sample space (a wardrobe) built from lots of possible elementary events (pants), we want to assign a **probability** of one of these elementary events. For an event $X$, the probability of that event $P(X)$ is a number that lies between 0 and 1. The bigger the value of $P(X)$, the more likely the event will occur. So, for example, if $P(X) = 0$, it means the event $X$ is impossible (i.e., we never wear those pants). On the other hand, if $P(X) = 1$ it means that event $X$ is certain to occur (i.e., we always wear those pants). For probability values in the middle, it means that we sometimes wear those pants. For instance, if $P(X) = 0.5$, it means that we wear those pants half of the time. 
@@ -143,7 +141,7 @@ knitr::kable(data.frame(stringsAsFactors=FALSE,
 `Blue tracksuit` = c( "$X_5$ ", "$P(X_5) = .1$")))
 ```
 
-Each of the events has a probability that lies between 0 and 1, and if we add up the probability of all events, they sum to 1. Awesome. We can even draw a nice bar graph (see Section \@ref(bargraph)) to visualise this distribution, as shown in Figure \@ref(fig:pantsprob). And at this point, we've all achieved something. You've learned what probability distribution is.
+Each of the events has a probability that lies between 0 and 1, and if we add up the probability of all events, they sum to 1, as shown in Figure \@ref(fig:pantsprob). And at this point, we've all achieved something. You've learned what probability distribution is.
 
 ```{r pantsprob, fig.cap="A visual depiction of the \"pants\" probability distribution. There are five \"elementary events\", corresponding to the five pairs of pants. Each event has some probability of occurring: this probability is a number between 0 to 1. The sum of these probabilities is 1.", echo=FALSE}
 
@@ -180,3 +178,232 @@ Formula = c("$1-P(A)$", "$P(A) + P(B) - P(A \\cap B)$", "$P(A|B) P(B)$")),captio
 
 ```
 
+## Distributions{#distributions}
+
+As you might imagine, probability distributions vary enormously, and there's an enormous range of distributions. However, they aren't all equally important. In fact, the vast majority of the content in this book relies on one of five distributions: the binomial distribution, the normal distribution, the $t$ distribution, the $\chi^2$ ("chi-square") distribution and the $F$ distribution. Given this, the next few sections will briefly introduce all five of these, paying special attention to the binomial and the normal.
+
+### The binomial distribution{#binomial}
+
+The theory of probability originated in an attempt to describe how games of chance work. Hence, it seems fitting that our discussion of the **binomial distribution** should involve a discussion of rolling dice and flipping coins. Let's imagine a simple "experiment": we're holding 20 identical six-sided dice. There's a picture of a skull on one face of each die; the other five faces are all blank. If we roll all 20 dice, what's the probability of getting exactly 4 skulls? Assuming that the dice are fair, we know that the chance of any one die coming up skulls is 1 in 6; to say this another way, the skull probability for a single die is approximately $0.167$. This is enough information to answer our question, so let's have a look at how it's done. 
+
+As usual, we'll want to introduce some names and some notation. We'll let $N$ denote the number of dice rolls in our experiment, which is often referred to as the **size parameter** of our binomial distribution. We'll also use $\theta$ to refer to the probability that a single die comes up skulls, a quantity that is usually called the **success probability** of the binomial.^[Note that the term "success" is pretty arbitrary and doesn't actually imply that the outcome is something to be desired. If $\theta$ referred to the probability that any one passenger gets injured in a bus crash, it is still called the success probability.] Finally, we'll use $X$ to refer to the results of our experiment, namely the number of skulls we get when rolling the dice. Since the actual value of $X$ is due to chance, we refer to it as a **random variable**. In any case, now that we have all this terminology and notation, we can use it to state the problem a little more precisely. The quantity that we want to calculate is the probability that $X = 4$ given that we know that $\theta = .167$ and $N=20$. The general "form" of the thing could be written as 
+$$
+P(X \ | \ \theta, N)
+$$
+and we're interested in the special case where $X=4$, $\theta = 0.167$ and $N=20$. 
+There's only one more piece of notation. If we want to say that $X$ is generated randomly from a binomial distribution with parameters $\theta$ and $N$, the notation is as follows:
+$$
+X \sim \mbox{Binomial}(\theta, N)
+$$ 
+
+Yeah, yeah. I know what you're thinking: notation, notation, notation. Really, who cares? Very few readers of this book are here for the notation, so we should probably move on and talk about how to use the binomial distribution. We've included the formula for the binomial distribution in Table \@ref(tab:distformulas), since some readers may want to play with it themselves, but since most people probably don't care that much and because we don't need the formula in this book, let's not talk about it in any detail. Instead, let's just see what the binomial distribution looks like. To that end, Figure \@ref(fig:binomial1) plots the binomial probabilities for all possible values of $X$ for our dice rolling experiment, from $X=0$ (no skulls) all the way up to $X=20$ (all skulls). Note that this is basically a bar chart, and is no different to the "pants probability" plot in Figure \@ref(fig:pantsprob). On the horizontal axis we have all the possible events, and on the vertical axis we can read off the probability of each of those events. So, the probability of rolling 4 skulls out of 20 times is about 0.20 (the actual answer is 0.2022036). In other words, you'd expect that to happen about 20\% of the times you repeated this experiment.
+
+```{r distformulas, echo=FALSE}
+knitr::kable(data.frame(stringsAsFactors=FALSE, Binomial = c("$P(X | \\theta, N) = \\displaystyle\\frac{N!}{X! (N-X)!} \\theta^X (1-\\theta)^{N-X}$"), 
+Normal = c("$p(X | \\mu, \\sigma) = \\displaystyle\\frac{1}{\\sqrt{2\\pi}\\sigma} \\exp \\left( -\\frac{(X - \\mu)^2}{2\\sigma^2} \\right)$ ")), caption = "Formulas for the binomial and normal distributions. We don't use these formulas for anything in this book, but they're pretty important for more advanced work. In the equation for the binomial, $X!$ is the factorial function (i.e., multiply all whole numbers from 1 to $X$), and for the normal distribution \"exp\" refers to the exponential function, which we discussed in the Chapter on Data Handling. If these equations don't make a lot of sense to you, don't worry too much about them.") 
+
+```
+
+
+```{r binomial1, fig.cap="The binomial distribution with size parameter of $N=20$ and an underlying success probability of $theta = 1/6$. Each vertical bar depicts the probability of one specific outcome (i.e., one possible value of $X$). Because this is a probability distribution, each of the probabilities must be a number between 0 and 1, and the heights of the bars must sum to 1 as well.", echo=FALSE}
+# plots the three examples of a binomial distribution
+ 
+ # needed for printing
+ width <- 8
+ height <- 6
+ 
+ # function to produce a styled binomial plot
+ binomPlot <- function( n,p, ... ) {
+ 
+ # probabilities of each outcome
+ out <- 0:n
+ prob <- dbinom( x=out, size=n, prob=p )
+ 
+ # plot
+ plot( 
+ out, prob, type="h", lwd=3, ylab="Probability", 
+ frame.plot=FALSE, col=ifelse(colour,emphCol,"black"), ...
+ )
+ 
+ }
+ 
+ # skulls image...
+ binomPlot( n=20, p=1/6, xlab="Number of skulls observed" )
+
+
+```
+
+### The normal distribution{#normal}
+
+While the binomial distribution is conceptually the simplest distribution to understand, it's not the most important one. That particular honour goes to the **normal distribution**, which is also referred to as "the bell curve" or "Gaussian distribution". A normal distribution is described using two parameters, the mean of the distribution $\mu$ and the standard deviation of the distribution $\sigma$. The notation that we sometimes use to say that a variable $X$ is normally distributed is as follows:
+$$
+X \sim \mbox{Normal}(\mu,\sigma)
+$$
+Of course, that's just notation. It doesn't tell us anything interesting about the normal distribution itself. As was the case with the binomial distribution, the formula for the normal distribution in this book is tucked away in Table \@ref(tab:distformulas).
+
+Instead of focusing on the maths, let's try to understand what it means for a variable to be normally distributed. To that end, have a look at Figure \@ref(fig:normdist), which plots a normal distribution with mean $\mu = 0$ and standard deviation $\sigma = 1$. You can see where the name "bell curve" comes from: it looks a bit like a bell. Notice that, unlike the plots to illustrate the binomial distribution, the picture of the normal distribution in Figure \@ref(fig:normdist) shows a smooth curve instead of "histogram-like" bars. This isn't an arbitrary choice: the normal distribution is *continuous*, whereas the binomial is *discrete*. For instance, in the die rolling example from the last section, it was possible to get 3 skulls or 4 skulls, but impossible to get 3.9 skulls. The figures in the previous section reflected this fact: in Figure \@ref(fig:binomial1), for instance, there's a bar located at $X=3$ and another one at $X=4$, but there's nothing in between. Continuous quantities don't have this constraint. For instance, suppose we're talking about the weather. The temperature on a pleasant Spring day could be 23 degrees, 24 degrees, 23.9 degrees, or anything in between since temperature is a continuous variable, and so a normal distribution might be quite appropriate for describing Spring temperatures.^[In practice, the normal distribution is so handy that people tend to use it even when the variable isn't actually continuous. As long as there are enough categories (e.g., Likert scale responses to a questionnaire), it's pretty standard practice to use the normal distribution as an approximation. This works out much better in practice than you'd think.] 
+
+
+```{r normdist, fig.cap="The normal distribution with mean $mu = 0$ and standard deviation $sigma = 1$. The $x$-axis corresponds to the value of some variable, and the $y$-axis tells us something about how likely we are to observe that value. However, notice that the $y$-axis is labelled \"Probability Density\" and not \"Probability\". There is a subtle and somewhat frustrating characteristic of continuous distributions that makes the $y$ axis behave a bit oddly: the height of the curve here isn't actually the probability of observing a particular $x$ value. On the other hand, it *is* true that the heights of the curve tells you which $x$ values are more likely (the higher ones!).", echo=FALSE}
+# plots the standard normal
+ 
+ # needed for printing
+ width <- 8
+ height <- 6
+ fileName <- "standardNormal.eps" 
+ 
+ # draw the plot
+ xval <- seq(-3,3,.01)
+ yval <- dnorm( xval, 0, 1)
+ plot( xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
+ frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
+ )
+
+```
+
+With this in mind, let's see if we can't get an intuition for how the normal distribution works. Firstly, let's have a look at what happens when we play around with the parameters of the distribution. To that end, Figure \@ref(fig:normmean) plots normal distributions that have different means, but have the same standard deviation. As you might expect, all of these distributions have the same "width". The only difference between them is that they've been shifted to the left or to the right. In every other respect, they're identical.
+
+In contrast, if we increase the standard deviation while keeping the mean constant, the peak of the distribution stays in the same place, but the distribution gets wider, as you can see in Figure \@ref(fig:normsd). Notice, though, that when we widen the distribution, the height of the peak shrinks. This has to happen: in the same way that the heights of the bars that we used to draw a discrete binomial distribution have to *sum* to 1, the total *area under the curve* for the normal distribution must equal 1. 
+
+```{r normmean, fig.cap="An illustration of what happens when you change the mean of a normal distribution. The solid line depicts a normal distribution with a mean of $mu=4$. The dashed line shows a normal distribution with a mean of $mu=7$. In both cases, the standard deviation is $sigma=1$. Not surprisingly, the two distributions have the same shape, but the dashed line is shifted to the right.", echo=FALSE}
+ # draw the plot
+ xval <- seq(0,11,.01)
+ yval.1 <- dnorm( xval, 4, 1)
+ yval.2 <- dnorm( xval, 7, 1)
+ plot( xval, yval.1, lwd=3, ylab="Probability Density", xlab="Observed Value",
+ frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
+ )
+ lines( xval, yval.2, lwd=3, col=ifelse(colour,emphCol,"black"), lty=2 )
+
+```
+
+
+```{r normsd, fig.cap="An illustration of what happens when you change the the standard deviation of a normal distribution. Both distributions plotted in this figure have a mean of $mu = 5$, but they have different standard deviations. The solid line plots a distribution with standard deviation $sigma=1$, and the dashed line shows a distribution with standard deviation $sigma = 2$. As a consequence, both distributions are \"centred\" on the same spot, but the dashed line is wider than the solid one.", echo=FALSE}
+# draw the plot
+ xval <- seq(0,10,.01)
+ yval.1 <- dnorm( xval, 5, 1)
+ yval.2 <- dnorm( xval, 5, 2)
+ plot( xval, yval.1, lwd=3, ylab="Probability Density", xlab="Observed Value",
+ frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
+ )
+ lines( xval, yval.2, lwd=3, col=ifelse(colour,emphCol,"black"), lty=2 )
+
+```
+
+Before moving on, there is one important characteristic of the normal distribution to point out. Irrespective of the actual mean and standard deviation, 68.3\% of the area falls within 1 standard deviation of the mean. Similarly, 95.4\% of the distribution falls within 2 standard deviations of the mean, and 99.7\% of the distribution is within 3 standard deviations. This idea is illustrated in Figures \@ref(fig:sdnorm1) and \@ref(fig:sdnorm2).
+
+```{r sdnorm1, fig.cap="The area under the curve tells you the probability that an observation falls within a particular range. The solid lines plot normal distributions with mean $mu=0$ and standard deviation $sigma=1$ The shaded areas illustrate \"areas under the curve\" for two important cases. On the left, we can see that there is a 68.3% chance that an observation will fall within one standard deviation of the mean. On the right, we see that there is a 95.4% chance that an observation will fall within two standard deviations of the mean", echo=FALSE}
+
+par(mfrow=c(1,2))
+
+ plotOne <- function( a,b ) {
+ plot.new()
+ w<-4
+ plot.window( xlim = c(-w,w), ylim = c(0,.4))
+ xval <- seq( max(a,-w),min(b,w),.01)
+ yval <- dnorm(xval,0,1)
+ end <- length(xval)
+ polygon( c(xval[1],xval,xval[end]), 
+ c(0,yval,0),
+ col=ifelse(colour,emphCol,"black"),
+ density = 10 
+ )
+ xval <- seq(-w,w,.01)
+ yval <- dnorm( xval, 0, 1) 
+ lines( xval,yval, lwd=2, col="black" )
+ axis( side=1, at=-w:w )
+ area <- abs(pnorm(b,0,1)-pnorm(a,0,1))
+ title( main= paste("Shaded Area = ",round(area*100,1),"%", sep=""), font.main=1 )
+ 
+ }
+ 
+
+plotOne(-1,1)
+plotOne(-2,2)
+
+par(mfrow=c(1,1))
+
+```
+
+
+```{r sdnorm2, fig.cap="Two more examples of the \"area under the curve idea\". There is a 15.9% chance that an observation is one standard deviation below the mean or smaller (left), and a 34.1% chance that the observation is greater than one standard deviation below the mean but still below the mean (right). Notice that if you add these two numbers together you get 15.9% + 34.1% = 50%. For normally distributed data, there is a 50% chance that an observation falls below the mean. And of course that also implies that there is a 50% chance that it falls above the mean.", echo=FALSE}
+
+par(mfrow=c(1,2))
+plotOne(-1,0)
+plotOne(-50,-1)
+par(mfrow=c(1,1))
+```
+
+
+### Probability density{#density}
+
+There's something we missed throughout the discussion of the normal distribution, something that some introductory textbooks omit completely. Fortunately, it's not something that you need to understand at a deep level in order to do basic statistics: rather, it's something that starts to become important later on when you move beyond the basics. So, if it doesn't make complete sense, don't worry: try to make sure that you follow the gist of it.
+
+There have been one or two things that don't quite make sense. Perhaps you noticed that the $y$-axis in these figures is labelled "Probability Density" rather than density. Maybe you noticed that we used $p(X)$ instead of $P(X)$ when giving the formula for the normal distribution.
+
+Let us spend a little time thinking about what it really *means* to say that $X$ is a continuous variable. Let's say we're talking about the temperature outside. The thermometer tells me it's 23 degrees, but we know that's not really true. It's not *exactly* 23 degrees. Maybe it's 23.1 degrees. But we know that that's not really true either, because it might actually be 23.09 degrees. But, we know that... well, you get the idea. The tricky thing with genuinely continuous quantities is that you never really know *exactly* what they are.
+
+Now think about what this implies when we talk about probabilities. Suppose that tomorrow's maximum temperature is sampled from a normal distribution with mean 23 and standard deviation 1. What's the probability that the temperature will be *exactly* 23 degrees? The answer is "zero", or possibly, "a number so close to zero that it might as well be zero". Why is this? It's like trying to throw a dart at an infinitely small dart board: no matter how good your aim, you'll never hit it. In real life, you'll never get a value of exactly 23. It'll always be something like 23.1 or 22.99998 or something. In other words, it's completely meaningless to talk about the probability that the temperature is exactly 23 degrees. 
+
+However, in everyday language, if we say that it was 23 degrees outside and turned out to be 22.9998 degrees, you probably wouldn't make a fuss. Because in everyday language, "23 degrees" usually means something like "somewhere between 22.5 and 23.5 degrees". And while it doesn't feel very meaningful to ask about the probability that the temperature is exactly 23 degrees, it does seem sensible to ask about the probability that the temperature lies between 22.5 and 23.5, or between 20 and 30, or any other range of temperatures. 
+
+The point of this discussion is to make clear that, when we're talking about continuous distributions, it's not meaningful to talk about the probability of a specific value. However, what we *can* talk about is the probability that the value lies within a particular range of values. To find out the probability associated with a particular range, what you need to do is calculate the "area under the curve". We've seen this concept already: in Figure \@ref(fig:sdnorm1), the shaded areas shown depict genuine probabilities (e.g., in the left-hand panel of Figure \@ref(fig:sdnorm1), it shows the probability of observing a value that falls within 1 standard deviation of the mean). 
+
+Okay, so that explains part of the story. We've explained a little bit about how continuous probability distributions should be interpreted (i.e., the area under the curve is the key thing), but we haven't actually explained what the formula for $p(x)$ actually means. Obviously, $p(x)$ doesn't describe a probability, but what is it? The name for this quantity $p(x)$ is a **probability density**, and in terms of the plots we've been drawing, it corresponds to the *height* of the curve. The densities themselves aren't meaningful in and of themselves: but they're "rigged" to ensure that the *area* under the curve is always interpretable as genuine probabilities. To be honest, that's about as much as you really need to know for now.
+
+For those readers who know a little calculus, let's give a slightly more precise explanation. In the same way that probabilities are non-negative numbers that must sum to 1, probability densities are non-negative numbers that must integrate to 1 (where the integral is taken across all possible values of $X$). To calculate the probability that $X$ falls between $a$ and $b$ we calculate the definite integral of the density function over the corresponding range, $\int_a^b p(x) \ dx$. If you don't remember or never learned calculus, don't worry about this. It's not needed for this book.
+
+
+### Other useful distributions{#otherdists}
+
+The normal distribution is the distribution that statistics makes the most use of (for reasons to be discussed shortly), and the binomial distribution is handy for many purposes. But the world of statistics is filled with probability distributions, some of which we'll run into in passing. In particular, the three that will appear in this book are the $t$ distribution, the $\chi^2$ distribution and the $F$ distribution. We won't give formulas for any of these or talk about them in too much detail, but we will show you some pictures. 
+
+- The **_$t$ distribution_** is a continuous distribution that looks very similar to a normal distribution but has heavier tails: see Figure \@ref(fig:tdist). This distribution tends to arise in situations where you think that the data actually follow a normal distribution, but you don't know the mean or standard deviation. We'll run into this distribution again in Chapter \@ref(ttest). 
+
+```{r tdist, fig.cap="A $t$ distribution with 3 degrees of freedom (solid line). It looks similar to a normal distribution, but it's not quite the same. For comparison purposes, we've plotted a standard normal distribution as the dashed line. Note that the \"tails\" of the $t$ distribution are \"heavier\" (i.e., extend further outwards) than the tails of the normal distribution? That's the important difference between the two. ", echo=FALSE}
+xval <- seq(-5,5,.01)
+ yval <- dt( xval, df=3)
+ plot( xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
+ frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l", ylim=c(0,.4)
+ )
+ lines( xval, dnorm(xval,0,1), lty=2, col=emphGrey)
+
+```
+
+- The **_$\chi^2$ distribution_** is another distribution that turns up in lots of different places. The situation in which we'll see it is when doing categorical data analysis (Chapter \@ref(chisquare)), but it's one of those things that actually pops up all over the place. When you dig into the maths (and who doesn't love doing that?), it turns out that the main reason why the $\chi^2$ distribution turns up all over the place is that if you have a bunch of variables that are normally distributed, square their values and then add them up (a procedure referred to as taking a "sum of squares"), this sum has a $\chi^2$ distribution. You'd be amazed how often this fact turns out to be useful. Anyway, here's what a $\chi^2$ distribution looks like: Figure \@ref(fig:chisqdist).
+
+```{r chisqdist, fig.cap="A $chi^2$ distribution with 3 degrees of freedom. Notice that the observed values must always be greater than zero, and that the distribution is pretty skewed. These are the key features of a chi-square distribution.", echo=FALSE}
+ xval <- seq(0,10,.01)
+ yval <- dchisq( xval, df=3)
+ plot( xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
+ frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
+ )
+
+```
+
+- The **_$F$ distribution_** looks a bit like a $\chi^2$ distribution, and it arises whenever you need to compare two $\chi^2$ distributions to one another. Admittedly, this doesn't exactly sound like something that any sane person would want to do, but it turns out to be very important in real-world data analysis. Remember when we said that $\chi^2$ turns out to be the key distribution when we're taking a "sum of squares"? Well, what that means is if you want to compare two different "sums of squares", you're probably talking about something that has an $F$ distribution. Of course, we still haven't given you an example of anything involving a sum of squares, but we will in Chapter \@ref(anova). And that's where we'll run into the $F$ distribution. Oh, and here's a picture: Figure \@ref(fig:Fdist).
+
+```{r Fdist, fig.cap="An $F$ distribution with 3 and 5 degrees of freedom. Qualitatively speaking, it looks pretty similar to a chi-square distribution, but they're not quite the same in general.", echo=FALSE}
+ # draw the plot
+ xval <- seq(0,10,.01)
+ yval <- df( xval, df1=3, df2=5)
+ plot( xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
+ frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
+ )
+
+```
+
+They're all continuous distributions, and they're all closely related to the normal distribution. The key thing for our purposes, however, is not that you have a deep understanding of all these different distributions, nor that you remember the precise relationships between them. The main thing is that you grasp the basic idea that these distributions are all deeply related to one another and to the normal distribution. Later on, we're going to run into data that are normally distributed or at least assumed to be normally distributed. What you have to understand right now is that if you make the assumption that your data are normally distributed, you shouldn't be surprised to see $\chi^2$, $t$ and $F$ distributions popping up all over the place when you start trying to do your data analysis.
+
+
+## Summary
+
+In this chapter we've talked about probability. We've talked what probability means, and why statisticians can't agree on what it means. We talked about the rules that probabilities have to obey. And we introduced the idea of a probability distribution, and we spent a good portion of the chapter talking about some of the more important probability distributions that statisticians work with. The section by section breakdown looks like this:
+
+- Probability theory versus statistics (Section \@ref(probabilitystats))
+- Frequentist versus Bayesian views of probability (Section \@ref(probabilitymeaning))
+- Basics of probability theory (Section \@ref(basicprobability))
+- Binomial distribution (Section \@ref(binomial)), normal distribution (Section \@ref(normal)), and others (Section \@ref(otherdists))
+
+
+Many undergraduate psychology classes on statistics skim over this content very quickly, and even the more advanced courses will often "forget" to revisit the basic foundations of the field. Most academic psychologists would not know the difference between probability and density; until recently, very few would have been aware of the difference between Bayesian and frequentist probability. However, it's essential to understand these things before moving on to the applications. For example, there are a lot of rules about what you're "allowed" to say when making statistical inferences, and many of these can seem arbitrary and weird. However, they start to make sense if you understand this Bayesian/frequentist distinction. Similarly, in Chapter \@ref(ttest) we're going to talk about something called the $t$-test, and if you really want to have a grasp of the mechanics of the $t$-test it really helps to have a sense of what a $t$-distribution actually looks like. You get the idea.
