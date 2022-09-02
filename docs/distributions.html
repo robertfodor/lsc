@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Distributions | Learning Statistics with CogStat</title>
+  <meta name="description" content="Chapter 6 Distributions | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
+  <meta name="generator" content="bookdown 0.28 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Distributions | Learning Statistics with CogStat" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Chapter 6 Distributions | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
+  <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Distributions | Learning Statistics with CogStat" />
+  
+  <meta name="twitter:description" content="Chapter 6 Distributions | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="probability.html"/>
+<link rel="next" href="correl.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Learning Statistics with CogStat</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this book</a></li>
+<li class="part"><span><b>INTRODUCTIONS</b></span></li>
+<li class="chapter" data-level="1" data-path="whywhywhy.html"><a href="whywhywhy.html"><i class="fa fa-check"></i><b>1</b> Why do we learn statistics?</a></li>
+<li class="chapter" data-level="2" data-path="researchdesign.html"><a href="researchdesign.html"><i class="fa fa-check"></i><b>2</b> A brief introduction to research design</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="researchdesign.html"><a href="researchdesign.html#measurement"><i class="fa fa-check"></i><b>2.1</b> Introduction to psychological measurement</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="researchdesign.html"><a href="researchdesign.html#some-thoughts-about-psychological-measurement"><i class="fa fa-check"></i><b>2.1.1</b> Some thoughts about psychological measurement</a></li>
+<li class="chapter" data-level="2.1.2" data-path="researchdesign.html"><a href="researchdesign.html#operationalisation-defining-your-measurement"><i class="fa fa-check"></i><b>2.1.2</b> Operationalisation: defining your measurement</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="researchdesign.html"><a href="researchdesign.html#scales"><i class="fa fa-check"></i><b>2.2</b> Scales of measurement</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="researchdesign.html"><a href="researchdesign.html#nominalscale"><i class="fa fa-check"></i><b>2.2.1</b> Nominal scale</a></li>
+<li class="chapter" data-level="2.2.2" data-path="researchdesign.html"><a href="researchdesign.html#ordinalscale"><i class="fa fa-check"></i><b>2.2.2</b> Ordinal scale</a></li>
+<li class="chapter" data-level="2.2.3" data-path="researchdesign.html"><a href="researchdesign.html#intervalscale"><i class="fa fa-check"></i><b>2.2.3</b> Interval scale</a></li>
+<li class="chapter" data-level="2.2.4" data-path="researchdesign.html"><a href="researchdesign.html#ratioscale"><i class="fa fa-check"></i><b>2.2.4</b> Ratio scale</a></li>
+<li class="chapter" data-level="2.2.5" data-path="researchdesign.html"><a href="researchdesign.html#continuousdiscrete"><i class="fa fa-check"></i><b>2.2.5</b> Continuous versus discrete variables</a></li>
+<li class="chapter" data-level="2.2.6" data-path="researchdesign.html"><a href="researchdesign.html#likertscale"><i class="fa fa-check"></i><b>2.2.6</b> Some complexities: the Likert scale</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="researchdesign.html"><a href="researchdesign.html#reliability"><i class="fa fa-check"></i><b>2.3</b> Assessing the reliability of a measurement</a></li>
+<li class="chapter" data-level="2.4" data-path="researchdesign.html"><a href="researchdesign.html#ivdv"><i class="fa fa-check"></i><b>2.4</b> The “role” of variables: predictors and outcomes</a></li>
+<li class="chapter" data-level="2.5" data-path="researchdesign.html"><a href="researchdesign.html#researchdesigns"><i class="fa fa-check"></i><b>2.5</b> Experimental and non-experimental research</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="researchdesign.html"><a href="researchdesign.html#experimental-research"><i class="fa fa-check"></i><b>2.5.1</b> Experimental research</a></li>
+<li class="chapter" data-level="2.5.2" data-path="researchdesign.html"><a href="researchdesign.html#non-experimental-research"><i class="fa fa-check"></i><b>2.5.2</b> Non-experimental research</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="researchdesign.html"><a href="researchdesign.html#validity"><i class="fa fa-check"></i><b>2.6</b> Assessing the validity of a study</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="researchdesign.html"><a href="researchdesign.html#internal-validity"><i class="fa fa-check"></i><b>2.6.1</b> Internal validity</a></li>
+<li class="chapter" data-level="2.6.2" data-path="researchdesign.html"><a href="researchdesign.html#external-validity"><i class="fa fa-check"></i><b>2.6.2</b> External validity</a></li>
+<li class="chapter" data-level="2.6.3" data-path="researchdesign.html"><a href="researchdesign.html#construct-validity"><i class="fa fa-check"></i><b>2.6.3</b> Construct validity</a></li>
+<li class="chapter" data-level="2.6.4" data-path="researchdesign.html"><a href="researchdesign.html#face-validity"><i class="fa fa-check"></i><b>2.6.4</b> Face validity</a></li>
+<li class="chapter" data-level="2.6.5" data-path="researchdesign.html"><a href="researchdesign.html#ecological-validity"><i class="fa fa-check"></i><b>2.6.5</b> Ecological validity</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="researchdesign.html"><a href="researchdesign.html#confounds-artefacts-and-other-threats-to-validity"><i class="fa fa-check"></i><b>2.7</b> Confounds, artefacts and other threats to validity</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="researchdesign.html"><a href="researchdesign.html#history-effects"><i class="fa fa-check"></i><b>2.7.1</b> History effects</a></li>
+<li class="chapter" data-level="2.7.2" data-path="researchdesign.html"><a href="researchdesign.html#maturation-effects"><i class="fa fa-check"></i><b>2.7.2</b> Maturation effects</a></li>
+<li class="chapter" data-level="2.7.3" data-path="researchdesign.html"><a href="researchdesign.html#repeated-testing-effects"><i class="fa fa-check"></i><b>2.7.3</b> Repeated testing effects</a></li>
+<li class="chapter" data-level="2.7.4" data-path="researchdesign.html"><a href="researchdesign.html#selection-bias"><i class="fa fa-check"></i><b>2.7.4</b> Selection bias</a></li>
+<li class="chapter" data-level="2.7.5" data-path="researchdesign.html"><a href="researchdesign.html#differentialattrition"><i class="fa fa-check"></i><b>2.7.5</b> Differential attrition</a></li>
+<li class="chapter" data-level="2.7.6" data-path="researchdesign.html"><a href="researchdesign.html#non-response-bias"><i class="fa fa-check"></i><b>2.7.6</b> Non-response bias</a></li>
+<li class="chapter" data-level="2.7.7" data-path="researchdesign.html"><a href="researchdesign.html#regression-to-the-mean"><i class="fa fa-check"></i><b>2.7.7</b> Regression to the mean</a></li>
+<li class="chapter" data-level="2.7.8" data-path="researchdesign.html"><a href="researchdesign.html#experimenter-bias"><i class="fa fa-check"></i><b>2.7.8</b> Experimenter bias</a></li>
+<li class="chapter" data-level="2.7.9" data-path="researchdesign.html"><a href="researchdesign.html#demand-effects-and-reactivity"><i class="fa fa-check"></i><b>2.7.9</b> Demand effects and reactivity</a></li>
+<li class="chapter" data-level="2.7.10" data-path="researchdesign.html"><a href="researchdesign.html#placebo-effects"><i class="fa fa-check"></i><b>2.7.10</b> Placebo effects</a></li>
+<li class="chapter" data-level="2.7.11" data-path="researchdesign.html"><a href="researchdesign.html#situation-measurement-and-subpopulation-effects"><i class="fa fa-check"></i><b>2.7.11</b> Situation, measurement and subpopulation effects</a></li>
+<li class="chapter" data-level="2.7.12" data-path="researchdesign.html"><a href="researchdesign.html#fraud-deception-and-self-deception"><i class="fa fa-check"></i><b>2.7.12</b> Fraud, deception and self-deception</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="researchdesign.html"><a href="researchdesign.html#summary"><i class="fa fa-check"></i><b>2.8</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="cogstat_intro.html"><a href="cogstat_intro.html"><i class="fa fa-check"></i><b>3</b> An Introduction to CogStat</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cogstat_intro.html"><a href="cogstat_intro.html#foreword_cogstat"><i class="fa fa-check"></i><b>3.1</b> How CogStat came about</a></li>
+<li class="chapter" data-level="3.2" data-path="cogstat_intro.html"><a href="cogstat_intro.html#autostat"><i class="fa fa-check"></i><b>3.2</b> An introduction to automatic statistical analysis</a></li>
+<li class="chapter" data-level="3.3" data-path="cogstat_intro.html"><a href="cogstat_intro.html#gettingstarted"><i class="fa fa-check"></i><b>3.3</b> Getting started with CogStat</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="cogstat_intro.html"><a href="cogstat_intro.html#installing-cogstat"><i class="fa fa-check"></i><b>3.3.1</b> Installing CogStat</a></li>
+<li class="chapter" data-level="3.3.2" data-path="cogstat_intro.html"><a href="cogstat_intro.html#loading-data"><i class="fa fa-check"></i><b>3.3.2</b> Loading data</a></li>
+<li class="chapter" data-level="3.3.3" data-path="cogstat_intro.html"><a href="cogstat_intro.html#saving-and-exporting-your-results"><i class="fa fa-check"></i><b>3.3.3</b> Saving and exporting your results</a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>DESCRIPTIVE STATISTICS</b></span></li>
+<li class="chapter" data-level="4" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html"><i class="fa fa-check"></i><b>4</b> Exploring a variable</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#centraltendency"><i class="fa fa-check"></i><b>4.1</b> Measures of central tendency</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#mean"><i class="fa fa-check"></i><b>4.1.1</b> The mean</a></li>
+<li class="chapter" data-level="4.1.2" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#median"><i class="fa fa-check"></i><b>4.1.2</b> The median</a></li>
+<li class="chapter" data-level="4.1.3" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#mean-or-median-whats-the-difference"><i class="fa fa-check"></i><b>4.1.3</b> Mean or median? What’s the difference?</a></li>
+<li class="chapter" data-level="4.1.4" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#trimmedmean"><i class="fa fa-check"></i><b>4.1.4</b> Trimmed mean</a></li>
+<li class="chapter" data-level="4.1.5" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#mode"><i class="fa fa-check"></i><b>4.1.5</b> Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#var"><i class="fa fa-check"></i><b>4.2</b> Measures of variability</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#range"><i class="fa fa-check"></i><b>4.2.1</b> Range</a></li>
+<li class="chapter" data-level="4.2.2" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#IQR"><i class="fa fa-check"></i><b>4.2.2</b> Interquartile range</a></li>
+<li class="chapter" data-level="4.2.3" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#aad"><i class="fa fa-check"></i><b>4.2.3</b> Mean absolute deviation</a></li>
+<li class="chapter" data-level="4.2.4" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#variance"><i class="fa fa-check"></i><b>4.2.4</b> Variance</a></li>
+<li class="chapter" data-level="4.2.5" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#sd"><i class="fa fa-check"></i><b>4.2.5</b> Standard deviation</a></li>
+<li class="chapter" data-level="4.2.6" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#mad"><i class="fa fa-check"></i><b>4.2.6</b> Median absolute deviation</a></li>
+<li class="chapter" data-level="4.2.7" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#which-measure-to-use"><i class="fa fa-check"></i><b>4.2.7</b> Which measure to use?</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#skewnesskurtosis"><i class="fa fa-check"></i><b>4.3</b> Skewness and kurtosis</a></li>
+<li class="chapter" data-level="4.4" data-path="exploring-a-variable.html"><a href="exploring-a-variable.html#summary-descriptives"><i class="fa fa-check"></i><b>4.4</b> Summary: descriptives</a></li>
+</ul></li>
+<li class="part"><span><b>INFERENTIAL STATISTICS</b></span></li>
+<li class="chapter" data-level="5" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>5</b> Introduction to probability</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="probability.html"><a href="probability.html#probabilitystats"><i class="fa fa-check"></i><b>5.1</b> How are probability and statistics different?</a></li>
+<li class="chapter" data-level="5.2" data-path="probability.html"><a href="probability.html#probabilitymeaning"><i class="fa fa-check"></i><b>5.2</b> What does probability mean?</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="probability.html"><a href="probability.html#the-frequentist-view"><i class="fa fa-check"></i><b>5.2.1</b> The frequentist view</a></li>
+<li class="chapter" data-level="5.2.2" data-path="probability.html"><a href="probability.html#the-bayesian-view"><i class="fa fa-check"></i><b>5.2.2</b> The Bayesian view</a></li>
+<li class="chapter" data-level="5.2.3" data-path="probability.html"><a href="probability.html#whats-the-difference-and-who-is-right"><i class="fa fa-check"></i><b>5.2.3</b> What’s the difference? And who is right?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="probability.html"><a href="probability.html#basicprobability"><i class="fa fa-check"></i><b>5.3</b> Basic probability theory</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="probability.html"><a href="probability.html#introducing-probability-distributions"><i class="fa fa-check"></i><b>5.3.1</b> Introducing probability distributions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="distributions.html"><a href="distributions.html"><i class="fa fa-check"></i><b>6</b> Distributions</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="distributions.html"><a href="distributions.html#binomial"><i class="fa fa-check"></i><b>6.1</b> The binomial distribution</a></li>
+<li class="chapter" data-level="6.2" data-path="distributions.html"><a href="distributions.html#normal"><i class="fa fa-check"></i><b>6.2</b> The normal distribution</a></li>
+<li class="chapter" data-level="6.3" data-path="distributions.html"><a href="distributions.html#density"><i class="fa fa-check"></i><b>6.3</b> Probability density</a></li>
+<li class="chapter" data-level="6.4" data-path="distributions.html"><a href="distributions.html#otherdists"><i class="fa fa-check"></i><b>6.4</b> Other useful distributions</a></li>
+<li class="chapter" data-level="6.5" data-path="distributions.html"><a href="distributions.html#summary-1"><i class="fa fa-check"></i><b>6.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="correl.html"><a href="correl.html"><i class="fa fa-check"></i><b>7</b> Correlations</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="correl.html"><a href="correl.html#the-strength-and-direction-of-a-relationship"><i class="fa fa-check"></i><b>7.1</b> The strength and direction of a relationship</a></li>
+<li class="chapter" data-level="7.2" data-path="correl.html"><a href="correl.html#pearsons-correlation-coefficient"><i class="fa fa-check"></i><b>7.2</b> Pearson’s correlation coefficient</a></li>
+<li class="chapter" data-level="7.3" data-path="correl.html"><a href="correl.html#spearmans-rank-correlations"><i class="fa fa-check"></i><b>7.3</b> Spearman’s rank correlations</a></li>
+<li class="chapter" data-level="7.4" data-path="correl.html"><a href="correl.html#interpretingcorrelations"><i class="fa fa-check"></i><b>7.4</b> Calculating and interpreting correlations in CogStat</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>8</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Learning Statistics with CogStat</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="distributions" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Distributions<a href="distributions.html#distributions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>As you might imagine, probability distributions vary enormously, and there’s an enormous range of distributions. However, they aren’t all equally important. In fact, the vast majority of the content in this book relies on one of five distributions: the binomial distribution, the normal distribution, the <span class="math inline">\(t\)</span> distribution, the <span class="math inline">\(\chi^2\)</span> (“chi-square”) distribution and the <span class="math inline">\(F\)</span> distribution. Given this, the next few sections will briefly introduce all five of these, paying special attention to the binomial and the normal.</p>
+<div id="binomial" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> The binomial distribution<a href="distributions.html#binomial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The theory of probability originated in an attempt to describe how games of chance work. Hence, it seems fitting that our discussion of the <strong>binomial distribution</strong> should involve a discussion of rolling dice and flipping coins. Let’s imagine a simple “experiment”: we’re holding 20 identical six-sided dice. There’s a picture of a skull on one face of each die; the other five faces are all blank. If we roll all 20 dice, what’s the probability of getting exactly 4 skulls? Assuming that the dice are fair, we know that the chance of any one die coming up skulls is 1 in 6; to say this another way, the skull probability for a single die is approximately <span class="math inline">\(0.167\)</span>. This is enough information to answer our question, so let’s have a look at how it’s done.</p>
+<p>As usual, we’ll want to introduce some names and some notation. We’ll let <span class="math inline">\(N\)</span> denote the number of dice rolls in our experiment, which is often referred to as the <strong>size parameter</strong> of our binomial distribution. We’ll also use <span class="math inline">\(\theta\)</span> to refer to the probability that a single die comes up skulls, a quantity that is usually called the <strong>success probability</strong> of the binomial.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> Finally, we’ll use <span class="math inline">\(X\)</span> to refer to the results of our experiment, namely the number of skulls we get when rolling the dice. Since the actual value of <span class="math inline">\(X\)</span> is due to chance, we refer to it as a <strong>random variable</strong>. In any case, now that we have all this terminology and notation, we can use it to state the problem a little more precisely. The quantity that we want to calculate is the probability that <span class="math inline">\(X = 4\)</span> given that we know that <span class="math inline">\(\theta = .167\)</span> and <span class="math inline">\(N=20\)</span>. The general “form” of the thing could be written as
+<span class="math display">\[
+P(X \ | \ \theta, N)
+\]</span>
+and we’re interested in the special case where <span class="math inline">\(X=4\)</span>, <span class="math inline">\(\theta = 0.167\)</span> and <span class="math inline">\(N=20\)</span>.
+There’s only one more piece of notation. If we want to say that <span class="math inline">\(X\)</span> is generated randomly from a binomial distribution with parameters <span class="math inline">\(\theta\)</span> and <span class="math inline">\(N\)</span>, the notation is as follows:
+<span class="math display">\[
+X \sim \mbox{Binomial}(\theta, N)
+\]</span></p>
+<p>Yeah, yeah. I know what you’re thinking: notation, notation, notation. Really, who cares? Very few readers of this book are here for the notation, so we should probably move on and talk about how to use the binomial distribution. We’ve included the formula for the binomial distribution in Table <a href="distributions.html#tab:distformulas">6.1</a>, since some readers may want to play with it themselves, but since most people probably don’t care that much and because we don’t need the formula in this book, let’s not talk about it in any detail. Instead, let’s just see what the binomial distribution looks like. To that end, Figure <a href="distributions.html#fig:binomial1">6.1</a> plots the binomial probabilities for all possible values of <span class="math inline">\(X\)</span> for our dice rolling experiment, from <span class="math inline">\(X=0\)</span> (no skulls) all the way up to <span class="math inline">\(X=20\)</span> (all skulls). Note that this is basically a bar chart, and is no different to the “pants probability” plot in Figure <a href="probability.html#fig:pantsprob">5.2</a>. On the horizontal axis we have all the possible events, and on the vertical axis we can read off the probability of each of those events. So, the probability of rolling 4 skulls out of 20 times is about 0.20 (the actual answer is 0.2022036). In other words, you’d expect that to happen about 20% of the times you repeated this experiment.</p>
+<table>
+<caption>
+<span id="tab:distformulas">Table 6.1: </span>Formulas for the binomial and normal distributions. We don’t use these formulas for anything in this book, but they’re pretty important for more advanced work. In the equation for the binomial, <span class="math inline">\(X!\)</span> is the factorial function (i.e., multiply all whole numbers from 1 to <span class="math inline">\(X\)</span>), and for the normal distribution “exp” refers to the exponential function, which we discussed in the Chapter on Data Handling. If these equations don’t make a lot of sense to you, don’t worry too much about them.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Binomial
+</th>
+<th style="text-align:left;">
+Normal
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(P(X | \theta, N) = \displaystyle\frac{N!}{X! (N-X)!} \theta^X (1-\theta)^{N-X}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(p(X | \mu, \sigma) = \displaystyle\frac{1}{\sqrt{2\pi}\sigma} \exp \left( -\frac{(X - \mu)^2}{2\sigma^2} \right)\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="figure"><span style="display:block;" id="fig:binomial1"></span>
+<img src="lsc_files/figure-html/binomial1-1.svg" alt="The binomial distribution with size parameter of $N=20$ and an underlying success probability of $theta = 1/6$. Each vertical bar depicts the probability of one specific outcome (i.e., one possible value of $X$). Because this is a probability distribution, each of the probabilities must be a number between 0 and 1, and the heights of the bars must sum to 1 as well." width="672" />
+<p class="caption">
+Figure 6.1: The binomial distribution with size parameter of <span class="math inline">\(N=20\)</span> and an underlying success probability of <span class="math inline">\(theta = 1/6\)</span>. Each vertical bar depicts the probability of one specific outcome (i.e., one possible value of <span class="math inline">\(X\)</span>). Because this is a probability distribution, each of the probabilities must be a number between 0 and 1, and the heights of the bars must sum to 1 as well.
+</p>
+</div>
+</div>
+<div id="normal" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> The normal distribution<a href="distributions.html#normal" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>While the binomial distribution is conceptually the simplest distribution to understand, it’s not the most important one. That particular honour goes to the <strong><em>normal distribution</em></strong>, which is also referred to as “the bell curve” or a “Gaussian distribution”. A normal distribution is described using two parameters, the mean of the distribution <span class="math inline">\(\mu\)</span> and the standard deviation of the distribution <span class="math inline">\(\sigma\)</span>. The notation that we sometimes use to say that a variable <span class="math inline">\(X\)</span> is normally distributed is as follows:
+<span class="math display">\[
+X \sim \mbox{Normal}(\mu,\sigma)
+\]</span>
+Of course, that’s just notation. It doesn’t tell us anything interesting about the normal distribution itself. As was the case with the binomial distribution, I have included the formula for the normal distribution in this book, because I think it’s important enough that everyone who learns statistics should at least look at it, but since this is an introductory text I don’t want to focus on it, so I’ve tucked it away in Table <a href="distributions.html#tab:distformulas">6.1</a>. Similarly, the R functions for the normal distribution are <code>dnorm()</code>, <code>pnorm()</code>, <code>qnorm()</code> and <code>rnorm()</code>. However, they behave in pretty much exactly the same way as the corresponding functions for the binomial distribution, so there’s not a lot that you need to know. The only thing that I should point out is that the argument names for the parameters are <code>mean</code> and <code>sd</code>. In pretty much every other respect, there’s nothing else to add.</p>
+<p>Instead of focusing on the maths, let’s try to get a sense for what it means for a variable to be normally distributed. To that end, have a look at Figure <a href="distributions.html#fig:normdist">6.2</a>, which plots a normal distribution with mean <span class="math inline">\(\mu = 0\)</span> and standard deviation <span class="math inline">\(\sigma = 1\)</span>. You can see where the name “bell curve” comes from: it looks a bit like a bell. Notice that, unlike the plots that I drew to illustrate the binomial distribution, the picture of the normal distribution in Figure <a href="distributions.html#fig:normdist">6.2</a> shows a smooth curve instead of “histogram-like” bars. This isn’t an arbitrary choice: the normal distribution is continuous, whereas the binomial is discrete. For instance, in the die rolling example from the last section, it was possible to get 3 skulls or 4 skulls, but impossible to get 3.9 skulls. The figures that I drew in the previous section reflected this fact: in Figure <a href="distributions.html#fig:binomial1">6.1</a>, for instance, there’s a bar located at <span class="math inline">\(X=3\)</span> and another one at <span class="math inline">\(X=4\)</span>, but there’s nothing in between. Continuous quantities don’t have this constraint. For instance, suppose we’re talking about the weather. The temperature on a pleasant Spring day could be 23 degrees, 24 degrees, 23.9 degrees, or anything in between since temperature is a continuous variable, and so a normal distribution might be quite appropriate for describing Spring temperatures.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></p>
+<div class="figure"><span style="display:block;" id="fig:normdist"></span>
+<img src="lsc_files/figure-html/normdist-1.svg" alt="The normal distribution with mean $mu = 0$ and standard deviation $sigma = 1$. The $x$-axis corresponds to the value of some variable, and the $y$-axis tells us something about how likely we are to observe that value. However, notice that the $y$-axis is labelled &quot;Probability Density&quot; and not &quot;Probability&quot;. There is a subtle and somewhat frustrating characteristic of continuous distributions that makes the $y$ axis behave a bit oddly: the height of the curve here isn't actually the probability of observing a particular $x$ value. On the other hand, it *is* true that the heights of the curve tells you which $x$ values are more likely (the higher ones!)." width="672" />
+<p class="caption">
+Figure 6.2: The normal distribution with mean <span class="math inline">\(mu = 0\)</span> and standard deviation <span class="math inline">\(sigma = 1\)</span>. The <span class="math inline">\(x\)</span>-axis corresponds to the value of some variable, and the <span class="math inline">\(y\)</span>-axis tells us something about how likely we are to observe that value. However, notice that the <span class="math inline">\(y\)</span>-axis is labelled “Probability Density” and not “Probability”. There is a subtle and somewhat frustrating characteristic of continuous distributions that makes the <span class="math inline">\(y\)</span> axis behave a bit oddly: the height of the curve here isn’t actually the probability of observing a particular <span class="math inline">\(x\)</span> value. On the other hand, it <em>is</em> true that the heights of the curve tells you which <span class="math inline">\(x\)</span> values are more likely (the higher ones!).
+</p>
+</div>
+<p>With this in mind, let’s see if we can’t get an intuition for how the normal distribution works. Firstly, let’s have a look at what happens when we play around with the parameters of the distribution. To that end, Figure <a href="distributions.html#fig:normmean">6.3</a> plots normal distributions that have different means, but have the same standard deviation. As you might expect, all of these distributions have the same “width”. The only difference between them is that they’ve been shifted to the left or to the right. In every other respect they’re identical. In contrast, if we increase the standard deviation while keeping the mean constant, the peak of the distribution stays in the same place, but the distribution gets wider, as you can see in Figure <a href="distributions.html#fig:normsd">6.4</a>. Notice, though, that when we widen the distribution, the height of the peak shrinks. This has to happen: in the same way that the heights of the bars that we used to draw a discrete binomial distribution have to <em>sum</em> to 1, the total <em>area under the curve</em> for the normal distribution must equal 1.</p>
+<div class="figure"><span style="display:block;" id="fig:normmean"></span>
+<img src="lsc_files/figure-html/normmean-1.svg" alt="An illustration of what happens when you change the mean of a normal distribution. The solid line depicts a normal distribution with a mean of $mu=4$. The dashed line shows a normal distribution with a mean of $mu=7$. In both cases, the standard deviation is $sigma=1$. Not surprisingly, the two distributions have the same shape, but the dashed line is shifted to the right." width="672" />
+<p class="caption">
+Figure 6.3: An illustration of what happens when you change the mean of a normal distribution. The solid line depicts a normal distribution with a mean of <span class="math inline">\(mu=4\)</span>. The dashed line shows a normal distribution with a mean of <span class="math inline">\(mu=7\)</span>. In both cases, the standard deviation is <span class="math inline">\(sigma=1\)</span>. Not surprisingly, the two distributions have the same shape, but the dashed line is shifted to the right.
+</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:normsd"></span>
+<img src="lsc_files/figure-html/normsd-1.svg" alt="An illustration of what happens when you change the the standard deviation of a normal distribution. Both distributions plotted in this figure have a mean of $mu = 5$, but they have different standard deviations. The solid line plots a distribution with standard deviation $sigma=1$, and the dashed line shows a distribution with standard deviation $sigma = 2$. As a consequence, both distributions are &quot;centred&quot; on the same spot, but the dashed line is wider than the solid one." width="672" />
+<p class="caption">
+Figure 6.4: An illustration of what happens when you change the the standard deviation of a normal distribution. Both distributions plotted in this figure have a mean of <span class="math inline">\(mu = 5\)</span>, but they have different standard deviations. The solid line plots a distribution with standard deviation <span class="math inline">\(sigma=1\)</span>, and the dashed line shows a distribution with standard deviation <span class="math inline">\(sigma = 2\)</span>. As a consequence, both distributions are “centred” on the same spot, but the dashed line is wider than the solid one.
+</p>
+</div>
+<p>Before moving on, I want to point out one important characteristic of the normal distribution. Irrespective of what the actual mean and standard deviation are, 68.3% of the area falls within 1 standard deviation of the mean. Similarly, 95.4% of the distribution falls within 2 standard deviations of the mean, and 99.7% of the distribution is within 3 standard deviations. This idea is illustrated in Figures <a href="distributions.html#fig:sdnorm1">6.5</a> and <a href="distributions.html#fig:sdnorm2">6.6</a>.</p>
+<div class="figure"><span style="display:block;" id="fig:sdnorm1"></span>
+<img src="lsc_files/figure-html/sdnorm1-1.svg" alt="The area under the curve tells you the probability that an observation falls within a particular range. The solid lines plot normal distributions with mean $mu=0$ and standard deviation $sigma=1$ The shaded areas illustrate &quot;areas under the curve&quot; for two important cases. On the left, we can see that there is a 68.3% chance that an observation will fall within one standard deviation of the mean. On the right, we see that there is a 95.4% chance that an observation will fall within two standard deviations of the mean" width="672" />
+<p class="caption">
+Figure 6.5: The area under the curve tells you the probability that an observation falls within a particular range. The solid lines plot normal distributions with mean <span class="math inline">\(mu=0\)</span> and standard deviation <span class="math inline">\(sigma=1\)</span> The shaded areas illustrate “areas under the curve” for two important cases. On the left, we can see that there is a 68.3% chance that an observation will fall within one standard deviation of the mean. On the right, we see that there is a 95.4% chance that an observation will fall within two standard deviations of the mean
+</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:sdnorm2"></span>
+<img src="lsc_files/figure-html/sdnorm2-1.svg" alt="Two more examples of the &quot;area under the curve idea&quot;. There is a 15.9% chance that an observation is one standard deviation below the mean or smaller (left), and a 34.1% chance that the observation is greater than one standard deviation below the mean but still below the mean (right). Notice that if you add these two numbers together you get 15.9% + 34.1% = 50%. For normally distributed data, there is a 50% chance that an observation falls below the mean. And of course that also implies that there is a 50% chance that it falls above the mean." width="672" />
+<p class="caption">
+Figure 6.6: Two more examples of the “area under the curve idea”. There is a 15.9% chance that an observation is one standard deviation below the mean or smaller (left), and a 34.1% chance that the observation is greater than one standard deviation below the mean but still below the mean (right). Notice that if you add these two numbers together you get 15.9% + 34.1% = 50%. For normally distributed data, there is a 50% chance that an observation falls below the mean. And of course that also implies that there is a 50% chance that it falls above the mean.
+</p>
+</div>
+</div>
+<div id="density" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Probability density<a href="distributions.html#density" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There’s something I’ve been trying to hide throughout my discussion of the normal distribution, something that some introductory textbooks omit completely. They might be right to do so: this “thing” that I’m hiding is weird and counterintuitive even by the admittedly distorted standards that apply in statistics. Fortunately, it’s not something that you need to understand at a deep level in order to do basic statistics: rather, it’s something that starts to become important later on when you move beyond the basics. So, if it doesn’t make complete sense, don’t worry: try to make sure that you follow the gist of it.</p>
+<p>Throughout my discussion of the normal distribution, there’s been one or two things that don’t quite make sense. Perhaps you noticed that the <span class="math inline">\(y\)</span>-axis in these figures is labelled “Probability Density” rather than density. Maybe you noticed that I used <span class="math inline">\(p(X)\)</span> instead of <span class="math inline">\(P(X)\)</span> when giving the formula for the normal distribution. Maybe you’re wondering why R uses the “d” prefix for functions like <code>dnorm()</code>. And maybe, just maybe, you’ve been playing around with the <code>dnorm()</code> function, and you accidentally typed in a command like this:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="distributions.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dnorm</span>( <span class="at">x =</span> <span class="dv">1</span>, <span class="at">mean =</span> <span class="dv">1</span>, <span class="at">sd =</span> <span class="fl">0.1</span> )</span></code></pre></div>
+<pre><code>## [1] 3.989423</code></pre>
+<p>And if you’ve done the last part, you’re probably very confused. I’ve asked R to calculate the probability that <code>x = 1</code>, for a normally distributed variable with <code>mean = 1</code> and standard deviation <code>sd = 0.1</code>; and it tells me that the probability is 3.99. But, as we discussed earlier, probabilities <em>can’t</em> be larger than 1. So either I’ve made a mistake, or that’s not a probability.</p>
+<p>As it turns out, the second answer is correct. What we’ve calculated here isn’t actually a probability: it’s something else. To understand what that something is, you have to spend a little time thinking about what it really <em>means</em> to say that <span class="math inline">\(X\)</span> is a continuous variable. Let’s say we’re talking about the temperature outside. The thermometer tells me it’s 23 degrees, but I know that’s not really true. It’s not <em>exactly</em> 23 degrees. Maybe it’s 23.1 degrees, I think to myself. But I know that that’s not really true either, because it might actually be 23.09 degrees. But, I know that… well, you get the idea. The tricky thing with genuinely continuous quantities is that you never really know exactly what they are.</p>
+<p>Now think about what this implies when we talk about probabilities. Suppose that tomorrow’s maximum temperature is sampled from a normal distribution with mean 23 and standard deviation 1. What’s the probability that the temperature will be <em>exactly</em> 23 degrees? The answer is “zero”, or possibly, “a number so close to zero that it might as well be zero”. Why is this? It’s like trying to throw a dart at an infinitely small dart board: no matter how good your aim, you’ll never hit it. In real life you’ll never get a value of exactly 23. It’ll always be something like 23.1 or 22.99998 or something. In other words, it’s completely meaningless to talk about the probability that the temperature is exactly 23 degrees. However, in everyday language, if I told you that it was 23 degrees outside and it turned out to be 22.9998 degrees, you probably wouldn’t call me a liar. Because in everyday language, “23 degrees” usually means something like “somewhere between 22.5 and 23.5 degrees”. And while it doesn’t feel very meaningful to ask about the probability that the temperature is exactly 23 degrees, it does seem sensible to ask about the probability that the temperature lies between 22.5 and 23.5, or between 20 and 30, or any other range of temperatures.</p>
+<p>The point of this discussion is to make clear that, when we’re talking about continuous distributions, it’s not meaningful to talk about the probability of a specific value. However, what we <em>can</em> talk about is the probability that the value lies within a particular range of values. To find out the probability associated with a particular range, what you need to do is calculate the “area under the curve”. We’ve seen this concept already: in Figure <a href="distributions.html#fig:sdnorm1">6.5</a>, the shaded areas shown depict genuine probabilities (e.g., in the left hand panel of Figure <a href="distributions.html#fig:sdnorm1">6.5</a> it shows the probability of observing a value that falls within 1 standard deviation of the mean).</p>
+<p>Okay, so that explains part of the story. I’ve explained a little bit about how continuous probability distributions should be interpreted (i.e., area under the curve is the key thing), but I haven’t actually explained what the <code>dnorm()</code> function actually calculates. Equivalently, what does the formula for <span class="math inline">\(p(x)\)</span> that I described earlier actually mean? Obviously, <span class="math inline">\(p(x)\)</span> doesn’t describe a probability, but what is it? The name for this quantity <span class="math inline">\(p(x)\)</span> is a <strong><em>probability density</em></strong>, and in terms of the plots we’ve been drawing, it corresponds to the <em>height</em> of the curve. The densities themselves aren’t meaningful in and of themselves: but they’re “rigged” to ensure that the <em>area</em> under the curve is always interpretable as genuine probabilities. To be honest, that’s about as much as you really need to know for now.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a></p>
+</div>
+<div id="otherdists" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Other useful distributions<a href="distributions.html#otherdists" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The normal distribution is the distribution that statistics makes most use of (for reasons to be discussed shortly), and the binomial distribution is a very useful one for lots of purposes. But the world of statistics is filled with probability distributions, some of which we’ll run into in passing. In particular, the three that will appear in this book are the <span class="math inline">\(t\)</span> distribution, the <span class="math inline">\(\chi^2\)</span> distribution and the <span class="math inline">\(F\)</span> distribution. I won’t give formulas for any of these, or talk about them in too much detail, but I will show you some pictures.</p>
+<ul>
+<li>The <strong><em><span class="math inline">\(t\)</span> distribution</em></strong> is a continuous distribution that looks very similar to a normal distribution, but has heavier tails: see Figure <a href="distributions.html#fig:tdist">6.7</a>. This distribution tends to arise in situations where you think that the data actually follow a normal distribution, but you don’t know the mean or standard deviation. As you might expect, the relevant R functions are <code>dt()</code>, <code>pt()</code>, <code>qt()</code> and <code>rt()</code>, and we’ll run into this distribution again in Chapter <a href="#ttest"><strong>??</strong></a>.</li>
+</ul>
+<div class="figure"><span style="display:block;" id="fig:tdist"></span>
+<img src="lsc_files/figure-html/tdist-1.svg" alt="A $t$ distribution with 3 degrees of freedom (solid line). It looks similar to a normal distribution, but it's not quite the same. For comparison purposes, I've plotted a standard normal distribution as the dashed line. Note that the &quot;tails&quot; of the $t$ distribution are &quot;heavier&quot; (i.e., extend further outwards) than the tails of the normal distribution? That's the important difference between the two. " width="672" />
+<p class="caption">
+Figure 6.7: A <span class="math inline">\(t\)</span> distribution with 3 degrees of freedom (solid line). It looks similar to a normal distribution, but it’s not quite the same. For comparison purposes, I’ve plotted a standard normal distribution as the dashed line. Note that the “tails” of the <span class="math inline">\(t\)</span> distribution are “heavier” (i.e., extend further outwards) than the tails of the normal distribution? That’s the important difference between the two.
+</p>
+</div>
+<ul>
+<li>The <strong><em><span class="math inline">\(\chi^2\)</span> distribution</em></strong> is another distribution that turns up in lots of different places. The situation in which we’ll see it is when doing categorical data analysis (Chapter <a href="#chisquare"><strong>??</strong></a>), but it’s one of those things that actually pops up all over the place. When you dig into the maths (and who doesn’t love doing that?), it turns out that the main reason why the <span class="math inline">\(\chi^2\)</span> distribution turns up all over the place is that, if you have a bunch of variables that are normally distributed, square their values and then add them up (a procedure referred to as taking a “sum of squares”), this sum has a <span class="math inline">\(\chi^2\)</span> distribution. You’d be amazed how often this fact turns out to be useful. Anyway, here’s what a <span class="math inline">\(\chi^2\)</span> distribution looks like: Figure <a href="distributions.html#fig:chisqdist">6.8</a>. Once again, the R commands for this one are pretty predictable: <code>dchisq()</code>, <code>pchisq()</code>, <code>qchisq()</code>, <code>rchisq()</code>.</li>
+</ul>
+<div class="figure"><span style="display:block;" id="fig:chisqdist"></span>
+<img src="lsc_files/figure-html/chisqdist-1.svg" alt="A $chi^2$ distribution with 3 degrees of freedom. Notice that the observed values must always be greater than zero, and that the distribution is pretty skewed. These are the key features of a chi-square distribution." width="672" />
+<p class="caption">
+Figure 6.8: A <span class="math inline">\(chi^2\)</span> distribution with 3 degrees of freedom. Notice that the observed values must always be greater than zero, and that the distribution is pretty skewed. These are the key features of a chi-square distribution.
+</p>
+</div>
+<ul>
+<li>The <strong><em><span class="math inline">\(F\)</span> distribution</em></strong> looks a bit like a <span class="math inline">\(\chi^2\)</span> distribution, and it arises whenever you need to compare two <span class="math inline">\(\chi^2\)</span> distributions to one another. Admittedly, this doesn’t exactly sound like something that any sane person would want to do, but it turns out to be very important in real world data analysis. Remember when I said that <span class="math inline">\(\chi^2\)</span> turns out to be the key distribution when we’re taking a “sum of squares”? Well, what that means is if you want to compare two different “sums of squares”, you’re probably talking about something that has an <span class="math inline">\(F\)</span> distribution. Of course, as yet I still haven’t given you an example of anything that involves a sum of squares, but I will… in Chapter <a href="#anova"><strong>??</strong></a>. And that’s where we’ll run into the <span class="math inline">\(F\)</span> distribution. Oh, and here’s a picture: Figure <a href="distributions.html#fig:Fdist">6.9</a>. And of course we can get R to do things with <span class="math inline">\(F\)</span> distributions just by using the commands <code>df()</code>, <code>pf()</code>, <code>qf()</code> and <code>rf()</code>.</li>
+</ul>
+<div class="figure"><span style="display:block;" id="fig:Fdist"></span>
+<img src="lsc_files/figure-html/Fdist-1.svg" alt="An $F$ distribution with 3 and 5 degrees of freedom. Qualitatively speaking, it looks pretty similar to a chi-square distribution, but they're not quite the same in general." width="672" />
+<p class="caption">
+Figure 6.9: An <span class="math inline">\(F\)</span> distribution with 3 and 5 degrees of freedom. Qualitatively speaking, it looks pretty similar to a chi-square distribution, but they’re not quite the same in general.
+</p>
+</div>
+<p>Because these distributions are all tightly related to the normal distribution and to each other, and because they are will turn out to be the important distributions when doing inferential statistics later in this book, I think it’s useful to do a little demonstration using R, just to “convince ourselves” that these distributions really are related to each other in the way that they’re supposed to be. First, we’ll use the <code>rnorm()</code> function to generate 1000 normally-distributed observations:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="distributions.html#cb5-1" aria-hidden="true" tabindex="-1"></a>normal.a <span class="ot">&lt;-</span> <span class="fu">rnorm</span>( <span class="at">n=</span><span class="dv">1000</span>, <span class="at">mean=</span><span class="dv">0</span>, <span class="at">sd=</span><span class="dv">1</span> )  </span>
+<span id="cb5-2"><a href="distributions.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(<span class="fu">head</span>(normal.a))</span></code></pre></div>
+<pre><code>## [1] -0.4333516  0.7638146 -0.5014430 -0.8848746  0.3712387  0.2872983</code></pre>
+<p>So the <code>normal.a</code> variable contains 1000 numbers that are normally distributed, and have mean 0 and standard deviation 1, and the actual print out of these numbers goes on for rather a long time. Note that, because the default parameters of the <code>rnorm()</code> function are <code>mean=0</code> and <code>sd=1</code>, I could have shortened the command to <code>rnorm( n=1000 )</code>. In any case, what we can do is use the <code>hist()</code> function to draw a histogram of the data, like so:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="distributions.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>( normal.a ) </span></code></pre></div>
+<p>If you do this, you should see something similar to Figure <a href="distributions.html#fig:variaterelations">6.10</a>. Your plot won’t look quite as pretty as the one in the figure, of course, because I’ve played around with all the formatting (see Chapter <a href="#graphics"><strong>??</strong></a>), and I’ve also plotted the true distribution of the data as a solid black line (i.e., a normal distribution with mean 0 and standard deviation 1) so that you can compare the data that we just generated to the true distribution.</p>
+<div class="figure"><span style="display:block;" id="fig:variaterelations"></span>
+<img src="lsc_files/figure-html/variaterelations-1.svg" alt="A histogram of different distributions with some advanced formatting" width="672" />
+<p class="caption">
+Figure 6.10: A histogram of different distributions with some advanced formatting
+</p>
+</div>
+<p>In the previous example all I did was generate lots of normally distributed observations using <code>rnorm()</code> and then compared those to the true probability distribution in the figure (using <code>dnorm()</code> to generate the black line in the figure, but I didn’t show the commmands for that). Now let’s try something trickier. We’ll try to generate some observations that follow a chi-square distribution with 3 degrees of freedom, but instead of using <code>rchisq()</code>, we’ll start with variables that are normally distributed, and see if we can exploit the known relationships between normal and chi-square distributions to do the work. As I mentioned earlier, a chi-square distribution with <span class="math inline">\(k\)</span> degrees of freedom is what you get when you take <span class="math inline">\(k\)</span> normally-distributed variables (with mean 0 and standard deviation 1), square them, and add them up. Since we want a chi-square distribution with 3 degrees of freedom, we’ll need to supplement our <code>normal.a</code> data with two more sets of normally-distributed observations, imaginatively named <code>normal.b</code> and <code>normal.c</code>:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="distributions.html#cb8-1" aria-hidden="true" tabindex="-1"></a>normal.b <span class="ot">&lt;-</span> <span class="fu">rnorm</span>( <span class="at">n=</span><span class="dv">1000</span> )  <span class="co"># another set of normally distributed data</span></span>
+<span id="cb8-2"><a href="distributions.html#cb8-2" aria-hidden="true" tabindex="-1"></a>normal.c <span class="ot">&lt;-</span> <span class="fu">rnorm</span>( <span class="at">n=</span><span class="dv">1000</span> )  <span class="co"># and another!</span></span></code></pre></div>
+<p>Now that we’ve done that, the theory says we should square these and add them together, like this</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="distributions.html#cb9-1" aria-hidden="true" tabindex="-1"></a>chi.sq<span class="fl">.3</span> <span class="ot">&lt;-</span> (normal.a)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (normal.b)<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span> (normal.c)<span class="sc">^</span><span class="dv">2</span>  </span></code></pre></div>
+<p>and the resulting <code>chi.sq.3</code> variable should contain 1000 observations that follow a chi-square distribution with 3 degrees of freedom. You can use the <code>hist()</code> function to have a look at these observations yourself, using a command like this,</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="distributions.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>( chi.sq<span class="fl">.3</span> )  </span></code></pre></div>
+<p>and you should obtain a result that looks pretty similar to the chi-square plot in Figure <a href="distributions.html#fig:variaterelations">6.10</a>. Once again, the plot that I’ve drawn is a little fancier: in addition to the histogram of <code>chi.sq.3</code>, I’ve also plotted a chi-square distribution with 3 degrees of freedom. It’s pretty clear that – even though I used <code>rnorm()</code> to do all the work rather than <code>rchisq()</code> – the observations stored in the <code>chi.sq.3</code> variable really do follow a chi-square distribution. Admittedly, this probably doesn’t seem all that interesting right now, but later on when we start encountering the chi-square distribution in Chapter <a href="#chisquare"><strong>??</strong></a>, it will be useful to understand the fact that these distributions are related to one another.</p>
+<p>We can extend this demonstration to the <span class="math inline">\(t\)</span> distribution and the <span class="math inline">\(F\)</span> distribution. Earlier, I implied that the <span class="math inline">\(t\)</span> distribution is related to the normal distribution when the standard deviation is unknown. That’s certainly true, and that’s the what we’ll see later on in Chapter <a href="#ttest"><strong>??</strong></a>, but there’s a somewhat more precise relationship between the normal, chi-square and <span class="math inline">\(t\)</span> distributions. Suppose we “scale” our chi-square data by dividing it by the degrees of freedom, like so</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="distributions.html#cb11-1" aria-hidden="true" tabindex="-1"></a>scaled.chi.sq<span class="fl">.3</span> <span class="ot">&lt;-</span> chi.sq<span class="fl">.3</span> <span class="sc">/</span> <span class="dv">3</span></span></code></pre></div>
+<p>We then take a set of normally distributed variables and divide them by (the square root of) our scaled chi-square variable which had <span class="math inline">\(df=3\)</span>, and the result is a <span class="math inline">\(t\)</span> distribution with 3 degrees of freedom. If we plot the histogram of <code>t.3</code>, we end up with something that looks very similar to the t distribution in Figure <a href="distributions.html#fig:variaterelations">6.10</a>.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="distributions.html#cb12-1" aria-hidden="true" tabindex="-1"></a>normal.d <span class="ot">&lt;-</span> <span class="fu">rnorm</span>( <span class="at">n=</span><span class="dv">1000</span> )                <span class="co"># yet another set of normally distributed data</span></span>
+<span id="cb12-2"><a href="distributions.html#cb12-2" aria-hidden="true" tabindex="-1"></a>t<span class="fl">.3</span> <span class="ot">&lt;-</span> normal.d <span class="sc">/</span> <span class="fu">sqrt</span>( scaled.chi.sq<span class="fl">.3</span> )  <span class="co"># divide by square root of scaled chi-square to get t</span></span>
+<span id="cb12-3"><a href="distributions.html#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span> (t<span class="fl">.3</span>)</span></code></pre></div>
+<p>Similarly, we can obtain an <span class="math inline">\(F\)</span> distribution by taking the ratio between two scaled chi-square distributions. Suppose, for instance, we wanted to generate data from an <span class="math inline">\(F\)</span> distribution with 3 and 20 degrees of freedom. We could do this using <code>df()</code>, but we could also do the same thing by generating two chi-square variables, one with 3 degrees of freedom, and the other with 20 degrees of freedom. As the example with <code>chi.sq.3</code> illustrates, we can actually do this using <code>rnorm()</code> if we really want to, but this time I’ll take a short cut:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="distributions.html#cb13-1" aria-hidden="true" tabindex="-1"></a>chi.sq<span class="fl">.20</span> <span class="ot">&lt;-</span> <span class="fu">rchisq</span>( <span class="dv">1000</span>, <span class="dv">20</span>)                 <span class="co"># generate chi square data with df = 20...</span></span>
+<span id="cb13-2"><a href="distributions.html#cb13-2" aria-hidden="true" tabindex="-1"></a>scaled.chi.sq<span class="fl">.20</span> <span class="ot">&lt;-</span> chi.sq<span class="fl">.20</span> <span class="sc">/</span> <span class="dv">20</span>             <span class="co"># scale the chi square variable...</span></span>
+<span id="cb13-3"><a href="distributions.html#cb13-3" aria-hidden="true" tabindex="-1"></a>F.<span class="fl">3.20</span> <span class="ot">&lt;-</span>  scaled.chi.sq<span class="fl">.3</span>  <span class="sc">/</span> scaled.chi.sq<span class="fl">.20</span> <span class="co"># take the ratio of the two chi squares...</span></span>
+<span id="cb13-4"><a href="distributions.html#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>( F.<span class="fl">3.20</span> )                                 <span class="co"># ... and draw a picture</span></span></code></pre></div>
+<p>The resulting <code>F.3.20</code> variable does in fact store variables that follow an <span class="math inline">\(F\)</span> distribution with 3 and 20 degrees of freedom. This is illustrated in Figure <a href="distributions.html#fig:variaterelations">6.10</a>, which plots the histgram of the observations stored in <code>F.3.20</code> against the true <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(df_1 = 3\)</span> and <span class="math inline">\(df_2 = 20\)</span>. Again, they match.</p>
+<p>Okay, time to wrap this section up. We’ve seen three new distributions: <span class="math inline">\(\chi^2\)</span>, <span class="math inline">\(t\)</span> and <span class="math inline">\(F\)</span>. They’re all continuous distributions, and they’re all closely related to the normal distribution. I’ve talked a little bit about the precise nature of this relationship, and shown you some R commands that illustrate this relationship. The key thing for our purposes, however, is not that you have a deep understanding of all these different distributions, nor that you remember the precise relationships between them. The main thing is that you grasp the basic idea that these distributions are all deeply related to one another, and to the normal distribution. Later on in this book, we’re going to run into data that are normally distributed, or at least assumed to be normally distributed. What I want you to understand right now is that, if you make the assumption that your data are normally distributed, you shouldn’t be surprised to see <span class="math inline">\(\chi^2\)</span>, <span class="math inline">\(t\)</span> and <span class="math inline">\(F\)</span> distributions popping up all over the place when you start trying to do your data analysis.</p>
+</div>
+<div id="summary-1" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Summary<a href="distributions.html#summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this chapter we’ve talked about probability. We’ve talked what probability means, and why statisticians can’t agree on what it means. We talked about the rules that probabilities have to obey. And we introduced the idea of a probability distribution, and spent a good chunk of the chapter talking about some of the more important probability distributions that statisticians work with. The section by section breakdown looks like this:</p>
+<ul>
+<li>Probability theory versus statistics (Section <a href="#probstats"><strong>??</strong></a>)</li>
+<li>Frequentist versus Bayesian views of probability (Section <a href="#probmeaning"><strong>??</strong></a>)</li>
+<li>Basics of probability theory (Section <a href="probability.html#basicprobability">5.3</a>)</li>
+<li>Binomial distribution (Section <a href="distributions.html#binomial">6.1</a>), normal distribution (Section <a href="distributions.html#normal">6.2</a>), and others (Section <a href="distributions.html#otherdists">6.4</a>)</li>
+</ul>
+<p>As you’d expect, my coverage is by no means exhaustive. Probability theory is a large branch of mathematics in its own right, entirely separate from its application to statistics and data analysis. As such, there are thousands of books written on the subject and universities generally offer multiple classes devoted entirely to probability theory. Even the “simpler” task of documenting standard probability distributions is a big topic. I’ve described five standard probability distributions in this chapter, but sitting on my bookshelf I have a 45-chapter book called “Statistical Distributions” <span class="citation">M. Evans et al. (2011)</span> that lists a <em>lot</em> more than that. Fortunately for you, very little of this is necessary. You’re unlikely to need to know dozens of statistical distributions when you go out and do real world data analysis, and you definitely won’t need them for this book, but it never hurts to know that there’s other possibilities out there.</p>
+<p>Picking up on that last point, there’s a sense in which this whole chapter is something of a digression. Many undergraduate psychology classes on statistics skim over this content very quickly (I know mine did), and even the more advanced classes will often “forget” to revisit the basic foundations of the field. Most academic psychologists would not know the difference between probability and density, and until recently very few would have been aware of the difference between Bayesian and frequentist probability. However, I think it’s important to understand these things before moving onto the applications. For example, there are a lot of rules about what you’re “allowed” to say when doing statistical inference, and many of these can seem arbitrary and weird. However, they start to make sense if you understand that there is this Bayesian/frequentist distinction. Similarly, in Chapter <a href="#ttest"><strong>??</strong></a> we’re going to talk about something called the <span class="math inline">\(t\)</span>-test, and if you really want to have a grasp of the mechanics of the <span class="math inline">\(t\)</span>-test it really helps to have a sense of what a <span class="math inline">\(t\)</span>-distribution actually looks like. You get the idea, I hope.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="17">
+<li id="fn17"><p>Note that the term “success” is pretty arbitrary and doesn’t actually imply that the outcome is something to be desired. If <span class="math inline">\(\theta\)</span> referred to the probability that any one passenger gets injured in a bus crash, it is still called the success probability.<a href="distributions.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<li id="fn18"><p>In practice, the normal distribution is so handy that people tend to use it even when the variable isn’t actually continuous. As long as there are enough categories (e.g., Likert scale responses to a questionnaire), it’s pretty standard practice to use the normal distribution as an approximation. This works out much better in practice than you’d think.<a href="distributions.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p>For those readers who know a little calculus, I’ll give a slightly more precise explanation. In the same way that probabilities are non-negative numbers that must sum to 1, probability densities are non-negative numbers that must integrate to 1 (where the integral is taken across all possible values of <span class="math inline">\(X\)</span>). To calculate the probability that <span class="math inline">\(X\)</span> falls between <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span> we calculate the definite integral of the density function over the corresponding range, <span class="math inline">\(\int_a^b p(x) \ dx\)</span>. If you don’t remember or never learned calculus, don’t worry about this. It’s not needed for this book.<a href="distributions.html#fnref19" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="probability.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="correl.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"number_sections": true,
+"fig_caption": true
+},
+"toc_depth": 2,
+"toolbar": {
+"position": "static"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

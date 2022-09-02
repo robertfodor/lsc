@@ -93,8 +93,8 @@ the-bayesian-view
 whats-the-difference-and-who-is-right
 basicprobability
 introducing-probability-distributions
+distributions
 binomial
-introducing-the-binomial
 normal
 density
 otherdists
