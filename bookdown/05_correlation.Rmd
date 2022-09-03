@@ -1,4 +1,4 @@
-# Correlations{#correl}
+# Exploring a variable pair{#correl}
 
 Up to this point we have focused entirely on how to construct descriptive statistics for a single variable. What we haven't done is talked about how to describe the relationships *between* variables in the data. To do that, we want to talk mostly about the **correlation** between variables. But first, we need some data.
 
@@ -20,6 +20,11 @@ knitr::kable(cbind(
   caption = 'Descriptive statistics for the parenthood data.',
   booktabs = TRUE)
 ```
+
+## Correlations in Cogstat{#correlationincogstat}
+
+To start understanding a variable, select `Explore relation of variable pair` so a pop-up appears. Move the name of the two variables you wish to analyse (from `Available variables` to `Selected variables`, then click `OK`.
+
 
 ## The strength and direction of a relationship
 

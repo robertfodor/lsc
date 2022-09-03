@@ -94,6 +94,7 @@ which-measure-to-use
 skewnesskurtosis
 summary-descriptives
 correl
+correlationincogstat
 the-strength-and-direction-of-a-relationship
 the-correlation-coefficient
 interpretingcorrelations
