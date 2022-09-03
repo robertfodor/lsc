@@ -1,6 +1,6 @@
 # (PART\*) DESCRIPTIVE STATISTICS{-}
 
-# Exploring a variable
+# Exploring a variable{#exploringavariable}
 
 Any time you get a new data set to look at, one of the first things you might want to do is find ways of summarising the data in a compact, easily understood fashion. This is what **descriptive statistics** (as opposed to *inferential statistics*) is all about. In fact, to many people, the term "statistics" is synonymous with descriptive statistics.
 

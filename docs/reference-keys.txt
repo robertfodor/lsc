@@ -10,6 +10,15 @@ fig:freqaflsmall
 fig:skewness
 fig:kurtosis
 tab:unnamed-chunk-5
+fig:loadparenthood
+tab:parenthoodtab
+fig:scatterparent1a
+fig:scatterparent1b
+fig:scatterparent2
+fig:corr
+tab:interpretingcorrelations
+fig:anscombe
+fig:rankcorrpic
 fig:frequentistprobability
 fig:pantsprob
 tab:probrules
@@ -67,7 +76,7 @@ gettingstarted
 installing-cogstat
 loading-data
 saving-and-exporting-your-results
-exploring-a-variable
+exploringavariable
 centraltendency
 mean
 median
@@ -84,6 +93,12 @@ mad
 which-measure-to-use
 skewnesskurtosis
 summary-descriptives
+correl
+the-strength-and-direction-of-a-relationship
+the-correlation-coefficient
+interpretingcorrelations
+spearmans-rank-correlations
+missing-values-in-pairwise-calculations
 probability
 probabilitystats
 probabilitymeaning
@@ -97,9 +112,4 @@ normal
 density
 otherdists
 summary-1
-correl
-the-strength-and-direction-of-a-relationship
-pearsons-correlation-coefficient
-spearmans-rank-correlations
-interpretingcorrelations
 hypothesis-testing

@@ -1,9 +1,0 @@
-# Correlations{#correl}
-
-## The strength and direction of a relationship
-
-## Pearson's correlation coefficient
-
-## Spearman's rank correlations
-
-## Calculating and interpreting correlations in CogStat {#interpretingcorrelations}
