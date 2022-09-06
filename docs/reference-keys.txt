@@ -21,6 +21,11 @@ tab:interpretingcorrelations
 fig:anscombe
 fig:rankcorrpic
 fig:cogstatcorrelationresult
+fig:parenthoodmissing
+tab:parenthoodmissingtab
+fig:parenthoodmissingcog1
+fig:parenthoodmissingcog2
+fig:parenthoodmissingcog3
 fig:frequentistprobability
 fig:pantsprob
 tab:probrules
@@ -96,12 +101,12 @@ which-measure-to-use
 skewnesskurtosis
 summary-descriptives
 correl
-correlationincogstat
 the-strength-and-direction-of-a-relationship
-the-correlation-coefficient
+pearson
 interpretingcorrelations
-spearmans-rank-correlations
-missing-values-in-pairwise-calculations
+spearman
+missingvaluespair
+summary-1
 probability
 probabilitystats
 probabilitymeaning
@@ -114,5 +119,5 @@ binomial
 normal
 density
 otherdists
-summary-1
+summary-2
 hypothesis-testing

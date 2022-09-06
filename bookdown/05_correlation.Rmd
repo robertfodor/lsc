@@ -22,10 +22,11 @@ knitr::kable(cbind(
   align = "lccc")
 ```
 
-## Correlations in Cogstat{#correlationincogstat}
-
 To start understanding the relationship between a pair of variables, select `Explore relation of variable pair` so a pop-up appears. Move the name of the two variables you wish to analyse (from `Available variables` to `Selected variables`, then click `OK`.
 
+```{r cogstatexplorevariablepair, echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("resources/cogstatexplorevariablepair.png")
+```
 
 ## The strength and direction of a relationship
 
@@ -45,7 +46,7 @@ In contrast, let's consider Figure \@ref(fig:scatterparent1b) vs. Figure \@ref(f
 knitr::include_graphics("resources/parentsleepbabysleepplot.png")
 ```
 
-## The correlation coefficient
+## The correlation coefficient{#pearson}
 
 We can make these ideas a bit more explicit by introducing the idea of a **correlation coefficient** (or, more specifically, **Pearson's correlation coefficient**), which is traditionally denoted by $r$. The correlation coefficient between two variables $X$ and $Y$ (sometimes denoted $r_{XY}$), which we'll define more precisely in the next section, is a measure that varies from $-1$ to $1$. When $r = -1$ it means that we have a perfect negative relationship, and when $r = 1$ it means we have a perfect positive relationship. When $r = 0$, there's no relationship at all. If you look at Figure \@ref(fig:corr), you can see several plots showing what different correlations look like.
 
@@ -173,7 +174,7 @@ oneCorPlot(X4,Y4,xlab="X4",ylab="Y4")
 The lesson here, which so very many people seem to forget in real life is "*always graph your raw data*".
 
 
-## Spearman's rank correlations
+## Spearman's rank correlations{#spearman}
 
 ```{r rankcorrpic, fig.cap="The relationship between hours worked and grade received, for a toy data set consisting of only 10 students (each circle corresponds to one student). The dashed line through the middle shows the linear relationship between the two variables. This produces a strong Pearson correlation of $r = .91$. However, the interesting thing to note here is that there's actually a perfect monotonic relationship between the two variables: in this toy example at least, increasing the hours worked always increases the grade received, as illustrated by the solid line. This is reflected in a Spearman correlation of $rho = 1$. With such a small data set, however, it's an open question as to which version better describes the actual relationship involved.", fig.align='center', echo=FALSE}
 
@@ -234,80 +235,44 @@ CogStat will calculate both Pearson's correlation and Spearman's rank order corr
 knitr::include_graphics("resources/cogstatcorrelationresult.png")
 ```
 
-## Missing values in pairwise calculations
+## Missing values in pairwise calculations{#missingvaluespair}
 
-I mentioned earlier that the `cor()` function is a special case. It doesn't have an `na.rm` argument, because the story becomes a lot more complicated when more than one variable is involved. What it does have is an argument called `use` which does roughly the same thing, but you need to think  little more carefully about what you want this time. To illustrate the issues, let's open up a data set that has missing values, `parenthood2.Rdata`. This file contains the same data as the original parenthood data, but with some values deleted. It contains a single data frame, `parenthood2`:
-```
-> load( "parenthood2.Rdata" )
-> print( parenthood2 )
-  parentsleep baby.sleep parentgrump day
-1      7.59         NA        56   1
-2      7.91      11.66        60   2
-3      5.14       7.92        82   3
-4      7.71       9.61        55   4
-5      6.68       9.75        NA   5
-6      5.99       5.04        72   6
-BLAH BLAH BLAH
-```
-If I calculate my descriptive statistics using the `describe()` function
-```
-> describe( parenthood2 )
-           var   n  mean    sd median trimmed   mad   min    max    BLAH
-parentsleep    1  91  6.98  1.02   7.03    7.02  1.13  4.84   9.00    BLAH
-baby.sleep   2  89  8.11  2.05   8.20    8.13  2.28  3.25  12.07    BLAH
-parentgrump    3  92 63.15  9.85  61.00   62.66 10.38 41.00  89.00    BLAH
-day          4 100 50.50 29.01  50.50   50.50 37.06  1.00 100.00    BLAH
-```
-we can see from the `n` column that there are 9 missing values for `parentsleep`, 11 missing values for `baby.sleep` and 8 missing values for `parentgrump`.^[It's worth noting that, even though we have missing data for each of these variables, the output doesn't contain any `NA` values. This is because, while `describe()` also has an `na.rm` argument, the default value for this function is `na.rm = TRUE`.] Suppose what I would like is a correlation matrix. And let's also suppose that I don't bother to tell R how to handle those missing values. Here's what happens:
-```
-> cor( parenthood2 )
-           parentsleep baby.sleep parentgrump day
-parentsleep          1         NA        NA  NA
-baby.sleep        NA          1        NA  NA
-parentgrump         NA         NA         1  NA
-day               NA         NA        NA   1
-```
-Annoying, but it kind of makes sense. If I don't *know* what some of the values of `parentsleep` and `baby.sleep` actually are, then I can't possibly *know* what the correlation between these two variables is either, since the formula for the correlation coefficient makes use of every single observation in the data set. Once again, it makes sense: it's just not particularly *helpful*.
+To illustrate the issues, let's open up a data set that has missing values, [`parenthood_missing.csv`](resources/data/parenthood_missing.csv). This file contains the same data as the original parenthood data, but with some values deleted. While the original source could contain empty value or `NA`, CogStat will display `NaN` for these missing values (Figure \@ref(fig:parenthoodmissing)).
 
-To make R behave more sensibly in this situation, you need to specify the `use` argument to the `cor()` function. There are several different values that you can specify for this, but the two that we care most about in practice tend to be `"complete.obs"` and `"pairwise.complete.obs"`. If we specify `use = "complete.obs"`, R will completely ignore all cases (i.e., all rows in our `parenthood2` data frame) that have any missing values at all. So, for instance, if you look back at the extract earlier when I used the `head()` function, notice that observation 1 (i.e., day 1) of the `parenthood2` data set is missing the value for `baby.sleep`, but is otherwise complete? Well, if you choose `use = "complete.obs"` R will ignore that row completely: that is, even when it's trying to calculate the correlation between `parentsleep` and `parentgrump`, observation 1 will be ignored, because the value of `baby.sleep` is missing for that observation. Here's what we get:
-```
-> cor(parenthood2, use = "complete.obs")
-             parentsleep baby.sleep   parentgrump         day
-parentsleep   1.00000000  0.6394985 -0.89951468  0.06132891
-baby.sleep  0.63949845  1.0000000 -0.58656066  0.14555814
-parentgrump  -0.89951468 -0.5865607  1.00000000 -0.06816586
-day         0.06132891  0.1455581 -0.06816586  1.00000000
+```{r parenthoodmissing, echo=FALSE, fig.align='center', out.width='100%', fig.cap="This is what you would see in CogStat after loading the `parenthood_missing.csv` dataset."}
+knitr::include_graphics("resources/cogstatparenthood_missing.png")
 ```
 
+Let's calculate descriptive statistics using the `Explore variable` function (See Chapter: \@ref(exploringavariable)):
 
-
-The other possibility that we care about, and the one that tends to get used more often in practice, is to set `use = "pairwise.complete.obs"`. When we do that, R only looks at the variables that it's trying to correlate when determining what to drop. So, for instance, since the only missing value for observation 1 of `parenthood2` is for `baby.sleep` R will only drop observation 1 when `baby.sleep` is one of the variables involved: and so R keeps observation 1 when trying to correlate  `parentsleep` and `parentgrump`. When we do it this way, here's what we get:
-
-```
-> cor(parenthood2, use = "pairwise.complete.obs") 
-             parentsleep  baby.sleep    parentgrump          day
-parentsleep   1.00000000  0.61472303 -0.903442442 -0.076796665
-baby.sleep  0.61472303  1.00000000 -0.567802669  0.058309485
-parentgrump  -0.90344244 -0.56780267  1.000000000  0.005833399
-day        -0.07679667  0.05830949  0.005833399  1.000000000
-```
-
-Similar, but not quite the same. It's also worth noting that the `correlate()` function (in the `lsr` package) automatically uses the "pairwise complete" method:
-```
-> correlate(parenthood2)
-
-CORRELATIONS
-============
-- correlation type:  pearson 
-- correlations shown only when both variables are numeric
-
-           parentsleep baby.sleep parentgrump    day
-parentsleep          .      0.615    -0.903 -0.077
-baby.sleep     0.615          .    -0.568  0.058
-parentgrump     -0.903     -0.568         .  0.006
-day           -0.077      0.058     0.006      .
+```{r parenthoodmissingtab, echo=FALSE}
+knitr::kable(cbind(
+                c("" , "Mean" , "Standard deviation" , "Skewness" , "Kurtosis" , "Range" , "Maximum", "Upper quartile" , "Median" , "Lower quartile" , "Minimum"),
+                  c("`parentgrump`", 63.2, 9.8, 0.4, -0.2, 48.0, 89.0, 70.2, 61.0, 56.0, 41.0),
+                  c("`parentsleep`", 6.977, 1.015, -0.346, -0.647, 4.160, 9.000, 7.785, 7.030, 6.285, 4.840),
+                  c("`babysleep`", 8.114, 2.035, -0.096, -0.500, 8.820, 12.070, 9.610, 8.200, 6.460, 3.250)),
+  col.names=c("", "Parent grumpiness", "Parent's hours slept", "Baby's hours slept"),
+  caption = 'Descriptive statistics for the parenthood data with missing values. We can observe the slight difference on our statistics when we have missing values.',
+  booktabs = TRUE,
+  align = "lccc")
 ```
 
-The two approaches have different strengths and weaknesses. The "pairwise complete" approach has the advantage that it keeps more observations, so you're making use of more of your data and (as we'll discuss in tedious detail in Chapter \@ref(estimation) and it improves the reliability of your estimated correlation. On the other hand, it means that every correlation in your correlation matrix is being computed from a slightly different set of observations, which can be awkward when you want to compare the different correlations that you've got. 
- 
-So which method should you use? It depends a lot on *why* you think your values are missing, and probably depends a little on how paranoid you are. For instance, if you think that the missing values were "chosen" completely randomly^[The technical term here is "missing completely at random" (often written MCAR for short). Makes sense, I suppose, but it does sound ungrammatical to me.] then you'll probably want to use the pairwise method. If you think that missing data are a cue to thinking that the whole observation might be rubbish (e.g., someone just selecting arbitrary responses in your questionnaire), but that there's no pattern to which observations are "rubbish" then it's probably safer to keep only those observations that are complete. If you think there's something systematic going on, in that some observations are more likely to be missing than others, then you have a much trickier problem to solve, and one that is beyond the scope of this book.
+We can see that there are 9 missing values for `parentsleep` (`N of missing cases: 9`), 11 missing values for `babysleep` (`N of missing cases: 11`), and 8 missing values for `parentgrump` (`N of missing cases: 8`).
+
+Whichever comparison you'd like to run (e.g., `parentsleep` vs. `parentgrump`), CogStat will automatically exclude the missing values from the calculation:
+
+```{r parenthoodmissingcog1, echo=FALSE, fig.align='center', out.width='100%', fig.cap="17 missing pairs when comparing `parentsleep` and `parentgrump`"}
+knitr::include_graphics("resources/cogstatparentsleepparentgrumpmissing.png")
+```
+
+```{r parenthoodmissingcog2, echo=FALSE, fig.align='center', out.width='100%', fig.cap="18 missing pairs when comparing `babysleep` and `parentgrump`"}
+knitr::include_graphics("resources/cogstatbabysleepparentgrumpmissing.png")
+```
+
+```{r parenthoodmissingcog3, echo=FALSE, fig.align='center', out.width='100%', fig.cap="20 missing pairs when comparing `babysleep` and `parentsleep`"}
+knitr::include_graphics("resources/cogstatparentsleepbabysleepmissing.png")
+```
+
+## Summary
+
+In this chapter we discussed how to measure the relationship between two variables. We introduced the concept of correlation, and how to calculate it using CogStat. We also discussed the difference between **Pearson's correlation** (Chapter \@ref(pearson)) and **Spearman's rank order correlation** (Chapter \@ref(spearman)), and how CogStat will calculate it for you. Finally, we discussed how CogStat handles missing values (Chapter \@ref(missingvaluespair)) in pairwise calculations.

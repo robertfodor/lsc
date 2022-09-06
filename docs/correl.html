@@ -182,12 +182,12 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5" data-path="correl.html"><a href="correl.html"><i class="fa fa-check"></i><b>5</b> Exploring a variable pair</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="correl.html"><a href="correl.html#correlationincogstat"><i class="fa fa-check"></i><b>5.1</b> Correlations in Cogstat</a></li>
-<li class="chapter" data-level="5.2" data-path="correl.html"><a href="correl.html#the-strength-and-direction-of-a-relationship"><i class="fa fa-check"></i><b>5.2</b> The strength and direction of a relationship</a></li>
-<li class="chapter" data-level="5.3" data-path="correl.html"><a href="correl.html#the-correlation-coefficient"><i class="fa fa-check"></i><b>5.3</b> The correlation coefficient</a></li>
-<li class="chapter" data-level="5.4" data-path="correl.html"><a href="correl.html#interpretingcorrelations"><i class="fa fa-check"></i><b>5.4</b> Interpreting a correlation</a></li>
-<li class="chapter" data-level="5.5" data-path="correl.html"><a href="correl.html#spearmans-rank-correlations"><i class="fa fa-check"></i><b>5.5</b> Spearman’s rank correlations</a></li>
-<li class="chapter" data-level="5.6" data-path="correl.html"><a href="correl.html#missing-values-in-pairwise-calculations"><i class="fa fa-check"></i><b>5.6</b> Missing values in pairwise calculations</a></li>
+<li class="chapter" data-level="5.1" data-path="correl.html"><a href="correl.html#the-strength-and-direction-of-a-relationship"><i class="fa fa-check"></i><b>5.1</b> The strength and direction of a relationship</a></li>
+<li class="chapter" data-level="5.2" data-path="correl.html"><a href="correl.html#pearson"><i class="fa fa-check"></i><b>5.2</b> The correlation coefficient</a></li>
+<li class="chapter" data-level="5.3" data-path="correl.html"><a href="correl.html#interpretingcorrelations"><i class="fa fa-check"></i><b>5.3</b> Interpreting a correlation</a></li>
+<li class="chapter" data-level="5.4" data-path="correl.html"><a href="correl.html#spearman"><i class="fa fa-check"></i><b>5.4</b> Spearman’s rank correlations</a></li>
+<li class="chapter" data-level="5.5" data-path="correl.html"><a href="correl.html#missingvaluespair"><i class="fa fa-check"></i><b>5.5</b> Missing values in pairwise calculations</a></li>
+<li class="chapter" data-level="5.6" data-path="correl.html"><a href="correl.html#summary-1"><i class="fa fa-check"></i><b>5.6</b> Summary</a></li>
 </ul></li>
 <li class="part"><span><b>INFERENTIAL STATISTICS</b></span></li>
 <li class="chapter" data-level="6" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>6</b> Probability and distributions</a>
@@ -207,7 +207,7 @@ div.csl-indent {
 <li class="chapter" data-level="6.4.3" data-path="probability.html"><a href="probability.html#density"><i class="fa fa-check"></i><b>6.4.3</b> Probability density</a></li>
 <li class="chapter" data-level="6.4.4" data-path="probability.html"><a href="probability.html#otherdists"><i class="fa fa-check"></i><b>6.4.4</b> Other useful distributions</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="probability.html"><a href="probability.html#summary-1"><i class="fa fa-check"></i><b>6.5</b> Summary</a></li>
+<li class="chapter" data-level="6.5" data-path="probability.html"><a href="probability.html#summary-2"><i class="fa fa-check"></i><b>6.5</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="hypothesis-testing.html"><a href="hypothesis-testing.html"><i class="fa fa-check"></i><b>7</b> Hypothesis testing</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
@@ -417,12 +417,10 @@ Minimum
 </tr>
 </tbody>
 </table>
-<div id="correlationincogstat" class="section level2 hasAnchor" number="5.1">
-<h2><span class="header-section-number">5.1</span> Correlations in Cogstat<a href="correl.html#correlationincogstat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To start understanding the relationship between a pair of variables, select <code>Explore relation of variable pair</code> so a pop-up appears. Move the name of the two variables you wish to analyse (from <code>Available variables</code> to <code>Selected variables</code>, then click <code>OK</code>.</p>
-</div>
-<div id="the-strength-and-direction-of-a-relationship" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> The strength and direction of a relationship<a href="correl.html#the-strength-and-direction-of-a-relationship" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="resources/cogstatexplorevariablepair.png" width="100%" style="display: block; margin: auto;" /></p>
+<div id="the-strength-and-direction-of-a-relationship" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> The strength and direction of a relationship<a href="correl.html#the-strength-and-direction-of-a-relationship" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:scatterparent1a"></span>
 <img src="resources/parentsleepgrumpplot.png" alt="Scatterplot drawn by CogStat showing the relationship between `parentsleep` and `parentgrump`" width="100%" />
 <p class="caption">
@@ -444,8 +442,8 @@ Figure 5.4: Scatterplot drawn by CogStat showing the relationship between <code>
 </p>
 </div>
 </div>
-<div id="the-correlation-coefficient" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> The correlation coefficient<a href="correl.html#the-correlation-coefficient" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pearson" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> The correlation coefficient<a href="correl.html#pearson" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We can make these ideas a bit more explicit by introducing the idea of a <strong>correlation coefficient</strong> (or, more specifically, <strong>Pearson’s correlation coefficient</strong>), which is traditionally denoted by <span class="math inline">\(r\)</span>. The correlation coefficient between two variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> (sometimes denoted <span class="math inline">\(r_{XY}\)</span>), which we’ll define more precisely in the next section, is a measure that varies from <span class="math inline">\(-1\)</span> to <span class="math inline">\(1\)</span>. When <span class="math inline">\(r = -1\)</span> it means that we have a perfect negative relationship, and when <span class="math inline">\(r = 1\)</span> it means we have a perfect positive relationship. When <span class="math inline">\(r = 0\)</span>, there’s no relationship at all. If you look at Figure <a href="correl.html#fig:corr">5.5</a>, you can see several plots showing what different correlations look like.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:corr"></span>
 <img src="lsc_files/figure-html/corr-1.svg" alt="Illustration of the effect of varying the strength and direction of a correlation" width="100%" />
@@ -464,8 +462,8 @@ r_{XY}  = \frac{\mbox{Cov}(X,Y)}{ \hat{\sigma}_X \ \hat{\sigma}_Y}
 \]</span>
 By doing this standardisation, not only do we keep all of the nice properties of the covariance discussed earlier, but the actual values of <span class="math inline">\(r\)</span> are on a meaningful scale: <span class="math inline">\(r= 1\)</span> implies a perfect positive relationship, and <span class="math inline">\(r = -1\)</span> implies a perfect negative relationship.</p>
 </div>
-<div id="interpretingcorrelations" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Interpreting a correlation<a href="correl.html#interpretingcorrelations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="interpretingcorrelations" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Interpreting a correlation<a href="correl.html#interpretingcorrelations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Naturally, in real life you don’t see many correlations of 1. So how should you interpret a correlation of, say <span class="math inline">\(r= .4\)</span>? The honest answer is that it really depends on what you want to use the data for, and on how strong the correlations in your field tend to be. A friend of mine in engineering once argued that any correlation less than <span class="math inline">\(.95\)</span> is completely useless (I think he was exaggerating, even for engineering). On the other hand there are real cases – even in psychology – where you should really expect correlations that strong. For instance, one of the benchmark data sets used to test theories of how people judge similarities is so clean that any theory that can’t achieve a correlation of at least <span class="math inline">\(.9\)</span> really isn’t deemed to be successful. However, when looking for (say) elementary correlates of intelligence (e.g., inspection time, response time), if you get a correlation above <span class="math inline">\(.3\)</span> you’re doing very very well. In short, the interpretation of a correlation depends a lot on the context. That said, the rough guide in Table <a href="correl.html#tab:interpretingcorrelations">5.2</a> is pretty typical.</p>
 <table>
 <caption>
@@ -607,8 +605,8 @@ Figure 5.6: Anscombe’s quartet. All four of these data sets have a Pearson cor
 </div>
 <p>The lesson here, which so very many people seem to forget in real life is “<em>always graph your raw data</em>”.</p>
 </div>
-<div id="spearmans-rank-correlations" class="section level2 hasAnchor" number="5.5">
-<h2><span class="header-section-number">5.5</span> Spearman’s rank correlations<a href="correl.html#spearmans-rank-correlations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="spearman" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Spearman’s rank correlations<a href="correl.html#spearman" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:rankcorrpic"></span>
 <img src="lsc_files/figure-html/rankcorrpic-1.svg" alt="The relationship between hours worked and grade received, for a toy data set consisting of only 10 students (each circle corresponds to one student). The dashed line through the middle shows the linear relationship between the two variables. This produces a strong Pearson correlation of $r = .91$. However, the interesting thing to note here is that there's actually a perfect monotonic relationship between the two variables: in this toy example at least, increasing the hours worked always increases the grade received, as illustrated by the solid line. This is reflected in a Spearman correlation of $rho = 1$. With such a small data set, however, it's an open question as to which version better describes the actual relationship involved." width="672" />
 <p class="caption">
@@ -758,63 +756,215 @@ Figure 5.8: This is what you would see in CogStat after loading the <code>effort
 </p>
 </div>
 </div>
-<div id="missing-values-in-pairwise-calculations" class="section level2 hasAnchor" number="5.6">
-<h2><span class="header-section-number">5.6</span> Missing values in pairwise calculations<a href="correl.html#missing-values-in-pairwise-calculations" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>I mentioned earlier that the <code>cor()</code> function is a special case. It doesn’t have an <code>na.rm</code> argument, because the story becomes a lot more complicated when more than one variable is involved. What it does have is an argument called <code>use</code> which does roughly the same thing, but you need to think little more carefully about what you want this time. To illustrate the issues, let’s open up a data set that has missing values, <code>parenthood2.Rdata</code>. This file contains the same data as the original parenthood data, but with some values deleted. It contains a single data frame, <code>parenthood2</code>:</p>
-<pre><code>&gt; load( &quot;parenthood2.Rdata&quot; )
-&gt; print( parenthood2 )
-  parentsleep baby.sleep parentgrump day
-1      7.59         NA        56   1
-2      7.91      11.66        60   2
-3      5.14       7.92        82   3
-4      7.71       9.61        55   4
-5      6.68       9.75        NA   5
-6      5.99       5.04        72   6
-BLAH BLAH BLAH</code></pre>
-<p>If I calculate my descriptive statistics using the <code>describe()</code> function</p>
-<pre><code>&gt; describe( parenthood2 )
-           var   n  mean    sd median trimmed   mad   min    max    BLAH
-parentsleep    1  91  6.98  1.02   7.03    7.02  1.13  4.84   9.00    BLAH
-baby.sleep   2  89  8.11  2.05   8.20    8.13  2.28  3.25  12.07    BLAH
-parentgrump    3  92 63.15  9.85  61.00   62.66 10.38 41.00  89.00    BLAH
-day          4 100 50.50 29.01  50.50   50.50 37.06  1.00 100.00    BLAH</code></pre>
-<p>we can see from the <code>n</code> column that there are 9 missing values for <code>parentsleep</code>, 11 missing values for <code>baby.sleep</code> and 8 missing values for <code>parentgrump</code>.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> Suppose what I would like is a correlation matrix. And let’s also suppose that I don’t bother to tell R how to handle those missing values. Here’s what happens:</p>
-<pre><code>&gt; cor( parenthood2 )
-           parentsleep baby.sleep parentgrump day
-parentsleep          1         NA        NA  NA
-baby.sleep        NA          1        NA  NA
-parentgrump         NA         NA         1  NA
-day               NA         NA        NA   1</code></pre>
-<p>Annoying, but it kind of makes sense. If I don’t <em>know</em> what some of the values of <code>parentsleep</code> and <code>baby.sleep</code> actually are, then I can’t possibly <em>know</em> what the correlation between these two variables is either, since the formula for the correlation coefficient makes use of every single observation in the data set. Once again, it makes sense: it’s just not particularly <em>helpful</em>.</p>
-<p>To make R behave more sensibly in this situation, you need to specify the <code>use</code> argument to the <code>cor()</code> function. There are several different values that you can specify for this, but the two that we care most about in practice tend to be <code>"complete.obs"</code> and <code>"pairwise.complete.obs"</code>. If we specify <code>use = "complete.obs"</code>, R will completely ignore all cases (i.e., all rows in our <code>parenthood2</code> data frame) that have any missing values at all. So, for instance, if you look back at the extract earlier when I used the <code>head()</code> function, notice that observation 1 (i.e., day 1) of the <code>parenthood2</code> data set is missing the value for <code>baby.sleep</code>, but is otherwise complete? Well, if you choose <code>use = "complete.obs"</code> R will ignore that row completely: that is, even when it’s trying to calculate the correlation between <code>parentsleep</code> and <code>parentgrump</code>, observation 1 will be ignored, because the value of <code>baby.sleep</code> is missing for that observation. Here’s what we get:</p>
-<pre><code>&gt; cor(parenthood2, use = &quot;complete.obs&quot;)
-             parentsleep baby.sleep   parentgrump         day
-parentsleep   1.00000000  0.6394985 -0.89951468  0.06132891
-baby.sleep  0.63949845  1.0000000 -0.58656066  0.14555814
-parentgrump  -0.89951468 -0.5865607  1.00000000 -0.06816586
-day         0.06132891  0.1455581 -0.06816586  1.00000000</code></pre>
-<p>The other possibility that we care about, and the one that tends to get used more often in practice, is to set <code>use = "pairwise.complete.obs"</code>. When we do that, R only looks at the variables that it’s trying to correlate when determining what to drop. So, for instance, since the only missing value for observation 1 of <code>parenthood2</code> is for <code>baby.sleep</code> R will only drop observation 1 when <code>baby.sleep</code> is one of the variables involved: and so R keeps observation 1 when trying to correlate <code>parentsleep</code> and <code>parentgrump</code>. When we do it this way, here’s what we get:</p>
-<pre><code>&gt; cor(parenthood2, use = &quot;pairwise.complete.obs&quot;) 
-             parentsleep  baby.sleep    parentgrump          day
-parentsleep   1.00000000  0.61472303 -0.903442442 -0.076796665
-baby.sleep  0.61472303  1.00000000 -0.567802669  0.058309485
-parentgrump  -0.90344244 -0.56780267  1.000000000  0.005833399
-day        -0.07679667  0.05830949  0.005833399  1.000000000</code></pre>
-<p>Similar, but not quite the same. It’s also worth noting that the <code>correlate()</code> function (in the <code>lsr</code> package) automatically uses the “pairwise complete” method:</p>
-<pre><code>&gt; correlate(parenthood2)
-
-CORRELATIONS
-============
-- correlation type:  pearson 
-- correlations shown only when both variables are numeric
-
-           parentsleep baby.sleep parentgrump    day
-parentsleep          .      0.615    -0.903 -0.077
-baby.sleep     0.615          .    -0.568  0.058
-parentgrump     -0.903     -0.568         .  0.006
-day           -0.077      0.058     0.006      .</code></pre>
-<p>The two approaches have different strengths and weaknesses. The “pairwise complete” approach has the advantage that it keeps more observations, so you’re making use of more of your data and (as we’ll discuss in tedious detail in Chapter <a href="#estimation"><strong>??</strong></a> and it improves the reliability of your estimated correlation. On the other hand, it means that every correlation in your correlation matrix is being computed from a slightly different set of observations, which can be awkward when you want to compare the different correlations that you’ve got.</p>
-<p>So which method should you use? It depends a lot on <em>why</em> you think your values are missing, and probably depends a little on how paranoid you are. For instance, if you think that the missing values were “chosen” completely randomly<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> then you’ll probably want to use the pairwise method. If you think that missing data are a cue to thinking that the whole observation might be rubbish (e.g., someone just selecting arbitrary responses in your questionnaire), but that there’s no pattern to which observations are “rubbish” then it’s probably safer to keep only those observations that are complete. If you think there’s something systematic going on, in that some observations are more likely to be missing than others, then you have a much trickier problem to solve, and one that is beyond the scope of this book.</p>
+<div id="missingvaluespair" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Missing values in pairwise calculations<a href="correl.html#missingvaluespair" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>To illustrate the issues, let’s open up a data set that has missing values, <a href="resources/data/parenthood_missing.csv"><code>parenthood_missing.csv</code></a>. This file contains the same data as the original parenthood data, but with some values deleted. While the original source could contain empty value or <code>NA</code>, CogStat will display <code>NaN</code> for these missing values (Figure <a href="correl.html#fig:parenthoodmissing">5.9</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:parenthoodmissing"></span>
+<img src="resources/cogstatparenthood_missing.png" alt="This is what you would see in CogStat after loading the `parenthood_missing.csv` dataset." width="100%" />
+<p class="caption">
+Figure 5.9: This is what you would see in CogStat after loading the <code>parenthood_missing.csv</code> dataset.
+</p>
+</div>
+<p>Let’s calculate descriptive statistics using the <code>Explore variable</code> function (See Chapter: <a href="exploringavariable.html#exploringavariable">4</a>):</p>
+<table>
+<caption>
+<span id="tab:parenthoodmissingtab">Table 5.3: </span>Descriptive statistics for the parenthood data with missing values. We can observe the slight difference on our statistics when we have missing values.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+Parent grumpiness
+</th>
+<th style="text-align:center;">
+Parent’s hours slept
+</th>
+<th style="text-align:center;">
+Baby’s hours slept
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+<code>parentgrump</code>
+</td>
+<td style="text-align:center;">
+<code>parentsleep</code>
+</td>
+<td style="text-align:center;">
+<code>babysleep</code>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean
+</td>
+<td style="text-align:center;">
+63.2
+</td>
+<td style="text-align:center;">
+6.977
+</td>
+<td style="text-align:center;">
+8.114
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Standard deviation
+</td>
+<td style="text-align:center;">
+9.8
+</td>
+<td style="text-align:center;">
+1.015
+</td>
+<td style="text-align:center;">
+2.035
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Skewness
+</td>
+<td style="text-align:center;">
+0.4
+</td>
+<td style="text-align:center;">
+-0.346
+</td>
+<td style="text-align:center;">
+-0.096
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Kurtosis
+</td>
+<td style="text-align:center;">
+-0.2
+</td>
+<td style="text-align:center;">
+-0.647
+</td>
+<td style="text-align:center;">
+-0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Range
+</td>
+<td style="text-align:center;">
+48
+</td>
+<td style="text-align:center;">
+4.16
+</td>
+<td style="text-align:center;">
+8.82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Maximum
+</td>
+<td style="text-align:center;">
+89
+</td>
+<td style="text-align:center;">
+9
+</td>
+<td style="text-align:center;">
+12.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Upper quartile
+</td>
+<td style="text-align:center;">
+70.2
+</td>
+<td style="text-align:center;">
+7.785
+</td>
+<td style="text-align:center;">
+9.61
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Median
+</td>
+<td style="text-align:center;">
+61
+</td>
+<td style="text-align:center;">
+7.03
+</td>
+<td style="text-align:center;">
+8.2
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lower quartile
+</td>
+<td style="text-align:center;">
+56
+</td>
+<td style="text-align:center;">
+6.285
+</td>
+<td style="text-align:center;">
+6.46
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Minimum
+</td>
+<td style="text-align:center;">
+41
+</td>
+<td style="text-align:center;">
+4.84
+</td>
+<td style="text-align:center;">
+3.25
+</td>
+</tr>
+</tbody>
+</table>
+<p>We can see that there are 9 missing values for <code>parentsleep</code> (<code>N of missing cases: 9</code>), 11 missing values for <code>babysleep</code> (<code>N of missing cases: 11</code>), and 8 missing values for <code>parentgrump</code> (<code>N of missing cases: 8</code>).</p>
+<p>Whichever comparison you’d like to run (e.g., <code>parentsleep</code> vs. <code>parentgrump</code>), CogStat will automatically exclude the missing values from the calculation:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:parenthoodmissingcog1"></span>
+<img src="resources/cogstatparentsleepparentgrumpmissing.png" alt="17 missing pairs when comparing `parentsleep` and `parentgrump`" width="100%" />
+<p class="caption">
+Figure 5.10: 17 missing pairs when comparing <code>parentsleep</code> and <code>parentgrump</code>
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:parenthoodmissingcog2"></span>
+<img src="resources/cogstatbabysleepparentgrumpmissing.png" alt="18 missing pairs when comparing `babysleep` and `parentgrump`" width="100%" />
+<p class="caption">
+Figure 5.11: 18 missing pairs when comparing <code>babysleep</code> and <code>parentgrump</code>
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:parenthoodmissingcog3"></span>
+<img src="resources/cogstatparentsleepbabysleepmissing.png" alt="20 missing pairs when comparing `babysleep` and `parentsleep`" width="100%" />
+<p class="caption">
+Figure 5.12: 20 missing pairs when comparing <code>babysleep</code> and <code>parentsleep</code>
+</p>
+</div>
+</div>
+<div id="summary-1" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Summary<a href="correl.html#summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this chapter we discussed how to measure the relationship between two variables. We introduced the concept of correlation, and how to calculate it using CogStat. We also discussed the difference between <strong>Pearson’s correlation</strong> (Chapter <a href="correl.html#pearson">5.2</a>) and <strong>Spearman’s rank order correlation</strong> (Chapter <a href="correl.html#spearman">5.4</a>), and how CogStat will calculate it for you. Finally, we discussed how CogStat handles missing values (Chapter <a href="correl.html#missingvaluespair">5.5</a>) in pairwise calculations.</p>
 
 </div>
 </div>
@@ -826,8 +976,6 @@ day           -0.077      0.058     0.006      .</code></pre>
 <ol start="16">
 <li id="fn16"><p>Just like we saw with the variance and the standard deviation, in practice we divide by <span class="math inline">\(N-1\)</span> rather than <span class="math inline">\(N\)</span>.<a href="correl.html#fnref16" class="footnote-back">↩︎</a></p></li>
 <li id="fn17"><p>This is an oversimplification, but it’ll do for our purposes.<a href="correl.html#fnref17" class="footnote-back">↩︎</a></p></li>
-<li id="fn18"><p>It’s worth noting that, even though we have missing data for each of these variables, the output doesn’t contain any <code>NA</code> values. This is because, while <code>describe()</code> also has an <code>na.rm</code> argument, the default value for this function is <code>na.rm = TRUE</code>.<a href="correl.html#fnref18" class="footnote-back">↩︎</a></p></li>
-<li id="fn19"><p>The technical term here is “missing completely at random” (often written MCAR for short). Makes sense, I suppose, but it does sound ungrammatical to me.<a href="correl.html#fnref19" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
