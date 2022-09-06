@@ -3,6 +3,7 @@ fig:berkeley
 tab:scalescont
 tab:ivdv
 fig:loadaflsmall
+fig:explorevariabledialog
 fig:rawaflsmall
 fig:histogramaflsmall
 fig:meanmedian
@@ -19,6 +20,7 @@ fig:corr
 tab:interpretingcorrelations
 fig:anscombe
 fig:rankcorrpic
+fig:cogstatcorrelationresult
 fig:frequentistprobability
 fig:pantsprob
 tab:probrules

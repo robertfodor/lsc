@@ -236,7 +236,7 @@ div.csl-indent {
 <p>Any time you get a new data set to look at, one of the first things you might want to do is find ways of summarising the data in a compact, easily understood fashion. This is what <strong>descriptive statistics</strong> (as opposed to <em>inferential statistics</em>) is all about. In fact, to many people, the term “statistics” is synonymous with descriptive statistics.</p>
 <p>The first dataset we’ll be looking at is real data relating to the Australian Football League (AFL)<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>. To do this, let us load the <a href="resources/data/aflsmall.Rdata">aflsmall.Rdata</a> file.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:loadaflsmall"></span>
-<img src="resources/load_aflsmall.png" alt="This is what you would see after loading the dataset." width="70%" />
+<img src="resources/cogstataflsmallload.png" alt="This is what you would see after loading the dataset." width="100%" />
 <p class="caption">
 Figure 4.1: This is what you would see after loading the dataset.
 </p>
@@ -248,12 +248,17 @@ Figure 4.1: This is what you would see after loading the dataset.
 <li>measures of “distortion” (skewness, kurtosis).</li>
 </ul>
 <p>These will help you contextualise the results so the conclusions drawn from the variable will be valid.</p>
-<p>To start understanding a variable, select
-<code>Explore variable</code> so a pop-up appears. Move the name of the data you wish to analyse (in this case: <code>afl.margins</code>) from <code>Available variables</code> to <code>Selected variables</code>, then click <code>OK</code>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rawaflsmall"></span>
-<img src="resources/raw_aflsmall.png" alt="This is the first chart you will see exploring the raw shape of the data." width="70%" />
+<p>To start understanding a variable, select <code>Explore variable</code> so a pop-up appears. Move the name of the data you wish to analyse (in this case: <code>afl.margins</code>) from <code>Available variables</code> to <code>Selected variables</code>, then click <code>OK</code> (Figure <a href="exploringavariable.html#fig:explorevariabledialog">4.2</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:explorevariabledialog"></span>
+<img src="resources/explorevariable.png" alt="Explore variable dialogue." width="100%" />
 <p class="caption">
-Figure 4.2: This is the first chart you will see exploring the raw shape of the data.
+Figure 4.2: Explore variable dialogue.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rawaflsmall"></span>
+<img src="resources/cogstatrawaflsmall.png" alt="This is the first chart you will see exploring the raw shape of the data." width="100%" />
+<p class="caption">
+Figure 4.3: This is the first chart you will see exploring the raw shape of the data.
 </p>
 </div>
 <p>The first piece of information here is <span class="math inline">\(N\)</span>, which we will use to refer to the number of observations we’re analysing. CogStat (or any other software for that matter) will only use valid data for calculations. Sometimes, mainly when working with survey data, you will have missing data points, the number of which you might have to mention in your written analysis. CogStat will quote these for you:</p>
@@ -262,9 +267,9 @@ Figure 4.2: This is the first chart you will see exploring the raw shape of the 
 <code>N of missing cases: 0</code></p>
 </blockquote>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:histogramaflsmall"></span>
-<img src="resources/histogram_aflsmall.png" alt="Scrolling down, you'll see CogStat reporting all the descriptive measures while showing you a histogram to understand the shape of your data better. Drawing pictures of the data is an excellent way to convey the gist of what the data is trying to tell you; it's often instrumental to try to condense the data into a few simple summary statistics." width="70%" />
+<img src="resources/cogstathistogramaflsmall.png" alt="Scrolling down, you'll see CogStat reporting all the descriptive measures while showing you a histogram to understand the shape of your data better. Drawing pictures of the data is an excellent way to convey the gist of what the data is trying to tell you; it's often instrumental to try to condense the data into a few simple summary statistics." width="100%" />
 <p class="caption">
-Figure 4.3: Scrolling down, you’ll see CogStat reporting all the descriptive measures while showing you a histogram to understand the shape of your data better. Drawing pictures of the data is an excellent way to convey the gist of what the data is trying to tell you; it’s often instrumental to try to condense the data into a few simple summary statistics.
+Figure 4.4: Scrolling down, you’ll see CogStat reporting all the descriptive measures while showing you a histogram to understand the shape of your data better. Drawing pictures of the data is an excellent way to convey the gist of what the data is trying to tell you; it’s often instrumental to try to condense the data into a few simple summary statistics.
 </p>
 </div>
 <p>In the rest of this chapter, we will explore what these measures mean and what they indicate.</p>
@@ -328,7 +333,7 @@ Taken literally, this could be read as “the sum, taken over all <span class="m
 \bar{X} = \frac{1}{N} \sum_{i=1}^N X_i
 \]</span></p>
 <p>In all honesty, all this mathematical notation is just a fancy way of laying out the same things said in words: <em>add all the values up, and then divide by the total number of items</em>. The goal here was to try to make sure that everyone reading this book is clear on the notation that we’ll be using throughout the book: <span class="math inline">\(\bar{X}\)</span> for the mean, <span class="math inline">\(\scriptstyle\sum\)</span> for the idea of summation, <span class="math inline">\(X_i\)</span> for the <span class="math inline">\(i\)</span>th observation, and <span class="math inline">\(N\)</span> for the total number of observations. We’re going to be re-using these symbols a fair bit, so you must understand them well enough to be able to “read” the equations and to be able to see what they’re really saying.</p>
-<p>CogStat calculates the mean automatically when exploring a variable using all valid data points, not just the first five. It will be part of the <code>Descriptives for the variable</code> section, as seen in Figure <a href="exploringavariable.html#fig:histogramaflsmall">4.3</a>. The result for our variable is:</p>
+<p>CogStat calculates the mean automatically when exploring a variable using all valid data points, not just the first five. It will be part of the <code>Descriptives for the variable</code> section, as seen in Figure <a href="exploringavariable.html#fig:histogramaflsmall">4.4</a>. The result for our variable is:</p>
 <blockquote>
 <p><code>afl.margins</code><br />
 <code>Mean 35.3</code></p>
@@ -345,7 +350,7 @@ Taken literally, this could be read as “the sum, taken over all <span class="m
 8, 14, \mathbf{31}, \mathbf{32}, 56, 56
 \]</span></p>
 <p>and there are <em>two</em> middle numbers, 31 and 32. The median is defined as the average of those two numbers, which is 31.5.</p>
-<p>In the data set we loaded to CogStat, there were 176 valid cases, so we ought to have two middle numbers. The result in this case is (as seen in Figure <a href="exploringavariable.html#fig:histogramaflsmall">4.3</a>):</p>
+<p>In the data set we loaded to CogStat, there were 176 valid cases, so we ought to have two middle numbers. The result in this case is (as seen in Figure <a href="exploringavariable.html#fig:histogramaflsmall">4.4</a>):</p>
 <blockquote>
 <p><code>afl.margins</code><br />
 <code>Median 30.5</code></p>
@@ -354,18 +359,18 @@ Taken literally, this could be read as “the sum, taken over all <span class="m
 <div id="mean-or-median-whats-the-difference" class="section level3 hasAnchor" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> Mean or median? What’s the difference?<a href="exploringavariable.html#mean-or-median-whats-the-difference" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:meanmedian"></span>
-<img src="resources/meanmedian.png" alt="An illustration of the difference between how the mean and the median should be interpreted. The mean is basically the &quot;centre of gravity&quot; of the data set: if you imagine that the histogram of the data is a solid object, then the point on which you could balance it (as if on a see-saw) is the mean. In contrast, the median is the middle observation. Half of the observations are smaller, and half of the observations are larger." width="70%" />
+<img src="resources/meanmedian.png" alt="An illustration of the difference between how the mean and the median should be interpreted. The mean is basically the &quot;centre of gravity&quot; of the data set: if you imagine that the histogram of the data is a solid object, then the point on which you could balance it (as if on a see-saw) is the mean. In contrast, the median is the middle observation. Half of the observations are smaller, and half of the observations are larger." width="100%" />
 <p class="caption">
-Figure 4.4: An illustration of the difference between how the mean and the median should be interpreted. The mean is basically the “centre of gravity” of the data set: if you imagine that the histogram of the data is a solid object, then the point on which you could balance it (as if on a see-saw) is the mean. In contrast, the median is the middle observation. Half of the observations are smaller, and half of the observations are larger.
+Figure 4.5: An illustration of the difference between how the mean and the median should be interpreted. The mean is basically the “centre of gravity” of the data set: if you imagine that the histogram of the data is a solid object, then the point on which you could balance it (as if on a see-saw) is the mean. In contrast, the median is the middle observation. Half of the observations are smaller, and half of the observations are larger.
 </p>
 </div>
-<p>Knowing how to calculate means and medians is only a part of the story. You also need to understand what each one is saying about the data, what that implies, and which one to choose. This is illustrated in Figure <a href="exploringavariable.html#fig:meanmedian">4.4</a>; the mean is kind of like the “centre of gravity” of the data set, whereas the median is the “middle value” in the data. What this implies about which one you should use depends a little on what type of data you’ve got and what you’re trying to achieve. As a rough guide:</p>
+<p>Knowing how to calculate means and medians is only a part of the story. You also need to understand what each one is saying about the data, what that implies, and which one to choose. This is illustrated in Figure <a href="exploringavariable.html#fig:meanmedian">4.5</a>; the mean is kind of like the “centre of gravity” of the data set, whereas the median is the “middle value” in the data. What this implies about which one you should use depends a little on what type of data you’ve got and what you’re trying to achieve. As a rough guide:</p>
 <ul>
 <li>If your data are <em><a href="researchdesign.html#nominalscale">nominal scale</a></em>, you probably shouldn’t be using either the mean or the median. Both the mean and the median rely on the idea that the numbers assigned to values are meaningful. If the numbering scheme is arbitrary, then it’s probably best to use the mode (Section <a href="exploringavariable.html#mode">4.1.5</a>) instead.</li>
 <li>If your data are <em><a href="researchdesign.html#ordinalscale">ordinal scale</a></em>, you’re more likely to want to use the median than the mean. The median only uses the order information in your data (i.e., which numbers are larger) but doesn’t depend on the precise numbers involved. That’s precisely the situation that applies when your data are ordinal scale. Conversely, the mean makes use of the precise numeric values assigned to the observations, so it’s not appropriate for ordinal data.</li>
 <li>For <em><a href="researchdesign.html#intervalscale">interval</a></em> and <em><a href="researchdesign.html#ratioscale">ratio scale</a></em> data, either one is generally acceptable. Which one you pick depends a bit on what you’re trying to achieve. The mean has the advantage of using all the information in the data (which is useful when you don’t have a lot of data), but it’s very susceptible to extreme values, as we’ll see in Section <a href="exploringavariable.html#trimmedmean">4.1.4</a>.</li>
 </ul>
-<p>Let’s expand on that last part a little. One consequence is that there are systematic differences between the mean and the median when the histogram is asymmetric (skewed; see Section <a href="exploringavariable.html#skewnesskurtosis">4.3</a>). This is illustrated in Figure <a href="exploringavariable.html#fig:meanmedian">4.4</a> notice that the median (right hand side) is located closer to the “body” of the histogram, whereas the mean (left hand side) gets dragged towards the “tail” (where the extreme values are). To give a concrete example, suppose Bob (income $50,000), Kate (income $60,000) and Jane (income $65,000) are sitting at a table: the average income at the table is $58,333 and the median income is $60,000. Then Bill sits down with them (income $100,000,000). The average income has now jumped to $25,043,750 but the median rises only to $62,500. If you’re interested in looking at the overall income at the table, the mean might be the right answer; but if you’re interested in what counts as a typical income at the table, the median would be a better choice here.</p>
+<p>Let’s expand on that last part a little. One consequence is that there are systematic differences between the mean and the median when the histogram is asymmetric (skewed; see Section <a href="exploringavariable.html#skewnesskurtosis">4.3</a>). This is illustrated in Figure <a href="exploringavariable.html#fig:meanmedian">4.5</a> notice that the median (right hand side) is located closer to the “body” of the histogram, whereas the mean (left hand side) gets dragged towards the “tail” (where the extreme values are). To give a concrete example, suppose Bob (income $50,000), Kate (income $60,000) and Jane (income $65,000) are sitting at a table: the average income at the table is $58,333 and the median income is $60,000. Then Bill sits down with them (income $100,000,000). The average income has now jumped to $25,043,750 but the median rises only to $62,500. If you’re interested in looking at the overall income at the table, the mean might be the right answer; but if you’re interested in what counts as a typical income at the table, the median would be a better choice here.</p>
 </div>
 <div id="trimmedmean" class="section level3 hasAnchor" number="4.1.4">
 <h3><span class="header-section-number">4.1.4</span> Trimmed mean<a href="exploringavariable.html#trimmedmean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -395,11 +400,11 @@ The <span class="math inline">\(-15\)</span> looks suspicious, but not as much a
 <div id="mode" class="section level3 hasAnchor" number="4.1.5">
 <h3><span class="header-section-number">4.1.5</span> Mode<a href="exploringavariable.html#mode" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <strong>mode</strong> of a sample is straightforward: it is the value that occurs most frequently.</p>
-<p>In CogStat, you will see a <strong>frequency table</strong> (Figure <a href="exploringavariable.html#fig:freqaflsmall">4.5</a>) of the values in your data if you have <code>Frequencies</code> ticked in the <code>Explore variable</code> dialogue.</p>
+<p>In CogStat, you will see a <strong>frequency table</strong> (Figure <a href="exploringavariable.html#fig:freqaflsmall">4.6</a>) of the values in your data if you have <code>Frequencies</code> ticked in the <code>Explore variable</code> dialogue.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:freqaflsmall"></span>
-<img src="resources/frequency_aflsmall.png" alt="The frequency table sorts non-nominal values from lowest to highest." width="70%" />
+<img src="resources/cogstatfrequencyaflsmall.png" alt="The frequency table sorts non-nominal values from lowest to highest." width="100%" />
 <p class="caption">
-Figure 4.5: The frequency table sorts non-nominal values from lowest to highest.
+Figure 4.6: The frequency table sorts non-nominal values from lowest to highest.
 </p>
 </div>
 <p>While it’s generally true that the mode is most often calculated when you have <a href="researchdesign.html#nominalscale">nominal scale</a> data – because means and medians are useless for those sorts of variables –, there are some situations in which you do want to know the mode of an <a href="researchdesign.html#ordinalscale">ordinal</a>, <a href="researchdesign.html#intervalscale">interval</a> or <a href="researchdesign.html#ratioscale">ratio scale</a> variable.</p>
@@ -413,7 +418,7 @@ Figure 4.5: The frequency table sorts non-nominal values from lowest to highest.
 <h3><span class="header-section-number">4.2.1</span> Range<a href="exploringavariable.html#range" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <strong>range</strong> of a variable is very simple: it’s the largest value minus the smallest value. For the AFL winning margins data, the maximum value is <span class="math inline">\(116\)</span>, and the minimum is <span class="math inline">\(0\)</span>, so the range is:</p>
 <p><span class="math display">\[116-0=\mathbf{116}\]</span></p>
-<p>CogStat automatically calculates all these values (see Figure <a href="exploringavariable.html#fig:histogramaflsmall">4.3</a>), so there is nothing we need to do about this, only to understand what it implies.</p>
+<p>CogStat automatically calculates all these values (see Figure <a href="exploringavariable.html#fig:histogramaflsmall">4.4</a>), so there is nothing we need to do about this, only to understand what it implies.</p>
 <p>Although the range is the simplest way to quantify the notion of “variability”, it’s one of the worst. Recall from our discussion of the mean that we want our summary measure to be robust. If the data set has one or two extremely bad values in it, we’d like our statistics not to be unduly influenced by these cases. Let us look once again at our toy example of a data set containing very extreme outliers:
 <span class="math display">\[
 -100,2,3,4,5,6,7,8,9,10
@@ -560,7 +565,7 @@ s = \sqrt{ \frac{1}{N} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2 }
 \]</span></p>
 <p>Because the standard deviation is derived from the variance, and the variance is a quantity that has little to no meaning that makes sense to us humans, the standard deviation doesn’t have a simple interpretation. As a consequence, most of us rely on a simple rule of thumb: in general, you should expect 68% of the data to fall within 1 standard deviation (1 sigma) of the mean, 95% of the data to fall within 2 standard deviation (2 sigmas) of the mean, and 99.7% of the data to fall within 3 standard deviations (3 sigmas) of the mean. This rule tends to work pretty well most of the time, but it’s not exact: it’s actually calculated based on an <em>assumption</em> that the histogram is symmetric and “bell shaped”, i.e. the data are <em>normally</em> distributed, which is an important concept that we’ll discuss more in Chapter <a href="probability.html#probability">6</a>.</p>
 <p>So how do we interpret standard deviation? Basically, if the standard deviation is small (relatively closer to zero), then the data are clustered close to the mean. Conversely, if the standard deviation is large (relatively closer to the interquartile range), then the data are more spread out.</p>
-<p>As you can tell from the AFL winning margins histogram in Figure <a href="exploringavariable.html#fig:histogramaflsmall">4.3</a>, this isn’t exactly true of our data! Even so, the rule is approximately correct. As it turns out, 65.3% of the AFL margins data fall within one standard deviation of the mean.</p>
+<p>As you can tell from the AFL winning margins histogram in Figure <a href="exploringavariable.html#fig:histogramaflsmall">4.4</a>, this isn’t exactly true of our data! Even so, the rule is approximately correct. As it turns out, 65.3% of the AFL margins data fall within one standard deviation of the mean.</p>
 </div>
 <div id="mad" class="section level3 hasAnchor" number="4.2.6">
 <h3><span class="header-section-number">4.2.6</span> Median absolute deviation<a href="exploringavariable.html#mad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -592,20 +597,20 @@ s = \sqrt{ \frac{1}{N} \sum_{i=1}^N \left( X_i - \bar{X} \right)^2 }
 <div class="figure"><span style="display:block;" id="fig:skewness"></span>
 <img src="lsc_files/figure-html/skewness-1.svg" alt="An illustration of skewness. On the left we have a negatively skewed data set (skewness $= -.93$), in the middle we have a data set with no skew (technically, skewness $= -.006$), and on the right we have a positively skewed data set (skewness $= .93$)." width="672" />
 <p class="caption">
-Figure 4.6: An illustration of skewness. On the left we have a negatively skewed data set (skewness <span class="math inline">\(= -.93\)</span>), in the middle we have a data set with no skew (technically, skewness <span class="math inline">\(= -.006\)</span>), and on the right we have a positively skewed data set (skewness <span class="math inline">\(= .93\)</span>).
+Figure 4.7: An illustration of skewness. On the left we have a negatively skewed data set (skewness <span class="math inline">\(= -.93\)</span>), in the middle we have a data set with no skew (technically, skewness <span class="math inline">\(= -.006\)</span>), and on the right we have a positively skewed data set (skewness <span class="math inline">\(= .93\)</span>).
 </p>
 </div>
-<p>Since it’s the more interesting of the two, let’s start by talking about the <strong>skewness</strong>. Skewness is basically a measure of asymmetry, and the easiest way to explain it is by drawing some pictures. As Figure <a href="exploringavariable.html#fig:skewness">4.6</a> illustrates, if the data tend to have a lot of extreme small values (i.e., the lower tail is “longer” than the upper tail) and not so many extremely large values (left panel), then we say that the data are <em>negatively skewed</em>. On the other hand, if there are more extremely large values than extremely small ones (right panel) we say that the data are <em>positively skewed</em>. That’s the qualitative idea behind skewness. The actual formula for the skewness of a data set is as follows
+<p>Since it’s the more interesting of the two, let’s start by talking about the <strong>skewness</strong>. Skewness is basically a measure of asymmetry, and the easiest way to explain it is by drawing some pictures. As Figure <a href="exploringavariable.html#fig:skewness">4.7</a> illustrates, if the data tend to have a lot of extreme small values (i.e., the lower tail is “longer” than the upper tail) and not so many extremely large values (left panel), then we say that the data are <em>negatively skewed</em>. On the other hand, if there are more extremely large values than extremely small ones (right panel) we say that the data are <em>positively skewed</em>. That’s the qualitative idea behind skewness. The actual formula for the skewness of a data set is as follows
 <span class="math display">\[
 \mbox{skewness}(X) = \frac{1}{N \hat{\sigma}^3} \sum_{i=1}^N (X_i - \bar{X})^3
 \]</span>
 where <span class="math inline">\(N\)</span> is the number of observations, <span class="math inline">\(\bar{X}\)</span> is the sample mean, and <span class="math inline">\(\hat{\sigma}\)</span> is the standard deviation (the “divide by <span class="math inline">\(N-1\)</span>” version, that is).</p>
 <p>Not surprisingly, it turns out that the AFL winning margins data is fairly skewed: <span class="math inline">\(0.8\)</span>.</p>
-<p>Put simply, <strong>kurtosis</strong> is a measure of the “pointiness” of a data set, as illustrated in Figure <a href="exploringavariable.html#fig:kurtosis">4.7</a>.</p>
+<p>Put simply, <strong>kurtosis</strong> is a measure of the “pointiness” of a data set, as illustrated in Figure <a href="exploringavariable.html#fig:kurtosis">4.8</a>.</p>
 <div class="figure"><span style="display:block;" id="fig:kurtosis"></span>
 <img src="lsc_files/figure-html/kurtosis-1.svg" alt="An illustration of kurtosis. On the left, we have a &quot;platykurtic&quot; data set (kurtosis = $-.95$), meaning that the data set is &quot;too flat&quot;. In the middle we have a &quot;mesokurtic&quot; data set (kurtosis is almost exactly 0), which means that the pointiness of the data is just about right. Finally, on the right, we have a &quot;leptokurtic&quot; data set (kurtosis $= 2.12$) indicating that the data set is &quot;too pointy&quot;. Note that kurtosis is measured with respect to a normal curve (black line)" width="672" />
 <p class="caption">
-Figure 4.7: An illustration of kurtosis. On the left, we have a “platykurtic” data set (kurtosis = <span class="math inline">\(-.95\)</span>), meaning that the data set is “too flat”. In the middle we have a “mesokurtic” data set (kurtosis is almost exactly 0), which means that the pointiness of the data is just about right. Finally, on the right, we have a “leptokurtic” data set (kurtosis <span class="math inline">\(= 2.12\)</span>) indicating that the data set is “too pointy”. Note that kurtosis is measured with respect to a normal curve (black line)
+Figure 4.8: An illustration of kurtosis. On the left, we have a “platykurtic” data set (kurtosis = <span class="math inline">\(-.95\)</span>), meaning that the data set is “too flat”. In the middle we have a “mesokurtic” data set (kurtosis is almost exactly 0), which means that the pointiness of the data is just about right. Finally, on the right, we have a “leptokurtic” data set (kurtosis <span class="math inline">\(= 2.12\)</span>) indicating that the data set is “too pointy”. Note that kurtosis is measured with respect to a normal curve (black line)
 </p>
 </div>
 <p>By convention, we say that the “normal curve” (black lines) has zero kurtosis, so the pointiness of a data set is assessed relative to this curve. In this Figure, the data on the left is not pointy enough, so the kurtosis is negative, and we call the data <em>platykurtic</em>. The data on the right are too pointy, so the kurtosis is positive and we say that the data is <em>leptokurtic</em>. But the data in the middle are just pointy enough, so we say that it is <em>mesokurtic</em> and has kurtosis zero. This is summarised in the table below:</p>
