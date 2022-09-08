@@ -45,15 +45,13 @@ fig:srs2
 fig:IQdista
 fig:IQdistb
 fig:IQdistc
+tab:replications
 fig:sampdistmean
 fig:sampdistmax
 fig:IQsampa
 fig:IQsampb
 fig:IQsampc
-fig:cltdemo-1
-fig:cltdemo-2
-fig:cltdemo-3
-fig:cltdemo-4
+fig:cltdemo
 fig:sampdistsd
 fig:estimatorbias
 fig:cirep

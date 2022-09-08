@@ -116,31 +116,33 @@ You won't be subject to proof that the law of large numbers is true, but it's on
 
 ## Sampling distributions and the central limit theorem{#samplesandclt}
 
-The law of large numbers is a very powerful tool, but it's not going to be good enough to answer all our questions. Among other things, all it gives us is a "long run guarantee". In the long run, if we were somehow able to collect an infinite amount of data, then the law of large numbers guarantees that our sample statistics will be correct. But as John Maynard Keynes famously argued in economics, a long run guarantee is of little use in real life:
+The law of large numbers is a potent tool, but it will not be good enough to answer all our questions. Among other things, it gives us a "long-run guarantee". In the long run, if we could collect an infinite amount of data, then the law of large numbers guarantees that our sample statistics will be correct. But as John Maynard Keynes famously argued in economics, a long-run guarantee is of little use in real life:
 
-> *[The] long run is a misleading guide to current affairs. In the long run we are all dead. Economists set themselves too easy, too useless a task, if in tempestuous seasons they can only tell us, that when the storm is long past, the ocean is flat again.* @Keynes1923
+> *[The] long run is a misleading guide to current affairs. In the long run we are all dead. Economists set themselves too easy, too useless a task, if in tempestuous seasons they can only tell us, that when the storm is long past, the ocean is flat again.*  @Keynes1923
 
 As in economics, so too in psychology and statistics. It is not enough to know that we will *eventually* arrive at the right answer when calculating the sample mean. Knowing that an infinitely large data set will tell me the exact value of the population mean is cold comfort when my *actual* data set has a sample size of $N=100$. In real life, then, we must know something about the behaviour of the sample mean when it is calculated from a more modest data set!
 
 ### Sampling distribution of the mean{#samplingdists}
 
 
-With this in mind, let's abandon the idea that our studies will have sample sizes of 10000, and consider a very modest experiment indeed. This time around we'll sample $N=5$ people and measure their IQ scores. As before, I can simulate this experiment in R using the `rnorm()` function:
+With this in mind, let's abandon the idea that our studies will have sample sizes of 10000 and consider a very modest experiment indeed. This time around, we'll sample $N=5$ people and measure their IQ scores.
+
 ```
-> IQ.1 <- round( rnorm(n=5, mean=100, sd=15 ))
-> IQ.1
-[1]  90  82  94  99 110
+90  82  94  99  110
 ```
-The mean IQ in this sample turns out to be exactly 95. Not surprisingly, this is much less accurate than the previous experiment. Now imagine that I decided to **replicate** the experiment. That is, I repeat the procedure as closely as possible: I randomly sample 5 new people and measure their IQ. Again, R allows me to simulate the results of this procedure:
+
+The mean IQ in this sample turns out to be exactly 95. Not surprisingly, this is much less accurate than the previous experiment. Now imagine that we decided to **replicate** the experiment. That is, we repeat the procedure as closely as possible: randomly sample 5 new people and measure their IQ.
+
 ```
-> IQ.2 <- round( rnorm(n=5, mean=100, sd=15 ))
-> IQ.2
-[1]  78  88 111 111 117
+78  88  111  111  117
 ```
-This time around, the mean IQ in my sample is 101. If I repeat the experiment 10 times I obtain the results shown in Table \@ref(tab:replications), and as you can see the sample mean varies from one replication to the next. 
+
+This time around, the mean IQ in the sample is 101.
+
+If we repeat the experiment 10 times, we obtain the results shown in Table \@ref(tab:replications), and as you can see, the sample mean varies from one replication to the next.
 
 ```{r replications, echo=FALSE}
-knitr::kable(data.frame(stringsAsFactors=FALSE,
+knitr::kable(data.frame(stringsAsFactors = FALSE,
 NANA = c("Replication 1", "Replication 2", "Replication 3", "Replication 4",
          "Replication 5", "Replication 6", "Replication 7", "Replication 8",
          "Replication 9", "Replication 10"),
@@ -150,40 +152,39 @@ Person.3 = c(94, 111, 91, 119, 103, 93, 108, 105, 108, 112),
 Person.4 = c(99, 111, 98, 99, 103, 85, 98, 117, 73, 120),
 Person.5 = c(110, 117, 86, 107, 98, 114, 133, 85, 116, 76),
 Sample.Mean = c(95, 101, 101.6, 103.8, 104.4, 92.4, 106.4, 102.8, 100.4,
-                  105.8), caption = "Ten replications of the IQ experiment, each with a sample size of $N=5$.")
-)
+            105.8)),
+align = "lcccccc",
+caption = "Ten replications of the IQ experiment, each with a sample size of $N=5$.")
 ```
 
-Now suppose that I decided to keep going in this fashion, replicating this "five IQ scores" experiment over and over again. Every time I replicate the experiment I write down the sample mean. Over time, I'd be amassing a new data set, in which every experiment generates a single data point. The first 10 observations from my data set are the sample means listed in Table \@ref(tab:replications), so my data set starts out like this:
+Suppose we decided to keep going in this fashion, replicating this "five IQ scores" experiment repeatedly. Every time we replicate the experiment, we write down the sample mean. Over time, we should be amassing a new data set in which every experiment generates a single data point. The first 10 observations from the data set are the sample means listed in Table \@ref(tab:replications), so our data set starts out like this:
 ```
-                      95.0 101.0 101.6 103.8 104.4 ...
+95.0 101.0 101.6 103.8 104.4 ...
 ```
-What if I continued like this for 10,000 replications, and then drew a histogram? Using the magical powers of R that's exactly what I did, and you can see the results in Figure \@ref(fig:sampdistmean). As this picture illustrates, the average of 5 IQ scores is usually between 90 and 110. But more importantly, what it highlights is that if we replicate an experiment over and over again, what we end up with is a *distribution* of sample means! This distribution has a special name in statistics: it's called the **sampling distribution of the mean**. 
+What if we should continue like this for 10,000 replications and then draw a histogram? As Figure \@ref(fig:sampdistmean) illustrates, the average of 5 IQ scores is usually between 90 and 110. But more importantly, what it highlights is that if we replicate an experiment over and over again, what we end up with is a *distribution* of sample means! This distribution has a particular name in statistics: the **sampling distribution of the mean**.
 
-Sampling distributions are another important theoretical idea in statistics, and they're crucial for understanding the behaviour of small samples. For instance, when I ran the very first "five IQ scores" experiment, the sample mean turned out to be 95. What the sampling distribution in Figure \@ref(fig:sampdistmean) tells us, though, is that the "five IQ scores" experiment is not very accurate. If I repeat the experiment, the sampling distribution tells me that I can expect to see a sample mean anywhere between 80 and 120. 
-
+Sampling distributions are another important theoretical idea in statistics, and they're crucial for understanding the behaviour of small samples. For instance, when we ran the very first "five IQ scores" experiment, the sample mean turned out to be 95. What the sampling distribution in Figure \@ref(fig:sampdistmean) tells us, though, is that the "five IQ scores" experiment is not very accurate. If we repeat the experiment, the sampling distribution tells me that we can expect to see a sample mean anywhere between 80 and 120.
 
 ```{r sampdistmean, fig.cap="The sampling distribution of the mean for the \"five IQ scores experiment\". If you sample 5 people at random and calculate their *average* IQ, you'll almost certainly get a number between 80 and 120, even though there are quite a lot of individuals who have IQs above 120 or below 80. For comparison, the black line plots the population distribution of IQ scores.", echo=FALSE}
 knitr::include_graphics("resources/sampleDist4.png")
 ```
 
+### Sampling distributions exist for any sample statistic!
+
+One thing to remember when thinking about sampling distributions is that *any* sample statistic you might care to calculate has a sampling distribution. For example, suppose that each time we replicated the "five IQ scores" experiment, we wrote down the largest IQ score in the experiment. This would give us a data set that started out like this:
+```
+110 117 122 119 113 ... 
+```
+Doing this over and over again would give a very different sampling distribution, namely the *sampling distribution of the maximum*. The sampling distribution of the maximum of 5 IQ scores is shown in Figure \@ref(fig:sampdistmax). Not surprisingly, if you pick 5 people at random and then find the person with the highest IQ score, they're going to have an above-average IQ. Most of the time, you'll end up with someone whose IQ is measured in the 100 to 140 range.
+
 ```{r sampdistmax, fig.cap="The sampling distribution of the *maximum* for the \"five IQ scores experiment\". If you sample 5 people at random and select the one with the highest IQ score, you'll probably see someone with an IQ between 100 and 140.", echo=FALSE}
 knitr::include_graphics("resources/sampleDistMax.png")
 ```
 
-### Sampling distributions exist for any sample statistic!
-
-One thing to keep in mind when thinking about sampling distributions is that *any* sample statistic you might care to calculate has a sampling distribution. For example, suppose that each time I replicated the "five IQ scores" experiment I wrote down the largest IQ score in the experiment. This would give me a data set that started out like this:
-```
-                      110 117 122 119 113 ... 
-```
-Doing this over and over again would give me a very different sampling distribution, namely the *sampling distribution of the maximum*. The sampling distribution of the maximum of 5 IQ scores is shown in Figure \@ref(fig:sampdistmax). Not surprisingly, if you pick 5 people at random and then find the person with the highest IQ score, they're going to have an above average IQ. Most of the time you'll end up with someone whose IQ is measured in the 100 to 140 range. 
-
-
 
 ### The central limit theorem{#clt}
 
-An illustration of the how sampling distribution of the mean depends on sample size. In each panel, I generated 10,000 samples of IQ data, and calculated the mean IQ observed within each of these data sets. The histograms in these plots show the distribution of these means (i.e., the sampling distribution of the mean). Each individual IQ score was drawn from a normal distribution with mean 100 and standard deviation 15, which is shown as the solid black line).
+Here's an illustration of how the sampling distribution of the mean depends on the sample size. In each panel, there are 10,000 generated samples of IQ data and the mean IQ observed within each set. The histograms in these plots show the distribution of these means (i.e. the sampling distribution of the mean). Each individual IQ score was drawn from a normal distribution with mean 100 and standard deviation 15, which is shown as the solid black line).
 
 ```{r IQsampa, fig.cap="Each data set contained only a single observation, so the mean of each sample is just one person's IQ score. As a consequence, the sampling distribution of the mean is of course identical to the population distribution of IQ scores.", echo=FALSE}
 width <- 4.5
@@ -232,52 +233,20 @@ width <- 4.5
 
 ```
 
-At this point I hope you have a pretty good sense of what sampling distributions are, and in particular what the sampling distribution of the mean is. In this section I want to talk about how the sampling distribution of the mean changes as a function of sample size. Intuitively, you already know part of the answer: if you only have a few observations, the sample mean is likely to be quite inaccurate: if you replicate a small experiment and recalculate the mean you'll get a very different answer. In other words, the sampling distribution is quite wide. If you replicate a large experiment and recalculate the sample mean you'll probably get the same answer you got last time, so the sampling distribution will be very narrow. You can see this visually in Figures \@ref(fig:IQsampa), \@ref(fig:IQsampb) and \@ref(fig:IQsampc): the bigger the sample size, the narrower the sampling distribution gets. We can quantify this effect by calculating the standard deviation of the sampling distribution, which is referred to as the **standard error**. The standard error of a statistic is often denoted SE, and since we're usually interested in the standard error of the sample *mean*, we often use the acronym SEM. As you can see just by looking at the picture, as the sample size $N$ increases, the SEM decreases.  
+At this point, you have a pretty good sense of what sampling distributions are, particularly the sampling distribution of the mean. In this section, let us talk about how the sampling distribution of the mean changes as a function of sample size. Intuitively, you already know part of the answer: if you only have a few observations, the sample mean is likely to be quite inaccurate: if you replicate a small experiment and recalculate the mean, you'll get a very different answer. In other words, the sampling distribution is quite broad. If you replicate a large experiment and recalculate the sample mean, you'll probably get the same answer you got last time, so the sampling distribution will narrow. You can see this visually in Figures \@ref(fig:IQsampa), \@ref(fig:IQsampb) and \@ref(fig:IQsampc): the bigger the sample size, the narrower the sampling distribution gets. We can quantify this effect by calculating the standard deviation of the sampling distribution, which is referred to as the **standard error**. The standard error of a statistic is often denoted SE, and since we're usually interested in the standard error of the sample *mean*, we often use the acronym SEM. As you can see just by looking at the picture, as the sample size $N$ increases, the SEM decreases.
 
-Okay, so that's one part of the story. However, there's something I've been glossing over so far. All my examples up to this point have been based on the "IQ scores" experiments, and because IQ scores are roughly normally distributed, I've assumed that the population distribution is normal. What if it isn't normal? What happens to the sampling distribution of the mean? The remarkable thing is this: no matter what shape your population distribution is, as $N$ increases the sampling distribution of the mean starts to look more like a normal distribution. To give you a sense of this, I ran some simulations using R. To do this, I started with the "ramped" distribution shown in the histogram in Figure \@ref(fig:cltdemo). As you can see by comparing the triangular shaped histogram to the bell curve plotted by the black line, the population distribution doesn't look very much like a normal distribution at all. Next, I used R to simulate the results of a large number of experiments. In each experiment I took $N=2$ samples from this distribution, and then calculated the sample mean. Figure \@ref(fig:cltdemob) plots the histogram of these sample means (i.e., the sampling distribution of the mean for $N=2$). This time, the histogram produces a $\cap$-shaped distribution: it's still not normal, but it's a lot closer to the black line than the population distribution in Figure \@ref(fig:cltdemoa). When I increase the sample size to $N=4$, the sampling distribution of the mean is very close to normal (Figure \@ref(fig:cltdemoc), and by the time we reach a sample size of $N=8$ it's almost perfectly normal. In other words, as long as your sample size isn't tiny, the sampling distribution of the mean will be approximately normal no matter what your population distribution looks like!
+However, there's something we've been glossing over so far. All examples up to this point have been based on the "IQ scores" experiments. And because IQ scores are roughly normally distributed, we've assumed that the population distribution is normal. What if it isn't normal? What happens to the sampling distribution of the mean? The remarkable thing is this: no matter what shape your population distribution is, as $N$ increases the sampling distribution of the mean starts to look more like a normal distribution. 
 
-```{r cltdemo, fig.cap="A demonstration of the central limit theorem. In panel a, we have a non-normal population distribution; and panels b-d show the sampling distribution of the mean for samples of size 2,4 and 8, for data drawn from the distribution in panel a. As you can see, even though the original population distribution is non-normal, the sampling distribution of the mean becomes pretty close to normal by the time you have a sample of even 4 observations. "}
-	# needed for printing
-	width <- 6
-	height <- 6	
-	
-	# parameters of the beta
-	a <- 2
-	b <- 1
-	
-	# mean and standard deviation of the beta
-	s <- sqrt( a*b / (a+b)^2 / (a+b+1) )
-	m <- a / (a+b)
-	
-	# define function to draw a plot
-	plotOne <- function(n,N=50000) {
-		
-		# generate N random sample means of size n
-		X <- matrix(rbeta(n*N,a,b),n,N)
-		X <- colMeans(X)
-		
-		# plot the data
-		hist( X, breaks=seq(0,1,.025), border="white", freq=FALSE,
-			col=ifelse(colour,emphColLight,emphGrey),
-			xlab="Sample Mean", ylab="", xlim=c(0,1.2),
-			main=paste("Sample Size =",n), axes=FALSE,
-			font.main=1, ylim=c(0,5)
-		)
-		box()
-		axis(1)
-		#axis(2)
-		
-		# plot the theoretical distribution
-		lines( x <- seq(0,1.2,.01), dnorm(x,m,s/sqrt(n)), 
-			lwd=2, col="black", type="l"
-		)
-	}
-	
-	for( i in c(1,2,4,8)) {
-		plotOne(i)}
+To give you a sense of this, let's run some simulations. We start with the "ramped" distribution shown in the histogram in Figure \@ref(fig:cltdemo). As you can see by comparing the triangular-shaped histogram to the bell curve plotted by the black line, the population distribution doesn't look very much like a normal distribution at all. Next, let us simulate the results of a large number of experiments. In each experiment, we draw $N=2$ samples from this distribution and then calculate the sample mean. Figure \@ref(fig:cltdemob) plots the histogram of these sample means (i.e. the sampling distribution of the mean for $N=2$). This time, the histogram produces a $\cap$-shaped distribution: it's still not normal, but it's a lot closer to the black line than the population distribution in Figure \@ref(fig:cltdemoa). When we increase the sample size to $N=4$, the sampling distribution of the mean is very close to normal (Figure \@ref(fig:cltdemoc), and by the time we reach a sample size of $N=8$ it's almost perfectly normal. In other words, as long as your sample size isn't tiny, the sampling distribution of the mean will be approximately normal no matter what your population distribution looks like!
+
+```{r cltdemo, fig.cap="A demonstration of the central limit theorem. In panel a, we have a non-normal population distribution; and panels b-d show the sampling distribution of the mean for samples of size 2,4 and 8, for data drawn from the distribution in panel a. As you can see, even though the original population distribution is non-normal, the sampling distribution of the mean becomes pretty close to normal by the time you have a sample of even 4 observations. ", echo=FALSE, fig.show="hold", fig.align="center", out.width="50%"}
+knitr::include_graphics(c("resources/cltDemo-a.svg",
+						"resources/cltDemo-b.svg",
+						"resources/cltDemo-c.svg",
+						"resources/cltDemo-d.svg"))
 ```
 
-On the basis of these figures, it seems like we have evidence for all of the following claims about the sampling distribution of the mean:
+Based on these figures, it seems like we have evidence for all of the following claims about the sampling distribution of the mean:
 
 - The mean of the sampling distribution is the same as the mean of the population
 - The standard deviation of the sampling distribution (i.e., the standard error) gets smaller as the sample size increases
@@ -287,18 +256,16 @@ As it happens, not only are all of these statements true, there is a very famous
 $$
 \mbox{SEM} = \frac{\sigma}{ \sqrt{N} }
 $$ 
-Because we divide the population standard devation $\sigma$ by the square root of the sample size $N$, the SEM gets smaller as the sample size increases. It also tells us that the shape of the sampling distribution becomes normal.^[As usual, I'm being a bit sloppy here. The central limit theorem is a bit more general than this section implies. Like most introductory stats texts, I've discussed one situation where the central limit theorem holds: when you're taking an average across lots of independent events drawn from the same distribution. However, the central limit theorem is much broader than this. There's a whole class of things called "$U$-statistics" for instance, all of which satisfy the central limit theorem and therefore become normally distributed for large sample sizes. The mean is one such statistic, but it's not the only one.] 
 
-This result is useful for all sorts of things. It tells us why large experiments are more reliable than small ones, and because it gives us an explicit formula for the standard error it tells us *how much* more reliable a large experiment is. It tells us why the normal distribution is, well, *normal*. In real experiments, many of the things that we want to measure are actually averages of lots of different quantities (e.g., arguably, "general" intelligence as measured by IQ is an average of a large number of "specific" skills and abilities), and when that happens, the averaged quantity should follow a normal distribution. Because of this mathematical law, the normal distribution pops up over and over again in real data. 
+Because we divide the population standard devation $\sigma$ by the square root of the sample size $N$, the SEM gets smaller as the sample size increases. It also tells us that the shape of the sampling distribution becomes normal.^[As usual, we're being a bit sloppy here. The central limit theorem is a bit more general than this section implies. Like most introductory stats texts, we have discussed one situation where the central limit theorem holds: when you're taking an average across lots of independent events drawn from the same distribution. However, the central limit theorem is much broader than this. There's a whole class of things called "$U$-statistics", all of which satisfy the central limit theorem and therefore become normally distributed for large sample sizes. The mean is one such statistic, but it's not the only one.] 
 
-
-
+This result is useful for all sorts of things. It tells us why large experiments are more reliable than small ones, and because it gives us an explicit formula for the standard error, it tells us *how much* more reliable a large experiment is. It tells us why the normal distribution is, well, *normal*. In real experiments, many of the things that we want to measure are averages of lots of different quantities (e.g. arguably, "general" intelligence as measured by IQ is an average of a large number of "specific" skills and abilities), and when that happens, the averaged quantity should follow a normal distribution. Because of this mathematical law, the normal distribution pops up over and over again in real data.
 
 ## Estimating population parameters{#pointestimates}
 
-In all the IQ examples in the previous sections, we actually knew the population parameters ahead of time. As every undergraduate gets taught in their very first lecture on the measurement of intelligence, IQ scores are *defined* to have mean 100 and standard deviation 15. However, this is a bit of a lie. How do we know that IQ scores have a true population mean of 100? Well, we know this because the people who designed the tests have administered them to very large samples, and have then "rigged" the scoring rules so that their sample has mean 100. That's not a bad thing of course: it's an important part of designing a psychological measurement. However, it's important to keep in mind that this theoretical mean of 100 only attaches to the population that the test designers used to design the tests. Good test designers will actually go to some lengths to provide "test norms" that can apply to lots of different populations (e.g., different age groups, nationalities etc). 
+In all the IQ examples in the previous sections, we knew the population parameters ahead of time. As every undergraduate gets taught in their first lecture on the measurement of intelligence, IQ scores are *defined* to have mean 100 and standard deviation 15. However, this is a bit of a lie. How do we know that IQ scores have a true population mean of 100? Well, we know this because the people who designed the tests have administered them to very large samples, and have then "rigged" the scoring rules so that their sample has mean 100. That's not a bad thing of course: it's an important part of designing a psychological measurement. However, it's important to keep in mind that this theoretical mean of 100 only attaches to the population that the test designers used to design the tests. Good test designers will actually go to some lengths to provide "test norms" that can apply to lots of different populations (e.g., different age groups, nationalities etc.). 
 
-This is very handy, but of course almost every research project of interest involves looking at a different population of people to those used in the test norms. For instance, suppose you wanted to measure the effect of low level lead poisoning on cognitive functioning in Port Pirie, a South Australian industrial town with a lead smelter. Perhaps you decide that you want to compare IQ scores among people in Port Pirie to a comparable sample in Whyalla, a South Australian industrial town with a steel refinery.^[Please note that if you were *actually* interested in this question, you would need to be a *lot* more careful than I'm being here. You *can't* just compare IQ scores in Whyalla to Port Pirie and assume that any differences are due to lead poisoning. Even if it were true that the only differences between the two towns corresponded to the different refineries (and it isn't, not by a long shot), you need to account for the fact that people already *believe* that lead pollution causes cognitive deficits: if you recall back to Chapter \@ref(studydesign), this means that there are different demand effects for the Port Pirie sample than for the Whyalla sample. In other words, you might end up with an illusory group difference in your data, caused by the fact that people *think* that there is a real difference. I find it pretty implausible to think that the locals wouldn't be well aware of what you were trying to do if a bunch of researchers turned up in Port Pirie with lab coats and IQ tests, and even less plausible to think that a lot of people would be pretty resentful of you for doing it. Those people won't be as co-operative in the tests. Other people in Port Pirie might be *more* motivated to do well because they don't want their home town to look bad. The motivational effects that would apply in Whyalla are likely to be weaker, because people don't have any concept of "iron ore poisoning" in the same way that they have a concept for "lead poisoning". Psychology is *hard*.] Regardless of which town you're thinking about, it doesn't make a lot of sense simply to *assume* that the true population mean IQ is 100. No-one has, to my knowledge, produced sensible norming data that can automatically be applied to South Australian industrial towns. We're going to have to **estimate** the population parameters from a sample of data. So how do we do this?
+This is very handy, but of course, almost every research project of interest involves looking at a different population of people to those used in the test norms. For instance, suppose you wanted to measure the effect of low-level lead poisoning on cognitive functioning in Port Pirie, a South Australian industrial town with a lead smelter. Perhaps you decide that you want to compare IQ scores among people in Port Pirie to a comparable sample in Whyalla, a South Australian industrial town with a steel refinery.^[Please note that if you were *actually* interested in this question, you would need to be a *lot* more careful than we are being here. You *can't* simply compare IQ scores in Whyalla to Port Pirie and assume that any differences are due to lead poisoning. Even if it were true that the only differences between the two towns corresponded to the different refineries (and it isn't, not by a long shot), you need to account for the fact that people already *believe* that lead pollution causes cognitive deficits: if you recall back to Chapter \@ref(studydesign), this means that there are different demand effects for the Port Pirie sample than for the Whyalla sample. In other words, you might end up with an illusory group difference in your data, caused by the fact that people *think* that there is a real difference. It is pretty implausible to think that the locals wouldn't be well aware of what you were trying to do if a bunch of researchers turned up in Port Pirie with lab coats and IQ tests, and even less plausible to think that a lot of people would be pretty resentful of you for doing it. Those people won't be as cooperative in the tests. Other people in Port Pirie might be *more* motivated to do well because they don't want their home town to look bad. The motivational effects that would apply in Whyalla are likely to be weaker because people don't have any concept of "iron ore poisoning" in the same way that they have a concept for "lead poisoning". Psychology is *hard*.] Regardless of which town you're thinking about, it doesn't make a lot of sense simply to *assume* that the true population mean IQ is 100. No one has produced sensible norming data that can automatically be applied to South Australian industrial towns. We're going to have to **estimate** the population parameters from a sample of data. So how do we do this?
 
 ### Estimating the population mean
 
@@ -306,7 +273,7 @@ Suppose we go to Port Pirie and 100 of the locals are kind enough to sit through
 
 In this example, estimating the unknown poulation parameter is straightforward. I calculate the sample mean, and I use that as my **estimate of the population mean**. It's pretty simple, and in the next section I'll explain the statistical justification for this intuitive answer. However, for the moment what I want to do is make sure you recognise that the sample statistic and the estimate of the population parameter are conceptually different things. A sample statistic is a description of your data, whereas the estimate is a guess about the population. With that in mind, statisticians often different notation to refer to them. For instance, if true population mean is denoted $\mu$, then we would use $\hat\mu$ to refer to our estimate of the population mean. In contrast, the sample mean is denoted $\bar{X}$ or sometimes $m$. However, in simple random samples, the estimate of the population mean is identical to the sample mean: if I observe a sample mean of $\bar{X} = 98.5$, then my estimate of the population mean is also $\hat\mu = 98.5$. To help keep the notation clear, here's a handy table:
 
-```{r}
+```{r echo = FALSE, fig.cap= "Notation for sample statistics and estimates of population parameters."}
 knitr::kable(data.frame(stringsAsFactors=FALSE,
                    Symbol = c("$\\bar{X}$", "$\\mu$", "$\\hat{\\mu}$"),
               What.is.it = c("Sample mean", "True population mean",
@@ -315,7 +282,6 @@ knitr::kable(data.frame(stringsAsFactors=FALSE,
                               "Almost never known for sure",
                               "Yes  identical to the sample mean")))
 ```
-
 
 
 ### Estimating the population standard deviation
