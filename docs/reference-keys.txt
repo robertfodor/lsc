@@ -42,9 +42,9 @@ fig:Fdist
 fig:srs1
 fig:brs
 fig:srs2
-fig:IQdist-1
-fig:IQdist-2
-fig:IQdist-3
+fig:IQdista
+fig:IQdistb
+fig:IQdistc
 fig:sampdistmean
 fig:sampdistmax
 fig:IQsampa

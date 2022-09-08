@@ -29,7 +29,7 @@ Each of these defines a real group of mind-possessing entities, all of which mig
 
 ### Simple random samples
 
-```{r srs1, fig.cap="Simple random sampling without replacement from a finite population", echo=FALSE}
+```{r srs1, fig.cap="Simple random sampling without replacement from a finite population", echo=FALSE, fig.align='center', out.width='100%'}
 knitr::include_graphics("resources/srs1.png")
 ```
 
@@ -39,11 +39,11 @@ To keep things simple, let's imagine that we have a bag containing 10 chips. Eac
 
 To help make sure you understand the importance of the sampling procedure, consider an alternative way the experiment could have been run. Suppose a 5-year-old had opened the bag and decided to pull out four black chips without putting any of them back in the bag. This *biased* sampling scheme is depicted in Figure \@ref(fig:brs). Now consider the evidentiary value of seeing 4 black chips and 0 white chips. Clearly, it depends on the sampling scheme. If you know that the sampling scheme is biased to select only black chips, then a sample that consists of only black chips doesn't tell you very much about the population! For this reason, statisticians really like it when a data set can be considered a simple random sample, because it makes the data analysis *much* easier.
 
-```{r brs, fig.cap="Biased sampling without replacement from a finite population", echo=FALSE}
+```{r brs, fig.cap="Biased sampling without replacement from a finite population", echo=FALSE, fig.align='center', out.width='100%'}
 knitr::include_graphics("resources/brs.PNG")
 ```
 
-```{r srs2, fig.cap="Simple random sampling *with* replacement from a finite population", echo=FALSE}
+```{r srs2, fig.cap="Simple random sampling *with* replacement from a finite population", echo=FALSE, fig.align='center', out.width='100%'}
 knitr::include_graphics("resources/srs2.png")
 ```
 
@@ -74,76 +74,44 @@ Secondly, if you're criticising someone else's study because they've used a samp
 
 ### Population parameters and sample statistics
 
-Okay. Setting aside the thorny methodological issues associated with obtaining a random sample and my rather unfortunate tendency to rant about lazy methodological criticism, let's consider a slightly different issue. Up to this point we have been talking about populations the way a scientist might. To a psychologist, a population might be a group of people. To an ecologist, a population might be a group of bears. In most cases the populations that scientists care about are concrete things that actually exist in the real world. Statisticians, however, are a funny lot. On the one hand, they *are* interested in real world data and real science in the same way that scientists are. On the other hand, they also operate in the realm of pure abstraction in the way that mathematicians do. As a consequence, statistical theory tends to be a bit abstract in how a population is defined. In much the same way that psychological researchers operationalise our abstract theoretical ideas in terms of concrete measurements (Section \@ref(measurement), statisticians operationalise the concept of a "population" in terms of mathematical objects that they know how to work with. You've already come across these objects in Chapter \@ref(probability): they're called probability distributions.
+Let's consider a slightly different case by setting aside the thorny methodological issues associated with obtaining a random sample and my rather unfortunate tendency to rant about lazy methodological criticism. Up to this point, we have been talking about populations the way a scientist might: a population might be a group of people to a psychologist; to an ecologist, a population might be a group of bears. In most cases, the populations that scientists care about are tangible things that exist in the real world. Statisticians are interested in real-world data and actual science the same way scientists are. On the other hand, they also operate in the realm of pure abstraction as mathematicians do. Consequently, statistical theory tends to be a bit abstract in how a population is defined. In much the same way that psychological researchers operationalise our abstract theoretical ideas in terms of concrete measurements (Section \@ref(measurement), statisticians operationalise the concept of a "population" in terms of mathematical objects that they know how to work with. You've already come across these objects in Chapter \@ref(probability): they're called **probability distributions**.
 
-The idea is quite simple. Let's say we're talking about IQ scores. To a psychologist, the population of interest is a group of actual humans who have IQ scores. A statistician "simplifies" this by operationally defining the population as the probability distribution depicted in Figure \@ref(fig:IQdista). IQ tests are designed so that the average IQ is 100, the standard deviation of IQ scores is 15, and the distribution of IQ scores is normal. These values are referred to as the **population parameters** because they are characteristics of the entire population. That is, we say that the population mean $\mu$ is 100, and the population standard deviation $\sigma$ is 15.
+The idea is quite simple. Let's say we're talking about IQ scores. To a psychologist, the population of interest is a group of actual humans with IQ scores. A statistician "simplifies" this by operationally defining the population as the probability distribution depicted in Figure \@ref(fig:IQdista). IQ tests are designed so that the average IQ is 100, the standard deviation of IQ scores is 15, and the distribution of IQ scores is normal. These values are referred to as the **population parameters** because they are characteristics of the entire population. That is, we say that the population mean $\mu$ is 100, and the population standard deviation $\sigma$ is 15.
 
-```{r IQdist, fig.cap="The population distribution of IQ scores (panel a) and two samples drawn randomly from it. In panel b we have a sample of 100 observations, and panel c we have a sample of 10,000 observations.", echo=FALSE}
-estImg <- list()
-emphCol <- rgb(0,0,1)
-emphColLight <- rgb(.5,.5,1)
-emphGrey <- grey(.5)
-
-colour <- TRUE
-
-	width <- 4.5
-	height <- 4.5
-	
-	# plot
-	x <- 60:140
-	y <- dnorm(x,100,15)
-	plot(x,y,lwd=3,type="l",col=ifelse(colour,emphCol,"black"),
-		xlab="IQ Score", ylab="Probability Density",frame.plot=FALSE
-	)
-	
-	
-	# function to do all the work
-	plotSamples <- function( n ) {
-		
-		IQ <- rnorm(n, 100, 15)
-		hist( IQ, breaks=seq(10,180,5), border="white", 
-			col=ifelse(colour,emphColLight,emphGrey),
-			xlab="IQ Score", ylab="Frequency", xlim=c(60,140),
-			main=""
-		)
-		print( paste( "n=",n,"mean=",mean(IQ), "sd=",sd(IQ) ) )
-	}
-	
-	# plot two different sample sizes
-	plotSamples(100)
-	
-	plotSamples(10000)
-
+```{r IQdista, fig.cap="The population distribution of IQ scores.", echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("resources/IQdista.svg")
 ```
 
-
-
-Now suppose I run an experiment. I select 100 people at random and administer an IQ test, giving me a simple random sample from the population. My sample would consist of a collection of numbers like this:
+Now let us run an experiment. We select 100 people at random and administer an IQ test, giving us a simple random sample from the population. The sample would consist of a collection of numbers like this:
 ```
-                          106 101 98 80 74 ... 107 72 100
+ 106 101 98 80 74 ... 107 72 100
 ```
-Each of these IQ scores is sampled from a normal distribution with mean 100 and standard deviation 15. So if I  plot a histogram of the sample, I get something like the one shown in Figure \@ref(fig:IQdist)b. As you can see, the histogram is *roughly* the right shape, but it's a very crude approximation to the true population distribution shown in Figure \@ref(fig:IQdist)a. When I calculate the mean of my sample, I get a number that is fairly close to the population mean 100 but not identical. In this case, it turns out that the people in my sample have a mean IQ of 98.5, and the standard deviation of their IQ scores is 15.9. These **sample statistics** are properties of my data set, and although they are fairly similar to the true population values, they are not the same. In general, sample statistics are the things you can calculate from your data set, and the population parameters are the things you want to learn about. Later on in this chapter I'll talk about how you can estimate population parameters using your sample statistics (Section \@ref(pointestimates) and how to work out how confident you are in your estimates (Section \@ref(ci) but before we get to that there's a few more ideas in sampling theory that you need to know about. 
 
+```{r IQdistb, fig.cap="A sample of 100 observations drawn from the population distribution of IQ scores.", echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("resources/IQdistb.svg")
+```
+
+Each IQ score is sampled from a normal distribution with a mean of 100 and a standard deviation of 15. So if we plot a histogram of the sample, we get something like the one shown in Figure \@ref(fig:IQdistb). As you can see, the histogram is *roughly* the proper shape, but it's a very crude approximation to the actual population distribution shown in Figure \@ref(fig:IQdista). When calculating the mean of the sample, we get a number that is relatively close to the population mean of 100 but not identical. In this case, it turns out that the people in the sample have a mean IQ of 98.5, and the standard deviation of their IQ scores is 15.9. These **sample statistics** are properties of our data set, and although they are reasonably similar to the actual population values, they are not the same. In general, sample statistics are the things you can calculate from your data set, and the population parameters are the things you want to learn about.
 
 ## The law of large numbers{#lawlargenumbers}
 
-In the previous section I showed you the results of one fictitious IQ experiment with a sample size of $N=100$. The results were somewhat encouraging: the true population mean is 100, and the sample mean of 98.5 is a pretty reasonable approximation to it. In many scientific studies that level of precision is perfectly acceptable, but in other situations you need to be a lot more precise. If we want our sample statistics to be much closer to the population parameters, what can we do about it?
+In the previous section, we discussed the results of one fictitious IQ experiment with a sample size of $N=100$. The results were somewhat encouraging: the true population mean was 100, and the sample mean of 98.5 was a reasonable approximation. In many scientific studies, that level of precision is perfectly acceptable, but in other situations, you need to be much more precise. If we want our sample statistics to be much closer to the population parameters, what can we do about it?
 
-The obvious answer is to collect more data. Suppose that we ran a much larger experiment, this time measuring the IQs of 10,000 people. We can simulate the results of this experiment using R. In Section \@ref(normal) I introduced the `rnorm()` function, which generates random numbers sampled from a normal distribution. For an experiment with a sample size of `n = 10000`, and a population with `mean = 100` and `sd = 15`, R produces our fake IQ data using these commands:
-```{r}
-IQ <- rnorm(n = 10000, mean = 100, sd = 15) # generate IQ scores
-IQ <- round(IQ) # IQs are whole numbers!
-print(head(IQ))
+The obvious answer is to collect more data. Suppose that we ran a much larger experiment, this time measuring the IQs of 10,000 people. For an experiment with a sample size of `n = 10000`, and a population with `mean = 100` and `sd = 15`, we get the following distribution:
+
+```{r IQdistc, fig.cap="A sample of 10,000 observations drawn from the population distribution of IQ scores.", echo=FALSE, fig.align='center', out.width='100%'}
+knitr::include_graphics("resources/IQdistc.svg")
 ```
-I can compute the mean IQ using the command `mean(IQ)` and the standard deviation using the command `sd(IQ)`, and I can draw a histgram using `hist()`. The histogram of this much larger sample is shown in Figure \@ref(fig:IQdist)c. Even a moment's inspections makes clear that the larger sample is a much better approximation to the true population distribution than the smaller one. This is reflected in the sample statistics: the mean IQ for the larger sample turns out to be 99.9, and the standard deviation is 15.1. These values are now very close to the true population.
 
-I feel a bit silly saying this, but the thing I want you to take away from this is that large samples generally give you better information. I feel silly saying it because it's so bloody obvious that it shouldn't need to be said. In fact, it's such an obvious point that when Jacob Bernoulli -- one of the founders of probability theory -- formalised this idea back in 1713, he was kind of a jerk about it. Here's how he described the fact that we all share this intuition:
+Large samples generally give you better information. It feels silly saying it because it's so bloody obvious that it shouldn't need to be said. It's such an obvious point that when Jacob Bernoulli -- one of the founders of probability theory -- formalised this idea back in 1713, he was kind of a jerk about it. Here's how he described the fact that we all share this intuition:
 
-> *For even the most stupid of men, by some instinct of nature, by himself and without any instruction (which is a remarkable thing), is convinced that the more observations have been made, the less danger there is of wandering from one's goal* @Stigler1986
+> *For even the most stupid of men, by some instinct of nature, by himself and without any instruction (which is a remarkable thing), is convinced that the more observations have been made, the less danger there is of wandering from one's goal.*  @Stigler1986
 
-Okay, so the passage comes across as a bit condescending (not to mention sexist), but his main point is correct: it really does feel obvious that more data will give you better answers. The question is, why is this so? Not surprisingly, this intuition that we all share turns out to be correct, and statisticians refer to it as the **law of large numbers**. The law of large numbers is a mathematical law that applies to many different sample statistics, but the simplest way to think about it is as a law about averages. The sample mean is the most obvious example of a statistic that relies on averaging (because that's what the mean is... an average), so let's look at that. When applied to the sample mean, what the law of large numbers states is that as the sample gets larger, the sample mean tends to get closer to the true population mean. Or, to say it a little bit more precisely, as the sample size "approaches" infinity (written as $N \rightarrow \infty$) the sample mean approaches the population mean ($\bar{X} \rightarrow \mu$).^[Technically, the law of large numbers pertains to any sample statistic that can be described as an average of independent quantities. That's certainly true for the sample mean. However, it's also possible to write many other sample statistics as averages of one form or another. The variance of a sample, for instance, can be rewritten as a kind of average and so is subject to the law of large numbers. The minimum value of a sample, however, cannot be written as an average of anything and is therefore not governed by the law of large numbers.] 
+Okay, so the passage comes across as a bit condescending (not to mention sexist), but his main point is correct: it really does feel evident that more data will give you better answers. The question is, why is this so? Not surprisingly, this intuition we all share is correct, and statisticians refer to it as the **law of large numbers**. The law of large numbers is a mathematical law that applies to many different sample statistics, but the simplest way to think about it is as a law about averages. The sample mean is the most obvious example of a statistic that relies on averaging (because that's what the mean is -- an average), so let's look at that.
 
-I don't intend to subject you to a proof that the law of large numbers is true, but it's one of the most important tools for statistical theory. The law of large numbers is the thing we can use to justify our belief that collecting more and more data will eventually lead us to the truth. For any particular data set, the sample statistics that we calculate from it will be wrong, but the law of large numbers tells us that if we keep collecting more data those sample statistics will tend to get closer and closer to the true population parameters.
+When applied to the sample mean, the law of large numbers states that as the sample gets larger, the sample mean tends to get closer to the true population mean. Or, to say it a little bit more precisely, as the sample size "approaches" infinity (written as $N \rightarrow \infty$) the sample mean approaches the population mean ($\bar{X} \rightarrow \mu$).^[Technically, the law of large numbers pertains to any sample statistic that can be described as an average of independent quantities. That's certainly true for the sample mean. However, it's also possible to write many other sample statistics as averages of one form or another. The variance of a sample, for instance, can be rewritten as an average and so is subject to the law of large numbers. The minimum value of a sample, however, cannot be written as an average of anything and is therefore not governed by the law of large numbers.] 
+
+You won't be subject to proof that the law of large numbers is true, but it's one of the most important tools for statistical theory. The law of large numbers is the thing we can use to justify our belief that collecting more and more data will eventually lead us to the truth. For any particular data set, the sample statistics that we calculate from it will be wrong, but the law of large numbers tells us that if we keep collecting more data, those sample statistics will tend to get closer and closer to the true population parameters.
 
 
 ## Sampling distributions and the central limit theorem{#samplesandclt}
