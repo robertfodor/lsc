@@ -146,15 +146,18 @@ knitr::kable(data.frame(stringsAsFactors = FALSE,
 NANA = c("Replication 1", "Replication 2", "Replication 3", "Replication 4",
          "Replication 5", "Replication 6", "Replication 7", "Replication 8",
          "Replication 9", "Replication 10"),
-Person.1 = c(90, 78, 111, 98, 105, 81, 100, 107, 86, 95),
-Person.2 = c(82, 88, 122, 96, 113, 89, 93, 100, 119, 126),
-Person.3 = c(94, 111, 91, 119, 103, 93, 108, 105, 108, 112),
-Person.4 = c(99, 111, 98, 99, 103, 85, 98, 117, 73, 120),
-Person.5 = c(110, 117, 86, 107, 98, 114, 133, 85, 116, 76),
-Sample.Mean = c(95, 101, 101.6, 103.8, 104.4, 92.4, 106.4, 102.8, 100.4,
+`Person 1` = c(90, 78, 111, 98, 105, 81, 100, 107, 86, 95),
+`Person 2` = c(82, 88, 122, 96, 113, 89, 93, 100, 119, 126),
+`Person 3` = c(94, 111, 91, 119, 103, 93, 108, 105, 108, 112),
+`Person 4` = c(99, 111, 98, 99, 103, 85, 98, 117, 73, 120),
+`Person 5` = c(110, 117, 86, 107, 98, 114, 133, 85, 116, 76),
+`Sample Mean` = c(95, 101, 101.6, 103.8, 104.4, 92.4, 106.4, 102.8, 100.4,
             105.8)),
 align = "lcccccc",
+col.names = c("Replication", "Person 1", "Person 2", "Person 3", "Person 4",
+              "Person 5", "Sample Mean"),
 caption = "Ten replications of the IQ experiment, each with a sample size of $N=5$.")
+
 ```
 
 Suppose we decided to keep going in this fashion, replicating this "five IQ scores" experiment repeatedly. Every time we replicate the experiment, we write down the sample mean. Over time, we should be amassing a new data set in which every experiment generates a single data point. The first 10 observations from the data set are the sample means listed in Table \@ref(tab:replications), so our data set starts out like this:
@@ -165,7 +168,7 @@ What if we should continue like this for 10,000 replications and then draw a his
 
 Sampling distributions are another important theoretical idea in statistics, and they're crucial for understanding the behaviour of small samples. For instance, when we ran the very first "five IQ scores" experiment, the sample mean turned out to be 95. What the sampling distribution in Figure \@ref(fig:sampdistmean) tells us, though, is that the "five IQ scores" experiment is not very accurate. If we repeat the experiment, the sampling distribution tells me that we can expect to see a sample mean anywhere between 80 and 120.
 
-```{r sampdistmean, fig.cap="The sampling distribution of the mean for the \"five IQ scores experiment\". If you sample 5 people at random and calculate their *average* IQ, you'll almost certainly get a number between 80 and 120, even though there are quite a lot of individuals who have IQs above 120 or below 80. For comparison, the black line plots the population distribution of IQ scores.", echo=FALSE}
+```{r sampdistmean, fig.cap="The sampling distribution of the mean for the \"five IQ scores experiment\". If you sample 5 people at random and calculate their *average* IQ, you'll almost certainly get a number between 80 and 120, even though there are quite a lot of individuals who have IQs above 120 or below 80. For comparison, the black line plots the population distribution of IQ scores.", echo=FALSE, fig.align="center", out.width="100%"}
 knitr::include_graphics("resources/sampleDist4.png")
 ```
 
@@ -177,7 +180,7 @@ One thing to remember when thinking about sampling distributions is that *any* s
 ```
 Doing this over and over again would give a very different sampling distribution, namely the *sampling distribution of the maximum*. The sampling distribution of the maximum of 5 IQ scores is shown in Figure \@ref(fig:sampdistmax). Not surprisingly, if you pick 5 people at random and then find the person with the highest IQ score, they're going to have an above-average IQ. Most of the time, you'll end up with someone whose IQ is measured in the 100 to 140 range.
 
-```{r sampdistmax, fig.cap="The sampling distribution of the *maximum* for the \"five IQ scores experiment\". If you sample 5 people at random and select the one with the highest IQ score, you'll probably see someone with an IQ between 100 and 140.", echo=FALSE}
+```{r sampdistmax, fig.cap="The sampling distribution of the *maximum* for the \"five IQ scores experiment\". If you sample 5 people at random and select the one with the highest IQ score, you'll probably see someone with an IQ between 100 and 140.", echo=FALSE, fig.align="center", out.width="100%"}
 knitr::include_graphics("resources/sampleDistMax.png")
 ```
 
@@ -188,49 +191,45 @@ Here's an illustration of how the sampling distribution of the mean depends on t
 
 ```{r IQsampa, fig.cap="Each data set contained only a single observation, so the mean of each sample is just one person's IQ score. As a consequence, the sampling distribution of the mean is of course identical to the population distribution of IQ scores.", echo=FALSE}
 width <- 4.5
-	height <- 4.5
-	
-	# function to do all the work
-	plotSamples <- function( n, N) {
-		
-		IQ <- rnorm(n, 100,15/sqrt(N))
-		hist( IQ, breaks=seq(10,180,5), border="white", freq=FALSE,
-			col=ifelse(colour,emphColLight,emphGrey),
-			xlab="IQ Score", ylab="", xlim=c(60,140),
-			main=paste("Sample Size =",N), axes=FALSE,
-			font.main=1, ylim=c(0,.07)
-		)
-		axis(1)
-	}
-	
-	# population distribution
-	x <- 60:140
-	y <- dnorm(x,100,15)
-	
-	# plot two different sample sizes
-	plotSamples(10000,1)
-	lines(x,y,lwd=2,col="black",type="l")
+height <- 4.5
 
+# function to do all the work
+plotSamples <- function(n, N) {
+IQ <- rnorm(n, 100, 15 / sqrt(N))
+hist(IQ, breaks=seq(10, 180, 5), border = "white", freq = FALSE,
+     col = ifelse(colour, emphColLight, emphGrey),
+     xlab = "IQ Score", ylab = "", xlim = c(60, 140),
+     main = paste("Sample Size =", N), axes = FALSE,
+     font.main = 1, ylim = c(0, .07)
+     )
+axis(1)
+}
+
+# population distribution
+x <- 60:140
+y <- dnorm(x, 100, 15)
+
+# plot two different sample sizes
+plotSamples(10000, 1)
+lines(x, y, lwd = 2, col = "black", type = "l")
 ```
 
 ```{r IQsampb, fig.cap="When we raise the sample size to 2, the mean of any one sample tends to be closer to the population mean than a one person's IQ score, and so the histogram (i.e., the sampling distribution) is a bit narrower than the population distribution.", echo=FALSE}
 width <- 4.5
-	height <- 4.5
+height <- 4.5
 
-		# plot two different sample sizes
-	plotSamples(1000,2)
-	lines(x,y,lwd=2,col="black",type="l")
-
+# plot two different sample sizes
+plotSamples(1000, 2)
+lines(x, y, lwd = 2, col = "black", type = "l")
 ```
 
 ```{r IQsampc, fig.cap="By the time we raise the sample size to 10, we can see that the distribution of sample means tend to be fairly tightly clustered around the true population mean.", echo=FALSE}
 width <- 4.5
-	height <- 4.5
+height <- 4.5
 
-		# plot two different sample sizes
-	plotSamples(1000,10)
-	lines(x,y,lwd=2,col="black",type="l")
-
+# plot two different sample sizes
+plotSamples(1000,10)
+lines(x, y, lwd = 2, col = "black", type = "l")
 ```
 
 At this point, you have a pretty good sense of what sampling distributions are, particularly the sampling distribution of the mean. In this section, let us talk about how the sampling distribution of the mean changes as a function of sample size. Intuitively, you already know part of the answer: if you only have a few observations, the sample mean is likely to be quite inaccurate: if you replicate a small experiment and recalculate the mean, you'll get a very different answer. In other words, the sampling distribution is quite broad. If you replicate a large experiment and recalculate the sample mean, you'll probably get the same answer you got last time, so the sampling distribution will narrow. You can see this visually in Figures \@ref(fig:IQsampa), \@ref(fig:IQsampb) and \@ref(fig:IQsampc): the bigger the sample size, the narrower the sampling distribution gets. We can quantify this effect by calculating the standard deviation of the sampling distribution, which is referred to as the **standard error**. The standard error of a statistic is often denoted SE, and since we're usually interested in the standard error of the sample *mean*, we often use the acronym SEM. As you can see just by looking at the picture, as the sample size $N$ increases, the SEM decreases.
@@ -273,51 +272,52 @@ Suppose we go to Port Pirie and 100 of the locals are kind enough to sit through
 
 In this example, estimating the unknown poulation parameter is straightforward. I calculate the sample mean, and I use that as my **estimate of the population mean**. It's pretty simple, and in the next section I'll explain the statistical justification for this intuitive answer. However, for the moment what I want to do is make sure you recognise that the sample statistic and the estimate of the population parameter are conceptually different things. A sample statistic is a description of your data, whereas the estimate is a guess about the population. With that in mind, statisticians often different notation to refer to them. For instance, if true population mean is denoted $\mu$, then we would use $\hat\mu$ to refer to our estimate of the population mean. In contrast, the sample mean is denoted $\bar{X}$ or sometimes $m$. However, in simple random samples, the estimate of the population mean is identical to the sample mean: if I observe a sample mean of $\bar{X} = 98.5$, then my estimate of the population mean is also $\hat\mu = 98.5$. To help keep the notation clear, here's a handy table:
 
-```{r echo = FALSE, fig.cap= "Notation for sample statistics and estimates of population parameters."}
-knitr::kable(data.frame(stringsAsFactors=FALSE,
-                   Symbol = c("$\\bar{X}$", "$\\mu$", "$\\hat{\\mu}$"),
-              What.is.it = c("Sample mean", "True population mean",
-                              "Estimate of the population mean"),
-   Do.we.know.what.it.is = c("Yes  calculated from the raw data",
-                              "Almost never known for sure",
-                              "Yes  identical to the sample mean")))
+```{r echo = FALSE}
+knitr::kable(cbind(`Symbol` = c("$\\bar{X}$", "$\\mu$", "$\\hat{\\mu}$"),
+                   `What is it` = c("Sample mean", "True population mean",
+                                    "Estimate of the population mean"),
+                   `Do we know what it is` = c("Yes  calculated from the raw data",
+                                              "Almost never known for sure",
+                                              "Yes  identical to the sample mean")),
+             caption="Notation for sample statistics and estimates of population parameters.")
 ```
-
 
 ### Estimating the population standard deviation
 
-So far, estimation seems pretty simple, and you might be wondering why I forced you to read through all that stuff about sampling theory. In the case of the mean, our estimate of the population parameter (i.e. $\hat\mu$) turned out to identical to the corresponding sample statistic (i.e. $\bar{X}$). However, that's not always true. To see this, let's have a think about how to construct an **estimate of the population standard deviation**, which we'll denote  $\hat\sigma$. What shall we use as our estimate in this case? Your first thought might be that we could do the same thing we did when estimating the mean, and just use the sample statistic as our estimate. That's almost the right thing to do, but not quite. 
+So far, estimation seems pretty simple, and you might wonder why you must read through all that stuff about sampling theory. In the case of the mean, our estimate of the population parameter (i.e. $\hat\mu$) turned out to be identical to the corresponding sample statistic (i.e. $\bar{X}$). However, that's not always true. To see this, let's construct an **estimate of the population standard deviation**, which we'll denote $\hat\sigma$. What shall we use as our estimate in this case? Your first thought might be that we could do the same thing we did when estimating the mean and just use the sample statistic as our estimate. That's almost the right thing to do, but not quite. Here's why:
 
-Here's why. Suppose I have a sample that contains a single observation. For this example, it helps to consider a sample where you have no intutions at all about what the true population values might be, so let's use something completely fictitious. Suppose the observation in question measures the *cromulence* of my shoes. It turns out that my shoes have a cromulence of 20. So here's my sample:
+Suppose we have a sample that contains a single observation. For this example, it helps to consider a sample where you have no intuitions about the true population values, so let's use something completely fictitious. Suppose the observation in question measures the *cromulence*^[The word *cromulent* was invented in a Simpsons episode in 1996 and, based on its context, might mean "possible", "acceptable", or "fine" according to @Cromulence. However, the whole point here is, we don't really know what it is.] of a shoe. It turns out that this shoe has a cromulence of 20. So here's our sample:
 
 ```
 20
 ```
 
-This is a perfectly legitimate sample, even if it does have a sample size of $N=1$. It has a sample mean of 20, and because every observation in this sample is equal to the sample mean (obviously!) it has a sample standard deviation of 0. As a description of the *sample* this seems quite right: the sample contains a single observation and therefore there is no variation observed within the sample. A sample standard deviation of $s = 0$ is the right answer here. But as an estimate of the *population* standard deviation, it feels completely insane, right? Admittedly, you and I don't know anything at all about what "cromulence" is, but we know something about data: the only reason that we don't see any variability in the *sample* is that the sample is too small to display any variation! So, if you have a sample size of $N=1$, it *feels* like the right answer is just to say "no idea at all". 
+This is a legitimate sample, even if it has a sample size of $N=1$. It has a sample mean of 20, and because every observation in this sample is equal to the sample mean (obviously!), it has a sample standard deviation of 0. As a description of the *sample* this seems quite right: the sample contains a single observation, and therefore there is no variation observed within the sample. A sample standard deviation of $s = 0$ is the right answer here. But as an estimate of the *population* standard deviation, it feels completely insane, right? Admittedly, we don't know anything at all about what "cromulence" is, but we know something about data: the only reason that we don't see any variability in the *sample* is that the sample is too small to display any variation! So, if you have a sample size of $N=1$, it *feels* like the right answer is just to say "no idea at all".
 
-Notice that you *don't* have the same intuition when it comes to the sample mean and the population mean. If forced to make a best guess about the population mean, it doesn't feel completely insane to guess that the population mean is 20. Sure, you probably wouldn't feel very confident in that guess, because you have only the one observation to work with, but it's still the best guess you can make. 
+Notice that you *don't* have the same intuition regarding the sample mean and the population mean. If forced to make the best guess about the population mean, it doesn't feel completely insane to guess that the population mean is 20. Sure, you probably wouldn't feel very confident in that guess because you have only one observation to work with, but it's still the best guess you can make. 
 
-Let's extend this example a little. Suppose I now make a second observation. My data set now has $N=2$ observations of the cromulence of shoes, and the complete sample now looks like this:
+Let's extend this example a little. Suppose we now make a second observation. The data set now has $N=2$ observations of the cromulence of shoes, and the complete sample now looks like this:
 ```
-20, 22
+20   22
 ```
-This time around, our sample is *just* large enough for us to be able to observe some variability: two observations is the bare minimum number needed for any variability to be observed! For our new data set, the sample mean is $\bar{X}=21$, and the sample standard deviation is $s=1$. What intuitions do we have about the population? Again, as far as the population mean goes, the best guess we can possibly make is the sample mean: if forced to guess, we'd probably guess that the population mean cromulence is 21. What about the standard deviation? This is a little more complicated. The sample standard deviation is only based on two observations, and if you're at all like me you probably have the intuition that, with only two observations, we haven't given the population "enough of a chance" to reveal its true variability to us. It's not just that we suspect that the estimate is *wrong*: after all, with only two observations we expect it to be wrong to some degree. The worry is that the error is *systematic*. Specifically, we suspect that the sample standard deviation is likely to be smaller than the population standard deviation. 
+This time around, our sample is *just* large enough for us to observe some variability: two observations is the bare minimum number needed for any variability to be observed! For our new data set, the sample mean is $\bar{X}=21$, and the sample standard deviation is $s=1$. What intuitions do we have about the population? Again, as far as the population mean goes, the best guess we can possibly make is the sample mean: if forced to guess, we'd probably say that the population mean cromulence is 21. What about the standard deviation? This is a little more complicated. The sample standard deviation is only based on two observations, and if you're at all like me you probably have the intuition that, with only two observations, we haven't given the population "enough of a chance" to reveal its true variability to us. It's not just that we suspect that the estimate is *wrong*: after all, with only two observations, we expect it to be wrong to some degree. The worry is that the error is *systematic*. Specifically, we suspect that the sample standard deviation is likely to be smaller than the population standard deviation.
 
-```{r sampdistsd, fig.cap="The sampling distribution of the sample standard deviation for a \"two IQ scores\" experiment. The true population standard deviation is 15 (dashed line), but as you can see from the histogram, the vast majority of experiments will produce a much smaller sample standard deviation than this. On average, this experiment would produce a sample standard deviation of only 8.5, well below the true value! In other words, the sample standard deviation is a *biased* estimate of the population standard deviation. ", echo=FALSE}
+```{r sampdistsd, fig.cap="The sampling distribution of the sample standard deviation for a \"two IQ scores\" experiment. The true population standard deviation is 15 (dashed line), but as you can see from the histogram, the vast majority of experiments will produce a much smaller sample standard deviation than this. On average, this experiment would produce a sample standard deviation of only 8.5, well below the true value! In other words, the sample standard deviation is a *biased* estimate of the population standard deviation. ", echo=FALSE, fig.align="center", out.width="100%"}
 knitr::include_graphics("resources/samplingDistSampleSD.png")
 ```
 
-This intuition feels right, but it would be nice to demonstrate this somehow. There are in fact mathematical proofs that confirm this intuition, but unless you have the right mathematical background they don't help very much. Instead, what I'll do is use R to simulate the results of some experiments. With that in mind, let's return to our IQ studies. Suppose the true population mean IQ is 100 and the standard deviation is 15. I can use the `rnorm()` function to generate the the results of an experiment in which I measure $N=2$ IQ scores, and calculate the sample standard deviation. If I do this over and over again, and plot a histogram of these sample standard deviations, what I have is the *sampling distribution of the standard deviation*. I've plotted this distribution in Figure \@ref(fig:sampdistsd). Even though the true population standard deviation is 15, the average of the *sample* standard deviations is only 8.5. Notice that this is a very different result to what we found in Figure \@ref(fig:IQsampb) when we plotted the sampling distribution of the mean. If you look at that sampling distribution, what you see is that the population mean is 100, and the average of the sample means is also 100. 
+This intuition feels right, but it would be nice to demonstrate this somehow. There are, in fact, mathematical proofs that confirm this intuition, but unless you have the right mathematical background, they don't help very much.
 
-Now let's extend the simulation. Instead of restricting ourselves to the situation where we have a sample size of $N=2$, let's repeat the exercise for sample sizes from 1 to 10. If we plot the average sample mean and average sample standard deviation as a function of sample size, you get the results shown in Figure \@ref(fig:estimatorbias). On the left hand side (panel a), I've plotted the average sample mean and on the right hand side (panel b), I've plotted the average standard deviation. The two plots are quite different: *on average*, the average sample mean is equal to the population mean. It is an **unbiased estimator**, which is essentially the reason why your best estimate for the population mean is the sample mean.^[I should note that I'm hiding something here. Unbiasedness is a desirable characteristic for an estimator, but there are other things that matter besides bias. However, it's beyond the scope of this book to discuss this in any detail. I just want to draw your attention to the fact that there's some hidden complexity here.] The plot on the right is quite different: on average, the sample standard deviation $s$ is *smaller* than the population standard deviation $\sigma$. It is a **biased estimator**. In other words, if we want to make a "best guess" $\hat\sigma$ about the value of the population standard deviation $\sigma$, we should make sure our guess is a little bit larger than the sample standard deviation $s$. 
+With that in mind, let's return to our IQ studies. Suppose the actual population mean IQ is 100 and the standard deviation is 15. Let's measure $N=2$ IQ scores and calculate the sample standard deviation. If we do this repeatedly and plot a histogram of these sample standard deviations, we have the **sampling distribution of the standard deviation** (Figure \@ref(fig:sampdistsd)). Even though the true population standard deviation is 15, the average of the *sample* standard deviations is only 8.5. Notice that this is a very different result from what we found in Figure \@ref(fig:IQsampb) when we plotted the sampling distribution of the mean. If you look at that sampling distribution, what you see is that the population mean is 100, and the average of the sample means is also 100.
 
-```{r estimatorbias, fig.cap="An illustration of the fact that the sample mean is an unbiased estimator of the population mean (panel a), but the sample standard deviation is a biased estimator of the population standard deviation (panel b). To generate the figure, I generated 10,000 simulated data sets with 1 observation each, 10,000 more with 2 observations, and so on up to a sample size of 10. Each data set consisted of fake IQ data: that is, the data were normally distributed with a true population mean of 100 and standard deviation 15. *On average*, the sample means turn out to be 100, regardless of sample size (panel a). However, the sample standard deviations turn out to be systematically too small (panel b), especially for small sample sizes.", echo=FALSE}
-knitr::include_graphics("resources/biasSD.png")
+Now let's extend the simulation. Instead of restricting ourselves to the situation where we have a sample size of $N=2$, let's repeat the exercise for sample sizes from 1 to 10. If we plot the average sample mean and average sample standard deviation as a function of sample size, you get the results shown in Figure \@ref(fig:estimatorbias). On the left side (panel a), you see the average sample mean, and on the right (panel b), the average standard deviation. The two plots are quite different: *on average*, the average sample mean is equal to the population mean. It is an **unbiased estimator**, which is essentially why your best estimate for the population mean is the sample mean.^[Unbiasedness is a desirable characteristic for an estimator, but there are other things that matter besides bias. However, it's beyond the scope of this book to discuss this in any detail. Just note that there's some hidden complexity here.] The plot on the right is quite different: on average, the sample standard deviation $s$ is *smaller* than the population standard deviation $\sigma$. It is a **biased estimator**. In other words, if we want to make a "best guess" $\hat\sigma$ about the value of the population standard deviation $\sigma$, we should make sure our guess is a little bit larger than the sample standard deviation $s$.
 
+```{r estimatorbias, fig.cap="An illustration of the fact that the sample mean is an unbiased estimator of the population mean (panel a). Still, the sample standard deviation is a biased estimator of the population standard deviation (panel b). To generate the figure, we have 10,000 simulated data sets with 1 observation each, 10,000 more with 2 observations, and so on up to a sample size of 10. Each data set consisted of fake IQ data: the data were normally distributed with a true population mean of 100 and standard deviation 15. *On average*, the sample means turn out to be 100, regardless of sample size (panel a). However, the sample standard deviations turn out to be systematically too small (panel b), especially for small sample sizes.", echo=FALSE, fig.show="hold", fig.align="center", out.width="50%"}
+knitr::include_graphics(c("resources/biasMean.png",
+                          "resources/biasSD.png"))
 ```
 
-The fix to this systematic bias turns out to be very simple. Here's how it works. Before tackling the standard deviation, let's look at the variance. If you recall from Section \@ref(var), the sample variance is defined to be the average of the squared deviations from the sample mean. That is:
+The fix to this systematic bias turns out to be very simple. Here's how it works. Before tackling the standard deviation, let's look at the variance. If you recall from Section \@ref(var), the sample variance is defined as the average squared deviations from the sample mean. That is:
 $$
 s^2 = \frac{1}{N} \sum_{i=1}^N (X_i - \bar{X})^2
 $$
@@ -325,17 +325,17 @@ The sample variance $s^2$ is a biased estimator of the population variance $\sig
 $$
 \hat\sigma^2 = \frac{1}{N-1} \sum_{i=1}^N (X_i - \bar{X})^2 
 $$
-This is an unbiased estimator of the population variance $\sigma$. Moreover, this finally answers the question we raised in Section \@ref(var). Why did R give us slightly different answers when we used the `var()` function? Because the `var()` function calculates $\hat\sigma^2$ not $s^2$, that's why. A similar story applies for the standard deviation. If we divide by $N-1$ rather than $N$, our estimate of the population standard deviation becomes:
+This is an unbiased estimator of the population variance $\sigma$, and why statistics software functions prefer $\hat\sigma^2$, not $s^2$ when calculating variance. A similar story applies to the standard deviation. If we divide by $N-1$ rather than $N$, our estimate of the population standard deviation becomes:
 $$
 \hat\sigma = \sqrt{\frac{1}{N-1} \sum_{i=1}^N (X_i - \bar{X})^2} 
 $$
-and when we use R's built in standard deviation function `sd()`, what it's doing is calculating $\hat\sigma$, not $s$.^[Okay, I'm hiding something else here. In a bizarre and counterintuitive twist, since $\hat\sigma^2$ is an unbiased estimator of $\sigma^2$, you'd assume that taking the square root would be fine, and $\hat\sigma$ would be an unbiased estimator of $\sigma$. Right? Weirdly, it's not. There's actually a subtle, tiny bias in $\hat\sigma$. This is just bizarre: $\hat\sigma^2$ is and unbiased estimate of the population variance $\sigma^2$, but when you take the square root, it turns out that $\hat\sigma$ is a biased estimator of the population standard deviation $\sigma$. Weird, weird, weird, right? So, why is $\hat\sigma$ biased? The technical answer is "because non-linear transformations (e.g., the square root) don't commute with expectation", but that just sounds like gibberish to everyone who hasn't taken a course in mathematical statistics. Fortunately, it doesn't matter for practical purposes. The bias is small, and in real life everyone uses $\hat\sigma$ and it works just fine. Sometimes mathematics is just annoying.] 
+and when using statistics software, they calculate $\hat\sigma$, not $s$.^[While $\hat\sigma^2$ is an unbiased estimate of the population variance $\sigma^2$, when you take the square root, it turns out that $\hat\sigma$ is a biased estimator of the population standard deviation $\sigma$. So, why is $\hat\sigma$ biased? The technical answer is "because non-linear transformations (e.g. the square root) don't commute with expectation", but that just sounds like gibberish to everyone who hasn't taken a course in mathematical statistics. Fortunately, it doesn't matter for practical purposes. The bias is so small, and in real life, everyone uses $\hat\sigma$, and it works just fine. Sometimes mathematics is just annoying.]
 
-One final point: in practice, a lot of people tend to refer to $\hat{\sigma}$ (i.e., the formula where we divide by $N-1$) as the *sample* standard deviation. Technically, this is incorrect: the *sample* standard deviation should be equal to $s$ (i.e., the formula where we divide by $N$). These aren't the same thing, either conceptually or numerically. One is a property of the sample, the other is an estimated characteristic of the population. However, in almost every real life application, what we actually care about is the estimate of the population parameter, and so people always report $\hat\sigma$ rather than $s$. This is the right number to report, of course, it's that people tend to get a little bit imprecise about terminology when they write it up, because "sample standard deviation" is shorter than "estimated population standard deviation". It's no big deal, and in practice I do the same thing everyone else does. Nevertheless, I think it's important to keep the two *concepts* separate: it's never a good idea to confuse "known properties of your sample" with "guesses about the population from which it came". The moment you start thinking that $s$ and $\hat\sigma$ are the same thing, you start doing exactly that. 
+One final point: in practice, many people refer to $\hat{\sigma}$ (i.e. the formula where we divide by $N-1$) as the *sample* standard deviation. Technically, this is incorrect: the *sample* standard deviation should be equal to $s$ (i.e. the formula where we divide by $N$). These aren't the same thing, either conceptually or numerically. One is a property of the sample, and the other is an estimated characteristic of the population. However, in almost every real-life application, what we care about is the estimate of the population parameter, and so people always report $\hat\sigma$ rather than $s$. This is the right number to report, of course. People tend to get a little bit imprecise about terminology when they write it up because "sample standard deviation" is shorter than "estimated population standard deviation". It's no big deal, and in practice, many do the same thing everyone else does. Nevertheless, it's important to keep the two *concepts* separate: it's never a good idea to confuse "known properties of your sample" with "guesses about the population from which it came". The moment you start thinking that $s$ and $\hat\sigma$ are the same things, you start doing exactly that.
 
 To finish this section off, here's another couple of tables to help keep things clear:
 
-```{r}
+```{r echo=FALSE}
 knitr::kable(data.frame(stringsAsFactors=FALSE,
                    Symbol = c("$s$", "$\\sigma$", "$\\hat{\\sigma}$", "$s^2$",
                               "$\\sigma^2$", "$\\hat{\\sigma}^2$"),
@@ -350,14 +350,11 @@ knitr::kable(data.frame(stringsAsFactors=FALSE,
                               "Yes - calculated from the raw data",
                               "Almost never known for sure",
                               "Yes -  but not the same as the sample variance")
-))
-
-
+),
+col.names = c("Symbol", "What is it?", "Do we know what it is?"))
 ```
 
 ## Estimating a confidence interval{#ci}
-
-> *Statistics means never having to say you're certain* -- Unknown origin^[This quote appears on a great many t-shirts and websites, and even gets a mention in a few academic papers (e.g., \url{http://www.amstat.org/publications/jse/v10n3/friedman.html] but I've never found the original source.
 
 Up to this point in this chapter, I've outlined the basics of sampling theory which statisticians rely on to make guesses about population parameters on the basis of a sample of data. As this discussion illustrates, one of the reasons we need all this sampling theory is that every data set leaves us with a some of uncertainty, so our estimates are never going to be perfectly accurate. The thing that has been missing from this discussion is an attempt to *quantify* the amount of uncertainty that attaches to our estimate. It's not enough to be able guess that, say, the mean IQ of undergraduate psychology students is 115 (yes, I just made that number up). We also want to be able to say something that expresses the degree of certainty that we have in our guess. For example, it would be nice to be able to say that there is a 95\% chance that the true mean lies between 109 and 121. The name for this is a **confidence interval** for the mean.
 
@@ -405,7 +402,7 @@ The hardest thing about confidence intervals is understanding what they *mean*. 
 Okay, so if that's not the right answer, what is? Remember what we said about frequentist probability: the only way we are allowed to make "probability statements" is to talk about a sequence of events, and to count up the frequencies of different kinds of events. From that perspective, the interpretation of a 95\% confidence interval must have something to do with replication. Specifically: if we replicated the experiment over and over again and computed a 95\% confidence interval for each replication, then 95\% of those *intervals* would contain the true mean. More generally, 95\% of all confidence intervals constructed using this procedure should contain the true population mean. This idea is illustrated in Figure \@ref(fig:cirep), which shows 50 confidence intervals constructed for a "measure 10 IQ scores" experiment (top panel) and another 50 confidence intervals for a "measure 25 IQ scores" experiment (bottom panel). A bit fortuitously, across the 100 replications that I simulated, it turned out that exactly 95 of them contained the true mean. 
 
 
-```{r cirep, fig.cap="95% confidence intervals. The top (panel a) shows 50 simulated replications of an experiment in which we measure the IQs of 10 people. The dot marks the location of the sample mean, and the line shows the 95% confidence interval. In total 47 of the 50 confidence intervals do contain the true mean (i.e., 100), but the three intervals marked with asterisks do not. The lower graph (panel b) shows a similar simulation, but this time we simulate replications of an experiment that measures the IQs of 25 people.", echo=FALSE}
+```{r cirep, fig.cap="95% confidence intervals. The top (panel a) shows 50 simulated replications of an experiment in which we measure the IQs of 10 people. The dot marks the location of the sample mean, and the line shows the 95% confidence interval. In total 47 of the 50 confidence intervals do contain the true mean (i.e., 100), but the three intervals marked with asterisks do not. The lower graph (panel b) shows a similar simulation, but this time we simulate replications of an experiment that measures the IQs of 25 people.", echo=FALSE, fig.align='center', out.width='100%'}
 knitr::include_graphics("resources/confIntReplicated.png")
 ```
 

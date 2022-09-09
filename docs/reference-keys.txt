@@ -52,6 +52,7 @@ fig:IQsampa
 fig:IQsampb
 fig:IQsampc
 fig:cltdemo
+tab:unnamed-chunk-8
 fig:sampdistsd
 fig:estimatorbias
 fig:cirep
