@@ -30,40 +30,40 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpNTkuMDR8NDczLjc2fDU5LjA0fDI4Ni41Ng==)'>
-<rect x='-165.60' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='-141.60' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='-117.60' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='-93.60' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='-69.60' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='-45.60' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='-21.60' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='2.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='26.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='50.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='74.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='98.40' y='277.53' width='24.00' height='0.60' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='122.40' y='274.52' width='24.00' height='3.61' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='146.40' y='261.28' width='24.00' height='16.85' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='170.40' y='246.23' width='24.00' height='31.90' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='194.40' y='223.36' width='24.00' height='54.77' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='218.40' y='175.21' width='24.00' height='102.93' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='242.40' y='166.78' width='24.00' height='111.35' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='266.40' y='174.00' width='24.00' height='104.13' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='290.40' y='200.49' width='24.00' height='77.65' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='314.40' y='232.39' width='24.00' height='45.74' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='338.40' y='238.41' width='24.00' height='39.73' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='362.40' y='269.71' width='24.00' height='8.43' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='386.40' y='275.73' width='24.00' height='2.41' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='410.40' y='276.33' width='24.00' height='1.81' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='434.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='458.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='482.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='506.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='530.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='554.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='578.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='602.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
-<rect x='626.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #8080FF;' />
+<rect x='-165.60' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='-141.60' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='-117.60' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='-93.60' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='-69.60' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='-45.60' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='-21.60' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='2.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='26.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='50.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='74.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='98.40' y='277.53' width='24.00' height='0.60' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='122.40' y='274.52' width='24.00' height='3.61' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='146.40' y='261.28' width='24.00' height='16.85' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='170.40' y='246.23' width='24.00' height='31.90' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='194.40' y='223.36' width='24.00' height='54.77' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='218.40' y='175.21' width='24.00' height='102.93' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='242.40' y='166.78' width='24.00' height='111.35' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='266.40' y='174.00' width='24.00' height='104.13' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='290.40' y='200.49' width='24.00' height='77.65' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='314.40' y='232.39' width='24.00' height='45.74' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='338.40' y='238.41' width='24.00' height='39.73' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='362.40' y='269.71' width='24.00' height='8.43' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='386.40' y='275.73' width='24.00' height='2.41' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='410.40' y='276.33' width='24.00' height='1.81' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='434.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='458.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='482.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='506.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='530.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='554.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='578.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='602.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
+<rect x='626.40' y='278.13' width='24.00' height='0.00' style='stroke-width: 0.75; stroke: #FFFFFF; fill: #D3D3D3;' />
 </g>
 <g clip-path='url(#cpMC4wMHw1MDQuMDB8MC4wMHwzNjAuMDA=)'>
 <line x1='74.40' y1='286.56' x2='458.40' y2='286.56' style='stroke-width: 0.75;' />

@@ -67,7 +67,8 @@ In this case, 11 of these 20 coin flips (55\%) came up heads. Now suppose that w
 knitr::kable(data.frame(stringsAsFactors=FALSE,
 `number of flips` = c(1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10, 11 , 12 , 13 , 14 , 15 , 16 , 17 , 18 , 19 , 20),
 `number of heads` = c( 0 , 1 , 2 , 3 , 4 , 4 , 4 , 5 , 6 , 7,  8  ,  8 ,  9 , 10 , 10 , 10 , 10 , 10 , 10 , 11 ), 
-`proportion` = c( .00 , .50 , .67 , .75 , .80 , .67 , .57 , .63 , .67 , .70, .73 , .67 , .69 , .71 , .67 ,  .63 , .59 , .56 , .53 , .55)))
+`proportion` = c( .00 , .50 , .67 , .75 , .80 , .67 , .57 , .63 , .67 , .70, .73 , .67 , .69 , .71 , .67 ,  .63 , .59 , .56 , .53 , .55)),
+col.names = c("Number of flips", "Number of heads", "Proportion of heads"), align="ccc")
 ```
 
 Notice that at the start of the sequence, the *proportion* of heads fluctuates wildly, starting at .00 and rising as high as .80. Later on, one gets the impression that it dampens out a bit, with more and more of the values actually being pretty close to the "right" answer of .50. This is the frequentist definition of probability in a nutshell: flip a fair coin over and over again, and as $N$ grows large (approaches infinity, denoted $N\rightarrow \infty$), the proportion of heads will converge to 50\%. There are some subtle technicalities that mathematicians care about, but qualitatively speaking, that's how the frequentists define probability. Unfortunately, we don't have an infinite number of coins, or the infinite patience required to flip a coin an infinite number of times. However, we do have a computer, and computers excel at mindless repetitive tasks. So let's ask a computer to simulate flipping a coin 1000 times, and then draw a picture of what happens to the proportion $N_H / N$ as $N$ increases.  The results are shown in Figure \@ref(fig:frequentistprobability). As you can see, the *proportion of observed heads* eventually stops fluctuating, and settles down; when it does, the number at which it finally settles is the true probability of heads.
@@ -133,12 +134,13 @@ At this point, we're almost done. The last thing we need to recognise is that "s
 
 ```{r echo=FALSE}
 knitr::kable(data.frame(stringsAsFactors=FALSE,
-`Which pants` = c( "Label" , "Probability" ), 
-`Blue jeans` = c( "$X_1$" , "$P(X_1) = .5$" ),
-`Grey jeans` = c( "$X_2$ ", "$P(X_2) = .3$ "),
-`Black jeans` = c( "$X_3$ ", "$P(X_3) = .1$" ),
-`Black suit` = c( "$X_4$" , "$P(X_4) = 0$ "),
-`Blue tracksuit` = c( "$X_5$ ", "$P(X_5) = .1$")))
+`Which.pants` = c( "Label" , "Probability" ), 
+`Blue.jeans` = c( "$X_1$" , "$P(X_1) = .5$" ),
+`Grey.jeans` = c( "$X_2$ ", "$P(X_2) = .3$ "),
+`Black.jeans` = c( "$X_3$ ", "$P(X_3) = .1$" ),
+`Black.suit` = c( "$X_4$" , "$P(X_4) = 0$ "),
+`Blue.tracksuit` = c( "$X_5$ ", "$P(X_5) = .1$")),
+col.names = c( "" , "Blue jeans" , "Grey jeans" , "Black jeans" , "Black suit" , "Blue tracksuit" ))
 ```
 
 Each of the events has a probability that lies between 0 and 1, and if we add up the probability of all events, they sum to 1, as shown in Figure \@ref(fig:pantsprob). And at this point, we've all achieved something. You've learned what probability distribution is.

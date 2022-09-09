@@ -59,6 +59,7 @@ tab:unnamed-chunk-10
 fig:cirep
 fig:unnamed-chunk-11
 fig:unnamed-chunk-12
+tab:unnamed-chunk-13
 fig:samplingdist
 fig:crit2
 fig:crit1
