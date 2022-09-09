@@ -54,6 +54,70 @@
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
@@ -239,7 +303,47 @@ div.csl-indent {
 <li class="chapter" data-level="7.6" data-path="estimation.html"><a href="estimation.html#population-parameter-estimations-in-cogstat"><i class="fa fa-check"></i><b>7.6</b> Population parameter estimations in CogStat</a></li>
 <li class="chapter" data-level="7.7" data-path="estimation.html"><a href="estimation.html#summary-3"><i class="fa fa-check"></i><b>7.7</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="hypothesistesting.html"><a href="hypothesistesting.html"><i class="fa fa-check"></i><b>8</b> Hypothesis testing</a></li>
+<li class="chapter" data-level="8" data-path="hypothesistesting.html"><a href="hypothesistesting.html"><i class="fa fa-check"></i><b>8</b> Hypothesis testing</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#hypotheses"><i class="fa fa-check"></i><b>8.1</b> A menagerie of hypotheses</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#research-hypotheses-versus-statistical-hypotheses"><i class="fa fa-check"></i><b>8.1.1</b> Research hypotheses versus statistical hypotheses</a></li>
+<li class="chapter" data-level="8.1.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#null-hypotheses-and-alternative-hypotheses"><i class="fa fa-check"></i><b>8.1.2</b> Null hypotheses and alternative hypotheses</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#errortypes"><i class="fa fa-check"></i><b>8.2</b> Two types of errors</a></li>
+<li class="chapter" data-level="8.3" data-path="hypothesistesting.html"><a href="hypothesistesting.html#teststatistics"><i class="fa fa-check"></i><b>8.3</b> Test statistics and sampling distributions</a></li>
+<li class="chapter" data-level="8.4" data-path="hypothesistesting.html"><a href="hypothesistesting.html#decisionmaking"><i class="fa fa-check"></i><b>8.4</b> Making decisions</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#critical-regions-and-critical-values"><i class="fa fa-check"></i><b>8.4.1</b> Critical regions and critical values</a></li>
+<li class="chapter" data-level="8.4.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#a-note-on-statistical-significance"><i class="fa fa-check"></i><b>8.4.2</b> A note on statistical “significance”</a></li>
+<li class="chapter" data-level="8.4.3" data-path="hypothesistesting.html"><a href="hypothesistesting.html#onesidedtests"><i class="fa fa-check"></i><b>8.4.3</b> The difference between one sided and two sided tests</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="hypothesistesting.html"><a href="hypothesistesting.html#pvalue"><i class="fa fa-check"></i><b>8.5</b> The <span class="math inline">\(p\)</span> value of a test</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#a-softer-view-of-decision-making"><i class="fa fa-check"></i><b>8.5.1</b> A softer view of decision making</a></li>
+<li class="chapter" data-level="8.5.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#the-probability-of-extreme-data"><i class="fa fa-check"></i><b>8.5.2</b> The probability of extreme data</a></li>
+<li class="chapter" data-level="8.5.3" data-path="hypothesistesting.html"><a href="hypothesistesting.html#a-common-mistake"><i class="fa fa-check"></i><b>8.5.3</b> A common mistake</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="hypothesistesting.html"><a href="hypothesistesting.html#writeup"><i class="fa fa-check"></i><b>8.6</b> Reporting the results of a hypothesis test</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#the-issue"><i class="fa fa-check"></i><b>8.6.1</b> The issue</a></li>
+<li class="chapter" data-level="8.6.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#two-proposed-solutions"><i class="fa fa-check"></i><b>8.6.2</b> Two proposed solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="hypothesistesting.html"><a href="hypothesistesting.html#running-the-hypothesis-test-in-practice"><i class="fa fa-check"></i><b>8.7</b> Running the hypothesis test in practice</a></li>
+<li class="chapter" data-level="8.8" data-path="hypothesistesting.html"><a href="hypothesistesting.html#effectsize"><i class="fa fa-check"></i><b>8.8</b> Effect size, sample size and power</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#the-power-function"><i class="fa fa-check"></i><b>8.8.1</b> The power function</a></li>
+<li class="chapter" data-level="8.8.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#effect-size"><i class="fa fa-check"></i><b>8.8.2</b> Effect size</a></li>
+<li class="chapter" data-level="8.8.3" data-path="hypothesistesting.html"><a href="hypothesistesting.html#increasing-the-power-of-your-study"><i class="fa fa-check"></i><b>8.8.3</b> Increasing the power of your study</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="hypothesistesting.html"><a href="hypothesistesting.html#nhstmess"><i class="fa fa-check"></i><b>8.9</b> Some issues to consider</a>
+<ul>
+<li class="chapter" data-level="8.9.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#neyman-versus-fisher"><i class="fa fa-check"></i><b>8.9.1</b> Neyman versus Fisher</a></li>
+<li class="chapter" data-level="8.9.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#bayesians-versus-frequentists"><i class="fa fa-check"></i><b>8.9.2</b> Bayesians versus frequentists</a></li>
+<li class="chapter" data-level="8.9.3" data-path="hypothesistesting.html"><a href="hypothesistesting.html#traps"><i class="fa fa-check"></i><b>8.9.3</b> Traps</a></li>
+</ul></li>
+<li class="chapter" data-level="8.10" data-path="hypothesistesting.html"><a href="hypothesistesting.html#summary-4"><i class="fa fa-check"></i><b>8.10</b> Summary</a></li>
+</ul></li>
 <li class="part"><span><b>STATISTICAL TOOLS</b></span></li>
 <li class="part"><span><b>BAYESIAN STATISTICS</b></span></li>
 <li class="chapter" data-level="9" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>9</b> Introduction to Bayesian statistics</a>
@@ -283,7 +387,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 9</span> Introduction to Bayesian statistics<a href="bayes.html#bayes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <blockquote>
 <p><em>In our reasonings concerning matter of fact, there are all imaginable degrees of assurance, from the highest certainty to the lowest species of moral evidence. A wise man, therefore, proportions his belief to the evidence.</em>
-– David Hume<a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a>.</p>
+– David Hume<a href="#fn43" class="footnote-ref" id="fnref43"><sup>43</sup></a>.</p>
 </blockquote>
 <p>The ideas I’ve presented to you in this book describe inferential statistics from the frequentist perspective. I’m not alone in doing this. In fact, almost every textbook given to undergraduate psychology students presents the opinions of the frequentist statistician as <em>the</em> theory of inferential statistics, the one true way to do things. I have taught this way for practical reasons. The frequentist view of statistics dominated the academic field of statistics for most of the 20th century, and this dominance is even more extreme among applied scientists. It was and is current practice among psychologists to use frequentist methods. Because frequentist methods are ubiquitous in scientific papers, every student of statistics needs to understand those methods, otherwise they will be unable to make sense of what those papers are saying! Unfortunately – in my opinion at least – the current practice in psychology is often misguided, and the reliance on frequentist methods is partly to blame. In this chapter I explain why I think this, and provide an introduction to Bayesian statistics, an approach that I think is generally superior to the orthodox approach.</p>
 <p>This chapter comes in two parts. In Sections <a href="bayes.html#basicbayes">9.1</a> through <a href="whybayes.html#whybayes">11</a> I talk about what Bayesian statistics are all about, covering the basic mathematical rules for how it works as well as an explanation for why I think the Bayesian approach is so useful. Afterwards, I provide a brief overview of how you can do Bayesian versions of chi-square tests (Section <a href="#bayescontingency"><strong>??</strong></a>), <span class="math inline">\(t\)</span>-tests (Section <a href="#ttestbf"><strong>??</strong></a>), regression (Section <a href="#bayesregression"><strong>??</strong></a>) and ANOVA (Section <a href="#bayesanova"><strong>??</strong></a>).</p>
@@ -296,7 +400,7 @@ div.csl-indent {
 <p>In this problem, I have presented you with a single piece of data (<span class="math inline">\(d =\)</span> I’m carrying the umbrella), and I’m asking you to tell me your beliefs about whether it’s raining. You have two possible <strong><em>hypotheses</em></strong>, <span class="math inline">\(h\)</span>: either it rains today or it does not. How should you solve this problem?</p>
 <div id="priors-what-you-believed-before" class="section level3 hasAnchor" number="9.1.1">
 <h3><span class="header-section-number">9.1.1</span> Priors: what you believed before<a href="bayes.html#priors-what-you-believed-before" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The first thing you need to do ignore what I told you about the umbrella, and write down your pre-existing beliefs about rain. This is important: if you want to be honest about how your beliefs have been revised in the light of new evidence, then you <em>must</em> say something about what you believed before those data appeared! So, what might you believe about whether it will rain today? You probably know that I live in Australia, and that much of Australia is hot and dry. And in fact you’re right: the city of Adelaide where I live has a Mediterranean climate, very similar to southern California, southern Europe or northern Africa. I’m writing this in January, and so you can assume it’s the middle of summer. In fact, you might have decided to take a quick look on Wikipedia<a href="#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a> and discovered that Adelaide gets an average of 4.4 days of rain across the 31 days of January. Without knowing anything else, you might conclude that the probability of January rain in Adelaide is about 15%, and the probability of a dry day is 85%. If this is really what you believe about Adelaide rainfall (and now that I’ve told it to you, I’m betting that this really <em>is</em> what you believe) then what I have written here is your <strong><em>prior distribution</em></strong>, written <span class="math inline">\(P(h)\)</span>:</p>
+<p>The first thing you need to do ignore what I told you about the umbrella, and write down your pre-existing beliefs about rain. This is important: if you want to be honest about how your beliefs have been revised in the light of new evidence, then you <em>must</em> say something about what you believed before those data appeared! So, what might you believe about whether it will rain today? You probably know that I live in Australia, and that much of Australia is hot and dry. And in fact you’re right: the city of Adelaide where I live has a Mediterranean climate, very similar to southern California, southern Europe or northern Africa. I’m writing this in January, and so you can assume it’s the middle of summer. In fact, you might have decided to take a quick look on Wikipedia<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a> and discovered that Adelaide gets an average of 4.4 days of rain across the 31 days of January. Without knowing anything else, you might conclude that the probability of January rain in Adelaide is about 15%, and the probability of a dry day is 85%. If this is really what you believe about Adelaide rainfall (and now that I’ve told it to you, I’m betting that this really <em>is</em> what you believe) then what I have written here is your <strong><em>prior distribution</em></strong>, written <span class="math inline">\(P(h)\)</span>:</p>
 <table>
 <thead>
 <tr>
@@ -330,7 +434,7 @@ Dry day
 </div>
 <div id="likelihoods-theories-about-the-data" class="section level3 hasAnchor" number="9.1.2">
 <h3><span class="header-section-number">9.1.2</span> Likelihoods: theories about the data<a href="bayes.html#likelihoods-theories-about-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>To solve the reasoning problem, you need a theory about my behaviour. When does Dan carry an umbrella? You might guess that I’m not a complete idiot,<a href="#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a> and I try to carry umbrellas only on rainy days. On the other hand, you also know that I have young kids, and you wouldn’t be all that surprised to know that I’m pretty forgetful about this sort of thing. Let’s suppose that on rainy days I remember my umbrella about 30% of the time (I really am awful at this). But let’s say that on dry days I’m only about 5% likely to be carrying an umbrella. So you might write out a little table like this:</p>
+<p>To solve the reasoning problem, you need a theory about my behaviour. When does Dan carry an umbrella? You might guess that I’m not a complete idiot,<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a> and I try to carry umbrellas only on rainy days. On the other hand, you also know that I have young kids, and you wouldn’t be all that surprised to know that I’m pretty forgetful about this sort of thing. Let’s suppose that on rainy days I remember my umbrella about 30% of the time (I really am awful at this). But let’s say that on dry days I’m only about 5% likely to be carrying an umbrella. So you might write out a little table like this:</p>
 <table>
 <thead>
 <tr>
@@ -370,7 +474,7 @@ Dry day
 </tr>
 </tbody>
 </table>
-<p>It’s important to remember that each cell in this table describes your beliefs about what data <span class="math inline">\(d\)</span> will be observed, <em>given</em> the truth of a particular hypothesis <span class="math inline">\(h\)</span>. This “conditional probability” is written <span class="math inline">\(P(d|h)\)</span>, which you can read as “the probability of <span class="math inline">\(d\)</span> given <span class="math inline">\(h\)</span>”. In Bayesian statistics, this is referred to as <strong><em>likelihood</em></strong> of data <span class="math inline">\(d\)</span> given hypothesis <span class="math inline">\(h\)</span>.<a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a></p>
+<p>It’s important to remember that each cell in this table describes your beliefs about what data <span class="math inline">\(d\)</span> will be observed, <em>given</em> the truth of a particular hypothesis <span class="math inline">\(h\)</span>. This “conditional probability” is written <span class="math inline">\(P(d|h)\)</span>, which you can read as “the probability of <span class="math inline">\(d\)</span> given <span class="math inline">\(h\)</span>”. In Bayesian statistics, this is referred to as <strong><em>likelihood</em></strong> of data <span class="math inline">\(d\)</span> given hypothesis <span class="math inline">\(h\)</span>.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a></p>
 </div>
 <div id="the-joint-probability-of-data-and-hypothesis" class="section level3 hasAnchor" number="9.1.3">
 <h3><span class="header-section-number">9.1.3</span> The joint probability of data and hypothesis<a href="bayes.html#the-joint-probability-of-data-and-hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -610,7 +714,7 @@ Dry
 </div>
 <div id="updating-beliefs-using-bayes-rule" class="section level3 hasAnchor" number="9.1.4">
 <h3><span class="header-section-number">9.1.4</span> Updating beliefs using Bayes’ rule<a href="bayes.html#updating-beliefs-using-bayes-rule" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The table we laid out in the last section is a very powerful tool for solving the rainy day problem, because it considers all four logical possibilities and states exactly how confident you are in each of them before being given any data. It’s now time to consider what happens to our beliefs when we are actually given the data. In the rainy day problem, you are told that I really <em>am</em> carrying an umbrella. This is something of a surprising event: according to our table, the probability of me carrying an umbrella is only 8.75%. But that makes sense, right? A guy carrying an umbrella on a summer day in a hot dry city is pretty unusual, and so you really weren’t expecting that. Nevertheless, the problem tells you that it is true. No matter how unlikely you thought it was, you must now adjust your beliefs to accommodate the fact that you now <em>know</em> that I have an umbrella.<a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a> To reflect this new knowledge, our <em>revised</em> table must have the following numbers:</p>
+<p>The table we laid out in the last section is a very powerful tool for solving the rainy day problem, because it considers all four logical possibilities and states exactly how confident you are in each of them before being given any data. It’s now time to consider what happens to our beliefs when we are actually given the data. In the rainy day problem, you are told that I really <em>am</em> carrying an umbrella. This is something of a surprising event: according to our table, the probability of me carrying an umbrella is only 8.75%. But that makes sense, right? A guy carrying an umbrella on a summer day in a hot dry city is pretty unusual, and so you really weren’t expecting that. Nevertheless, the problem tells you that it is true. No matter how unlikely you thought it was, you must now adjust your beliefs to accommodate the fact that you now <em>know</em> that I have an umbrella.<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a> To reflect this new knowledge, our <em>revised</em> table must have the following numbers:</p>
 <table>
 <thead>
 <tr>
@@ -710,7 +814,7 @@ Total
 </tbody>
 </table>
 <p>What this table is telling you is that, after being told that I’m carrying an umbrella, you believe that there’s a 51.4% chance that today will be a rainy day, and a 48.6% chance that it won’t. That’s the answer to our problem! The <strong><em>posterior probability</em></strong> of rain <span class="math inline">\(P(h|d)\)</span> given that I am carrying an umbrella is 51.4%</p>
-<p>How did I calculate these numbers? You can probably guess. To work out that there was a 0.514 probability of “rain”, all I did was take the 0.045 probability of “rain and umbrella” and divide it by the 0.0875 chance of “umbrella”. This produces a table that satisfies our need to have everything sum to 1, and our need not to interfere with the relative plausibility of the two events that are actually consistent with the data. To say the same thing using fancy statistical jargon, what I’ve done here is divide the joint probability of the hypothesis and the data <span class="math inline">\(P(d,h)\)</span> by the <strong><em>marginal probability</em></strong> of the data <span class="math inline">\(P(d)\)</span>, and this is what gives us the posterior probability of the hypothesis <em>given</em> that we know the data have been observed. To write this as an equation:<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a>
+<p>How did I calculate these numbers? You can probably guess. To work out that there was a 0.514 probability of “rain”, all I did was take the 0.045 probability of “rain and umbrella” and divide it by the 0.0875 chance of “umbrella”. This produces a table that satisfies our need to have everything sum to 1, and our need not to interfere with the relative plausibility of the two events that are actually consistent with the data. To say the same thing using fancy statistical jargon, what I’ve done here is divide the joint probability of the hypothesis and the data <span class="math inline">\(P(d,h)\)</span> by the <strong><em>marginal probability</em></strong> of the data <span class="math inline">\(P(d)\)</span>, and this is what gives us the posterior probability of the hypothesis <em>given</em> that we know the data have been observed. To write this as an equation:<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a>
 <span class="math display">\[
 P(h | d) = \frac{P(d,h)}{P(d)}
 \]</span></p>
@@ -725,13 +829,13 @@ P(h | d) = \frac{P(d|h) P(h)}{P(d)}
 </div>
 <div class="footnotes">
 <hr />
-<ol start="29">
-<li id="fn29"><p><a href="http://en.wikiquote.org/wiki/David_Hume" class="uri">http://en.wikiquote.org/wiki/David_Hume</a><a href="bayes.html#fnref29" class="footnote-back">↩︎</a></p></li>
-<li id="fn30"><p><a href="http://en.wikipedia.org/wiki/Climate_of_Adelaide" class="uri">http://en.wikipedia.org/wiki/Climate_of_Adelaide</a><a href="bayes.html#fnref30" class="footnote-back">↩︎</a></p></li>
-<li id="fn31"><p>It’s a leap of faith, I know, but let’s run with it okay?<a href="bayes.html#fnref31" class="footnote-back">↩︎</a></p></li>
-<li id="fn32"><p>Um. I hate to bring this up, but some statisticians would object to me using the word “likelihood” here. The problem is that the word “likelihood” has a very specific meaning in frequentist statistics, and it’s not quite the same as what it means in Bayesian statistics. As far as I can tell, Bayesians didn’t originally have any agreed upon name for the likelihood, and so it became common practice for people to use the frequentist terminology. This wouldn’t have been a problem, except for the fact that the way that Bayesians use the word turns out to be quite different to the way frequentists do. This isn’t the place for yet another lengthy history lesson, but to put it crudely: when a Bayesian says “<em>a</em> likelihood function” they’re usually referring one of the <em>rows</em> of the table. When a frequentist says the same thing, they’re referring to the same table, but to them “<em>a</em> likelihood function” almost always refers to one of the <em>columns</em>. This distinction matters in some contexts, but it’s not important for our purposes.<a href="bayes.html#fnref32" class="footnote-back">↩︎</a></p></li>
-<li id="fn33"><p>If we were being a bit more sophisticated, we could extend the example to accommodate the possibility that I’m lying about the umbrella. But let’s keep things simple, shall we?<a href="bayes.html#fnref33" class="footnote-back">↩︎</a></p></li>
-<li id="fn34"><p>You might notice that this equation is actually a restatement of the same basic rule I listed at the start of the last section. If you multiply both sides of the equation by <span class="math inline">\(P(d)\)</span>, then you get <span class="math inline">\(P(d) P(h| d) = P(d,h)\)</span>, which is the rule for how joint probabilities are calculated. So I’m not actually introducing any “new” rules here, I’m just using the same rule in a different way.<a href="bayes.html#fnref34" class="footnote-back">↩︎</a></p></li>
+<ol start="43">
+<li id="fn43"><p><a href="http://en.wikiquote.org/wiki/David_Hume" class="uri">http://en.wikiquote.org/wiki/David_Hume</a><a href="bayes.html#fnref43" class="footnote-back">↩︎</a></p></li>
+<li id="fn44"><p><a href="http://en.wikipedia.org/wiki/Climate_of_Adelaide" class="uri">http://en.wikipedia.org/wiki/Climate_of_Adelaide</a><a href="bayes.html#fnref44" class="footnote-back">↩︎</a></p></li>
+<li id="fn45"><p>It’s a leap of faith, I know, but let’s run with it okay?<a href="bayes.html#fnref45" class="footnote-back">↩︎</a></p></li>
+<li id="fn46"><p>Um. I hate to bring this up, but some statisticians would object to me using the word “likelihood” here. The problem is that the word “likelihood” has a very specific meaning in frequentist statistics, and it’s not quite the same as what it means in Bayesian statistics. As far as I can tell, Bayesians didn’t originally have any agreed upon name for the likelihood, and so it became common practice for people to use the frequentist terminology. This wouldn’t have been a problem, except for the fact that the way that Bayesians use the word turns out to be quite different to the way frequentists do. This isn’t the place for yet another lengthy history lesson, but to put it crudely: when a Bayesian says “<em>a</em> likelihood function” they’re usually referring one of the <em>rows</em> of the table. When a frequentist says the same thing, they’re referring to the same table, but to them “<em>a</em> likelihood function” almost always refers to one of the <em>columns</em>. This distinction matters in some contexts, but it’s not important for our purposes.<a href="bayes.html#fnref46" class="footnote-back">↩︎</a></p></li>
+<li id="fn47"><p>If we were being a bit more sophisticated, we could extend the example to accommodate the possibility that I’m lying about the umbrella. But let’s keep things simple, shall we?<a href="bayes.html#fnref47" class="footnote-back">↩︎</a></p></li>
+<li id="fn48"><p>You might notice that this equation is actually a restatement of the same basic rule I listed at the start of the last section. If you multiply both sides of the equation by <span class="math inline">\(P(d)\)</span>, then you get <span class="math inline">\(P(d) P(h| d) = P(d,h)\)</span>, which is the rule for how joint probabilities are calculated. So I’m not actually introducing any “new” rules here, I’m just using the same rule in a different way.<a href="bayes.html#fnref48" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

@@ -197,7 +197,6 @@ height <- 4.5
 plotSamples <- function(n, N) {
 IQ <- rnorm(n, 100, 15 / sqrt(N))
 hist(IQ, breaks = seq(10, 180, 5), border = "white", freq = FALSE,
-     col = ifelse(colour, emphColLight, emphGrey),
      xlab = "IQ Score", ylab = "", xlim = c(60, 140),
      main = paste("Sample Size =", N), axes = FALSE,
      font.main = 1, ylim = c(0, .07)
