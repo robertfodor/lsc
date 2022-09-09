@@ -1,2 +1,2 @@
-# Hypothesis testing
+# Hypothesis testing{#hypothesistesting}
 

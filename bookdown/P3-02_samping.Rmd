@@ -196,7 +196,7 @@ height <- 4.5
 # function to do all the work
 plotSamples <- function(n, N) {
 IQ <- rnorm(n, 100, 15 / sqrt(N))
-hist(IQ, breaks=seq(10, 180, 5), border = "white", freq = FALSE,
+hist(IQ, breaks = seq(10, 180, 5), border = "white", freq = FALSE,
      col = ifelse(colour, emphColLight, emphGrey),
      xlab = "IQ Score", ylab = "", xlim = c(60, 140),
      main = paste("Sample Size =", N), axes = FALSE,
@@ -236,7 +236,7 @@ At this point, you have a pretty good sense of what sampling distributions are, 
 
 However, there's something we've been glossing over so far. All examples up to this point have been based on the "IQ scores" experiments. And because IQ scores are roughly normally distributed, we've assumed that the population distribution is normal. What if it isn't normal? What happens to the sampling distribution of the mean? The remarkable thing is this: no matter what shape your population distribution is, as $N$ increases the sampling distribution of the mean starts to look more like a normal distribution. 
 
-To give you a sense of this, let's run some simulations. We start with the "ramped" distribution shown in the histogram in Figure \@ref(fig:cltdemo). As you can see by comparing the triangular-shaped histogram to the bell curve plotted by the black line, the population distribution doesn't look very much like a normal distribution at all. Next, let us simulate the results of a large number of experiments. In each experiment, we draw $N=2$ samples from this distribution and then calculate the sample mean. Figure \@ref(fig:cltdemob) plots the histogram of these sample means (i.e. the sampling distribution of the mean for $N=2$). This time, the histogram produces a $\cap$-shaped distribution: it's still not normal, but it's a lot closer to the black line than the population distribution in Figure \@ref(fig:cltdemoa). When we increase the sample size to $N=4$, the sampling distribution of the mean is very close to normal (Figure \@ref(fig:cltdemoc), and by the time we reach a sample size of $N=8$ it's almost perfectly normal. In other words, as long as your sample size isn't tiny, the sampling distribution of the mean will be approximately normal no matter what your population distribution looks like!
+To give you a sense of this, let's run some simulations. We start with the "ramped" distribution shown in the histogram in Figure \@ref(fig:cltdemo). As you can see by comparing the triangular-shaped histogram to the bell curve plotted by the black line, the population distribution doesn't look very much like a normal distribution at all. Next, let us simulate the results of a large number of experiments. In each experiment, we draw $N=2$ samples from this distribution and then calculate the sample mean. Figure \@ref(fig:cltdemo) panel b plots the histogram of these sample means (i.e. the sampling distribution of the mean for $N=2$). This time, the histogram produces a $\cap$-shaped distribution: it's still not normal, but it's a lot closer to the black line than the population distribution in Figure \@ref(fig:cltdemo) panel a. When we increase the sample size to $N=4$, the sampling distribution of the mean is very close to normal (Figure \@ref(fig:cltdemo) panel c), and by the time we reach a sample size of $N=8$ it's almost perfectly normal. In other words, as long as your sample size isn't tiny, the sampling distribution of the mean will be approximately normal no matter what your population distribution looks like!
 
 ```{r cltdemo, fig.cap="A demonstration of the central limit theorem. In panel a, we have a non-normal population distribution; and panels b-d show the sampling distribution of the mean for samples of size 2,4 and 8, for data drawn from the distribution in panel a. As you can see, even though the original population distribution is non-normal, the sampling distribution of the mean becomes pretty close to normal by the time you have a sample of even 4 observations. ", echo=FALSE, fig.show="hold", fig.align="center", out.width="50%"}
 knitr::include_graphics(c("resources/cltDemo-a.svg",
@@ -264,7 +264,7 @@ This result is useful for all sorts of things. It tells us why large experiments
 
 In all the IQ examples in the previous sections, we knew the population parameters ahead of time. As every undergraduate gets taught in their first lecture on the measurement of intelligence, IQ scores are *defined* to have mean 100 and standard deviation 15. However, this is a bit of a lie. How do we know that IQ scores have a true population mean of 100? Well, we know this because the people who designed the tests have administered them to very large samples, and have then "rigged" the scoring rules so that their sample has mean 100. That's not a bad thing of course: it's an important part of designing a psychological measurement. However, it's important to keep in mind that this theoretical mean of 100 only attaches to the population that the test designers used to design the tests. Good test designers will actually go to some lengths to provide "test norms" that can apply to lots of different populations (e.g., different age groups, nationalities etc.). 
 
-This is very handy, but of course, almost every research project of interest involves looking at a different population of people to those used in the test norms. For instance, suppose you wanted to measure the effect of low-level lead poisoning on cognitive functioning in Port Pirie, a South Australian industrial town with a lead smelter. Perhaps you decide that you want to compare IQ scores among people in Port Pirie to a comparable sample in Whyalla, a South Australian industrial town with a steel refinery.^[Please note that if you were *actually* interested in this question, you would need to be a *lot* more careful than we are being here. You *can't* simply compare IQ scores in Whyalla to Port Pirie and assume that any differences are due to lead poisoning. Even if it were true that the only differences between the two towns corresponded to the different refineries (and it isn't, not by a long shot), you need to account for the fact that people already *believe* that lead pollution causes cognitive deficits: if you recall back to Chapter \@ref(studydesign), this means that there are different demand effects for the Port Pirie sample than for the Whyalla sample. In other words, you might end up with an illusory group difference in your data, caused by the fact that people *think* that there is a real difference. It is pretty implausible to think that the locals wouldn't be well aware of what you were trying to do if a bunch of researchers turned up in Port Pirie with lab coats and IQ tests, and even less plausible to think that a lot of people would be pretty resentful of you for doing it. Those people won't be as cooperative in the tests. Other people in Port Pirie might be *more* motivated to do well because they don't want their home town to look bad. The motivational effects that would apply in Whyalla are likely to be weaker because people don't have any concept of "iron ore poisoning" in the same way that they have a concept for "lead poisoning". Psychology is *hard*.] Regardless of which town you're thinking about, it doesn't make a lot of sense simply to *assume* that the true population mean IQ is 100. No one has produced sensible norming data that can automatically be applied to South Australian industrial towns. We're going to have to **estimate** the population parameters from a sample of data. So how do we do this?
+This is very handy, but of course, almost every research project of interest involves looking at a different population of people to those used in the test norms. For instance, suppose you wanted to measure the effect of low-level lead poisoning on cognitive functioning in Port Pirie, a South Australian industrial town with a lead smelter. Perhaps you decide that you want to compare IQ scores among people in Port Pirie to a comparable sample in Whyalla, a South Australian industrial town with a steel refinery.^[Please note that if you were *actually* interested in this question, you would need to be a *lot* more careful than we are being here. You *can't* simply compare IQ scores in Whyalla to Port Pirie and assume that any differences are due to lead poisoning. Even if it were true that the only differences between the two towns corresponded to the different refineries (and it isn't, not by a long shot), you need to account for the fact that people already *believe* that lead pollution causes cognitive deficits: if you recall back to Chapter \@ref(researchdesign), this means that there are different demand effects for the Port Pirie sample than for the Whyalla sample. In other words, you might end up with an illusory group difference in your data, caused by the fact that people *think* that there is a real difference. It is pretty implausible to think that the locals wouldn't be well aware of what you were trying to do if a bunch of researchers turned up in Port Pirie with lab coats and IQ tests, and even less plausible to think that a lot of people would be pretty resentful of you for doing it. Those people won't be as cooperative in the tests. Other people in Port Pirie might be *more* motivated to do well because they don't want their home town to look bad. The motivational effects that would apply in Whyalla are likely to be weaker because people don't have any concept of "iron ore poisoning" in the same way that they have a concept for "lead poisoning". Psychology is *hard*.] Regardless of which town you're thinking about, it doesn't make a lot of sense simply to *assume* that the true population mean IQ is 100. No one has produced sensible norming data that can automatically be applied to South Australian industrial towns. We're going to have to **estimate** the population parameters from a sample of data. So how do we do this?
 
 ### Estimating the population mean
 
@@ -356,115 +356,89 @@ col.names = c("Symbol", "What is it?", "Do we know what it is?"))
 
 ## Estimating a confidence interval{#ci}
 
-Up to this point in this chapter, I've outlined the basics of sampling theory which statisticians rely on to make guesses about population parameters on the basis of a sample of data. As this discussion illustrates, one of the reasons we need all this sampling theory is that every data set leaves us with a some of uncertainty, so our estimates are never going to be perfectly accurate. The thing that has been missing from this discussion is an attempt to *quantify* the amount of uncertainty that attaches to our estimate. It's not enough to be able guess that, say, the mean IQ of undergraduate psychology students is 115 (yes, I just made that number up). We also want to be able to say something that expresses the degree of certainty that we have in our guess. For example, it would be nice to be able to say that there is a 95\% chance that the true mean lies between 109 and 121. The name for this is a **confidence interval** for the mean.
+Up to this point in this chapter, we've outlined the basics of sampling theory which statisticians rely on to make guesses about population parameters based on a sample of data. As this discussion illustrates, one of the reasons we need all this sampling theory is that every data set leaves us with some uncertainty, so our estimates are never going to be perfectly accurate. The thing missing from this discussion is an attempt to *quantify* the amount of uncertainty that attaches to our estimate. It's not enough to guess that the mean IQ of undergraduate psychology students is, say, 115. We also want to be able to say something that expresses the degree of certainty that we have in our guess. For example, it would be nice to say that there is a 95\% chance that the true mean lies between 109 and 121. The name for this is a **confidence interval** for the mean. Armed with an understanding of sampling distributions, constructing a confidence interval for the mean is quite easy.
 
-Armed with an understanding of sampling distributions, constructing a confidence interval for the mean is actually pretty easy. Here's how it works. Suppose the true population mean is $\mu$ and the standard deviation is $\sigma$. I've just finished running my study that has $N$ participants, and the mean IQ among those participants is $\bar{X}$. We know from our discussion of the central limit theorem (Section \@ref(clt) that the sampling distribution of the mean is approximately normal. We also know from our discussion of the normal distribution Section \@ref(normal) that there is a 95\% chance that a normally-distributed quantity will fall within two standard deviations of the true mean. To be more precise, we can use the `qnorm()` function to compute the 2.5th and 97.5th percentiles of the normal distribution
-```{r}
-qnorm( p = c(.025, .975) )
-``` 
-Okay, so I lied earlier on. The more correct answer is that 95\% chance that a normally-distributed quantity will fall within 1.96 standard deviations of the true mean. Next, recall that the standard deviation of the sampling distribution is referred to as the standard error, and the standard error of the mean is written as SEM. When we put all these pieces together, we learn that there is a 95\% probability that the sample mean $\bar{X}$ that we have actually observed lies within 1.96 standard errors of the population mean. Mathematically, we write this as:
+Suppose the true population mean is $\mu$ and the standard deviation is $\sigma$. Our study has $N$ participants whose mean IQ is $\bar{X}$. We know from our discussion of the central limit theorem (Section \@ref(clt)) that the sampling distribution of the mean is approximately normal. We also know from our discussion of the normal distribution (Section \@ref(normal)) that there is a 95\% chance that a normally-distributed quantity will fall within two standard deviations of the true mean. To be more precise, between $-1.959964$ and $1.959964$, meaning the 2.5th and 97.5th percentiles of the normal distribution. So the *more* correct answer is that there is a 95\% chance that a normally-distributed quantity will fall within *1.96 standard deviations* of the true mean. 
+
+Next, recall that the standard deviation of the sampling distribution is referred to as the *standard error*, and the standard error of the mean is written as SEM. When we put all these pieces together, we learn that there is a 95\% probability that the sample mean $\bar{X}$ that we have actually observed lies within 1.96 standard errors of the population mean. Mathematically, we write this as:
 $$
-\mu - \left( 1.96 \times \mbox{SEM} \right) \ \leq \  \bar{X}\  \leq \  \mu + \left( 1.96 \times \mbox{SEM} \right) 
+\mu - \left( 1.96 \times \mbox{SEM} \right) \ \leq \ \bar{X}\ \leq \ \mu + \left( 1.96 \times \mbox{SEM} \right) 
 $$
-where the SEM is equal to $\sigma / \sqrt{N}$, and we can be 95\% confident that this is true. However, that's not answering the question that we're actually interested in. The equation above tells us what we should expect about the sample mean, given that we know what the population parameters are. What we *want* is to have this work the other way around: we want to know what we should believe about the population parameters, given that we have observed a particular sample. However, it's not too difficult to do this. Using a little high school algebra, a sneaky way to rewrite our equation is like this:
+where the SEM is equal to $\sigma / \sqrt{N}$, and we can be 95\% confident that this is true. However, that's not answering the question that we're actually interested in.
+
+The equation above tells us what we should expect about the sample mean, given that we know the population parameters. What we *want* is to have this work the other way around: we want to know what we should believe about the population parameters, given that we have observed a particular sample. However, it's not too difficult to do this. Using a little high school algebra, a sneaky way to rewrite our equation is like this:
 $$
-\bar{X} -  \left( 1.96 \times \mbox{SEM} \right) \ \leq \ \mu  \ \leq  \ \bar{X} +  \left( 1.96 \times \mbox{SEM}\right)
+\bar{X} - \left( 1.96 \times \mbox{SEM} \right) \ \leq \ \mu \ \leq \ \bar{X} + \left( 1.96 \times \mbox{SEM}\right)
 $$
-What this is telling is is that the range of values has a 95\% probability of containing the population mean $\mu$. We refer to this range as a **95\% confidence interval**, denoted $\mbox{CI}_{95}$. In short, as long as $N$ is sufficiently large  -- large enough for us to believe that the sampling distribution of the mean is normal -- then we can write this as our formula for the 95\% confidence interval:
+
+What this is telling is that the range of values has a 95\% probability of containing the population mean $\mu$. We refer to this range as a **95\% confidence interval**, denoted $\mbox{CI}_{95}$.
+
+In short, as long as $N$ is sufficiently large -- large enough for us to believe that the sampling distribution of the mean is normal -- then we can write this as our formula for the 95\% confidence interval:
 $$
 \mbox{CI}_{95} = \bar{X} \pm \left( 1.96 \times \frac{\sigma}{\sqrt{N}} \right)
 $$
-Of course, there's nothing special about the number 1.96: it just happens to be the multiplier you need to use if you want a 95\% confidence interval. If I'd wanted a 70\% confidence interval, I could have used the `qnorm()` function to calculate the 15th and 85th quantiles:
-```{r}
-qnorm( p = c(.15, .85) )
-```
-and so the formula for $\mbox{CI}_{70}$ would be the same as the formula for $\mbox{CI}_{95}$ except that we'd use 1.04 as our magic number rather than 1.96.
+
+Of course, there's nothing special about the number 1.96: it just happens to be the multiplier you need to use if you want a 95\% confidence interval. If I'd wanted a 70\% confidence interval, you have to calculate the 15th and 85th quantiles of the normal distribution, which are $-1.036433$ and $1.036433$. So the formula for $\mbox{CI}_{70}$ would be the same as the formula for $\mbox{CI}_{95}$ except that we'd use 1.04 as our magic number rather than 1.96.
 
 ### A slight mistake in the formula
 
-As usual, I lied. The formula that I've given above for the 95\% confidence interval is approximately correct, but I glossed over an important detail in the discussion. Notice my formula requires you to use the standard error of the mean, SEM, which in turn requires you to use the true population standard deviation $\sigma$. Yet, in Section \@ref(pointestimates I stressed the fact that we don't actually *know* the true population parameters. Because we don't know the true value of $\sigma$, we have to use an estimate of the population standard deviation $\hat{\sigma}$ instead. This is pretty straightforward to do, but this has the consequence that we need to use the quantiles of the $t$-distribution rather than the normal distribution to calculate our magic number; and the answer depends on the sample size. When $N$ is very large, we get pretty much the same value using `qt()` that we would if we used `qnorm()`...
-```{r}
-N <- 10000   # suppose our sample size is 10,000
-qt( p = .975, df = N-1)   # calculate the 97.5th quantile of the t-dist
+The formula above for the 95\% confidence interval is approximately correct, but we glossed over an important detail in the discussion. Notice that it requires you to use the standard error of the mean, SEM, which in turn requires you to use the true population standard deviation $\sigma$. Yet, in Section \@ref(pointestimates), we stressed the fact that we don't actually *know* the true population parameters. Because we don't know the true value of $\sigma$, we have to use an estimate of the population standard deviation $\hat{\sigma}$ instead. This is pretty straightforward to do, but this has the consequence that we need to use the quantiles of the $t$-distribution rather than the normal distribution to calculate our magic number. And the answer depends on the sample size.
+
+When $N$ is very large, we get roughly the same value using $t$-distribution that we would if we used a normal distribution. But when $N$ is small, we get a much bigger number when we use the $t$ distribution.
+
+```{r echo=FALSE}
+knitr::kable(cbind(c("$N=10000$","$N=10$"),
+                   c("$1.959964$", "$1.959964$"),
+                   c("$1.960201$", "$2.262157$")),
+        col.names = c("Sample size", "Normal distribution", "$t$-distribution"),
+        caption = "97.5th percentile.")
 ```
-But when $N$ is small, we get a much bigger number when we use the $t$ distribution:
-```{r}
-N <- 10   # suppose our sample size is 10
-qt( p = .975, df = N-1)   # calculate the 97.5th quantile of the t-dist
-```
-There's nothing too mysterious about what's happening here. Bigger values mean that the confidence interval is wider, indicating that we're more uncertain about what the true value of $\mu$ actually is. When we use the $t$ distribution instead of the normal distribution, we get bigger numbers, indicating that we have more uncertainty. And why do we have that extra uncertainty? Well, because our estimate of the population standard deviation $\hat\sigma$ might be wrong! If it's wrong, it implies that we're a bit less sure about what our sampling distribution of the mean actually looks like... and this uncertainty ends up getting reflected in a wider confidence interval.  
+
+There's nothing too mysterious about what's happening here. Bigger values mean that the confidence interval is wider, indicating that we're more uncertain about the true value of $\mu$. When we use the $t$-distribution instead of the normal distribution, we get bigger numbers, indicating that we have more uncertainty. And why do we have that extra uncertainty? Well, because our estimate of the population standard deviation $\hat\sigma$ might be wrong. And if it is wrong, it implies that we are a bit less sure about what our sampling distribution of the mean actually looks like. This uncertainty ends up getting reflected in a wider confidence interval.
 
 
 ### Interpreting a confidence interval
 
-The hardest thing about confidence intervals is understanding what they *mean*. Whenever people first encounter confidence intervals, the first instinct is almost always to say that "there is a 95\% probabaility that the true mean lies inside the confidence interval". It's simple, and it seems to capture the common sense idea of what it means to say that I am "95\% confident". Unfortunately, it's not quite right. The intuitive definition relies very heavily on your own personal *beliefs* about the value of the population mean. I say that I am 95\% confident because those are my beliefs. In everyday life that's perfectly okay, but if you remember back to Section \@ref(probmeaning), you'll notice that talking about personal belief and confidence is a Bayesian idea. Personally (speaking as a Bayesian) I have no problem with the idea that the phrase "95\% probability" is allowed to refer to a personal belief. However, confidence intervals are *not* Bayesian tools. Like everything else in this chapter, confidence intervals are *frequentist* tools, and if you are going to use frequentist methods then it's not appropriate to attach a Bayesian interpretation to them. If you use frequentist methods, you must adopt frequentist interpretations!
+The hardest thing about confidence intervals is understanding what they *mean*. Whenever people first encounter confidence intervals, the first instinct is almost always to say that "there is a 95\% probability that the true mean lies inside the confidence interval". It's simple, and it seems to capture the common sense idea of what it means to say that I am "95\% confident". Unfortunately, it's not quite right. 
 
-Okay, so if that's not the right answer, what is? Remember what we said about frequentist probability: the only way we are allowed to make "probability statements" is to talk about a sequence of events, and to count up the frequencies of different kinds of events. From that perspective, the interpretation of a 95\% confidence interval must have something to do with replication. Specifically: if we replicated the experiment over and over again and computed a 95\% confidence interval for each replication, then 95\% of those *intervals* would contain the true mean. More generally, 95\% of all confidence intervals constructed using this procedure should contain the true population mean. This idea is illustrated in Figure \@ref(fig:cirep), which shows 50 confidence intervals constructed for a "measure 10 IQ scores" experiment (top panel) and another 50 confidence intervals for a "measure 25 IQ scores" experiment (bottom panel). A bit fortuitously, across the 100 replications that I simulated, it turned out that exactly 95 of them contained the true mean. 
+The intuitive definition relies very heavily on your personal *beliefs* about the value of the population mean. "I am 95\% confident because those are my beliefs." In everyday life, that's perfectly okay, but if you remember back to Section \@ref(probabilitymeaning), you'll notice that talking about personal belief and confidence is a Bayesian idea. Speaking as a Bayesian, there is no problem with the idea that the phrase "95\% probability" is allowed to refer to a personal belief. However, confidence intervals are *not* Bayesian tools. Like everything else in this chapter, confidence intervals are *frequentist* tools. And if you use frequentist methods, then it's not appropriate to attach a Bayesian interpretation to them. If you use frequentist methods, you must adopt frequentist interpretations.
 
-
-```{r cirep, fig.cap="95% confidence intervals. The top (panel a) shows 50 simulated replications of an experiment in which we measure the IQs of 10 people. The dot marks the location of the sample mean, and the line shows the 95% confidence interval. In total 47 of the 50 confidence intervals do contain the true mean (i.e., 100), but the three intervals marked with asterisks do not. The lower graph (panel b) shows a similar simulation, but this time we simulate replications of an experiment that measures the IQs of 25 people.", echo=FALSE, fig.align='center', out.width='100%'}
-knitr::include_graphics("resources/confIntReplicated.png")
+```{r cirep, fig.cap="95% confidence intervals. The top (panel a) shows 50 simulated replications of an experiment in which we measure the IQs of 10 people. The dot marks the location of the sample mean, and the line shows the 95% confidence interval. In total 47 of the 50 confidence intervals do contain the true mean (i.e., 100), but the three intervals marked with asterisks do not. The lower graph (panel b) shows a similar simulation, but this time we simulate replications of an experiment that measures the IQs of 25 people.", echo=FALSE, fig.align='center', out.width='100%', fig.show="hold"}
+knitr::include_graphics(c("resources/confIntReplicatedA.png",
+                          "resources/confIntReplicatedB.png"))
 ```
 
-The critical difference here is that the Bayesian claim makes a probability statement about the population mean (i.e., it refers to our uncertainty about the population mean), which is not allowed under the frequentist interpretation of probability because you can't "replicate" a population! In the frequentist claim, the population mean is fixed and no probabilistic claims can be made about it. Confidence intervals, however, are repeatable so we can replicate experiments. Therefore a frequentist is allowed to talk about the probability that the *confidence interval* (a random variable) contains the true mean; but is not allowed to talk about the probability that the *true population mean* (not a repeatable event) falls within the confidence interval. 
+The critical difference here is that the Bayesian claim makes a probability statement about the *population mean* (i.e. it refers to our uncertainty about the population mean), which is not allowed under the frequentist interpretation of probability because you can't "replicate" a population. In the frequentist claim, the population mean is fixed, and no probabilistic claims can be made about it. Confidence intervals, however, are repeatable, so we can replicate experiments. Therefore a frequentist is allowed to talk about the probability that the *confidence interval* (a random variable) contains the true mean; but is not allowed to talk about the probability that the *true population mean* (not a repeatable event) falls within the confidence interval.
 
-I know that this seems a little pedantic, but it does matter. It matters because the difference in interpretation leads to a difference in the mathematics. There is a Bayesian alternative to confidence intervals, known as *credible intervals*. In most situations credible intervals are quite similar to confidence intervals, but in other cases they are drastically different. As promised, though, I'll talk more about the Bayesian perspective in Chapter \@ref(bayes).
+This might seem a little pedantic, but it does matter. It matters because the difference in interpretation leads to a difference in mathematics. There is a Bayesian alternative to confidence intervals, known as **credible intervals**. In most situations, credible intervals are quite similar to confidence intervals, but in other cases, they are drastically different. We'll talk more about the Bayesian perspective in Chapter \@ref(bayes).
 
 
-### Calculating confidence intervals in R
+## Population parameter estimations in CogStat
 
-As far as I can tell, the core packages in R don't include a simple function for calculating confidence intervals for the mean. They *do* include a lot of complicated, extremely powerful functions that can be used to calculate confidence intervals associated with lots of different things, such as the `confint()` function that we'll use in Chapter \@ref(regression). But I figure that when you're first learning statistics, it might be useful to start with something simpler. As a consequence, the `lsr` package includes a function called `ciMean()` which you can use to calculate your confidence intervals. There are two arguments that you might want to specify:^[As of the current writing, these are the only arguments to the function. However, I am planning to add a bit more functionality to `ciMean()`. However, regardless of what those future changes might look like, the `x` and `conf` arguments will remain the same, and the commands used in this book will still work.]
+With CogStat, you don't have to worry about calculating confidence intervals by hand. The program does it for you. In the following example, we'll use the same data sets as in the previous sections. But this time, we'll see how CogStat calculates the 95% confidence interval parameters for both the mean and the standard deviation.
 
-- `x`. This should be a numeric vector containing the data. 
-- `conf`. This should be a number, specifying the confidence level. By default, `conf = .95`, since 95\% confidence intervals are the de facto standard in psychology.
+So, for example, let us load the `afl24.Rdata` file again and explore the `attendance` variable with the `Explore variable` tool.
 
-So, for example, if I load the `afl24.Rdata` file, calculate the confidence interval associated with the mean attendance:
-```
-> ciMean( x = afl$attendance )
-    2.5%    97.5% 
-31597.32 32593.12 
-```
-Hopefully that's fairly clear. 
-
-### Plotting confidence intervals in R{#ciplots}
-
-There's several different ways you can draw graphs that show confidence intervals as error bars. I'll show three versions here, but this certainly doesn't exhaust the possibilities. In doing so, what I'm assuming is that you want to draw is a plot showing the means and confidence intervals for one variable, broken down by different levels of a second variable. For instance, in our `afl` data that we discussed earlier, we might be interested in plotting the average `attendance` by `year`. I'll do this using two different functions, `bargraph.CI()` and `lineplot.CI()` (both of which are in the `sciplot` package). Assuming that you've installed these packages on your system (see Section \@ref(packageinstall) if you've forgotten how to do this), you'll need to load them. You'll also need to load the `lsr` package, because we'll make use of the `ciMean()` function to actually calculate the confidence intervals
-```{r warning = FALSE, message = FALSE}
-load( file.path("resources/data/afl24.Rdata" ))  # contains the "afl" data frame
-library( sciplot )     # bargraph.CI() and lineplot.CI() functions
-library( lsr )         # ciMean() function
+```{r, echo=FALSE, fig.cap="Sample properties for `attendance`", fig.align='center', out.width='100%'}
+knitr::include_graphics("resources/Cogstatattendancesample.png")
 ```
 
+CogStat gives you the *sample properties* as discussed in Chapter \@ref(exploringavariable), but it also gives the *population parameter estimations*. The estimates for the population mean and standard deviation are calculated automatically at 95\% confidence interval level, giving you the low (2.5th percentile) and high (97.5th percentile) values.
 
-Here's how to plot the means and confidence intervals drawn using `bargraph.CI()`.
-```{r bargraphCI, fig.cap="Means and 95% confidence intervals for AFL `attendance`, plotted separately for each `year` from 1987 to 2010. This graph was drawn using the `bargraph.CI()` function."}
+```{r, echo=FALSE, fig.cap="Population parameter estimates for `attendance`", fig.align='center', out.width='100%'}
+knitr::include_graphics("resources/Cogstatattendancepopulation.png")
+```
 
-bargraph.CI( x.factor = year,            # grouping variable 
-              response = attendance,      # outcome variable
-              data = afl,                 # data frame with the variables
-              ci.fun= ciMean,             # name of the function to calculate CIs
-              xlab = "Year",              # x-axis label
-              ylab = "Average Attendance" # y-axis label
- )
-```
-We can use the same arguments when calling the `lineplot.CI()` function:
-```{r lineplotCI, fig.cap = "Means and 95% confidence intervals for AFL `attendance`, plotted separately for each `year` from 1987 to 2010. This graph was drawn using the `lineplot.CI()` function."}
-lineplot.CI( x.factor = year,            # grouping variable 
-             response = attendance,      # outcome variable
-             data = afl,                 # data frame with the variables
-             ci.fun= ciMean,             # name of the function to calculate CIs
-             xlab = "Year",              # x-axis label
-             ylab = "Average Attendance" # y-axis label
-)
-```
 
 ## Summary
 
-In this chapter I've covered two main topics. The first half of the chapter talks about sampling theory, and the second half talks about how we can use sampling theory to construct estimates of the population parameters. The section breakdown looks like this:
+In this chapter, we've covered two main topics. The first half of the chapter talks about sampling theory, and the second half talks about how we can use sampling theory to construct estimates of the population parameters. The section breakdown looks like this:
 
 - Basic ideas about samples, sampling and populations (Section \@ref(srs))
 - Statistical theory of sampling: the law of large numbers (Section \@ref(lawlargenumbers)), sampling distributions and the central limit theorem (Section \@ref(samplesandclt)).
 - Estimating means and standard deviations (Section \@ref(pointestimates))
 - Estimating a confidence interval (Section \@ref(ci))
 
-As always, there's a lot of topics related to sampling and estimation that aren't covered in this chapter, but for an introductory psychology class this is fairly comprehensive I think. For most applied researchers you won't need much more theory than this. One big question that I haven't touched on in this chapter is what you do when you don't have a simple random sample. There is a lot of statistical theory you can draw on to handle this situation, but it's well beyond the scope of this book.
+As always, there are a lot of topics related to sampling and estimation that aren't covered in this book, but for an introductory psychology class, this is fairly comprehensive. For most applied researchers, you won't need much more theory than this.
+
+One big question we haven't discussed in this chapter is what you do when you don't have a simple random sample. There is a lot of statistical theory you can draw on to handle this situation, but it's well beyond the scope of this book.
