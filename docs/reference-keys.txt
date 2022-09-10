@@ -187,7 +187,6 @@ a-common-mistake
 writeup
 the-issue
 two-proposed-solutions
-running-the-hypothesis-test-in-practice
 effectsize
 the-power-function
 effect-size
