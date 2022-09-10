@@ -316,7 +316,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="8.4.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#critical-regions-and-critical-values"><i class="fa fa-check"></i><b>8.4.1</b> Critical regions and critical values</a></li>
 <li class="chapter" data-level="8.4.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#a-note-on-statistical-significance"><i class="fa fa-check"></i><b>8.4.2</b> A note on statistical “significance”</a></li>
-<li class="chapter" data-level="8.4.3" data-path="hypothesistesting.html"><a href="hypothesistesting.html#onesidedtests"><i class="fa fa-check"></i><b>8.4.3</b> The difference between one sided and two sided tests</a></li>
+<li class="chapter" data-level="8.4.3" data-path="hypothesistesting.html"><a href="hypothesistesting.html#a-note-on-the-word-prove"><i class="fa fa-check"></i><b>8.4.3</b> A note on the word “prove”</a></li>
+<li class="chapter" data-level="8.4.4" data-path="hypothesistesting.html"><a href="hypothesistesting.html#onesidedtests"><i class="fa fa-check"></i><b>8.4.4</b> The difference between one sided and two sided tests</a></li>
 </ul></li>
 <li class="chapter" data-level="8.5" data-path="hypothesistesting.html"><a href="hypothesistesting.html#pvalue"><i class="fa fa-check"></i><b>8.5</b> The <span class="math inline">\(p\)</span> value of a test</a>
 <ul>
@@ -393,7 +394,7 @@ P(h_0 | d) = \frac{P(d|h_0) P(h_0)}{P(d)}
 <p><span class="math display">\[
 P(h_1 | d) = \frac{P(d|h_1) P(h_1)}{P(d)}
 \]</span></p>
-<p>It’s all so simple that I feel like an idiot even bothering to write these equations down, since all I’m doing is copying Bayes rule from the previous section.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a></p>
+<p>It’s all so simple that I feel like an idiot even bothering to write these equations down, since all I’m doing is copying Bayes rule from the previous section.<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a></p>
 <div id="the-bayes-factor" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> The Bayes factor<a href="bayesianhypothesistests.html#the-bayes-factor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In practice, most Bayesian data analysts tend not to talk in terms of the raw posterior probabilities <span class="math inline">\(P(h_0|d)\)</span> and <span class="math inline">\(P(h_1|d)\)</span>. Instead, we tend to talk in terms of the <strong><em>posterior odds</em></strong> ratio. Think of it like betting. Suppose, for instance, the posterior probability of the null hypothesis is 25%, and the posterior probability of the alternative is 75%. The alternative hypothesis is three times as probable as the null, so we say that the <em>odds</em> are 3:1 in favour of the alternative. Mathematically, all we have to do to calculate the posterior odds is divide one posterior probability by the other:</p>
@@ -478,8 +479,8 @@ Very strong evidence
 </div>
 <div class="footnotes">
 <hr />
-<ol start="49">
-<li id="fn49"><p>Obviously, this is a highly simplified story. All the complexity of real life Bayesian hypothesis testing comes down to how you calculate the likelihood <span class="math inline">\(P(d|h)\)</span> when the hypothesis <span class="math inline">\(h\)</span> is a complex and vague thing. I’m not going to talk about those complexities in this book, but I do want to highlight that although this simple story is true as far as it goes, real life is messier than I’m able to cover in an introductory stats textbook.<a href="bayesianhypothesistests.html#fnref49" class="footnote-back">↩︎</a></p></li>
+<ol start="44">
+<li id="fn44"><p>Obviously, this is a highly simplified story. All the complexity of real life Bayesian hypothesis testing comes down to how you calculate the likelihood <span class="math inline">\(P(d|h)\)</span> when the hypothesis <span class="math inline">\(h\)</span> is a complex and vague thing. I’m not going to talk about those complexities in this book, but I do want to highlight that although this simple story is true as far as it goes, real life is messier than I’m able to cover in an introductory stats textbook.<a href="bayesianhypothesistests.html#fnref44" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
