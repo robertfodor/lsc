@@ -419,13 +419,13 @@ With CogStat, you don't have to worry about calculating confidence intervals by 
 So, for example, let us load the `afl24.Rdata` file again and explore the `attendance` variable with the `Explore variable` tool.
 
 ```{r, echo=FALSE, fig.cap="Sample properties for `attendance`", fig.align='center', out.width='100%'}
-knitr::include_graphics("resources/Cogstatattendancesample.png")
+knitr::include_graphics("resources/cogstatattendancesample.png")
 ```
 
 CogStat gives you the *sample properties* as discussed in Chapter \@ref(exploringavariable), but it also gives the *population parameter estimations*. The estimates for the population mean and standard deviation are calculated automatically at 95\% confidence interval level, giving you the low (2.5th percentile) and high (97.5th percentile) values.
 
 ```{r, echo=FALSE, fig.cap="Population parameter estimates for `attendance`", fig.align='center', out.width='100%'}
-knitr::include_graphics("resources/Cogstatattendancepopulation.png")
+knitr::include_graphics("resources/cogstatattendancepopulation.png")
 ```
 
 

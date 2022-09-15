@@ -2,9 +2,7 @@
 
 # Probability and distributions {#probability}
 
-Up to this point in the book, we've discussed some critical ideas in experimental design and talked a little about how you can summarise a data set. To many people, this is all there is to statistics: it's about calculating averages, collecting all the numbers, drawing pictures, and putting them all in a report somewhere. Kind of like stamp collecting, but with numbers. However, statistics cover much more than that. Descriptive statistics is one of the less significant parts of statistics and one of the least powerful. The more valuable part of statistics is that it provides tools that let you make *inferences* about data. 
-
-Once you start thinking about statistics in these terms -- that statistics are there to help us draw inferences from data -- you start seeing examples everywhere. For instance, here's a small extract from a newspaper article in the Sydney Morning Herald (30 Oct 2010):
+Descriptive statistics is one of the less significant parts of statistics and one of the least powerful. The more valuable part of statistics is that it provides tools that let you make *inferences* about data. Once you start thinking about statistics in these terms -- that statistics are there to help us draw inferences from data -- you start seeing examples everywhere. For instance, here's a small extract from a newspaper article in the Sydney Morning Herald (30 Oct 2010):
 
 > "I have a tough job," the Premier said in response to a poll which found her government is now the most unpopular Labor administration in polling history, with a primary vote of just 23 per cent.
 
