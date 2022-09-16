@@ -71,7 +71,7 @@ col.names = c("Number of flips", "Number of heads", "Proportion of heads"), alig
 
 Notice that at the start of the sequence, the *proportion* of heads fluctuates wildly, starting at .00 and rising as high as .80. Later on, one gets the impression that it dampens out a bit, with more and more of the values actually being pretty close to the "right" answer of .50. This is the frequentist definition of probability in a nutshell: flip a fair coin over and over again, and as $N$ grows large (approaches infinity, denoted $N\rightarrow \infty$), the proportion of heads will converge to 50\%. There are some subtle technicalities that mathematicians care about, but qualitatively speaking, that's how the frequentists define probability. Unfortunately, we don't have an infinite number of coins, or the infinite patience required to flip a coin an infinite number of times. However, we do have a computer, and computers excel at mindless repetitive tasks. So let's ask a computer to simulate flipping a coin 1000 times, and then draw a picture of what happens to the proportion $N_H / N$ as $N$ increases.  The results are shown in Figure \@ref(fig:frequentistprobability). As you can see, the *proportion of observed heads* eventually stops fluctuating, and settles down; when it does, the number at which it finally settles is the true probability of heads.
 
-```{r frequentistprobability, fig.cap="An illustration of how frequentist probability works. If you flip a fair coin over and over again, the proportion of heads that you've seen eventually settles down, and converges to the true probability of 0.5. Each panel shows four different simulated experiments: in each case, we pretend we flipped a coin 1000 times, and kept track of the proportion of flips that were heads as we went along. Although none of these sequences actually ended up with an exact value of .5, if we'd extended the experiment for an infinite number of coin flips they would have.", echo=FALSE}
+```{r frequentistprobability, fig.cap="An illustration of how frequentist probability works. If you flip a fair coin over and over again, the proportion of heads that you've seen eventually settles down, and converges to the true probability of 0.5. Each panel shows four different simulated experiments: in each case, we pretend we flipped a coin 1000 times, and kept track of the proportion of flips that were heads as we went along. Although none of these sequences actually ended up with an exact value of .5, if we'd extended the experiment for an infinite number of coin flips they would have.", echo=FALSE, fig.align="center", out.width="100%", fig.align="center", out.width="100%"}
 
 emphCol <- rgb(0,0,1)
 emphColLight <- rgb(.5,.5,1)
@@ -143,7 +143,7 @@ col.names = c( "" , "Blue jeans" , "Grey jeans" , "Black jeans" , "Black suit" ,
 
 Each of the events has a probability that lies between 0 and 1, and if we add up the probability of all events, they sum to 1, as shown in Figure \@ref(fig:pantsprob). And at this point, we've all achieved something. You've learned what probability distribution is.
 
-```{r pantsprob, fig.cap="A visual depiction of the \"pants\" probability distribution. There are five \"elementary events\", corresponding to the five pairs of pants. Each event has some probability of occurring: this probability is a number between 0 to 1. The sum of these probabilities is 1.", echo=FALSE}
+```{r pantsprob, fig.cap="A visual depiction of the \"pants\" probability distribution. There are five \"elementary events\", corresponding to the five pairs of pants. Each event has some probability of occurring: this probability is a number between 0 to 1. The sum of these probabilities is 1.", echo=FALSE, fig.align="center", out.width="100%"}
 
 
 probabilities <- c( .5, .3, .1, 0, .1)
@@ -205,7 +205,7 @@ Normal = c("$p(X | \\mu, \\sigma) = \\displaystyle\\frac{1}{\\sqrt{2\\pi}\\sigma
 ```
 
 
-```{r binomial1, fig.cap="The binomial distribution with size parameter of $N=20$ and an underlying success probability of $theta = 1/6$. Each vertical bar depicts the probability of one specific outcome (i.e., one possible value of $X$). Because this is a probability distribution, each of the probabilities must be a number between 0 and 1, and the heights of the bars must sum to 1 as well.", echo=FALSE}
+```{r binomial1, fig.cap="The binomial distribution with size parameter of $N=20$ and an underlying success probability of $theta = 1/6$. Each vertical bar depicts the probability of one specific outcome (i.e., one possible value of $X$). Because this is a probability distribution, each of the probabilities must be a number between 0 and 1, and the heights of the bars must sum to 1 as well.", echo=FALSE, fig.align="center", out.width="100%"}
 # plots the three examples of a binomial distribution
  
  # needed for printing
@@ -244,7 +244,7 @@ Of course, that's just notation. It doesn't tell us anything interesting about t
 Instead of focusing on the maths, let's try to understand what it means for a variable to be normally distributed. To that end, have a look at Figure \@ref(fig:normdist), which plots a normal distribution with mean $\mu = 0$ and standard deviation $\sigma = 1$. You can see where the name "bell curve" comes from: it looks a bit like a bell. Notice that, unlike the plots to illustrate the binomial distribution, the picture of the normal distribution in Figure \@ref(fig:normdist) shows a smooth curve instead of "histogram-like" bars. This isn't an arbitrary choice: the normal distribution is *continuous*, whereas the binomial is *discrete*. For instance, in the die rolling example from the last section, it was possible to get 3 skulls or 4 skulls, but impossible to get 3.9 skulls. The figures in the previous section reflected this fact: in Figure \@ref(fig:binomial1), for instance, there's a bar located at $X=3$ and another one at $X=4$, but there's nothing in between. Continuous quantities don't have this constraint. For instance, suppose we're talking about the weather. The temperature on a pleasant Spring day could be 23 degrees, 24 degrees, 23.9 degrees, or anything in between since temperature is a continuous variable, and so a normal distribution might be quite appropriate for describing Spring temperatures.^[In practice, the normal distribution is so handy that people tend to use it even when the variable isn't actually continuous. As long as there are enough categories (e.g., Likert scale responses to a questionnaire), it's pretty standard practice to use the normal distribution as an approximation. This works out much better in practice than you'd think.] 
 
 
-```{r normdist, fig.cap="The normal distribution with mean $mu = 0$ and standard deviation $sigma = 1$. The $x$-axis corresponds to the value of some variable, and the $y$-axis tells us something about how likely we are to observe that value. However, notice that the $y$-axis is labelled \"Probability Density\" and not \"Probability\". There is a subtle and somewhat frustrating characteristic of continuous distributions that makes the $y$ axis behave a bit oddly: the height of the curve here isn't actually the probability of observing a particular $x$ value. On the other hand, it *is* true that the heights of the curve tells you which $x$ values are more likely (the higher ones!).", echo=FALSE}
+```{r normdist, fig.cap="The normal distribution with mean $mu = 0$ and standard deviation $sigma = 1$. The $x$-axis corresponds to the value of some variable, and the $y$-axis tells us something about how likely we are to observe that value. However, notice that the $y$-axis is labelled \"Probability Density\" and not \"Probability\". There is a subtle and somewhat frustrating characteristic of continuous distributions that makes the $y$ axis behave a bit oddly: the height of the curve here isn't actually the probability of observing a particular $x$ value. On the other hand, it *is* true that the heights of the curve tells you which $x$ values are more likely (the higher ones!).", echo=FALSE, fig.align="center", out.width="100%"}
 # plots the standard normal
  
  # needed for printing
@@ -265,7 +265,7 @@ With this in mind, let's see if we can't get an intuition for how the normal dis
 
 In contrast, if we increase the standard deviation while keeping the mean constant, the peak of the distribution stays in the same place, but the distribution gets wider, as you can see in Figure \@ref(fig:normsd). Notice, though, that when we widen the distribution, the height of the peak shrinks. This has to happen: in the same way that the heights of the bars that we used to draw a discrete binomial distribution have to *sum* to 1, the total *area under the curve* for the normal distribution must equal 1. 
 
-```{r normmean, fig.cap="An illustration of what happens when you change the mean of a normal distribution. The solid line depicts a normal distribution with a mean of $mu=4$. The dashed line shows a normal distribution with a mean of $mu=7$. In both cases, the standard deviation is $sigma=1$. Not surprisingly, the two distributions have the same shape, but the dashed line is shifted to the right.", echo=FALSE}
+```{r normmean, fig.cap="An illustration of what happens when you change the mean of a normal distribution. The solid line depicts a normal distribution with a mean of $mu=4$. The dashed line shows a normal distribution with a mean of $mu=7$. In both cases, the standard deviation is $sigma=1$. Not surprisingly, the two distributions have the same shape, but the dashed line is shifted to the right.", echo=FALSE, fig.align="center", out.width="100%"}
  # draw the plot
  xval <- seq(0,11,.01)
  yval.1 <- dnorm( xval, 4, 1)
@@ -278,7 +278,7 @@ In contrast, if we increase the standard deviation while keeping the mean consta
 ```
 
 
-```{r normsd, fig.cap="An illustration of what happens when you change the the standard deviation of a normal distribution. Both distributions plotted in this figure have a mean of $mu = 5$, but they have different standard deviations. The solid line plots a distribution with standard deviation $sigma=1$, and the dashed line shows a distribution with standard deviation $sigma = 2$. As a consequence, both distributions are \"centred\" on the same spot, but the dashed line is wider than the solid one.", echo=FALSE}
+```{r normsd, fig.cap="An illustration of what happens when you change the the standard deviation of a normal distribution. Both distributions plotted in this figure have a mean of $mu = 5$, but they have different standard deviations. The solid line plots a distribution with standard deviation $sigma=1$, and the dashed line shows a distribution with standard deviation $sigma = 2$. As a consequence, both distributions are \"centred\" on the same spot, but the dashed line is wider than the solid one.", echo=FALSE, fig.align="center", out.width="100%"}
 # draw the plot
  xval <- seq(0,10,.01)
  yval.1 <- dnorm( xval, 5, 1)
@@ -292,7 +292,7 @@ In contrast, if we increase the standard deviation while keeping the mean consta
 
 Before moving on, there is one important characteristic of the normal distribution to point out. Irrespective of the actual mean and standard deviation, 68.3\% of the area falls within 1 standard deviation of the mean. Similarly, 95.4\% of the distribution falls within 2 standard deviations of the mean, and 99.7\% of the distribution is within 3 standard deviations. This idea is illustrated in Figures \@ref(fig:sdnorm1) and \@ref(fig:sdnorm2).
 
-```{r sdnorm1, fig.cap="The area under the curve tells you the probability that an observation falls within a particular range. The solid lines plot normal distributions with mean $mu=0$ and standard deviation $sigma=1$ The shaded areas illustrate \"areas under the curve\" for two important cases. On the left, we can see that there is a 68.3% chance that an observation will fall within one standard deviation of the mean. On the right, we see that there is a 95.4% chance that an observation will fall within two standard deviations of the mean", echo=FALSE}
+```{r sdnorm1, fig.cap="The area under the curve tells you the probability that an observation falls within a particular range. The solid lines plot normal distributions with mean $mu=0$ and standard deviation $sigma=1$ The shaded areas illustrate \"areas under the curve\" for two important cases. On the left, we can see that there is a 68.3% chance that an observation will fall within one standard deviation of the mean. On the right, we see that there is a 95.4% chance that an observation will fall within two standard deviations of the mean", echo=FALSE, fig.align="center", out.width="100%"}
 
 par(mfrow=c(1,2))
 
@@ -326,7 +326,7 @@ par(mfrow=c(1,1))
 ```
 
 
-```{r sdnorm2, fig.cap="Two more examples of the \"area under the curve idea\". There is a 15.9% chance that an observation is one standard deviation below the mean or smaller (left), and a 34.1% chance that the observation is greater than one standard deviation below the mean but still below the mean (right). Notice that if you add these two numbers together you get 15.9% + 34.1% = 50%. For normally distributed data, there is a 50% chance that an observation falls below the mean. And of course that also implies that there is a 50% chance that it falls above the mean.", echo=FALSE}
+```{r sdnorm2, fig.cap="Two more examples of the \"area under the curve idea\". There is a 15.9% chance that an observation is one standard deviation below the mean or smaller (left), and a 34.1% chance that the observation is greater than one standard deviation below the mean but still below the mean (right). Notice that if you add these two numbers together you get 15.9% + 34.1% = 50%. For normally distributed data, there is a 50% chance that an observation falls below the mean. And of course that also implies that there is a 50% chance that it falls above the mean.", echo=FALSE, fig.align="center", out.width="100%"}
 
 par(mfrow=c(1,2))
 plotOne(-1,0)
@@ -360,7 +360,7 @@ The normal distribution is the distribution that statistics makes the most use o
 
 - The **_$t$ distribution_** is a continuous distribution that looks very similar to a normal distribution but has heavier tails: see Figure \@ref(fig:tdist). This distribution tends to arise in situations where you think that the data actually follow a normal distribution, but you don't know the mean or standard deviation. We'll run into this distribution again in Chapter \@ref(ttest). 
 
-```{r tdist, fig.cap="A $t$ distribution with 3 degrees of freedom (solid line). It looks similar to a normal distribution, but it's not quite the same. For comparison purposes, we've plotted a standard normal distribution as the dashed line. Note that the \"tails\" of the $t$ distribution are \"heavier\" (i.e., extend further outwards) than the tails of the normal distribution? That's the important difference between the two. ", echo=FALSE}
+```{r tdist, fig.cap="A $t$ distribution with 3 degrees of freedom (solid line). It looks similar to a normal distribution, but it's not quite the same. For comparison purposes, we've plotted a standard normal distribution as the dashed line. Note that the \"tails\" of the $t$ distribution are \"heavier\" (i.e., extend further outwards) than the tails of the normal distribution? That's the important difference between the two. ", echo=FALSE, fig.align="center", out.width="100%"}
 xval <- seq(-5,5,.01)
  yval <- dt( xval, df=3)
  plot( xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
@@ -372,7 +372,7 @@ xval <- seq(-5,5,.01)
 
 - The **_$\chi^2$ distribution_** is another distribution that turns up in lots of different places. The situation in which we'll see it is when doing categorical data analysis (Chapter \@ref(chisquare)), but it's one of those things that actually pops up all over the place. When you dig into the maths (and who doesn't love doing that?), it turns out that the main reason why the $\chi^2$ distribution turns up all over the place is that if you have a bunch of variables that are normally distributed, square their values and then add them up (a procedure referred to as taking a "sum of squares"), this sum has a $\chi^2$ distribution. You'd be amazed how often this fact turns out to be useful. Anyway, here's what a $\chi^2$ distribution looks like: Figure \@ref(fig:chisqdist).
 
-```{r chisqdist, fig.cap="A $chi^2$ distribution with 3 degrees of freedom. Notice that the observed values must always be greater than zero, and that the distribution is pretty skewed. These are the key features of a chi-square distribution.", echo=FALSE}
+```{r chisqdist, fig.cap="A $chi^2$ distribution with 3 degrees of freedom. Notice that the observed values must always be greater than zero, and that the distribution is pretty skewed. These are the key features of a chi-square distribution.", echo=FALSE, fig.align="center", out.width="100%"}
  xval <- seq(0,10,.01)
  yval <- dchisq( xval, df=3)
  plot( xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
@@ -383,7 +383,7 @@ xval <- seq(-5,5,.01)
 
 - The **_$F$ distribution_** looks a bit like a $\chi^2$ distribution, and it arises whenever you need to compare two $\chi^2$ distributions to one another. Admittedly, this doesn't exactly sound like something that any sane person would want to do, but it turns out to be very important in real-world data analysis. Remember when we said that $\chi^2$ turns out to be the key distribution when we're taking a "sum of squares"? Well, what that means is if you want to compare two different "sums of squares", you're probably talking about something that has an $F$ distribution. Of course, we still haven't given you an example of anything involving a sum of squares, but we will in Chapter \@ref(anova). And that's where we'll run into the $F$ distribution. Oh, and here's a picture: Figure \@ref(fig:Fdist).
 
-```{r Fdist, fig.cap="An $F$ distribution with 3 and 5 degrees of freedom. Qualitatively speaking, it looks pretty similar to a chi-square distribution, but they're not quite the same in general.", echo=FALSE}
+```{r Fdist, fig.cap="An $F$ distribution with 3 and 5 degrees of freedom. Qualitatively speaking, it looks pretty similar to a chi-square distribution, but they're not quite the same in general.", echo=FALSE, fig.align="center", out.width="100%"}
  # draw the plot
  xval <- seq(0,10,.01)
  yval <- df( xval, df1=3, df2=5)
