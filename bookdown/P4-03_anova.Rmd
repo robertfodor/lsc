@@ -1,0 +1,1 @@
+# Comparing several means (one-way ANOVA){#anova}
