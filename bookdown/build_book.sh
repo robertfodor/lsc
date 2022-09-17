@@ -7,3 +7,9 @@ rm -rf ../docs
 
 # Run bookdown
 Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook', output_dir='../docs')"
+
+# Create CNAME
+echo 'learningstatisticswithcogstat.com' > ../docs/CNAME
+
+# Cleanup
+rm -rf _bookdown_files
