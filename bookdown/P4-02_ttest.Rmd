@@ -175,7 +175,7 @@ knitr::kable(tibble::tribble(
 
 which in turn meant that researchers could calculate their $z$-statistic by hand, and then look up the critical value in a text book. That was an incredibly handy thing to be able to do back then.
 
-```{r ztest2, fig.cap="Rejection regions for the two-sided $z$-test", echo=FALSE, fig.align="center", fig.show="hold", out.width="50%"}
+```{r ztest2, fig.cap="Rejection regions for the two-sided $z$-test", echo=FALSE, fig.align="center", fig.show="hold", out.width="100%"}
   width <- 6
   height <- 4
   
@@ -205,7 +205,7 @@ which in turn meant that researchers could calculate their $z$-statistic by hand
   title(xlab="Value of z Statistic", main="Two Sided Test", font.main=1)
 ```
 
-```{r ztest1, fig.cap="Rejection regions for the one-sided $z$-test", echo=FALSE}
+```{r ztest1, fig.cap="Rejection regions for the one-sided $z$-test", echo=FALSE, fig.align="center", out.width="100%"}
   plot.new()
   plot.window( xlim=c(-3,3), ylim=c(0,.4) )
   
@@ -248,7 +248,7 @@ Having loaded the `grades` data and explored the descriptive statistics, let us 
  <th>95% confidence interval (high)</th>
  </tr>
  </thead>
- <tbody>
+ <tbody">
  <tr>
  <td>Mean</td>
  <td>72.3</td>

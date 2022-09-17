@@ -14,6 +14,7 @@ subtitle: A tutorial for psychology students and other beginners
 biblio-style: apa
 csl: apa7.csl
 github-repo: https://github.com/robertfodor/lsc
+url: https://learningstatisticswithcogstat.com
 description: '*Learning Statistics with CogStat* covers the contents of an introductory
   statistics class, as typically taught to undergraduate psychology students based
   on Danielle Navarro''s original *Learning Statistics with R* with a focus on automatic
