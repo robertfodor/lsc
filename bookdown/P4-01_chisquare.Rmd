@@ -397,8 +397,13 @@ knitr::include_graphics("resources/cogstatchapek9hypo.png")
 
 Let us go through the `Hypothesis tests` section line by line.
 
-```{r chihypohtml, echo=FALSE, results="asis"}
-xfun::file_string("chihypohtml.html")
+```{=html}
+      <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
+            <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
+            <p style="color:#008000;">Testing if the distributions are the same.<br/>One grouping variable. Two groups. Nominal variable. &gt;&gt; Running chi-squared test.</p>
+            <p style="color:black">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in w: 0.29.</p>
+            <p>Result of the Pearson's chi-squared test: &#967;<span style=" vertical-align:super;">2</span>(2, <span style=" font-style:italic;">N</span> = 180) = 10.72, <span style=" font-style:italic;">p</span> = .005</p>
+      </div>
 ```
 
 - `Testing if the distributions are the same.`: This, in plain English, tells us that we are testing for a null hypothesis where all distributions, or probabilities, are the same. It does not differ in essence from the $H_0$ we described more eloquently in Table \@ref(tab:chapeknullhypo).
@@ -450,3 +455,83 @@ $$
 
 However, if CogStat didn't do the correction, the results would have been $\chi^2(2, N = 180) = 7.02, p = 0.008$, which is a bit different. The difference is not huge, but it is there. The Yates correction is a good thing to know about, but it's not something you need to worry about too much. It's just a little bit of a hack that makes the test work better in this specific case.
 
+## Effect size{#chisqeffectsize}
+
+As we discussed earlier in Section \@ref(effectsize), it's becoming commonplace to ask researchers to report some measure of effect size. So, suppose that you've run your chi-square test, which turns out to be significant. So you now know that there is some association between your variables (independence test) or some deviation from the specified probabilities (goodness of fit test). Now you want to report a measure of effect size. That is, given that there is an association/deviation, how strong is it?
+
+There are several different measures you can choose to report and several different tools you can use to calculate them. By default, the two measures that people tend to report most frequently are the $\phi$ statistic and the somewhat superior version, known as Cram\'er's $V$. While CogStat gives you only Cramér's $V$, we need to start with $\phi$ because they are related.
+
+Mathematically, they're both very simple. To calculate the $\phi$ statistic, you just divide your $X^2$ value by the sample size and take the square root:
+$$ 
+\phi = \sqrt{\frac{X^2}{N}}
+$$
+
+The idea here is that the $\phi$ statistic is supposed to range between 0 (no association at all) and 1 (perfect association). However, it doesn't always do this when your contingency table is bigger than $2 \times 2$ (like in our original chapek9 data set), which is a total pain. So, to correct this, people usually prefer to report the $V$ statistic proposed by @Cramer1946. It's a pretty simple adjustment to $\phi$. If you've got a contingency table with $r$ rows and $c$ columns, then define $k = \min(r,c)$ to be the smaller of the two values. If so, then **Cramér's $V$** statistic is
+$$
+\phi_c = \sqrt{\frac{X^2}{N(k-1)}}
+$$
+And you're done. This seems to be a reasonably popular measure, presumably because it's easy to calculate, and it gives answers that aren't completely silly: you know that $V$ does range from *0 (no association at all)* to *1 (perfect association)*.
+
+Calculating $V$ is automatic in CogStat, as you've seen in the result sets earlier in both the original chapek9 data set (Figure \@ref(fig:cogstatchapek9hypo)) and the modified one (Figure \@ref(fig:chapek9two)). Now let's look at the original chapek9 effect size.
+
+```{=html}
+        <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
+            <p style="font-size: medium; font-weight: 600; color: #3960a5;">Standardized effect sizes</p> 
+            <table style="border: 0px; background-color: white;">
+                <tr>
+                    <td style="border: 0px; background-color: white;"></td>
+                    <td style="border: 0px; background-color: white;">Value</td>
+                </tr>
+                <tr>
+                    <td style="border: 0px; background-color: white; padding-right: 10px">Cram&eacute;r's V measure of association</td>
+                    <td style="border: 0px; background-color: white;">&#981;<sub>c</sub> = 0.244</td>
+                </tr>
+            </table>
+        </div>
+```
+
+A Cramer's V of 0.244 tells us that there is a moderate association between the two variables. The usual guidance is that anything below 0.2 is a weak association, 0.2 to 0.6 is a moderate association, and anything above 0.6 is a strong association. However, you must always look at the context of your data when determining the effect size.
+
+## Assumptions of the test(s){#chisqassumptions}
+
+All statistical tests make assumptions, and it's usually a good idea to check that those assumptions are met. For the chi-square tests discussed so far in this chapter, the assumptions are:
+
+- *Expected frequencies are sufficiently large*. Remember how in the previous section, we saw that the $\chi^2$ sampling distribution emerges because the binomial distribution is similar to a normal distribution? Well, as we discussed in Chapter \@ref(probability), this is only true when the number of observations is sufficiently large. What that means in practice is that all of the expected frequencies need to be reasonably big. How big is reasonably big? Opinions differ, but the default assumption seems to be that you generally would like to see all your expected frequencies larger than about 5, though for larger tables, you would probably be okay if at least 80\% of the expected frequencies are above 5 and none of them are below 1. However, these seem to have been proposed as rough guidelines, not hard and fast rules; and they seem somewhat conservative [Larntz1978]. 
+- *Data are independent of one another*. One somewhat hidden assumption of the chi-square test is that you have to believe that the observations are genuinely independent. Suppose we are interested in the proportion of babies born at a particular hospital that are boys. We walk around the maternity wards and observe 20 girls and only 10 boys. Seems like a pretty convincing difference, right? But later on, it turns out that we'd actually walked into the same ward 10 times, and in fact, we'd only seen 2 girls and 1 boy. Not as convincing, is it? Our original 30 *observations* were massively non-independent. And were only, in fact, equivalent to 3 independent observations. Obviously, this is an extreme(ly silly) example, but it illustrates the fundamental issue. Non-independence "stuffs things up". Sometimes it causes you to falsely reject the null, as the silly hospital example illustrates, but it can go the other way too. Let's consider what would happen if we'd done the cards experiment slightly differently: instead of asking 200 people to try to imagine sampling one card at random, suppose we asked 50 people to select 4 cards. One possibility would be that *everyone* selects one heart, one club, one diamond and one spade (in keeping with the "representativeness heuristic"; Tversky \& Kahneman 1974). This is highly non-random behaviour from people, but in this case, we would get an observed frequency of 50 for all four suits. For this example, the fact that the observations are non-independent (because the four cards that you pick will be related to each other) actually leads to the opposite effect, falsely retaining the null.
+
+If you find yourself in a situation where independence is violated, it may be possible to use the McNemar test or the Cochran test. Similarly, if your expected cell counts are too small, check out the Fisher exact test.
+
+## The Fisher exact test{#fisherexacttest}
+
+What should you do if your cell counts are too small, but you'd still like to test the null hypothesis that the two variables are independent? One answer would be "collect more data", but that's far too glib: there are a lot of situations in which it would be either infeasible or unethical to do. If so, statisticians are morally obligated to provide scientists with better tests. In this instance, Fisher (1922) kindly provided the right answer to the question. To illustrate the basic idea, let's suppose we're analysing data from a field experiment, looking at the emotional status of people accused of witchcraft. Some of them are currently being burned at the stake.^[This example is based on a joke article published in the *Journal of Irreproducible Results*.] Unfortunately for the scientist (but rather fortunately for the general populace), it's quite hard to find people in the process of being set on fire, so the cell counts are microscopic. The [`salem.csv`](resources/data/salem.csv) file illustrates the point.
+
+```{r cogstatsalemload, echo=FALSE, fig.align="center", fig.cap="The `salem` data set", out.width="100%"}
+knitr::include_graphics("resources/cogstatsalemload.png")
+```
+
+Looking at this data, you'd be hard pressed not to suspect that people not on fire are more likely to be happy than people on fire. However, the chi-square test (even with the Yates correction for the 2x2 data) makes this very hard to test because of the small sample size.
+
+```{r cogstatsalemresult, echo=FALSE, fig.align="center", out.width="100%"}
+knitr::include_graphics("resources/cogstatsalemresult.png")
+```
+
+We'd *really* like to be able to get a better answer than this provided we really don't want to be on fire. This is where **Fisher's exact test** \cite{Fisher1922} comes in very handy. The Fisher exact test works somewhat differently to the chi-square test (or in fact any of the other hypothesis tests that I talk about in this book) insofar as it doesn't have a test statistic; it calculates the $p$-value "directly".
+
+Let's have some notation: 
+
+```{r echo=FALSE}
+knitr::kable(tibble::tribble(
+                 ~NANA,          ~Happy,          ~Sad,         ~Total,
+    "Set on fire   ", " $O_{11}$ ", " $O_{12}$ ", " $R_{1}$ ",
+  "Not set on fire ", " $O_{21}$ ", " $O_{22}$ ", " $R_{2}$ ",
+            "Total ",  " $C_{1}$ ",  " $C_{2}$ ",      " $N$"
+  ), col.names = c("", "Happy", "Sad", "Total"))
+```
+
+In order to construct the test Fisher treats both the row and column totals ($R_1$, $R_2$, $C_1$ and $C_2$) are known, fixed quantities; and then calculates the probability that we would have obtained the observed frequencies that we did ($O_{11}$, $O_{12}$, $O_{21}$ and $O_{22}$) given those totals. In the notation that we developed in Chapter \@ref(probability) this is written:
+$$
+P(O_{11}, O_{12}, O_{21}, O_{22} \ | \ R_1, R_2, C_1, C_2) 
+$$
+and as you might imagine, it's a slightly tricky exercise to figure out what this probability is, but it turns out that this probability is described by a distribution known as the *hypergeometric distribution*. Now that we know this, what we have to do to calculate our $p$-value is calculate the probability of observing this particular table *or a table that is "more extreme"*.^[Not surprisingly, the Fisher exact test is motivated by Fisher's interpretation of a $p$-value, not Neyman's!] Back in the 1920s, computing this sum was daunting even in the simplest of situations, but these days it's pretty easy as long as the tables aren't too big and the sample size isn't too large. The conceptually tricky issue is to figure out what it means to say that one contingency table is more "extreme" than another. The easiest solution is to say that the table with the lowest probability is the most extreme. This then gives us the $p$-value of $0.03571$.
+
+The implementation of the test in CogStat is not yet available. The main thing we're interested in here is the $p$-value, which in this case is small enough ($p=.036$) to justify rejecting the null hypothesis that people on fire are just as happy as people not on fire.

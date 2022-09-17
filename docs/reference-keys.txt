@@ -79,6 +79,7 @@ tab:unnamed-chunk-22
 tab:chapeknullhypo
 fig:cogstatchapek9hypo
 fig:chapek9two
+fig:cogstatsalemload
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -220,6 +221,9 @@ chisqindependence
 constructing-our-hypothesis-test
 AssocTestInCogStat
 yates
+chisqeffectsize
+chisqassumptions
+fisherexacttest
 ttest
 anova
 regression
