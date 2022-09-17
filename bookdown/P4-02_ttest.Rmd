@@ -175,7 +175,7 @@ knitr::kable(tibble::tribble(
 
 which in turn meant that researchers could calculate their $z$-statistic by hand, and then look up the critical value in a text book. That was an incredibly handy thing to be able to do back then.
 
-```{r ztest2, fig.cap="Rejection regions for the two-sided $z$-test", echo=FALSE}
+```{r ztest2, fig.cap="Rejection regions for the two-sided $z$-test", echo=FALSE, fig.align="center", fig.show="hold", out.width="50%"}
   width <- 6
   height <- 4
   
