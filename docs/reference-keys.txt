@@ -78,6 +78,7 @@ fig:cogstatchapek9descriptives
 tab:unnamed-chunk-22
 tab:chapeknullhypo
 fig:cogstatchapek9hypo
+fig:chapek9two
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -218,6 +219,7 @@ a-comment-on-statistical-notation-advanced
 chisqindependence
 constructing-our-hypothesis-test
 AssocTestInCogStat
+yates
 ttest
 anova
 regression

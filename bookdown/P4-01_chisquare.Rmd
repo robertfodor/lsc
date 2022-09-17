@@ -177,8 +177,12 @@ lines(x, dchisq(x,df=4),col=ifelse(colour,emphCol,"black"),
       lwd=3, lty=2 )
 lines(x, dchisq(x,df=5),col=ifelse(colour,emphCol,"black"),
       lwd=3, lty=3 )
+lines(x, dchisq(x,df=6),col=ifelse(colour,emphCol,"black"),
+      lwd=3, lty=4 )
+lines(x, dchisq(x,df=7),col=ifelse(colour,emphCol,"black"),
+      lwd=3, lty=5 )
 
-legend(7,.22,legend=c("df = 3","df = 4","df = 5"), lty=1:3, 
+legend(7,.22,legend=c("df = 3","df = 4","df = 5", "df = 6", "df = 7"), lty=1:5, 
       lwd=3, col=ifelse(colour,emphCol,"black"), bty="n" )
 ```
 
@@ -418,3 +422,31 @@ This output gives us enough information to write up the result:
 > Pearson's $\chi^2$ revealed a significant association between species and choice ($\chi^2(2) = 10.72, p < .01$): robots appeared to be more likely to say that they prefer flowers, but the humans were more likely to say they prefer data.
 
 Notice that, once again, we provided a little bit of interpretation to help the human reader understand what's going on with the data. This is a good habit to get into. It's also a good idea to report the effect size, which we will do in the next section.
+
+
+## Yates correction for 1 degree of freedom{#yates}
+
+Time for a little bit of a digression. You need to make a tiny change to your calculations whenever you only have 1 degree of freedom. It's called the **continuity correction**, or sometimes the **Yates correction**.
+
+The $\chi^2$ test is based on an approximation, specifically on the assumption that binomial distribution starts to look like a normal distribution for large $N$. One problem with this is that it often doesn't quite work, especially when you've only got 1 degree of freedom (e.g. when you're doing a test of independence on a $2 \times 2$ contingency table). The main reason for this is that the true sampling distribution for the $X^2$ statistic is actually discrete (because you're dealing with categorical data!), but the $\chi^2$ distribution is continuous. This can introduce systematic problems. Specifically, when $N$ is small and when $df=1$, the goodness of fit statistic tends to be "too big", meaning that you actually have a bigger $\alpha$ value than you think (or, equivalently, the $p$ values are a bit too small). @Yates1934 suggested a simple fix, in which you redefine the goodness of fit statistic as:
+$$
+X^2 = \sum_{i} \frac{(|E_i - O_i| - 0.5)^2}{E_i}
+$$
+Basically, he subtracts off 0.5 everywhere. The correction is basically a hack. It's not derived from any principled theory: rather, it's based on an examination of the behaviour of the test and observing that the corrected version seems to work better.
+
+CogStat (or any other software, for that matter) introduces this correction, so it's useful to know what it is about. You won't know when it happens because the CogStat output doesn't explicitly say that it has used a "continuity correction" or "Yates' correction".^[Technically, CogStat uses `chi2_contingency` function from `scipy` without specifying the `correction` parameter which defaults to `true`.]
+
+Let us overwrite all the `puppy` answers in our `chapek9` data frame to look at 1 degree of freedom (Figure \@ref(fig:chapek9two)).
+
+```{r chapek9two, fig.cap="CogStat results for [`chapek9two.csv`](resources/data/chapek9two.csv) with 1 degree of freedom", fig.align="center", out.width="100%", fig.show="hold", echo=FALSE}
+knitr::include_graphics(c("resources/cogstatchapek9twomatrix.png",
+                    "resources/cogstatchapek9tworesult.png"))
+```
+
+The result as calculated by default with the Yates correction is:
+$$
+\chi^2(1, N = 180) = 6.24, p = 0.013
+$$
+
+However, if CogStat didn't do the correction, the results would have been $\chi^2(2, N = 180) = 7.02, p = 0.008$, which is a bit different. The difference is not huge, but it is there. The Yates correction is a good thing to know about, but it's not something you need to worry about too much. It's just a little bit of a hack that makes the test work better in this specific case.
+

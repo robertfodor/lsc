@@ -20,9 +20,13 @@ description: '*Learning Statistics with CogStat* covers the contents of an intro
   statistical analysis performed in CogStat.'
 ---
 
-# About this book{.unnumbered}
+# {.unlisted .unnumbered}
 
 **This book is work-in-progress.**
+
+***Version nr. $cos(9)$***
+
+## About this book{.unnumbered}
 
 *Learning Statistics with CogStat* covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro's original *Learning Statistics with R* (Version 0.6^[This book is compiled from scratch in bookdown but some code snippets rely on [Emily Kothe](https://twitter.com/emilyandthelime)'s bookdown adaptation of the original material (e.g. some knitr plots and tables appear in the source code without alteration), numbered as version [0.6.1](https://learningstatisticswithr.com/book/)]) with a focus on automatic statistical analysis performed in [CogStat](https://www.cogstat.org).
 
@@ -33,3 +37,5 @@ Cogstat is a statistics software written in Python by Attila Krajcsi^[Attila Kra
 This book is published under a Creative Commons BY-SA license (CC BY-SA) version 4.0. This means that this book can be reused, remixed, retained, revised and redistributed (including commercially) as long as appropriate credit is given to the authors. If you remix, or modify the original version of this open textbook, you must redistribute all versions of this open textbook under the same license - CC BY-SA. 
 
 https://creativecommons.org/licenses/by-sa/4.0/
+
+Cover design contains background photo by <a href="https://unsplash.com/@hngstrm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Henry & Co.</a> on <a href="https://unsplash.com/s/photos/pattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>.

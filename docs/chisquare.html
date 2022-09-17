@@ -94,7 +94,6 @@ div.csl-indent {
 <li><a href="./">Learning Statistics with CogStat</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this book</a></li>
 <li class="part"><span><b>INTRODUCTIONS</b></span></li>
 <li class="chapter" data-level="1" data-path="whywhywhy.html"><a href="whywhywhy.html"><i class="fa fa-check"></i><b>1</b> Why do we learn statistics?</a></li>
 <li class="chapter" data-level="2" data-path="cogstat_intro.html"><a href="cogstat_intro.html"><i class="fa fa-check"></i><b>2</b> An Introduction to CogStat</a>
@@ -298,6 +297,7 @@ div.csl-indent {
 <li class="chapter" data-level="9.2.1" data-path="chisquare.html"><a href="chisquare.html#constructing-our-hypothesis-test"><i class="fa fa-check"></i><b>9.2.1</b> Constructing our hypothesis test</a></li>
 <li class="chapter" data-level="9.2.2" data-path="chisquare.html"><a href="chisquare.html#AssocTestInCogStat"><i class="fa fa-check"></i><b>9.2.2</b> The test results in CogStat</a></li>
 </ul></li>
+<li class="chapter" data-level="9.3" data-path="chisquare.html"><a href="chisquare.html#yates"><i class="fa fa-check"></i><b>9.3</b> Yates correction for 1 degree of freedom</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="ttest.html"><a href="ttest.html"><i class="fa fa-check"></i><b>10</b> Comparing two means</a></li>
 <li class="chapter" data-level="11" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>11</b> Comparing several means (one-way ANOVA)</a></li>
@@ -1105,8 +1105,30 @@ Sensitivity power analysis. Minimal effect size to reach 95% power with the pres
 <p>Pearson’s <span class="math inline">\(\chi^2\)</span> revealed a significant association between species and choice (<span class="math inline">\(\chi^2(2) = 10.72, p &lt; .01\)</span>): robots appeared to be more likely to say that they prefer flowers, but the humans were more likely to say they prefer data.</p>
 </blockquote>
 <p>Notice that, once again, we provided a little bit of interpretation to help the human reader understand what’s going on with the data. This is a good habit to get into. It’s also a good idea to report the effect size, which we will do in the next section.</p>
-
 </div>
+</div>
+<div id="yates" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Yates correction for 1 degree of freedom<a href="chisquare.html#yates" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Time for a little bit of a digression. You need to make a tiny change to your calculations whenever you only have 1 degree of freedom. It’s called the <strong>continuity correction</strong>, or sometimes the <strong>Yates correction</strong>.</p>
+<p>The <span class="math inline">\(\chi^2\)</span> test is based on an approximation, specifically on the assumption that binomial distribution starts to look like a normal distribution for large <span class="math inline">\(N\)</span>. One problem with this is that it often doesn’t quite work, especially when you’ve only got 1 degree of freedom (e.g. when you’re doing a test of independence on a <span class="math inline">\(2 \times 2\)</span> contingency table). The main reason for this is that the true sampling distribution for the <span class="math inline">\(X^2\)</span> statistic is actually discrete (because you’re dealing with categorical data!), but the <span class="math inline">\(\chi^2\)</span> distribution is continuous. This can introduce systematic problems. Specifically, when <span class="math inline">\(N\)</span> is small and when <span class="math inline">\(df=1\)</span>, the goodness of fit statistic tends to be “too big”, meaning that you actually have a bigger <span class="math inline">\(\alpha\)</span> value than you think (or, equivalently, the <span class="math inline">\(p\)</span> values are a bit too small). <span class="citation">Yates (1934)</span> suggested a simple fix, in which you redefine the goodness of fit statistic as:
+<span class="math display">\[
+X^2 = \sum_{i} \frac{(|E_i - O_i| - 0.5)^2}{E_i}
+\]</span>
+Basically, he subtracts off 0.5 everywhere. The correction is basically a hack. It’s not derived from any principled theory: rather, it’s based on an examination of the behaviour of the test and observing that the corrected version seems to work better.</p>
+<p>CogStat (or any other software, for that matter) introduces this correction, so it’s useful to know what it is about. You won’t know when it happens because the CogStat output doesn’t explicitly say that it has used a “continuity correction” or “Yates’ correction”.<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a></p>
+<p>Let us overwrite all the <code>puppy</code> answers in our <code>chapek9</code> data frame to look at 1 degree of freedom (Figure <a href="chisquare.html#fig:chapek9two">9.9</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:chapek9two"></span>
+<img src="resources/cogstatchapek9twomatrix.png" alt="CogStat results for [`chapek9two.csv`](resources/data/chapek9two.csv) with 1 degree of freedom" width="100%" /><img src="resources/cogstatchapek9tworesult.png" alt="CogStat results for [`chapek9two.csv`](resources/data/chapek9two.csv) with 1 degree of freedom" width="100%" />
+<p class="caption">
+Figure 9.9: CogStat results for <a href="resources/data/chapek9two.csv"><code>chapek9two.csv</code></a> with 1 degree of freedom
+</p>
+</div>
+<p>The result as calculated by default with the Yates correction is:
+<span class="math display">\[
+\chi^2(1, N = 180) = 6.24, p = 0.013
+\]</span></p>
+<p>However, if CogStat didn’t do the correction, the results would have been <span class="math inline">\(\chi^2(2, N = 180) = 7.02, p = 0.008\)</span>, which is a bit different. The difference is not huge, but it is there. The Yates correction is a good thing to know about, but it’s not something you need to worry about too much. It’s just a little bit of a hack that makes the test work better in this specific case.</p>
+
 </div>
 </div>
 <div class="footnotes">
@@ -1118,6 +1140,7 @@ Sensitivity power analysis. Minimal effect size to reach 95% power with the pres
 <li id="fn37"><p>Complicating matters, the <span class="math inline">\(G\)</span>-test is a special case of a whole class of tests that are known as <em>likelihood ratio tests</em>.<a href="chisquare.html#fnref37" class="footnote-back">↩︎</a></p></li>
 <li id="fn38"><p>Technically, <span class="math inline">\(E_{ij}\)</span> here is an estimate, so we should probably write it <span class="math inline">\(\hat{E}_{ij}\)</span>.<a href="chisquare.html#fnref38" class="footnote-back">↩︎</a></p></li>
 <li id="fn39"><p>A problem many of us worry about in real life.<a href="chisquare.html#fnref39" class="footnote-back">↩︎</a></p></li>
+<li id="fn40"><p>Technically, CogStat uses <code>chi2_contingency</code> function from <code>scipy</code> without specifying the <code>correction</code> parameter which defaults to <code>true</code>.<a href="chisquare.html#fnref40" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
