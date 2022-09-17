@@ -54,6 +54,70 @@
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
@@ -177,7 +241,8 @@ div.csl-indent {
 <li class="chapter" data-level="4.2.7" data-path="exploringavariable.html"><a href="exploringavariable.html#which-measure-to-use"><i class="fa fa-check"></i><b>4.2.7</b> Which measure to use?</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="exploringavariable.html"><a href="exploringavariable.html#skewnesskurtosis"><i class="fa fa-check"></i><b>4.3</b> Skewness and kurtosis</a></li>
-<li class="chapter" data-level="4.4" data-path="exploringavariable.html"><a href="exploringavariable.html#summary-descriptives"><i class="fa fa-check"></i><b>4.4</b> Summary: descriptives</a></li>
+<li class="chapter" data-level="4.4" data-path="exploringavariable.html"><a href="exploringavariable.html#zscore"><i class="fa fa-check"></i><b>4.4</b> Standard scores (<span class="math inline">\(z\)</span>-score)</a></li>
+<li class="chapter" data-level="4.5" data-path="exploringavariable.html"><a href="exploringavariable.html#summary-descriptives"><i class="fa fa-check"></i><b>4.5</b> Summary: descriptives</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="correl.html"><a href="correl.html"><i class="fa fa-check"></i><b>5</b> Exploring a variable pair</a>
 <ul>
@@ -305,7 +370,10 @@ div.csl-indent {
 <li class="chapter" data-level="9.8" data-path="chisquare.html"><a href="chisquare.html#whats-the-difference-between-mcnemar-and-independence"><i class="fa fa-check"></i><b>9.8</b> What’s the difference between McNemar and independence?</a></li>
 <li class="chapter" data-level="9.9" data-path="chisquare.html"><a href="chisquare.html#summary-5"><i class="fa fa-check"></i><b>9.9</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="ttest.html"><a href="ttest.html"><i class="fa fa-check"></i><b>10</b> Comparing two means</a></li>
+<li class="chapter" data-level="10" data-path="ttest.html"><a href="ttest.html"><i class="fa fa-check"></i><b>10</b> Comparing two means</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="ttest.html"><a href="ttest.html#the-one-sample-z-test"><i class="fa fa-check"></i><b>10.1</b> The one-sample <span class="math inline">\(z\)</span>-test</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>11</b> Comparing several means (one-way ANOVA)</a></li>
 <li class="chapter" data-level="12" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>12</b> Linear regression</a></li>
 <li class="chapter" data-level="13" data-path="anova2.html"><a href="anova2.html"><i class="fa fa-check"></i><b>13</b> Factorial ANOVA</a></li>
@@ -749,12 +817,35 @@ Figure 4.8: An illustration of kurtosis. On the left, we have a “platykurtic�
 \]</span></p>
 <p>When reading the automatically calculated kurtosis value from our CogStat result set, we discover that the AFL winning margins data is just pointy enough: <span class="math inline">\(0.1\)</span>.</p>
 </div>
-<div id="summary-descriptives" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> Summary: descriptives<a href="exploringavariable.html#summary-descriptives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="zscore" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Standard scores (<span class="math inline">\(z\)</span>-score)<a href="exploringavariable.html#zscore" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose a friend is creating a new questionnaire to measure “grumpiness”. The survey has 50 questions, which you can answer in a grumpy way or not. Across a big sample (hypothetically, let’s imagine a million people or so!), the data are fairly normally distributed, with the mean grumpiness score being 17 out of 50 questions answered in a grumpy way and the standard deviation is 5. In contrast, when we take the questionnaire, we answer 35 out of 50 questions in a grumpy way. So, how grumpy are we? One way to think about it would be to say that we have a grumpiness of 35/50, so you might say that we’re 70% grumpy. But that’s a bit weird when you think about it. Suppose our friend had phrased her questions a bit differently. In that case, people might have answered them differently, so the overall distribution of answers could easily move up or down depending on the precise way the questions were asked. So, we’re only 70% grumpy <em>with respect to this set of survey questions</em>. Even if it’s an excellent questionnaire, this isn’t a very informative statement.</p>
+<p>A simpler way around this is to describe our grumpiness by comparing us to other people. Shockingly, out of a sample of 1,000,000 people, only 159 people were as grumpy as us, suggesting that we’re in the top 0.016% of people for grumpiness. This makes much more sense than trying to interpret the raw data. This idea – that we should describe our grumpiness in terms of the overall distribution of the grumpiness of humans – is the qualitative idea that standardisation attempts to get at. One way to do this is to describe everything in terms of percentiles. However, the problem with doing this is that “it’s lonely at the top”.</p>
+<p>Suppose that our friend had only collected a sample of 1000 people, and this time got a mean of 16 out of 50 with a standard deviation of 5. The problem is that, almost certainly, not a single person in that sample would be as grumpy as us.</p>
+<p>However, all is not lost. A different approach is to convert our grumpiness score into a <strong>standard score</strong>, also referred to as a <span class="math inline">\(z\)</span>-score. The standard score is defined as the number of standard deviations above the mean that my grumpiness score lies. To phrase it in “pseudo-maths”, the standard score is calculated like this:
+<span class="math display">\[
+\mbox{standard score} = \frac{\mbox{raw score} - \mbox{mean}}{\mbox{standard deviation}}
+\]</span>
+In actual maths, the equation for the <span class="math inline">\(z\)</span>-score is
+<span class="math display">\[
+z_i = \frac{X_i - \bar{X}}{\hat\sigma}
+\]</span>
+So, going back to the grumpiness data, we can now transform our raw grumpiness into a standardised grumpiness score. If the mean is 17 and the standard deviation is 5 then my standardised grumpiness score would be (in a bit simplistic way, since we haven’t discussed estimations yet):
+<span class="math display">\[
+z = \frac{35 - 17}{5} = 3.6
+\]</span></p>
+<p>To interpret this value, recall the rough heuristic from Section <a href="exploringavariable.html#sd">4.2.5</a>: 99.7% of values are expected to lie within 3 standard deviations of the mean. So the fact that our grumpiness corresponds to a <span class="math inline">\(z\)</span> score of 3.6 indicates that we’re very grumpy indeed. A theoretical percentile rank for our grumpiness, would be</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="exploringavariable.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pnorm</span>( <span class="fl">3.6</span> )</span></code></pre></div>
+<pre><code>## [1] 0.9998409</code></pre>
+<p>In addition to allowing you to interpret a raw score in relation to a larger population (and thereby allowing you to make sense of variables that lie on arbitrary scales), standard scores serve a second useful function. Standard scores can be compared to one another in situations where the raw scores can’t. Suppose our friend also had another questionnaire that measured extraversion using a 24 items questionnaire. The overall mean for this measure turns out to be 13 with a standard deviation 4; and we scored a 2. As you can imagine, it doesn’t make a lot of sense to compare this raw score of 2 on the extraversion questionnaire to our raw score of 35 on the grumpiness questionnaire. The raw scores for the two variables are “about” fundamentally different things, so this would be like comparing apples to oranges.</p>
+<p>What about the standard scores? Well, this is a little different. If we calculate the standard scores, we get <span class="math inline">\(z = (35-17)/5 = 3.6\)</span> for grumpiness and <span class="math inline">\(z = (2-13)/4 = -2.75\)</span> for extraversion. These two numbers <em>can</em> be compared to each other.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> We’d be much less extraverted than most people (<span class="math inline">\(z = -2.75\)</span>) and much grumpier than most people (<span class="math inline">\(z = 3.6\)</span>): but the extent of our unusualness is much more extreme for grumpiness (since 3.6 is a bigger number than 2.75). Because each standardised score is a statement about where an observation falls <em>relative to its own population</em>, it <em>is</em> possible to compare standardised scores across completely different variables.</p>
+</div>
+<div id="summary-descriptives" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Summary: descriptives<a href="exploringavariable.html#summary-descriptives" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We have covered some key aspects of how to summarise what we have learned about the data. As a summary, the following table lists the measures that CogStat will calculate for you, with a brief explanation of what they are and how they are used.</p>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-5">Table 4.1: </span>Descriptives for the variable
+<span id="tab:unnamed-chunk-6">Table 4.1: </span>Descriptives for the variable
 </caption>
 <thead>
 <tr>
@@ -881,6 +972,7 @@ The lowest value in the data set
 </tr>
 </tbody>
 </table>
+<p>We also discussed <span class="math inline">\(z\)</span>-scores as very specific alternatives to percentiles in some cases, which will come in handy later on.</p>
 
 </div>
 </div>
@@ -894,6 +986,7 @@ The lowest value in the data set
 <li id="fn13"><p>This is called a “0-1 loss function”, meaning that you either win (1) or you lose (0), with no middle ground.<a href="exploringavariable.html#fnref13" class="footnote-back">↩︎</a></p></li>
 <li id="fn14"><p>It’d be remiss if we didn’t mention <em>quintiles</em>, which is splitting the data set into five equal parts, with the split points being the 20th, 40th, 60th, and 80th percentiles. And there are <em>tertiles</em> and <em>deciles</em> – but now we’re just getting sidetracked.<a href="exploringavariable.html#fnref14" class="footnote-back">↩︎</a></p></li>
 <li id="fn15"><p>The “<span class="math inline">\(-3\)</span>” part is something that statisticians tack on to ensure that the normal curve has kurtosis zero. It looks a bit funny, just sticking a “-3” at the end of the formula, but there are good mathematical reasons for doing this.<a href="exploringavariable.html#fnref15" class="footnote-back">↩︎</a></p></li>
+<li id="fn16"><p>Though some caution is usually warranted. It’s not always the case that one standard deviation on variable A corresponds to the same “kind” of thing as one standard deviation on variable B. Use common sense when trying to determine whether or not the <span class="math inline">\(z\)</span> scores of two variables can be meaningfully compared.<a href="exploringavariable.html#fnref16" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

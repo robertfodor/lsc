@@ -54,6 +54,70 @@
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
 
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
@@ -177,7 +241,8 @@ div.csl-indent {
 <li class="chapter" data-level="4.2.7" data-path="exploringavariable.html"><a href="exploringavariable.html#which-measure-to-use"><i class="fa fa-check"></i><b>4.2.7</b> Which measure to use?</a></li>
 </ul></li>
 <li class="chapter" data-level="4.3" data-path="exploringavariable.html"><a href="exploringavariable.html#skewnesskurtosis"><i class="fa fa-check"></i><b>4.3</b> Skewness and kurtosis</a></li>
-<li class="chapter" data-level="4.4" data-path="exploringavariable.html"><a href="exploringavariable.html#summary-descriptives"><i class="fa fa-check"></i><b>4.4</b> Summary: descriptives</a></li>
+<li class="chapter" data-level="4.4" data-path="exploringavariable.html"><a href="exploringavariable.html#zscore"><i class="fa fa-check"></i><b>4.4</b> Standard scores (<span class="math inline">\(z\)</span>-score)</a></li>
+<li class="chapter" data-level="4.5" data-path="exploringavariable.html"><a href="exploringavariable.html#summary-descriptives"><i class="fa fa-check"></i><b>4.5</b> Summary: descriptives</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="correl.html"><a href="correl.html"><i class="fa fa-check"></i><b>5</b> Exploring a variable pair</a>
 <ul>
@@ -305,7 +370,10 @@ div.csl-indent {
 <li class="chapter" data-level="9.8" data-path="chisquare.html"><a href="chisquare.html#whats-the-difference-between-mcnemar-and-independence"><i class="fa fa-check"></i><b>9.8</b> What’s the difference between McNemar and independence?</a></li>
 <li class="chapter" data-level="9.9" data-path="chisquare.html"><a href="chisquare.html#summary-5"><i class="fa fa-check"></i><b>9.9</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="ttest.html"><a href="ttest.html"><i class="fa fa-check"></i><b>10</b> Comparing two means</a></li>
+<li class="chapter" data-level="10" data-path="ttest.html"><a href="ttest.html"><i class="fa fa-check"></i><b>10</b> Comparing two means</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="ttest.html"><a href="ttest.html#the-one-sample-z-test"><i class="fa fa-check"></i><b>10.1</b> The one-sample <span class="math inline">\(z\)</span>-test</a></li>
+</ul></li>
 <li class="chapter" data-level="11" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>11</b> Comparing several means (one-way ANOVA)</a></li>
 <li class="chapter" data-level="12" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>12</b> Linear regression</a></li>
 <li class="chapter" data-level="13" data-path="anova2.html"><a href="anova2.html"><i class="fa fa-check"></i><b>13</b> Factorial ANOVA</a></li>
@@ -626,7 +694,7 @@ Proportion of heads
 Figure 6.1: An illustration of how frequentist probability works. If you flip a fair coin over and over again, the proportion of heads that you’ve seen eventually settles down, and converges to the true probability of 0.5. Each panel shows four different simulated experiments: in each case, we pretend we flipped a coin 1000 times, and kept track of the proportion of flips that were heads as we went along. Although none of these sequences actually ended up with an exact value of .5, if we’d extended the experiment for an infinite number of coin flips they would have.
 </p>
 </div>
-<p>The frequentist definition of probability has some desirable characteristics. Firstly, it is objective: the probability of an event is <em>necessarily</em> grounded in the world. The only way that probability statements can make sense is if they refer to (a sequence of) events that occur in the physical universe.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> Secondly, it is unambiguous: any two people watching the same sequence of events unfold, trying to calculate the probability of an event, must inevitably come up with the same answer. However, it also has undesirable characteristics. Firstly, infinite sequences don’t exist in the physical world. Suppose you picked up a coin from your pocket and started to flip it. Every time it lands, it impacts the ground. Each impact wears the coin down a bit; eventually, the coin will be destroyed. So, one might ask whether it really makes sense to pretend that an “infinite” sequence of coin flips is even a meaningful concept or an objective one. We can’t say that an “infinite sequence” of events is a real thing in the physical universe because the physical universe doesn’t allow infinite anything. More seriously, the frequentist definition has a narrow scope. There are many things out there that human beings are happy to assign a probability to in everyday language but cannot (even in theory) be mapped onto a hypothetical sequence of events. For instance, if a meteorologist comes on TV and says, “the probability of rain in Adelaide on 2 November 2048 is 60%”, we humans are happy to accept this. But it’s not clear how to define this in frequentist terms. There’s only one city of Adelaide, and only 2 November 2048. There’s no infinite sequence of events here, just a once-off thing. Frequentist probability genuinely <em>forbids</em> us from making probability statements about a single event. From the frequentist perspective, it will either rain tomorrow or not; there is no “probability” that attaches to a single non-repeatable event. Now, it should be said that there are some very clever tricks that frequentists can use to get around this. One possibility is that what the meteorologist means is something like this: “There is a category of days for which we predict a 60% chance of rain; if we look only across those days for which we make this prediction, then on 60% of those days it will actually rain”. It’s very weird and counterintuitive to think of it this way, but you do see frequentists do this sometimes. And it <em>will</em> come up later in this book (see Section <a href="estimation.html#ci">7.5</a>).</p>
+<p>The frequentist definition of probability has some desirable characteristics. Firstly, it is objective: the probability of an event is <em>necessarily</em> grounded in the world. The only way that probability statements can make sense is if they refer to (a sequence of) events that occur in the physical universe.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> Secondly, it is unambiguous: any two people watching the same sequence of events unfold, trying to calculate the probability of an event, must inevitably come up with the same answer. However, it also has undesirable characteristics. Firstly, infinite sequences don’t exist in the physical world. Suppose you picked up a coin from your pocket and started to flip it. Every time it lands, it impacts the ground. Each impact wears the coin down a bit; eventually, the coin will be destroyed. So, one might ask whether it really makes sense to pretend that an “infinite” sequence of coin flips is even a meaningful concept or an objective one. We can’t say that an “infinite sequence” of events is a real thing in the physical universe because the physical universe doesn’t allow infinite anything. More seriously, the frequentist definition has a narrow scope. There are many things out there that human beings are happy to assign a probability to in everyday language but cannot (even in theory) be mapped onto a hypothetical sequence of events. For instance, if a meteorologist comes on TV and says, “the probability of rain in Adelaide on 2 November 2048 is 60%”, we humans are happy to accept this. But it’s not clear how to define this in frequentist terms. There’s only one city of Adelaide, and only 2 November 2048. There’s no infinite sequence of events here, just a once-off thing. Frequentist probability genuinely <em>forbids</em> us from making probability statements about a single event. From the frequentist perspective, it will either rain tomorrow or not; there is no “probability” that attaches to a single non-repeatable event. Now, it should be said that there are some very clever tricks that frequentists can use to get around this. One possibility is that what the meteorologist means is something like this: “There is a category of days for which we predict a 60% chance of rain; if we look only across those days for which we make this prediction, then on 60% of those days it will actually rain”. It’s very weird and counterintuitive to think of it this way, but you do see frequentists do this sometimes. And it <em>will</em> come up later in this book (see Section <a href="estimation.html#ci">7.5</a>).</p>
 </div>
 <div id="the-bayesian-view" class="section level3 hasAnchor" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> The Bayesian view<a href="probability.html#the-bayesian-view" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -798,7 +866,7 @@ Not <span class="math inline">\(A\)</span>
 <div id="binomial" class="section level3 hasAnchor" number="6.4.1">
 <h3><span class="header-section-number">6.4.1</span> The binomial distribution<a href="probability.html#binomial" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The theory of probability originated in an attempt to describe how games of chance work. Hence, it seems fitting that our discussion of the <strong>binomial distribution</strong> should involve a discussion of rolling dice and flipping coins. Let’s imagine a simple “experiment”: we’re holding 20 identical six-sided dice. There’s a picture of a skull on one face of each die; the other five faces are all blank. If we roll all 20 dice, what’s the probability of getting exactly 4 skulls? Assuming that the dice are fair, we know that the chance of any one die coming up skulls is 1 in 6; to say this another way, the skull probability for a single die is approximately <span class="math inline">\(0.167\)</span>. This is enough information to answer our question, so let’s have a look at how it’s done.</p>
-<p>As usual, we’ll want to introduce some names and some notation. We’ll let <span class="math inline">\(N\)</span> denote the number of dice rolls in our experiment, which is often referred to as the <strong>size parameter</strong> of our binomial distribution. We’ll also use <span class="math inline">\(\theta\)</span> to refer to the probability that a single die comes up skulls, a quantity that is usually called the <strong>success probability</strong> of the binomial.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> Finally, we’ll use <span class="math inline">\(X\)</span> to refer to the results of our experiment, namely the number of skulls we get when rolling the dice. Since the actual value of <span class="math inline">\(X\)</span> is due to chance, we refer to it as a <strong>random variable</strong>. In any case, now that we have all this terminology and notation, we can use it to state the problem a little more precisely. The quantity that we want to calculate is the probability that <span class="math inline">\(X = 4\)</span> given that we know that <span class="math inline">\(\theta = .167\)</span> and <span class="math inline">\(N=20\)</span>. The general “form” of the thing could be written as
+<p>As usual, we’ll want to introduce some names and some notation. We’ll let <span class="math inline">\(N\)</span> denote the number of dice rolls in our experiment, which is often referred to as the <strong>size parameter</strong> of our binomial distribution. We’ll also use <span class="math inline">\(\theta\)</span> to refer to the probability that a single die comes up skulls, a quantity that is usually called the <strong>success probability</strong> of the binomial.<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a> Finally, we’ll use <span class="math inline">\(X\)</span> to refer to the results of our experiment, namely the number of skulls we get when rolling the dice. Since the actual value of <span class="math inline">\(X\)</span> is due to chance, we refer to it as a <strong>random variable</strong>. In any case, now that we have all this terminology and notation, we can use it to state the problem a little more precisely. The quantity that we want to calculate is the probability that <span class="math inline">\(X = 4\)</span> given that we know that <span class="math inline">\(\theta = .167\)</span> and <span class="math inline">\(N=20\)</span>. The general “form” of the thing could be written as
 <span class="math display">\[
 P(X \ | \ \theta, N)
 \]</span>
@@ -847,7 +915,7 @@ Figure 6.3: The binomial distribution with size parameter of <span class="math i
 X \sim \mbox{Normal}(\mu,\sigma)
 \]</span>
 Of course, that’s just notation. It doesn’t tell us anything interesting about the normal distribution itself. As was the case with the binomial distribution, the formula for the normal distribution in this book is tucked away in Table <a href="probability.html#tab:distformulas">6.2</a>.</p>
-<p>Instead of focusing on the maths, let’s try to understand what it means for a variable to be normally distributed. To that end, have a look at Figure <a href="probability.html#fig:normdist">6.4</a>, which plots a normal distribution with mean <span class="math inline">\(\mu = 0\)</span> and standard deviation <span class="math inline">\(\sigma = 1\)</span>. You can see where the name “bell curve” comes from: it looks a bit like a bell. Notice that, unlike the plots to illustrate the binomial distribution, the picture of the normal distribution in Figure <a href="probability.html#fig:normdist">6.4</a> shows a smooth curve instead of “histogram-like” bars. This isn’t an arbitrary choice: the normal distribution is <em>continuous</em>, whereas the binomial is <em>discrete</em>. For instance, in the die rolling example from the last section, it was possible to get 3 skulls or 4 skulls, but impossible to get 3.9 skulls. The figures in the previous section reflected this fact: in Figure <a href="probability.html#fig:binomial1">6.3</a>, for instance, there’s a bar located at <span class="math inline">\(X=3\)</span> and another one at <span class="math inline">\(X=4\)</span>, but there’s nothing in between. Continuous quantities don’t have this constraint. For instance, suppose we’re talking about the weather. The temperature on a pleasant Spring day could be 23 degrees, 24 degrees, 23.9 degrees, or anything in between since temperature is a continuous variable, and so a normal distribution might be quite appropriate for describing Spring temperatures.<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a></p>
+<p>Instead of focusing on the maths, let’s try to understand what it means for a variable to be normally distributed. To that end, have a look at Figure <a href="probability.html#fig:normdist">6.4</a>, which plots a normal distribution with mean <span class="math inline">\(\mu = 0\)</span> and standard deviation <span class="math inline">\(\sigma = 1\)</span>. You can see where the name “bell curve” comes from: it looks a bit like a bell. Notice that, unlike the plots to illustrate the binomial distribution, the picture of the normal distribution in Figure <a href="probability.html#fig:normdist">6.4</a> shows a smooth curve instead of “histogram-like” bars. This isn’t an arbitrary choice: the normal distribution is <em>continuous</em>, whereas the binomial is <em>discrete</em>. For instance, in the die rolling example from the last section, it was possible to get 3 skulls or 4 skulls, but impossible to get 3.9 skulls. The figures in the previous section reflected this fact: in Figure <a href="probability.html#fig:binomial1">6.3</a>, for instance, there’s a bar located at <span class="math inline">\(X=3\)</span> and another one at <span class="math inline">\(X=4\)</span>, but there’s nothing in between. Continuous quantities don’t have this constraint. For instance, suppose we’re talking about the weather. The temperature on a pleasant Spring day could be 23 degrees, 24 degrees, 23.9 degrees, or anything in between since temperature is a continuous variable, and so a normal distribution might be quite appropriate for describing Spring temperatures.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a></p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:normdist"></span>
 <img src="lsc_files/figure-html/normdist-1.svg" alt="The normal distribution with mean $mu = 0$ and standard deviation $sigma = 1$. The $x$-axis corresponds to the value of some variable, and the $y$-axis tells us something about how likely we are to observe that value. However, notice that the $y$-axis is labelled &quot;Probability Density&quot; and not &quot;Probability&quot;. There is a subtle and somewhat frustrating characteristic of continuous distributions that makes the $y$ axis behave a bit oddly: the height of the curve here isn't actually the probability of observing a particular $x$ value. On the other hand, it *is* true that the heights of the curve tells you which $x$ values are more likely (the higher ones!)." width="100%" />
 <p class="caption">
@@ -941,10 +1009,10 @@ Figure 6.11: An <span class="math inline">\(F\)</span> distribution with 3 and 5
 </div>
 <div class="footnotes">
 <hr />
-<ol start="18">
-<li id="fn18"><p>This doesn’t mean that frequentists can’t make hypothetical statements, of course; it’s just that if you want to make a statement about probability, then it must be possible to redescribe that statement in terms of a sequence of potentially observable events, and the relative frequencies of different outcomes that appear within that sequence.<a href="probability.html#fnref18" class="footnote-back">↩︎</a></p></li>
-<li id="fn19"><p>Note that the term “success” is pretty arbitrary and doesn’t actually imply that the outcome is something to be desired. If <span class="math inline">\(\theta\)</span> referred to the probability that any one passenger gets injured in a bus crash, it is still called the success probability.<a href="probability.html#fnref19" class="footnote-back">↩︎</a></p></li>
-<li id="fn20"><p>In practice, the normal distribution is so handy that people tend to use it even when the variable isn’t actually continuous. As long as there are enough categories (e.g., Likert scale responses to a questionnaire), it’s pretty standard practice to use the normal distribution as an approximation. This works out much better in practice than you’d think.<a href="probability.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<ol start="19">
+<li id="fn19"><p>This doesn’t mean that frequentists can’t make hypothetical statements, of course; it’s just that if you want to make a statement about probability, then it must be possible to redescribe that statement in terms of a sequence of potentially observable events, and the relative frequencies of different outcomes that appear within that sequence.<a href="probability.html#fnref19" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p>Note that the term “success” is pretty arbitrary and doesn’t actually imply that the outcome is something to be desired. If <span class="math inline">\(\theta\)</span> referred to the probability that any one passenger gets injured in a bus crash, it is still called the success probability.<a href="probability.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p>In practice, the normal distribution is so handy that people tend to use it even when the variable isn’t actually continuous. As long as there are enough categories (e.g., Likert scale responses to a questionnaire), it’s pretty standard practice to use the normal distribution as an approximation. This works out much better in practice than you’d think.<a href="probability.html#fnref21" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
