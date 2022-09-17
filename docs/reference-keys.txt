@@ -80,6 +80,10 @@ tab:chapeknullhypo
 fig:cogstatchapek9hypo
 fig:chapek9two
 fig:cogstatsalemload
+fig:cogstatrepeatagpp
+fig:cogstatagppresults
+tab:unnamed-chunk-28
+fig:cogstatmcn
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -224,6 +228,9 @@ yates
 chisqeffectsize
 chisqassumptions
 fisherexacttest
+mcnemar
+whats-the-difference-between-mcnemar-and-independence
+summary-5
 ttest
 anova
 regression
