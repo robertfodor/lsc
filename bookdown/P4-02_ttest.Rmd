@@ -410,3 +410,10 @@ $t(19)$ is shorthand notation for a $t$-statistic that has 19 degrees of freedom
 
 With that much jargon crammed into half a line, you know it must be really smart.
 
+Okay, so what assumptions does the one-sample $t$-test make? Well, since the $t$-test is a $z$-test with the premise of known standard deviation removed, you shouldn't be surprised to see that it makes the same assumptions as the $z$-test, minus the one about the known standard deviation. That is
+
+- *Normality*. We're still assuming that the population distribution is normal.
+- *Independence*. Once again, we have to assume that the observations in our sample are generated independently of one another.
+
+Overall, these two assumptions aren't terribly unreasonable, and as a consequence, the one-sample $t$-test is pretty widely used in practice as a way of comparing a sample mean against a hypothesised population mean.
+
