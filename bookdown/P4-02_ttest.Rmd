@@ -668,3 +668,97 @@ As always, our hypothesis test relies on some assumptions. For the Student t-tes
 - *Independence*. In the context of the Student test this has two aspects to it. Firstly, we assume that the observations within each sample are independent of one another (exactly the same as for the one-sample test). However, we also assume that there are no cross-sample dependencies. If, for instance, it turns out that you included some participants in both experimental conditions of your study (e.g. by accidentally allowing the same person to sign up to different conditions), then there are some cross sample dependencies that you'd need to take into account.
 - *Homogeneity of variance* (also called "homoscedasticity"). The third assumption is that the population standard deviation is the same in both groups. CogStat tests this assumption using the Levene test automatically, as you've seen in the result output. But we'll talk about later on in the book (Section \@ref(levene)).
 
+## The independent samples $t$-test (Welch test){#welchttest}
+
+The biggest problem with using the Student test in practice is the third assumption in the previous section: it assumes that both groups have the same standard deviation (i.e. **homogeneity of variance**). This is rarely true in real life: if two samples don't have the same means, why should we expect them to have the same standard deviation? There's no reason to expect this assumption to be true. 
+
+There is a different form of the $t$-test [@Welch1947] that does not rely on this assumption. A graphical illustration of what the **Welch $t$ test** assumes about the data is shown in Figure \@ref(fig:ttesthyp2), to provide a contrast with the Student test version in Figure \@ref(fig:ttesthyp). The Welch test is very similar to the Student test. For example, the $t$-statistic that we use in the Welch test is calculated in much the same way as for the Student test. That is, we take the difference between the sample means and then divide it by some estimate of the standard error of that difference:
+$$
+t = \frac{\bar{X}_1 - \bar{X}_2}{\mbox{SE}({\bar{X}_1 - \bar{X}_2})}
+$$
+
+The main difference is that the standard error calculations are different. If the two populations have different standard deviations, then it's utter nonsense to calculate a pooled standard deviation estimate because you're averaging apples and oranges. But you can still estimate the standard error of the difference between sample means; it just ends up looking different:
+$$
+\mbox{SE}({\bar{X}_1 - \bar{X}_2}) = \sqrt{ \frac{{\hat{\sigma}_1}^2}{N_1} + \frac{{\hat{\sigma}_2}^2}{N_2} }
+$$
+
+The second difference between Welch and Student is how the degrees of freedom are calculated. In the Welch test, the "degrees of freedom " doesn't have to be a whole number, and it doesn't correspond all that closely to the "number of data points minus the number of constraints" heuristic used to this point. The degrees of freedom are, in fact:
+$$
+\mbox{df} = \frac{ ({\hat{\sigma}_1}^2 / N_1 + {\hat{\sigma}_2}^2 / N_2)^2 }{ ({\hat{\sigma}_1}^2 / N_1)^2 / (N_1 -1 ) + ({\hat{\sigma}_2}^2 / N_2)^2 / (N_2 -1 ) } 
+$$
+
+What matters is that you'll see that the "df" value that pops out of a Welch test tends to be a little bit smaller than the one used for the Student test, and it doesn't have to be a whole number.
+
+```{r ttesthyp2, fig.cap="Graphical illustration of the null and alternative hypotheses assumed by the Welch $t$-test. Like the Student test, we assume that both samples are drawn from a normal population. However, the alternative hypothesis no longer requires the two populations to have equal variance.", echo=FALSE, fig.align="center", out.width="100%"}
+width <- 12
+height <- 4
+
+plotOne <- function( sd1 ) {
+
+   Grade <- 40:100
+   mu1 <- c(60, 75)
+   mu0 <- 70
+   sd0 <- 9
+   plot.new()   # new figure window
+   old <- par( no.readonly = TRUE )
+
+   par( mfcol = c(1,2),  # array of two plots
+        mfg = c(1,1) )   # start on the left
+   ymax <- .07
+   plot.window( xlim = range(Grade),
+       ylim = c(0, ymax)
+     )
+   # null distribution
+   lines( x = Grade, 
+      y = ynull <- dnorm(Grade, mu0, sd0), 
+      lw = 2 )
+   axis(side = 1, at = seq(40,100,10), labels = F)
+   text(x = mu0, y = max(ynull)*1.1, 
+    expression(mu) , cex = 1.2)
+   title( main = "null hypothesis", font.main = 1)
+   title( xlab = "value of X", mgp = rep(1,3))
+   par( mfg = c(1,2) ) 
+   plot.window( xlim = range(Grade),
+            ylim = c(0, ymax) )
+   # alternative distributions
+   lines( x = Grade, 
+      y = ya1 <- dnorm(Grade, mu1[1], sd1[1]), 
+      lw = 2 )
+   lines( x = Grade, 
+      y = ya2 <- dnorm(Grade, mu1[2], sd1[2]), 
+      lw = 2 )
+   axis(side = 1, at = seq(40,100,10), labels = F)
+   text(x = mu1[1], y = max(ya1)*1.1, 
+    expression(mu[1]) , cex = 1.2)
+   text(x = mu1[2], y = max(ya2)*1.1, 
+    expression(mu[2]) , cex = 1.2)
+   title( main = "alternative hypothesis", font.main = 1)
+   title( xlab = "value of X", mgp = rep(1,3))
+   par(old)
+}
+
+# print 
+sd1 <- c(6.5, 7.95)
+plotOne( sd1 )
+```
+
+In most statistical software, you can choose to use the Welch test instead of the Student test. In CogStat, other parameters will decide whether the Welch test or the Student test is run. If you have two samples with different standard deviations, the Welch test will be run automatically. If you have two samples with the same standard deviation, the Student test will be run automatically. 
+
+As we mentioned earlier, a Levene test can be used to probe for homogeneity of variance, and CogStat does just that! We generously skipped over calling this out in the previous chapter when discussing the results, but here's the time to look at those specific lines in the result set.
+
+> Checking for homogeneity of variance across groups.  
+> Levene test: $W$ = 2.13, $p$ = .155
+
+If the Levene test is significant (i.e. $p < 0.05$), the Welch test will be run. If the Levene test is not significant (i.e. $p > 0.05$), the Student test will be run. In this case, the Levene test was not significant, so the Student test was run.
+
+Should we run a Welch test on the same data, it would not be significant ($t(23.03) = 2.03$, $p = .054$). What does this mean? Should we panic? Is the sky burning? Probably not. The fact that one test is significant and the other isn't doesn't itself mean very much, especially since I kind of rigged the data so that this would happen. As a general rule, it's not a good idea to go out of your way to try to interpret or explain the difference between a $p$-value of .049 and a $p$-value of .051. If this sort of thing happens in real life, the *difference* in these $p$-values is almost certainly due to chance. What does matter is that you take a little bit of care in thinking about what test you use. The Student test and the Welch test have different strengths and weaknesses. If the two populations really do have equal variances, then the Student test is slightly more powerful (lower Type II error rate) than the Welch test. However, if they *don't* have the same variances, then the assumptions of the Student test are violated and you may not be able to trust it: you might end up with a higher Type I error rate. So it's a trade-off.
+
+However, let us explore what CogStat would display in case the normality was not violated but the homogeneity of variance was! We've prepared a tweaked version of the data set, where the variances are different, but the normality is not violated: [`harpo_welch.csv`](resources/data/harpo_welch.csv). 
+
+```{r harpowelch, fig.cap="CogStat result set when the Levene test is significant, hence a Welch test must be run.", echo=FALSE, fig.align="center", out.width="100%"}
+knitr::include_graphics("resources/image/cogstatharpowelch.png")
+```
+
+Note how the degree of freedom is now a decimal and not an integer. The data set however was just tweaked slightly, and not enough for the $p$ value to be low enough, so the Welch test is not significant. However, we just wanted to demonstrate that the Welch test is run in this case.
+
+The assumptions of the Welch test are very similar to those made by the Student $t$-test, except that the Welch test does not assume homogeneity of variance. This leaves only the assumption of normality, and the assumption of independence. The specifics of these assumptions are the same for the Welch test as for the Student test.

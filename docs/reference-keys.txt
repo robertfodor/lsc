@@ -94,6 +94,8 @@ fig:ttesthyponesample
 fig:ttestdist
 fig:harpocompare
 fig:ttesthyp
+fig:ttesthyp2
+fig:harpowelch
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -247,6 +249,7 @@ ttest
 the-one-sample-z-test
 onesamplettest
 studentttest
+welchttest
 anova
 regression
 anova2

@@ -376,6 +376,7 @@ div.csl-indent {
 <li class="chapter" data-level="10.1" data-path="ttest.html"><a href="ttest.html#the-one-sample-z-test"><i class="fa fa-check"></i><b>10.1</b> The one-sample <span class="math inline">\(z\)</span>-test</a></li>
 <li class="chapter" data-level="10.2" data-path="ttest.html"><a href="ttest.html#onesamplettest"><i class="fa fa-check"></i><b>10.2</b> The one-sample <span class="math inline">\(t\)</span>-test</a></li>
 <li class="chapter" data-level="10.3" data-path="ttest.html"><a href="ttest.html#studentttest"><i class="fa fa-check"></i><b>10.3</b> The independent samples <span class="math inline">\(t\)</span>-test (Student test)</a></li>
+<li class="chapter" data-level="10.4" data-path="ttest.html"><a href="ttest.html#welchttest"><i class="fa fa-check"></i><b>10.4</b> The independent samples <span class="math inline">\(t\)</span>-test (Welch test)</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>11</b> Comparing several means (one-way ANOVA)</a></li>
 <li class="chapter" data-level="12" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>12</b> Linear regression</a></li>
@@ -411,7 +412,7 @@ div.csl-indent {
 <p>However, you’re much more likely to find yourself in a situation where your outcome variable is interval scale or higher, and you’re interested in whether the outcome variable’s average value is higher in one group or another. For instance, a psychologist might want to know if anxiety levels are higher among parents than non-parents; or if working memory capacity is reduced by listening to music (relative to not listening to music). In a medical context, we might want to know if a new drug increases or decreases blood pressure. An agricultural scientist might want to know whether adding phosphorus to Australian native plants will kill them. In all these situations, our outcome variable is a continuous interval or ratio scale variable; and our predictor is a binary “grouping” variable. In other words, we want to compare the <em>means of the two groups</em>.</p>
 <p>The standard answer to the problem of comparing means is to use a <span class="math inline">\(t\)</span>-test, which has several varieties depending on exactly what question you want to solve. As a consequence, the majority of this chapter focuses on different types of <span class="math inline">\(t\)</span>-test:</p>
 <p>-one sample <span class="math inline">\(t\)</span>-tests are discussed in Section <a href="ttest.html#onesamplettest">10.2</a>,
--independent samples <span class="math inline">\(t\)</span>-tests are discussed in Sections <a href="ttest.html#studentttest">10.3</a> and <a href="#welchttest"><strong>??</strong></a>, and
+-independent samples <span class="math inline">\(t\)</span>-tests are discussed in Sections <a href="ttest.html#studentttest">10.3</a> and <a href="ttest.html#welchttest">10.4</a>, and
 - paired samples <span class="math inline">\(t\)</span>-tests are discussed in Section <a href="#pairedsamplesttest"><strong>??</strong></a>.</p>
 <p>After that, we’ll talk a bit about Cohen’s <span class="math inline">\(d\)</span>, which is the standard measure of effect size for a <span class="math inline">\(t\)</span>-test (Section <a href="#cohensd"><strong>??</strong></a>).</p>
 <p>The later sections of the chapter focus on the assumptions of the <span class="math inline">\(t\)</span>-tests and possible remedies if they are violated. However, before discussing any of these useful things, we’ll start with a discussion of the <span class="math inline">\(z\)</span>-test.</p>
@@ -821,6 +822,46 @@ If “mean 1” is larger than “mean 2” the <span class="math inline">\(t\)<
 <li><em>Independence</em>. In the context of the Student test this has two aspects to it. Firstly, we assume that the observations within each sample are independent of one another (exactly the same as for the one-sample test). However, we also assume that there are no cross-sample dependencies. If, for instance, it turns out that you included some participants in both experimental conditions of your study (e.g. by accidentally allowing the same person to sign up to different conditions), then there are some cross sample dependencies that you’d need to take into account.</li>
 <li><em>Homogeneity of variance</em> (also called “homoscedasticity”). The third assumption is that the population standard deviation is the same in both groups. CogStat tests this assumption using the Levene test automatically, as you’ve seen in the result output. But we’ll talk about later on in the book (Section <a href="#levene"><strong>??</strong></a>).</li>
 </ul>
+</div>
+<div id="welchttest" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> The independent samples <span class="math inline">\(t\)</span>-test (Welch test)<a href="ttest.html#welchttest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The biggest problem with using the Student test in practice is the third assumption in the previous section: it assumes that both groups have the same standard deviation (i.e. <strong>homogeneity of variance</strong>). This is rarely true in real life: if two samples don’t have the same means, why should we expect them to have the same standard deviation? There’s no reason to expect this assumption to be true.</p>
+<p>There is a different form of the <span class="math inline">\(t\)</span>-test <span class="citation">(Welch, 1947)</span> that does not rely on this assumption. A graphical illustration of what the <strong>Welch <span class="math inline">\(t\)</span> test</strong> assumes about the data is shown in Figure <a href="ttest.html#fig:ttesthyp2">10.11</a>, to provide a contrast with the Student test version in Figure <a href="ttest.html#fig:ttesthyp">10.10</a>. The Welch test is very similar to the Student test. For example, the <span class="math inline">\(t\)</span>-statistic that we use in the Welch test is calculated in much the same way as for the Student test. That is, we take the difference between the sample means and then divide it by some estimate of the standard error of that difference:
+<span class="math display">\[
+t = \frac{\bar{X}_1 - \bar{X}_2}{\mbox{SE}({\bar{X}_1 - \bar{X}_2})}
+\]</span></p>
+<p>The main difference is that the standard error calculations are different. If the two populations have different standard deviations, then it’s utter nonsense to calculate a pooled standard deviation estimate because you’re averaging apples and oranges. But you can still estimate the standard error of the difference between sample means; it just ends up looking different:
+<span class="math display">\[
+\mbox{SE}({\bar{X}_1 - \bar{X}_2}) = \sqrt{ \frac{{\hat{\sigma}_1}^2}{N_1} + \frac{{\hat{\sigma}_2}^2}{N_2} }
+\]</span></p>
+<p>The second difference between Welch and Student is how the degrees of freedom are calculated. In the Welch test, the “degrees of freedom” doesn’t have to be a whole number, and it doesn’t correspond all that closely to the “number of data points minus the number of constraints” heuristic used to this point. The degrees of freedom are, in fact:
+<span class="math display">\[
+\mbox{df} = \frac{ ({\hat{\sigma}_1}^2 / N_1 + {\hat{\sigma}_2}^2 / N_2)^2 }{ ({\hat{\sigma}_1}^2 / N_1)^2 / (N_1 -1 ) + ({\hat{\sigma}_2}^2 / N_2)^2 / (N_2 -1 ) }
+\]</span></p>
+<p>What matters is that you’ll see that the “df” value that pops out of a Welch test tends to be a little bit smaller than the one used for the Student test, and it doesn’t have to be a whole number.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ttesthyp2"></span>
+<img src="lsc_files/figure-html/ttesthyp2-1.svg" alt="Graphical illustration of the null and alternative hypotheses assumed by the Welch $t$-test. Like the Student test, we assume that both samples are drawn from a normal population. However, the alternative hypothesis no longer requires the two populations to have equal variance." width="100%" />
+<p class="caption">
+Figure 10.11: Graphical illustration of the null and alternative hypotheses assumed by the Welch <span class="math inline">\(t\)</span>-test. Like the Student test, we assume that both samples are drawn from a normal population. However, the alternative hypothesis no longer requires the two populations to have equal variance.
+</p>
+</div>
+<p>In most statistical software, you can choose to use the Welch test instead of the Student test. In CogStat, other parameters will decide whether the Welch test or the Student test is run. If you have two samples with different standard deviations, the Welch test will be run automatically. If you have two samples with the same standard deviation, the Student test will be run automatically.</p>
+<p>As we mentioned earlier, a Levene test can be used to probe for homogeneity of variance, and CogStat does just that! We generously skipped over calling this out in the previous chapter when discussing the results, but here’s the time to look at those specific lines in the result set.</p>
+<blockquote>
+<p>Checking for homogeneity of variance across groups.<br />
+Levene test: <span class="math inline">\(W\)</span> = 2.13, <span class="math inline">\(p\)</span> = .155</p>
+</blockquote>
+<p>If the Levene test is significant (i.e. <span class="math inline">\(p &lt; 0.05\)</span>), the Welch test will be run. If the Levene test is not significant (i.e. <span class="math inline">\(p &gt; 0.05\)</span>), the Student test will be run. In this case, the Levene test was not significant, so the Student test was run.</p>
+<p>Should we run a Welch test on the same data, it would not be significant (<span class="math inline">\(t(23.03) = 2.03\)</span>, <span class="math inline">\(p = .054\)</span>). What does this mean? Should we panic? Is the sky burning? Probably not. The fact that one test is significant and the other isn’t doesn’t itself mean very much, especially since I kind of rigged the data so that this would happen. As a general rule, it’s not a good idea to go out of your way to try to interpret or explain the difference between a <span class="math inline">\(p\)</span>-value of .049 and a <span class="math inline">\(p\)</span>-value of .051. If this sort of thing happens in real life, the <em>difference</em> in these <span class="math inline">\(p\)</span>-values is almost certainly due to chance. What does matter is that you take a little bit of care in thinking about what test you use. The Student test and the Welch test have different strengths and weaknesses. If the two populations really do have equal variances, then the Student test is slightly more powerful (lower Type II error rate) than the Welch test. However, if they <em>don’t</em> have the same variances, then the assumptions of the Student test are violated and you may not be able to trust it: you might end up with a higher Type I error rate. So it’s a trade-off.</p>
+<p>However, let us explore what CogStat would display in case the normality was not violated but the homogeneity of variance was! We’ve prepared a tweaked version of the data set, where the variances are different, but the normality is not violated: <a href="resources/data/harpo_welch.csv"><code>harpo_welch.csv</code></a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:harpowelch"></span>
+<img src="resources/image/cogstatharpowelch.png" alt="CogStat result set when the Levene test is significant, hence a Welch test must be run." width="100%" />
+<p class="caption">
+Figure 10.12: CogStat result set when the Levene test is significant, hence a Welch test must be run.
+</p>
+</div>
+<p>Note how the degree of freedom is now a decimal and not an integer. The data set however was just tweaked slightly, and not enough for the <span class="math inline">\(p\)</span> value to be low enough, so the Welch test is not significant. However, we just wanted to demonstrate that the Welch test is run in this case.</p>
+<p>The assumptions of the Welch test are very similar to those made by the Student <span class="math inline">\(t\)</span>-test, except that the Welch test does not assume homogeneity of variance. This leaves only the assumption of normality, and the assumption of independence. The specifics of these assumptions are the same for the Welch test as for the Student test.</p>
 
 </div>
 </div>
