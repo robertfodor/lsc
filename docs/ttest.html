@@ -170,6 +170,7 @@ div.csl-indent {
 <li class="chapter" data-level="2.3.2" data-path="cogstat_intro.html"><a href="cogstat_intro.html#loading-data"><i class="fa fa-check"></i><b>2.3.2</b> Loading data</a></li>
 <li class="chapter" data-level="2.3.3" data-path="cogstat_intro.html"><a href="cogstat_intro.html#saving-and-exporting-your-results"><i class="fa fa-check"></i><b>2.3.3</b> Saving and exporting your results</a></li>
 </ul></li>
+<li class="chapter" data-level="2.4" data-path="cogstat_intro.html"><a href="cogstat_intro.html#how-to-use-this-book"><i class="fa fa-check"></i><b>2.4</b> How to use this book</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="researchdesign.html"><a href="researchdesign.html"><i class="fa fa-check"></i><b>3</b> A brief introduction to research design</a>
 <ul>
@@ -374,6 +375,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="10.1" data-path="ttest.html"><a href="ttest.html#the-one-sample-z-test"><i class="fa fa-check"></i><b>10.1</b> The one-sample <span class="math inline">\(z\)</span>-test</a></li>
 <li class="chapter" data-level="10.2" data-path="ttest.html"><a href="ttest.html#onesamplettest"><i class="fa fa-check"></i><b>10.2</b> The one-sample <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="10.3" data-path="ttest.html"><a href="ttest.html#studentttest"><i class="fa fa-check"></i><b>10.3</b> The independent samples <span class="math inline">\(t\)</span>-test (Student test)</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>11</b> Comparing several means (one-way ANOVA)</a></li>
 <li class="chapter" data-level="12" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>12</b> Linear regression</a></li>
@@ -409,7 +411,7 @@ div.csl-indent {
 <p>However, you’re much more likely to find yourself in a situation where your outcome variable is interval scale or higher, and you’re interested in whether the outcome variable’s average value is higher in one group or another. For instance, a psychologist might want to know if anxiety levels are higher among parents than non-parents; or if working memory capacity is reduced by listening to music (relative to not listening to music). In a medical context, we might want to know if a new drug increases or decreases blood pressure. An agricultural scientist might want to know whether adding phosphorus to Australian native plants will kill them. In all these situations, our outcome variable is a continuous interval or ratio scale variable; and our predictor is a binary “grouping” variable. In other words, we want to compare the <em>means of the two groups</em>.</p>
 <p>The standard answer to the problem of comparing means is to use a <span class="math inline">\(t\)</span>-test, which has several varieties depending on exactly what question you want to solve. As a consequence, the majority of this chapter focuses on different types of <span class="math inline">\(t\)</span>-test:</p>
 <p>-one sample <span class="math inline">\(t\)</span>-tests are discussed in Section <a href="ttest.html#onesamplettest">10.2</a>,
--independent samples <span class="math inline">\(t\)</span>-tests are discussed in Sections <a href="#studentttest"><strong>??</strong></a> and <a href="#welchttest"><strong>??</strong></a>, and
+-independent samples <span class="math inline">\(t\)</span>-tests are discussed in Sections <a href="ttest.html#studentttest">10.3</a> and <a href="#welchttest"><strong>??</strong></a>, and
 - paired samples <span class="math inline">\(t\)</span>-tests are discussed in Section <a href="#pairedsamplesttest"><strong>??</strong></a>.</p>
 <p>After that, we’ll talk a bit about Cohen’s <span class="math inline">\(d\)</span>, which is the standard measure of effect size for a <span class="math inline">\(t\)</span>-test (Section <a href="#cohensd"><strong>??</strong></a>).</p>
 <p>The later sections of the chapter focus on the assumptions of the <span class="math inline">\(t\)</span>-tests and possible remedies if they are violated. However, before discussing any of these useful things, we’ll start with a discussion of the <span class="math inline">\(z\)</span>-test.</p>
@@ -676,6 +678,149 @@ Figure 10.8: The <span class="math inline">\(t\)</span> distribution with 2 degr
 <li><em>Independence</em>. Once again, we have to assume that the observations in our sample are generated independently of one another.</li>
 </ul>
 <p>Overall, these two assumptions aren’t terribly unreasonable, and as a consequence, the one-sample <span class="math inline">\(t\)</span>-test is pretty widely used in practice as a way of comparing a sample mean against a hypothesised population mean.</p>
+</div>
+<div id="studentttest" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> The independent samples <span class="math inline">\(t\)</span>-test (Student test)<a href="ttest.html#studentttest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Although the one sample <span class="math inline">\(t\)</span>-test has its uses, it’s not the most typical example of a <span class="math inline">\(t\)</span>-test. A much more common situation arises when you’ve got two different groups of observations. In psychology, this tends to correspond to two different groups of participants, where each group corresponds to a different condition in your study. For each person in the study, you measure some outcome variable of interest, and the research question that you’re asking is whether or not the two groups have the same population mean. This is the situation that the independent samples <span class="math inline">\(t\)</span>-test is designed for.</p>
+<p>Suppose we have 33 students taking Dr Harpo’s statistics lectures, and Dr Harpo doesn’t grade to a curve. Actually, Dr Harpo’s grading is a bit of a mystery, so we don’t really know anything about what the average grade is for the class as a whole. There are two tutors for the class, Anastasia and Bernadette. There are <span class="math inline">\(N_1 = 15\)</span> students in Anastasia’s tutorials, and <span class="math inline">\(N_2 = 18\)</span> in Bernadette’s tutorials. The research question we’re interested in is whether Anastasia or Bernadette is a better tutor, or if it doesn’t make much of a difference.</p>
+<p>As usual, let’s load the file <a href="resources/data/harpo.csv"><code>harpo.csv</code></a>.</p>
+<p><img src="resources/cogstatloadharpo.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>As we can see, we have two variables: <code>grade</code> and <code>tutor</code>. The <code>grade</code> variable is a numeric interval variable, containing the grades for all <span class="math inline">\(N = 33\)</span> students taking Dr Harpo’s class; the <code>tutor</code> variable is a categorical (nominal) data that indicates who each student’s tutor was.</p>
+<p>Let’s run the <code>Compare groups</code> function so we can get some information about the grades by tutor.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:harpocompare"></span>
+<img src="resources/cogstatharpocomparedialog.png" alt="Comparing grades by tutor in CogStat for our `harpo` data set." width="100%" /><img src="resources/cogstatharposampleproperties.png" alt="Comparing grades by tutor in CogStat for our `harpo` data set." width="100%" />
+<p class="caption">
+Figure 10.9: Comparing grades by tutor in CogStat for our <code>harpo</code> data set.
+</p>
+</div>
+<p>In the boxplot generated by CogStat, we have the grades, the means and corresponding confidence intervals. We can see that the grades for Anastasia’s students are slightly higher than those for Bernadette’s students. We can also see that the variance of the grades for Bernadette’s students is slightly higher than that for Anastasia’s students.</p>
+<p><img src="resources/cogstatharpoboxplot.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The <strong>independent samples <span class="math inline">\(t\)</span>-test</strong> comes in two different forms, Student’s and Welch’s. The original Student <span class="math inline">\(t\)</span>-test – which is the one we’ll describe in this section – is the simpler of the two but relies on much more restrictive assumptions than the Welch <span class="math inline">\(t\)</span>-test. Assuming for the moment that you want to run a two-sided test, the goal is to determine whether two “independent samples” of data are drawn from populations with the same mean (the null hypothesis) or different means (the alternative hypothesis).</p>
+<p>When we say “independent” samples, what we really mean here is that there’s no special relationship between observations in the two samples. This probably doesn’t make a lot of sense right now, but it will be clearer when we come to talk about the paired samples <span class="math inline">\(t\)</span>-test later on. For now, let’s just point out that if we have an experimental design where participants are randomly allocated to one of two groups, and we want to compare the two groups’ mean performance on some outcome measure, then an independent samples <span class="math inline">\(t\)</span>-test (rather than a paired samples <span class="math inline">\(t\)</span>-test) is what we’re after.</p>
+<p>Okay, so let’s let <span class="math inline">\(\mu_1\)</span> denote the true population mean for group 1 (e.g., Anastasia’s students), and <span class="math inline">\(\mu_2\)</span> will be the true population mean for group 2 (e.g., Bernadette’s students),<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a> and as usual, we’ll let <span class="math inline">\(\bar{X}_1\)</span> and <span class="math inline">\(\bar{X}_2\)</span> denote the observed sample means for both of these groups. Our null hypothesis states that the two population means are identical (<span class="math inline">\(\mu_1 = \mu_2\)</span>), and the alternative to this is that they are not (<span class="math inline">\(\mu_1 \neq \mu_2\)</span>).</p>
+<p><span class="math display">\[
+\begin{array}{ll}
+H_0: &amp; \mu_1 = \mu_2  \\
+H_1: &amp; \mu_1 \neq \mu_2
+\end{array}
+\]</span></p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ttesthyp"></span>
+<img src="lsc_files/figure-html/ttesthyp-1.svg" alt="Graphical illustration of the null and alternative hypotheses assumed by the Student $t$-test. The null hypothesis assumes that both groups have the same mean $\mu$, whereas the alternative assumes that they have different means $\mu_1$ and $\mu_2$. Notice that it is assumed that the population distributions are normal, and that, although the alternative hypothesis allows the group to have different means, it assumes they have the same standard deviation" width="100%" />
+<p class="caption">
+Figure 10.10: Graphical illustration of the null and alternative hypotheses assumed by the Student <span class="math inline">\(t\)</span>-test. The null hypothesis assumes that both groups have the same mean <span class="math inline">\(\mu\)</span>, whereas the alternative assumes that they have different means <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span>. Notice that it is assumed that the population distributions are normal, and that, although the alternative hypothesis allows the group to have different means, it assumes they have the same standard deviation
+</p>
+</div>
+<p>To construct a hypothesis test that handles this scenario, we start by noting that if the null hypothesis is true, then the difference between the population means is <em>exactly</em> zero,
+<span class="math inline">\(\mu_1 - \mu_2 = 0\)</span></p>
+<p>As a consequence, a diagnostic test statistic will be based on the difference between the two sample means. Because if the null hypothesis is true, then we’d expect
+<span class="math display">\[
+\bar{X}_1 - \bar{X}_2
+\]</span>
+to be <em>pretty close</em> to zero. However, just like we saw with our one-sample tests (i.e. the one-sample <span class="math inline">\(z\)</span>-test and the one-sample <span class="math inline">\(t\)</span>-test) we have to be precise about exactly <em>how close</em> to zero this difference should be. And the solution to the problem is more or less the same one: we calculate a standard error estimate (SE), just like last time, and then divide the difference between means by this estimate. So our <strong><span class="math inline">\(t\)</span>-statistic</strong> will be of the form
+<span class="math display">\[
+t = \frac{\bar{X}_1 - \bar{X}_2}{\mbox{SE}}
+\]</span>
+We just need to figure out what this standard error estimate actually is. This is a bit trickier than was the case for either of the two tests we’ve looked at so far, so we need to go through it a lot more carefully to understand how it works.</p>
+<p>In the original “Student <span class="math inline">\(t\)</span>-test”, we make the assumption that the two groups have the same population standard deviation: that is, regardless of whether the population means are the same, we assume that the population standard deviations are identical, <span class="math inline">\(\sigma_1 = \sigma_2\)</span>. Since we’re assuming that the two standard deviations are the same, we drop the subscripts and refer to both of them as <span class="math inline">\(\sigma\)</span>.</p>
+<p>How should we estimate this? How should we construct a single estimate of a standard deviation when we have two samples? The answer is, we take a <em>weighed</em> average of the <em>variance</em> estimates, which we use as our <strong>pooled estimate of the variance</strong>. The weight assigned to each sample is equal to the number of observations in that sample, minus 1.</p>
+<p><span class="math display">\[
+\begin{array}{rcl}
+w_1 &amp;=&amp; N_1 - 1\\
+w_2 &amp;=&amp; N_2 - 1
+\end{array}
+\]</span></p>
+<p>Now that we’ve assigned weights to each sample, we calculate the pooled estimate of the variance by taking the weighted average of the two variance estimates, <span class="math inline">\({\hat\sigma_1}^2\)</span> and <span class="math inline">\({\hat\sigma_2}^2\)</span>.</p>
+<p><span class="math display">\[
+\hat\sigma^2_p = \frac{w_1 {\hat\sigma_1}^2 + w_2 {\hat\sigma_2}^2}{w_1 + w_2}
+\]</span></p>
+<p>Finally, we convert the pooled variance estimate to a pooled standard deviation estimate, by taking the square root. This gives us the following formula for <span class="math inline">\(\hat\sigma_p\)</span>,
+<span class="math display">\[
+\hat\sigma_p = \sqrt{\frac{w_1 {\hat\sigma_1}^2 + w_2 {\hat\sigma_2}^2}{w_1 + w_2}}
+\]</span></p>
+<p>And if you mentally substitute <span class="math inline">\(w_1 = N_1 -1\)</span> and <span class="math inline">\(w_2 = N_2 -1\)</span> into this equation, you get a very ugly formula that actually seems to be the “standard” way of describing the pooled standard deviation estimate.</p>
+<p>But let us describe it a bit differently:</p>
+<p>Our data set actually corresponds to a set of <span class="math inline">\(N\)</span> observations, which are sorted into two groups. So let’s use the notation <span class="math inline">\(X_{ik}\)</span> to refer to the grade received by the <span class="math inline">\(i\)</span>-th student in the <span class="math inline">\(k\)</span>-th tutorial group: that is, <span class="math inline">\(X_{11}\)</span> is the grade received by the first student in Anastasia’s class, <span class="math inline">\(X_{21}\)</span> is her second student, and so on. And we have two separate group means <span class="math inline">\(\bar{X}_1\)</span> and <span class="math inline">\(\bar{X}_2\)</span>, which we could “generically” refer to using the notation <span class="math inline">\(\bar{X}_k\)</span>, i.e.,the mean grade for the <span class="math inline">\(k\)</span>-th tutorial group. Since every single student falls into one of the two tutorials, and so we can describe their deviation from the group mean as the difference
+<span class="math display">\[
+X_{ik} - \bar{X}_k
+\]</span></p>
+<p>So why not just use these deviations (i.e. the extent to which each student’s grade differs from the mean grade in their tutorial)? Remember, a variance is just the average of a bunch of squared deviations.</p>
+<p><span class="math display">\[
+\frac{\sum_{ik} \left( X_{ik} - \bar{X}_k \right)^2}{N}
+\]</span>
+where the notation “<span class="math inline">\(\sum_{ik}\)</span>” is a lazy way of saying “calculate a sum by looking at all students in all tutorials”, since each “<span class="math inline">\(ik\)</span>” corresponds to one student. But, as we saw in Chapter <a href="estimation.html#estimation">7</a>, calculating the variance by dividing by <span class="math inline">\(N\)</span> produces a biased estimate of the population variance. And previously, we needed to divide by <span class="math inline">\(N-1\)</span> to fix this. However, the reason why this bias exists is because the variance estimate relies on the sample mean; and to the extent that the sample mean isn’t equal to the population mean, it can systematically bias our estimate of the variance. But this time we’re relying on <em>two</em> sample means! Does this mean that we’ve got more bias? Yes, yes it does. And does this mean we now need to divide by <span class="math inline">\(N-2\)</span> instead of <span class="math inline">\(N-1\)</span>, in order to calculate our pooled variance estimate? Why, yes…
+<span class="math display">\[
+\hat\sigma^2_p = \frac{\sum_{ik} \left( X_{ik} - \bar{X}_k \right)^2}{N -2}
+\]</span>
+Oh, and if you take the square root of this then you get <span class="math inline">\(\hat{\sigma}_p\)</span>, the pooled standard deviation estimate. In other words, the pooled standard deviation calculation is nothing special: it’s not terribly different to the regular standard deviation calculation.</p>
+<p>Regardless of which way you want to think about it, we now have our pooled estimate of the standard deviation. From now on, we’ll refer to this estimate as <span class="math inline">\(\hat\sigma\)</span>. Let’s now go back to thinking about the hypothesis test.</p>
+<p>Our whole reason for calculating this pooled estimate was that we knew it would be helpful when calculating our <em>standard error</em> estimate. But, standard error of <em>what</em>? In the one-sample <span class="math inline">\(t\)</span>-test, it was the standard error of the sample mean, <span class="math inline">\(\mbox{SE}({\bar{X}})\)</span>, and since <span class="math inline">\(\mbox{SE}({\bar{X}}) = \sigma / \sqrt{N}\)</span> that’s what the denominator of our <span class="math inline">\(t\)</span>-statistic looked like. This time around, however, we have <em>two</em> sample means. And what we’re interested in, specifically, is the the difference between the two <span class="math inline">\(\bar{X}_1 - \bar{X}_2\)</span>. Consequently, the standard error that we need to divide by is in fact the <strong>standard error of the difference</strong> between means. As long as the two variables really do have the same standard deviation, then our estimate for the standard error is
+<span class="math display">\[
+\mbox{SE}({\bar{X}_1 - \bar{X}_2}) = \hat\sigma \sqrt{\frac{1}{N_1} + \frac{1}{N_2}}
+\]</span>
+and our <span class="math inline">\(t\)</span>-statistic is therefore
+<span class="math display">\[
+t = \frac{\bar{X}_1 - \bar{X}_2}{\mbox{SE}({\bar{X}_1 - \bar{X}_2})}
+\]</span></p>
+<p>Just as we saw with our one-sample test, the sampling distribution of this <span class="math inline">\(t\)</span>-statistic is a <span class="math inline">\(t\)</span>-distribution as long as the null hypothesis is true, and all of the assumptions of the test are met. The degrees of freedom, however, is slightly different. As usual, we can think of the degrees of freedom to be equal to the number of data points minus the number of constraints. In this case, we have <span class="math inline">\(N\)</span> observations (<span class="math inline">\(N_1\)</span> in sample 1, and <span class="math inline">\(N_2\)</span> in sample 2), and 2 constraints (the sample means). So the total degrees of freedom for this test are <span class="math inline">\(N-2\)</span>.</p>
+<p><img src="resources/cogstatharpohypo.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>The output from CogStat has a very familiar form. Let’s start to talk about the confidence interval, and for that, let’s circle back to our <code>Population parameter estimations</code>:</p>
+<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
+ <h4 style="font-size:medium; font-weight:600; color:#3960a5;">Population parameter estimations</h4>
+ <p>Means<br />Present confidence interval values suppose normality.</p>
+  <table style="border: none; background-color: white;">
+     <tr>
+          <td style="border: 0px; background-color: white;">tutor</td>
+          <td style="border: 0px; background-color: white;">Point estimation</td>
+          <td style="border: 0px; background-color: white;">95% CI (low)</td>
+          <td style="border: 0px; background-color: white;">95% CI (high)</td>
+     </tr>
+     <tr>
+          <td style="border: 0px; background-color: white;">Anastasia</td>
+          <td style="border: 0px; background-color: white;">74.5</td>
+          <td style="border: 0px; background-color: white;">69.5</td>
+          <td style="border: 0px; background-color: white;">79.5</td>
+     </tr>
+     <tr>
+          <td style="border: 0px; background-color: white;">Bernadette</td>
+          <td style="border: 0px; background-color: white;">69.1</td>
+          <td style="border: 0px; background-color: white;">66.2</td>
+          <td style="border: 0px; background-color: white;">71.9</td>
+     </tr>
+          <tr>
+          <td style="border: 0px; background-color: white;">Difference between the two groups:</td>
+          <td style="border: 0px; background-color: white;">5.5</td>
+          <td style="border: 0px; background-color: white;">0.2</td>
+          <td style="border: 0px; background-color: white;">10.8</td>
+     </tr>
+  </table>
+</div>
+<p>It’s pretty important to be clear on what this confidence interval actually refers to: it is a confidence interval for the <em>difference</em> between the group means. In our example, Anastasia’s students had an average grade of 74.5, and Bernadette’s students had an average grade of 69.1, so the difference between the two sample means is 5.5 (due to rounding). But of course the difference between population means might be bigger or smaller than this. The confidence interval reported tells you that there’s a 95% chance that the true difference between means lies between 0.2 and 10.8.</p>
+<p>In any case, the difference between the two groups is significant (just barely), so we might write up the result using text like this based on Figures <a href="ttest.html#fig:harpocompare">10.9</a> and <a href="#fig:cogstatharpohypo"><strong>??</strong></a>:</p>
+<blockquote>
+<p>The mean grade in Anastasia’s class was 74.5 (SD = 8.7), whereas the mean in Bernadette’s class was 69.1 (SD = 5.6). A Student’s independent samples <span class="math inline">\(t\)</span>-test showed that this 5.5 difference was significant (<span class="math inline">\(t(31) = 2.12\)</span>, <span class="math inline">\(p&lt;.05\)</span>, <span class="math inline">\(CI_{95} = [0.2, 10.8]\)</span>), suggesting that a genuine difference in learning outcomes has occurred.</p>
+</blockquote>
+<p>At a bare minimum, you’d expect to see the <span class="math inline">\(t\)</span>-statistic, the degrees of freedom and the <span class="math inline">\(p\)</span> value. So you should include something like this at a minimum: <span class="math inline">\(t(31) = 2.1\)</span>, <span class="math inline">\(p&lt;.05\)</span>. If statisticians had their way, everyone would also report the confidence interval and probably the effect size measure too, because they are useful things to know. But real life doesn’t always work the way statisticians want it to: you should make a judgment based on whether you think it will help your readers, and (if you’re writing a scientific paper) the editorial standard for the journal in question. Some journals expect you to report effect sizes, others don’t. Within some scientific communities it is standard practice to report confidence intervals, in other it is not. You’ll need to figure out what your audience expects.</p>
+<p>Before moving on to talk about the assumptions of the <span class="math inline">\(t\)</span>-test, there’s one additional point to make about the use of <span class="math inline">\(t\)</span>-tests in practice. The first one relates to the sign of the <span class="math inline">\(t\)</span>-statistic (that is, whether it is a positive number or a negative one). One very common worry that students have when they start running their first <span class="math inline">\(t\)</span>-test is that they often end up with negative values for the <span class="math inline">\(t\)</span>-statistic, and don’t know how to interpret it. On closer inspection, the students will notice that the confidence intervals also have the opposite signs. This is perfectly okay. The <span class="math inline">\(t\)</span>-statistic calculated in CogStat is always of the form
+<span class="math display">\[
+t = \frac{\mbox{(mean 1)} -\mbox{(mean 2)}}{ \mbox{(SE)}}
+\]</span>
+If “mean 1” is larger than “mean 2” the <span class="math inline">\(t\)</span> statistic will be positive, whereas if “mean 2” is larger then the <span class="math inline">\(t\)</span> statistic will be negative. Similarly, the confidence interval is the confidence interval for the difference “(mean 1) minus (mean 2)”, which will be the reverse of what you’d get if you were calculating the confidence interval for the difference “(mean 2) minus (mean 1)”.</p>
+<p>Okay, that’s pretty straightforward when you think about it, but now consider our <span class="math inline">\(t\)</span>-test comparing Anastasia’s class to Bernadette’s class. Which one does CogStat call “mean 1” and which one should we call “mean 2”? Let’s look at the order of how the data is presented. Anastasia goes first in all the result outputs. So, we would write</p>
+<blockquote>
+<p>Anastasia’s class had <em>higher</em> grades than Bernadette’s class (<span class="math inline">\(t(31)= 2.1, p=.04\)</span>).</p>
+</blockquote>
+<p>On the other hand, suppose the phrasing we wanted to use has Bernadette’s class listed first. If so, it makes more sense to treat her class as group 1, and if so, the write up looks like this:</p>
+<blockquote>
+<p>Bernadette’s class had <em>lower</em> grades than Anastasia’s class (<span class="math inline">\(t(31)= -2.1, p=.04\)</span>).</p>
+</blockquote>
+<p>Because we’re talking about one group having “lower” scores this time around, it is more sensible to use the negative form of the <span class="math inline">\(t\)</span>-statistic. It just makes it read more cleanly.</p>
+<p>One last thing: please note that you <em>can’t</em> do this for other types of test statistics. It works for <span class="math inline">\(t\)</span>-tests, but it wouldn’t be meaningful for chi-square tests, <span class="math inline">\(F\)</span>-tests. So don’t overgeneralise this advice!</p>
+<p>As always, our hypothesis test relies on some assumptions. For the Student t-test there are three assumptions, some of which we saw previously in the context of the one sample <span class="math inline">\(t\)</span>-test:</p>
+<ul>
+<li><em>Normality</em>. Specifically, we assume that both groups are normally distributed.</li>
+<li><em>Independence</em>. In the context of the Student test this has two aspects to it. Firstly, we assume that the observations within each sample are independent of one another (exactly the same as for the one-sample test). However, we also assume that there are no cross-sample dependencies. If, for instance, it turns out that you included some participants in both experimental conditions of your study (e.g. by accidentally allowing the same person to sign up to different conditions), then there are some cross sample dependencies that you’d need to take into account.</li>
+<li><em>Homogeneity of variance</em> (also called “homoscedasticity”). The third assumption is that the population standard deviation is the same in both groups. CogStat tests this assumption using the Levene test automatically, as you’ve seen in the result output. But we’ll talk about later on in the book (Section <a href="#levene"><strong>??</strong></a>).</li>
+</ul>
 
 </div>
 </div>
@@ -685,6 +830,7 @@ Figure 10.8: The <span class="math inline">\(t\)</span> distribution with 2 degr
 <li id="fn44"><p>We won’t cover multiple predictors until Chapter <a href="regression.html#regression">12</a><a href="ttest.html#fnref44" class="footnote-back">↩︎</a></p></li>
 <li id="fn45"><p>Strictly speaking, the <span class="math inline">\(z\)</span> test only requires that the sampling distribution of the mean be normally distributed; if the population is normal then it necessarily follows that the sampling distribution of the mean is also normal. However, as we saw when talking about the central limit theorem, it’s entirely possible (even commonplace) for the sampling distribution to be normal even if the population distribution itself is non-normal. However, in light of the sheer ridiculousness of the assumption that the true standard deviation is known, there really isn’t much point in going into details on this front!<a href="ttest.html#fnref45" class="footnote-back">↩︎</a></p></li>
 <li id="fn46"><p>Gosset only provided a partial solution: the general solution to the problem was provided by Sir Ronald Fisher.<a href="ttest.html#fnref46" class="footnote-back">↩︎</a></p></li>
+<li id="fn47"><p>A funny question almost always pops up at this point: what the heck <em>is</em> the population being referred to in this case? Is it the set of students actually taking Dr Harpo’s class (all 33 of them)? The set of people who might take the class (an unknown number) of them? Or something else? Does it matter which of these we pick? Technically yes, it does matter: if you change your definition of what the “real world” population actually is, then the sampling distribution of your observed mean <span class="math inline">\(\bar{X}\)</span> changes too. The <span class="math inline">\(t\)</span>-test relies on the assumption that the observations are sampled at random from an infinitely large population, and to the extent that real life isn’t like that, then the <span class="math inline">\(t\)</span>-test can be wrong. In practice, however, this isn’t usually a big deal: even though the assumption is almost always wrong, it doesn’t lead to a lot of pathological behaviour from the test, so we tend to just ignore it.<a href="ttest.html#fnref47" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

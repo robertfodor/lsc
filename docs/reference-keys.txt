@@ -92,6 +92,8 @@ fig:ztest2
 fig:ztest1
 fig:ttesthyponesample
 fig:ttestdist
+fig:harpocompare
+fig:ttesthyp
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -100,6 +102,7 @@ gettingstarted
 installing-cogstat
 loading-data
 saving-and-exporting-your-results
+how-to-use-this-book
 researchdesign
 measurement
 some-thoughts-about-psychological-measurement
@@ -243,6 +246,7 @@ summary-5
 ttest
 the-one-sample-z-test
 onesamplettest
+studentttest
 anova
 regression
 anova2
