@@ -455,7 +455,7 @@ $$
 
 However, if CogStat didn't do the correction, the results would have been $\chi^2(2, N = 180) = 7.02, p = 0.008$, which is a bit different. The difference is not huge, but it is there. The Yates correction is a good thing to know about, but it's not something you need to worry about too much. It's just a little bit of a hack that makes the test work better in this specific case.
 
-## Effect size{#chisqeffectsize}
+## Effect size (Cramér's $V$){#chisqeffectsize}
 
 As we discussed earlier in Section \@ref(effectsize), it's becoming commonplace to ask researchers to report some measure of effect size. So, suppose that you've run your chi-square test, which turns out to be significant. So you now know that there is some association between your variables (independence test) or some deviation from the specified probabilities (goodness of fit test). Now you want to report a measure of effect size. That is, given that there is an association/deviation, how strong is it?
 
