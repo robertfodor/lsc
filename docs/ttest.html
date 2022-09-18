@@ -373,6 +373,7 @@ div.csl-indent {
 <li class="chapter" data-level="10" data-path="ttest.html"><a href="ttest.html"><i class="fa fa-check"></i><b>10</b> Comparing two means</a>
 <ul>
 <li class="chapter" data-level="10.1" data-path="ttest.html"><a href="ttest.html#the-one-sample-z-test"><i class="fa fa-check"></i><b>10.1</b> The one-sample <span class="math inline">\(z\)</span>-test</a></li>
+<li class="chapter" data-level="10.2" data-path="ttest.html"><a href="ttest.html#onesamplettest"><i class="fa fa-check"></i><b>10.2</b> The one-sample <span class="math inline">\(t\)</span>-test</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>11</b> Comparing several means (one-way ANOVA)</a></li>
 <li class="chapter" data-level="12" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>12</b> Linear regression</a></li>
@@ -407,7 +408,7 @@ div.csl-indent {
 <p>In the previous chapter, we covered the situation when your outcome variable is a nominal scale, and your predictor variable<a href="#fn44" class="footnote-ref" id="fnref44"><sup>44</sup></a> is also a nominal scale. Many real-world situations have that character, so you’ll find that chi-square tests are widely used.</p>
 <p>However, you’re much more likely to find yourself in a situation where your outcome variable is interval scale or higher, and you’re interested in whether the outcome variable’s average value is higher in one group or another. For instance, a psychologist might want to know if anxiety levels are higher among parents than non-parents; or if working memory capacity is reduced by listening to music (relative to not listening to music). In a medical context, we might want to know if a new drug increases or decreases blood pressure. An agricultural scientist might want to know whether adding phosphorus to Australian native plants will kill them. In all these situations, our outcome variable is a continuous interval or ratio scale variable; and our predictor is a binary “grouping” variable. In other words, we want to compare the <em>means of the two groups</em>.</p>
 <p>The standard answer to the problem of comparing means is to use a <span class="math inline">\(t\)</span>-test, which has several varieties depending on exactly what question you want to solve. As a consequence, the majority of this chapter focuses on different types of <span class="math inline">\(t\)</span>-test:</p>
-<p>-one sample <span class="math inline">\(t\)</span>-tests are discussed in Section <a href="#onesamplettest"><strong>??</strong></a>,
+<p>-one sample <span class="math inline">\(t\)</span>-tests are discussed in Section <a href="ttest.html#onesamplettest">10.2</a>,
 -independent samples <span class="math inline">\(t\)</span>-tests are discussed in Sections <a href="#studentttest"><strong>??</strong></a> and <a href="#welchttest"><strong>??</strong></a>, and
 - paired samples <span class="math inline">\(t\)</span>-tests are discussed in Section <a href="#pairedsamplesttest"><strong>??</strong></a>.</p>
 <p>After that, we’ll talk a bit about Cohen’s <span class="math inline">\(d\)</span>, which is the standard measure of effect size for a <span class="math inline">\(t\)</span>-test (Section <a href="#cohensd"><strong>??</strong></a>).</p>
@@ -462,7 +463,7 @@ Figure 10.4: Graphical illustration of the null and alternative hypotheses assum
 \bar{X} - \mu_0
 \]</span>
 If this quantity equals or is very close to 0, things are looking good for the null hypothesis. If this quantity is a long way away from 0, then it looks less likely that the null hypothesis is worth retaining. But how far away from zero should it be for us to reject <span class="math inline">\(H_0\)</span>?</p>
-<p>To figure that out, we need to be a bit more sneaky, and we’ll need to rely on those two pieces of background knowledge that I wrote down previously, namely that the raw data are normally distributed, and we know the value of the population standard deviation <span class="math inline">\(\sigma\)</span>. If the null hypothesis is actually true, and the true mean is <span class="math inline">\(\mu_0\)</span>, then these facts together mean that we know the complete population distribution of the data: a normal distribution with mean <span class="math inline">\(\mu_0\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>. Adopting the notation from Section <a href="probability.html#normal">6.4.2</a>, a statistician might write this as:
+<p>To figure that out, we need to be a bit more sneaky, and we’ll need to rely on those two pieces of background knowledge shared previously, namely that the raw data are normally distributed, and we know the value of the population standard deviation <span class="math inline">\(\sigma\)</span>. If the null hypothesis is actually true, and the true mean is <span class="math inline">\(\mu_0\)</span>, then these facts together mean that we know the complete population distribution of the data: a normal distribution with mean <span class="math inline">\(\mu_0\)</span> and standard deviation <span class="math inline">\(\sigma\)</span>. Adopting the notation from Section <a href="probability.html#normal">6.4.2</a>, a statistician might write this as:
 <span class="math display">\[
 X \sim \mbox{Normal}(\mu_0,\sigma^2)
 \]</span></p>
@@ -561,46 +562,16 @@ Figure 10.5: Rejection regions for the two-sided <span class="math inline">\(z\)
 Figure 10.6: Rejection regions for the one-sided <span class="math inline">\(z\)</span>-test
 </p>
 </div>
-<p>Now, as mentioned earlier, the <span class="math inline">\(z\)</span>-test is almost never used in practice. However, the test is so incredibly simple that it’s really easy to do one manually. Let’s go back to the data from Dr Zeppo’s class.</p>
-<p>Let us re-run the <code>Explore variable</code> option, but now let us quote our null hypothesis as 67.5, as discussed above. To do that, we have to fill in <code>67.5</code> in our dialogue:</p>
-<p><img src="resources/centraltendency.png" width="100%" style="display: block; margin: auto;" /></p>
-<p>Having loaded the <code>grades</code> data and explored the descriptive statistics, let us take note of a few data points from the <code>Descriptives for the variable</code> and the <code>Population parameter estimations</code> section of the CogStat output.</p>
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
- <h4 style="font-size:medium; font-weight:600; color:#3960a5;">Population parameter estimations</h4>
- <p>Present confidence interval values for the mean suppose normality.</p>
- <table>
- <thead>
- <tr>
- <th></th>
- <th>Point estimation</th>
- <th>95% confidence interval (low)</th>
- <th>95% confidence interval (high)</th>
- </tr>
- </thead>
- <tbody">
- <tr>
- <td>Mean</td>
- <td>72.3</td>
- <td>67.8</td>
- <td>76.8</td>
- </tr>
- <tr>
- <td>Standard deviation</td>
- <td>9.5</td>
- <td>7.2</td>
- <td>13.9</td>
- </tr>
- </table>
-</div>
+<p>Now, as mentioned earlier, the <span class="math inline">\(z\)</span>-test is almost never used in practice. However, the test is so incredibly simple that it’s really easy to do one manually. Let’s go back to the data from Dr Zeppo’s class. However, we’re not going to use CogStat for the rest of this section, because it will automatically (and correctly) use the population parameter estimates, that will actually come in handy in the <span class="math inline">\(t\)</span>-test section. So from now on, let’s just follow the logic without the urge to try to replicate it.</p>
 <ul>
-<li>The sample size is <span class="math inline">\(20\)</span> (we know this from the load screen (see Figure <a href="ttest.html#fig:cogstatloadzeppo">10.1</a>)).</li>
-<li>The <em>mean</em> is <span class="math inline">\(72.3\)</span>.</li>
-<li>The point estimation for standard deviation is <span class="math inline">\(9.5\)</span>.</li>
-<li>The null hypothesis is that the mean is <span class="math inline">\(67.5\)</span> (we set this in the dialogue).</li>
+<li>The sample size is <span class="math inline">\(20\)</span> (we know this from Figure <a href="ttest.html#fig:cogstatloadzeppo">10.1</a>).</li>
+<li>The <em>mean</em> is <span class="math inline">\(72.3\)</span> (we know this from Figure <a href="ttest.html#fig:cogstatexplorezeppo">10.2</a>).</li>
+<li>The point estimation for standard deviation is <span class="math inline">\(9.5\)</span> (we have to just believe this for the example’s sake because we said so earlier).</li>
+<li>The null hypothesis is that the mean is <span class="math inline">\(67.5\)</span>.</li>
 </ul>
 <p>Next, let’s calculate the (true) standard error of the mean:</p>
 <p><span class="math display">\[
-\frac{9.5}{sqrt{20}} = 2.1243
+\frac{9.5}{\sqrt{20}} = 2.1243
 \]</span></p>
 <p>And finally, we calculate our <span class="math inline">\(z\)</span>-score:</p>
 <p><span class="math display">\[
@@ -619,6 +590,86 @@ Figure 10.6: Rejection regions for the one-sided <span class="math inline">\(z\)
 <li><em>Known standard deviation</em>. The third assumption of the <span class="math inline">\(z\)</span>-test is that the true standard deviation of the population is known to the researcher. This is just stupid. In no real-world data analysis problem do you know the standard deviation <span class="math inline">\(\sigma\)</span> of some population but are completely ignorant about the mean <span class="math inline">\(\mu\)</span>. In other words, this assumption is <em>always</em> wrong.</li>
 </ul>
 <p>In view of the stupidity of assuming that <span class="math inline">\(\sigma\)</span> is known, let’s see if we can live without it. This takes us out of the dreary domain of the <span class="math inline">\(z\)</span>-test and into the magical kingdom of the <span class="math inline">\(t\)</span>-test, with unicorns, fairies, and leprechauns.</p>
+</div>
+<div id="onesamplettest" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> The one-sample <span class="math inline">\(t\)</span>-test<a href="ttest.html#onesamplettest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It might not be safe to assume that the psychology student grades necessarily have the same standard deviation as the other students in Dr Zeppo’s class. After all, if we were entertaining the hypothesis that they don’t have the same mean, why should we assume they have the same standard deviation? In view of this, we must stop assuming we know the true value of <span class="math inline">\(\sigma\)</span>. However, this violates the assumptions of the <span class="math inline">\(z\)</span>-test, which brings us back to square one. However, we still have the raw data loaded into CogStat, and those can give us an <em>estimate</em> of the population standard deviation.</p>
+<p>Having loaded the <code>grades</code> data and explored the descriptive statistics, let us take note of a few data points from the <code>Descriptives for the variable</code> and the <code>Population parameter estimations</code> section of the CogStat output. But first, let us re-run the <code>Explore variable</code> option, but now let us tell CogStat to use our null hypothesis of <span class="math inline">\(67.5\)</span>. To do that, we have to fill in <code>67.5</code> in our dialogue:</p>
+<p><img src="resources/centraltendency.png" width="100%" style="display: block; margin: auto;" /></p>
+<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
+ <h4 style="font-size:medium; font-weight:600; color:#3960a5;">Population parameter estimations</h4>
+ <p>Present confidence interval values for the mean suppose normality.</p>
+  <table style="border: none; background-color: white;">
+     <tr>
+          <td style="border: 0px; background-color: white;"></td>
+          <td style="border: 0px; background-color: white;">Point estimation</td>
+          <td style="border: 0px; background-color: white;">95% confidence interval (low)</td>
+          <td style="border: 0px; background-color: white;">95% confidence interval (high)</td>
+     </tr>
+     <tr>
+          <td style="border: 0px; background-color: white;">Mean</td>
+          <td style="border: 0px; background-color: white;">72.3</td>
+          <td style="border: 0px; background-color: white;">67.8</td>
+          <td style="border: 0px; background-color: white;">76.8</td>
+     </tr>
+     <tr>
+          <td style="border: 0px; background-color: white;">Standard deviation</td>
+          <td style="border: 0px; background-color: white;">9.5</td>
+          <td style="border: 0px; background-color: white;">7.2</td>
+          <td style="border: 0px; background-color: white;">13.9</td>
+     </tr>
+  </table>
+</div>
+<p>In other words, while we can’t say that we <em>know</em> that <span class="math inline">\(\sigma = 9.5\)</span>, we <em>can</em> say that <span class="math inline">\(\hat\sigma = 9.5\)</span>. (Actually it’s <span class="math inline">\(9.520615\)</span> but CogStat rounds it to one decimal when displayed, but it uses the exact value for any calculation.)</p>
+<p>Because we are now relying on an <em>estimate</em> of the population standard deviation, we need to make some adjustment for the fact that we have some uncertainty about what the true population standard deviation actually is. Maybe our data are just a fluke … maybe the true population standard deviation is 11, for instance. But if that were actually true, and we ran the <span class="math inline">\(z\)</span>-test assuming <span class="math inline">\(\sigma=11\)</span>, then the result would end up being <em>non-significant</em>. That’s a problem, and it’s one we’re going to have to address.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ttesthyponesample"></span>
+<img src="lsc_files/figure-html/ttesthyponesample-1.svg" alt="Graphical illustration of the null and alternative hypotheses assumed by the (two sided) one sample $t$-test. Note the similarity to the $z$-test. The null hypothesis is that the population mean $\mu$ is equal to some specified value $\mu_0$, and the alternative hypothesis is that it is not. Like the $z$-test, we assume that the data are normally distributed; but we do not assume that the population standard deviation $\sigma$ is known in advance." width="100%" />
+<p class="caption">
+Figure 10.7: Graphical illustration of the null and alternative hypotheses assumed by the (two sided) one sample <span class="math inline">\(t\)</span>-test. Note the similarity to the <span class="math inline">\(z\)</span>-test. The null hypothesis is that the population mean <span class="math inline">\(\mu\)</span> is equal to some specified value <span class="math inline">\(\mu_0\)</span>, and the alternative hypothesis is that it is not. Like the <span class="math inline">\(z\)</span>-test, we assume that the data are normally distributed; but we do not assume that the population standard deviation <span class="math inline">\(\sigma\)</span> is known in advance.
+</p>
+</div>
+<p>This ambiguity is annoying, and it was resolved in 1908 by a guy called William Sealy Gosset <span class="citation">(Student, 1908)</span>, who was working as a chemist for the Guinness brewery at the time <span class="citation">(see Box, 1987)</span>. Because Guinness took a dim view of its employees publishing statistical analysis (apparently, they felt it was a trade secret), he published the work under the pseudonym “A Student”, and to this day, the full name of the <span class="math inline">\(t\)</span>-test is actually <strong>Student’s <span class="math inline">\(t\)</span>-test</strong>. The critical thing that Gosset figured out is how we should accommodate the fact that we aren’t entirely sure what the true standard deviation is.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a> The answer is that it subtly changes the sampling distribution.</p>
+<p>In the <span class="math inline">\(t\)</span>-test, our test statistic (now called a <span class="math inline">\(t\)</span>-statistic) is calculated in exactly the same way as mentioned above. If our null hypothesis is that the true mean is <span class="math inline">\(\mu\)</span>, but our sample has mean <span class="math inline">\(\bar{X}\)</span> and our estimate of the population standard deviation is <span class="math inline">\(\hat{\sigma}\)</span>, then our <span class="math inline">\(t\)</span> statistic is:
+<span class="math display">\[
+t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
+\]</span></p>
+<p>The only thing that has changed in the equation is that instead of using the known true value <span class="math inline">\(\sigma\)</span>, we use the estimate <span class="math inline">\(\hat{\sigma}\)</span>. And if this estimate has been constructed from <span class="math inline">\(N\)</span> observations, then the sampling distribution turns into a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(N-1\)</span> <strong>degrees of freedom</strong> (df). The <span class="math inline">\(t\)</span> distribution is very similar to the normal distribution but has “heavier” tails, as discussed earlier in Section <a href="probability.html#otherdists">6.4.4</a> and illustrated in Figure <a href="ttest.html#fig:ttestdist">10.8</a>.</p>
+<p>Notice, though, that as df gets larger, the <span class="math inline">\(t\)</span>-distribution starts to look identical to the standard normal distribution. This is as it should be: if you have a sample size of <span class="math inline">\(N = 70000000\)</span>, then your “estimate” of the standard deviation would be pretty much perfect, right? So, you should expect that for large <span class="math inline">\(N\)</span>, the <span class="math inline">\(t\)</span>-test would behave the same way as a <span class="math inline">\(z\)</span>-test. And that’s exactly what happens!</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ttestdist"></span>
+<img src="resources/ttestdist.png" alt="The $t$ distribution with 2 degrees of freedom (left) and 10 degrees of freedom (right), with a standard normal distribution (i.e., mean 0 and std dev 1) plotted as dotted lines for comparison purposes. Notice that the $t$ distribution has heavier tails (higher kurtosis) than the normal distribution; this effect is quite exaggerated when the degrees of freedom are very small, but negligible for larger values. In other words, for large $df$ the $t$ distribution is essentially identical to a normal distribution." width="100%" />
+<p class="caption">
+Figure 10.8: The <span class="math inline">\(t\)</span> distribution with 2 degrees of freedom (left) and 10 degrees of freedom (right), with a standard normal distribution (i.e., mean 0 and std dev 1) plotted as dotted lines for comparison purposes. Notice that the <span class="math inline">\(t\)</span> distribution has heavier tails (higher kurtosis) than the normal distribution; this effect is quite exaggerated when the degrees of freedom are very small, but negligible for larger values. In other words, for large <span class="math inline">\(df\)</span> the <span class="math inline">\(t\)</span> distribution is essentially identical to a normal distribution.
+</p>
+</div>
+<p>As you might expect, the mechanics of the <span class="math inline">\(t\)</span>-test are almost identical to the mechanics of the <span class="math inline">\(z\)</span>-test. So there’s not much point in going through the tedious exercise of showing you how to do the calculations: it’s pretty much identical to the calculations that we did earlier, except that we use the estimated standard deviation, and then we test our hypothesis using the <span class="math inline">\(t\)</span> distribution rather than the normal distribution.</p>
+<p>So let’s just do it quickly in CogStat: let’s just go through the output. You can see that the <code>Population parameter estimations</code> stayed the same, so no need to quote them here again. However, let’s see the <code>Hypothesis tests</code> results.</p>
+<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
+     <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
+     <p style="color:#008000;">Testing if mean deviates from the value 67.5.<br />
+     Interval variable. &gt;&gt; Choosing one-sample t-test or Wilcoxon signed-rank test depending on the assumption.<br />
+     Checking for normality.</p>
+     <p style="color:black;">Shapiro-Wilk normality test in variable x:<span style="font-style:italic;">W</span> = 0.96, <span style="font-style:italic;">p</span> = .586</p>
+     <p style="color:#008000;">Normality is not violated. &gt;&gt; Running one-sample t-test.</p>
+     <p style="color:black;">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in d: 0.85. </p>
+     <p style="color:black;">One sample t-test against 67.5: <span style="font-style:italic;">t</span>(19) = 2.25, <span style="font-style:italic;">p</span> &lt; .036</p>
+     <p style="color:black;">Result of the Bayesian one sample t-test: BF<sub>10</sub> = 1.80, BF<sub>01</sub> = 0.56</p>
+</div>
+<p>Let us go through them line by line.</p>
+<ul>
+<li><code>Testing if mean deviates from the value 67.5.</code>: good, we are made sure we are testing against a null hypothesis of <span class="math inline">\(\mu = 67.5\)</span>.</li>
+<li><code>Interval variable. &gt;&gt; Choosing one-sample t-test or Wilcoxon signed-rank test depending on the assumption.</code>: this means that depending on normality (which is an assumption of both <span class="math inline">\(z\)</span> and <span class="math inline">\(t\)</span>-tests), CogStat will choose either the <span class="math inline">\(t\)</span>-test or the Wilcoxon signed-rank test. We will discuss the Wilcoxon signed-rank test later on.</li>
+<li><code>Normality is not violated. &gt;&gt; Running one-sample t-test.</code>: this is good, because we know that the <span class="math inline">\(t\)</span>-test is only valid if the data are normally distributed.</li>
+<li><code>One sample t-test against 67.5: t(19) = 2.25, p &lt; .036</code>: this is the result of the <span class="math inline">\(t\)</span>-test. The <span class="math inline">\(t\)</span>-statistic is 2.25, and the <span class="math inline">\(p\)</span>-value is 0.036. This means that we can reject the null hypothesis that <span class="math inline">\(\mu = 67.5\)</span> at the 5% level of significance. In other words, we can conclude that the mean of the sample is significantly different from 67.5.</li>
+</ul>
+<p>Don’t forget to take note of the Mean’s 95% confidence interval values from the <code>Population parameter estimations</code>, and now we could report the result by saying something like this:</p>
+<blockquote>
+<p>With a mean grade of 72.3, the psychology students scored slightly higher than the average grade of 67.5 (<span class="math inline">\(t(19) = 2.25\)</span>, <span class="math inline">\(p&lt;.05\)</span>); the 95% confidence interval is [67.8, 76.8].</p>
+</blockquote>
+<p><span class="math inline">\(t(19)\)</span> is shorthand notation for a <span class="math inline">\(t\)</span>-statistic that has 19 degrees of freedom. That said, it’s often the case that people don’t report the confidence interval, or do so using a much more compressed form. For instance, it’s not uncommon to see the confidence interval included as part of the stat block, like this:</p>
+<blockquote>
+<p><span class="math inline">\(t(19) = 2.25\)</span>, <span class="math inline">\(p&lt;.05\)</span>, CI<span class="math inline">\(_{95} = [67.8, 76.8]\)</span></p>
+</blockquote>
+<p>With that much jargon crammed into half a line, you know it must be really smart.</p>
 
 </div>
 </div>
@@ -627,6 +678,7 @@ Figure 10.6: Rejection regions for the one-sided <span class="math inline">\(z\)
 <ol start="44">
 <li id="fn44"><p>We won’t cover multiple predictors until Chapter <a href="regression.html#regression">12</a><a href="ttest.html#fnref44" class="footnote-back">↩︎</a></p></li>
 <li id="fn45"><p>Strictly speaking, the <span class="math inline">\(z\)</span> test only requires that the sampling distribution of the mean be normally distributed; if the population is normal then it necessarily follows that the sampling distribution of the mean is also normal. However, as we saw when talking about the central limit theorem, it’s entirely possible (even commonplace) for the sampling distribution to be normal even if the population distribution itself is non-normal. However, in light of the sheer ridiculousness of the assumption that the true standard deviation is known, there really isn’t much point in going into details on this front!<a href="ttest.html#fnref45" class="footnote-back">↩︎</a></p></li>
+<li id="fn46"><p>Gosset only provided a partial solution: the general solution to the problem was provided by Sir Ronald Fisher.<a href="ttest.html#fnref46" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

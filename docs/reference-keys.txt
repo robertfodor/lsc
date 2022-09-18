@@ -90,6 +90,8 @@ fig:zeppo
 fig:ztesthyp
 fig:ztest2
 fig:ztest1
+fig:ttesthyponesample
+fig:ttestdist
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -240,6 +242,7 @@ whats-the-difference-between-mcnemar-and-independence
 summary-5
 ttest
 the-one-sample-z-test
+onesamplettest
 anova
 regression
 anova2

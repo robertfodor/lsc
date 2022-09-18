@@ -132,7 +132,7 @@ $$
 $$
 If this quantity equals or is very close to 0, things are looking good for the null hypothesis. If this quantity is a long way away from 0, then it looks less likely that the null hypothesis is worth retaining. But how far away from zero should it be for us to reject $H_0$?
 
-To figure that out, we need to be a bit more sneaky, and we'll need to rely on those two pieces of background knowledge that I wrote down previously, namely that the raw data are normally distributed, and we know the value of the population standard deviation $\sigma$. If the null hypothesis is actually true, and the true mean is $\mu_0$, then these facts together mean that we know the complete population distribution of the data: a normal distribution with mean $\mu_0$ and standard deviation $\sigma$. Adopting the notation from Section \@ref(normal), a statistician might write this as:
+To figure that out, we need to be a bit more sneaky, and we'll need to rely on those two pieces of background knowledge shared previously, namely that the raw data are normally distributed, and we know the value of the population standard deviation $\sigma$. If the null hypothesis is actually true, and the true mean is $\mu_0$, then these facts together mean that we know the complete population distribution of the data: a normal distribution with mean $\mu_0$ and standard deviation $\sigma$. Adopting the notation from Section \@ref(normal), a statistician might write this as:
 $$
 X \sim \mbox{Normal}(\mu_0,\sigma^2)
 $$
@@ -225,54 +225,17 @@ which in turn meant that researchers could calculate their $z$-statistic by hand
   title(xlab="Value of z Statistic", main="One Sided Test", font.main=1)
 ```
 
-Now, as mentioned earlier, the $z$-test is almost never used in practice. However, the test is so incredibly simple that it's really easy to do one manually. Let's go back to the data from Dr Zeppo's class.
+Now, as mentioned earlier, the $z$-test is almost never used in practice. However, the test is so incredibly simple that it's really easy to do one manually. Let's go back to the data from Dr Zeppo's class. However, we're not going to use CogStat for the rest of this section, because it will automatically (and correctly) use the population parameter estimates, that will actually come in handy in the $t$-test section. So from now on, let's just follow the logic without the urge to try to replicate it.
 
-Let us re-run the `Explore variable` option, but now let us quote our null hypothesis as 67.5, as discussed above. To do that, we have to fill in `67.5` in our dialogue:
-
-```{r centraltendencyexplorevar, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("resources/centraltendency.png")
-```
-
-Having loaded the `grades` data and explored the descriptive statistics, let us take note of a few data points from the `Descriptives for the variable` and the `Population parameter estimations` section of the CogStat output.
-
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
- <h4 style="font-size:medium; font-weight:600; color:#3960a5;">Population parameter estimations</h4>
- <p>Present confidence interval values for the mean suppose normality.</p>
- <table>
- <thead>
- <tr>
- <th></th>
- <th>Point estimation</th>
- <th>95% confidence interval (low)</th>
- <th>95% confidence interval (high)</th>
- </tr>
- </thead>
- <tbody">
- <tr>
- <td>Mean</td>
- <td>72.3</td>
- <td>67.8</td>
- <td>76.8</td>
- </tr>
- <tr>
- <td>Standard deviation</td>
- <td>9.5</td>
- <td>7.2</td>
- <td>13.9</td>
- </tr>
- </table>
-</div>
-```
-- The sample size is $20$ (we know this from the load screen (see Figure \@ref(fig:cogstatloadzeppo))).
-- The *mean* is $72.3$.
-- The point estimation for standard deviation is $9.5$.
-- The null hypothesis is that the mean is $67.5$ (we set this in the dialogue).
+- The sample size is $20$ (we know this from Figure \@ref(fig:cogstatloadzeppo)).
+- The *mean* is $72.3$ (we know this from Figure \@ref(fig:cogstatexplorezeppo)).
+- The point estimation for standard deviation is $9.5$ (we have to just believe this for the example's sake because we said so earlier).
+- The null hypothesis is that the mean is $67.5$.
 
 Next, let's calculate the (true) standard error of the mean:
 
 $$
-\frac{9.5}{sqrt{20}} = 2.1243
+\frac{9.5}{\sqrt{20}} = 2.1243
 $$
 
 And finally, we calculate our $z$-score:
@@ -296,4 +259,154 @@ All statistical tests make assumptions. Some tests make reasonable assumptions, 
 - *Known standard deviation*. The third assumption of the $z$-test is that the true standard deviation of the population is known to the researcher. This is just stupid. In no real-world data analysis problem do you know the standard deviation $\sigma$ of some population but are completely ignorant about the mean $\mu$. In other words, this assumption is *always* wrong. 
 
 In view of the stupidity of assuming that $\sigma$ is known, let's see if we can live without it. This takes us out of the dreary domain of the $z$-test and into the magical kingdom of the $t$-test, with unicorns, fairies, and leprechauns.
+
+## The one-sample $t$-test{#onesamplettest}
+
+It might not be safe to assume that the psychology student grades necessarily have the same standard deviation as the other students in Dr Zeppo's class. After all, if we were entertaining the hypothesis that they don't have the same mean, why should we assume they have the same standard deviation? In view of this, we must stop assuming we know the true value of $\sigma$. However, this violates the assumptions of the $z$-test, which brings us back to square one. However, we still have the raw data loaded into CogStat, and those can give us an *estimate* of the population standard deviation.
+
+Having loaded the `grades` data and explored the descriptive statistics, let us take note of a few data points from the `Descriptives for the variable` and the `Population parameter estimations` section of the CogStat output. But first, let us re-run the `Explore variable` option, but now let us tell CogStat to use our null hypothesis of $67.5$. To do that, we have to fill in `67.5` in our dialogue:
+
+```{r centraltendencyexplorevar, echo=FALSE, fig.align="center", out.width="100%"}
+knitr::include_graphics("resources/centraltendency.png")
+```
+
+```{=html}
+<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
+ <h4 style="font-size:medium; font-weight:600; color:#3960a5;">Population parameter estimations</h4>
+ <p>Present confidence interval values for the mean suppose normality.</p>
+  <table style="border: none; background-color: white;">
+     <tr>
+          <td style="border: 0px; background-color: white;"></td>
+          <td style="border: 0px; background-color: white;">Point estimation</td>
+          <td style="border: 0px; background-color: white;">95% confidence interval (low)</td>
+          <td style="border: 0px; background-color: white;">95% confidence interval (high)</td>
+     </tr>
+     <tr>
+          <td style="border: 0px; background-color: white;">Mean</td>
+          <td style="border: 0px; background-color: white;">72.3</td>
+          <td style="border: 0px; background-color: white;">67.8</td>
+          <td style="border: 0px; background-color: white;">76.8</td>
+     </tr>
+     <tr>
+          <td style="border: 0px; background-color: white;">Standard deviation</td>
+          <td style="border: 0px; background-color: white;">9.5</td>
+          <td style="border: 0px; background-color: white;">7.2</td>
+          <td style="border: 0px; background-color: white;">13.9</td>
+     </tr>
+  </table>
+</div>
+```
+
+In other words, while we can't say that we *know* that $\sigma = 9.5$, we *can* say that $\hat\sigma = 9.5$. (Actually it's $9.520615$ but CogStat rounds it to one decimal when displayed, but it uses the exact value for any calculation.)
+
+Because we are now relying on an *estimate* of the population standard deviation, we need to make some adjustment for the fact that we have some uncertainty about what the true population standard deviation actually is. Maybe our data are just a fluke ... maybe the true population standard deviation is 11, for instance. But if that were actually true, and we ran the $z$-test assuming $\sigma=11$, then the result would end up being *non-significant*. That's a problem, and it's one we're going to have to address.
+
+```{r ttesthyponesample, fig.cap="Graphical illustration of the null and alternative hypotheses assumed by the (two sided) one sample $t$-test. Note the similarity to the $z$-test. The null hypothesis is that the population mean $\\mu$ is equal to some specified value $\\mu_0$, and the alternative hypothesis is that it is not. Like the $z$-test, we assume that the data are normally distributed; but we do not assume that the population standard deviation $\\sigma$ is known in advance.", echo=FALSE, fig.align="center", out.width="100%"}
+width <- 12
+height <- 4
+
+plotOne <- function( sigEx ) {
+    x <- seq(-4,4,.1)
+    y <- dnorm(x,0,1)
+    plot.new()
+    
+    old <- par( no.readonly = TRUE )
+    par( mfcol= c(1,2), mfg = c(1,1))
+    plot.window( xlim = range(x), 
+                 ylim = range(y)*1.2)
+    # plot density
+    lines( x ,y, lw =2 )
+
+    # lines and mean
+    lines(x=c(0,0), y = c(0,max(y)))
+    text(x=0, y = max(y)*1.1, 
+         labels= expression(mu == mu[0])
+    )    
+    # sd lines and text
+    tmp <- dnorm(-1,0,1)
+    lines(x=c(-1,0), y = rep(tmp,2))
+    text(x=-2.25, y = tmp, 
+         labels= sigEx
+     )
+    axis(side = 1, labels = F)
+    title( main = "null hypothesis", font.main = 1)
+    title( xlab = "value of X", mgp = c(1,1,0))
+    par( mfg = c(1,2))
+
+    plot.window( xlim = range(x), 
+             ylim = range(y)*1.2)
+            y <- dnorm(x,-.75,1)
+    # plot density
+    lines( x ,y, lw =2 )
+    # lines and mean
+    lines(x=c(0,0), y = c(0,max(y)))
+    text(x=0, y = max(y)*1.1, 
+         labels= expression(mu != mu[0])
+     )    
+     # sd lines and text
+    tmp <- dnorm(-1,0,1)
+    lines(x=c(-1.75,-.75), y = rep(tmp,2))
+    text(x=-3, y = tmp, 
+         labels= sigEx
+     )
+    axis(side = 1, labels = F)
+    title( main = "alternative hypothesis", font.main = 1)
+    title( xlab = "value of X", mgp = c(1,1,0))
+    par(old)
+}
+
+# one sample t-test
+sigEx <- expression(sigma == "??")
+plotOne( sigEx )
+```
+
+This ambiguity is annoying, and it was resolved in 1908 by a guy called William Sealy Gosset [@Student1908], who was working as a chemist for the Guinness brewery at the time [see @Box1987]. Because Guinness took a dim view of its employees publishing statistical analysis (apparently, they felt it was a trade secret), he published the work under the pseudonym "A Student", and to this day, the full name of the $t$-test is actually **Student's $t$-test**. The critical thing that Gosset figured out is how we should accommodate the fact that we aren't entirely sure what the true standard deviation is.^[Gosset only provided a partial solution: the general solution to the problem was provided by Sir Ronald Fisher.] The answer is that it subtly changes the sampling distribution.
+
+In the $t$-test, our test statistic (now called a $t$-statistic) is calculated in exactly the same way as mentioned above. If our null hypothesis is that the true mean is $\mu$, but our sample has mean $\bar{X}$ and our estimate of the population standard deviation is $\hat{\sigma}$, then our $t$ statistic is:
+$$
+t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
+$$
+
+The only thing that has changed in the equation is that instead of using the known true value $\sigma$, we use the estimate $\hat{\sigma}$. And if this estimate has been constructed from $N$ observations, then the sampling distribution turns into a $t$-distribution with $N-1$ **degrees of freedom** (df). The $t$ distribution is very similar to the normal distribution but has "heavier" tails, as discussed earlier in Section \@ref(otherdists) and illustrated in Figure \@ref(fig:ttestdist).
+
+Notice, though, that as df gets larger, the $t$-distribution starts to look identical to the standard normal distribution. This is as it should be: if you have a sample size of $N = 70000000$, then your "estimate" of the standard deviation would be pretty much perfect, right? So, you should expect that for large $N$, the $t$-test would behave the same way as a $z$-test. And that's exactly what happens!
+
+```{r ttestdist, fig.cap="The $t$ distribution with 2 degrees of freedom (left) and 10 degrees of freedom (right), with a standard normal distribution (i.e., mean 0 and std dev 1) plotted as dotted lines for comparison purposes. Notice that the $t$ distribution has heavier tails (higher kurtosis) than the normal distribution; this effect is quite exaggerated when the degrees of freedom are very small, but negligible for larger values. In other words, for large $df$ the $t$ distribution is essentially identical to a normal distribution.", echo=FALSE, fig.align="center", out.width="100%"}
+knitr::include_graphics("resources/ttestdist.png")
+```
+
+As you might expect, the mechanics of the $t$-test are almost identical to the mechanics of the $z$-test. So there's not much point in going through the tedious exercise of showing you how to do the calculations: it's pretty much identical to the calculations that we did earlier, except that we use the estimated standard deviation, and then we test our hypothesis using the $t$ distribution rather than the normal distribution.
+
+So let's just do it quickly in CogStat: let's just go through the output. You can see that the `Population parameter estimations` stayed the same, so no need to quote them here again. However, let's see the `Hypothesis tests` results.
+
+```{=html}
+<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
+     <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
+     <p style="color:#008000;">Testing if mean deviates from the value 67.5.<br />
+     Interval variable. &gt;&gt; Choosing one-sample t-test or Wilcoxon signed-rank test depending on the assumption.<br />
+     Checking for normality.</p>
+     <p style="color:black;">Shapiro-Wilk normality test in variable x:<span style="font-style:italic;">W</span> = 0.96, <span style="font-style:italic;">p</span> = .586</p>
+     <p style="color:#008000;">Normality is not violated. &gt;&gt; Running one-sample t-test.</p>
+     <p style="color:black;">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in d: 0.85. </p>
+     <p style="color:black;">One sample t-test against 67.5: <span style="font-style:italic;">t</span>(19) = 2.25, <span style="font-style:italic;">p</span> &lt; .036</p>
+     <p style="color:black;">Result of the Bayesian one sample t-test: BF<sub>10</sub> = 1.80, BF<sub>01</sub> = 0.56</p>
+</div>
+```
+
+Let us go through them line by line.
+
+- `Testing if mean deviates from the value 67.5.`: good, we are made sure we are testing against a null hypothesis of $\mu = 67.5$.
+- `Interval variable. >> Choosing one-sample t-test or Wilcoxon signed-rank test depending on the assumption.`: this means that depending on normality (which is an assumption of both $z$ and $t$-tests), CogStat will choose either the $t$-test or the Wilcoxon signed-rank test. We will discuss the Wilcoxon signed-rank test later on.
+- `Normality is not violated. >> Running one-sample t-test.`: this is good, because we know that the $t$-test is only valid if the data are normally distributed.
+- `One sample t-test against 67.5: t(19) = 2.25, p < .036`: this is the result of the $t$-test. The $t$-statistic is 2.25, and the $p$-value is 0.036. This means that we can reject the null hypothesis that $\mu = 67.5$ at the 5% level of significance. In other words, we can conclude that the mean of the sample is significantly different from 67.5.
+
+Don't forget to take note of the Mean's 95% confidence interval values from the `Population parameter estimations`, and now we could report the result by saying something like this:
+
+> With a mean grade of 72.3, the psychology students scored slightly higher than the average grade of 67.5 ($t(19) = 2.25$, $p<.05$); the 95\% confidence interval is [67.8, 76.8].
+
+$t(19)$ is shorthand notation for a $t$-statistic that has 19 degrees of freedom. That said, it's often the case that people don't report the confidence interval, or do so using a much more compressed form. For instance, it's not uncommon to see the confidence interval included as part of the stat block, like this:
+
+> $t(19) = 2.25$, $p<.05$, CI$_{95} = [67.8, 76.8]$
+
+With that much jargon crammed into half a line, you know it must be really smart.
 
