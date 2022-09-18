@@ -408,9 +408,9 @@ div.csl-indent {
 <div id="exploringavariable" class="section level1 hasAnchor" number="4">
 <h1><span class="header-section-number">Chapter 4</span> Exploring a single variable<a href="exploringavariable.html#exploringavariable" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Any time you get a new data set to look at, one of the first things you might want to do is find ways of summarising the data in a compact, easily understood fashion. This is what <strong>descriptive statistics</strong> (as opposed to <em>inferential statistics</em>) is all about. In fact, to many people, the term “statistics” is synonymous with descriptive statistics.</p>
-<p>The first dataset we’ll be looking at is real data relating to the Australian Football League (AFL)<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>. To do this, let us load the <a href="resources/data/aflsmall.Rdata">aflsmall.Rdata</a> file.</p>
+<p>The first dataset we’ll be looking at is real data relating to the Australian Football League (AFL)<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>. To do this, let us load the <a href="resources/data/aflsmall.csv">aflsmall.csv</a> file.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:loadaflsmall"></span>
-<img src="resources/cogstataflsmallload.png" alt="This is what you would see after loading the dataset." width="100%" />
+<img src="resources/image/loadaflsmall.png" alt="This is what you would see after loading the dataset." width="100%" />
 <p class="caption">
 Figure 4.1: This is what you would see after loading the dataset.
 </p>
@@ -422,15 +422,15 @@ Figure 4.1: This is what you would see after loading the dataset.
 <li>measures of “distortion” (skewness, kurtosis).</li>
 </ul>
 <p>These will help you contextualise the results so the conclusions drawn from the variable will be valid.</p>
-<p>To start understanding a variable, select <code>Explore variable</code> so a pop-up appears. Move the name of the data you wish to analyse (in this case: <code>afl.margins</code>) from <code>Available variables</code> to <code>Selected variables</code>, then click <code>OK</code> (Figure <a href="exploringavariable.html#fig:explorevariabledialog">4.2</a>).</p>
+<p>To start understanding a variable, select <code>Explore variable</code> so a pop-up appears. Move the name of the data you wish to analyse (in this case: <code>aflmargins</code>) from <code>Available variables</code> to <code>Selected variables</code>, then click <code>OK</code> (Figure <a href="exploringavariable.html#fig:explorevariabledialog">4.2</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:explorevariabledialog"></span>
-<img src="resources/explorevariable.png" alt="Explore variable dialogue." width="100%" />
+<img src="resources/image/explorevariable.png" alt="Explore variable dialogue." width="100%" />
 <p class="caption">
 Figure 4.2: Explore variable dialogue.
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:rawaflsmall"></span>
-<img src="resources/cogstatrawaflsmall.png" alt="This is the first chart you will see exploring the raw shape of the data." width="100%" />
+<img src="resources/image/cogstatrawaflsmall.png" alt="This is the first chart you will see exploring the raw shape of the data." width="100%" />
 <p class="caption">
 Figure 4.3: This is the first chart you will see exploring the raw shape of the data.
 </p>
@@ -441,7 +441,7 @@ Figure 4.3: This is the first chart you will see exploring the raw shape of the 
 <code>N of missing cases: 0</code></p>
 </blockquote>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:histogramaflsmall"></span>
-<img src="resources/cogstathistogramaflsmall.png" alt="Scrolling down, you'll see CogStat reporting all the descriptive measures while showing you a histogram to understand the shape of your data better. Drawing pictures of the data is an excellent way to convey the gist of what the data is trying to tell you; it's often instrumental to try to condense the data into a few simple summary statistics." width="100%" />
+<img src="resources/image/cogstathistogramaflsmall.png" alt="Scrolling down, you'll see CogStat reporting all the descriptive measures while showing you a histogram to understand the shape of your data better. Drawing pictures of the data is an excellent way to convey the gist of what the data is trying to tell you; it's often instrumental to try to condense the data into a few simple summary statistics." width="100%" />
 <p class="caption">
 Figure 4.4: Scrolling down, you’ll see CogStat reporting all the descriptive measures while showing you a histogram to understand the shape of your data better. Drawing pictures of the data is an excellent way to convey the gist of what the data is trying to tell you; it’s often instrumental to try to condense the data into a few simple summary statistics.
 </p>
@@ -533,7 +533,7 @@ Taken literally, this could be read as “the sum, taken over all <span class="m
 <div id="mean-or-median-whats-the-difference" class="section level3 hasAnchor" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> Mean or median? What’s the difference?<a href="exploringavariable.html#mean-or-median-whats-the-difference" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:meanmedian"></span>
-<img src="resources/meanmedian.png" alt="An illustration of the difference between how the mean and the median should be interpreted. The mean is basically the &quot;centre of gravity&quot; of the data set: if you imagine that the histogram of the data is a solid object, then the point on which you could balance it (as if on a see-saw) is the mean. In contrast, the median is the middle observation. Half of the observations are smaller, and half of the observations are larger." width="100%" />
+<img src="resources/image/meanmedian.png" alt="An illustration of the difference between how the mean and the median should be interpreted. The mean is basically the &quot;centre of gravity&quot; of the data set: if you imagine that the histogram of the data is a solid object, then the point on which you could balance it (as if on a see-saw) is the mean. In contrast, the median is the middle observation. Half of the observations are smaller, and half of the observations are larger." width="100%" />
 <p class="caption">
 Figure 4.5: An illustration of the difference between how the mean and the median should be interpreted. The mean is basically the “centre of gravity” of the data set: if you imagine that the histogram of the data is a solid object, then the point on which you could balance it (as if on a see-saw) is the mean. In contrast, the median is the middle observation. Half of the observations are smaller, and half of the observations are larger.
 </p>
@@ -576,7 +576,7 @@ The <span class="math inline">\(-15\)</span> looks suspicious, but not as much a
 <p>The <strong>mode</strong> of a sample is straightforward: it is the value that occurs most frequently.</p>
 <p>In CogStat, you will see a <strong>frequency table</strong> (Figure <a href="exploringavariable.html#fig:freqaflsmall">4.6</a>) of the values in your data if you have <code>Frequencies</code> ticked in the <code>Explore variable</code> dialogue.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:freqaflsmall"></span>
-<img src="resources/cogstatfrequencyaflsmall.png" alt="The frequency table sorts non-nominal values from lowest to highest." width="100%" />
+<img src="resources/image/cogstatfrequencyaflsmall.png" alt="The frequency table sorts non-nominal values from lowest to highest." width="100%" />
 <p class="caption">
 Figure 4.6: The frequency table sorts non-nominal values from lowest to highest.
 </p>

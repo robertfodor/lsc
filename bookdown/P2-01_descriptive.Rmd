@@ -4,10 +4,10 @@
 
 Any time you get a new data set to look at, one of the first things you might want to do is find ways of summarising the data in a compact, easily understood fashion. This is what **descriptive statistics** (as opposed to *inferential statistics*) is all about. In fact, to many people, the term "statistics" is synonymous with descriptive statistics.
 
-The first dataset we'll be looking at is real data relating to the Australian Football League (AFL)^[Note for non-Australians: the AFL is an Australian rules football competition. You don't need to know anything about Australian rules in order to follow this section.]. To do this, let us load the [aflsmall.Rdata](resources/data/aflsmall.Rdata) file.
+The first dataset we'll be looking at is real data relating to the Australian Football League (AFL)^[Note for non-Australians: the AFL is an Australian rules football competition. You don't need to know anything about Australian rules in order to follow this section.]. To do this, let us load the [aflsmall.csv](resources/data/aflsmall.csv) file.
 
 ```{r loadaflsmall, out.width='100%', fig.align='center',echo=FALSE, fig.cap="This is what you would see after loading the dataset."}
-knitr::include_graphics("resources/cogstataflsmallload.png")
+knitr::include_graphics("resources/image/loadaflsmall.png")
 ```
 
 CogStat will help you get familiar with some essential aspects of your variable, like:
@@ -18,14 +18,14 @@ CogStat will help you get familiar with some essential aspects of your variable,
 
 These will help you contextualise the results so the conclusions drawn from the variable will be valid.
 
-To start understanding a variable, select `Explore variable` so a pop-up appears. Move the name of the data you wish to analyse (in this case: `afl.margins`) from `Available variables` to `Selected variables`, then click `OK` (Figure \@ref(fig:explorevariabledialog)).
+To start understanding a variable, select `Explore variable` so a pop-up appears. Move the name of the data you wish to analyse (in this case: `aflmargins`) from `Available variables` to `Selected variables`, then click `OK` (Figure \@ref(fig:explorevariabledialog)).
 
 ```{r explorevariabledialog, out.width='100%', fig.align='center',echo=FALSE, fig.cap="Explore variable dialogue."}
-knitr::include_graphics("resources/explorevariable.png")
+knitr::include_graphics("resources/image/explorevariable.png")
 ```
 
 ```{r rawaflsmall, out.width='100%', fig.align='center',echo=FALSE, fig.cap="This is the first chart you will see exploring the raw shape of the data."}
-knitr::include_graphics("resources/cogstatrawaflsmall.png")
+knitr::include_graphics("resources/image/cogstatrawaflsmall.png")
 ```
 
 The first piece of information here is $N$, which we will use to refer to the number of observations we're analysing. CogStat (or any other software for that matter) will only use valid data for calculations. Sometimes, mainly when working with survey data, you will have missing data points, the number of which you might have to mention in your written analysis. CogStat will quote these for you:
@@ -34,7 +34,7 @@ The first piece of information here is $N$, which we will use to refer to the nu
 > `N of missing cases: 0`
 
 ```{r histogramaflsmall, out.width='100%', fig.align='center',echo=FALSE, fig.cap="Scrolling down, you'll see CogStat reporting all the descriptive measures while showing you a histogram to understand the shape of your data better. Drawing pictures of the data is an excellent way to convey the gist of what the data is trying to tell you; it's often instrumental to try to condense the data into a few simple summary statistics."}
-knitr::include_graphics("resources/cogstathistogramaflsmall.png")
+knitr::include_graphics("resources/image/cogstathistogramaflsmall.png")
 ```
 
 In the rest of this chapter, we will explore what these measures mean and what they indicate.
@@ -109,7 +109,7 @@ In the data set we loaded to CogStat, there were 176 valid cases, so we ought to
 ### Mean or median? What's the difference?
 
 ```{r meanmedian, out.width='100%', fig.align='center', echo=FALSE, fig.cap="An illustration of the difference between how the mean and the median should be interpreted. The mean is basically the \"centre of gravity\" of the data set: if you imagine that the histogram of the data is a solid object, then the point on which you could balance it (as if on a see-saw) is the mean. In contrast, the median is the middle observation. Half of the observations are smaller, and half of the observations are larger."}
-knitr::include_graphics("./resources/meanmedian.png")
+knitr::include_graphics("./resources/image/meanmedian.png")
 ```
 
 Knowing how to calculate means and medians is only a part of the story. You also need to understand what each one is saying about the data, what that implies, and which one to choose. This is illustrated in Figure \@ref(fig:meanmedian); the mean is kind of like the "centre of gravity" of the data set, whereas the median is the "middle value" in the data. What this implies about which one you should use depends a little on what type of data you've got and what you're trying to achieve. As a rough guide:
@@ -156,7 +156,7 @@ The **mode** of a sample is straightforward: it is the value that occurs most fr
 In CogStat, you will see a **frequency table** (Figure \@ref(fig:freqaflsmall)) of the values in your data if you have `Frequencies` ticked in the `Explore variable` dialogue.
 
 ```{r freqaflsmall, out.width='100%', fig.align='center',echo=FALSE, fig.cap="The frequency table sorts non-nominal values from lowest to highest."}
-knitr::include_graphics("resources/cogstatfrequencyaflsmall.png")
+knitr::include_graphics("resources/image/cogstatfrequencyaflsmall.png")
 ```
 
 While it's generally true that the mode is most often calculated when you have [nominal scale](#nominalscale) data -- because means and medians are useless for those sorts of variables --, there are some situations in which you do want to know the mode of an [ordinal](#ordinalscale), [interval](#intervalscale) or [ratio scale](#ratioscale) variable.

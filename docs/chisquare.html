@@ -415,7 +415,7 @@ div.csl-indent {
 <p>The <span class="math inline">\(\chi^2\)</span> goodness-of-fit test is one of the oldest hypothesis tests around: it was invented by Karl Pearson around the turn of the century <span class="citation">(Pearson, 1900)</span>, with some corrections made later by Sir Ronald Fisher <span class="citation">(Fisher, 1922a)</span>. Let’s start with some psychology to introduce the statistical problem it addresses.</p>
 <p>Over the years, there have been a lot of studies showing that humans have a lot of difficulties in simulating randomness. Try as we might to “act” random, we <em>think</em> in terms of patterns and structure, and so when asked to “do something at random”, what people do is anything but random. Consequently, the study of human randomness (or non-randomness, as the case may be) opens up a lot of deep psychological questions about how we think about the world. With this in mind, let’s consider a very simple study. Suppose we asked people to imagine a shuffled deck of cards and mentally pick one card from this imaginary deck “at random”. After they’ve chosen one card, we ask them to select a second one mentally. For both choices, we’re going to look at the suit (hearts, clubs, spades or diamonds) that people chose. After asking, say, <span class="math inline">\(N=200\)</span> people to do this, we’d like to look at the data and figure out whether or not the cards that people pretended to select were random. The data are contained in the <a href="resources/data/cards.csv"><code>cards.csv</code></a> file, which we will load into CogStat. For the moment, let’s just focus on the first choice that people made (<code>choice_1</code>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogstatloadcards"></span>
-<img src="resources/cogstatloadcards.png" alt="Loading the cards.csv data and running `Explore variable` command on `choice_1`" width="100%" /><img src="resources/cogstatcardsdescrhisto.png" alt="Loading the cards.csv data and running `Explore variable` command on `choice_1`" width="100%" />
+<img src="resources/image/cogstatloadcards.png" alt="Loading the cards.csv data and running `Explore variable` command on `choice_1`" width="100%" /><img src="resources/image/cogstatcardsdescrhisto.png" alt="Loading the cards.csv data and running `Explore variable` command on `choice_1`" width="100%" />
 <p class="caption">
 Figure 9.1: Loading the cards.csv data and running <code>Explore variable</code> command on <code>choice_1</code>
 </p>
@@ -865,7 +865,7 @@ Figure 9.3: Illustration of how the hypothesis testing works for the chi-square 
 <h2><span class="header-section-number">9.2</span> The <span class="math inline">\(\chi^2\)</span> test of independence (or association)<a href="chisquare.html#chisqindependence" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The other day Danielle was watching an animated documentary examining the quaint customs of the natives of the planet <em>Chapek 9</em>. Apparently, in order to gain access to their capital city, a visitor must prove that they’re a robot, not a human. In order to determine whether or not the visitor is human, they ask whether the visitor prefers puppies, flowers or large, properly formatted data files. But what if humans and robots have the same preferences? That probably wouldn’t be a very good test then, would it? In order to determine whether or not a visitor is human, the natives of <em>Chapek 9</em> need to know whether or not the visitor’s preferences are independent of their species. In other words, they need to know whether or not the visitor’s preferences are associated with their species.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogstatloadchapek9"></span>
-<img src="resources/cogstatloadchapek9.png" alt="Loading the [`chapek9.csv`](resources/data/chapek9.csv) data set into CogStat."  />
+<img src="resources/image/cogstatloadchapek9.png" alt="Loading the [`chapek9.csv`](resources/data/chapek9.csv) data set into CogStat."  />
 <p class="caption">
 Figure 9.4: Loading the <a href="resources/data/chapek9.csv"><code>chapek9.csv</code></a> data set into CogStat.
 </p>
@@ -873,21 +873,21 @@ Figure 9.4: Loading the <a href="resources/data/chapek9.csv"><code>chapek9.csv</
 <p>In total, there are 180 entries in the data frame, one for each person (counting both robots and humans as “people”) who was asked to make a choice. Specifically, there are 93 humans and 87 robots.</p>
 <p>What we want to do is look at the <code>choices</code> broken down <em>by</em> <code>species</code>. That is, we need to cross-tabulate the data. We cannot use the <code>Pivot table</code> option in CogStat for strings, but we can use the <code>Compare groups</code> option instead. We’ll use the <code>species</code> variable as the grouping variable and the <code>choices</code> variable as the variable to compare.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogstatchapek9"></span>
-<img src="resources/cogstatcomparegroupschapek9.png" alt="Using the `Compare groups` dialogue to get some information about `choices` by `species`."  />
+<img src="resources/image/cogstatcomparegroupschapek9.png" alt="Using the `Compare groups` dialogue to get some information about `choices` by `species`."  />
 <p class="caption">
 Figure 9.5: Using the <code>Compare groups</code> dialogue to get some information about <code>choices</code> by <code>species</code>.
 </p>
 </div>
 <p>The overwhelmingly preferred choice is the <code>data file</code>. You can see a visual representation of this in Figure <a href="chisquare.html#fig:cogstatchapek9mosaic">9.6</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogstatchapek9mosaic"></span>
-<img src="resources/cogstatchapek9mosaic.png" alt="The mosaic plot of `choices` by `species`."  />
+<img src="resources/image/cogstatchapek9mosaic.png" alt="The mosaic plot of `choices` by `species`."  />
 <p class="caption">
 Figure 9.6: The mosaic plot of <code>choices</code> by <code>species</code>.
 </p>
 </div>
 <p>Scrolling down, you can see the descriptives for the groups in the <code>Sample properties</code> section:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogstatchapek9descriptives"></span>
-<img src="resources/cogstatchapek9descriptives.png" alt="The `Sample properties` section of the `Compare groups` results showing the contingency table we'll discuss later in this chapter."  />
+<img src="resources/image/cogstatchapek9descriptives.png" alt="The `Sample properties` section of the `Compare groups` results showing the contingency table we'll discuss later in this chapter."  />
 <p class="caption">
 Figure 9.7: The <code>Sample properties</code> section of the <code>Compare groups</code> results showing the contingency table we’ll discuss later in this chapter.
 </p>
@@ -1147,7 +1147,7 @@ Amazing.</p>
 <h3><span class="header-section-number">9.2.2</span> The test results in CogStat<a href="chisquare.html#AssocTestInCogStat" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The test is automatically done in CogStat using the <code>Compare groups</code> feature. The result set will contain information about the sample and its properties, as seen in Figure <a href="chisquare.html#fig:cogstatchapek9descriptives">9.7</a>. Further scrolling down, you’ll see the effect size (which we will cover in a short while in Chapter <a href="chisquare.html#chisqeffectsize">9.4</a>). The last part of the result set is the hypothesis test itself (see Figure <a href="chisquare.html#fig:cogstatchapek9hypo">9.8</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogstatchapek9hypo"></span>
-<img src="resources/cogstatchapek9hypo.png" alt="Population properties and Hypothesis tests for the `chapek9.csv` data set." width="100%" />
+<img src="resources/image/cogstatchapek9hypo.png" alt="Population properties and Hypothesis tests for the `chapek9.csv` data set." width="100%" />
 <p class="caption">
 Figure 9.8: Population properties and Hypothesis tests for the <code>chapek9.csv</code> data set.
 </p>
@@ -1190,7 +1190,7 @@ Basically, he subtracts off 0.5 everywhere. The correction is basically a hack. 
 <p>CogStat (or any other software, for that matter) introduces this correction, so it’s useful to know what it is about. You won’t know when it happens because the CogStat output doesn’t explicitly say that it has used a “continuity correction” or “Yates’ correction”.<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a></p>
 <p>Let us overwrite all the <code>puppy</code> answers in our <code>chapek9</code> data frame to look at 1 degree of freedom (Figure <a href="chisquare.html#fig:chapek9two">9.9</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:chapek9two"></span>
-<img src="resources/cogstatchapek9twomatrix.png" alt="CogStat results for [`chapek9two.csv`](resources/data/chapek9two.csv) with 1 degree of freedom" width="100%" /><img src="resources/cogstatchapek9tworesult.png" alt="CogStat results for [`chapek9two.csv`](resources/data/chapek9two.csv) with 1 degree of freedom" width="100%" />
+<img src="resources/image/cogstatchapek9twomatrix.png" alt="CogStat results for [`chapek9two.csv`](resources/data/chapek9two.csv) with 1 degree of freedom" width="100%" /><img src="resources/image/cogstatchapek9tworesult.png" alt="CogStat results for [`chapek9two.csv`](resources/data/chapek9two.csv) with 1 degree of freedom" width="100%" />
 <p class="caption">
 Figure 9.9: CogStat results for <a href="resources/data/chapek9two.csv"><code>chapek9two.csv</code></a> with 1 degree of freedom
 </p>
@@ -1243,13 +1243,13 @@ And you’re done. This seems to be a reasonably popular measure, presumably bec
 <h2><span class="header-section-number">9.6</span> The Fisher exact test<a href="chisquare.html#fisherexacttest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>What should you do if your cell counts are too small, but you’d still like to test the null hypothesis that the two variables are independent? One answer would be “collect more data”, but that’s far too glib: there are a lot of situations in which it would be either infeasible or unethical to do. If so, statisticians are morally obligated to provide scientists with better tests. In this instance, Fisher (1922) kindly provided the right answer to the question. To illustrate the basic idea, let’s suppose we’re analysing data from a field experiment, looking at the emotional status of people accused of witchcraft. Some of them are currently being burned at the stake.<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a> Unfortunately for the scientist (but rather fortunately for the general populace), it’s quite hard to find people in the process of being set on fire, so the cell counts are microscopic. The <a href="resources/data/salem.csv"><code>salem.csv</code></a> file illustrates the point.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogstatsalemload"></span>
-<img src="resources/cogstatsalemload.png" alt="The `salem` data set" width="100%" />
+<img src="resources/image/cogstatsalemload.png" alt="The `salem` data set" width="100%" />
 <p class="caption">
 Figure 9.10: The <code>salem</code> data set
 </p>
 </div>
 <p>Looking at this data, you’d be hard pressed not to suspect that people not on fire are more likely to be happy than people on fire. However, the chi-square test (even with the Yates correction for the 2x2 data) makes this very hard to test because of the small sample size.</p>
-<p><img src="resources/cogstatsalemresult.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="resources/image/cogstatsalemresult.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>We’d <em>really</em> like to be able to get a better answer than this provided we really don’t want to be on fire. This is where <strong>Fisher’s exact test</strong> comes in very handy. The Fisher exact test works somewhat differently to the chi-square test (or in fact any of the other hypothesis tests that I talk about in this book) insofar as it doesn’t have a test statistic; it calculates the <span class="math inline">\(p\)</span>-value “directly”.</p>
 <p>Let’s have some notation:</p>
 <table>
@@ -1520,16 +1520,16 @@ X^2 = \frac{(|O_{12}-O_{21}| - 0.5)^2}{O_{12} + O_{21}}
 \]</span>
 and this statistic has an (approximately) <span class="math inline">\(\chi^2\)</span> distribution with <span class="math inline">\(df=1\)</span>. However, remember that – just like the other <span class="math inline">\(\chi^2\)</span> tests – it’s only an approximation, so you need to have reasonably large expected cell counts for it to work.</p>
 <p>Now that you know what the McNemar test is all about, lets actually run one. The <a href="resources/data/agpp.csv"><code>agpp.csv</code></a> file contains the raw data. It contains three variables, an <code>id</code> variable that labels each participant in the data set, a <code>responseBefore</code> variable that records the person’s answer when they were asked the question the first time, and a <code>responseAfter</code> variable that shows the answer that they gave when asked the same question a second time.</p>
-<p><img src="resources/cogstatloadagpp.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="resources/image/cogstatloadagpp.png" width="100%" style="display: block; margin: auto;" /></p>
 <p>Let us think what we want to do here. We have the same participants giving us two answers. We want to test whether the two answers (the <em>before</em> and the <em>after</em>) are independent of each other. Or, in other words, we want to compare a <strong>reapeated measure</strong>. In CogStat, we need to select <code>Compare repeated measures variables</code> and add the <code>responseBefore</code> and <code>responseAfter</code> variables to the <code>Selected variables</code> box to run an analysis (Figure <a href="chisquare.html#fig:cogstatrepeatagpp">9.11</a>). The results are shown in Figure <a href="chisquare.html#fig:cogstatagppresults">9.12</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogstatrepeatagpp"></span>
-<img src="resources/cogstatrepeatagpp.png" alt="Repeated measures analysis of the AGPP data in CogStat." width="100%" />
+<img src="resources/image/cogstatrepeatagpp.png" alt="Repeated measures analysis of the AGPP data in CogStat." width="100%" />
 <p class="caption">
 Figure 9.11: Repeated measures analysis of the AGPP data in CogStat.
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogstatagppresults"></span>
-<img src="resources/cogstatagppresults1.png" alt="Results of the repeated measures analysis of the AGPP data in CogStat." width="100%" /><img src="resources/cogstatagppresults2.png" alt="Results of the repeated measures analysis of the AGPP data in CogStat." width="100%" />
+<img src="resources/image/cogstatagppresults1.png" alt="Results of the repeated measures analysis of the AGPP data in CogStat." width="100%" /><img src="resources/image/cogstatagppresults2.png" alt="Results of the repeated measures analysis of the AGPP data in CogStat." width="100%" />
 <p class="caption">
 Figure 9.12: Results of the repeated measures analysis of the AGPP data in CogStat.
 </p>
@@ -1686,7 +1686,7 @@ Total
             <p style="color:black;">Result of the Pearson's chi-squared test: &#967;<span style=" vertical-align:super;">2</span>(9, <span style=" font-style:italic;">N</span> = 200) = 29.24, <span style="font-style:italic;">p</span> &lt; .001</p>
       </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogstatmcn"></span>
-<img src="resources/cogstatmcn1.png" alt="Hypothesis test results when running either `Compare repeated measures variables` or `Explore relation of variable pair` in CogStat." width="100%" /><img src="resources/cogstatmcn2.png" alt="Hypothesis test results when running either `Compare repeated measures variables` or `Explore relation of variable pair` in CogStat." width="100%" />
+<img src="resources/image/cogstatmcn1.png" alt="Hypothesis test results when running either `Compare repeated measures variables` or `Explore relation of variable pair` in CogStat." width="100%" /><img src="resources/image/cogstatmcn2.png" alt="Hypothesis test results when running either `Compare repeated measures variables` or `Explore relation of variable pair` in CogStat." width="100%" />
 <p class="caption">
 Figure 9.13: Hypothesis test results when running either <code>Compare repeated measures variables</code> or <code>Explore relation of variable pair</code> in CogStat.
 </p>

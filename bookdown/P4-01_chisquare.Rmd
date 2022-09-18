@@ -15,8 +15,8 @@ The $\chi^2$ goodness-of-fit test is one of the oldest hypothesis tests around: 
 Over the years, there have been a lot of studies showing that humans have a lot of difficulties in simulating randomness. Try as we might to "act" random, we *think* in terms of patterns and structure, and so when asked to "do something at random", what people do is anything but random. Consequently, the study of human randomness (or non-randomness, as the case may be) opens up a lot of deep psychological questions about how we think about the world. With this in mind, let's consider a very simple study. Suppose we asked people to imagine a shuffled deck of cards and mentally pick one card from this imaginary deck "at random". After they've chosen one card, we ask them to select a second one mentally. For both choices, we're going to look at the suit (hearts, clubs, spades or diamonds) that people chose. After asking, say, $N=200$ people to do this, we'd like to look at the data and figure out whether or not the cards that people pretended to select were random. The data are contained in the [`cards.csv`](resources/data/cards.csv) file, which we will load into CogStat. For the moment, let's just focus on the first choice that people made (`choice_1`).
 
 ```{r cogstatloadcards, echo=FALSE, fig.cap="Loading the cards.csv data and running `Explore variable` command on `choice_1`", fig.align="center", out.width="100%", fig.show="hold"}
-knitr::include_graphics(c("resources/cogstatloadcards.png",
-                  "resources/cogstatcardsdescrhisto.png"))
+knitr::include_graphics(c("resources/image/cogstatloadcards.png",
+                  "resources/image/cogstatcardsdescrhisto.png"))
 ```
 
 **Important note:**
@@ -269,7 +269,7 @@ So why don't we live in a world where the stat block's contents uniquely specify
 The other day Danielle was watching an animated documentary examining the quaint customs of the natives of the planet *Chapek 9*. Apparently, in order to gain access to their capital city, a visitor must prove that they're a robot, not a human. In order to determine whether or not the visitor is human, they ask whether the visitor prefers puppies, flowers or large, properly formatted data files. But what if humans and robots have the same preferences? That probably wouldn't be a very good test then, would it? In order to determine whether or not a visitor is human, the natives of *Chapek 9* need to know whether or not the visitor's preferences are independent of their species. In other words, they need to know whether or not the visitor's preferences are associated with their species.
 
 ```{r cogstatloadchapek9, echo=FALSE, fig.align="center", fig.show="hold", fig.cap="Loading the [`chapek9.csv`](resources/data/chapek9.csv) data set into CogStat."}
-knitr::include_graphics("resources/cogstatloadchapek9.png")
+knitr::include_graphics("resources/image/cogstatloadchapek9.png")
 ```
 
 In total, there are 180 entries in the data frame, one for each person (counting both robots and humans as "people") who was asked to make a choice. Specifically, there are 93 humans and 87 robots.
@@ -277,19 +277,19 @@ In total, there are 180 entries in the data frame, one for each person (counting
 What we want to do is look at the `choices` broken down *by* `species`. That is, we need to cross-tabulate the data. We cannot use the `Pivot table` option in CogStat for strings, but we can use the `Compare groups` option instead. We'll use the `species` variable as the grouping variable and the `choices` variable as the variable to compare.
 
 ```{r cogstatchapek9, echo=FALSE, fig.align="center", fig.show="hold", fig.cap="Using the `Compare groups` dialogue to get some information about `choices` by `species`."}
-knitr::include_graphics("resources/cogstatcomparegroupschapek9.png")
+knitr::include_graphics("resources/image/cogstatcomparegroupschapek9.png")
 ```
 
 The overwhelmingly preferred choice is the `data file`. You can see a visual representation of this in Figure \@ref(fig:cogstatchapek9mosaic).
 
 ```{r cogstatchapek9mosaic, echo=FALSE, fig.align="center", fig.cap="The mosaic plot of `choices` by `species`."}
-knitr::include_graphics("resources/cogstatchapek9mosaic.png")
+knitr::include_graphics("resources/image/cogstatchapek9mosaic.png")
 ```
 
 Scrolling down, you can see the descriptives for the groups in the `Sample properties` section:
 
 ```{r cogstatchapek9descriptives, echo=FALSE, fig.align="center", fig.cap="The `Sample properties` section of the `Compare groups` results showing the contingency table we'll discuss later in this chapter."}
-knitr::include_graphics("resources/cogstatchapek9descriptives.png")
+knitr::include_graphics("resources/image/cogstatchapek9descriptives.png")
 ```
 
 Let's put these results in a nice table for our discussion on the $\chi^2$ test of independence.
@@ -392,7 +392,7 @@ Amazing.
 The test is automatically done in CogStat using the `Compare groups` feature. The result set will contain information about the sample and its properties, as seen in Figure \@ref(fig:cogstatchapek9descriptives). Further scrolling down, you'll see the effect size (which we will cover in a short while in Chapter \@ref(chisqeffectsize)). The last part of the result set is the hypothesis test itself (see Figure \@ref(fig:cogstatchapek9hypo)).
 
 ```{r cogstatchapek9hypo, fig.cap="Population properties and Hypothesis tests for the `chapek9.csv` data set.", echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("resources/cogstatchapek9hypo.png")
+knitr::include_graphics("resources/image/cogstatchapek9hypo.png")
 ```
 
 Let us go through the `Hypothesis tests` section line by line.
@@ -444,8 +444,8 @@ CogStat (or any other software, for that matter) introduces this correction, so 
 Let us overwrite all the `puppy` answers in our `chapek9` data frame to look at 1 degree of freedom (Figure \@ref(fig:chapek9two)).
 
 ```{r chapek9two, fig.cap="CogStat results for [`chapek9two.csv`](resources/data/chapek9two.csv) with 1 degree of freedom", fig.align="center", out.width="100%", fig.show="hold", echo=FALSE}
-knitr::include_graphics(c("resources/cogstatchapek9twomatrix.png",
-                    "resources/cogstatchapek9tworesult.png"))
+knitr::include_graphics(c("resources/image/cogstatchapek9twomatrix.png",
+                    "resources/image/cogstatchapek9tworesult.png"))
 ```
 
 The result as calculated by default with the Yates correction is:
@@ -506,13 +506,13 @@ If you find yourself in a situation where independence is violated, it may be po
 What should you do if your cell counts are too small, but you'd still like to test the null hypothesis that the two variables are independent? One answer would be "collect more data", but that's far too glib: there are a lot of situations in which it would be either infeasible or unethical to do. If so, statisticians are morally obligated to provide scientists with better tests. In this instance, Fisher (1922) kindly provided the right answer to the question. To illustrate the basic idea, let's suppose we're analysing data from a field experiment, looking at the emotional status of people accused of witchcraft. Some of them are currently being burned at the stake.^[This example is based on a joke article published in the *Journal of Irreproducible Results*.] Unfortunately for the scientist (but rather fortunately for the general populace), it's quite hard to find people in the process of being set on fire, so the cell counts are microscopic. The [`salem.csv`](resources/data/salem.csv) file illustrates the point.
 
 ```{r cogstatsalemload, echo=FALSE, fig.align="center", fig.cap="The `salem` data set", out.width="100%"}
-knitr::include_graphics("resources/cogstatsalemload.png")
+knitr::include_graphics("resources/image/cogstatsalemload.png")
 ```
 
 Looking at this data, you'd be hard pressed not to suspect that people not on fire are more likely to be happy than people on fire. However, the chi-square test (even with the Yates correction for the 2x2 data) makes this very hard to test because of the small sample size.
 
 ```{r cogstatsalemresult, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("resources/cogstatsalemresult.png")
+knitr::include_graphics("resources/image/cogstatsalemresult.png")
 ```
 
 We'd *really* like to be able to get a better answer than this provided we really don't want to be on fire. This is where **Fisher's exact test** \cite{Fisher1922} comes in very handy. The Fisher exact test works somewhat differently to the chi-square test (or in fact any of the other hypothesis tests that I talk about in this book) insofar as it doesn't have a test statistic; it calculates the $p$-value "directly".
@@ -588,18 +588,18 @@ and this statistic has an (approximately) $\chi^2$ distribution with $df=1$. How
 Now that you know what the McNemar test is all about, lets actually run one. The [`agpp.csv`](resources/data/agpp.csv) file contains the raw data. It contains three variables, an `id` variable that labels each participant in the data set, a `responseBefore` variable that records the person's answer when they were asked the question the first time, and a `responseAfter` variable that shows the answer that they gave when asked the same question a second time.
 
 ```{r cogstatloadagpp, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("resources/cogstatloadagpp.png")
+knitr::include_graphics("resources/image/cogstatloadagpp.png")
 ```
 
 Let us think what we want to do here. We have the same participants giving us two answers. We want to test whether the two answers (the *before* and the *after*) are independent of each other. Or, in other words, we want to compare a **reapeated measure**. In CogStat, we need to select `Compare repeated measures variables` and add the `responseBefore` and `responseAfter` variables to the `Selected variables` box to run an analysis (Figure \@ref(fig:cogstatrepeatagpp)). The results are shown in Figure \@ref(fig:cogstatagppresults).
 
 ```{r cogstatrepeatagpp, echo=FALSE, fig.align="center", out.width="100%", fig.cap="Repeated measures analysis of the AGPP data in CogStat."}
-knitr::include_graphics("resources/cogstatrepeatagpp.png")
+knitr::include_graphics("resources/image/cogstatrepeatagpp.png")
 ```
 
 ```{r cogstatagppresults, echo=FALSE, fig.align="center", out.width="100%", fig.cap="Results of the repeated measures analysis of the AGPP data in CogStat.", fig.show="hold"}
-knitr::include_graphics(c("resources/cogstatagppresults1.png",
-                          "resources/cogstatagppresults2.png"))
+knitr::include_graphics(c("resources/image/cogstatagppresults1.png",
+                          "resources/image/cogstatagppresults2.png"))
 ```
 
 ```{=html}
@@ -650,8 +650,8 @@ Here's the result if we run the `Explore relation of variable pair` analysis in 
       </div>
 ```
 ```{r cogstatmcn, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="Hypothesis test results when running either `Compare repeated measures variables` or `Explore relation of variable pair` in CogStat."}
-knitr::include_graphics(c("resources/cogstatmcn1.png",
-                        "resources/cogstatmcn2.png"))
+knitr::include_graphics(c("resources/image/cogstatmcn1.png",
+                        "resources/image/cogstatmcn2.png"))
 ```
 
 For the second case, running the McNemar test, the answer would be McNemar's chi-squared = $16.03$, df = $6$, p-value = $0.014$. This is a significant result, suggesting that the frequencies of suit choices were different the second time than the first time.

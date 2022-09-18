@@ -410,7 +410,7 @@ div.csl-indent {
 <p>Up to this point, we have focused entirely on how to construct descriptive statistics for a single variable. What we have not done is talk about how to describe the relationships <em>between</em> variables in the data. To do that, we want to talk mainly about the <strong>correlation</strong> between variables. But first, we need some data.</p>
 <p>After watching the AFL data, let’s turn to a topic close to every parent’s heart: sleep. The following data set is fictitious but based on real events. Suppose we’re curious to determine how much a baby’s sleeping habits affect the parent’s mood. Let’s say we can rate parent grumpiness very precisely on a scale from 0 (not at all grumpy) to 100 (very, very grumpy). And let’s also assume that we’ve been measuring parent grumpiness, parent sleeping patterns, and the baby’s sleeping patterns for 100 days.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:loadparenthood"></span>
-<img src="resources/cogstatparenthoodload.png" alt="This is what you would see after loading the [parenthood.csv](resources/data/parenthood.csv) dataset." width="100%" />
+<img src="resources/image/cogstatparenthoodload.png" alt="This is what you would see after loading the [parenthood.csv](resources/data/parenthood.csv) dataset." width="100%" />
 <p class="caption">
 Figure 5.1: This is what you would see after loading the <a href="resources/data/parenthood.csv">parenthood.csv</a> dataset.
 </p>
@@ -592,17 +592,17 @@ Minimum
 </tbody>
 </table>
 <p>To start understanding the relationship between a pair of variables, select <code>Explore relation of variable pair</code> so a pop-up appears. Move the name of the two variables you wish to analyse (from <code>Available variables</code> to <code>Selected variables</code>, then click <code>OK</code>.</p>
-<p><img src="resources/cogstatexplorevariablepair.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="resources/image/cogstatexplorevariablepair.png" width="100%" style="display: block; margin: auto;" /></p>
 <div id="the-strength-and-direction-of-a-relationship" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> The strength and direction of a relationship<a href="correl.html#the-strength-and-direction-of-a-relationship" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:scatterparent1a"></span>
-<img src="resources/parentsleepgrumpplot.png" alt="Scatterplot drawn by CogStat showing the relationship between `parentsleep` and `parentgrump`" width="100%" />
+<img src="resources/image/parentsleepgrumpplot.png" alt="Scatterplot drawn by CogStat showing the relationship between `parentsleep` and `parentgrump`" width="100%" />
 <p class="caption">
 Figure 5.2: Scatterplot drawn by CogStat showing the relationship between <code>parentsleep</code> and <code>parentgrump</code>
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:scatterparent1b"></span>
-<img src="resources/babysleepgrumpplot.png" alt="Scatterplot drawn by CogStat showing the relationship between `babysleep` and `parentgrump`" width="100%" />
+<img src="resources/image/babysleepgrumpplot.png" alt="Scatterplot drawn by CogStat showing the relationship between `babysleep` and `parentgrump`" width="100%" />
 <p class="caption">
 Figure 5.3: Scatterplot drawn by CogStat showing the relationship between <code>babysleep</code> and <code>parentgrump</code>
 </p>
@@ -610,7 +610,7 @@ Figure 5.3: Scatterplot drawn by CogStat showing the relationship between <code>
 <p>We can draw scatterplots to give us a general sense of how closely related two variables are. Ideally, though, we might want to say a bit more about it than that. For instance, let’s compare the relationship between <code>parentsleep</code> and <code>parentgrump</code> (Figure <a href="correl.html#fig:scatterparent1a">5.2</a> with that between <code>babysleep</code> and <code>parentgrump</code> (Figure <a href="correl.html#fig:scatterparent1b">5.3</a>. When looking at these two plots side by side, it’s clear that the relationship is <em>qualitatively</em> the same in both cases: more sleep equals less grump! However, it’s also obvious that the relationship between <code>parentsleep</code> and <code>parentgrump</code> is <em>stronger</em> than between <code>babysleep</code> and <code>parentgrump</code>. The plot on the left is “neater” than on the right. It feels like if you want to predict the parent’s mood, it will help you a little bit to know how many hours the baby slept, but it’d be <em>more</em> helpful to know how many hours the parent slept.</p>
 <p>In contrast, let’s consider Figure <a href="correl.html#fig:scatterparent1b">5.3</a> vs. Figure <a href="correl.html#fig:scatterparent2">5.4</a>. If we compare the scatterplot of “<code>babysleep</code> v <code>parentgrump</code>” to the scatterplot of “`<code>babysleep</code> v <code>parentsleep</code>”, the overall strength of the relationship is the same, but the direction is different. If the baby sleeps more, the parent gets <em>more</em> sleep (positive relationship, but if the baby sleeps more, then the parent gets <em>less</em> grumpy (negative relationship).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:scatterparent2"></span>
-<img src="resources/parentsleepbabysleepplot.png" alt="Scatterplot drawn by CogStat showing the relationship between `babysleep` and `parentsleep`" width="100%" />
+<img src="resources/image/parentsleepbabysleepplot.png" alt="Scatterplot drawn by CogStat showing the relationship between `babysleep` and `parentsleep`" width="100%" />
 <p class="caption">
 Figure 5.4: Scatterplot drawn by CogStat showing the relationship between <code>babysleep</code> and <code>parentsleep</code>
 </p>
@@ -924,7 +924,7 @@ student 10
 <p>We’ve just re-invented the <strong>Spearman’s rank order correlation</strong>, usually denoted <span class="math inline">\(\rho\)</span> (pronounced: rho) to distinguish it from the Pearson correlation <span class="math inline">\(r\)</span>. CogStat will use <span class="math inline">\(r_{S}\)</span> to denote rank order correlation.</p>
 <p>CogStat will automatically calculate both Pearson’s correlation and Spearman’s rank order correlation for you if your measurement is not set in your source data (Figure <a href="correl.html#fig:cogstatcorrelationresult">5.8</a>). If you set the measurement type to “ordinal” in your source file, it will omit to calculate Pearson’s correlation due to the above reasons.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogstatcorrelationresult"></span>
-<img src="resources/cogstatcorrelationresult.png" alt="This is what you would see in CogStat after loading the `effort.csv` dataset." width="100%" />
+<img src="resources/image/cogstatcorrelationresult.png" alt="This is what you would see in CogStat after loading the `effort.csv` dataset." width="100%" />
 <p class="caption">
 Figure 5.8: This is what you would see in CogStat after loading the <code>effort.csv</code> dataset.
 </p>
@@ -934,7 +934,7 @@ Figure 5.8: This is what you would see in CogStat after loading the <code>effort
 <h2><span class="header-section-number">5.5</span> Missing values in pairwise calculations<a href="correl.html#missingvaluespair" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To illustrate the issues, let’s open up a data set with missing values, <a href="resources/data/parenthood_missing.csv"><code>parenthood_missing.csv</code></a>. This file contains the same data as the original parenthood data but with some values deleted. While the original source could contain an empty value or <code>NA</code>, CogStat will display <code>NaN</code> for these missing values (Figure <a href="correl.html#fig:parenthoodmissing">5.9</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:parenthoodmissing"></span>
-<img src="resources/cogstatparenthood_missing.png" alt="This is what you would see in CogStat after loading the `parenthood_missing.csv` dataset." width="100%" />
+<img src="resources/image/cogstatparenthood_missing.png" alt="This is what you would see in CogStat after loading the `parenthood_missing.csv` dataset." width="100%" />
 <p class="caption">
 Figure 5.9: This is what you would see in CogStat after loading the <code>parenthood_missing.csv</code> dataset.
 </p>
@@ -1118,19 +1118,19 @@ Minimum
 <p>We can see that there are 9 missing values for <code>parentsleep</code> (<code>N of missing cases: 9</code>), 11 missing values for <code>babysleep</code> (<code>N of missing cases: 11</code>), and 8 missing values for <code>parentgrump</code> (<code>N of missing cases: 8</code>).</p>
 <p>Whichever comparison you’d like to run (e.g., <code>parentsleep</code> vs. <code>parentgrump</code>), CogStat will automatically exclude the missing values from the calculation:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:parenthoodmissingcog1"></span>
-<img src="resources/cogstatparentsleepparentgrumpmissing.png" alt="17 missing pairs when comparing `parentsleep` and `parentgrump`" width="100%" />
+<img src="resources/image/cogstatparentsleepparentgrumpmissing.png" alt="17 missing pairs when comparing `parentsleep` and `parentgrump`" width="100%" />
 <p class="caption">
 Figure 5.10: 17 missing pairs when comparing <code>parentsleep</code> and <code>parentgrump</code>
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:parenthoodmissingcog2"></span>
-<img src="resources/cogstatbabysleepparentgrumpmissing.png" alt="18 missing pairs when comparing `babysleep` and `parentgrump`" width="100%" />
+<img src="resources/image/cogstatbabysleepparentgrumpmissing.png" alt="18 missing pairs when comparing `babysleep` and `parentgrump`" width="100%" />
 <p class="caption">
 Figure 5.11: 18 missing pairs when comparing <code>babysleep</code> and <code>parentgrump</code>
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:parenthoodmissingcog3"></span>
-<img src="resources/cogstatparentsleepbabysleepmissing.png" alt="20 missing pairs when comparing `babysleep` and `parentsleep`" width="100%" />
+<img src="resources/image/cogstatparentsleepbabysleepmissing.png" alt="20 missing pairs when comparing `babysleep` and `parentsleep`" width="100%" />
 <p class="caption">
 Figure 5.12: 20 missing pairs when comparing <code>babysleep</code> and <code>parentsleep</code>
 </p>

@@ -22,13 +22,13 @@ In this section, we'll discuss one of the most useless tests in all of statistic
 Let's use a simple example to introduce the idea behind the $z$-test. A friend of Danielle's, Dr Zeppo, grades his introductory statistics class on a curve. Let's suppose that the average grade in his class is 67.5, and the standard deviation is 9.5. Of his many hundreds of students, it turns out that 20 of them also take psychology classes. Out of curiosity: do psychology students tend to get the same grades as everyone else (i.e. mean 67.5), or do they tend to score higher or lower? Let's explore this by looking at the [`zeppo.csv`](resources/data/zeppo.csv) data file by loading the file to CogStat.
 
 ```{r cogstatloadzeppo, echo=FALSE, fig.cap="The `zeppo.csv` data file loaded into CogStat."}
-knitr::include_graphics("resources/cogstatloadzeppo.png")
+knitr::include_graphics("resources/image/cogstatloadzeppo.png")
 ```
 
 Let's explore the data a bit by looking at some summary statistics with the `Explore variable` function.
 
 ```{r cogstatexplorezeppo, echo=FALSE, fig.cap="The `Explore variable` function in CogStat."}
-knitr::include_graphics("resources/cogstatexplorezeppo.png")
+knitr::include_graphics("resources/image/cogstatexplorezeppo.png")
 ```
 
 The mean is $72.3$. Hm. It *might* be that the psychology students are scoring a bit higher than normal: that sample mean of $\bar{X} = 72.3$ is a fair bit higher than the hypothesised population mean of $\mu = 67.5$, but on the other hand, a sample size of $N = 20$ isn't all that big. Maybe it's pure chance. 
@@ -38,7 +38,7 @@ To answer the question, it helps to be able to write down what it is that we kno
 Next, it helps to be clear about what we want to learn from the data. In this case, the research hypothesis relates to the *population* mean $\mu$ for the psychology student grades, which is unknown. Specifically, we want to know if $\mu = 67.5$ or not. Given that this is what we know, can we devise a hypothesis test to solve our problem? The data, along with the hypothesised distribution from which they are thought to arise, are shown in Figure \@ref(fig:zeppo). Not entirely obvious what the right answer is, is it? For this, we are going to need some statistics.
 
 ```{r zeppo, fig.cap="The theoretical distribution (dashed green line) from which the psychology student grades (blue bars) are generated in CogStat at the `Population properties` section of our result set.", echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("resources/zeppohist.png")
+knitr::include_graphics("resources/image/zeppohist.png")
 ```
 
 The first step in constructing a hypothesis test is to be clear about what the null and alternative hypotheses are. This isn't too hard to do. Our null hypothesis, $H_0$, is that the true population mean $\mu$ for psychology student grades is 67.5\%; and our alternative hypothesis is that the population mean *isn't* 67.5\%. If we write this in mathematical notation, these hypotheses become,
@@ -267,7 +267,7 @@ It might not be safe to assume that the psychology student grades necessarily ha
 Having loaded the `grades` data and explored the descriptive statistics, let us take note of a few data points from the `Descriptives for the variable` and the `Population parameter estimations` section of the CogStat output. But first, let us re-run the `Explore variable` option, but now let us tell CogStat to use our null hypothesis of $67.5$. To do that, we have to fill in `67.5` in our dialogue:
 
 ```{r centraltendencyexplorevar, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("resources/centraltendency.png")
+knitr::include_graphics("resources/image/centraltendency.png")
 ```
 
 ```{=html}
@@ -372,7 +372,7 @@ The only thing that has changed in the equation is that instead of using the kno
 Notice, though, that as df gets larger, the $t$-distribution starts to look identical to the standard normal distribution. This is as it should be: if you have a sample size of $N = 70000000$, then your "estimate" of the standard deviation would be pretty much perfect, right? So, you should expect that for large $N$, the $t$-test would behave the same way as a $z$-test. And that's exactly what happens!
 
 ```{r ttestdist, fig.cap="The $t$ distribution with 2 degrees of freedom (left) and 10 degrees of freedom (right), with a standard normal distribution (i.e., mean 0 and std dev 1) plotted as dotted lines for comparison purposes. Notice that the $t$ distribution has heavier tails (higher kurtosis) than the normal distribution; this effect is quite exaggerated when the degrees of freedom are very small, but negligible for larger values. In other words, for large $df$ the $t$ distribution is essentially identical to a normal distribution.", echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("resources/ttestdist.png")
+knitr::include_graphics("resources/image/ttestdist.png")
 ```
 
 As you might expect, the mechanics of the $t$-test are almost identical to the mechanics of the $z$-test. So there's not much point in going through the tedious exercise of showing you how to do the calculations: it's pretty much identical to the calculations that we did earlier, except that we use the estimated standard deviation, and then we test our hypothesis using the $t$ distribution rather than the normal distribution.
@@ -426,7 +426,7 @@ Suppose we have 33 students taking Dr Harpo's statistics lectures, and Dr Harpo 
 As usual, let's load the file [`harpo.csv`](resources/data/harpo.csv).
 
 ```{r harpodata, echo=FALSE, fig.align="center", out.width="100%"}
-knitr::include_graphics("resources/cogstatloadharpo.png")
+knitr::include_graphics("resources/image/cogstatloadharpo.png")
 ```
 
 As we can see, we have two variables: `grade` and `tutor`. The `grade` variable is a numeric interval variable, containing the grades for all $N = 33$ students taking Dr Harpo's class; the `tutor` variable is a categorical (nominal) data that indicates who each student's tutor was. 
@@ -434,14 +434,14 @@ As we can see, we have two variables: `grade` and `tutor`. The `grade` variable 
 Let's run the `Compare groups` function so we can get some information about the grades by tutor.
 
 ```{r harpocompare, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="Comparing grades by tutor in CogStat for our `harpo` data set."}
-knitr::include_graphics(c("resources/cogstatharpocomparedialog.png",
-                         "resources/cogstatharposampleproperties.png"))
+knitr::include_graphics(c("resources/image/cogstatharpocomparedialog.png",
+                         "resources/image/cogstatharposampleproperties.png"))
 ```
 
 In the boxplot generated by CogStat, we have the grades, the means and corresponding confidence intervals. We can see that the grades for Anastasia's students are slightly higher than those for Bernadette's students. We can also see that the variance of the grades for Bernadette's students is slightly higher than that for Anastasia's students.
 
 ```{r harpoboxplot, fig.align="center", out.width="100%", echo=FALSE}
-knitr::include_graphics("resources/cogstatharpoboxplot.png")
+knitr::include_graphics("resources/image/cogstatharpoboxplot.png")
 ```
 
 The **independent samples $t$-test** comes in two different forms, Student's and Welch's. The original Student $t$-test -- which is the one we'll describe in this section -- is the simpler of the two but relies on much more restrictive assumptions than the Welch $t$-test. Assuming for the moment that you want to run a two-sided test, the goal is to determine whether two "independent samples" of data are drawn from populations with the same mean (the null hypothesis) or different means (the alternative hypothesis).
@@ -598,7 +598,7 @@ $$
 Just as we saw with our one-sample test, the sampling distribution of this $t$-statistic is a $t$-distribution as long as the null hypothesis is true, and all of the assumptions of the test are met. The degrees of freedom, however, is slightly different. As usual, we can think of the degrees of freedom to be equal to the number of data points minus the number of constraints. In this case, we have $N$ observations ($N_1$ in sample 1, and $N_2$ in sample 2), and 2 constraints (the sample means). So the total degrees of freedom for this test are $N-2$.
 
 ```{r cogstatharpohypo, fig.align="center", out.width="100%", echo=FALSE}
-knitr::include_graphics("resources/cogstatharpohypo.png")
+knitr::include_graphics("resources/image/cogstatharpohypo.png")
 ```
 
 The output from CogStat has a very familiar form. Let's start to talk about the confidence interval, and for that, let's circle back to our `Population parameter estimations`:
