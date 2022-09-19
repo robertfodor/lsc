@@ -104,6 +104,7 @@ fig:aflsmallqq
 fig:swdist
 fig:mwafl24
 fig:mwbeforeafter
+fig:moodbydrug
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -266,6 +267,7 @@ two-sample-wilcoxon-test-mann-whitney-test
 one-sample-and-paired-samples-wilcoxon-tests
 summary-6
 anova
+anovaintro
 regression
 anova2
 bayes

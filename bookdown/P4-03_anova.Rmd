@@ -1,1 +1,48 @@
 # Comparing several means (one-way ANOVA){#anova}
+
+This chapter introduces one of the most widely used statistical tools known as "the analysis of variance", which is usually referred to as ANOVA. Sir Ronald Fisher developed the basic technique in the early 20th century, and it is to him that we owe the rather unfortunate terminology.
+
+The term ANOVA is a little misleading in two respects. Firstly, although the technique's name refers to variances, ANOVA is concerned with investigating differences in means. Secondly, several different things out there are all referred to as ANOVAs, some of which have only a very tenuous connection to one another. Later in the book, we'll encounter various ANOVA methods that apply in quite different situations. Still, for this chapter, we'll only consider the simplest form of ANOVA, in which we have several different groups of observations. We're interested in finding out whether those groups differ in terms of some outcome variable of interest. This is the question that is addressed by a **one-way ANOVA**. 
+
+The structure of this chapter is as follows: After introducing the data, we'll describe the mechanics of how a one-way ANOVA actually works. The remainder of the chapter discusses a range of important topics that inevitably arise when running an ANOVA, namely how to calculate effect sizes (Section \@ref(etasquared)), post hoc tests and corrections for multiple comparisons (Section \@ref(posthoc)) and the assumptions that ANOVA relies upon (Section \@ref(anovaassumptions)). We'll also talk about how to check those assumptions and some of the things you can do if the assumptions are violated (Sections \@ref(levene) to \@ref(kruskalwallis)). At the end of the chapter, we'll talk a little about the relationship between ANOVA and other statistical tools (Section \@ref(anovaandt)).
+
+Now let's run a clinical trial!
+
+Suppose you've become involved in a clinical trial in which you are testing a new antidepressant drug called *Joyzepam*. In order to construct a fair test of the drug's effectiveness, the study involves three different medications to be administered. One is a placebo, and the other is an existing antidepressant / anti-anxiety drug called *Anxifree*. A collection of 18 participants with moderate to severe depression are recruited for your initial testing. Because the drugs are sometimes administered in conjunction with psychological therapy, your study includes 9 people undergoing cognitive behavioural therapy (CBT) and 9 who are not. Participants are randomly assigned (doubly blinded, of course) a treatment, such that there are 3 CBT people and 3 no-therapy people assigned to each of the 3 drugs. A psychologist assesses the mood of each person after a 3 month run with each drug: and the overall *improvement* in each person's mood is assessed on a scale ranging from $-5$ to $+5$.
+
+With that as the study design, let's load our data file: [`clinicaltrial.csv`](resources/data/clinicaltrial.csv). We have three variables: `drug`, `therapy` and `mood_gain`. Next, let's print the data frame to get a sense of what the data actually look like. 
+
+For the purposes of this chapter, what we're really interested in is the effect of `drug` on `mood_gain`. The first thing to do is use the `Compare groups` function. (But don't jump ahead by adding both `drug` and `therapy` to the `Group(s)` box. That's going to be our factorial ANOVA in Chapter \@ref(anova2).)
+
+```{r moodbydrug, echo=FALSE, fig.cap="Mood gain by drug", fig.align="center", out.width="100%", fig.show="hold"}
+knitr::include_graphics(
+    "resources/image/moodbydrug.png",
+)
+```
+
+The results are shown in the boxplot in Figure \@ref(fig:moodbydrug), which plots the average mood gain for all three conditions; error bars show 95\% confidence intervals. As the plot makes clear, there is a larger improvement in mood for participants in the Joyzepam group than for either the Anxifree group or the placebo group. The Anxifree group shows a larger mood gain than the control (i.e. placebo) group, but the difference isn't as large. 
+
+The question that we want to answer is: are these difference "real", or are they just due to chance?
+
+## How ANOVA works{#anovaintro}
+
+In order to answer the question posed by our clinical trial data, we're going to run a one-way ANOVA. As usual, we're going to start by showing you how to do it the hard way to make sure you really understand how ANOVA works, but with CogStat, you'll never *ever* have do it this way.
+
+The experimental design strongly suggests that we're interested in comparing the average mood change for the three different drugs. In that sense, we're talking about an analysis similar to the $t$-test (Chapter \@ref(ttest)), but involving more than two groups. If we let $\mu_P$ denote the population mean for the mood change induced by the placebo, and let $\mu_A$ and $\mu_J$ denote the corresponding means for our two drugs, Anxifree and Joyzepam, then the (somewhat pessimistic) null hypothesis that we want to test is that all three population means are identical: that is, *neither* of the two drugs is any more effective than a placebo. 
+
+Mathematically, we write this null hypothesis like this:
+$$
+\begin{array}{rcl}
+H_0 &:& \mbox{it is true that } \mu_P = \mu_A = \mu_J
+\end{array}
+$$
+
+As a consequence, our alternative hypothesis is that at least one of the three different treatments is different from the others. It's a little trickier to write this mathematically, because there are quite a few different ways in which the null hypothesis can be false. So for now we'll just write the alternative hypothesis like this:
+$$
+\begin{array}{rcl}
+H_1 &:& \mbox{it is *not* true that } \mu_P = \mu_A = \mu_J
+\end{array}
+$$
+
+This null hypothesis is a lot trickier to test than any of the ones we've seen previously. How shall we do it? A sensible guess would be to "do an ANOVA", since that's the title of the chapter, but it's not particularly clear why an "analysis of *variances*" will help us learn anything useful about the *means*. In fact, this is one of the biggest conceptual difficulties that people have when first encountering ANOVA. To see how this works, let us talk about variances.
+

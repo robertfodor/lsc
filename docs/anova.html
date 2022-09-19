@@ -387,7 +387,10 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="10.9" data-path="ttest.html"><a href="ttest.html#summary-6"><i class="fa fa-check"></i><b>10.9</b> Summary</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>11</b> Comparing several means (one-way ANOVA)</a></li>
+<li class="chapter" data-level="11" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>11</b> Comparing several means (one-way ANOVA)</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="anova.html"><a href="anova.html#anovaintro"><i class="fa fa-check"></i><b>11.1</b> How ANOVA works</a></li>
+</ul></li>
 <li class="chapter" data-level="12" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>12</b> Linear regression</a></li>
 <li class="chapter" data-level="13" data-path="anova2.html"><a href="anova2.html"><i class="fa fa-check"></i><b>13</b> Factorial ANOVA</a></li>
 <li class="part"><span><b>BAYESIAN STATISTICS</b></span></li>
@@ -417,7 +420,40 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="anova" class="section level1 hasAnchor" number="11">
 <h1><span class="header-section-number">Chapter 11</span> Comparing several means (one-way ANOVA)<a href="anova.html#anova" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This chapter introduces one of the most widely used statistical tools known as “the analysis of variance”, which is usually referred to as ANOVA. Sir Ronald Fisher developed the basic technique in the early 20th century, and it is to him that we owe the rather unfortunate terminology.</p>
+<p>The term ANOVA is a little misleading in two respects. Firstly, although the technique’s name refers to variances, ANOVA is concerned with investigating differences in means. Secondly, several different things out there are all referred to as ANOVAs, some of which have only a very tenuous connection to one another. Later in the book, we’ll encounter various ANOVA methods that apply in quite different situations. Still, for this chapter, we’ll only consider the simplest form of ANOVA, in which we have several different groups of observations. We’re interested in finding out whether those groups differ in terms of some outcome variable of interest. This is the question that is addressed by a <strong>one-way ANOVA</strong>.</p>
+<p>The structure of this chapter is as follows: After introducing the data, we’ll describe the mechanics of how a one-way ANOVA actually works. The remainder of the chapter discusses a range of important topics that inevitably arise when running an ANOVA, namely how to calculate effect sizes (Section <a href="#etasquared"><strong>??</strong></a>), post hoc tests and corrections for multiple comparisons (Section <a href="#posthoc"><strong>??</strong></a>) and the assumptions that ANOVA relies upon (Section <a href="#anovaassumptions"><strong>??</strong></a>). We’ll also talk about how to check those assumptions and some of the things you can do if the assumptions are violated (Sections <a href="#levene"><strong>??</strong></a> to <a href="#kruskalwallis"><strong>??</strong></a>). At the end of the chapter, we’ll talk a little about the relationship between ANOVA and other statistical tools (Section <a href="#anovaandt"><strong>??</strong></a>).</p>
+<p>Now let’s run a clinical trial!</p>
+<p>Suppose you’ve become involved in a clinical trial in which you are testing a new antidepressant drug called <em>Joyzepam</em>. In order to construct a fair test of the drug’s effectiveness, the study involves three different medications to be administered. One is a placebo, and the other is an existing antidepressant / anti-anxiety drug called <em>Anxifree</em>. A collection of 18 participants with moderate to severe depression are recruited for your initial testing. Because the drugs are sometimes administered in conjunction with psychological therapy, your study includes 9 people undergoing cognitive behavioural therapy (CBT) and 9 who are not. Participants are randomly assigned (doubly blinded, of course) a treatment, such that there are 3 CBT people and 3 no-therapy people assigned to each of the 3 drugs. A psychologist assesses the mood of each person after a 3 month run with each drug: and the overall <em>improvement</em> in each person’s mood is assessed on a scale ranging from <span class="math inline">\(-5\)</span> to <span class="math inline">\(+5\)</span>.</p>
+<p>With that as the study design, let’s load our data file: <a href="resources/data/clinicaltrial.csv"><code>clinicaltrial.csv</code></a>. We have three variables: <code>drug</code>, <code>therapy</code> and <code>mood_gain</code>. Next, let’s print the data frame to get a sense of what the data actually look like.</p>
+<p>For the purposes of this chapter, what we’re really interested in is the effect of <code>drug</code> on <code>mood_gain</code>. The first thing to do is use the <code>Compare groups</code> function. (But don’t jump ahead by adding both <code>drug</code> and <code>therapy</code> to the <code>Group(s)</code> box. That’s going to be our factorial ANOVA in Chapter <a href="anova2.html#anova2">13</a>.)</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:moodbydrug"></span>
+<img src="resources/image/moodbydrug.png" alt="Mood gain by drug" width="100%" />
+<p class="caption">
+Figure 11.1: Mood gain by drug
+</p>
+</div>
+<p>The results are shown in the boxplot in Figure <a href="anova.html#fig:moodbydrug">11.1</a>, which plots the average mood gain for all three conditions; error bars show 95% confidence intervals. As the plot makes clear, there is a larger improvement in mood for participants in the Joyzepam group than for either the Anxifree group or the placebo group. The Anxifree group shows a larger mood gain than the control (i.e. placebo) group, but the difference isn’t as large.</p>
+<p>The question that we want to answer is: are these difference “real”, or are they just due to chance?</p>
+<div id="anovaintro" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> How ANOVA works<a href="anova.html#anovaintro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In order to answer the question posed by our clinical trial data, we’re going to run a one-way ANOVA. As usual, we’re going to start by showing you how to do it the hard way to make sure you really understand how ANOVA works, but with CogStat, you’ll never <em>ever</em> have do it this way.</p>
+<p>The experimental design strongly suggests that we’re interested in comparing the average mood change for the three different drugs. In that sense, we’re talking about an analysis similar to the <span class="math inline">\(t\)</span>-test (Chapter <a href="ttest.html#ttest">10</a>), but involving more than two groups. If we let <span class="math inline">\(\mu_P\)</span> denote the population mean for the mood change induced by the placebo, and let <span class="math inline">\(\mu_A\)</span> and <span class="math inline">\(\mu_J\)</span> denote the corresponding means for our two drugs, Anxifree and Joyzepam, then the (somewhat pessimistic) null hypothesis that we want to test is that all three population means are identical: that is, <em>neither</em> of the two drugs is any more effective than a placebo.</p>
+<p>Mathematically, we write this null hypothesis like this:
+<span class="math display">\[
+\begin{array}{rcl}
+H_0 &amp;:&amp; \mbox{it is true that } \mu_P = \mu_A = \mu_J
+\end{array}
+\]</span></p>
+<p>As a consequence, our alternative hypothesis is that at least one of the three different treatments is different from the others. It’s a little trickier to write this mathematically, because there are quite a few different ways in which the null hypothesis can be false. So for now we’ll just write the alternative hypothesis like this:
+<span class="math display">\[
+\begin{array}{rcl}
+H_1 &amp;:&amp; \mbox{it is *not* true that } \mu_P = \mu_A = \mu_J
+\end{array}
+\]</span></p>
+<p>This null hypothesis is a lot trickier to test than any of the ones we’ve seen previously. How shall we do it? A sensible guess would be to “do an ANOVA”, since that’s the title of the chapter, but it’s not particularly clear why an “analysis of <em>variances</em>” will help us learn anything useful about the <em>means</em>. In fact, this is one of the biggest conceptual difficulties that people have when first encountering ANOVA. To see how this works, let us talk about variances.</p>
 
+</div>
 </div>
             </section>
 
