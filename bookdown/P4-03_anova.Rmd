@@ -225,6 +225,24 @@ Okay, so what have we found out?
 
 We've discovered that the total variability associated with the outcome variable ($\mbox{SS}_ {tot}$) can be mathematically carved up into the sum of "the variation due to the differences in the sample means for the different groups" ($\mbox{SS}_ {b}$) plus "all the rest of the variation" ($\mbox{SS}_ {w}$).
 
+Let's apply the formulas to our clinical trial example, and see what we get. We won't bother with the calculations in details, because the formula is given, and CogStat will not bore you with these either.
+
+$$
+\begin{array}{rcl}
+\mbox{SS}_w &=& \sum_{k=1}^G \sum_{i=1}^{N_k} \left( Y_{ik} - \bar{Y}_k \right)^2
+    \\
+        &=& 1.3917
+\end{array}
+$$
+
+$$
+\begin{array}{rcl}
+\mbox{SS}_b &=& \sum_{k=1}^G N_k \left( \bar{Y}_k - \bar{Y} \right)^2
+    \\
+        &=& 3.4533
+\end{array}
+$$
+
 How does that help me find out whether the groups have different population means? If the null hypothesis is true, then you'd expect all the sample means to be pretty similar to each other, right? And that would imply that you'd expect $\mbox{SS}_ {b}$ to be really small, or at least you'd expect it to be a lot smaller than the "the variation associated with everything else", $\mbox{SS}_{w}$.
 
 So, let's do a hypothesis test to validate.
@@ -258,11 +276,9 @@ $$
 F = \frac{\mbox{MS}_b }{ \mbox{MS}_w } 
 $$
 
-At a very general level, the intuition behind the $F$ statistic is straightforward: bigger values of $F$ means that the between-groups variation is large, relative to the within-groups variation. As a consequence, the larger the value of $F$, the more evidence we have against the null hypothesis.
+At a very general level, the intuition behind the $F$ statistic is straightforward: bigger values of $F$ means that the between-groups variation is large, relative to the within-groups variation. As a consequence, the larger the value of $F$, the more evidence we have against the null hypothesis. (To read more on how large does $F$ have to be to reject the null hypothesis, see the next chapter.)
 
-But how large does $F$ have to be in order to actually *reject* $H_0$? In order to understand this, you need a slightly deeper understanding of what ANOVA is and what the mean squares values actually are.
-
-In order to complete our hypothesis test, we need to know the sampling distribution for $F$ if the null hypothesis is true. Not surprisingly, the sampling distribution for the $F$ *statistic* under the null hypothesis is an $F$ *distribution*. If you recall back to our discussion of the $F$ distribution in Chapter \@ref(probability), the $F$ distribution has two parameters, corresponding to the two degrees of freedom involved: the first one df$_1$ is the between groups degrees of freedom df$_b$, and the second one df$_2$ is the within groups degrees of freedom df$_w$.
+In order to complete our hypothesis test, we need to know the sampling distribution for $F$ if the null hypothesis is true. Not surprisingly, the sampling distribution for the $F$ *statistic* under the null hypothesis is an $F$ *distribution*. As seen in Chapter \@ref(probability), the $F$ distribution has two parameters, corresponding to the two degrees of freedom involved: the first one df$_1$ is the between groups degrees of freedom df$_b$, and the second one df$_2$ is the within groups degrees of freedom df$_w$.
 
 A summary of all the key quantities involved in a one-way ANOVA, including the formulas showing how they are calculated, is shown in Table \@ref(tab:anovatable). 
 
@@ -283,4 +299,136 @@ knitr::kable(t(cbind(
   which has a very ugly formula and would be nightmarishly 
   hard to calculate without a computer) are shown.")
 ```
+
+Now let's calculate these for our clinical trial example, again, behind the scenes. Let's start with the degrees of freedom.
+
+$$
+\begin{array}{lcl}
+\mbox{df}_b &=& G-1
+    \\
+    &=& 3-1
+    \\
+    &=& 2 \\
+\mbox{df}_w &=& N-G
+    \\
+    &=& 18-3
+    \\
+    &=& 15
+\end{array}
+$$
+
+Now that that's done, we can calculate the mean squares values.
+
+$$
+\begin{array}{lcl}
+\mbox{MS}_b &=& \displaystyle\frac{\mbox{SS}_b }{ \mbox{df}_b} 
+    \\
+    &=& \displaystyle\frac{3.4533}{2}
+    \\
+    &=& 1.7267 \\
+\mbox{MS}_w &=& \displaystyle\frac{\mbox{SS}_w }{ \mbox{df}_w}
+    \\
+    &=& \displaystyle\frac{1.3917}{15}
+    \\
+    &=& 0.0928
+\end{array}
+$$
+
+Finally, we can calculate the $F$-ratio.
+
+$$
+F = \frac{\mbox{MS}_b }{ \mbox{MS}_w } 
+    \\
+    = \frac{1.7267}{0.0928}
+    \\
+    = 18.6067
+$$
+
+
+### Further reading: the meaning of $F$ (advanced){#anovamodel}
+
+At a fundamental level, ANOVA is a competition between two different statistical models, $H_0$ and $H_1$. If you recall, our null hypothesis was that all of the group means are identical to one another. If so, then a natural way to think about the outcome variable $Y_{ik}$ is to describe individual scores in terms of a single population mean $\mu$, plus the deviation from that population mean. This deviation is usually denoted $\epsilon_{ik}$ and is traditionally called the *error* or **residual** associated with that observation. Be careful though: just like we saw with the word "significant", the word "error" has a technical meaning in statistics that isn't quite the same as its everyday English definition. The word "residual" is a better term than the word "error". In statistics, both words mean "leftover variability": that is, "stuff" that the model can't explain.
+
+In any case, here's what the null hypothesis looks like when we write it as a statistical model:
+$$
+Y_{ik} = \mu + \epsilon_{ik}
+$$
+where we make the *assumption* that the residual values $\epsilon_{ik}$ are normally distributed, with mean 0 and a standard deviation $\sigma$ that is the same for all groups. To use the notation that we introduced in Chapter \@ref(probability) we would write this assumption like this:
+$$
+\epsilon_{ik} \sim \mbox{Normal}(0, \sigma^2)
+$$
+
+What about the alternative hypothesis, $H_1$? The only difference between the null hypothesis and the alternative hypothesis is that we allow each group to have a different population mean. So, if we let $\mu_k$ denote the population mean for the $k$-th group in our experiment, then the statistical model corresponding to $H_1$ is:
+$$
+Y_{ik} = \mu_k + \epsilon_{ik}
+$$
+where, once again, we assume that the error terms are normally distributed with mean 0 and standard deviation $\sigma$. That is, the alternative hypothesis also assumes that 
+$$
+\epsilon \sim \mbox{Normal}(0, \sigma^2)
+$$
+
+Okay, now that we've described the statistical models underpinning $H_0$ and $H_1$ in more detail, it's now pretty straightforward to say what the mean square values are measuring, and what this means for the interpretation of $F$.
+
+It turns out that the within-groups mean square, MS$_w$, can be viewed as an estimator (in the technical sense: Chapter \@ref(estimation)) of the error variance $\sigma^2$. The between-groups mean square MS$_b$ is also an estimator; but what it estimates is the error variance *plus* a quantity that depends on the true differences among the group means. If we call this quantity $Q$, then we can see that the $F$-statistic is basically
+$$
+F = \frac{\hat{Q} + \hat\sigma^2}{\hat\sigma^2}
+$$
+where the true value $Q=0$ if the null hypothesis is true, and $Q > 0$ if the alternative hypothesis is true [e.g. ch. 10 @Hays1994]. Therefore, at a bare minimum *the $F$ value must be larger than 1* to have any chance of rejecting the null hypothesis. Note that this *doesn't* mean that it's impossible to get an $F$-value less than 1. What it means is that, if the null hypothesis is true the sampling distribution of the $F$ ratio has a mean of 1,^[Or, more accurately, $1 + \frac{2}{df_2 - 2}$.] and so we need to see $F$-values larger than 1 in order to safely reject the null.
+
+To be a bit more precise about the sampling distribution, notice that if the null hypothesis is true, both MS$_b$ and MS$_w$ are estimators of the variance of the residuals $\epsilon_{ik}$. If those residuals are normally distributed, then you might suspect that the estimate of the variance of $\epsilon_{ik}$ is chi-square distributed. Because (as discussed in Section \@ref(otherdists)) that's what a chi-square distribution *is*: it's what you get when you square a bunch of normally-distributed things and add them up. And since the $F$ distribution is (again, by definition) what you get when you take the ratio between two things that are $\chi^2$ distributed, we have our sampling distribution.
+
+## Interpreting our results in CogStat{#introduceaov}
+
+You already know the answers, because we calculated it step by step, but you have a more in-depth understanding of how it all ties together. CogStat will do all of this for you, but it's good to know what's going on behind the scenes. Let's see how CogStat interprets our data.
+
+So what we had to do, is simply run the `Compare groups` function with `mood_gain` by `drug`.
+
+```{r cogcompbydrug, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold"}
+knitr::include_graphics(c(
+    "resources/image/comparegroupsbydrug.png",
+    "resources/image/moodbydrug.png"))
+```
+
+We've seen this before. Let us explore the hypothesis test results.
+
+```{=html}
+<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
+     <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
+     <p style="color:#008000;">Testing if the means are the same.<br />
+     One grouping variable. More than two groups. Interval variable. &gt;&gt;  Choosing one-way ANOVA or Kruskal-Wallis test depending on the assumptions.<br />
+     Checking for normality.</p>
+     <p style="color:black;">Shapiro-Wilk normality test in variable mood_gain (drug: anxifree): <span style="font-style:italic;">W</span> = 0.96, <span style="font-style:italic;">p</span> = .790</p>
+     <p style="color:black;">Shapiro-Wilk normality test in variable mood_gain (drug: joyzepam): <span style="font-style:italic;">W</span> = 0.82, <span style="font-style:italic;">p</span> = .096</p>
+     <p style="color:black;">Shapiro-Wilk normality test in variable mood_gain (drug: placebo): <span style="font-style:italic;">W</span> = 0.96, <span style="font-style:italic;">p</span> = .830</p>
+     <p style="color:#008000;">Checking for homogeneity of variance across groups.</p>
+     <p style="color:black;">Levene test: <span style="font-style:italic;">W</span> = 1.47, <span style="font-style:italic;">p</span> = .262</p>
+     <p style="color:#008000;">Normality and homogeneity of variance are not violated. &gt;&gt; Running one-way ANOVA.</p>
+     <p style="color:black;">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in eta-square: 0.23. </p>
+     <p style="color:black;">Result of one-way ANOVA: <span style="font-style:italic;">F</span>(2, 15) = 18.61, <span style="font-style:italic;">p</span> &lt; .001</p>
+</div>
+```
+
+For now, let's stop here. 
+
+At this point, we're basically done. (If you ran the test with us, you've seen something about post hoc tests. We will discuss them later.) Having completed our calculations, it's traditional to organise all these numbers into an ANOVA table like the one in Table \@ref(tab:anovatableresults). For our clinical trial data, the ANOVA table would look like this:
+
+```{r anovatableresults, echo=FALSE, fig.align="center"}
+knitr::kable(
+    rbind(
+        c("between groups", 2, 3.45, 1.73, 18.61, "< .001"),
+        c("within groups", 15, 1.39, 0.09, "--", "--")
+    ),
+    col.names = c("", "df", "Sum of squares",
+            "Mean squares", "$F$-statistic", "$p$-value"),
+    caption = "ANOVA table for the `mood_gain` by `drug` variable"
+)
+```
+
+CogStat doesn't produce this table for you, or give the sums of squares or mean squares. But actually, you don't need it to understand what the statistic tells you. There's almost never a good reason to include the whole table in your write up, but you might see it in other statistical software.
+
+A pretty standard way of reporting this result would be to write something like this:
+
+> One-way ANOVA showed a significant effect of drug on mood gain ($F(2,15) = 18.6, p<.001$).
+
+Sigh. So much work for one short sentence (if you do it manually).
 

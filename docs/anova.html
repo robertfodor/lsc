@@ -395,7 +395,9 @@ div.csl-indent {
 <li class="chapter" data-level="11.2.1" data-path="anova.html"><a href="anova.html#from-variance"><i class="fa fa-check"></i><b>11.2.1</b> From variance…</a></li>
 <li class="chapter" data-level="11.2.2" data-path="anova.html"><a href="anova.html#to-total-sum-of-squares"><i class="fa fa-check"></i><b>11.2.2</b> … to total sum of squares</a></li>
 <li class="chapter" data-level="11.2.3" data-path="anova.html"><a href="anova.html#from-sums-of-squares-to-the-f-test"><i class="fa fa-check"></i><b>11.2.3</b> From sums of squares to the <span class="math inline">\(F\)</span>-test</a></li>
+<li class="chapter" data-level="11.2.4" data-path="anova.html"><a href="anova.html#anovamodel"><i class="fa fa-check"></i><b>11.2.4</b> Further reading: the meaning of <span class="math inline">\(F\)</span> (advanced)</a></li>
 </ul></li>
+<li class="chapter" data-level="11.3" data-path="anova.html"><a href="anova.html#introduceaov"><i class="fa fa-check"></i><b>11.3</b> Interpreting our results in CogStat</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>12</b> Linear regression</a></li>
 <li class="chapter" data-level="13" data-path="anova2.html"><a href="anova2.html"><i class="fa fa-check"></i><b>13</b> Factorial ANOVA</a></li>
@@ -626,6 +628,21 @@ Figure 11.3: Graphical illustration of “within groups” variation
 </div>
 <p>Okay, so what have we found out?</p>
 <p>We’ve discovered that the total variability associated with the outcome variable (<span class="math inline">\(\mbox{SS}_ {tot}\)</span>) can be mathematically carved up into the sum of “the variation due to the differences in the sample means for the different groups” (<span class="math inline">\(\mbox{SS}_ {b}\)</span>) plus “all the rest of the variation” (<span class="math inline">\(\mbox{SS}_ {w}\)</span>).</p>
+<p>Let’s apply the formulas to our clinical trial example, and see what we get. We won’t bother with the calculations in details, because the formula is given, and CogStat will not bore you with these either.</p>
+<p><span class="math display">\[
+\begin{array}{rcl}
+\mbox{SS}_w &amp;=&amp; \sum_{k=1}^G \sum_{i=1}^{N_k} \left( Y_{ik} - \bar{Y}_k \right)^2
+    \\
+        &amp;=&amp; 1.3917
+\end{array}
+\]</span></p>
+<p><span class="math display">\[
+\begin{array}{rcl}
+\mbox{SS}_b &amp;=&amp; \sum_{k=1}^G N_k \left( \bar{Y}_k - \bar{Y} \right)^2
+    \\
+        &amp;=&amp; 3.4533
+\end{array}
+\]</span></p>
 <p>How does that help me find out whether the groups have different population means? If the null hypothesis is true, then you’d expect all the sample means to be pretty similar to each other, right? And that would imply that you’d expect <span class="math inline">\(\mbox{SS}_ {b}\)</span> to be really small, or at least you’d expect it to be a lot smaller than the “the variation associated with everything else”, <span class="math inline">\(\mbox{SS}_{w}\)</span>.</p>
 <p>So, let’s do a hypothesis test to validate.</p>
 </div>
@@ -652,9 +669,8 @@ Figure 11.3: Graphical illustration of “within groups” variation
 <span class="math display">\[
 F = \frac{\mbox{MS}_b }{ \mbox{MS}_w }
 \]</span></p>
-<p>At a very general level, the intuition behind the <span class="math inline">\(F\)</span> statistic is straightforward: bigger values of <span class="math inline">\(F\)</span> means that the between-groups variation is large, relative to the within-groups variation. As a consequence, the larger the value of <span class="math inline">\(F\)</span>, the more evidence we have against the null hypothesis.</p>
-<p>But how large does <span class="math inline">\(F\)</span> have to be in order to actually <em>reject</em> <span class="math inline">\(H_0\)</span>? In order to understand this, you need a slightly deeper understanding of what ANOVA is and what the mean squares values actually are.</p>
-<p>In order to complete our hypothesis test, we need to know the sampling distribution for <span class="math inline">\(F\)</span> if the null hypothesis is true. Not surprisingly, the sampling distribution for the <span class="math inline">\(F\)</span> <em>statistic</em> under the null hypothesis is an <span class="math inline">\(F\)</span> <em>distribution</em>. If you recall back to our discussion of the <span class="math inline">\(F\)</span> distribution in Chapter <a href="probability.html#probability">6</a>, the <span class="math inline">\(F\)</span> distribution has two parameters, corresponding to the two degrees of freedom involved: the first one df<span class="math inline">\(_1\)</span> is the between groups degrees of freedom df<span class="math inline">\(_b\)</span>, and the second one df<span class="math inline">\(_2\)</span> is the within groups degrees of freedom df<span class="math inline">\(_w\)</span>.</p>
+<p>At a very general level, the intuition behind the <span class="math inline">\(F\)</span> statistic is straightforward: bigger values of <span class="math inline">\(F\)</span> means that the between-groups variation is large, relative to the within-groups variation. As a consequence, the larger the value of <span class="math inline">\(F\)</span>, the more evidence we have against the null hypothesis. (To read more on how large does <span class="math inline">\(F\)</span> have to be to reject the null hypothesis, see the next chapter.)</p>
+<p>In order to complete our hypothesis test, we need to know the sampling distribution for <span class="math inline">\(F\)</span> if the null hypothesis is true. Not surprisingly, the sampling distribution for the <span class="math inline">\(F\)</span> <em>statistic</em> under the null hypothesis is an <span class="math inline">\(F\)</span> <em>distribution</em>. As seen in Chapter <a href="probability.html#probability">6</a>, the <span class="math inline">\(F\)</span> distribution has two parameters, corresponding to the two degrees of freedom involved: the first one df<span class="math inline">\(_1\)</span> is the between groups degrees of freedom df<span class="math inline">\(_b\)</span>, and the second one df<span class="math inline">\(_2\)</span> is the within groups degrees of freedom df<span class="math inline">\(_w\)</span>.</p>
 <p>A summary of all the key quantities involved in a one-way ANOVA, including the formulas showing how they are calculated, is shown in Table <a href="anova.html#tab:anovatable">11.1</a>.</p>
 <table>
 <caption>
@@ -736,8 +752,170 @@ Mean squares
 </table></li>
 </ul></li>
 </ul>
-
+<p>Now let’s calculate these for our clinical trial example, again, behind the scenes. Let’s start with the degrees of freedom.</p>
+<p><span class="math display">\[
+\begin{array}{lcl}
+\mbox{df}_b &amp;=&amp; G-1
+    \\
+    &amp;=&amp; 3-1
+    \\
+    &amp;=&amp; 2 \\
+\mbox{df}_w &amp;=&amp; N-G
+    \\
+    &amp;=&amp; 18-3
+    \\
+    &amp;=&amp; 15
+\end{array}
+\]</span></p>
+<p>Now that that’s done, we can calculate the mean squares values.</p>
+<p><span class="math display">\[
+\begin{array}{lcl}
+\mbox{MS}_b &amp;=&amp; \displaystyle\frac{\mbox{SS}_b }{ \mbox{df}_b}
+    \\
+    &amp;=&amp; \displaystyle\frac{3.4533}{2}
+    \\
+    &amp;=&amp; 1.7267 \\
+\mbox{MS}_w &amp;=&amp; \displaystyle\frac{\mbox{SS}_w }{ \mbox{df}_w}
+    \\
+    &amp;=&amp; \displaystyle\frac{1.3917}{15}
+    \\
+    &amp;=&amp; 0.0928
+\end{array}
+\]</span></p>
+<p>Finally, we can calculate the <span class="math inline">\(F\)</span>-ratio.</p>
+<p><span class="math display">\[
+F = \frac{\mbox{MS}_b }{ \mbox{MS}_w }
+    \\
+    = \frac{1.7267}{0.0928}
+    \\
+    = 18.6067
+\]</span></p>
 </div>
+<div id="anovamodel" class="section level3 hasAnchor" number="11.2.4">
+<h3><span class="header-section-number">11.2.4</span> Further reading: the meaning of <span class="math inline">\(F\)</span> (advanced)<a href="anova.html#anovamodel" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>At a fundamental level, ANOVA is a competition between two different statistical models, <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span>. If you recall, our null hypothesis was that all of the group means are identical to one another. If so, then a natural way to think about the outcome variable <span class="math inline">\(Y_{ik}\)</span> is to describe individual scores in terms of a single population mean <span class="math inline">\(\mu\)</span>, plus the deviation from that population mean. This deviation is usually denoted <span class="math inline">\(\epsilon_{ik}\)</span> and is traditionally called the <em>error</em> or <strong>residual</strong> associated with that observation. Be careful though: just like we saw with the word “significant”, the word “error” has a technical meaning in statistics that isn’t quite the same as its everyday English definition. The word “residual” is a better term than the word “error”. In statistics, both words mean “leftover variability”: that is, “stuff” that the model can’t explain.</p>
+<p>In any case, here’s what the null hypothesis looks like when we write it as a statistical model:
+<span class="math display">\[
+Y_{ik} = \mu + \epsilon_{ik}
+\]</span>
+where we make the <em>assumption</em> that the residual values <span class="math inline">\(\epsilon_{ik}\)</span> are normally distributed, with mean 0 and a standard deviation <span class="math inline">\(\sigma\)</span> that is the same for all groups. To use the notation that we introduced in Chapter <a href="probability.html#probability">6</a> we would write this assumption like this:
+<span class="math display">\[
+\epsilon_{ik} \sim \mbox{Normal}(0, \sigma^2)
+\]</span></p>
+<p>What about the alternative hypothesis, <span class="math inline">\(H_1\)</span>? The only difference between the null hypothesis and the alternative hypothesis is that we allow each group to have a different population mean. So, if we let <span class="math inline">\(\mu_k\)</span> denote the population mean for the <span class="math inline">\(k\)</span>-th group in our experiment, then the statistical model corresponding to <span class="math inline">\(H_1\)</span> is:
+<span class="math display">\[
+Y_{ik} = \mu_k + \epsilon_{ik}
+\]</span>
+where, once again, we assume that the error terms are normally distributed with mean 0 and standard deviation <span class="math inline">\(\sigma\)</span>. That is, the alternative hypothesis also assumes that
+<span class="math display">\[
+\epsilon \sim \mbox{Normal}(0, \sigma^2)
+\]</span></p>
+<p>Okay, now that we’ve described the statistical models underpinning <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span> in more detail, it’s now pretty straightforward to say what the mean square values are measuring, and what this means for the interpretation of <span class="math inline">\(F\)</span>.</p>
+<p>It turns out that the within-groups mean square, MS<span class="math inline">\(_w\)</span>, can be viewed as an estimator (in the technical sense: Chapter <a href="estimation.html#estimation">7</a>) of the error variance <span class="math inline">\(\sigma^2\)</span>. The between-groups mean square MS<span class="math inline">\(_b\)</span> is also an estimator; but what it estimates is the error variance <em>plus</em> a quantity that depends on the true differences among the group means. If we call this quantity <span class="math inline">\(Q\)</span>, then we can see that the <span class="math inline">\(F\)</span>-statistic is basically
+<span class="math display">\[
+F = \frac{\hat{Q} + \hat\sigma^2}{\hat\sigma^2}
+\]</span>
+where the true value <span class="math inline">\(Q=0\)</span> if the null hypothesis is true, and <span class="math inline">\(Q &gt; 0\)</span> if the alternative hypothesis is true <span class="citation">(e.g. ch. 10 Hays, 1994)</span>. Therefore, at a bare minimum <em>the <span class="math inline">\(F\)</span> value must be larger than 1</em> to have any chance of rejecting the null hypothesis. Note that this <em>doesn’t</em> mean that it’s impossible to get an <span class="math inline">\(F\)</span>-value less than 1. What it means is that, if the null hypothesis is true the sampling distribution of the <span class="math inline">\(F\)</span> ratio has a mean of 1,<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a> and so we need to see <span class="math inline">\(F\)</span>-values larger than 1 in order to safely reject the null.</p>
+<p>To be a bit more precise about the sampling distribution, notice that if the null hypothesis is true, both MS<span class="math inline">\(_b\)</span> and MS<span class="math inline">\(_w\)</span> are estimators of the variance of the residuals <span class="math inline">\(\epsilon_{ik}\)</span>. If those residuals are normally distributed, then you might suspect that the estimate of the variance of <span class="math inline">\(\epsilon_{ik}\)</span> is chi-square distributed. Because (as discussed in Section <a href="probability.html#otherdists">6.4.4</a>) that’s what a chi-square distribution <em>is</em>: it’s what you get when you square a bunch of normally-distributed things and add them up. And since the <span class="math inline">\(F\)</span> distribution is (again, by definition) what you get when you take the ratio between two things that are <span class="math inline">\(\chi^2\)</span> distributed, we have our sampling distribution.</p>
+</div>
+</div>
+<div id="introduceaov" class="section level2 hasAnchor" number="11.3">
+<h2><span class="header-section-number">11.3</span> Interpreting our results in CogStat<a href="anova.html#introduceaov" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>You already know the answers, because we calculated it step by step, but you have a more in-depth understanding of how it all ties together. CogStat will do all of this for you, but it’s good to know what’s going on behind the scenes. Let’s see how CogStat interprets our data.</p>
+<p>So what we had to do, is simply run the <code>Compare groups</code> function with <code>mood_gain</code> by <code>drug</code>.</p>
+<p><img src="resources/image/comparegroupsbydrug.png" width="100%" style="display: block; margin: auto;" /><img src="resources/image/moodbydrug.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>We’ve seen this before. Let us explore the hypothesis test results.</p>
+<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
+     <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
+     <p style="color:#008000;">Testing if the means are the same.<br />
+     One grouping variable. More than two groups. Interval variable. &gt;&gt;  Choosing one-way ANOVA or Kruskal-Wallis test depending on the assumptions.<br />
+     Checking for normality.</p>
+     <p style="color:black;">Shapiro-Wilk normality test in variable mood_gain (drug: anxifree): <span style="font-style:italic;">W</span> = 0.96, <span style="font-style:italic;">p</span> = .790</p>
+     <p style="color:black;">Shapiro-Wilk normality test in variable mood_gain (drug: joyzepam): <span style="font-style:italic;">W</span> = 0.82, <span style="font-style:italic;">p</span> = .096</p>
+     <p style="color:black;">Shapiro-Wilk normality test in variable mood_gain (drug: placebo): <span style="font-style:italic;">W</span> = 0.96, <span style="font-style:italic;">p</span> = .830</p>
+     <p style="color:#008000;">Checking for homogeneity of variance across groups.</p>
+     <p style="color:black;">Levene test: <span style="font-style:italic;">W</span> = 1.47, <span style="font-style:italic;">p</span> = .262</p>
+     <p style="color:#008000;">Normality and homogeneity of variance are not violated. &gt;&gt; Running one-way ANOVA.</p>
+     <p style="color:black;">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in eta-square: 0.23. </p>
+     <p style="color:black;">Result of one-way ANOVA: <span style="font-style:italic;">F</span>(2, 15) = 18.61, <span style="font-style:italic;">p</span> &lt; .001</p>
+</div>
+<p>For now, let’s stop here.</p>
+<p>At this point, we’re basically done. (If you ran the test with us, you’ve seen something about post hoc tests. We will discuss them later.) Having completed our calculations, it’s traditional to organise all these numbers into an ANOVA table like the one in Table <a href="anova.html#tab:anovatableresults">11.2</a>. For our clinical trial data, the ANOVA table would look like this:</p>
+<table>
+<caption>
+<span id="tab:anovatableresults">Table 11.2: </span>ANOVA table for the <code>mood_gain</code> by <code>drug</code> variable
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+df
+</th>
+<th style="text-align:left;">
+Sum of squares
+</th>
+<th style="text-align:left;">
+Mean squares
+</th>
+<th style="text-align:left;">
+<span class="math inline">\(F\)</span>-statistic
+</th>
+<th style="text-align:left;">
+<span class="math inline">\(p\)</span>-value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+between groups
+</td>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+3.45
+</td>
+<td style="text-align:left;">
+1.73
+</td>
+<td style="text-align:left;">
+18.61
+</td>
+<td style="text-align:left;">
+&lt; .001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+within groups
+</td>
+<td style="text-align:left;">
+15
+</td>
+<td style="text-align:left;">
+1.39
+</td>
+<td style="text-align:left;">
+0.09
+</td>
+<td style="text-align:left;">
+–
+</td>
+<td style="text-align:left;">
+–
+</td>
+</tr>
+</tbody>
+</table>
+<p>CogStat doesn’t produce this table for you, or give the sums of squares or mean squares. But actually, you don’t need it to understand what the statistic tells you. There’s almost never a good reason to include the whole table in your write up, but you might see it in other statistical software.</p>
+<p>A pretty standard way of reporting this result would be to write something like this:</p>
+<blockquote>
+<p>One-way ANOVA showed a significant effect of drug on mood gain (<span class="math inline">\(F(2,15) = 18.6, p&lt;.001\)</span>).</p>
+</blockquote>
+<p>Sigh. So much work for one short sentence (if you do it manually).</p>
+
 </div>
 </div>
 <div class="footnotes">
@@ -745,6 +923,7 @@ Mean squares
 <ol start="54">
 <li id="fn54"><p>When all groups have the same number of observations, the experimental design is said to be “balanced”. Balance isn’t such a big deal for one-way ANOVA but becomes more important when you start doing more complicated ANOVAs.<a href="anova.html#fnref54" class="footnote-back">↩︎</a></p></li>
 <li id="fn55"><p>You went into Excel and did it manually, and got the same answer, great! No, you used the <code>VAR.P</code> function and got the same answer. Great! Wait, you used the <code>VAR.S</code> and got <span class="math inline">\(0.285\)</span>? Something’s not right. You went to jamovi or JASP or SPSS (because you’re fancy) and got <span class="math inline">\(0.285\)</span>. What happened? There is a difference between population variance and estimated variance. The population variance is the variance of the population based on the fact you know all members of the population – which is the case in our example, as we need the population variance of our trial, not the population to which the trial results will extend to. The estimated variance is always going to be a little bit bigger than the population variance, because it’s an estimate, and uses a slightly different formula. Namely, it multiplies by <span class="math inline">\(\frac{1}{N-1}\)</span>, not <span class="math inline">\(\frac{1}{N}\)</span>.<a href="anova.html#fnref55" class="footnote-back">↩︎</a></p></li>
+<li id="fn56"><p>Or, more accurately, <span class="math inline">\(1 + \frac{2}{df_2 - 2}\)</span>.<a href="anova.html#fnref56" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

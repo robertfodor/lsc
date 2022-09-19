@@ -108,6 +108,7 @@ fig:moodbydrug
 fig:anovavara
 fig:anovavarb
 tab:anovatable
+tab:anovatableresults
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -275,6 +276,8 @@ anovaintro
 from-variance
 to-total-sum-of-squares
 from-sums-of-squares-to-the-f-test
+anovamodel
+introduceaov
 regression
 anova2
 bayes
