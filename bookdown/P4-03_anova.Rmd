@@ -4,7 +4,7 @@ This chapter introduces one of the most widely used statistical tools known as "
 
 The term ANOVA is a little misleading in two respects. Firstly, although the technique's name refers to variances, ANOVA is concerned with investigating differences in means. Secondly, several different things out there are all referred to as ANOVAs, some of which have only a very tenuous connection to one another. Later in the book, we'll encounter various ANOVA methods that apply in quite different situations. Still, for this chapter, we'll only consider the simplest form of ANOVA, in which we have several different groups of observations. We're interested in finding out whether those groups differ in terms of some outcome variable of interest. This is the question that is addressed by a **one-way ANOVA**. 
 
-The structure of this chapter is as follows: After introducing the data, we'll describe the mechanics of how a one-way ANOVA actually works. The remainder of the chapter discusses a range of important topics that inevitably arise when running an ANOVA, namely how to calculate effect sizes (Section \@ref(etasquared)), post hoc tests and corrections for multiple comparisons (Section \@ref(posthoc)) and the assumptions that ANOVA relies upon (Section \@ref(anovaassumptions)). We'll also talk about how to check those assumptions and some of the things you can do if the assumptions are violated (Sections \@ref(levene) to \@ref(kruskalwallis)). At the end of the chapter, we'll talk a little about the relationship between ANOVA and other statistical tools (Section \@ref(anovaandt)).
+The structure of this chapter is as follows: After introducing the data, we'll describe the mechanics of how a one-way ANOVA actually works. The remainder of the chapter discusses a range of important topics that inevitably arise when running an ANOVA, namely how to calculate effect sizes (Section \@ref(anovaeffect)), post hoc tests and corrections for multiple comparisons (Section \@ref(posthoc)) and the assumptions that ANOVA relies upon (Section \@ref(anovaassumptions)). We'll also talk about how to check those assumptions and some of the things you can do if the assumptions are violated (Sections \@ref(levene) to \@ref(kruskalwallis)). At the end of the chapter, we'll talk a little about the relationship between ANOVA and other statistical tools (Section \@ref(anovaandt)).
 
 Now let's run a clinical trial!
 
@@ -30,9 +30,11 @@ The question that we want to answer is: are these difference "real", or are they
 
 In order to answer the question posed by our clinical trial data, we're going to run a one-way ANOVA. As usual, we're going to start by showing you how to do it the hard way to make sure you really understand how ANOVA works, but with CogStat, you'll never *ever* have do it this way.
 
-The experimental design strongly suggests that we're interested in comparing the average mood change for the three different drugs. In that sense, we're talking about an analysis similar to the $t$-test (Chapter \@ref(ttest)), but involving more than two groups. If we let $\mu_P$ denote the population mean for the mood change induced by the placebo, and let $\mu_A$ and $\mu_J$ denote the corresponding means for our two drugs, Anxifree and Joyzepam, then the (somewhat pessimistic) null hypothesis that we want to test is that all three population means are identical: that is, *neither* of the two drugs is any more effective than a placebo. 
+The experimental design strongly suggests that we're interested in comparing the average mood change for the three different drugs. In that sense, we're talking about an analysis similar to the $t$-test (Chapter \@ref(ttest)), but involving more than two groups. If we let $\mu_P$ denote the population mean for the mood change induced by the placebo, and let $\mu_A$ and $\mu_J$ denote the corresponding means for our two drugs, Anxifree and Joyzepam, then the (somewhat pessimistic) null hypothesis that we want to test is that all three population means are identical: that is, *neither* of the two drugs is any more effective than a placebo.
 
-Mathematically, we write this null hypothesis like this:
+Sidenote. This assumption of equal variances is Fisher's ANOVA. When we are explicitly not assuming equal variances, we should be using Welch's ANOVA, but that's covered in this book or in CogStat actually.
+
+Back to our Fisher's one-way ANOVA. Mathematically, we write this null hypothesis like this:
 $$
 \begin{array}{rcl}
 H_0 &:& \mbox{it is true that } \mu_P = \mu_A = \mu_J
@@ -382,11 +384,18 @@ To be a bit more precise about the sampling distribution, notice that if the nul
 You already know the answers, because we calculated it step by step, but you have a more in-depth understanding of how it all ties together. CogStat will do all of this for you, but it's good to know what's going on behind the scenes. Let's see how CogStat interprets our data.
 
 So what we had to do, is simply run the `Compare groups` function with `mood_gain` by `drug`.
-
-```{r cogcompbydrug, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold"}
+```{r cogcompbydrugdialog, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="CogStat dialogue for `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`."}
 knitr::include_graphics(c(
-    "resources/image/comparegroupsbydrug.png",
-    "resources/image/moodbydrug.png",
+    "resources/image/comparegroupsbydrug.png"))
+```
+
+```{r cogcompbydrugdescr, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="CogStat result set displaying descriptives and boxplots as a result of `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`."}
+knitr::include_graphics(c(
+    "resources/image/moodbydrug.png"))
+```
+
+```{r cogcompbydrug, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="CogStat result set with hypothesis test results, effect size and post hoc results after running `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`."}
+knitr::include_graphics(c(
     "resources/image/moodbydrughypo.png"))
 ```
 
@@ -416,8 +425,8 @@ At this point, we're basically done. (If you ran the test with us, you've seen s
 ```{r anovatableresults, echo=FALSE, fig.align="center"}
 knitr::kable(
     rbind(
-        c("between groups", 2, 3.45, 1.73, 18.61, "< .001"),
-        c("within groups", 15, 1.39, 0.09, "--", "--")
+        c("between groups", 2, 3.4533, 1.7267, 18.61, "< .001"),
+        c("within groups", 15, 1.3917, 0.0928, "--", "--")
     ),
     col.names = c("", "df", "Sum of squares",
             "Mean squares", "$F$-statistic", "$p$-value"),
@@ -429,7 +438,129 @@ CogStat doesn't produce this table for you, or give the sums of squares or mean 
 
 A pretty standard way of reporting this result would be to write something like this:
 
-> One-way ANOVA showed a significant effect of drug on mood gain ($F(2,15) = 18.6, p<.001$).
+> One-way ANOVA showed a significant effect of drug on mood gain ($F(2,15) = 18.61, p<.001$).
 
 Sigh. So much work for one short sentence (if you do it manually).
+
+## Effect size{#anovaeffect}
+
+There's a few different ways you could measure the effect size in an ANOVA.
+
+### Eta-squared
+
+One of the most commonly used measures are $\eta^2$ (**eta-squared**). The definition of $\eta^2$ is actually really simple:
+$$
+\eta^2 = \frac{\mbox{SS}_b}{\mbox{SS}_{tot}}
+$$
+
+That's all it is. So when looking at the ANOVA table above, we see that $\mbox{SS}_b = 3.45$  and $\mbox{SS}_{tot} = 3.45 + 1.39 = 4.84$. Thus we get an $\eta^2$ value of 
+$$
+\eta^2 = \frac{3.45}{4.84} = 0.71
+$$
+
+The interpretation of $\eta^2$ is equally straightforward: it refers to the proportion of the variability in the outcome variable (`mood_gain`) that can be explained in terms of the predictor (`drug`). A value of $\eta^2 = 0$ means that there is no relationship at all between the two, whereas a value of $\eta^2 = 1$ means that the relationship is perfect. Better yet, the $\eta^2$ value is very closely related to a squared correlation (i.e. $r^2$). So, if you're trying to figure out whether a particular value of $\eta^2$ is big or small, it's sometimes useful to remember that 
+$$
+\eta= \sqrt{\frac{\mbox{SS}_b}{\mbox{SS}_{tot}}}
+$$
+can be interpreted as if it referred to the *magnitude* of a Pearson correlation. So in our drugs example, the $\eta^2$ value of 0.71 corresponds to an $\eta$ value of $\sqrt{.71} = .84$. If we think about this as being equivalent to a correlation of about .84, we'd conclude that the relationship between `drug` and `mood.gain` is strong.
+
+### Omega-squared
+
+There's an interesting blog post^[http://daniellakens.blogspot.com.au/2015/06/why-you-should-use-omega-squared.html] by Daniel Lakens suggesting that eta-squared itself is perhaps not the best measure of effect size in real world data analysis, but rather **omega-squared** is. CogStat also opts for omega-squared ($\omega^2$) as the default measure of effect size in one-way ANOVA.
+
+The formula for $\omega^2$ is a little more complicated than for $\eta^2$, because it takes into account the degrees of freedom of the two sums of squares. The formula is specific for between-subjects, fixed effects designs. The formula is:
+
+$$
+\omega^2 = \frac{\mbox{SS}_b - \mbox{df}_b \times \mbox{MS}_w}{\mbox{SS}_{tot} + \mbox{MS}_w}
+$$
+where $\mbox{df}_b$ is the degrees of freedom for the between-subjects factor, and $\mbox{MS}_w$ is the mean square for the within-subjects factor, $\mbox{SS}_{tot}$ is the total sum of squares, and $\mbox{SS}_b$ is the between-subjects sum of squares. Filled in, we get:
+
+$$
+{\begin{array}{ll}
+\omega^2 &=& \frac{\mbox{SS}_b - \mbox{df}_b \times \mbox{MS}_w}{\mbox{SS}_{tot} + \mbox{MS}_w}
+    \\
+    &=& \frac{3.4533 - 2 \times 0.0928}{4.845 + 0.0928}
+    \\
+    &=& 0.662
+\end{array}}
+$$
+
+CogStat will give you this exact omega-squared value when running the one-way ANOVA inside the `Compare groups` function (see result set in Figure \@ref(fig:cogcompbydrug)).
+
+$\omega^2$ will take on values between $0$ and $1$, where 0 indicates there is no effect whatsoever. It is wise to quote the effect size when writing up our results in APA styled psychology research^[https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf]. For example, we could write:
+
+> One-way ANOVA showed a significant effect of drug on mood gain ($F(2,15) = 18.61, p<.001, $\omega^2$ = 0.662$).
+
+
+## Post hoc tests{#posthoc #tukey}
+
+Any time you run an ANOVA with more than two groups, and you end up with a significant effect, the first thing you'll probably want to ask is which groups are actually different from one another.
+
+In our drugs example, our null hypothesis was that all three drugs (placebo, Anxifree and Joyzepam) have the exact same effect on mood. But if you think about it, the null hypothesis is actually claiming *three* different things all at once here. Specifically, it claims that:
+
+- Your competitor's drug (Anxifree) is no better than a placebo (i.e., $\mu_A = \mu_P$)
+- Your drug (Joyzepam) is no better than a placebo (i.e., $\mu_J = \mu_P$)
+- Anxifree and Joyzepam are equally effective (i.e., $\mu_J = \mu_A$)
+
+If any one of those three claims is false, then the null hypothesis is also false. So, now that we've rejected our null hypothesis, we're thinking that *at least* one of those things isn't true. But which ones? All three of these propositions are of interest: you certainly want to know if your new drug Joyzepam is better than a placebo, and it would be nice to know how well it stacks up against an existing commercial alternative (i.e., Anxifree). It would even be useful to check the performance of Anxifree against the placebo: even if Anxifree has already been extensively tested against placebos by other researchers, it can still be very useful to check that your study is producing similar results to earlier work.
+
+When we characterise the null hypothesis in terms of these three distinct propositions, it becomes clear that there are eight possible "states of the world" that we need to distinguish between:
+
+```{r echo=FALSE, fig.align="center"}
+knitr::kable(
+    cbind(
+        c("1", "2", "3", "4", "5", "6", "7", "8"),
+        c("$\\checkmark$", "$\\checkmark$", "$\\checkmark$", "$\\checkmark$",
+             "", "", "", ""),
+        c("$\\checkmark$", "$\\checkmark$", "", "", 
+            "$\\checkmark$", "$\\checkmark$", "", ""),
+        c("$\\checkmark$", "", "$\\checkmark$", "", 
+            "$\\checkmark$", "", "$\\checkmark$", ""),
+        c("null", "alternative", "alternative", "alternative",
+             "alternative", "alternative", "alternative", "alternative")
+    ),
+    col.names = c("possibility:", "is $\\mu_P = \\mu_A$?", 
+        "is $\\mu_P = \\mu_J$?", "is $\\mu_A = \\mu_J$?", "which hypothesis?")
+)
+```
+
+By rejecting the null hypothesis, we've decided that we *don't* believe that \#1 is the true state of the world. The next question to ask is, which of the other seven possibilities *do* we think is right? When faced with this situation, it usually helps to look at the data. For instance, if we look at the plots in Figure \@ref(fig:moodbydrug), it's tempting to conclude that Joyzepam is better than the placebo and better than Anxifree, but there's no real difference between Anxifree and the placebo. However, if we want to get a clearer answer about this, it might help to run some tests.
+
+While there is the possibility to run "pairwise" $t$-tests manually, or in other statistical software, CogStat opts for **Tukey's HSD** (Honest Significant Difference) test as a robust tool for running post hoc tests.
+
+The basic idea in Tukey's HSD is to examine all relevant pairwise comparisons between groups, and it's only really appropriate to use Tukey's HSD if it is *pairwise* differences that you're interested in. If, for instance, you actually would find yourself interested to know if Group A is significantly different from the mean of Group B and Group C, then you need to use a different tool (e.g., Scheffe's method, which is more conservative, and beyond the scope this book).
+
+Tukey's HSD constructs **simultaneous confidence intervals** for all the comparisons. What we mean by 95\% "simultaneous" confidence interval is that there is a 95\% probability that *all* of these confidence intervals contain the relevant true value. Moreover, we can use these confidence intervals to calculate an adjusted $p$ value for any specific comparison.
+
+Let's look at the post hoc test result coming from CogStat, as seen in Figure \@ref(fig:cogcompbydrug).
+
+```{r echo=FALSE, fig.align="center"}
+knitr::kable(
+    cbind(
+        c("anxifree", "anxifree", "joyzepam"),
+        c("joyzepam", "placebo", "placebo"),
+        c(0.7667, -0.2667, -1.0333),
+        c(0.0015, 0.3115, "0.0001"),
+        c(0.3099, -0.7235, -1.4901),
+        c(1.2235, 0.1901, -0.5765),
+        c("True", "False", "True")
+    ),
+    col.names = c("group1", "group2", "meandiff", "p-adj", 
+            "lower", "upper", "reject")
+,   caption = "Multiple Comparison of Means - Tukey HSD, FWER=0.05")
+```
+
+The first column shows one of the groups in our comparison, namely the drug. The second column shows which other group we are comparing against in pair. The third column is our statistic (the mean difference), and the fourth column is the adjusted $p$ value. The fifth and sixth columns show the lower and upper bounds of the 95\% confidence interval for the mean difference. The final column shows whether or not we reject the null hypothesis that the mean difference is zero.
+
+The easiest way to interpret the results is to look at what pairs have rejected the null hypothesis (of not having a significant difference).
+
+In our case, we see in the first result line that Joyzepam is significantly better than Anxifree, because the mean difference is positive (meaning an improvement from Anxifree towards Joyzepam), our $p$-value is less than 0.05, and the confidence interval does not include zero. The last column indicates we rejected the null hypothesis.
+
+We also see in the third line that Joyzepam is significantly better than the placebo, because the mean difference is negative from Joyzepam towards placebo. The $p$-value is less than 0.05, and the confidence interval does not include zero, and the last column indicates we rejected the null hypothesis.
+
+The second line, from Anxifree towards the placebo, we see a negative mean difference, meaning that while Anxifree looks like it's performing better than the placebo (as we've seen in the boxplot as well), the confidence interval does include zero, and the $p$-value is greater than 0.05, so we fail to reject the null hypothesis.
+
+What we would write up next to our ANOVA result is the following:
+
+> Post hoc tests indicated that Joyzepam produced a significantly larger mood change than both Anxifree ($p = .002$) and the placebo ($p < .001$). We found no evidence that Anxifree performed better than the placebo ($p = .31$).
 
