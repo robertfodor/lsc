@@ -108,7 +108,11 @@ fig:moodbydrug
 fig:anovavara
 fig:anovavarb
 tab:anovatable
+fig:cogcompbydrugdialog
+fig:cogcompbydrugdescr
+fig:cogcompbydrug
 tab:anovatableresults
+tab:unnamed-chunk-32
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -278,6 +282,10 @@ to-total-sum-of-squares
 from-sums-of-squares-to-the-f-test
 anovamodel
 introduceaov
+anovaeffect
+eta-squared
+omega-squared
+tukey
 regression
 anova2
 bayes

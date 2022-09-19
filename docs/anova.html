@@ -398,6 +398,12 @@ div.csl-indent {
 <li class="chapter" data-level="11.2.4" data-path="anova.html"><a href="anova.html#anovamodel"><i class="fa fa-check"></i><b>11.2.4</b> Further reading: the meaning of <span class="math inline">\(F\)</span> (advanced)</a></li>
 </ul></li>
 <li class="chapter" data-level="11.3" data-path="anova.html"><a href="anova.html#introduceaov"><i class="fa fa-check"></i><b>11.3</b> Interpreting our results in CogStat</a></li>
+<li class="chapter" data-level="11.4" data-path="anova.html"><a href="anova.html#anovaeffect"><i class="fa fa-check"></i><b>11.4</b> Effect size</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="anova.html"><a href="anova.html#eta-squared"><i class="fa fa-check"></i><b>11.4.1</b> Eta-squared</a></li>
+<li class="chapter" data-level="11.4.2" data-path="anova.html"><a href="anova.html#omega-squared"><i class="fa fa-check"></i><b>11.4.2</b> Omega-squared</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="anova.html"><a href="anova.html#tukey"><i class="fa fa-check"></i><b>11.5</b> Post hoc tests</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>12</b> Linear regression</a></li>
 <li class="chapter" data-level="13" data-path="anova2.html"><a href="anova2.html"><i class="fa fa-check"></i><b>13</b> Factorial ANOVA</a></li>
@@ -430,7 +436,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 11</span> Comparing several means (one-way ANOVA)<a href="anova.html#anova" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This chapter introduces one of the most widely used statistical tools known as “the analysis of variance”, which is usually referred to as ANOVA. Sir Ronald Fisher developed the basic technique in the early 20th century, and it is to him that we owe the rather unfortunate terminology.</p>
 <p>The term ANOVA is a little misleading in two respects. Firstly, although the technique’s name refers to variances, ANOVA is concerned with investigating differences in means. Secondly, several different things out there are all referred to as ANOVAs, some of which have only a very tenuous connection to one another. Later in the book, we’ll encounter various ANOVA methods that apply in quite different situations. Still, for this chapter, we’ll only consider the simplest form of ANOVA, in which we have several different groups of observations. We’re interested in finding out whether those groups differ in terms of some outcome variable of interest. This is the question that is addressed by a <strong>one-way ANOVA</strong>.</p>
-<p>The structure of this chapter is as follows: After introducing the data, we’ll describe the mechanics of how a one-way ANOVA actually works. The remainder of the chapter discusses a range of important topics that inevitably arise when running an ANOVA, namely how to calculate effect sizes (Section <a href="#etasquared"><strong>??</strong></a>), post hoc tests and corrections for multiple comparisons (Section <a href="#posthoc"><strong>??</strong></a>) and the assumptions that ANOVA relies upon (Section <a href="#anovaassumptions"><strong>??</strong></a>). We’ll also talk about how to check those assumptions and some of the things you can do if the assumptions are violated (Sections <a href="#levene"><strong>??</strong></a> to <a href="#kruskalwallis"><strong>??</strong></a>). At the end of the chapter, we’ll talk a little about the relationship between ANOVA and other statistical tools (Section <a href="#anovaandt"><strong>??</strong></a>).</p>
+<p>The structure of this chapter is as follows: After introducing the data, we’ll describe the mechanics of how a one-way ANOVA actually works. The remainder of the chapter discusses a range of important topics that inevitably arise when running an ANOVA, namely how to calculate effect sizes (Section <a href="anova.html#anovaeffect">11.4</a>), post hoc tests and corrections for multiple comparisons (Section <a href="#posthoc"><strong>??</strong></a>) and the assumptions that ANOVA relies upon (Section <a href="#anovaassumptions"><strong>??</strong></a>). We’ll also talk about how to check those assumptions and some of the things you can do if the assumptions are violated (Sections <a href="#levene"><strong>??</strong></a> to <a href="#kruskalwallis"><strong>??</strong></a>). At the end of the chapter, we’ll talk a little about the relationship between ANOVA and other statistical tools (Section <a href="#anovaandt"><strong>??</strong></a>).</p>
 <p>Now let’s run a clinical trial!</p>
 <div id="the-data" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> The data<a href="anova.html#the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -450,7 +456,8 @@ Figure 11.1: Mood gain by drug
 <h2><span class="header-section-number">11.2</span> How ANOVA works<a href="anova.html#anovaintro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In order to answer the question posed by our clinical trial data, we’re going to run a one-way ANOVA. As usual, we’re going to start by showing you how to do it the hard way to make sure you really understand how ANOVA works, but with CogStat, you’ll never <em>ever</em> have do it this way.</p>
 <p>The experimental design strongly suggests that we’re interested in comparing the average mood change for the three different drugs. In that sense, we’re talking about an analysis similar to the <span class="math inline">\(t\)</span>-test (Chapter <a href="ttest.html#ttest">10</a>), but involving more than two groups. If we let <span class="math inline">\(\mu_P\)</span> denote the population mean for the mood change induced by the placebo, and let <span class="math inline">\(\mu_A\)</span> and <span class="math inline">\(\mu_J\)</span> denote the corresponding means for our two drugs, Anxifree and Joyzepam, then the (somewhat pessimistic) null hypothesis that we want to test is that all three population means are identical: that is, <em>neither</em> of the two drugs is any more effective than a placebo.</p>
-<p>Mathematically, we write this null hypothesis like this:
+<p>Sidenote. This assumption of equal variances is Fisher’s ANOVA. When we are explicitly not assuming equal variances, we should be using Welch’s ANOVA, but that’s covered in this book or in CogStat actually.</p>
+<p>Back to our Fisher’s one-way ANOVA. Mathematically, we write this null hypothesis like this:
 <span class="math display">\[
 \begin{array}{rcl}
 H_0 &amp;:&amp; \mbox{it is true that } \mu_P = \mu_A = \mu_J
@@ -822,8 +829,25 @@ where the true value <span class="math inline">\(Q=0\)</span> if the null hypoth
 <div id="introduceaov" class="section level2 hasAnchor" number="11.3">
 <h2><span class="header-section-number">11.3</span> Interpreting our results in CogStat<a href="anova.html#introduceaov" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You already know the answers, because we calculated it step by step, but you have a more in-depth understanding of how it all ties together. CogStat will do all of this for you, but it’s good to know what’s going on behind the scenes. Let’s see how CogStat interprets our data.</p>
-<p>So what we had to do, is simply run the <code>Compare groups</code> function with <code>mood_gain</code> by <code>drug</code>.</p>
-<p><img src="resources/image/comparegroupsbydrug.png" width="100%" style="display: block; margin: auto;" /><img src="resources/image/moodbydrug.png" width="100%" style="display: block; margin: auto;" /><img src="resources/image/moodbydrughypo.png" width="100%" style="display: block; margin: auto;" /></p>
+So what we had to do, is simply run the <code>Compare groups</code> function with <code>mood_gain</code> by <code>drug</code>.
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogcompbydrugdialog"></span>
+<img src="resources/image/comparegroupsbydrug.png" alt="CogStat dialogue for `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`." width="100%" />
+<p class="caption">
+Figure 11.4: CogStat dialogue for <code>Compare groups</code> function with our clinical trial data set with variables <code>mood_gain</code> grouped by <code>drug</code>.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogcompbydrugdescr"></span>
+<img src="resources/image/moodbydrug.png" alt="CogStat result set displaying descriptives and boxplots as a result of `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`." width="100%" />
+<p class="caption">
+Figure 11.5: CogStat result set displaying descriptives and boxplots as a result of <code>Compare groups</code> function with our clinical trial data set with variables <code>mood_gain</code> grouped by <code>drug</code>.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogcompbydrug"></span>
+<img src="resources/image/moodbydrughypo.png" alt="CogStat result set with hypothesis test results, effect size and post hoc results after running `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`." width="100%" />
+<p class="caption">
+Figure 11.6: CogStat result set with hypothesis test results, effect size and post hoc results after running <code>Compare groups</code> function with our clinical trial data set with variables <code>mood_gain</code> grouped by <code>drug</code>.
+</p>
+</div>
 <p>We’ve seen this before. Let us explore the hypothesis test results.</p>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
      <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
@@ -875,10 +899,10 @@ between groups
 2
 </td>
 <td style="text-align:left;">
-3.45
+3.4533
 </td>
 <td style="text-align:left;">
-1.73
+1.7267
 </td>
 <td style="text-align:left;">
 18.61
@@ -895,10 +919,10 @@ within groups
 15
 </td>
 <td style="text-align:left;">
-1.39
+1.3917
 </td>
 <td style="text-align:left;">
-0.09
+0.0928
 </td>
 <td style="text-align:left;">
 –
@@ -912,9 +936,326 @@ within groups
 <p>CogStat doesn’t produce this table for you, or give the sums of squares or mean squares. But actually, you don’t need it to understand what the statistic tells you. There’s almost never a good reason to include the whole table in your write up, but you might see it in other statistical software.</p>
 <p>A pretty standard way of reporting this result would be to write something like this:</p>
 <blockquote>
-<p>One-way ANOVA showed a significant effect of drug on mood gain (<span class="math inline">\(F(2,15) = 18.6, p&lt;.001\)</span>).</p>
+<p>One-way ANOVA showed a significant effect of drug on mood gain (<span class="math inline">\(F(2,15) = 18.61, p&lt;.001\)</span>).</p>
 </blockquote>
 <p>Sigh. So much work for one short sentence (if you do it manually).</p>
+</div>
+<div id="anovaeffect" class="section level2 hasAnchor" number="11.4">
+<h2><span class="header-section-number">11.4</span> Effect size<a href="anova.html#anovaeffect" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There’s a few different ways you could measure the effect size in an ANOVA.</p>
+<div id="eta-squared" class="section level3 hasAnchor" number="11.4.1">
+<h3><span class="header-section-number">11.4.1</span> Eta-squared<a href="anova.html#eta-squared" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One of the most commonly used measures are <span class="math inline">\(\eta^2\)</span> (<strong>eta-squared</strong>). The definition of <span class="math inline">\(\eta^2\)</span> is actually really simple:
+<span class="math display">\[
+\eta^2 = \frac{\mbox{SS}_b}{\mbox{SS}_{tot}}
+\]</span></p>
+<p>That’s all it is. So when looking at the ANOVA table above, we see that <span class="math inline">\(\mbox{SS}_b = 3.45\)</span> and <span class="math inline">\(\mbox{SS}_{tot} = 3.45 + 1.39 = 4.84\)</span>. Thus we get an <span class="math inline">\(\eta^2\)</span> value of
+<span class="math display">\[
+\eta^2 = \frac{3.45}{4.84} = 0.71
+\]</span></p>
+<p>The interpretation of <span class="math inline">\(\eta^2\)</span> is equally straightforward: it refers to the proportion of the variability in the outcome variable (<code>mood_gain</code>) that can be explained in terms of the predictor (<code>drug</code>). A value of <span class="math inline">\(\eta^2 = 0\)</span> means that there is no relationship at all between the two, whereas a value of <span class="math inline">\(\eta^2 = 1\)</span> means that the relationship is perfect. Better yet, the <span class="math inline">\(\eta^2\)</span> value is very closely related to a squared correlation (i.e. <span class="math inline">\(r^2\)</span>). So, if you’re trying to figure out whether a particular value of <span class="math inline">\(\eta^2\)</span> is big or small, it’s sometimes useful to remember that
+<span class="math display">\[
+\eta= \sqrt{\frac{\mbox{SS}_b}{\mbox{SS}_{tot}}}
+\]</span>
+can be interpreted as if it referred to the <em>magnitude</em> of a Pearson correlation. So in our drugs example, the <span class="math inline">\(\eta^2\)</span> value of 0.71 corresponds to an <span class="math inline">\(\eta\)</span> value of <span class="math inline">\(\sqrt{.71} = .84\)</span>. If we think about this as being equivalent to a correlation of about .84, we’d conclude that the relationship between <code>drug</code> and <code>mood.gain</code> is strong.</p>
+</div>
+<div id="omega-squared" class="section level3 hasAnchor" number="11.4.2">
+<h3><span class="header-section-number">11.4.2</span> Omega-squared<a href="anova.html#omega-squared" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There’s an interesting blog post<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a> by Daniel Lakens suggesting that eta-squared itself is perhaps not the best measure of effect size in real world data analysis, but rather <strong>omega-squared</strong> is. CogStat also opts for omega-squared (<span class="math inline">\(\omega^2\)</span>) as the default measure of effect size in one-way ANOVA.</p>
+<p>The formula for <span class="math inline">\(\omega^2\)</span> is a little more complicated than for <span class="math inline">\(\eta^2\)</span>, because it takes into account the degrees of freedom of the two sums of squares. The formula is specific for between-subjects, fixed effects designs. The formula is:</p>
+<p><span class="math display">\[
+\omega^2 = \frac{\mbox{SS}_b - \mbox{df}_b \times \mbox{MS}_w}{\mbox{SS}_{tot} + \mbox{MS}_w}
+\]</span>
+where <span class="math inline">\(\mbox{df}_b\)</span> is the degrees of freedom for the between-subjects factor, and <span class="math inline">\(\mbox{MS}_w\)</span> is the mean square for the within-subjects factor, <span class="math inline">\(\mbox{SS}_{tot}\)</span> is the total sum of squares, and <span class="math inline">\(\mbox{SS}_b\)</span> is the between-subjects sum of squares. Filled in, we get:</p>
+<p><span class="math display">\[
+{\begin{array}{ll}
+\omega^2 &amp;=&amp; \frac{\mbox{SS}_b - \mbox{df}_b \times \mbox{MS}_w}{\mbox{SS}_{tot} + \mbox{MS}_w}
+    \\
+    &amp;=&amp; \frac{3.4533 - 2 \times 0.0928}{4.845 + 0.0928}
+    \\
+    &amp;=&amp; 0.662
+\end{array}}
+\]</span></p>
+<p>CogStat will give you this exact omega-squared value when running the one-way ANOVA inside the <code>Compare groups</code> function (see result set in Figure <a href="anova.html#fig:cogcompbydrug">11.6</a>).</p>
+<p><span class="math inline">\(\omega^2\)</span> will take on values between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, where 0 indicates there is no effect whatsoever. It is wise to quote the effect size when writing up our results in APA styled psychology research<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a>. For example, we could write:</p>
+<blockquote>
+<p>One-way ANOVA showed a significant effect of drug on mood gain ($F(2,15) = 18.61, p&lt;.001, <span class="math inline">\(\omega^2\)</span> = 0.662$).</p>
+</blockquote>
+</div>
+</div>
+<div id="tukey" class="section level2 hasAnchor" number="11.5">
+<h2><span class="header-section-number">11.5</span> Post hoc tests<a href="anova.html#tukey" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Any time you run an ANOVA with more than two groups, and you end up with a significant effect, the first thing you’ll probably want to ask is which groups are actually different from one another.</p>
+<p>In our drugs example, our null hypothesis was that all three drugs (placebo, Anxifree and Joyzepam) have the exact same effect on mood. But if you think about it, the null hypothesis is actually claiming <em>three</em> different things all at once here. Specifically, it claims that:</p>
+<ul>
+<li>Your competitor’s drug (Anxifree) is no better than a placebo (i.e., <span class="math inline">\(\mu_A = \mu_P\)</span>)</li>
+<li>Your drug (Joyzepam) is no better than a placebo (i.e., <span class="math inline">\(\mu_J = \mu_P\)</span>)</li>
+<li>Anxifree and Joyzepam are equally effective (i.e., <span class="math inline">\(\mu_J = \mu_A\)</span>)</li>
+</ul>
+<p>If any one of those three claims is false, then the null hypothesis is also false. So, now that we’ve rejected our null hypothesis, we’re thinking that <em>at least</em> one of those things isn’t true. But which ones? All three of these propositions are of interest: you certainly want to know if your new drug Joyzepam is better than a placebo, and it would be nice to know how well it stacks up against an existing commercial alternative (i.e., Anxifree). It would even be useful to check the performance of Anxifree against the placebo: even if Anxifree has already been extensively tested against placebos by other researchers, it can still be very useful to check that your study is producing similar results to earlier work.</p>
+<p>When we characterise the null hypothesis in terms of these three distinct propositions, it becomes clear that there are eight possible “states of the world” that we need to distinguish between:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+possibility:
+</th>
+<th style="text-align:left;">
+is <span class="math inline">\(\mu_P = \mu_A\)</span>?
+</th>
+<th style="text-align:left;">
+is <span class="math inline">\(\mu_P = \mu_J\)</span>?
+</th>
+<th style="text-align:left;">
+is <span class="math inline">\(\mu_A = \mu_J\)</span>?
+</th>
+<th style="text-align:left;">
+which hypothesis?
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+null
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+alternative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+alternative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+alternative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+alternative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+alternative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+7
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+alternative
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+alternative
+</td>
+</tr>
+</tbody>
+</table>
+<p>By rejecting the null hypothesis, we’ve decided that we <em>don’t</em> believe that #1 is the true state of the world. The next question to ask is, which of the other seven possibilities <em>do</em> we think is right? When faced with this situation, it usually helps to look at the data. For instance, if we look at the plots in Figure <a href="anova.html#fig:moodbydrug">11.1</a>, it’s tempting to conclude that Joyzepam is better than the placebo and better than Anxifree, but there’s no real difference between Anxifree and the placebo. However, if we want to get a clearer answer about this, it might help to run some tests.</p>
+<p>While there is the possibility to run “pairwise” <span class="math inline">\(t\)</span>-tests manually, or in other statistical software, CogStat opts for <strong>Tukey’s HSD</strong> (Honest Significant Difference) test as a robust tool for running post hoc tests.</p>
+<p>The basic idea in Tukey’s HSD is to examine all relevant pairwise comparisons between groups, and it’s only really appropriate to use Tukey’s HSD if it is <em>pairwise</em> differences that you’re interested in. If, for instance, you actually would find yourself interested to know if Group A is significantly different from the mean of Group B and Group C, then you need to use a different tool (e.g., Scheffe’s method, which is more conservative, and beyond the scope this book).</p>
+<p>Tukey’s HSD constructs <strong>simultaneous confidence intervals</strong> for all the comparisons. What we mean by 95% “simultaneous” confidence interval is that there is a 95% probability that <em>all</em> of these confidence intervals contain the relevant true value. Moreover, we can use these confidence intervals to calculate an adjusted <span class="math inline">\(p\)</span> value for any specific comparison.</p>
+<p>Let’s look at the post hoc test result coming from CogStat, as seen in Figure <a href="anova.html#fig:cogcompbydrug">11.6</a>.</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-32">Table 11.3: </span>Multiple Comparison of Means - Tukey HSD, FWER=0.05
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+group1
+</th>
+<th style="text-align:left;">
+group2
+</th>
+<th style="text-align:left;">
+meandiff
+</th>
+<th style="text-align:left;">
+p-adj
+</th>
+<th style="text-align:left;">
+lower
+</th>
+<th style="text-align:left;">
+upper
+</th>
+<th style="text-align:left;">
+reject
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+anxifree
+</td>
+<td style="text-align:left;">
+joyzepam
+</td>
+<td style="text-align:left;">
+0.7667
+</td>
+<td style="text-align:left;">
+0.0015
+</td>
+<td style="text-align:left;">
+0.3099
+</td>
+<td style="text-align:left;">
+1.2235
+</td>
+<td style="text-align:left;">
+True
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+anxifree
+</td>
+<td style="text-align:left;">
+placebo
+</td>
+<td style="text-align:left;">
+-0.2667
+</td>
+<td style="text-align:left;">
+0.3115
+</td>
+<td style="text-align:left;">
+-0.7235
+</td>
+<td style="text-align:left;">
+0.1901
+</td>
+<td style="text-align:left;">
+False
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+joyzepam
+</td>
+<td style="text-align:left;">
+placebo
+</td>
+<td style="text-align:left;">
+-1.0333
+</td>
+<td style="text-align:left;">
+0.0001
+</td>
+<td style="text-align:left;">
+-1.4901
+</td>
+<td style="text-align:left;">
+-0.5765
+</td>
+<td style="text-align:left;">
+True
+</td>
+</tr>
+</tbody>
+</table>
+<p>The first column shows one of the groups in our comparison, namely the drug. The second column shows which other group we are comparing against in pair. The third column is our statistic (the mean difference), and the fourth column is the adjusted <span class="math inline">\(p\)</span> value. The fifth and sixth columns show the lower and upper bounds of the 95% confidence interval for the mean difference. The final column shows whether or not we reject the null hypothesis that the mean difference is zero.</p>
+<p>The easiest way to interpret the results is to look at what pairs have rejected the null hypothesis (of not having a significant difference).</p>
+<p>In our case, we see in the first result line that Joyzepam is significantly better than Anxifree, because the mean difference is positive (meaning an improvement from Anxifree towards Joyzepam), our <span class="math inline">\(p\)</span>-value is less than 0.05, and the confidence interval does not include zero. The last column indicates we rejected the null hypothesis.</p>
+<p>We also see in the third line that Joyzepam is significantly better than the placebo, because the mean difference is negative from Joyzepam towards placebo. The <span class="math inline">\(p\)</span>-value is less than 0.05, and the confidence interval does not include zero, and the last column indicates we rejected the null hypothesis.</p>
+<p>The second line, from Anxifree towards the placebo, we see a negative mean difference, meaning that while Anxifree looks like it’s performing better than the placebo (as we’ve seen in the boxplot as well), the confidence interval does include zero, and the <span class="math inline">\(p\)</span>-value is greater than 0.05, so we fail to reject the null hypothesis.</p>
+<p>What we would write up next to our ANOVA result is the following:</p>
+<blockquote>
+<p>Post hoc tests indicated that Joyzepam produced a significantly larger mood change than both Anxifree (<span class="math inline">\(p = .002\)</span>) and the placebo (<span class="math inline">\(p &lt; .001\)</span>). We found no evidence that Anxifree performed better than the placebo (<span class="math inline">\(p = .31\)</span>).</p>
+</blockquote>
 
 </div>
 </div>
@@ -924,6 +1265,8 @@ within groups
 <li id="fn54"><p>When all groups have the same number of observations, the experimental design is said to be “balanced”. Balance isn’t such a big deal for one-way ANOVA but becomes more important when you start doing more complicated ANOVAs.<a href="anova.html#fnref54" class="footnote-back">↩︎</a></p></li>
 <li id="fn55"><p>You went into Excel and did it manually, and got the same answer, great! No, you used the <code>VAR.P</code> function and got the same answer. Great! Wait, you used the <code>VAR.S</code> and got <span class="math inline">\(0.285\)</span>? Something’s not right. You went to jamovi or JASP or SPSS (because you’re fancy) and got <span class="math inline">\(0.285\)</span>. What happened? There is a difference between population variance and estimated variance. The population variance is the variance of the population based on the fact you know all members of the population – which is the case in our example, as we need the population variance of our trial, not the population to which the trial results will extend to. The estimated variance is always going to be a little bit bigger than the population variance, because it’s an estimate, and uses a slightly different formula. Namely, it multiplies by <span class="math inline">\(\frac{1}{N-1}\)</span>, not <span class="math inline">\(\frac{1}{N}\)</span>.<a href="anova.html#fnref55" class="footnote-back">↩︎</a></p></li>
 <li id="fn56"><p>Or, more accurately, <span class="math inline">\(1 + \frac{2}{df_2 - 2}\)</span>.<a href="anova.html#fnref56" class="footnote-back">↩︎</a></p></li>
+<li id="fn57"><p><a href="http://daniellakens.blogspot.com.au/2015/06/why-you-should-use-omega-squared.html" class="uri">http://daniellakens.blogspot.com.au/2015/06/why-you-should-use-omega-squared.html</a><a href="anova.html#fnref57" class="footnote-back">↩︎</a></p></li>
+<li id="fn58"><p><a href="https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf" class="uri">https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf</a><a href="anova.html#fnref58" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
