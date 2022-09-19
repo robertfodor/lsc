@@ -386,7 +386,8 @@ So what we had to do, is simply run the `Compare groups` function with `mood_gai
 ```{r cogcompbydrug, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold"}
 knitr::include_graphics(c(
     "resources/image/comparegroupsbydrug.png",
-    "resources/image/moodbydrug.png"))
+    "resources/image/moodbydrug.png",
+    "resources/image/moodbydrughypo.png"))
 ```
 
 We've seen this before. Let us explore the hypothesis test results.
