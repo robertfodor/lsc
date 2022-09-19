@@ -389,7 +389,13 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="11" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>11</b> Comparing several means (one-way ANOVA)</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="anova.html"><a href="anova.html#anovaintro"><i class="fa fa-check"></i><b>11.1</b> How ANOVA works</a></li>
+<li class="chapter" data-level="11.1" data-path="anova.html"><a href="anova.html#the-data"><i class="fa fa-check"></i><b>11.1</b> The data</a></li>
+<li class="chapter" data-level="11.2" data-path="anova.html"><a href="anova.html#anovaintro"><i class="fa fa-check"></i><b>11.2</b> How ANOVA works</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="anova.html"><a href="anova.html#from-variance"><i class="fa fa-check"></i><b>11.2.1</b> From variance…</a></li>
+<li class="chapter" data-level="11.2.2" data-path="anova.html"><a href="anova.html#to-total-sum-of-squares"><i class="fa fa-check"></i><b>11.2.2</b> … to total sum of squares</a></li>
+<li class="chapter" data-level="11.2.3" data-path="anova.html"><a href="anova.html#from-sums-of-squares-to-the-f-test"><i class="fa fa-check"></i><b>11.2.3</b> From sums of squares to the <span class="math inline">\(F\)</span>-test</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>12</b> Linear regression</a></li>
 <li class="chapter" data-level="13" data-path="anova2.html"><a href="anova2.html"><i class="fa fa-check"></i><b>13</b> Factorial ANOVA</a></li>
@@ -424,6 +430,8 @@ div.csl-indent {
 <p>The term ANOVA is a little misleading in two respects. Firstly, although the technique’s name refers to variances, ANOVA is concerned with investigating differences in means. Secondly, several different things out there are all referred to as ANOVAs, some of which have only a very tenuous connection to one another. Later in the book, we’ll encounter various ANOVA methods that apply in quite different situations. Still, for this chapter, we’ll only consider the simplest form of ANOVA, in which we have several different groups of observations. We’re interested in finding out whether those groups differ in terms of some outcome variable of interest. This is the question that is addressed by a <strong>one-way ANOVA</strong>.</p>
 <p>The structure of this chapter is as follows: After introducing the data, we’ll describe the mechanics of how a one-way ANOVA actually works. The remainder of the chapter discusses a range of important topics that inevitably arise when running an ANOVA, namely how to calculate effect sizes (Section <a href="#etasquared"><strong>??</strong></a>), post hoc tests and corrections for multiple comparisons (Section <a href="#posthoc"><strong>??</strong></a>) and the assumptions that ANOVA relies upon (Section <a href="#anovaassumptions"><strong>??</strong></a>). We’ll also talk about how to check those assumptions and some of the things you can do if the assumptions are violated (Sections <a href="#levene"><strong>??</strong></a> to <a href="#kruskalwallis"><strong>??</strong></a>). At the end of the chapter, we’ll talk a little about the relationship between ANOVA and other statistical tools (Section <a href="#anovaandt"><strong>??</strong></a>).</p>
 <p>Now let’s run a clinical trial!</p>
+<div id="the-data" class="section level2 hasAnchor" number="11.1">
+<h2><span class="header-section-number">11.1</span> The data<a href="anova.html#the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Suppose you’ve become involved in a clinical trial in which you are testing a new antidepressant drug called <em>Joyzepam</em>. In order to construct a fair test of the drug’s effectiveness, the study involves three different medications to be administered. One is a placebo, and the other is an existing antidepressant / anti-anxiety drug called <em>Anxifree</em>. A collection of 18 participants with moderate to severe depression are recruited for your initial testing. Because the drugs are sometimes administered in conjunction with psychological therapy, your study includes 9 people undergoing cognitive behavioural therapy (CBT) and 9 who are not. Participants are randomly assigned (doubly blinded, of course) a treatment, such that there are 3 CBT people and 3 no-therapy people assigned to each of the 3 drugs. A psychologist assesses the mood of each person after a 3 month run with each drug: and the overall <em>improvement</em> in each person’s mood is assessed on a scale ranging from <span class="math inline">\(-5\)</span> to <span class="math inline">\(+5\)</span>.</p>
 <p>With that as the study design, let’s load our data file: <a href="resources/data/clinicaltrial.csv"><code>clinicaltrial.csv</code></a>. We have three variables: <code>drug</code>, <code>therapy</code> and <code>mood_gain</code>. Next, let’s print the data frame to get a sense of what the data actually look like.</p>
 <p>For the purposes of this chapter, what we’re really interested in is the effect of <code>drug</code> on <code>mood_gain</code>. The first thing to do is use the <code>Compare groups</code> function. (But don’t jump ahead by adding both <code>drug</code> and <code>therapy</code> to the <code>Group(s)</code> box. That’s going to be our factorial ANOVA in Chapter <a href="anova2.html#anova2">13</a>.)</p>
@@ -435,8 +443,9 @@ Figure 11.1: Mood gain by drug
 </div>
 <p>The results are shown in the boxplot in Figure <a href="anova.html#fig:moodbydrug">11.1</a>, which plots the average mood gain for all three conditions; error bars show 95% confidence intervals. As the plot makes clear, there is a larger improvement in mood for participants in the Joyzepam group than for either the Anxifree group or the placebo group. The Anxifree group shows a larger mood gain than the control (i.e. placebo) group, but the difference isn’t as large.</p>
 <p>The question that we want to answer is: are these difference “real”, or are they just due to chance?</p>
-<div id="anovaintro" class="section level2 hasAnchor" number="11.1">
-<h2><span class="header-section-number">11.1</span> How ANOVA works<a href="anova.html#anovaintro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="anovaintro" class="section level2 hasAnchor" number="11.2">
+<h2><span class="header-section-number">11.2</span> How ANOVA works<a href="anova.html#anovaintro" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In order to answer the question posed by our clinical trial data, we’re going to run a one-way ANOVA. As usual, we’re going to start by showing you how to do it the hard way to make sure you really understand how ANOVA works, but with CogStat, you’ll never <em>ever</em> have do it this way.</p>
 <p>The experimental design strongly suggests that we’re interested in comparing the average mood change for the three different drugs. In that sense, we’re talking about an analysis similar to the <span class="math inline">\(t\)</span>-test (Chapter <a href="ttest.html#ttest">10</a>), but involving more than two groups. If we let <span class="math inline">\(\mu_P\)</span> denote the population mean for the mood change induced by the placebo, and let <span class="math inline">\(\mu_A\)</span> and <span class="math inline">\(\mu_J\)</span> denote the corresponding means for our two drugs, Anxifree and Joyzepam, then the (somewhat pessimistic) null hypothesis that we want to test is that all three population means are identical: that is, <em>neither</em> of the two drugs is any more effective than a placebo.</p>
 <p>Mathematically, we write this null hypothesis like this:
@@ -451,9 +460,292 @@ H_0 &amp;:&amp; \mbox{it is true that } \mu_P = \mu_A = \mu_J
 H_1 &amp;:&amp; \mbox{it is *not* true that } \mu_P = \mu_A = \mu_J
 \end{array}
 \]</span></p>
-<p>This null hypothesis is a lot trickier to test than any of the ones we’ve seen previously. How shall we do it? A sensible guess would be to “do an ANOVA”, since that’s the title of the chapter, but it’s not particularly clear why an “analysis of <em>variances</em>” will help us learn anything useful about the <em>means</em>. In fact, this is one of the biggest conceptual difficulties that people have when first encountering ANOVA. To see how this works, let us talk about variances.</p>
+<p>This null hypothesis is a lot trickier to test than any of the ones we’ve seen previously. How shall we do it? A sensible guess would be to “do an ANOVA”, since that’s the title of the chapter, but it’s not particularly clear why an “analysis of <em>variances</em>” will help us learn anything useful about the <em>means</em>. In fact, this is one of the biggest conceptual difficulties that people have when first encountering ANOVA. To see how this works, let us talk about variances first.</p>
+<div id="from-variance" class="section level3 hasAnchor" number="11.2.1">
+<h3><span class="header-section-number">11.2.1</span> From variance…<a href="anova.html#from-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We’ll use <span class="math inline">\(G\)</span> to refer to the total number of groups. For our data set, there are three drugs, so there are <span class="math inline">\(G=3\)</span> groups. Next, we’ll use <span class="math inline">\(N\)</span> to refer to the total sample size: there are a total of <span class="math inline">\(N=18\)</span> people in our data set. Similarly, let’s use <span class="math inline">\(N_k\)</span> to denote the number of people in the <span class="math inline">\(k\)</span>-th group. In our fake clinical trial, the sample size is <span class="math inline">\(N_k = 6\)</span> for all three groups.<a href="#fn54" class="footnote-ref" id="fnref54"><sup>54</sup></a> Finally, we’ll use <span class="math inline">\(Y\)</span> to denote the outcome variable (the mood change). Specifically, we’ll use <span class="math inline">\(Y_{ik}\)</span> to refer to the mood change experienced by the <span class="math inline">\(i\)</span>-th member of the <span class="math inline">\(k\)</span>-th group. Similarly, we’ll use <span class="math inline">\(\bar{Y}\)</span> to be the average mood change, taken across all 18 people in the experiment, and <span class="math inline">\(\bar{Y}_k\)</span> to refer to the average mood change experienced by the 6 people in group <span class="math inline">\(k\)</span>.</p>
+<p>Excellent. Now that we’ve got our notation sorted out, we can start writing down formulas. To start with, let’s recall the formula for the variance that we used in Section <a href="exploringavariable.html#var">4.2</a>, way back in those kinder days when we were just doing descriptive statistics. The sample variance of <span class="math inline">\(Y\)</span> is defined as follows:
+<span class="math display">\[
+\mbox{Var}(Y) = \frac{1}{N} \sum_{k=1}^G \sum_{i=1}^{N_k} \left(Y_{ik} - \bar{Y} \right)^2
+\]</span>
+This formula looks pretty much identical to the formula for the variance in Section <a href="exploringavariable.html#var">4.2</a>. The only difference is that we are now summing over groups (i.e. values for <span class="math inline">\(k\)</span>) and over the people within the groups (i.e. values for <span class="math inline">\(i\)</span>).</p>
+<p>Let’s consider a simple table to see how this formula works on our clinical trial data set. The table below shows the person, the drug they were given, and their mood change.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left;">
+Row
+</th>
+<th style="text-align:left;">
+Drug group (<span class="math inline">\(k\)</span>)
+</th>
+<th style="text-align:center;">
+Index in group (<span class="math inline">\(i\)</span>)
+</th>
+<th style="text-align:center;">
+Mood change (<span class="math inline">\(Y_{ik}\)</span>)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+placebo
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0.5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+placebo
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+0.3
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+placebo
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+0.1
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+anxifree
+</td>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+0.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+anxifree
+</td>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+0.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+6
+</td>
+<td style="text-align:left;">
+…
+</td>
+<td style="text-align:center;">
+…
+</td>
+<td style="text-align:center;">
+…
+</td>
+</tr>
+</tbody>
+</table>
+<p>Our average mood change is the mean of all the mood changes in the data set (which you can see if you run <code>Explore variable</code> for <code>mood_gain</code>), which is <span class="math inline">\(\bar{Y} = 0.88\)</span>. The variance of the mood changes is the sum of the squared differences between each mood change and the average mood change, divided by the total number of observations. So our formula filled in would look like this:
+<span class="math display">\[
+\mbox{Var}(Y) = \frac{1}{18} \left( \left(0.5 - 0.88 \right)^2 + \left(0.3 -0.88 \right)^2 + \left(0.1 - 0.88 \right)^2 + \\
+\left(0.6 - 0.88 \right)^2 + \left(0.4 - 0.88 \right)^2 + \left(0.2 - 0.88 \right)^2 + \left(1.4 - 0.88 \right)^2 + \\
+\left(1.7 - 0.88 \right)^2 + \left(1.3 - 0.88 \right)^2 + \left(0.6 - 0.88 \right)^2 + \left(0.9 - 0.88 \right)^2 + \\
++ \left(0.3 - 0.88 \right)^2 + \left(1.1 - 0.88 \right)^2 + \left(0.8 - 0.88 \right)^2 + \left(1.2 - 0.88 \right)^2 + \\
+\left(1.8 - 0.88 \right)^2 + \left(1.3 - 0.88 \right)^2 + \left(1.4 - 0.88 \right)^2 \right)
+\]</span></p>
+<p><span class="math display">\[
+\mbox{Var}(Y) = 0.269
+\]</span></p>
+<p>Fortunately, we don’t have to do these manually.<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a></p>
+</div>
+<div id="to-total-sum-of-squares" class="section level3 hasAnchor" number="11.2.2">
+<h3><span class="header-section-number">11.2.2</span> … to total sum of squares<a href="anova.html#to-total-sum-of-squares" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Okay, now that we’ve got a good grasp on how the population variance is calculated, let’s define something called the <strong>total sum of squares</strong>, which is denoted <span class="math inline">\(\mbox{SS}_{tot}\)</span>. This is very simple: instead of averaging the squared deviations, which is what we do when calculating the variance, we just add them up. So the formula for the total sum of squares is almost identical to the formula for the variance:
+<span class="math display">\[
+\mbox{SS}_{tot} = \sum_{k=1}^G \sum_{i=1}^{N_k} \left(Y_{ik} - \bar{Y} \right)^2
+\]</span>
+When we talk about analysing variances in the context of ANOVA, what we’re really doing is working with the total sums of squares rather than the actual variance. One very nice thing about the total sum of squares is that we can break it up into two different kinds of variation. Firstly, we can talk about the <strong>within-group sum of squares</strong>, in which we look to see how different each individual person is from their own group mean:
+<span class="math display">\[
+\mbox{SS}_w = \sum_{k=1}^G \sum_{i=1}^{N_k} \left( Y_{ik} - \bar{Y}_k \right)^2
+\]</span>
+where <span class="math inline">\(\bar{Y}_k\)</span> is a group mean.</p>
+<p>In our example, <span class="math inline">\(\bar{Y}_k\)</span> would be the average mood change experienced by those people given the <span class="math inline">\(k\)</span>-th drug. So, instead of comparing individuals to the average of <em>all</em> people in the experiment, we’re only comparing them to those people in the the same group. As a consequence, you’d expect the value of <span class="math inline">\(\mbox{SS}_w\)</span> to be smaller than the total sum of squares, because it’s completely ignoring any group differences – that is, the fact that the drugs (if they work) will have different effects on people’s moods.</p>
+<p>Next, we can define a third notion of variation which captures <em>only</em> the differences <em>between groups</em>. We do this by looking at the differences between the group means <span class="math inline">\(\bar{Y}_k\)</span> and grand mean <span class="math inline">\(\bar{Y}\)</span>. In order to quantify the extent of this variation, what we do is calculate the <strong>between-group sum of squares</strong>:
+<span class="math display">\[
+\begin{array}{rcl}
+\mbox{SS}_{b} &amp;=&amp; \sum_{k=1}^G \sum_{i=1}^{N_k} \left( \bar{Y}_k - \bar{Y} \right)^2
+\\
+&amp;=&amp; \sum_{k=1}^G N_k \left( \bar{Y}_k - \bar{Y} \right)^2
+\end{array}
+\]</span></p>
+<p>It’s not too difficult to show that the total variation among people in the experiment <span class="math inline">\(\mbox{SS}_{tot}\)</span> is actually the sum of the differences between the groups <span class="math inline">\(\mbox{SS}_b\)</span> and the variation inside the groups <span class="math inline">\(\mbox{SS}_w\)</span>. That is:
+<span class="math display">\[
+\mbox{SS}_w  + \mbox{SS}_{b} = \mbox{SS}_{tot}
+\]</span></p>
+<p>Yay.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:anovavara"></span>
+<img src="lsc_files/figure-html/anovavara-1.svg" alt="Graphical illustration of &quot;between groups&quot; variation" width="100%" />
+<p class="caption">
+Figure 11.2: Graphical illustration of “between groups” variation
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:anovavarb"></span>
+<img src="lsc_files/figure-html/anovavarb-1.svg" alt="Graphical illustration of  &quot;within groups&quot; variation" width="100%" />
+<p class="caption">
+Figure 11.3: Graphical illustration of “within groups” variation
+</p>
+</div>
+<p>Okay, so what have we found out?</p>
+<p>We’ve discovered that the total variability associated with the outcome variable (<span class="math inline">\(\mbox{SS}_ {tot}\)</span>) can be mathematically carved up into the sum of “the variation due to the differences in the sample means for the different groups” (<span class="math inline">\(\mbox{SS}_ {b}\)</span>) plus “all the rest of the variation” (<span class="math inline">\(\mbox{SS}_ {w}\)</span>).</p>
+<p>How does that help me find out whether the groups have different population means? If the null hypothesis is true, then you’d expect all the sample means to be pretty similar to each other, right? And that would imply that you’d expect <span class="math inline">\(\mbox{SS}_ {b}\)</span> to be really small, or at least you’d expect it to be a lot smaller than the “the variation associated with everything else”, <span class="math inline">\(\mbox{SS}_{w}\)</span>.</p>
+<p>So, let’s do a hypothesis test to validate.</p>
+</div>
+<div id="from-sums-of-squares-to-the-f-test" class="section level3 hasAnchor" number="11.2.3">
+<h3><span class="header-section-number">11.2.3</span> From sums of squares to the <span class="math inline">\(F\)</span>-test<a href="anova.html#from-sums-of-squares-to-the-f-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>As we saw in the last section, the <em>qualitative</em> idea behind ANOVA is to compare the two sums of squares values <span class="math inline">\(\mbox{SS}_ b\)</span> and <span class="math inline">\(\mbox{SS}_ w\)</span> to each other: if the between-group variation <span class="math inline">\(\mbox{SS}_ b\)</span> is large relative to the within-group variation <span class="math inline">\(\mbox{SS}_ w\)</span>, then we have reason to suspect that the population means for the different groups aren’t identical to each other.</p>
+<p>Our test statistic is called an <strong><span class="math inline">\(F\)</span>-ratio</strong>. It’s defined as the ratio of the between-group variation to the within-group variation.</p>
+<p>In order to convert our SS values into an <span class="math inline">\(F\)</span>-ratio, the first thing we need to calculate is the <strong>degrees of freedom</strong> associated with the SS<span class="math inline">\(_b\)</span> and SS<span class="math inline">\(_w\)</span> values. As usual, the degrees of freedom corresponds to the number of unique “data points” that contribute to a particular calculation, minus the number of “constraints” that they need to satisfy.</p>
+<p>For the within-groups variability, what we’re calculating is the variation of the individual observations (<span class="math inline">\(N\)</span> data points) around the group means (<span class="math inline">\(G\)</span> constraints). In contrast, for the between groups variability, we’re interested in the variation of the group means (<span class="math inline">\(G\)</span> data points) around the grand mean (1 constraint). Therefore, the degrees of freedom here are:
+<span class="math display">\[
+\begin{array}{lcl}
+\mbox{df}_b &amp;=&amp; G-1 \\
+\mbox{df}_w &amp;=&amp; N-G \\
+\end{array}
+\]</span></p>
+<p>What we do next is convert our summed squares value into a “mean squares” value, which we do by dividing by the degrees of freedom:
+<span class="math display">\[
+\begin{array}{lcl}
+\mbox{MS}_b &amp;=&amp; \displaystyle\frac{\mbox{SS}_b }{ \mbox{df}_b} \\
+\mbox{MS}_w &amp;=&amp; \displaystyle\frac{\mbox{SS}_w }{ \mbox{df}_w}
+\end{array}
+\]</span></p>
+<p>Finally, we calculate the <span class="math inline">\(F\)</span>-ratio by dividing the between-groups MS by the within-groups MS:
+<span class="math display">\[
+F = \frac{\mbox{MS}_b }{ \mbox{MS}_w }
+\]</span></p>
+<p>At a very general level, the intuition behind the <span class="math inline">\(F\)</span> statistic is straightforward: bigger values of <span class="math inline">\(F\)</span> means that the between-groups variation is large, relative to the within-groups variation. As a consequence, the larger the value of <span class="math inline">\(F\)</span>, the more evidence we have against the null hypothesis.</p>
+<p>But how large does <span class="math inline">\(F\)</span> have to be in order to actually <em>reject</em> <span class="math inline">\(H_0\)</span>? In order to understand this, you need a slightly deeper understanding of what ANOVA is and what the mean squares values actually are.</p>
+<p>In order to complete our hypothesis test, we need to know the sampling distribution for <span class="math inline">\(F\)</span> if the null hypothesis is true. Not surprisingly, the sampling distribution for the <span class="math inline">\(F\)</span> <em>statistic</em> under the null hypothesis is an <span class="math inline">\(F\)</span> <em>distribution</em>. If you recall back to our discussion of the <span class="math inline">\(F\)</span> distribution in Chapter <a href="probability.html#probability">6</a>, the <span class="math inline">\(F\)</span> distribution has two parameters, corresponding to the two degrees of freedom involved: the first one df<span class="math inline">\(_1\)</span> is the between groups degrees of freedom df<span class="math inline">\(_b\)</span>, and the second one df<span class="math inline">\(_2\)</span> is the within groups degrees of freedom df<span class="math inline">\(_w\)</span>.</p>
+<p>A summary of all the key quantities involved in a one-way ANOVA, including the formulas showing how they are calculated, is shown in Table <a href="anova.html#tab:anovatable">11.1</a>.</p>
+<table>
+<caption>
+<span id="tab:anovatable">Table 11.1: </span>All of the key quantities involved in an ANOVA,
+organised into a “standard” ANOVA table.
+The formulas for all quantities (except the <span class="math inline">\(p\)</span>-value,
+which has a very ugly formula and would be nightmarishly
+hard to calculate without a computer) are shown.
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Between groups
+</th>
+<th style="text-align:left;">
+Within groups
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Degrees of freedom
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\mbox{df}_b = G-1\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\mbox{df}_w = N-G\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sum of squares
+</td>
+<td style="text-align:left;">
+SS<span class="math inline">\(_b = \displaystyle\sum_{k=1}^G N_k (\bar{Y}_k - \bar{Y})^2\)</span>
+</td>
+<td style="text-align:left;">
+SS<span class="math inline">\(_w = \sum_{k=1}^G \sum_{i = 1}^{N_k} ( {Y}_{ik} - \bar{Y}_k)^2\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Mean squares
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\mbox{MS}_b = \frac{\mbox{SS}_b}{\mbox{df}_b}\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\mbox{MS}_w = \frac{\mbox{SS}_w}{\mbox{df}_w}\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(F\)</span> statistic
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(F = \frac{\mbox{MS}_b }{ \mbox{MS}_w }\)</span>
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(p\)</span> value
+</td>
+<td style="text-align:left;">
+[complicated]
+</td>
+<td style="text-align:left;">
+<ul>
+<li></td>
+</tr>
+</tbody>
+</table></li>
+</ul></li>
+</ul>
 
 </div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="54">
+<li id="fn54"><p>When all groups have the same number of observations, the experimental design is said to be “balanced”. Balance isn’t such a big deal for one-way ANOVA but becomes more important when you start doing more complicated ANOVAs.<a href="anova.html#fnref54" class="footnote-back">↩︎</a></p></li>
+<li id="fn55"><p>You went into Excel and did it manually, and got the same answer, great! No, you used the <code>VAR.P</code> function and got the same answer. Great! Wait, you used the <code>VAR.S</code> and got <span class="math inline">\(0.285\)</span>? Something’s not right. You went to jamovi or JASP or SPSS (because you’re fancy) and got <span class="math inline">\(0.285\)</span>. What happened? There is a difference between population variance and estimated variance. The population variance is the variance of the population based on the fact you know all members of the population – which is the case in our example, as we need the population variance of our trial, not the population to which the trial results will extend to. The estimated variance is always going to be a little bit bigger than the population variance, because it’s an estimate, and uses a slightly different formula. Namely, it multiplies by <span class="math inline">\(\frac{1}{N-1}\)</span>, not <span class="math inline">\(\frac{1}{N}\)</span>.<a href="anova.html#fnref55" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 

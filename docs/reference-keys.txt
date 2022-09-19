@@ -105,6 +105,9 @@ fig:swdist
 fig:mwafl24
 fig:mwbeforeafter
 fig:moodbydrug
+fig:anovavara
+fig:anovavarb
+tab:anovatable
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -267,7 +270,11 @@ two-sample-wilcoxon-test-mann-whitney-test
 one-sample-and-paired-samples-wilcoxon-tests
 summary-6
 anova
+the-data
 anovaintro
+from-variance
+to-total-sum-of-squares
+from-sums-of-squares-to-the-f-test
 regression
 anova2
 bayes
