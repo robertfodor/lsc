@@ -21,13 +21,11 @@ description: '*Learning Statistics with CogStat* covers the contents of an intro
   statistical analysis performed in CogStat.'
 ---
 
-# {.unlisted .unnumbered}
+# Versions{.unlisted .unnumbered}
 
-**This book is work-in-progress.**
+**Book version nr. $cos(9)$ (pre-release preview)**
 
-***Book version nr. $cos(9)$ (pre-release preview)***
-
-The book features screenshots and result sets based on CogStat version 2.3. As features are added to CogStat, the book will be updated accordingly.
+The book features screenshots and result sets based on **CogStat version 2.3**.
 
 ## About this book{.unnumbered}
 
@@ -35,7 +33,7 @@ This book is intended for psychology students and other beginners who are intere
 
 *Learning Statistics with CogStat* is a book, which covers the contents of an introductory statistics class. It is an adaptation made by Róbert Fodor based on Danielle Navarro's original *Learning Statistics with R*(Version 0.6^[This book is compiled from scratch in bookdown but some code snippets rely on [Emily Kothe](https://twitter.com/emilyandthelime)'s bookdown adaptation of the original material (e.g. some knitr plots and tables appear in the source code without alteration), numbered as version [0.6.1](https://learningstatisticswithr.com/book/)]). While the theory that has been laid out in the original book is still valid, the focus of this book is on the practical application of statistical methods in CogStat. The book is not intended to be a comprehensive guide to either CogStat or statistical theory, though. One of the key challenges of the adaptation was to balance between a fully applied approach (like how CogStat handles analysis) and a theoretical one (like the fantastic textbook it is based on). Danielle's original content, while making up for a massive chunk of the material, has been revised, reorganised, redacted, expanded on and rewritten to fit the new purpose.
 
-This book will always be a living thing. As CogStat expands and evolves, so will this book. If you have any suggestions, comments or questions, please feel free to reach out to me on [GitHub].(https://github.com/robertfodor/lsc/issues).
+This book will always be a living thing. As CogStat expands and evolves, so will this book. If you have any suggestions, comments or questions, please feel free to reach out to me on [GitHub](https://github.com/robertfodor/lsc/issues).
 
 -- Robert
 
