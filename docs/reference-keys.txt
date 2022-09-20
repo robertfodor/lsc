@@ -295,7 +295,6 @@ anovaandt
 summary-7
 regression
 anova2
-summarychart
 bayes
 bayesianhypothesistests
 whybayes
