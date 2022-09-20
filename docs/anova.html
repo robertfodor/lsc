@@ -404,7 +404,10 @@ div.csl-indent {
 <li class="chapter" data-level="11.4.2" data-path="anova.html"><a href="anova.html#omega-squared"><i class="fa fa-check"></i><b>11.4.2</b> Omega-squared</a></li>
 </ul></li>
 <li class="chapter" data-level="11.5" data-path="anova.html"><a href="anova.html#posthoc"><i class="fa fa-check"></i><b>11.5</b> Post hoc tests</a></li>
-<li class="chapter" data-level="11.6" data-path="anova.html"><a href="anova.html#kruskalwallis"><i class="fa fa-check"></i><b>11.6</b> Testing for non-normal data with Kruskal-Wallis test</a></li>
+<li class="chapter" data-level="11.6" data-path="anova.html"><a href="anova.html#levene"><i class="fa fa-check"></i><b>11.6</b> Checking the homogeneity of variance assumption</a></li>
+<li class="chapter" data-level="11.7" data-path="anova.html"><a href="anova.html#kruskalwallis"><i class="fa fa-check"></i><b>11.7</b> Testing for non-normal data with Kruskal-Wallis test</a></li>
+<li class="chapter" data-level="11.8" data-path="anova.html"><a href="anova.html#anovaandt"><i class="fa fa-check"></i><b>11.8</b> On the relationship between ANOVA and the Student <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="11.9" data-path="anova.html"><a href="anova.html#summary-7"><i class="fa fa-check"></i><b>11.9</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>12</b> Linear regression</a></li>
 <li class="chapter" data-level="13" data-path="anova2.html"><a href="anova2.html"><i class="fa fa-check"></i><b>13</b> Factorial ANOVA</a></li>
@@ -437,7 +440,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 11</span> Comparing several means (one-way ANOVA)<a href="anova.html#anova" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>This chapter introduces one of the most widely used statistical tools known as “the analysis of variance”, which is usually referred to as ANOVA. Sir Ronald Fisher developed the basic technique in the early 20th century, and it is to him that we owe the rather unfortunate terminology.</p>
 <p>The term ANOVA is a little misleading in two respects. Firstly, although the technique’s name refers to variances, ANOVA is concerned with investigating differences in means. Secondly, several different things out there are all referred to as ANOVAs, some of which have only a very tenuous connection to one another. Later in the book, we’ll encounter various ANOVA methods that apply in quite different situations. Still, for this chapter, we’ll only consider the simplest form of ANOVA, in which we have several different groups of observations. We’re interested in finding out whether those groups differ in terms of some outcome variable of interest. This is the question that is addressed by a <strong>one-way ANOVA</strong>.</p>
-<p>The structure of this chapter is as follows: After introducing the data, we’ll describe the mechanics of how a one-way ANOVA actually works. The remainder of the chapter discusses a range of important topics that inevitably arise when running an ANOVA, namely how to calculate effect sizes (Section <a href="anova.html#anovaeffect">11.4</a>), post hoc tests and corrections for multiple comparisons (Section <a href="anova.html#posthoc">11.5</a>) and the assumptions that ANOVA relies upon (Section <a href="#anovaassumptions"><strong>??</strong></a>). We’ll also talk about how to check those assumptions and some of the things you can do if the assumptions are violated (Sections <a href="#levene"><strong>??</strong></a> to <a href="anova.html#kruskalwallis">11.6</a>). At the end of the chapter, we’ll talk a little about the relationship between ANOVA and other statistical tools (Section <a href="#anovaandt"><strong>??</strong></a>).</p>
+<p>After introducing the data, we’ll describe the mechanics of the one-way ANOVA, how to calculate effect sizes and post hoc tests. We’ll also talk about how to check for normality and homoscedasticity.</p>
 <p>Now let’s run a clinical trial!</p>
 <div id="the-data" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> The data<a href="anova.html#the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -474,11 +477,11 @@ H_1 &amp;:&amp; \mbox{it is *not* true that } \mu_P = \mu_A = \mu_J
 <div id="from-variance" class="section level3 hasAnchor" number="11.2.1">
 <h3><span class="header-section-number">11.2.1</span> From variance…<a href="anova.html#from-variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>We’ll use <span class="math inline">\(G\)</span> to refer to the total number of groups. For our data set, there are three drugs, so there are <span class="math inline">\(G=3\)</span> groups. Next, we’ll use <span class="math inline">\(N\)</span> to refer to the total sample size: there are a total of <span class="math inline">\(N=18\)</span> people in our data set. Similarly, let’s use <span class="math inline">\(N_k\)</span> to denote the number of people in the <span class="math inline">\(k\)</span>-th group. In our fake clinical trial, the sample size is <span class="math inline">\(N_k = 6\)</span> for all three groups.<a href="#fn54" class="footnote-ref" id="fnref54"><sup>54</sup></a> Finally, we’ll use <span class="math inline">\(Y\)</span> to denote the outcome variable (the mood change). Specifically, we’ll use <span class="math inline">\(Y_{ik}\)</span> to refer to the mood change experienced by the <span class="math inline">\(i\)</span>-th member of the <span class="math inline">\(k\)</span>-th group. Similarly, we’ll use <span class="math inline">\(\bar{Y}\)</span> to be the average mood change, taken across all 18 people in the experiment, and <span class="math inline">\(\bar{Y}_k\)</span> to refer to the average mood change experienced by the 6 people in group <span class="math inline">\(k\)</span>.</p>
-<p>Excellent. Now that we’ve got our notation sorted out, we can start writing down formulas. To start with, let’s recall the formula for the variance that we used in Section <a href="exploringavariable.html#var">4.2</a>, way back in those kinder days when we were just doing descriptive statistics. The sample variance of <span class="math inline">\(Y\)</span> is defined as follows:
+<p>Excellent. Now that we’ve got our notation sorted out, we can start writing down formulas. To start with, let’s recall the formula for the variance that we used in Chapter <a href="exploringavariable.html#var">4.2</a>, way back in those kinder days when we were just doing descriptive statistics. The sample variance of <span class="math inline">\(Y\)</span> is defined as follows:
 <span class="math display">\[
 \mbox{Var}(Y) = \frac{1}{N} \sum_{k=1}^G \sum_{i=1}^{N_k} \left(Y_{ik} - \bar{Y} \right)^2
 \]</span>
-This formula looks pretty much identical to the formula for the variance in Section <a href="exploringavariable.html#var">4.2</a>. The only difference is that we are now summing over groups (i.e. values for <span class="math inline">\(k\)</span>) and over the people within the groups (i.e. values for <span class="math inline">\(i\)</span>).</p>
+This formula looks pretty much identical to the formula for the variance in Chapter <a href="exploringavariable.html#var">4.2</a>. The only difference is that we are now summing over groups (i.e. values for <span class="math inline">\(k\)</span>) and over the people within the groups (i.e. values for <span class="math inline">\(i\)</span>).</p>
 <p>Let’s consider a simple table to see how this formula works on our clinical trial data set. The table below shows the person, the drug they were given, and their mood change.</p>
 <table>
 <thead>
@@ -824,7 +827,7 @@ where, once again, we assume that the error terms are normally distributed with 
 F = \frac{\hat{Q} + \hat\sigma^2}{\hat\sigma^2}
 \]</span>
 where the true value <span class="math inline">\(Q=0\)</span> if the null hypothesis is true, and <span class="math inline">\(Q &gt; 0\)</span> if the alternative hypothesis is true <span class="citation">(e.g. ch. 10 Hays, 1994)</span>. Therefore, at a bare minimum <em>the <span class="math inline">\(F\)</span> value must be larger than 1</em> to have any chance of rejecting the null hypothesis. Note that this <em>doesn’t</em> mean that it’s impossible to get an <span class="math inline">\(F\)</span>-value less than 1. What it means is that, if the null hypothesis is true the sampling distribution of the <span class="math inline">\(F\)</span> ratio has a mean of 1,<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a> and so we need to see <span class="math inline">\(F\)</span>-values larger than 1 in order to safely reject the null.</p>
-<p>To be a bit more precise about the sampling distribution, notice that if the null hypothesis is true, both MS<span class="math inline">\(_b\)</span> and MS<span class="math inline">\(_w\)</span> are estimators of the variance of the residuals <span class="math inline">\(\epsilon_{ik}\)</span>. If those residuals are normally distributed, then you might suspect that the estimate of the variance of <span class="math inline">\(\epsilon_{ik}\)</span> is chi-square distributed. Because (as discussed in Section <a href="probability.html#otherdists">6.4.4</a>) that’s what a chi-square distribution <em>is</em>: it’s what you get when you square a bunch of normally-distributed things and add them up. And since the <span class="math inline">\(F\)</span> distribution is (again, by definition) what you get when you take the ratio between two things that are <span class="math inline">\(\chi^2\)</span> distributed, we have our sampling distribution.</p>
+<p>To be a bit more precise about the sampling distribution, notice that if the null hypothesis is true, both MS<span class="math inline">\(_b\)</span> and MS<span class="math inline">\(_w\)</span> are estimators of the variance of the residuals <span class="math inline">\(\epsilon_{ik}\)</span>. If those residuals are normally distributed, then you might suspect that the estimate of the variance of <span class="math inline">\(\epsilon_{ik}\)</span> is chi-square distributed. Because (as discussed in Chapter <a href="probability.html#otherdists">6.4.4</a>) that’s what a chi-square distribution <em>is</em>: it’s what you get when you square a bunch of normally-distributed things and add them up. And since the <span class="math inline">\(F\)</span> distribution is (again, by definition) what you get when you take the ratio between two things that are <span class="math inline">\(\chi^2\)</span> distributed, we have our sampling distribution.</p>
 </div>
 </div>
 <div id="introduceaov" class="section level2 hasAnchor" number="11.3">
@@ -864,7 +867,7 @@ Figure 11.6: CogStat result set with hypothesis test results, effect size and po
      <p style="color:black;">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in eta-square: 0.23. </p>
      <p style="color:black;">Result of one-way ANOVA: <span style="font-style:italic;">F</span>(2, 15) = 18.61, <span style="font-style:italic;">p</span> &lt; .001</p>
 </div>
-<p>For now, let’s stop here. We’ll come back to the post hoc tests later. For now, let’s just focus on the hypothesis test results. We can see that the Shapiro-Wilk normality test was run on each of the groups. Testing the normality assumption is relatively straightforward. We covered the theory behind it in Section <a href="ttest.html#shapiro">10.7</a>. The Levene test was run to check for homogeneity of variance across groups. The one-way ANOVA was run, and the result was that the <span class="math inline">\(F\)</span>-value was 18.61, and the <span class="math inline">\(p\)</span>-value was less than 0.001.</p>
+<p>For now, let’s stop here. We’ll come back to the post hoc tests later. For now, let’s just focus on the hypothesis test results. We can see that the Shapiro-Wilk normality test was run on each of the groups. Testing the normality assumption is relatively straightforward. We covered the theory behind it in Chapter <a href="ttest.html#shapiro">10.7</a>. The Levene test was run to check for homogeneity of variance across groups. The one-way ANOVA was run, and the result was that the <span class="math inline">\(F\)</span>-value was 18.61, and the <span class="math inline">\(p\)</span>-value was less than 0.001.</p>
 <p>At this point, we’re basically done. (If you ran the test with us, you’ve seen something about post hoc tests. We will discuss them later.) Having completed our calculations, it’s traditional to organise all these numbers into an ANOVA table like the one in Table <a href="anova.html#tab:anovatableresults">11.2</a>. For our clinical trial data, the ANOVA table would look like this:</p>
 <table>
 <caption>
@@ -1258,8 +1261,18 @@ True
 <p>Post hoc tests indicated that Joyzepam produced a significantly larger mood change than both Anxifree (<em>p</em> = .002) and the placebo (<em>p</em> &lt; .001). We found no evidence that Anxifree performed better than the placebo (<em>p</em> = .31).</p>
 </blockquote>
 </div>
-<div id="kruskalwallis" class="section level2 hasAnchor" number="11.6">
-<h2><span class="header-section-number">11.6</span> Testing for non-normal data with Kruskal-Wallis test<a href="anova.html#kruskalwallis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="levene" class="section level2 hasAnchor" number="11.6">
+<h2><span class="header-section-number">11.6</span> Checking the homogeneity of variance assumption<a href="anova.html#levene" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>There’s more than one way to skin a cat, as the saying goes, and more than one way to test the homogeneity of variance assumption, too. The most commonly used test for this is the <strong>Levene test</strong> <span class="citation">(Levene, 1960)</span>, which CogStat uses.<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a></p>
+<p>Levene’s test is shockingly simple. Suppose we have our outcome variable <span class="math inline">\(Y_{ik}\)</span>. All we do is define a new variable, say, <span class="math inline">\(Z_{ik}\)</span>, corresponding to the absolute deviation from the group mean:
+<span class="math display">\[
+Z_{ik} = \left| Y_{ik} - \bar{Y}_k \right|
+\]</span></p>
+<p>The value of <span class="math inline">\(Z_{ik}\)</span> is a measure of how the <span class="math inline">\(i\)</span>-th observation in the <span class="math inline">\(k\)</span>-th group deviates from its group mean. And our null hypothesis is that all groups have the same variance; that is, the same overall deviations from the group means. So the null hypothesis in a Levene’s test is that the population means of <span class="math inline">\(Z\)</span> are identical for all groups. Isn’t that what what ANOVA is Yes. All that the Levene’s test does is run an ANOVA on the new variable <span class="math inline">\(Z_{ik}\)</span><a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a>.</p>
+<p>If we look at the output from Cogstat (Figure <a href="anova.html#fig:cogcompbydrug">11.6</a>), we see that the test is non-significant <span class="math inline">\(W = 1.47, p = .262\)</span>. So it looks like the homogeneity of variance assumption is fine.</p>
+</div>
+<div id="kruskalwallis" class="section level2 hasAnchor" number="11.7">
+<h2><span class="header-section-number">11.7</span> Testing for non-normal data with Kruskal-Wallis test<a href="anova.html#kruskalwallis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>CogStat automatically checked for normality, and we covered the Shapiro-Wilk test in Chapter <a href="ttest.html#shapiro">10.7</a>. However, let’s talk about removing the normality assumption. In the context of a one-way ANOVA, the easiest solution is probably to switch to a non-parametric test (i.e. one that doesn’t rely on any particular assumption about the kind of distribution involved). We’ve seen non-parametric tests before, in Chapter <a href="ttest.html#ttest">10</a>: when you only have two groups, the Wilcoxon test provides the non-parametric alternative that you need. When you’ve got three or more groups, though, you can use the <strong>Kruskal-Wallis rank sum test</strong> <span class="citation">(Kruskal &amp; Wallis, 1952)</span>.</p>
 <p>The Kruskal-Wallis test is a non-parametric alternative to the one-way ANOVA, and it is surprisingly similar to it in some ways. It is a rank-based test, meaning that it doesn’t actually look at the values of the data, but rather at the order of the data.</p>
 <p>In ANOVA, we started with <span class="math inline">\(Y_{ik}\)</span>, the value of the outcome variable for the <span class="math inline">\(i\)</span>th person in the <span class="math inline">\(k\)</span>th group. For the Kruskal-Wallis test, what we’ll do is rank order all of these <span class="math inline">\(Y_{ik}\)</span> values, and conduct our analysis on the ranked data. So let’s let <span class="math inline">\(R_{ik}\)</span> refer to the ranking given to the <span class="math inline">\(i\)</span>th member of the <span class="math inline">\(k\)</span>th group. Now, let’s calculate <span class="math inline">\(\bar{R}_k\)</span>, the average rank given to observations in the <span class="math inline">\(k\)</span>th group:
@@ -1315,8 +1328,9 @@ Figure 11.8: CogStat results for the non-normal data.
 </p>
 </div>
 <p>The boxplot shows we have a similar setup like with our original data but we see that the placebo group’s <code>mood_gain</code> is not normally distributed (because the Shapiro-Wilk test is significant with <span class="math inline">\(p &lt; 0.05\)</span>, and also the mood gain is now flattened on purpose for the sake of the exercise), so CogStat automatically calculates the non-parametric test. The results are:</p>
-<p><span class="math display">\[
-Result of the Kruskal-Wallis test: \chi^2(2, N = 18) = 13.31, p = .001
+<p><code>Result of the Kruskal-Wallis test:</code>
+<span class="math display">\[
+\chi^2(2, N = 18) = 13.31, p = .001
 \]</span></p>
 <p>This is pretty straightforward: the test statistic proves that the null hypothesis is false. Now let’s look at the post hoc results:</p>
 <p>We see that CogStat ran the <strong>Dunn’s Multiple Comparison Test</strong> for the non-normal data post hoc analysis. This is a pairwise comparison with 5% <span class="math inline">\(\alpha\)</span> significance level. From the table, you cannot read a specific statistic to show what are the differences between the groups and what is their direction, but you see a <span class="math inline">\(p\)</span>-value of significance.</p>
@@ -1332,6 +1346,36 @@ Result of the Kruskal-Wallis test: \chi^2(2, N = 18) = 13.31, p = .001
 <p>The Kruskal-Wallis test showed a significant effect of drug on mood gain (<em>H</em>(2, N=18) = 13.31, <em>p</em> = .001, <span class="math inline">\(\omega^2\)</span> = .747$). Post hoc tests indicated that Joyzepam produced a significantly larger mood change than both Anxifree (<em>p</em> = .024) and the placebo (<em>p</em> &lt; .001). We found no evidence that Anxifree performed better than the placebo (<em>p</em> = .175).</p>
 </blockquote>
 <p>And we’re done.</p>
+</div>
+<div id="anovaandt" class="section level2 hasAnchor" number="11.8">
+<h2><span class="header-section-number">11.8</span> On the relationship between ANOVA and the Student <span class="math inline">\(t\)</span>-test<a href="anova.html#anovaandt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>It’s something that a lot of people find kind of surprising but it’s worth knowing about: an ANOVA with two groups is identical to the Student <span class="math inline">\(t\)</span>-test. It’s not just that they are similar, but they are actually equivalent in every meaningful way. Suppose that, instead of running an ANOVA on our <code>mood_gain ~ drug</code> model, let’s instead do it using <code>therapy</code> as the predictor. If we run this in <code>Compare group</code>, CogStat automatically selects the independent sample <span class="math inline">\(t\)</span>-test, as we’ve seen in Chapter <a href="ttest.html#ttest">10</a>. Here’s the result when running the <code>therapy</code> model:</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:ttesttherapy"></span>
+<img src="resources/image/csmoodgaintherapybox.png" alt="CogStat results for the `therapy` model." width="100%" /><img src="resources/image/csmoodgaintherapyresult.png" alt="CogStat results for the `therapy` model." width="100%" />
+<p class="caption">
+Figure 11.9: CogStat results for the <code>therapy</code> model.
+</p>
+</div>
+<p>Having run a <span class="math inline">\(t\)</span>-test, we get <span class="math inline">\(t(16) = 1.31\)</span> (or more precisely, <span class="math inline">\(1.3068\)</span> – you’ll see why this is important). The <span class="math inline">\(p\)</span>-value is <span class="math inline">\(.210\)</span>. Should we run a one-way ANOVA <span class="math inline">\(F\)</span>-statistic in another software, we’d see <span class="math inline">\(F(1,16) = 1.71\)</span>, and the <span class="math inline">\(p\)</span>-value, which is – not surprisingly – <span class="math inline">\(.210\)</span>.</p>
+<p>But hang on, what is the story with the <span class="math inline">\(F\)</span> and <span class="math inline">\(t\)</span> stastistics? Actually, there is a fairly straightforward relationship here. If we square the <span class="math inline">\(t\)</span>-statistic:
+<span class="math display">\[
+1.3068 ^ 2
+\]</span></p>
+<p>we get the <span class="math inline">\(F\)</span>-statistic from before:
+<span class="math display">\[
+1.71
+\]</span></p>
+<p>Such fun!</p>
+</div>
+<div id="summary-7" class="section level2 hasAnchor" number="11.9">
+<h2><span class="header-section-number">11.9</span> Summary<a href="anova.html#summary-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Like any statistical test, analysis of variance relies on some assumptions about the data.</p>
+<ul>
+<li><strong>Normality</strong>. The residuals are assumed to be normally distributed. As we saw in Chapter <a href="ttest.html#shapiro">10.7</a>, we can assess this by looking at QQ plots or running a Shapiro-Wilk test. If normality fails, we can run a Kruskal-Wallis test instead (see Chapter <a href="anova.html#kruskalwallis">11.7</a>).</li>
+<li><strong>Homogeneity of variance</strong>. Notice that we’ve only got the one value for the population standard deviation (i.e. <span class="math inline">\(\sigma\)</span>), rather than allowing each group to have its own value (i.e. <span class="math inline">\(\sigma_k\)</span>). This is referred to as the homogeneity of variance or homoscedasticity assumption. ANOVA assumes that the population standard deviation is the same for all groups. See Chapter <a href="anova.html#levene">11.6</a>. If the homogeneity of variance assumption fails, CogStat runs the Kruskal-Wallis test instead (see Chapter <a href="anova.html#kruskalwallis">11.7</a>), similarly to when the normality assumption is violated.</li>
+<li><strong>Independence</strong>. The independence assumption is a little trickier. What it basically means is that, knowing one residual tells you nothing about any other residual. All of the <span class="math inline">\(\epsilon_{ik}\)</span> values are assumed to have been generated without any “regard for” or “relationship to” any of the other ones. There’s not an obvious or simple way to test for this, but there are some situations that are clear violations of this: for instance, if you have a repeated measures design, where each participant in your study appears in more than one condition, then independence doesn’t hold. When that happens, you need to use repeated measures ANOVA (accessible in <code>Compare repeated measures variable</code>).</li>
+</ul>
+<p>Some part of this chapter was influenced by <span class="citation">Sahai &amp; Ageel (2000)</span>, which is an excellent book for more advanced readers who are interested in understanding the mathematics behind ANOVA.</p>
 
 </div>
 </div>
@@ -1343,6 +1387,8 @@ Result of the Kruskal-Wallis test: \chi^2(2, N = 18) = 13.31, p = .001
 <li id="fn56"><p>Or, more accurately, <span class="math inline">\(1 + \frac{2}{df_2 - 2}\)</span>.<a href="anova.html#fnref56" class="footnote-back">↩︎</a></p></li>
 <li id="fn57"><p><a href="http://daniellakens.blogspot.com.au/2015/06/why-you-should-use-omega-squared.html" class="uri">http://daniellakens.blogspot.com.au/2015/06/why-you-should-use-omega-squared.html</a><a href="anova.html#fnref57" class="footnote-back">↩︎</a></p></li>
 <li id="fn58"><p><a href="https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf" class="uri">https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf</a><a href="anova.html#fnref58" class="footnote-back">↩︎</a></p></li>
+<li id="fn59"><p>There’s the closely related <em>Brown-Forsythe test</em> <span class="citation">(Brown &amp; Forsythe, 1974)</span> as well, but that’s not implemented in CogStat.<a href="anova.html#fnref59" class="footnote-back">↩︎</a></p></li>
+<li id="fn60"><p>What about the Brown-Forsythe test? Does that do anything particularly different? Nope. The only change from the Levene’s test is that it constructs the transformed variable <span class="math inline">\(Z\)</span> in a slightly different way, using deviations from the group <em>medians</em> rather than deviations from the group <em>means</em>.<a href="anova.html#fnref60" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

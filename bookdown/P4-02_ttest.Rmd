@@ -6,9 +6,9 @@ However, you're much more likely to find yourself in a situation where your outc
 
 The standard answer to the problem of comparing means is to use a $t$-test, which has several varieties depending on exactly what question you want to solve. As a consequence, the majority of this chapter focuses on different types of $t$-test:
 
--one-sample $t$-tests are discussed in Section \@ref(onesamplettest),
+-one-sample $t$-tests are discussed in Chapter \@ref(onesamplettest),
 -independent samples $t$-tests are discussed in Sections \@ref(studentttest) and \@ref(welchttest), and 
-- paired samples $t$-tests are discussed in Section \@ref(pairedsamplesttest).
+- paired samples $t$-tests are discussed in Chapter \@ref(pairedsamplesttest).
 
 After that, we'll talk a bit about Cohen's $d$, which is the standard measure of effect size for a $t$-test (Section \@ref(cohensd)).
 
@@ -132,12 +132,12 @@ $$
 $$
 If this quantity equals or is very close to 0, things are looking good for the null hypothesis. If this quantity is a long way away from 0, then it looks less likely that the null hypothesis is worth retaining. But how far away from zero should it be for us to reject $H_0$?
 
-To figure that out, we need to be a bit more sneaky, and we'll need to rely on those two pieces of background knowledge shared previously, namely that the raw data are normally distributed, and we know the value of the population standard deviation $\sigma$. If the null hypothesis is actually true, and the true mean is $\mu_0$, then these facts together mean that we know the complete population distribution of the data: a normal distribution with mean $\mu_0$ and standard deviation $\sigma$. Adopting the notation from Section \@ref(normal), a statistician might write this as:
+To figure that out, we need to be a bit more sneaky, and we'll need to rely on those two pieces of background knowledge shared previously, namely that the raw data are normally distributed, and we know the value of the population standard deviation $\sigma$. If the null hypothesis is actually true, and the true mean is $\mu_0$, then these facts together mean that we know the complete population distribution of the data: a normal distribution with mean $\mu_0$ and standard deviation $\sigma$. Adopting the notation from Chapter \@ref(normal), a statistician might write this as:
 $$
 X \sim \mbox{Normal}(\mu_0,\sigma^2)
 $$
 
-Okay, if that's true, then what can we say about the distribution of $\bar{X}$? Well, as we discussed earlier (see Section \@ref(clt)), the sampling distribution of the mean $\bar{X}$ is also normal, and has mean $\mu$. But the standard deviation of this sampling distribution $\mbox{SE}({\bar{X}})$, which is called the *standard error of the mean*, is
+Okay, if that's true, then what can we say about the distribution of $\bar{X}$? Well, as we discussed earlier (see Chapter \@ref(clt)), the sampling distribution of the mean $\bar{X}$ is also normal, and has mean $\mu$. But the standard deviation of this sampling distribution $\mbox{SE}({\bar{X}})$, which is called the *standard error of the mean*, is
 $$
 \mbox{SE}({\bar{X}}) = \frac{\sigma}{\sqrt{N}}
 $$
@@ -254,7 +254,7 @@ However, what if want an exact $p$-value? Well, back in the day, the tables of c
 
 All statistical tests make assumptions. Some tests make reasonable assumptions, while other tests do not. The one-sample $z$-test makes three basic assumptions:
 
-- *Normality*. As usually described, the $z$-test assumes that the true population distribution is normal.^[Strictly speaking, the $z$ test only requires that the sampling distribution of the mean be normally distributed; if the population is normal then it necessarily follows that the sampling distribution of the mean is also normal. However, as we saw when talking about the central limit theorem, it's entirely possible (even commonplace) for the sampling distribution to be normal even if the population distribution itself is non-normal. However, in light of the sheer ridiculousness of the assumption that the true standard deviation is known, there really isn't much point in going into details on this front!] is often pretty reasonable, and not only that, it's an assumption that we can check if we feel worried about it (see Section \@ref(shapiro)). 
+- *Normality*. As usually described, the $z$-test assumes that the true population distribution is normal.^[Strictly speaking, the $z$ test only requires that the sampling distribution of the mean be normally distributed; if the population is normal then it necessarily follows that the sampling distribution of the mean is also normal. However, as we saw when talking about the central limit theorem, it's entirely possible (even commonplace) for the sampling distribution to be normal even if the population distribution itself is non-normal. However, in light of the sheer ridiculousness of the assumption that the true standard deviation is known, there really isn't much point in going into details on this front!] is often pretty reasonable, and not only that, it's an assumption that we can check if we feel worried about it (see Chapter \@ref(shapiro)). 
 - *Independence*. The second assumption of the test is that the observations in your data set are not correlated with each other or related to each other in some funny way. This isn't as easy to check statistically: it relies a bit on good experimental design. An obvious example of something that violates this assumption is a data set where you "copy" the same observation over and over again in your data file: so you end up with a massive "sample size" consisting of only one genuine observation. More realistically, you have to ask yourself if it's really plausible to imagine that each observation is an entirely random sample from the population you're interested in. In practice, this assumption is never met; but we try our best to design studies that minimise the problems of correlated data. 
 - *Known standard deviation*. The third assumption of the $z$-test is that the true standard deviation of the population is known to the researcher. This is just stupid. In no real-world data analysis problem do you know the standard deviation $\sigma$ of some population but are completely ignorant about the mean $\mu$. In other words, this assumption is *always* wrong. 
 
@@ -367,7 +367,7 @@ $$
 t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
 $$
 
-The only thing that has changed in the equation is that instead of using the known true value $\sigma$, we use the estimate $\hat{\sigma}$. And if this estimate has been constructed from $N$ observations, then the sampling distribution turns into a $t$-distribution with $N-1$ **degrees of freedom** (df). The $t$ distribution is very similar to the normal distribution but has "heavier" tails, as discussed earlier in Section \@ref(otherdists) and illustrated in Figure \@ref(fig:ttestdist).
+The only thing that has changed in the equation is that instead of using the known true value $\sigma$, we use the estimate $\hat{\sigma}$. And if this estimate has been constructed from $N$ observations, then the sampling distribution turns into a $t$-distribution with $N-1$ **degrees of freedom** (df). The $t$ distribution is very similar to the normal distribution but has "heavier" tails, as discussed earlier in Chapter \@ref(otherdists) and illustrated in Figure \@ref(fig:ttestdist).
 
 Notice, though, that as df gets larger, the $t$-distribution starts to look identical to the standard normal distribution. This is as it should be: if you have a sample size of $N = 70000000$, then your "estimate" of the standard deviation would be pretty much perfect, right? So, you should expect that for large $N$, the $t$-test would behave the same way as a $z$-test. And that's exactly what happens!
 
@@ -768,7 +768,7 @@ The assumptions of the Welch test are very similar to those made by the Student 
 
 Regardless of whether we're talking about the Student test or the Welch test, an independent samples $t$-test is intended to be used in a situation where you have two samples that are, well, independent of one another. This situation arises naturally when participants are assigned randomly to one of two experimental conditions, but it provides a very poor approximation to other sorts of research designs. In particular, a repeated measures design -- in which each participant is measured (with respect to the same outcome variable) in both experimental conditions -- is not suited for analysis using independent samples $t$-tests.
 
-For example, we might be interested in whether listening to music reduces people's working memory capacity. To that end, we could measure each person's working memory capacity in two conditions: with music, and without music. In an experimental design such as this one,^[This design is very similar to the one in Section \@ref(mcnemar) that motivated the McNemar test. This should be no surprise. Both are standard repeated measures designs involving two measurements. The only difference is that this time our outcome variable is interval scale (working memory capacity) rather than a binary, nominal scale variable (a yes-or-no question).] each participant appears in *both* groups. This requires us to approach the problem in a different way; by using the **paired samples $t$-test**. 
+For example, we might be interested in whether listening to music reduces people's working memory capacity. To that end, we could measure each person's working memory capacity in two conditions: with music, and without music. In an experimental design such as this one,^[This design is very similar to the one in Chapter \@ref(mcnemar) that motivated the McNemar test. This should be no surprise. Both are standard repeated measures designs involving two measurements. The only difference is that this time our outcome variable is interval scale (working memory capacity) rather than a binary, nominal scale variable (a yes-or-no question).] each participant appears in *both* groups. This requires us to approach the problem in a different way; by using the **paired samples $t$-test**. 
 
 We'll use the data set this time from Dr Chico's class. In her class, students take two very challenging tests, one early in the semester and one later. Her theory is that the first test is a bit of a "wake-up call" for students: when they realise how hard her class really is, they'll work harder for the second test and get a better mark. Is she right? To test this, let's load the `chico.csv` file into CogStat.
 

@@ -115,6 +115,7 @@ tab:anovatableresults
 tab:unnamed-chunk-32
 fig:unnamed-chunk-33
 fig:kruskalclinical
+fig:ttesttherapy
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -288,7 +289,10 @@ anovaeffect
 eta-squared
 omega-squared
 posthoc
+levene
 kruskalwallis
+anovaandt
+summary-7
 regression
 anova2
 bayes

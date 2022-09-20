@@ -4,7 +4,7 @@ This chapter introduces one of the most widely used statistical tools known as "
 
 The term ANOVA is a little misleading in two respects. Firstly, although the technique's name refers to variances, ANOVA is concerned with investigating differences in means. Secondly, several different things out there are all referred to as ANOVAs, some of which have only a very tenuous connection to one another. Later in the book, we'll encounter various ANOVA methods that apply in quite different situations. Still, for this chapter, we'll only consider the simplest form of ANOVA, in which we have several different groups of observations. We're interested in finding out whether those groups differ in terms of some outcome variable of interest. This is the question that is addressed by a **one-way ANOVA**. 
 
-The structure of this chapter is as follows: After introducing the data, we'll describe the mechanics of how a one-way ANOVA actually works. The remainder of the chapter discusses a range of important topics that inevitably arise when running an ANOVA, namely how to calculate effect sizes (Section \@ref(anovaeffect)), post hoc tests and corrections for multiple comparisons (Section \@ref(posthoc)) and the assumptions that ANOVA relies upon (Section \@ref(anovaassumptions)). We'll also talk about how to check those assumptions and some of the things you can do if the assumptions are violated (Sections \@ref(levene) to \@ref(kruskalwallis)). At the end of the chapter, we'll talk a little about the relationship between ANOVA and other statistical tools (Section \@ref(anovaandt)).
+After introducing the data, we'll describe the mechanics of the one-way ANOVA, how to calculate effect sizes and post hoc tests. We'll also talk about how to check for normality and homoscedasticity.
 
 Now let's run a clinical trial!
 
@@ -54,11 +54,11 @@ This null hypothesis is a lot trickier to test than any of the ones we've seen p
 
 We'll use $G$ to refer to the total number of groups. For our data set, there are three drugs, so there are $G=3$ groups. Next, we'll use $N$ to refer to the total sample size: there are a total of $N=18$ people in our data set. Similarly, let's use $N_k$ to denote the number of people in the $k$-th group. In our fake clinical trial, the sample size is $N_k = 6$ for all three groups.^[When all groups have the same number of observations, the experimental design is said to be "balanced". Balance isn't such a big deal for one-way ANOVA but becomes more important when you start doing more complicated ANOVAs.] Finally, we'll use $Y$ to denote the outcome variable (the mood change). Specifically, we'll use $Y_{ik}$ to refer to the mood change experienced by the $i$-th member of the $k$-th group. Similarly, we'll use $\bar{Y}$ to be the average mood change, taken across all 18 people in the experiment, and $\bar{Y}_k$ to refer to the average mood change experienced by the 6 people in group $k$.  
 
-Excellent. Now that we've got our notation sorted out, we can start writing down formulas. To start with, let's recall the formula for the variance that we used in Section \@ref(var), way back in those kinder days when we were just doing descriptive statistics. The sample variance of $Y$ is defined as follows:
+Excellent. Now that we've got our notation sorted out, we can start writing down formulas. To start with, let's recall the formula for the variance that we used in Chapter \@ref(var), way back in those kinder days when we were just doing descriptive statistics. The sample variance of $Y$ is defined as follows:
 $$
 \mbox{Var}(Y) = \frac{1}{N} \sum_{k=1}^G \sum_{i=1}^{N_k} \left(Y_{ik} - \bar{Y} \right)^2
 $$
-This formula looks pretty much identical to the formula for the variance in Section \@ref(var). The only difference is that we are now summing over groups (i.e. values for $k$) and over the people within the groups (i.e. values for $i$).
+This formula looks pretty much identical to the formula for the variance in Chapter \@ref(var). The only difference is that we are now summing over groups (i.e. values for $k$) and over the people within the groups (i.e. values for $i$).
 
 Let's consider a simple table to see how this formula works on our clinical trial data set. The table below shows the person, the drug they were given, and their mood change. 
 
@@ -377,7 +377,7 @@ F = \frac{\hat{Q} + \hat\sigma^2}{\hat\sigma^2}
 $$
 where the true value $Q=0$ if the null hypothesis is true, and $Q > 0$ if the alternative hypothesis is true [e.g. ch. 10 @Hays1994]. Therefore, at a bare minimum *the $F$ value must be larger than 1* to have any chance of rejecting the null hypothesis. Note that this *doesn't* mean that it's impossible to get an $F$-value less than 1. What it means is that, if the null hypothesis is true the sampling distribution of the $F$ ratio has a mean of 1,^[Or, more accurately, $1 + \frac{2}{df_2 - 2}$.] and so we need to see $F$-values larger than 1 in order to safely reject the null.
 
-To be a bit more precise about the sampling distribution, notice that if the null hypothesis is true, both MS$_b$ and MS$_w$ are estimators of the variance of the residuals $\epsilon_{ik}$. If those residuals are normally distributed, then you might suspect that the estimate of the variance of $\epsilon_{ik}$ is chi-square distributed. Because (as discussed in Section \@ref(otherdists)) that's what a chi-square distribution *is*: it's what you get when you square a bunch of normally-distributed things and add them up. And since the $F$ distribution is (again, by definition) what you get when you take the ratio between two things that are $\chi^2$ distributed, we have our sampling distribution.
+To be a bit more precise about the sampling distribution, notice that if the null hypothesis is true, both MS$_b$ and MS$_w$ are estimators of the variance of the residuals $\epsilon_{ik}$. If those residuals are normally distributed, then you might suspect that the estimate of the variance of $\epsilon_{ik}$ is chi-square distributed. Because (as discussed in Chapter \@ref(otherdists)) that's what a chi-square distribution *is*: it's what you get when you square a bunch of normally-distributed things and add them up. And since the $F$ distribution is (again, by definition) what you get when you take the ratio between two things that are $\chi^2$ distributed, we have our sampling distribution.
 
 ## Interpreting our results in CogStat{#introduceaov}
 
@@ -418,7 +418,7 @@ We've seen this before. Let us explore the hypothesis test results.
 </div>
 ```
 
-For now, let's stop here. We'll come back to the post hoc tests later. For now, let's just focus on the hypothesis test results. We can see that the Shapiro-Wilk normality test was run on each of the groups. Testing the normality assumption is relatively straightforward. We covered the theory behind it in Section \@ref(shapiro). The Levene test was run to check for homogeneity of variance across groups. The one-way ANOVA was run, and the result was that the $F$-value was 18.61, and the $p$-value was less than 0.001.
+For now, let's stop here. We'll come back to the post hoc tests later. For now, let's just focus on the hypothesis test results. We can see that the Shapiro-Wilk normality test was run on each of the groups. Testing the normality assumption is relatively straightforward. We covered the theory behind it in Chapter \@ref(shapiro). The Levene test was run to check for homogeneity of variance across groups. The one-way ANOVA was run, and the result was that the $F$-value was 18.61, and the $p$-value was less than 0.001.
 
 At this point, we're basically done. (If you ran the test with us, you've seen something about post hoc tests. We will discuss them later.) Having completed our calculations, it's traditional to organise all these numbers into an ANOVA table like the one in Table \@ref(tab:anovatableresults). For our clinical trial data, the ANOVA table would look like this:
 
@@ -565,6 +565,20 @@ What we would write up next to our ANOVA result is the following:
 
 > Post hoc tests indicated that Joyzepam produced a significantly larger mood change than both Anxifree (*p* = .002) and the placebo (*p* < .001). We found no evidence that Anxifree performed better than the placebo (*p* = .31).
 
+
+## Checking the homogeneity of variance assumption{#levene}
+
+There's more than one way to skin a cat, as the saying goes, and more than one way to test the homogeneity of variance assumption, too. The most commonly used test for this is the **Levene test** [@Levene1960], which CogStat uses.^[There's the closely related *Brown-Forsythe test* [@BrownForsythe1974] as well, but that's not implemented in CogStat.]
+
+Levene's test is shockingly simple. Suppose we have our outcome variable $Y_{ik}$. All we do is define a new variable, say, $Z_{ik}$, corresponding to the absolute deviation from the group mean:
+$$
+Z_{ik} = \left| Y_{ik} - \bar{Y}_k \right|
+$$
+
+The value of $Z_{ik}$ is a measure of how the $i$-th observation in the $k$-th group deviates from its group mean. And our null hypothesis is that all groups have the same variance; that is, the same overall deviations from the group means. So the null hypothesis in a Levene's test is that the population means of $Z$ are identical for all groups. Isn't that what what ANOVA is Yes. All that the Levene's test does is run an ANOVA on the new variable $Z_{ik}$^[What about the Brown-Forsythe test? Does that do anything particularly different? Nope. The only change from the Levene's test is that it constructs the transformed variable $Z$ in a slightly different way, using deviations from the group *medians* rather than deviations from the group *means*.]. 
+
+If we look at the output from Cogstat (Figure \@ref(fig:cogcompbydrug)), we see that the test is non-significant $W = 1.47, p = .262$. So it looks like the homogeneity of variance assumption is fine.
+
 ## Testing for non-normal data with Kruskal-Wallis test{#kruskalwallis}
 
 CogStat automatically checked for normality, and we covered the Shapiro-Wilk test in Chapter \@ref(shapiro). However, let's talk about removing the normality assumption. In the context of a one-way ANOVA, the easiest solution is probably to switch to a non-parametric test (i.e. one that doesn't rely on any particular assumption about the kind of distribution involved). We've seen non-parametric tests before, in Chapter \@ref(ttest): when you only have two groups, the Wilcoxon test provides the non-parametric alternative that you need. When you've got three or more groups, though, you can use the **Kruskal-Wallis rank sum test** [@KruskalWallis1952].
@@ -632,8 +646,9 @@ knitr::include_graphics(c(
 
 The boxplot shows we have a similar setup like with our original data but we see that the placebo group's `mood_gain` is not normally distributed (because the Shapiro-Wilk test is significant with $p < 0.05$, and also the mood gain is now flattened on purpose for the sake of the exercise), so CogStat automatically calculates the non-parametric test. The results are:
 
+`Result of the Kruskal-Wallis test:`
 $$
-Result of the Kruskal-Wallis test: \chi^2(2, N = 18) = 13.31, p = .001
+\chi^2(2, N = 18) = 13.31, p = .001
 $$
 
 This is pretty straightforward: the test statistic proves that the null hypothesis is false. Now let's look at the post hoc results:
@@ -654,3 +669,39 @@ Our write-up would be something along the lines of:
 > The Kruskal-Wallis test showed a significant effect of drug on mood gain (*H*(2, N=18) = 13.31, *p* = .001, $\omega^2$ = .747$). Post hoc tests indicated that Joyzepam produced a significantly larger mood change than both Anxifree (*p* = .024) and the placebo (*p* < .001). We found no evidence that Anxifree performed better than the placebo (*p* = .175).
 
 And we're done.
+
+## On the relationship between ANOVA and the Student $t$-test{#anovaandt}
+
+It's something that a lot of people find kind of surprising but it's worth knowing about: an ANOVA with two groups is identical to the Student $t$-test. It's not just that they are similar, but they are actually equivalent in every meaningful way. Suppose that, instead of running an ANOVA on our `mood_gain ~ drug` model, let's instead do it using `therapy` as the predictor. If we run this in `Compare group`, CogStat automatically selects the independent sample $t$-test, as we've seen in Chapter \@ref(ttest). Here's the result when running the `therapy` model:
+
+```{r ttesttherapy, echo=FALSE, fig.cap="CogStat results for the `therapy` model.", fig.align="center", out.width="100%", fig.show="hold"}
+knitr::include_graphics(c(
+    "resources/image/csmoodgaintherapybox.png",
+    "resources/image/csmoodgaintherapyresult.png"))
+```
+
+Having run a $t$-test, we get $t(16) = 1.31$ (or more precisely, $1.3068$ -- you'll see why this is important). The $p$-value is $.210$. Should we run a one-way ANOVA $F$-statistic in another software, we'd see $F(1,16) = 1.71$, and the $p$-value, which is -- not surprisingly -- $.210$. 
+
+But hang on, what is the story with the $F$ and $t$ stastistics? Actually, there is a fairly straightforward relationship here. If we square the $t$-statistic:
+$$
+1.3068 ^ 2
+$$
+
+we get the $F$-statistic from before:
+$$
+1.71
+$$
+
+Such fun!
+
+
+
+## Summary
+
+Like any statistical test, analysis of variance relies on some assumptions about the data.
+
+- **Normality**. The residuals are assumed to be normally distributed. As we saw in Chapter \@ref(shapiro), we can assess this by looking at QQ plots or running a Shapiro-Wilk test. If normality fails, we can run a Kruskal-Wallis test instead (see Chapter \@ref(kruskalwallis)).
+- **Homogeneity of variance**. Notice that we've only got the one value for the population standard deviation (i.e. $\sigma$), rather than allowing each group to have its own value (i.e. $\sigma_k$). This is referred to as the homogeneity of variance or homoscedasticity assumption. ANOVA assumes that the population standard deviation is the same for all groups. See Chapter \@ref(levene). If the homogeneity of variance assumption fails, CogStat runs the Kruskal-Wallis test instead (see Chapter \@ref(kruskalwallis)), similarly to when the normality assumption is violated.
+- **Independence**. The independence assumption is a little trickier. What it basically means is that, knowing one residual tells you nothing about any other residual. All of the $\epsilon_{ik}$ values are assumed to have been generated without any "regard for" or "relationship to" any of the other ones. There's not an obvious or simple way to test for this, but there are some situations that are clear violations of this: for instance, if you have a repeated measures design, where each participant in your study appears in more than one condition, then independence doesn't hold. When that happens, you need to use repeated measures ANOVA (accessible in `Compare repeated measures variable`).
+
+Some part of this chapter was influenced by @Sahai2000, which is an excellent book for more advanced readers who are interested in understanding the mathematics behind ANOVA.
