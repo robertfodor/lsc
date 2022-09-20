@@ -113,6 +113,8 @@ fig:cogcompbydrugdescr
 fig:cogcompbydrug
 tab:anovatableresults
 tab:unnamed-chunk-32
+fig:unnamed-chunk-33
+fig:kruskalclinical
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -285,7 +287,8 @@ introduceaov
 anovaeffect
 eta-squared
 omega-squared
-tukey
+posthoc
+kruskalwallis
 regression
 anova2
 bayes

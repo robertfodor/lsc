@@ -36,7 +36,7 @@ Sidenote. This assumption of equal variances is Fisher's ANOVA. When we are expl
 
 Back to our Fisher's one-way ANOVA. Mathematically, we write this null hypothesis like this:
 $$
-\begin{array}{rcl}
+\begin{array}
 H_0 &:& \mbox{it is true that } \mu_P = \mu_A = \mu_J
 \end{array}
 $$
@@ -418,7 +418,7 @@ We've seen this before. Let us explore the hypothesis test results.
 </div>
 ```
 
-For now, let's stop here. 
+For now, let's stop here. We'll come back to the post hoc tests later. For now, let's just focus on the hypothesis test results. We can see that the Shapiro-Wilk normality test was run on each of the groups. Testing the normality assumption is relatively straightforward. We covered the theory behind it in Section \@ref(shapiro). The Levene test was run to check for homogeneity of variance across groups. The one-way ANOVA was run, and the result was that the $F$-value was 18.61, and the $p$-value was less than 0.001.
 
 At this point, we're basically done. (If you ran the test with us, you've seen something about post hoc tests. We will discuss them later.) Having completed our calculations, it's traditional to organise all these numbers into an ANOVA table like the one in Table \@ref(tab:anovatableresults). For our clinical trial data, the ANOVA table would look like this:
 
@@ -438,7 +438,7 @@ CogStat doesn't produce this table for you, or give the sums of squares or mean 
 
 A pretty standard way of reporting this result would be to write something like this:
 
-> One-way ANOVA showed a significant effect of drug on mood gain ($F(2,15) = 18.61, p<.001$).
+> One-way ANOVA showed a significant effect of drug on mood gain (*F*(2,15) = 18.61, *p* < .001).
 
 Sigh. So much work for one short sentence (if you do it manually).
 
@@ -466,7 +466,7 @@ can be interpreted as if it referred to the *magnitude* of a Pearson correlation
 
 ### Omega-squared
 
-There's an interesting blog post^[http://daniellakens.blogspot.com.au/2015/06/why-you-should-use-omega-squared.html] by Daniel Lakens suggesting that eta-squared itself is perhaps not the best measure of effect size in real world data analysis, but rather **omega-squared** is. CogStat also opts for omega-squared ($\omega^2$) as the default measure of effect size in one-way ANOVA.
+There's an interesting blog post^[http://daniellakens.blogspot.com.au/2015/06/why-you-should-use-omega-squared.html] by Daniel Lakens suggesting that eta-squared itself is perhaps not the best measure of effect size in real world data analysis, but rather **omega-squared** ($\omega^2$) is. CogStat also opts for omega-squared as the default measure of effect size in one-way ANOVA.
 
 The formula for $\omega^2$ is a little more complicated than for $\eta^2$, because it takes into account the degrees of freedom of the two sums of squares. The formula is specific for between-subjects, fixed effects designs. The formula is:
 
@@ -489,10 +489,10 @@ CogStat will give you this exact omega-squared value when running the one-way AN
 
 $\omega^2$ will take on values between $0$ and $1$, where 0 indicates there is no effect whatsoever. It is wise to quote the effect size when writing up our results in APA styled psychology research^[https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf]. For example, we could write:
 
-> One-way ANOVA showed a significant effect of drug on mood gain ($F(2,15) = 18.61, p<.001, $\omega^2$ = 0.662$).
+> One-way ANOVA showed a significant effect of drug on mood gain (*F*(2,15) = 18.61, p < .001, $\omega^2$ = 0.662).
 
 
-## Post hoc tests{#posthoc #tukey}
+## Post hoc tests{#posthoc}
 
 Any time you run an ANOVA with more than two groups, and you end up with a significant effect, the first thing you'll probably want to ask is which groups are actually different from one another.
 
@@ -545,9 +545,10 @@ knitr::kable(
         c(1.2235, 0.1901, -0.5765),
         c("True", "False", "True")
     ),
-    col.names = c("group1", "group2", "meandiff", "p-adj", 
-            "lower", "upper", "reject")
-,   caption = "Multiple Comparison of Means - Tukey HSD, FWER=0.05")
+    col.names = c("group1", "group2", "meandiff", "p-adj",
+            "lower", "upper", "reject"),
+    align = c("llccccc"),
+    caption = "Multiple Comparison of Means - Tukey HSD, FWER=0.05")
 ```
 
 The first column shows one of the groups in our comparison, namely the drug. The second column shows which other group we are comparing against in pair. The third column is our statistic (the mean difference), and the fourth column is the adjusted $p$ value. The fifth and sixth columns show the lower and upper bounds of the 95\% confidence interval for the mean difference. The final column shows whether or not we reject the null hypothesis that the mean difference is zero.
@@ -562,5 +563,94 @@ The second line, from Anxifree towards the placebo, we see a negative mean diffe
 
 What we would write up next to our ANOVA result is the following:
 
-> Post hoc tests indicated that Joyzepam produced a significantly larger mood change than both Anxifree ($p = .002$) and the placebo ($p < .001$). We found no evidence that Anxifree performed better than the placebo ($p = .31$).
+> Post hoc tests indicated that Joyzepam produced a significantly larger mood change than both Anxifree (*p* = .002) and the placebo (*p* < .001). We found no evidence that Anxifree performed better than the placebo (*p* = .31).
 
+## Testing for non-normal data with Kruskal-Wallis test{#kruskalwallis}
+
+CogStat automatically checked for normality, and we covered the Shapiro-Wilk test in Chapter \@ref(shapiro). However, let's talk about removing the normality assumption. In the context of a one-way ANOVA, the easiest solution is probably to switch to a non-parametric test (i.e. one that doesn't rely on any particular assumption about the kind of distribution involved). We've seen non-parametric tests before, in Chapter \@ref(ttest): when you only have two groups, the Wilcoxon test provides the non-parametric alternative that you need. When you've got three or more groups, though, you can use the **Kruskal-Wallis rank sum test** [@KruskalWallis1952].
+
+The Kruskal-Wallis test is a non-parametric alternative to the one-way ANOVA, and it is surprisingly similar to it in some ways. It is a rank-based test, meaning that it doesn't actually look at the values of the data, but rather at the order of the data.
+
+In ANOVA, we started with $Y_{ik}$, the value of the outcome variable for the $i$th person in the $k$th group. For the Kruskal-Wallis test, what we'll do is rank order all of these $Y_{ik}$ values, and conduct our analysis on the ranked data. So let's let $R_{ik}$ refer to the ranking given to the $i$th member of the $k$th group. Now, let's calculate $\bar{R}_k$, the average rank given to observations in the $k$th group:
+$$
+\bar{R}_k = \frac{1}{N_K} \sum_{i} R_{ik}
+$$
+and let's also calculate $\bar{R}$, the grand mean rank:
+$$
+\bar{R} = \frac{1}{N} \sum_{i} \sum_{k} R_{ik}
+$$
+
+Now that we've done this, we can calculate the squared deviations from the grand mean rank $\bar{R}$. When we do this for the individual scores -- i.e., if we calculate $(R_{ik} - \bar{R})^2$ -- what we have is a "nonparametric" measure of how far the $ik$-th observation deviates from the grand mean rank. When we calculate the squared deviation of the group means from the grand means -- i.e., if we calculate $(\bar{R}_k  - \bar{R} )^2$ -- then what we have is a nonparametric measure of how much the *group* deviates from the grand mean rank. With this in mind, let's follow the same logic that we did with ANOVA, and define our *ranked* sums of squares measures in much the same way that we did earlier. First, we have our "total ranked sums of squares":
+$$
+\mbox{RSS}_{tot} = \sum_k \sum_i ( R_{ik} - \bar{R} )^2
+$$
+and we can define the "between groups ranked sums of squares" like this:
+$$
+\begin{array}{rcl}
+\mbox{RSS}_{b} &=& \sum_k \sum_i ( \bar{R}_k  - \bar{R} )^2 \\
+&=& \sum_k N_k ( \bar{R}_k  - \bar{R} )^2 
+\end{array}
+$$
+
+So, if the null hypothesis is true and there are no true group differences at all, you'd expect the between group rank sums $\mbox{RSS}_{b}$ to be very small, much smaller than the total rank sums $\mbox{RSS}_{tot}$. Qualitatively this is very much the same as what we found when we went about constructing the ANOVA $F$-statistic; but for technical reasons the Kruskal-Wallis test statistic, usually denoted $H$ (but let's not conflate with "hypothesis"!). In CogStat, you'll see $\chi^2$. The official formula is: 
+$$
+H = (N - 1) \times \frac{\mbox{RSS}_b}{\mbox{RSS}_{tot}}
+$$
+and, if the null hypothesis is true, then the sampling distribution of $H$ is *approximately* chi-square with $G-1$ degrees of freedom (where $G$ is the number of groups). The larger the value of $H$, the less consistent the data are with null hypothesis, so this is a one-sided test: we reject our null hypothesis when $H$ is sufficiently large.
+
+At a conceptual level, this is the right way to think about how the test works. However, from a purely mathematical perspective it's needlessly complicated. The equation for $H$ can be rewritten as
+$$
+H = \frac{12}{N(N-1)} \sum_k N_k {\bar{R}_k}^2  -  3(N+1)
+$$
+
+The story is true when there are no ties in the raw data. That is, if there are no two observations that have exactly the same value. If there *are* ties, then we have to introduce a correction factor to these calculations. At this point, even the most diligent reader might have stopped caring (or at least formed the opinion that the tie-correction factor is something that doesn't require their immediate attention). So let us omit the tedious details about *why* it's done this way. We can look at a frequency table for the raw data (under `Explore variable` function), and let $f_j$ be the number of observations that have the $j$-th unique value. 
+
+```{r echo=FALSE, fig.cap="Frequency table for the raw data (`mood_gain`).", fig.align="center", out.width="100%"}
+knitr::include_graphics("resources/image/cogstatmoodgainfrequency.png")
+```
+
+Looking at this table, notice that the the value of $0.3$ (and $0.6$, $1.3$, $1.4$) has a frequency of 2. This is telling us that two people's mood increased by 0.3 (and 0.6...). More to the point, note that we can say $f_3 = 2$, where 3 is the index of the value (i.e. row number 3). Yay. So, now that we know this, the tie correction factor (TCF) is:
+$$
+\mbox{TCF} = 1 - \frac{\sum_j {f_j}^3 - f_j}{N^3 - N}
+$$
+The tie-corrected value of the Kruskal-Wallis statistic obtained by dividing the value of $H$ by this quantity.
+
+If the data was non-normal, CogStat would automatically calculate the non-parametric test. However, it's normal, so you'll just have to trust us that the results are
+$$
+H = 12.076
+$$
+
+However, it's good to take a look at how CogStat would display the results for non-normal data, particularly because the post hoc test results are different.
+
+So, here's some tweaking of our clinical trial data with the placebo results not meeting the normality assumption: [`clinical_nonnormal.csv`](resources/data/clinical_nonnormal.csv) (the placebo group's data is more "flat" when plotted). Let's load it in CogStat and explore the `Compare groups` result set.
+
+```{r kruskalclinical, echo=FALSE, fig.cap="CogStat results for the non-normal data.", fig.align="center", out.width="100%", fig.show="hold"}
+knitr::include_graphics(c(
+    "resources/image/cogstatclinicalnonnormal.png",
+    "resources/image/cogstatclinicalnonnormalbox.png"))
+```
+
+The boxplot shows we have a similar setup like with our original data but we see that the placebo group's `mood_gain` is not normally distributed (because the Shapiro-Wilk test is significant with $p < 0.05$, and also the mood gain is now flattened on purpose for the sake of the exercise), so CogStat automatically calculates the non-parametric test. The results are:
+
+$$
+Result of the Kruskal-Wallis test: \chi^2(2, N = 18) = 13.31, p = .001
+$$
+
+This is pretty straightforward: the test statistic proves that the null hypothesis is false. Now let's look at the post hoc results:
+
+We see that CogStat ran the **Dunn's Multiple Comparison Test** for the non-normal data post hoc analysis. This is a pairwise comparison with 5% $\alpha$ significance level. From the table, you cannot read a specific statistic to show what are the differences between the groups and what is their direction, but you see a $p$-value of significance.
+
+So what you can do, is list all the pairs where $p$ is significant, and then you can look at the boxplot to see the direction of the difference (or more scientifically, the descriptive statistics results where you have the means for each group). 
+
+For example, we see two pairs, where the $p$ is significant ($p < 0.05$):
+
+- The first pair is Joyzepam and Anxifree, where $p = 0.024$ (regardless if you read it by column or row). This means that the difference between the two groups is significant, but we don't know the direction of the difference. We can look at the boxplot to see that the Joyzepam group has a higher mean than the Anxifree group, and we can quantify it by looking at the means: $0.72$ for Anxifree, and $1.48$ for Joyzepam. So Joyzepam is more effective than Anxifree, and the result is significant.
+- The second (and final) pair is Joyzepam and the placebo, where $p = 0.000$, or more formally, $p < 0.001$. This means that the difference between the two groups is significant, and we can see that Joyzepam ($1.48$) has a higher mean than the placebo ($0.28$). So Joyzepam is more effective than the placebo, and the result is significant.
+
+Our effect size is calculated with omega-squared as before, which, for this altered data set is: $0.747$.
+
+Our write-up would be something along the lines of:
+
+> The Kruskal-Wallis test showed a significant effect of drug on mood gain (*H*(2, N=18) = 13.31, *p* = .001, $\omega^2$ = .747$). Post hoc tests indicated that Joyzepam produced a significantly larger mood change than both Anxifree (*p* = .024) and the placebo (*p* < .001). We found no evidence that Anxifree performed better than the placebo (*p* = .175).
+
+And we're done.
