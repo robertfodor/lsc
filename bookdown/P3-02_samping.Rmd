@@ -79,7 +79,7 @@ Let's consider a slightly different case by setting aside the thorny methodologi
 The idea is quite simple. Let's say we're talking about IQ scores. To a psychologist, the population of interest is a group of actual humans with IQ scores. A statistician "simplifies" this by operationally defining the population as the probability distribution depicted in Figure \@ref(fig:IQdista). IQ tests are designed so that the average IQ is 100, the standard deviation of IQ scores is 15, and the distribution of IQ scores is normal. These values are referred to as the **population parameters** because they are characteristics of the entire population. That is, we say that the population mean $\mu$ is 100, and the population standard deviation $\sigma$ is 15.
 
 ```{r IQdista, fig.cap="The population distribution of IQ scores.", echo=FALSE, fig.align='center', out.width='100%'}
-knitr::include_graphics("resources/image/IQdista.svg")
+knitr::include_graphics("resources/image/IQdista.png")
 ```
 
 Now let us run an experiment. We select 100 people at random and administer an IQ test, giving us a simple random sample from the population. The sample would consist of a collection of numbers like this:
@@ -88,7 +88,7 @@ Now let us run an experiment. We select 100 people at random and administer an I
 ```
 
 ```{r IQdistb, fig.cap="A sample of 100 observations drawn from the population distribution of IQ scores.", echo=FALSE, fig.align='center', out.width='100%'}
-knitr::include_graphics("resources/image/IQdistb.svg")
+knitr::include_graphics("resources/image/IQdistb.png")
 ```
 
 Each IQ score is sampled from a normal distribution with a mean of 100 and a standard deviation of 15. So if we plot a histogram of the sample, we get something like the one shown in Figure \@ref(fig:IQdistb). As you can see, the histogram is *roughly* the proper shape, but it's a very crude approximation to the actual population distribution shown in Figure \@ref(fig:IQdista). When calculating the mean of the sample, we get a number that is relatively close to the population mean of 100 but not identical. In this case, it turns out that the people in the sample have a mean IQ of 98.5, and the standard deviation of their IQ scores is 15.9. These **sample statistics** are properties of our data set, and although they are reasonably similar to the actual population values, they are not the same. In general, sample statistics are the things you can calculate from your data set, and the population parameters are the things you want to learn about.
@@ -100,7 +100,7 @@ In the previous section, we discussed the results of one fictitious IQ experimen
 The obvious answer is to collect more data. Suppose that we ran a much larger experiment, this time measuring the IQs of 10,000 people. For an experiment with a sample size of `n = 10000`, and a population with `mean = 100` and `sd = 15`, we get the following distribution:
 
 ```{r IQdistc, fig.cap="A sample of 10,000 observations drawn from the population distribution of IQ scores.", echo=FALSE, fig.align='center', out.width='100%'}
-knitr::include_graphics("resources/image/IQdistc.svg")
+knitr::include_graphics("resources/image/IQdistc.png")
 ```
 
 Large samples generally give you better information. It feels silly saying it because it's so bloody obvious that it shouldn't need to be said. It's such an obvious point that when Jacob Bernoulli -- one of the founders of probability theory -- formalised this idea back in 1713, he was kind of a jerk about it. Here's how he described the fact that we all share this intuition:
@@ -238,10 +238,13 @@ However, there's something we've been glossing over so far. All examples up to t
 To give you a sense of this, let's run some simulations. We start with the "ramped" distribution shown in the histogram in Figure \@ref(fig:cltdemo). As you can see by comparing the triangular-shaped histogram to the bell curve plotted by the black line, the population distribution doesn't look very much like a normal distribution at all. Next, let us simulate the results of a large number of experiments. In each experiment, we draw $N=2$ samples from this distribution and then calculate the sample mean. Figure \@ref(fig:cltdemo) panel b plots the histogram of these sample means (i.e. the sampling distribution of the mean for $N=2$). This time, the histogram produces a $\cap$-shaped distribution: it's still not normal, but it's a lot closer to the black line than the population distribution in Figure \@ref(fig:cltdemo) panel a. When we increase the sample size to $N=4$, the sampling distribution of the mean is very close to normal (Figure \@ref(fig:cltdemo) panel c), and by the time we reach a sample size of $N=8$ it's almost perfectly normal. In other words, as long as your sample size isn't tiny, the sampling distribution of the mean will be approximately normal no matter what your population distribution looks like!
 
 ```{r cltdemo, fig.cap="A demonstration of the central limit theorem. In panel a, we have a non-normal population distribution; and panels b-d show the sampling distribution of the mean for samples of size 2,4 and 8, for data drawn from the distribution in panel a. As you can see, even though the original population distribution is non-normal, the sampling distribution of the mean becomes pretty close to normal by the time you have a sample of even 4 observations. ", echo=FALSE, fig.show="hold", fig.align="center", out.width="50%"}
-knitr::include_graphics(c("resources/image/cltDemo-a.svg",
-						"resources/image/cltDemo-b.svg",
-						"resources/image/cltDemo-c.svg",
-						"resources/image/cltDemo-d.svg"))
+knitr::include_graphics(c(
+     "resources/image/cltDemo-a.png",
+     "resources/image/cltDemo-b.png",
+     "resources/image/cltDemo-c.png",
+     "resources/image/cltDemo-d.png"
+     )
+)
 ```
 
 Based on these figures, it seems like we have evidence for all of the following claims about the sampling distribution of the mean:
