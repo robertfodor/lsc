@@ -116,6 +116,10 @@ tab:unnamed-chunk-32
 fig:unnamed-chunk-33
 fig:kruskalclinical
 fig:ttesttherapy
+fig:parentscatters
+fig:parentscatterswithresiduals
+fig:residualanalysisplot
+fig:parentregressionresults
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -294,6 +298,10 @@ kruskalwallis
 anovaandt
 summary-7
 regression
+introregression
+regressionestimation
+regressioninterpretation
+r2
 anova2
 bayes
 bayesianhypothesistests

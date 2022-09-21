@@ -6,7 +6,7 @@ Now that we've got the basic theory behind hypothesis testing, it's time to star
 
 The term "categorical data" is the term preferred by data analysis people, but it's just another name for "nominal scale data". To refresh your memory on data types, please revisit our introductory chapter on scales of measurement and types of variables (see Chapter \@ref(scales)).
 
-In any case, **categorical data analysis** refers to a collection of tools that you can use when your data are nominal scale. We can use many tools for categorical data analysis, but this chapter only covers a few of the more common ones.
+In any case, **categorical data analysis** refers to a collection of tools that you can use when your data are nominal scale. We can use many tools for categorical data analysis, but this chapter covers the ones used by CogStat and some more common ones.
 
 ## The $\chi^2$ goodness-of-fit test{#goftest}
 
@@ -22,7 +22,7 @@ knitr::include_graphics(c("resources/image/cogstatloadcards.png",
 **Important note:**
 CogStat currently doesn't support single-variable hypothesis testing for nominal scale data. However, this chapter will still be useful for you to understand the tools used in hypothesis testing, and you can use them as described here in other software packages.
 
-We can see that the data are nominal scale, so we'll use the $\chi^2$ goodness-of-fit test to analyze them. We'll also use the "Fisher's exact test" option, which is a more powerful version of the $\chi^2$ test that is appropriate when the sample size is small (less than 40). We'll also use the "Bonferroni correction" option, which is a way of correcting for multiple comparisons. We'll talk more about this in Chapter \@ref(multcomp). For now, let's just run the analysis.
+We can see that the data are nominal scale, so we'll use the $\chi^2$ goodness-of-fit test to analyze them. We'll also use the "Fisher's exact test" option, which is a more powerful version of the $\chi^2$ test that is appropriate when the sample size is small (less than 40). We'll also use the "Bonferroni correction" option, which is a way of correcting for multiple comparisons. For now, let's just run the analysis.
 
 That little frequency table in Figure \@ref(fig:cogstatloadcards) is quite helpful. Looking at it, there's a bit of a hint that people *might* be more likely to select hearts than clubs, but it's not completely obvious just from looking at it whether that's really true, or if this is just due to chance. So we'll probably have to do some kind of statistical analysis to find out, which is what we're going to talk about in the next section.
 

@@ -276,3 +276,5 @@ knitr::include_graphics("resources/image/cogstatparentsleepbabysleepmissing.png"
 ## Summary
 
 In this chapter, we discussed how to measure the relationship between two variables. We introduced the concept of correlation and how to calculate it using CogStat. We also discussed the difference between **Pearson's correlation** (Chapter \@ref(pearson)) and **Spearman's rank order correlation** (Chapter \@ref(spearman)), and how CogStat will calculate it for you. Finally, we discussed how CogStat handles missing values (Chapter \@ref(missingvaluespair)) in pairwise calculations.
+
+You might have been tempted to look at the regression coefficient, the linear regression formula etc. when exploring the results from CogStat. Don't worry, you'll have a chance to learn about these in Chapter \@ref(regression).
