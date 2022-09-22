@@ -120,6 +120,8 @@ fig:parentscatters
 fig:parentscatterswithresiduals
 fig:residualanalysisplot
 fig:parentregressionresults
+tab:unnamed-chunk-35
+tab:unnamed-chunk-36
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -302,6 +304,10 @@ introregression
 regressionestimation
 regressioninterpretation
 r2
+the-adjusted-r2-value
+regressiontests
+testing-the-model-as-a-whole
+tests-for-individual-coefficients
 anova2
 bayes
 bayesianhypothesistests

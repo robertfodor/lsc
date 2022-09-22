@@ -161,3 +161,138 @@ r^2 &=& (-0.903)^2
 $$
 
 Voilà, same number. In other words, running a Pearson correlation is more or less equivalent to running a linear regression model that uses only one predictor variable.
+
+### The adjusted $R^2$ value
+
+One final thing to point out before moving on. It's quite common for people to report a slightly different measure of model performance, known as "adjusted $R^2$". The motivation behind calculating the adjusted $R^2$ value is the observation that adding more predictors into the model will *always* call the $R^2$ value to increase (or at least not decrease). The adjusted $R^2$ value introduces a slight change to the calculation, as follows. For a regression model with $K$ predictors, fit to a data set containing $N$ observations, the adjusted $R^2$ is:
+$$
+\mbox{adj. } R^2 = 1 - \left(\frac{\mbox{SS}_{res}}{\mbox{SS}_{tot}} \times \frac{N-1}{N-K-1} \right)
+$$
+This adjustment is an attempt to take the degrees of freedom into account. The big advantage of the adjusted $R^2$ value is that when you add more predictors to the model, the adjusted $R^2$ value will only increase if the new variables improve the model performance more than you'd expect by chance. The big disadvantage is that the adjusted $R^2$ value *can't* be interpreted in the elegant way that $R^2$ can. $R^2$ has a simple interpretation as the proportion of variance in the outcome variable that is explained by the regression model; to my knowledge, no equivalent interpretation exists for adjusted $R^2$.
+
+An obvious question then, is whether you should report $R^2$ or adjusted $R^2$. This is probably a matter of personal preference. If you care more about interpretability, then $R^2$ is better. If you care more about correcting for bias, then adjusted $R^2$ is probably better. This feature is not currently implemented in CogStat. Just for your reference, the statistic for our example is: $adj. R^2 = 0.814$. Not too big a difference.
+
+
+
+## Hypothesis tests for regression models{#regressiontests}
+
+So far, we've talked about what a regression model is, how the coefficients of a regression model are estimated, and how we quantify the performance of the model (the last of these, incidentally, is basically our measure of effect size). The next thing we need to talk about is hypothesis tests for the regression models themselves.
+
+There are two different (but related) kinds of hypothesis tests that we need to talk about: those in which we test whether the regression model as a whole is performing significantly better than a null model; and those in which we test whether a particular regression coefficient is significantly different from zero.
+
+At this point, you're probably groaning internally, thinking we're going to introduce a whole new collection of tests. You're probably sick of hypothesis tests by now, and don't want to learn any new ones. Well, you're lucky, because we can shamelessly reuse the $F$-test from Chapter \@ref(anova) as an overall model test, and the $t$-test from Chapter \@ref(ttest) as testing the coefficients.
+
+Testing the overall regression model is not implemented in CogStat yet. As you've seen in the result set, the Hypothesis tests section will show the Pearson's correlation coefficient and the Spearman's rank-order correlation coefficient. To be clear, it is testing particularly the null hypothesis that *the correlation coefficient is zero*, but not the null hypothesis that *the regression model is not performing significantly better than a null model*.
+
+However, it's still good to understand these tests, so let's talk about them briefly.
+
+
+### Testing the model as a whole
+
+Okay, suppose you've estimated your regression model. The first hypothesis test you might want to try is one in which the null hypothesis that there is *no relationship* between the predictors and the outcome, and the alternative hypothesis is that *the data are distributed in exactly the way that the regression model predicts*. Formally, our "null model" corresponds to the fairly trivial "regression" model in which we include 0 predictors, and only include the intercept term $b_0$
+$$
+H_0: Y_i = b_0 + \epsilon_i
+$$
+
+If our regression model has $K$ predictors, the "alternative model" is described using the usual formula for a multiple regression model:
+$$
+H_1: Y_i = \left( \sum_{k=1}^K b_{k} X_{ik} \right) + b_0 + \epsilon_i
+$$
+
+How can we test these two hypotheses against each other? The trick is to understand that just like we did with ANOVA, it's possible to divide up the *total variance* $\mbox{SS}_ {tot}$ into the *sum of the residual variance* $\mbox{SS}_ {res}$ and the *regression model variance* $\mbox{SS}_ {mod}$. Skipping over the technicalities, note that:
+$$
+\mbox{SS}_{mod} = \mbox{SS}_{tot} - \mbox{SS}_{res}
+$$
+
+And, just like we did with the ANOVA, we can convert the sums of squares in to mean squares by dividing by the degrees of freedom. 
+$$
+\begin{array}{rcl}
+\mbox{MS}_{mod} &=& \displaystyle\frac{\mbox{SS}_{mod} }{df_{mod}} \\ \\
+\mbox{MS}_{res} &=& \displaystyle\frac{\mbox{SS}_{res} }{df_{res} }
+\end{array}
+$$
+
+So, how many degrees of freedom do we have? As you might expect, the $df$ associated with the model is closely tied to the number of predictors that we've included. In fact, it turns out that $df_{mod} = K$. For the residuals, the total degrees of freedom is $df_{res} = N - K - 1$. 
+
+Now that we've got our mean square values, you're probably going to be entirely unsurprised (possibly even bored) to discover that we can calculate an $F$-statistic like this:
+$$
+F =  \frac{\mbox{MS}_{mod}}{\mbox{MS}_{res}}
+$$
+and the degrees of freedom associated with this are $K$ and $N-K-1$. This $F$ statistic has exactly the same interpretation as the one we introduced in Chapter \@ref(anova). Large $F$ values indicate that the null hypothesis is performing poorly in comparison to the alternative hypothesis.
+
+The $F$-test for our `parentsleep` and `parentgrump` variable pair is:
+$$
+F(1, 98) = 434.906, p < 0.001
+$$.
+
+
+### Tests for individual coefficients
+
+The $F$-test that we've just introduced is useful for checking that the model as a whole is performing better than chance. This is important: if your regression model doesn't produce a significant result for the $F$-test then you probably don't have a very good regression model (or, quite possibly, you don't have very good data). 
+
+However, while failing the $F$-test is a pretty strong indicator that the model has problems, *passing* the test (i.e. rejecting the null) doesn't imply that the model is good! Why is that, you might be wondering? 
+
+The estimated regression coefficient is quite large for the `parentsleep` variable ($-8.937$)^[If you recall our result was: `Linear regression: y = -8.937x + 125.95`]. Should we run an analysis with the pair of `babysleep` and `parentgrump`, we'd notice the linear regression line is: `Linear regression: y = -2.742x + 85.782`, meaning our regression coefficient is much smaller.
+
+Let us combine these two predictors into a single model without CogStat^[This feature is not available in CogStat at the moment of writing, but this section will definitely be updated when it is.], and add both `babysleep` and `parentsleep` to the model predicting `parentgrump`, we get the following result:
+
+```{r echo=FALSE, fig.align="center", fig.show="hold"}
+knitr::kable(
+    cbind(
+        c("babysleep", "parentsleep", "Intercept"),
+        c(0.011, "-8.950", 125.966),
+        c(-0.527, -10.049, 119.930),
+        c(0.549, -7.852, 132.001)
+    ), caption = "Model coefficients for the combined model with both predictors at $\\alpha = 0.05$",
+    align = "lrrr", booktabs = TRUE, digits = 3, escape = FALSE,
+    col.names = c("Predictor", "Coefficient estimate",
+        "95% CI (low)", "95% CI (high)")
+)
+```
+
+Given that these two variables are absolutely on the same scale (they're both measured in "hours slept"), this is suspicious. In fact, we should begin to suspect that the amount of sleep that the parent gets is what really only matters in order to predict their grumpiness.
+
+Once again, we can reuse a hypothesis test that we discussed earlier, this time the $t$-test. The test that we're interested has a null hypothesis that the true regression coefficient is zero ($b = 0$), which is to be tested against the alternative hypothesis that it isn't ($b \neq 0$). That is:
+$$
+\begin{array}{rl}
+H_0: & b = 0 \\
+H_1: & b \neq 0 
+\end{array}
+$$
+
+How can we test this? Well, if the central limit theorem is kind to us, we might be able to guess that the sampling distribution of $\hat{b}$, the estimated regression coefficient, is a normal distribution with mean centred on $b$. What that would mean is that if the null hypothesis were true, then the sampling distribution of $\hat{b}$ has mean zero and unknown standard deviation. Assuming that we can come up with a good estimate for the standard error of the regression coefficient, $\mbox{SE}({\hat{b}})$, then we're in luck. That's *exactly* the situation for which we introduced the one-sample $t$ way back in Chapter \@ref(ttest). So let's define a $t$-statistic like this,
+$$
+t = \frac{\hat{b}}{\mbox{SE}({\hat{b})}}
+$$
+
+Our degrees of freedom in this case are $df = N- K- 1$. Irritatingly, the estimate of the standard error of the regression coefficient, $\mbox{SE}({\hat{b}})$, is not as easy to calculate as the standard error of the mean that we used for the simpler $t$-tests in Chapter \@ref(ttest). In fact, the formula is somewhat ugly, and not terribly helpful to look at. For our purposes it's sufficient to point out that the standard error of the estimated regression coefficient depends on both the predictor and outcome variables, and is somewhat sensitive to violations of the homogeneity of variance assumption (discussed shortly).
+
+In any case, this $t$-statistic can be interpreted in the same way as the $t$-statistics that we discussed in Chapter \@ref(ttest). Assuming that you have a two-sided alternative (i.e. you don't really care if $b >0$ or $b < 0$), then it's the extreme values of $t$ (i.e. a lot less than zero or a lot greater than zero) that suggest that you should reject the null hypothesis. 
+
+```{r echo=FALSE, fig.align="center", fig.show="hold"}
+knitr::kable(
+    cbind(
+        c("babysleep", "parentsleep", "Intercept"),
+        c(0.011, "-8.950", 125.966),
+        c(-0.527, -10.049, 119.930),
+        c(0.549, -7.852, 132.001),
+        c(0.039, -16.172, 41.423),
+        c(0.969, "<.001", "<.001")
+    ), caption = "Model coefficients for the combined model with both predictors at $\\alpha = 0.05$ with $t$-statistics",
+    align = "lrrrrr", booktabs = TRUE, digits = 3, escape = FALSE,
+    col.names = c("Predictor", "Coefficient estimate",
+        "95% CI (low)", "95% CI (high)", "$t$-statistic", "$p$-value")
+)
+```
+
+Let's run the $F$-test for the combined model with the total degrees of freedom is $df_{res} = N - K - 1$, and we calculate the $R^2$, we get:
+$$
+F(2, 97) = 215.238, p < 0.001
+$$
+
+$$
+R^2 = 0.816
+$$
+
+So in this case, the model performs significantly better than you'd expect by chance ($F(2,97) = 215.2$, $p<.001$), which isn't all that surprising: the $R^2 = .816$ value indicate that the regression model accounts for 81.6\% of the variability in the outcome measure. However, when we look back up at the $t$-tests for each of the individual coefficients, we have pretty strong evidence that the `babysleep` variable has no significant effect; all the work is being done by the `parentsleep` variable. Taken together, these results suggest that `babysleep > parentgrump` is actually the wrong model for the data: you'd probably be better off dropping the `babysleep` predictor entirely. In other words, the `parentsleep > parentgrump` model that we started with is the better model.
+

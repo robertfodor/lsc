@@ -414,7 +414,15 @@ div.csl-indent {
 <li class="chapter" data-level="12.1" data-path="regression.html"><a href="regression.html#introregression"><i class="fa fa-check"></i><b>12.1</b> What is a linear regression model?</a></li>
 <li class="chapter" data-level="12.2" data-path="regression.html"><a href="regression.html#regressionestimation"><i class="fa fa-check"></i><b>12.2</b> Estimating a linear regression model</a></li>
 <li class="chapter" data-level="12.3" data-path="regression.html"><a href="regression.html#regressioninterpretation"><i class="fa fa-check"></i><b>12.3</b> Interpreting the results of a linear regression</a></li>
-<li class="chapter" data-level="12.4" data-path="regression.html"><a href="regression.html#r2"><i class="fa fa-check"></i><b>12.4</b> Quantifying the fit of the regression model</a></li>
+<li class="chapter" data-level="12.4" data-path="regression.html"><a href="regression.html#r2"><i class="fa fa-check"></i><b>12.4</b> Quantifying the fit of the regression model</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="regression.html"><a href="regression.html#the-adjusted-r2-value"><i class="fa fa-check"></i><b>12.4.1</b> The adjusted <span class="math inline">\(R^2\)</span> value</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="regression.html"><a href="regression.html#regressiontests"><i class="fa fa-check"></i><b>12.5</b> Hypothesis tests for regression models</a>
+<ul>
+<li class="chapter" data-level="12.5.1" data-path="regression.html"><a href="regression.html#testing-the-model-as-a-whole"><i class="fa fa-check"></i><b>12.5.1</b> Testing the model as a whole</a></li>
+<li class="chapter" data-level="12.5.2" data-path="regression.html"><a href="regression.html#tests-for-individual-coefficients"><i class="fa fa-check"></i><b>12.5.2</b> Tests for individual coefficients</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova2.html"><a href="anova2.html"><i class="fa fa-check"></i><b>13</b> Factorial ANOVA</a></li>
 <li class="part"><span><b>BAYESIAN STATISTICS</b></span></li>
@@ -570,7 +578,239 @@ r^2 &amp;=&amp; (-0.903)^2
 \end{array}
 \]</span></p>
 <p>Voilà, same number. In other words, running a Pearson correlation is more or less equivalent to running a linear regression model that uses only one predictor variable.</p>
+<div id="the-adjusted-r2-value" class="section level3 hasAnchor" number="12.4.1">
+<h3><span class="header-section-number">12.4.1</span> The adjusted <span class="math inline">\(R^2\)</span> value<a href="regression.html#the-adjusted-r2-value" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One final thing to point out before moving on. It’s quite common for people to report a slightly different measure of model performance, known as “adjusted <span class="math inline">\(R^2\)</span>”. The motivation behind calculating the adjusted <span class="math inline">\(R^2\)</span> value is the observation that adding more predictors into the model will <em>always</em> call the <span class="math inline">\(R^2\)</span> value to increase (or at least not decrease). The adjusted <span class="math inline">\(R^2\)</span> value introduces a slight change to the calculation, as follows. For a regression model with <span class="math inline">\(K\)</span> predictors, fit to a data set containing <span class="math inline">\(N\)</span> observations, the adjusted <span class="math inline">\(R^2\)</span> is:
+<span class="math display">\[
+\mbox{adj. } R^2 = 1 - \left(\frac{\mbox{SS}_{res}}{\mbox{SS}_{tot}} \times \frac{N-1}{N-K-1} \right)
+\]</span>
+This adjustment is an attempt to take the degrees of freedom into account. The big advantage of the adjusted <span class="math inline">\(R^2\)</span> value is that when you add more predictors to the model, the adjusted <span class="math inline">\(R^2\)</span> value will only increase if the new variables improve the model performance more than you’d expect by chance. The big disadvantage is that the adjusted <span class="math inline">\(R^2\)</span> value <em>can’t</em> be interpreted in the elegant way that <span class="math inline">\(R^2\)</span> can. <span class="math inline">\(R^2\)</span> has a simple interpretation as the proportion of variance in the outcome variable that is explained by the regression model; to my knowledge, no equivalent interpretation exists for adjusted <span class="math inline">\(R^2\)</span>.</p>
+<p>An obvious question then, is whether you should report <span class="math inline">\(R^2\)</span> or adjusted <span class="math inline">\(R^2\)</span>. This is probably a matter of personal preference. If you care more about interpretability, then <span class="math inline">\(R^2\)</span> is better. If you care more about correcting for bias, then adjusted <span class="math inline">\(R^2\)</span> is probably better. This feature is not currently implemented in CogStat. Just for your reference, the statistic for our example is: <span class="math inline">\(adj. R^2 = 0.814\)</span>. Not too big a difference.</p>
+</div>
+</div>
+<div id="regressiontests" class="section level2 hasAnchor" number="12.5">
+<h2><span class="header-section-number">12.5</span> Hypothesis tests for regression models<a href="regression.html#regressiontests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So far, we’ve talked about what a regression model is, how the coefficients of a regression model are estimated, and how we quantify the performance of the model (the last of these, incidentally, is basically our measure of effect size). The next thing we need to talk about is hypothesis tests for the regression models themselves.</p>
+<p>There are two different (but related) kinds of hypothesis tests that we need to talk about: those in which we test whether the regression model as a whole is performing significantly better than a null model; and those in which we test whether a particular regression coefficient is significantly different from zero.</p>
+<p>At this point, you’re probably groaning internally, thinking we’re going to introduce a whole new collection of tests. You’re probably sick of hypothesis tests by now, and don’t want to learn any new ones. Well, you’re lucky, because we can shamelessly reuse the <span class="math inline">\(F\)</span>-test from Chapter <a href="anova.html#anova">11</a> as an overall model test, and the <span class="math inline">\(t\)</span>-test from Chapter <a href="ttest.html#ttest">10</a> as testing the coefficients.</p>
+<p>Testing the overall regression model is not implemented in CogStat yet. As you’ve seen in the result set, the Hypothesis tests section will show the Pearson’s correlation coefficient and the Spearman’s rank-order correlation coefficient. To be clear, it is testing particularly the null hypothesis that <em>the correlation coefficient is zero</em>, but not the null hypothesis that <em>the regression model is not performing significantly better than a null model</em>.</p>
+<p>However, it’s still good to understand these tests, so let’s talk about them briefly.</p>
+<div id="testing-the-model-as-a-whole" class="section level3 hasAnchor" number="12.5.1">
+<h3><span class="header-section-number">12.5.1</span> Testing the model as a whole<a href="regression.html#testing-the-model-as-a-whole" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Okay, suppose you’ve estimated your regression model. The first hypothesis test you might want to try is one in which the null hypothesis that there is <em>no relationship</em> between the predictors and the outcome, and the alternative hypothesis is that <em>the data are distributed in exactly the way that the regression model predicts</em>. Formally, our “null model” corresponds to the fairly trivial “regression” model in which we include 0 predictors, and only include the intercept term <span class="math inline">\(b_0\)</span>
+<span class="math display">\[
+H_0: Y_i = b_0 + \epsilon_i
+\]</span></p>
+<p>If our regression model has <span class="math inline">\(K\)</span> predictors, the “alternative model” is described using the usual formula for a multiple regression model:
+<span class="math display">\[
+H_1: Y_i = \left( \sum_{k=1}^K b_{k} X_{ik} \right) + b_0 + \epsilon_i
+\]</span></p>
+<p>How can we test these two hypotheses against each other? The trick is to understand that just like we did with ANOVA, it’s possible to divide up the <em>total variance</em> <span class="math inline">\(\mbox{SS}_ {tot}\)</span> into the <em>sum of the residual variance</em> <span class="math inline">\(\mbox{SS}_ {res}\)</span> and the <em>regression model variance</em> <span class="math inline">\(\mbox{SS}_ {mod}\)</span>. Skipping over the technicalities, note that:
+<span class="math display">\[
+\mbox{SS}_{mod} = \mbox{SS}_{tot} - \mbox{SS}_{res}
+\]</span></p>
+<p>And, just like we did with the ANOVA, we can convert the sums of squares in to mean squares by dividing by the degrees of freedom.
+<span class="math display">\[
+\begin{array}{rcl}
+\mbox{MS}_{mod} &amp;=&amp; \displaystyle\frac{\mbox{SS}_{mod} }{df_{mod}} \\ \\
+\mbox{MS}_{res} &amp;=&amp; \displaystyle\frac{\mbox{SS}_{res} }{df_{res} }
+\end{array}
+\]</span></p>
+<p>So, how many degrees of freedom do we have? As you might expect, the <span class="math inline">\(df\)</span> associated with the model is closely tied to the number of predictors that we’ve included. In fact, it turns out that <span class="math inline">\(df_{mod} = K\)</span>. For the residuals, the total degrees of freedom is <span class="math inline">\(df_{res} = N - K - 1\)</span>.</p>
+<p>Now that we’ve got our mean square values, you’re probably going to be entirely unsurprised (possibly even bored) to discover that we can calculate an <span class="math inline">\(F\)</span>-statistic like this:
+<span class="math display">\[
+F =  \frac{\mbox{MS}_{mod}}{\mbox{MS}_{res}}
+\]</span>
+and the degrees of freedom associated with this are <span class="math inline">\(K\)</span> and <span class="math inline">\(N-K-1\)</span>. This <span class="math inline">\(F\)</span> statistic has exactly the same interpretation as the one we introduced in Chapter <a href="anova.html#anova">11</a>. Large <span class="math inline">\(F\)</span> values indicate that the null hypothesis is performing poorly in comparison to the alternative hypothesis.</p>
+<p>The <span class="math inline">\(F\)</span>-test for our <code>parentsleep</code> and <code>parentgrump</code> variable pair is:
+<span class="math display">\[
+F(1, 98) = 434.906, p &lt; 0.001
+\]</span>.</p>
+</div>
+<div id="tests-for-individual-coefficients" class="section level3 hasAnchor" number="12.5.2">
+<h3><span class="header-section-number">12.5.2</span> Tests for individual coefficients<a href="regression.html#tests-for-individual-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <span class="math inline">\(F\)</span>-test that we’ve just introduced is useful for checking that the model as a whole is performing better than chance. This is important: if your regression model doesn’t produce a significant result for the <span class="math inline">\(F\)</span>-test then you probably don’t have a very good regression model (or, quite possibly, you don’t have very good data).</p>
+<p>However, while failing the <span class="math inline">\(F\)</span>-test is a pretty strong indicator that the model has problems, <em>passing</em> the test (i.e. rejecting the null) doesn’t imply that the model is good! Why is that, you might be wondering?</p>
+<p>The estimated regression coefficient is quite large for the <code>parentsleep</code> variable (<span class="math inline">\(-8.937\)</span>)<a href="#fn63" class="footnote-ref" id="fnref63"><sup>63</sup></a>. Should we run an analysis with the pair of <code>babysleep</code> and <code>parentgrump</code>, we’d notice the linear regression line is: <code>Linear regression: y = -2.742x + 85.782</code>, meaning our regression coefficient is much smaller.</p>
+<p>Let us combine these two predictors into a single model without CogStat<a href="#fn64" class="footnote-ref" id="fnref64"><sup>64</sup></a>, and add both <code>babysleep</code> and <code>parentsleep</code> to the model predicting <code>parentgrump</code>, we get the following result:</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-35">Table 12.1: </span>Model coefficients for the combined model with both predictors at <span class="math inline">\(\alpha = 0.05\)</span>
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Predictor
+</th>
+<th style="text-align:right;">
+Coefficient estimate
+</th>
+<th style="text-align:right;">
+95% CI (low)
+</th>
+<th style="text-align:right;">
+95% CI (high)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+babysleep
+</td>
+<td style="text-align:right;">
+0.011
+</td>
+<td style="text-align:right;">
+-0.527
+</td>
+<td style="text-align:right;">
+0.549
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+parentsleep
+</td>
+<td style="text-align:right;">
+-8.950
+</td>
+<td style="text-align:right;">
+-10.049
+</td>
+<td style="text-align:right;">
+-7.852
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:right;">
+125.966
+</td>
+<td style="text-align:right;">
+119.93
+</td>
+<td style="text-align:right;">
+132.001
+</td>
+</tr>
+</tbody>
+</table>
+<p>Given that these two variables are absolutely on the same scale (they’re both measured in “hours slept”), this is suspicious. In fact, we should begin to suspect that the amount of sleep that the parent gets is what really only matters in order to predict their grumpiness.</p>
+<p>Once again, we can reuse a hypothesis test that we discussed earlier, this time the <span class="math inline">\(t\)</span>-test. The test that we’re interested has a null hypothesis that the true regression coefficient is zero (<span class="math inline">\(b = 0\)</span>), which is to be tested against the alternative hypothesis that it isn’t (<span class="math inline">\(b \neq 0\)</span>). That is:
+<span class="math display">\[
+\begin{array}{rl}
+H_0: &amp; b = 0 \\
+H_1: &amp; b \neq 0
+\end{array}
+\]</span></p>
+<p>How can we test this? Well, if the central limit theorem is kind to us, we might be able to guess that the sampling distribution of <span class="math inline">\(\hat{b}\)</span>, the estimated regression coefficient, is a normal distribution with mean centred on <span class="math inline">\(b\)</span>. What that would mean is that if the null hypothesis were true, then the sampling distribution of <span class="math inline">\(\hat{b}\)</span> has mean zero and unknown standard deviation. Assuming that we can come up with a good estimate for the standard error of the regression coefficient, <span class="math inline">\(\mbox{SE}({\hat{b}})\)</span>, then we’re in luck. That’s <em>exactly</em> the situation for which we introduced the one-sample <span class="math inline">\(t\)</span> way back in Chapter <a href="ttest.html#ttest">10</a>. So let’s define a <span class="math inline">\(t\)</span>-statistic like this,
+<span class="math display">\[
+t = \frac{\hat{b}}{\mbox{SE}({\hat{b})}}
+\]</span></p>
+<p>Our degrees of freedom in this case are <span class="math inline">\(df = N- K- 1\)</span>. Irritatingly, the estimate of the standard error of the regression coefficient, <span class="math inline">\(\mbox{SE}({\hat{b}})\)</span>, is not as easy to calculate as the standard error of the mean that we used for the simpler <span class="math inline">\(t\)</span>-tests in Chapter <a href="ttest.html#ttest">10</a>. In fact, the formula is somewhat ugly, and not terribly helpful to look at. For our purposes it’s sufficient to point out that the standard error of the estimated regression coefficient depends on both the predictor and outcome variables, and is somewhat sensitive to violations of the homogeneity of variance assumption (discussed shortly).</p>
+<p>In any case, this <span class="math inline">\(t\)</span>-statistic can be interpreted in the same way as the <span class="math inline">\(t\)</span>-statistics that we discussed in Chapter <a href="ttest.html#ttest">10</a>. Assuming that you have a two-sided alternative (i.e. you don’t really care if <span class="math inline">\(b &gt;0\)</span> or <span class="math inline">\(b &lt; 0\)</span>), then it’s the extreme values of <span class="math inline">\(t\)</span> (i.e. a lot less than zero or a lot greater than zero) that suggest that you should reject the null hypothesis.</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-36">Table 12.2: </span>Model coefficients for the combined model with both predictors at <span class="math inline">\(\alpha = 0.05\)</span> with <span class="math inline">\(t\)</span>-statistics
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Predictor
+</th>
+<th style="text-align:right;">
+Coefficient estimate
+</th>
+<th style="text-align:right;">
+95% CI (low)
+</th>
+<th style="text-align:right;">
+95% CI (high)
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(t\)</span>-statistic
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(p\)</span>-value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+babysleep
+</td>
+<td style="text-align:right;">
+0.011
+</td>
+<td style="text-align:right;">
+-0.527
+</td>
+<td style="text-align:right;">
+0.549
+</td>
+<td style="text-align:right;">
+0.039
+</td>
+<td style="text-align:right;">
+0.969
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+parentsleep
+</td>
+<td style="text-align:right;">
+-8.950
+</td>
+<td style="text-align:right;">
+-10.049
+</td>
+<td style="text-align:right;">
+-7.852
+</td>
+<td style="text-align:right;">
+-16.172
+</td>
+<td style="text-align:right;">
+&lt;.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:right;">
+125.966
+</td>
+<td style="text-align:right;">
+119.93
+</td>
+<td style="text-align:right;">
+132.001
+</td>
+<td style="text-align:right;">
+41.423
+</td>
+<td style="text-align:right;">
+&lt;.001
+</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s run the <span class="math inline">\(F\)</span>-test for the combined model with the total degrees of freedom is <span class="math inline">\(df_{res} = N - K - 1\)</span>, and we calculate the <span class="math inline">\(R^2\)</span>, we get:
+<span class="math display">\[
+F(2, 97) = 215.238, p &lt; 0.001
+\]</span></p>
+<p><span class="math display">\[
+R^2 = 0.816
+\]</span></p>
+<p>So in this case, the model performs significantly better than you’d expect by chance (<span class="math inline">\(F(2,97) = 215.2\)</span>, <span class="math inline">\(p&lt;.001\)</span>), which isn’t all that surprising: the <span class="math inline">\(R^2 = .816\)</span> value indicate that the regression model accounts for 81.6% of the variability in the outcome measure. However, when we look back up at the <span class="math inline">\(t\)</span>-tests for each of the individual coefficients, we have pretty strong evidence that the <code>babysleep</code> variable has no significant effect; all the work is being done by the <code>parentsleep</code> variable. Taken together, these results suggest that <code>babysleep &gt; parentgrump</code> is actually the wrong model for the data: you’d probably be better off dropping the <code>babysleep</code> predictor entirely. In other words, the <code>parentsleep &gt; parentgrump</code> model that we started with is the better model.</p>
 
+</div>
 </div>
 </div>
 <div class="footnotes">
@@ -578,6 +818,8 @@ r^2 &amp;=&amp; (-0.903)^2
 <ol start="61">
 <li id="fn61"><p>The <span class="math inline">\(\epsilon\)</span> symbol is the Greek letter epsilon. It’s traditional to use <span class="math inline">\(\epsilon_i\)</span> or <span class="math inline">\(e_i\)</span> to denote a residual.<a href="regression.html#fnref61" class="footnote-back">↩︎</a></p></li>
 <li id="fn62"><p>On the off chance that someone reading this is a proper kung fu master of linear algebra, it <em>will</em> help <em>you</em> to know that the solution to the estimation problem turns out to be <span class="math inline">\(\hat{b} = (X^TX)^{-1} X^T y\)</span>, where <span class="math inline">\(\hat{b}\)</span> is a vector containing the estimated regression coefficients, <span class="math inline">\(X\)</span> is the “design matrix” that contains the predictor variables (plus an additional column containing all ones; strictly <span class="math inline">\(X\)</span> is a matrix of the regressors.), and <span class="math inline">\(y\)</span> is a vector containing the outcome variable. For everyone else, this isn’t exactly helpful, and can be downright scary. However, since quite a few things in linear regression can be written in linear algebra terms, you’ll see a bunch of footnotes like this one in this chapter. If you can follow the maths in them, great. If not, ignore it.<a href="regression.html#fnref62" class="footnote-back">↩︎</a></p></li>
+<li id="fn63"><p>If you recall our result was: <code>Linear regression: y = -8.937x + 125.95</code><a href="regression.html#fnref63" class="footnote-back">↩︎</a></p></li>
+<li id="fn64"><p>This feature is not available in CogStat at the moment of writing, but this section will definitely be updated when it is.<a href="regression.html#fnref64" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
