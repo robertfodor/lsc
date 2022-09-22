@@ -431,11 +431,7 @@ $$
 z = \frac{35 - 17}{5} = 3.6
 $$
 
-To interpret this value, recall the rough heuristic from Chapter \@ref(sd): 99.7% of values are expected to lie within 3 standard deviations of the mean. So the fact that our grumpiness corresponds to a $z$ score of 3.6 indicates that we're very grumpy indeed. A theoretical percentile rank for our grumpiness, would be
-
-```{r}
-pnorm( 3.6 )
-```
+To interpret this value, recall the rough heuristic from Chapter \@ref(sd): 99.7% of values are expected to lie within 3 standard deviations of the mean. So the fact that our grumpiness corresponds to a $z$ score of 3.6 indicates that we're very grumpy indeed. A theoretical percentile rank for grumpiness, would be $0.9998409$.
 
 In addition to allowing you to interpret a raw score in relation to a larger population (and thereby allowing you to make sense of variables that lie on arbitrary scales), standard scores serve a second useful function. Standard scores can be compared to one another in situations where the raw scores can't. Suppose our friend also had another questionnaire that measured extraversion using a 24 items questionnaire. The overall mean for this measure turns out to be 13 with a standard deviation 4; and we scored a 2. As you can imagine, it doesn't make a lot of sense to compare this raw score of 2 on the extraversion questionnaire to our raw score of 35 on the grumpiness questionnaire. The raw scores for the two variables are "about" fundamentally different things, so this would be like comparing apples to oranges.
 

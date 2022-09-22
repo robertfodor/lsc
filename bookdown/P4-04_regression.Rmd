@@ -90,7 +90,7 @@ Next to the residual plot, you see a sideways histogram. It depicts the distribu
 
 In our example, the residuals are beautifully random, and their distribution is normal. This is a sign that our model is a good one.
 
-Within the `Population parameter estimations`, you'll see the estimated regression coefficients with their 95% confidence interval given. The confidence interval is a range of values that we are 95% confident that the true value of the parameter lies within. In this case, we are 95% confident that the true value of the slope is between -9.787 and -8.086, and that the true value of the intercept is between 119.971 and 131.942. You'll also see a chart depicting the confidence intervals for the regression line. You'll also note that normality and homoscedasticity are checked. These are two assumptions of linear regression. Normality means that the residuals are normally distributed, which we saw earlier. Homoscedasticity means that the residuals are equally distributed across the range of the independent variable, so there is no big chunk on the left or right or centre of the residual plot.
+Within the `Population parameter estimations`, you'll see the estimated regression coefficients with their 95% confidence interval given. The confidence interval is a range of values that we are 95% confident that the true value of the parameter lies within. In this case, we are 95% confident that the true value of the slope is between -9.787 and -8.086, and that the true value of the intercept is between 119.971 and 131.942. You'll also see a chart depicting the confidence intervals for the regression line. You'll also note that normality and homoscedasticity are checked. These are two assumptions of linear regression. Normality means that the residuals are normally distributed, which we saw earlier. Homoscedasticity means, very simplisticly, that the residuals are equally distributed across the range of the independent variable, so there is no big chunk on one side of the residual plot.
 
 ```{r parentregressionresults, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="Regression coefficients"}
 knitr::include_graphics("resources/image/cogstatregressioncoeff.png")
@@ -396,8 +396,100 @@ This, however, is a perfect example of a situation where it would probably make 
 The linear regression model relies on several assumptions:
 
 - *Normality*. Like half the models in statistics, standard linear regression relies on an assumption of normality. Specifically, it assumes that the *residuals* are normally distributed. It's actually okay if the predictors $X$ and the outcome $Y$ are non-normal, so long as the residuals $\epsilon$ are normal. See Section \@ref(regressionnormality).
-- *Linearity*. A pretty fundamental assumption of the linear regression model is that relationship between $X$ and $Y$ actually be linear! Regardless of whether it's a simple regression or a multiple regression, we assume that the relatiships involved are linear. See Section \@ref(regressionlinearity).
+- *Linearity*. A pretty fundamental assumption of the linear regression model is that relationship between $X$ and $Y$ actually be linear! Regardless of whether it's a simple regression or a multiple regression, we assume that the relatiships involved are linear.
 - *Homogeneity of variance*. Strictly speaking, the regression model assumes that each residual $\epsilon_i$ is generated from a normal distribution with mean 0, and (more importantly for the current purposes) with a standard deviation $\sigma$ that is the same for every single residual. In practice, it's impossible to test the assumption that every residual is identically distributed. Instead, what we care about is that the standard deviation of the residual is the same for all values of $\hat{Y}$, and (if we're being especially paranoid) all values of every predictor $X$ in the model. See Section \@ref(regressionhomogeneity).
-- *Uncorrelated predictors*. The idea here is that, is a multiple regression model, you don't want your predictors to be too strongly correlated with each other. This isn't  "technically" an assumption of the regression model, but in practice it's required. Predictors that are too strongly correlated with each other (referred to as "collinearity") can cause problems when evaluating the model. See Section \@ref(regressioncollinearity)
 - *Residuals are independent of each other*. This is really just a "catch all" assumption, to the effect that "there's nothing else funny going on in the residuals". If there is something weird (e.g., the residuals all depend heavily on some other unmeasured variable) going on, it might screw things up.
 - *No "bad" outliers*. Again, not actually a technical assumption of the model (or rather, it's sort of implied by all the others), but there is an implicit assumption that your regression model isn't being too strongly influenced by one or two anomalous data points; since this raises questions about the adequacy of the model, and the trustworthiness of the data in some cases. See Section \@ref(regressionoutliers).
+
+## Model checking{#regressiondiagnostics}
+
+The main focus of this section is **regression diagnostics**, a term that refers to the art of checking that the assumptions of your regression model have been met, figuring out how to fix the model if the assumptions are violated, and generally to check that nothing "funny" is going on.
+
+If done manually, and not with an automatic statistics software, it's easy to get lost in all the details of checking this thing or that thing, and it's quite exhausting to try to remember what all the different things are. This has the very nasty side effect that a lot of people get frustrated when trying to learn *all* the tools, so instead they decide not to do *any* model checking. This is a bit of a worry!
+
+In this section, we discuss several different things you can theoretically do to check that your regression model is doing what it's supposed to.
+
+### Three kinds of residuals
+
+The majority of regression diagnostics revolve around looking at the residuals. In particular, the following three kinds of residual are referred to in this section: "ordinary residuals" (which in some cases is identical to "Pearson residual"), "standardised residuals", and "Studentised residuals".
+
+The first and simplest kind of residuals that we care about are **ordinary residuals**. These are the actual, raw residuals we've been talking about throughout this chapter. The ordinary residual is just the difference between the fitted value $\hat{Y}_i$ and the observed value $Y_i$. We've been using the notation $\epsilon_i$ to refer to the $i$-th ordinary residual. With this in mind, we have the very simple equation:
+$$
+\epsilon_i = Y_i - \hat{Y}_i
+$$
+
+One drawback to using ordinary residuals is that they're always on a different scale, depending on what the outcome variable is and how good the regression model is. The ordinary residuals will have mean 0; but the variance is different for every regression.
+
+In a lot of contexts, especially where you're only interested in the *pattern* of the residuals and not their actual values, it's convenient to estimate the **standardised residuals**, which are normalised in such a way as to have standard deviation 1. The way we calculate these is, we divide the ordinary residual by an estimate of the (population) standard deviation of these residuals. For technical reasons, the formula for this is:
+$$
+\epsilon_{i}^\prime = \frac{\epsilon_i}{\hat{\sigma} \sqrt{1-h_i}}
+$$
+where $\hat\sigma$ in this context is the estimated population standard deviation of the ordinary residuals, and $h_i$ is the "hat value" of the $i$th observation. For now, it's enough to interpret the standardised residuals as if we'd converted the ordinary residuals to $z$-scores. In fact, that is more or less the truth, it's just that we're being a bit fancier.
+
+The third kind of residuals are **Studentised residuals**, and they're even fancier than standardised residuals. Again, the idea is to take the ordinary residual and divide it by some quantity in order to estimate some standardised notion of the residual, but the formula for doing the calculations this time is subtly different:
+$$
+\epsilon_{i}^* = \frac{\epsilon_i}{\hat{\sigma}_{(-i)} \sqrt{1-h_i}}
+$$
+
+Notice that our estimate of the standard deviation here is written $\hat{\sigma}_{(-i)}$. This corresponds to the estimate of the residual standard deviation that you *would have obtained*, if you just deleted the $i$th observation from the data set. This sounds like the sort of thing that would be a nightmare to calculate, since it seems to be saying that you have to run $N$ new regression models (even a modern computer might grumble a bit at that, especially if you've got a large data set). Fortunately, this standard deviation estimate is actually given by the following equation:
+$$
+\hat\sigma_{(-i)} = \hat{\sigma} \ \sqrt{\frac{N-K-1 - {\epsilon_{i}^\prime}^2}{N-K-2}}
+$$
+
+It's always nice to know how to actually get hold of these things yourself in case you ever need to do something non-standard.
+
+### Three kinds of anomalous data{#regressionoutliers}
+
+One danger that you can run into with linear regression models is that your analysis might be disproportionately sensitive to a smallish number of "unusual" or "anomalous" observations. In the context of linear regression, there are three conceptually distinct ways in which an observation might be called "anomalous". All three are interesting, but they have rather different implications for your analysis.
+
+The first kind of unusual observation is an **outlier**. The definition of an outlier (in this context) is an observation that is very different from what the regression model predicts. An example is shown in Figure \@ref(fig:outlier). In practice, we operationalise this concept by saying that an outlier is an observation that has a very large Studentised residual, $\epsilon_i^*$. Outliers are interesting: a big outlier *might* correspond to junk data. E.g. the variables might have been entered incorrectly, or some other defect may be detectable. Note that you shouldn't throw an observation away just because it's an outlier. But the fact that it's an outlier is often a cue to look more closely at that case, and try to find out why it's so different.
+
+```{r outlier, fig.cap="An illustration of outliers. The dotted lines plot the regression line that would have been estimated without the anomalous observation included, and the corresponding residual (i.e. the Studentised residual). The solid line shows the regression line with the anomalous observation included. The outlier has an unusual value on the outcome (y axis location) but not the predictor (x axis location), and lies a long way from the regression line.", echo=FALSE, fig.align="center", out.width="100%"}
+knitr::include_graphics("resources/image/unusual_outlier.png")
+```
+
+The second way in which an observation can be unusual is if it has high **leverage**: this happens when the observation is very different from all the other observations. This doesn't necessarily have to correspond to a large residual: if the observation happens to be unusual on all variables in precisely the same way, it can actually lie very close to the regression line. An example of this is shown in Figure \@ref(fig:leverage).
+
+```{r leverage, fig.cap="An illustration of high leverage points. The anomalous observation in this case is unusual both in terms of the predictor (x axis) and the outcome (y axis), but this unusualness is highly consistent with the pattern of correlations that exists among the other observations; as a consequence, the observation falls very close to the regression line and does not distort it.", echo=FALSE, fig.align="center", out.width="100%"}
+knitr::include_graphics("resources/image/unusual_leverage.png")
+```
+The leverage of an observation is operationalised in terms of its *hat value*, usually written $h_i$. The formula for the hat value is rather complicated^[For the linear algebra fanatics: the "hat matrix" is defined to be that matrix $H$ that converts the vector of observed values $y$ into a vector of fitted values $\hat{y}$, such that $\hat{y} = H y$. The name comes from the fact that this is the matrix that "puts a hat on $y$". The  hat *value* of the $i$-th observation is the $i$-th diagonal element of this matrix (so technically: $h_{ii}$ rather than $h_{i}$). Here's how it's calculated: $H = X(X^TX)^{-1} X^T$. Pretty, isn't it?] but its interpretation is not: $h_i$ is a measure of the extent to which the $i$-th observation is "in control" of where the regression line ends up going.
+
+In general, if an observation lies far away from the other ones in terms of the predictor variables, it will have a large hat value (as a rough guide, high leverage is when the hat value is more than 2-3 times the average; and note that the sum of the hat values is constrained to be equal to $K+1$). High leverage points are also worth looking at in more detail, but they're much less likely to be a cause for concern unless they are also outliers.
+
+This brings us to our third measure of unusualness, the **influence** of an observation. A high influence observation is an outlier that has high leverage. That is, it is an observation that is very different to all the other ones in some respect, and also lies a long way from the regression line. This is illustrated in Figure \@ref(fig:influence). Notice the contrast to the previous two figures: outliers don't move the regression line much, and neither do high leverage points. But an outlier that has high leverage will have a big effect on the regression line.
+
+```{r influence, fig.cap="An illustration of high influence points. In this case, the anomalous observation is highly unusual on the predictor variable (x axis), and falls a long way from the regression line. As a consequence, the regression line is highly distorted, even though (in this case) the anomalous observation is entirely typical in terms of the outcome variable (y axis).", echo=FALSE, fig.align="center", out.width="100%"}
+knitr::include_graphics("resources/image/unusual_influence.png")
+```
+
+That's why we call these points high-influence; and it's why they're the biggest worry. We operationalise influence in terms of a measure known as **Cook's distance**, 
+$$
+D_i = \frac{{\epsilon_i^*}^2 }{K+1} \times \frac{h_i}{1-h_i}
+$$
+
+Notice that this is a multiplication of something that measures the outlier-ness of the observation (the bit on the left), and something that measures the leverage of the observation (the bit on the right). In other words, in order to have a large Cook's distance, an observation must be a fairly substantial outlier *and* have high leverage. Some statistics software will provide you with this measure, but it is not available in CogStat yet. It is good to know about it, though.
+
+As a rough guide, Cook's distance greater than 1 is often considered large, though a quick scan of the internet and a few papers suggests that $4/N$ has also been suggested as a possible rule of thumb.
+
+An obvious question to ask next is, if you do have large values of Cook's distance, what should you do? As always, there's no hard-and-fast rules. Probably the first thing to do is to run the regression with that point excluded (i.e. removing it from the source data) and see what happens to the model performance and to the regression coefficients. If they really are substantially different, it's time to start digging into your data set and your notes that you no doubt were scribbling as your ran your study; try to figure out *why* the point is so different. If you start to become convinced that this one data point is badly distorting your results, you might consider excluding it, but that's less than ideal unless you have a solid explanation for why this particular case is qualitatively different from the others and therefore deserves to be handled separately.
+
+
+### Checking the normality of the residuals{#regressionnormality}
+
+Like many of the statistical tools we've discussed in this book, regression models rely on a normality assumption. In this case, we assume that the residuals are normally distributed. It never hurts to draw a histogram. You've seen an example of this very early on in this Chapter in Figure \@ref(fig:residualanalysisplot). If the residuals are normally distributed, you should see a roughly bell-shaped curve in the right-hand chart. CogStat will automatically test for normality as usual.
+
+The test used by CogStat is not the Shapiro-Wilk test but the **Henze-Zirkler test** of multivariate normality, but it also provides us with a $W$-value and $p$-value. And the rule is, again, if the $p$-value is less than 0.05, we can reject the null hypothesis that the residuals are normally distributed, meaning, our data set violates the assumption of normality.
+
+In such a case, CogStat will specifically call out that the confidence intervals for the regression coefficients and the intercept might be biased. Also, only the Spearman's rank-order correlation will be run as part of the Hypothesis tests, because Pearson's correlation assumes normality.
+
+### Checking the homoscedasticity of the residuals{#regressionhomogeneity}
+
+The regression models that we've talked about all make a homogeneity of variance assumption: the variance of the residuals is assumed to be constant. Again, you might recall from Figure \@ref(fig:residualanalysisplot) that if on the left chart, the residuals are leaning towards one of the sides and are not spread more-or-less evenly, this is a sign that the variance is not constant, hence the homoscedasticity assumption is violated.
+
+CogStat uses two tests to determine whether the homoscedasticity assumption is violated (meaning the data is *heteroscedatic*):
+
+- **Koenker's studentized score test** is a studentized version of Breuschand Pagan's score test, and is robust when long-tailed errors or unusual observations are present [@lyon1996comparison];
+- **White's test** tests for bias due to heteroskedasticity, but it's generally advised to use Koenker's test instead [@lyon1996comparison].
+
+Both tests will give you a test statistic ($LM$^[Lagrange Multiplier -- which is beyond this textbook's scope to cover.]) and a $p$-value. If either test's $p$-value is less than 0.05, we can reject the null hypothesis that the residuals are homoscedastic, in which case CogStat will specifically call out that the confidence intervals for the regression coefficients and the intercept might be biased, and will run, again, only the Spearman's rank-order correlation as part of the Hypothesis tests.

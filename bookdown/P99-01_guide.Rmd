@@ -1,4 +1,6 @@
-# Summary guide{#summaryguide}
+# (PART\*) APPENDICES{-}
+
+# Summary guide{#summaryguide .unnumbered}
 
 This is a non-comprehensive summary guide about what we talked about in this book.
 
