@@ -121,6 +121,7 @@ fig:parentscatterswithresiduals
 fig:residualanalysisplot
 fig:parentregressionresults
 tab:unnamed-chunk-35
+tab:linrcombnobeta
 tab:unnamed-chunk-36
 whywhywhy
 cogstat_intro
@@ -303,12 +304,16 @@ regression
 introregression
 regressionestimation
 regressioninterpretation
+confidence-intervals-for-the-coefficients
 r2
 the-adjusted-r2-value
 regressiontests
 testing-the-model-as-a-whole
 tests-for-individual-coefficients
+stdcoef
+regressionassumptions
 anova2
 bayes
 bayesianhypothesistests
 whybayes
+summaryguide
