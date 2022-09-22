@@ -314,12 +314,12 @@ regressiontests
 testing-the-model-as-a-whole
 tests-for-individual-coefficients
 stdcoef
-regressionassumptions
 regressiondiagnostics
 three-kinds-of-residuals
 regressionoutliers
 regressionnormality
 regressionhomogeneity
+regressionassumptions
 anova2
 bayes
 bayesianhypothesistests
