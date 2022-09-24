@@ -2,7 +2,7 @@
 
 In the past few chapters, we discussed how to test whether your outcome variable's average value is higher in one group or another. In other words, we have been focusing on *differences* between group means or their standard deviations. 
 
-The goal in this chapter is to introduce **linear regression**, the standard tool that statisticians rely on when analysing the *relationship* between interval scale *predictors* and interval scale *outcomes*. Stripped to its bare essentials, linear regression models are basically a slightly fancier version of the Pearson correlation (Chapter \@ref(correl)). Though as we'll see, regression models are much more powerful tools.
+The goal in this chapter is to introduce **linear regression**, the standard tool that statisticians rely on when analysing the ***relationship*** between interval scale *predictors* and interval scale *outcomes*. Stripped to its bare essentials, linear regression models are basically a slightly fancier version of the Pearson correlation (Chapter \@ref(correl)). Though as we'll see, regression models are much more powerful tools.
 
 You might have seen already in Chapter \@ref(correl) that CogStat gives you a linear regression result. You might also recall the charts with the regression line and the residuals. In this chapter, we'll learn how to interpret these results and how to use them to make predictions.
 
