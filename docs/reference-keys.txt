@@ -350,5 +350,9 @@ regressionnormality
 regressionhomogeneity
 regressionassumptions
 bayes
+priors-what-you-believed-before
+likelihoods-theories-about-the-data
+the-joint-probability-of-data-and-hypothesis
+updating-beliefs-using-bayes-rule
 bayesianhypothesistests
 whybayes
