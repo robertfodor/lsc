@@ -145,15 +145,11 @@ fig:influence
 tab:unnamed-chunk-63
 tab:unnamed-chunk-64
 fig:type1
+versions
 whywhywhy
-cogstat_intro
-foreword_cogstat
 autostat
+cogstat_intro
 gettingstarted
-installing-cogstat
-loading-data
-saving-and-exporting-your-results
-how-to-use-this-book
 researchdesign
 measurement
 some-thoughts-about-psychological-measurement
