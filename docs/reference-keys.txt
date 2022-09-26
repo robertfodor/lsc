@@ -144,6 +144,7 @@ fig:leverage
 fig:influence
 tab:unnamed-chunk-63
 tab:unnamed-chunk-64
+fig:type1
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -294,7 +295,7 @@ mcnemar
 whats-the-difference-between-mcnemar-and-independence
 summary-5
 ttest
-the-one-sample-z-test
+ztest
 onesamplettest
 studentttest
 welchttest
@@ -302,8 +303,8 @@ pairedsamplesttest
 cohensd
 shapiro
 wilcox
-two-sample-wilcoxon-test-mann-whitney-test
-one-sample-and-paired-samples-wilcoxon-tests
+mannwhitney
+wilcoxon
 summary-6
 anova
 the-data
@@ -365,3 +366,9 @@ independent-samples-t-test
 anova-1
 linear-regression
 whybayes
+evidentiary-standards-you-can-believe
+the-p-value-is-a-lie.
+is-it-really-this-bad
+summaryguide
+epilogue
+last-words

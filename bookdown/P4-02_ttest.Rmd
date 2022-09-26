@@ -6,8 +6,8 @@ However, you're much more likely to find yourself in a situation where your outc
 
 The standard answer to the problem of comparing means is to use a $t$-test, which has several varieties depending on exactly what question you want to solve. As a consequence, the majority of this chapter focuses on different types of $t$-test:
 
--one-sample $t$-tests are discussed in Chapter \@ref(onesamplettest),
--independent samples $t$-tests are discussed in Sections \@ref(studentttest) and \@ref(welchttest), and 
+- one-sample $t$-tests are discussed in Chapter \@ref(onesamplettest),
+- independent samples $t$-tests are discussed in Sections \@ref(studentttest) and \@ref(welchttest), and 
 - paired samples $t$-tests are discussed in Chapter \@ref(pairedsamplesttest).
 
 After that, we'll talk a bit about Cohen's $d$, which is the standard measure of effect size for a $t$-test (Section \@ref(cohensd)).
@@ -15,7 +15,7 @@ After that, we'll talk a bit about Cohen's $d$, which is the standard measure of
 The later sections of the chapter focus on the assumptions of the $t$-tests and possible remedies if they are violated. However, before discussing any of these useful things, we'll start with a discussion of the $z$-test.
 
 
-## The one-sample $z$-test
+## The one-sample $z$-test{#ztest}
 
 In this section, we'll discuss one of the most useless tests in all of statistics: the **$z$-test**. Seriously -- this test is seldom used in real life. Its only real purpose is that, when teaching statistics, it's a very convenient stepping stone towards the $t$-test, which is probably the most (over)used tool in all statistics.
 
@@ -933,7 +933,7 @@ This is the situation where you want to use Wilcoxon tests. Unlike the $t$-test,
 
 Like the $t$-test, the Wilcoxon test comes in two forms, one-sample and two-sample, and they're used in more or less the exact same situations as the corresponding $t$-tests.
 
-### Two-sample Wilcoxon test (Mann-Whitney test)
+### Two-sample Wilcoxon test (Mann-Whitney test){#mannwhitney}
 
 Let's start with the **two-sample Wilcoxon test**, also known as the **Mann-Whitney test**, since it's simpler than the one-sample version. 
 
@@ -971,7 +971,7 @@ But how do we interpret this data? Well, we already see from the chart in Figure
 
 When quoting the Mann-Whitney test, you should report the $U$ statistic and the $p$ value.
 
-### One-sample and paired samples Wilcoxon tests
+### One-sample and paired samples Wilcoxon tests{#wilcoxon}
 
 What about the **one-sample Wilcoxon test**, or equivalently, the **paired samples Wilcoxon test**? Suppose we're interested in finding out whether taking a biology class has any effect on the happiness of students. The data is stored in the [`happiness.csv`](resources/data/happiness.csv) file^[Again, this is a modified data set, not included in Danielle's original].
 

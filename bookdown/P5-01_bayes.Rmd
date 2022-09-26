@@ -176,4 +176,3 @@ P(h | d) = \frac{P(d|h) P(h)}{P(d)}
 $$
 
 And this formula is known as **Bayes' rule**. It describes how a learner starts out with prior beliefs about the plausibility of different hypotheses and tells you how those beliefs should be revised in the face of data. In the Bayesian paradigm, all statistical inference flows from this one simple rule.
-
