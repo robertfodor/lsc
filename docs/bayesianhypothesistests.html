@@ -399,7 +399,18 @@ div.csl-indent {
 <li class="chapter" data-level="14.3" data-path="bayes.html"><a href="bayes.html#the-joint-probability-of-data-and-hypothesis"><i class="fa fa-check"></i><b>14.3</b> The joint probability of data and hypothesis</a></li>
 <li class="chapter" data-level="14.4" data-path="bayes.html"><a href="bayes.html#updating-beliefs-using-bayes-rule"><i class="fa fa-check"></i><b>14.4</b> Updating beliefs using Bayes’ rule</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html"><i class="fa fa-check"></i><b>15</b> Bayesian hypothesis tests</a></li>
+<li class="chapter" data-level="15" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html"><i class="fa fa-check"></i><b>15</b> Bayesian hypothesis tests</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#the-bayes-factor"><i class="fa fa-check"></i><b>15.1</b> The Bayes factor</a></li>
+<li class="chapter" data-level="15.2" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#interpreting-bayes-factors"><i class="fa fa-check"></i><b>15.2</b> Interpreting Bayes factors</a></li>
+<li class="chapter" data-level="15.3" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#bayesian-statistics-in-cogstat"><i class="fa fa-check"></i><b>15.3</b> Bayesian statistics in CogStat</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#one-sample-t-test"><i class="fa fa-check"></i><b>15.3.1</b> One-sample <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="15.3.2" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#independent-samples-t-test"><i class="fa fa-check"></i><b>15.3.2</b> Independent samples <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="15.3.3" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#anova-1"><i class="fa fa-check"></i><b>15.3.3</b> ANOVA</a></li>
+<li class="chapter" data-level="15.3.4" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#linear-regression"><i class="fa fa-check"></i><b>15.3.4</b> Linear regression</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="16" data-path="whybayes.html"><a href="whybayes.html"><i class="fa fa-check"></i><b>16</b> Why be a Bayesian?</a></li>
 <li class="part"><span><b>APPENDICES</b></span></li>
 <li class="chapter" data-level="" data-path="summaryguide.html"><a href="summaryguide.html"><i class="fa fa-check"></i>Summary guide</a></li>
@@ -426,7 +437,262 @@ div.csl-indent {
             <section class="normal" id="section-">
 <div id="bayesianhypothesistests" class="section level1 hasAnchor" number="15">
 <h1><span class="header-section-number">Chapter 15</span> Bayesian hypothesis tests<a href="bayesianhypothesistests.html#bayesianhypothesistests" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Chapter <a href="hypothesistesting.html#hypothesistesting">8</a> describes the orthodox approach to hypothesis testing. It took an entire chapter to describe because null hypothesis testing is a very elaborate contraption that people find very hard to make sense of.</p>
+<p>In contrast, the Bayesian approach to hypothesis testing is straightforward. Let us pick a setting that is closely analogous to the orthodox scenario. We want to compare two hypotheses: a null hypothesis <span class="math inline">\(h_0\)</span> and an alternative hypothesis <span class="math inline">\(h_1\)</span>. Before running the experiment, we have some beliefs (<span class="math inline">\(P(h)\)</span>) about which hypotheses are true. We run an experiment and obtain data <span class="math inline">\(d\)</span>. Unlike frequentist statistics, Bayesian statistics does allow talking about the probability that the null hypothesis is true. Better yet, it allows us to calculate the <strong>posterior probability of the null hypothesis</strong>, using Bayes’ rule:</p>
+<p><span class="math display">\[
+P(h_0 | d) = \frac{P(d|h_0) P(h_0)}{P(d)}
+\]</span></p>
+<p>This formula tells us exactly how much belief we should have in the null hypothesis after observing the data <span class="math inline">\(d\)</span>. Similarly, we can work out how much belief to place in the alternative hypothesis using the same equation. All we do is change the subscript:</p>
+<p><span class="math display">\[
+P(h_1 | d) = \frac{P(d|h_1) P(h_1)}{P(d)}
+\]</span></p>
+<div id="the-bayes-factor" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> The Bayes factor<a href="bayesianhypothesistests.html#the-bayes-factor" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In practice, most Bayesian data analysts tend not to talk about the raw posterior probabilities <span class="math inline">\(P(h_0|d)\)</span> and <span class="math inline">\(P(h_1|d)\)</span>. Instead, we tend to talk in terms of the <strong>posterior odds</strong> ratio. Think of it like betting.</p>
+<p>Suppose, for instance, the posterior probability of the null hypothesis is 25%, and the posterior probability of the alternative is 75%. The alternative hypothesis is three times as probable as the null, so we say that the <em>odds</em> are 3:1 in favour of the alternative. Mathematically, all we have to do to calculate the posterior odds is divide one posterior probability by the other:</p>
+<p><span class="math display">\[
+\frac{P(h_1 | d)}{P(h_0 | d)} = \frac{0.75}{0.25} = 3
+\]</span></p>
+<p>Or, to write the same thing in terms of the equations above:
+<span class="math display">\[
+\frac{P(h_1 | d)}{P(h_0 | d)} = \frac{P(d|h_1)}{P(d|h_0)} \times \frac{P(h_1)}{P(h_0)}
+\]</span></p>
+<p>This equation is worth expanding on. There are three different terms here that you should know. On the left-hand side, we have the posterior odds, which tells you what you believe about the relative plausibility of the null hypothesis and the alternative hypothesis <em>after</em> seeing the data. On the right-hand side, we have the <strong>prior odds</strong>, which indicates what you thought <em>before</em> seeing the data. In the middle, we have the <strong>Bayes factor</strong>, which describes the amount of evidence provided by the data:
+<span class="math display">\[
+\begin{array}{ccccc}\displaystyle
+\frac{P(h_1 | d)}{P(h_0 | d)} &amp;=&amp; \displaystyle\frac{P(d|h_1)}{P(d|h_0)} &amp;\times&amp; \displaystyle\frac{P(h_1)}{P(h_0)} \\[6pt] \\[-2pt]
+\uparrow &amp;&amp; \uparrow &amp;&amp; \uparrow \\[6pt]
+\mbox{Posterior odds} &amp;&amp; \mbox{Bayes factor} &amp;&amp; \mbox{Prior odds}
+\end{array}
+\]</span></p>
+<p>The Bayes factor (abbreviated as <strong>BF</strong>) has a special place in Bayesian hypothesis testing because it serves a similar role to the <span class="math inline">\(p\)</span>-value in orthodox hypothesis testing: it quantifies the strength of evidence provided by the data. As such, it is the Bayes factor that people tend to report when running a Bayesian hypothesis test.</p>
+<p>The reason for reporting Bayes factors rather than posterior odds is that different researchers will have different priors. Some people might have a strong bias to believe the null hypothesis is true; others might have a strong bias to believe it is false. Because of this, the polite thing for an applied researcher to do is to report the Bayes factor. That way, anyone reading the paper can multiply the Bayes factor by their own <em>personal</em> prior odds, and they can work out for themselves what the posterior odds would be. In any case, by convention, we pretend that we give equal consideration to both the null hypothesis and the alternative, in which case the prior odds equal 1, and the posterior odds become the same as the Bayes factor.</p>
+</div>
+<div id="interpreting-bayes-factors" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Interpreting Bayes factors<a href="bayesianhypothesistests.html#interpreting-bayes-factors" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>One of the nice things about the Bayes factor is that the numbers are inherently meaningful. An experiment with a Bayes factor of 4 corresponds to betting odds of 4:1 in favour of the alternative. However, some have attempted to quantify the standards of evidence that would be considered meaningful in a scientific context. The two most widely used are <span class="citation">Jeffreys (1961)</span> and <span class="citation">Kass &amp; Raftery (1995)</span>. Of the two, <span class="citation">Kass &amp; Raftery (1995)</span> is somewhat more conservative.</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-63">Table 15.1: </span>Interpretation of Bayes factors by <span class="citation">Kass &amp; Raftery (1995)</span>
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Bayes factor
+</th>
+<th style="text-align:left;">
+Interpretation
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1 - 3
+</td>
+<td style="text-align:left;">
+Negligible evidence
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3 - 20
+</td>
+<td style="text-align:left;">
+Positive evidence
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+20 - 150
+</td>
+<td style="text-align:left;">
+Strong evidence
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(&gt;\)</span> 150
+</td>
+<td style="text-align:left;">
+Very strong evidence
+</td>
+</tr>
+</tbody>
+</table>
+<span class="citation">Jeffreys (1961)</span> had the following guideline:
+<table>
+<caption>
+<span id="tab:unnamed-chunk-64">Table 15.2: </span>Interpretation of Bayes factors by <span class="citation">Jeffreys (1961)</span>
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Bayes factor <span class="math inline">\(BF_10\)</span>
+</th>
+<th style="text-align:left;">
+Interpretation
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(&gt;\)</span> 100
+</td>
+<td style="text-align:left;">
+Extreme evidence for <span class="math inline">\(h_1\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+30 - 100
+</td>
+<td style="text-align:left;">
+Very strong evidence for <span class="math inline">\(h_1\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+10 - 30
+</td>
+<td style="text-align:left;">
+Strong evidence for <span class="math inline">\(h_1\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3 - 10
+</td>
+<td style="text-align:left;">
+Moderate evidence for <span class="math inline">\(h_1\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1 - 3
+</td>
+<td style="text-align:left;">
+Anecdotal evidence for <span class="math inline">\(h_1\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+No evidence for <span class="math inline">\(h_1\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1/3 - 1
+</td>
+<td style="text-align:left;">
+Anecdotal evidence for <span class="math inline">\(h_0\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1/10 - 1/3
+</td>
+<td style="text-align:left;">
+Moderate evidence for <span class="math inline">\(h_0\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1/30 - 1/10
+</td>
+<td style="text-align:left;">
+Strong evidence for <span class="math inline">\(h_0\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+1/100 - 1/30
+</td>
+<td style="text-align:left;">
+Very strong evidence for <span class="math inline">\(h_0\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<span class="math inline">\(&lt;\)</span> 1/100
+</td>
+<td style="text-align:left;">
+Extreme evidence for <span class="math inline">\(h_0\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+<p>There are no hard and fast rules here: what counts as strong or weak evidence depends entirely on how conservative you are and upon the standards that your community insists upon before it is willing to label a finding as “true”.</p>
+<p>In any case, note that all the numbers listed above make sense if the Bayes factor is greater than 1 (i.e. the evidence favours the alternative hypothesis). However, one important practical advantage of the Bayesian approach relative to the frequentist approach is that it also allows for quantifying evidence <em>for</em> the null. When that happens, the Bayes factor will be less than 1. You can choose to report a Bayes factor of less than 1, but it might be confusing for some.</p>
+<p>For example, suppose that the likelihood of the data under the null hypothesis <span class="math inline">\(P(d|h_0)\)</span> is equal to 0.2, and the corresponding likelihood <span class="math inline">\(P(d|h_0)\)</span> under the alternative hypothesis is 0.1. Using the equations given above, the Bayes factor here would be:</p>
+<p><span class="math display">\[
+\mbox{BF} = \frac{P(d|h_1)}{P(d|h_0)} = \frac{0.1}{0.2} = 0.5
+\]</span></p>
+<p>This result tells that the evidence in favour of the alternative is 0.5 to 1. For some, it makes a lot more sense to turn the equation “upside down” and report the amount of evidence in favour of the <em>null</em>. In other words, what we calculate is this:</p>
+<p><span class="math display">\[
+\mbox{BF}^\prime = \frac{P(d|h_0)}{P(d|h_1)} = \frac{0.2}{0.1} = 2
+\]</span></p>
+<p>We would report a Bayes factor of 2:1 in favour of the null. Much easier to understand, and you can interpret this using the table above.</p>
+<p>A few words on notation: the Bayes factor is often written as <span class="math inline">\(BF_{10}\)</span>, where the subscript indicates that we are giving evidence for <span class="math inline">\(h_1\)</span> over <span class="math inline">\(h_0\)</span>. When noted as <span class="math inline">\(BF_{01}\)</span>, however, it is the other way around. Always be mindful which statistic you are reporting, and make sure you are consistent in your notation.</p>
+<p>No need to worry too much though, because
+<span class="math display">\[
+\mbox{BF}_{10} = \frac{1}{\mbox{BF}_{01}}
+\]</span></p>
+</div>
+<div id="bayesian-statistics-in-cogstat" class="section level2 hasAnchor" number="15.3">
+<h2><span class="header-section-number">15.3</span> Bayesian statistics in CogStat<a href="bayesianhypothesistests.html#bayesian-statistics-in-cogstat" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Bayesian hypothesis testing is a new feature since CogStat 2.3. You might have already noticed the results of Bayesian hypothesis tests in the output of CogStat in some screenshots. Let us revisit some of our examples from earlier chapters.</p>
+<div id="one-sample-t-test" class="section level3 hasAnchor" number="15.3.1">
+<h3><span class="header-section-number">15.3.1</span> One-sample <span class="math inline">\(t\)</span>-test<a href="bayesianhypothesistests.html#one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>You might recall Dr Zeppo’s psychology students and their grades from Chapter <a href="ttest.html#onesamplettest">10.2</a>. The file was called <a href="resources/data/zeppo.csv"><code>zeppo.csv</code></a>. Let us load it again to CogStat, and let’s use the function <code>Explore variable</code>, and let us use our last null hypothesis of <span class="math inline">\(67.5\)</span> as the population standard deviation (fill in <code>67.5</code> in the dialog box’s <code>Central tendency test value</code>). The results were:</p>
+<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
+     <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
+     <p style="color:#008000;">Testing if mean deviates from the value 67.5.<br />
+     Interval variable. &gt;&gt; Choosing one-sample t-test or Wilcoxon signed-rank test depending on the assumption.<br />
+     Checking for normality.</p>
+     <p style="color:black;">Shapiro-Wilk normality test in variable x:<span style="font-style:italic;">W</span> = 0.96, <span style="font-style:italic;">p</span> = .586</p>
+     <p style="color:#008000;">Normality is not violated. &gt;&gt; Running one-sample t-test.</p>
+     <p style="color:black;">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in d: 0.85. </p>
+     <p style="color:black;">One sample t-test against 67.5: <span style="font-style:italic;">t</span>(19) = 2.25, <span style="font-style:italic;">p</span> = .036</p>
+     <p style="color:black;">Result of the Bayesian one sample t-test: BF<sub>10</sub> = 1.80, BF<sub>01</sub> = 0.56</p>
+</div>
+<p>While the one-sample <span class="math inline">\(t\)</span>-test statistic was significant, the Bayes factor (<span class="math inline">\(BF_10\)</span>) was 1.80:1 in favour of the alternative, which is not very strong evidence by any of the guidances. So we should not be able to reject the null hypothesis. So what we would write up is:</p>
+<blockquote>
+<p>With a mean grade of 72.3, the psychology students scored slightly higher than the average grade of 67.5 but there is no statistical evidence for a difference (<span class="math inline">\(BF_{10} = 1.80\)</span>).</p>
+</blockquote>
+</div>
+<div id="independent-samples-t-test" class="section level3 hasAnchor" number="15.3.2">
+<h3><span class="header-section-number">15.3.2</span> Independent samples <span class="math inline">\(t\)</span>-test<a href="bayesianhypothesistests.html#independent-samples-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s load the file <a href="resources/data/harpo.csv"><code>harpo.csv</code></a>, where we see the grades for Dr Harpo’s lectures with the two tutors for the class (Anastasia and Bernadette). We’ll use the <code>Compare groups</code> functions with <code>grades</code> in the <code>Dependent variable(s)</code> box and <code>tutor</code> in the <code>Group(s)</code> box. The results were:</p>
+<p><img src="resources/image/cogstatharpohypo.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>And again, with a bayesian approach, there is not much evidence of significant difference.</p>
+<blockquote>
+<p>The mean grade in Anastasia’s class was 74.5 (SD = 8.7), whereas the mean in Bernadette’s class was 69.1 (SD = 5.6). A Student’s independent samples <span class="math inline">\(t\)</span>-test showed that this 5.5 difference was significant (<span class="math inline">\(t(31) = 2.12\)</span>, <span class="math inline">\(p&lt;.05\)</span>, <span class="math inline">\(CI_{95} = [0.2, 10.8]\)</span>), suggesting that a genuine difference in learning outcomes has occurred. However, the Bayes factor (<span class="math inline">\(BF_{10} = 1.75\)</span>) is not strong enough to reject the null hypothesis, so we cannot conclude that the difference is real.</p>
+</blockquote>
+</div>
+<div id="anova-1" class="section level3 hasAnchor" number="15.3.3">
+<h3><span class="header-section-number">15.3.3</span> ANOVA<a href="bayesianhypothesistests.html#anova-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s jump back to our clinical trial from Chapter <a href="anova.html#anova">11</a>: <a href="resources/data/clinicaltrial.csv"><code>clinicaltrial.csv</code></a>. Let’s put <code>therapy</code> in the <code>Dependent variable(s)</code> box and <code>mood_gain</code> in the <code>Group(s)</code> box in the <code>Compare groups</code> function. The results were given:</p>
+<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
+     <p style="color:black;">Result of the Bayesian independent two-samples t-test: BF<sub>10</sub> = 1.75, BF<sub>01</sub> = 0.57</p>
+</div>
+<p>You’ll notice that when running the same exercise with <code>drug</code> instead of <code>therapy</code>, there is no Bayes factor in the results. Bayesian statistics is not yet implemented for ANOVA (more than two groups or more than one grouping variables).</p>
+</div>
+<div id="linear-regression" class="section level3 hasAnchor" number="15.3.4">
+<h3><span class="header-section-number">15.3.4</span> Linear regression<a href="bayesianhypothesistests.html#linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Let’s use our <a href="resources/data/parenthood.csv"><code>parenthood.csv</code></a> file, and let’s use the <code>Explore relation of variable pair</code> function with <code>parentgrump</code> and <code>parentsleep</code>. The results are staggering:</p>
+<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
+     <p style="color:black;">Pearson's correlation: <span style="font-style:italic;">r</span>(98) = -0.90, <span style="font-style:italic;">p</span> &lt .001</p>
+     <p style="color:black;">Bayes Factor for Pearson correlation: BF<sub>10</sub> = 25912605631674947492297885431627776.00, BF<sub>01</sub> = 0.00</p>
+</div>
+<p>As you see, the Pearson’s correlation is <span class="math inline">\(-0.90\)</span> with a <span class="math inline">\(p &lt; .001\)</span>. An <span class="math inline">\(r\)</span> value close to 1 is already very strong (particularly with a significant <span class="math inline">\(p\)</span>-value), but that’s a frequentist statistic. The Bayes factor of <span class="math inline">\(BF_{10} = 2.59 \times 10^{28}\)</span>:1 in favour of the alternative is a very strong evidence. And the inverted notation <span class="math inline">\(BF_{01} = 0.00\)</span> also speaks volumes. So we have no doubt that there is a strong correlation between the two variables.</p>
 
+</div>
+</div>
 </div>
             </section>
 

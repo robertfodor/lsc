@@ -142,6 +142,8 @@ tab:unnamed-chunk-55
 fig:outlier
 fig:leverage
 fig:influence
+tab:unnamed-chunk-63
+tab:unnamed-chunk-64
 whywhywhy
 cogstat_intro
 foreword_cogstat
@@ -355,4 +357,11 @@ likelihoods-theories-about-the-data
 the-joint-probability-of-data-and-hypothesis
 updating-beliefs-using-bayes-rule
 bayesianhypothesistests
+the-bayes-factor
+interpreting-bayes-factors
+bayesian-statistics-in-cogstat
+one-sample-t-test
+independent-samples-t-test
+anova-1
+linear-regression
 whybayes
