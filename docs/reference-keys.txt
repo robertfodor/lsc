@@ -145,7 +145,6 @@ fig:influence
 tab:unnamed-chunk-63
 tab:unnamed-chunk-64
 fig:type1
-versions
 whywhywhy
 autostat
 cogstat_intro

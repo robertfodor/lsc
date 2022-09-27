@@ -96,7 +96,7 @@ div.csl-indent {
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this book</a>
 <ul>
-<li class="chapter" data-level="0.1" data-path="index.html"><a href="index.html#versions"><i class="fa fa-check"></i><b>0.1</b> Versions</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#versions"><i class="fa fa-check"></i>Versions</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors-note"><i class="fa fa-check"></i>Author’s note</a></li>
 </ul></li>
 <li class="part"><span><b>INTRODUCTIONS</b></span></li>
@@ -456,7 +456,7 @@ div.csl-indent {
 <h1><span class="header-section-number">Chapter 15</span> Introduction to Bayesian statistics<a href="bayes.html#bayes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <blockquote>
 <p><em>In our reasonings concerning matter of fact, there are all imaginable degrees of assurance, from the highest certainty to the lowest species of moral evidence. A wise man, therefore, proportions his belief to the evidence.</em>
-– David Hume<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a>.</p>
+– David Hume<a href="#fn77" class="footnote-ref" id="fnref77"><sup>77</sup></a>.</p>
 </blockquote>
 <p>The ideas so far in this book describe inferential statistics from the frequentist perspective. Almost every textbook given to undergraduate psychology students presents the opinions of the frequentist statistician as <em>the</em> theory of inferential statistics, the one true way to do things. The frequentist view of statistics dominated the academic field for most of the 20th century, and this dominance is even more extreme among applied scientists. It was and is the current practice among psychologists to use frequentist methods. Because frequentist methods are ubiquitous in scientific papers, every statistics student needs to understand them; otherwise, they will be unable to make sense of what those papers are saying! Unfortunately, the current practice in psychology is often misguided, and the reliance on frequentist methods is partly to blame. In this chapter, we will introduce Bayesian statistics, an approach that – some, including Danielle, think – is generally superior to the orthodox approach.</p>
 <p>From a Bayesian perspective, statistical inference is about <strong>belief revision</strong>.</p>
@@ -469,7 +469,7 @@ div.csl-indent {
 <div id="priors-what-you-believed-before" class="section level2 hasAnchor" number="15.1">
 <h2><span class="header-section-number">15.1</span> Priors: what you believed before<a href="bayes.html#priors-what-you-believed-before" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Firstly, you must ignore everything about the umbrella and write down your pre-existing beliefs about rain. This is important: if you want to be honest about how your beliefs have been revised in the light of new evidence, then you <em>must</em> say something about what you believed before those data appeared!</p>
-<p>So, what might you believe about whether it will rain today? You probably know that Attila lives in Budapest and that the weather here is mild and relatively dry. In fact, you might have decided to take a quick look on Wikipedia<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a> and discovered that Budapest gets an average of 7.3 days of rain across the 31 days of January, let’s say. Without knowing anything else, you might conclude that the probability of January rain in Budapest is about (<span class="math inline">\(\frac{7.3}{31}=\)</span>) 23.5%, and the probability of a dry day is ($1 - 0.235 = $)76.5%. If this is what you believe about Budapest rainfall, then what we have written here is your <strong>prior distribution</strong>, written <span class="math inline">\(P(h)\)</span>:</p>
+<p>So, what might you believe about whether it will rain today? You probably know that Attila lives in Budapest and that the weather here is mild and relatively dry. In fact, you might have decided to take a quick look on Wikipedia<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a> and discovered that Budapest gets an average of 7.3 days of rain across the 31 days of January, let’s say. Without knowing anything else, you might conclude that the probability of January rain in Budapest is about (<span class="math inline">\(\frac{7.3}{31}=\)</span>) 23.5%, and the probability of a dry day is ($1 - 0.235 = $)76.5%. If this is what you believe about Budapest rainfall, then what we have written here is your <strong>prior distribution</strong>, written <span class="math inline">\(P(h)\)</span>:</p>
 <table>
 <thead>
 <tr>
@@ -504,7 +504,7 @@ Dry day
 <div id="likelihoods-theories-about-the-data" class="section level2 hasAnchor" number="15.2">
 <h2><span class="header-section-number">15.2</span> Likelihoods: theories about the data<a href="bayes.html#likelihoods-theories-about-the-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To solve the reasoning problem, you need a theory about Attila’s behaviour. When does he carry an umbrella? You might guess that he only carries umbrellas on rainy days. But he’s also a busy professor. Might he be forgetful?</p>
-<p>Let’s suppose<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a> that on rainy days he remembers his umbrella about 30% of the time. Let’s say that on dry days, he’s only about 5% likely to be carrying an umbrella. So you might write out a little table like this:</p>
+<p>Let’s suppose<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a> that on rainy days he remembers his umbrella about 30% of the time. Let’s say that on dry days, he’s only about 5% likely to be carrying an umbrella. So you might write out a little table like this:</p>
 <table>
 <thead>
 <tr>
@@ -544,7 +544,7 @@ Dry day
 </tr>
 </tbody>
 </table>
-<p>It’s important to remember that each cell in this table describes your beliefs about what data <span class="math inline">\(d\)</span> will be observed, <em>given</em> the truth of a particular hypothesis <span class="math inline">\(h\)</span>. This “conditional probability” is written <span class="math inline">\(P(d|h)\)</span>, which you can read as “the probability of <span class="math inline">\(d\)</span> given <span class="math inline">\(h\)</span>”. In Bayesian statistics, this is referred to as <strong>likelihood</strong> of data <span class="math inline">\(d\)</span> given hypothesis <span class="math inline">\(h\)</span>.<a href="#fn81" class="footnote-ref" id="fnref81"><sup>81</sup></a></p>
+<p>It’s important to remember that each cell in this table describes your beliefs about what data <span class="math inline">\(d\)</span> will be observed, <em>given</em> the truth of a particular hypothesis <span class="math inline">\(h\)</span>. This “conditional probability” is written <span class="math inline">\(P(d|h)\)</span>, which you can read as “the probability of <span class="math inline">\(d\)</span> given <span class="math inline">\(h\)</span>”. In Bayesian statistics, this is referred to as <strong>likelihood</strong> of data <span class="math inline">\(d\)</span> given hypothesis <span class="math inline">\(h\)</span>.<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a></p>
 </div>
 <div id="the-joint-probability-of-data-and-hypothesis" class="section level2 hasAnchor" number="15.3">
 <h2><span class="header-section-number">15.3</span> The joint probability of data and hypothesis<a href="bayes.html#the-joint-probability-of-data-and-hypothesis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -853,7 +853,7 @@ Total
 </table>
 <p>This table infers that, after being told that Attila is carrying an umbrella, you believe that there is a 64.8% chance that today will be a rainy day and a 35.2% chance that it will not. That is the answer to our problem! The <strong>posterior probability</strong> of rain <span class="math inline">\(P(h|d)\)</span> given that Attila is carrying an umbrella is 64.8%.</p>
 <p>How did we calculate these numbers? You can probably guess: take the 0.0705 probability of “rain and umbrella” and divide it by the 0.1088 chance of “umbrella”. This produces a table that satisfies our need to have everything sum to 1 and our need not to interfere with the relative plausibility of the two events that are actually consistent with the data.</p>
-<p>To say the same thing using fancy statistical jargon: divide the joint probability of the hypothesis and the data <span class="math inline">\(P(d,h)\)</span> by the <strong>marginal probability</strong> of the data <span class="math inline">\(P(d)\)</span>, and this is what gives us the posterior probability of the hypothesis <em>given</em> that we know the data have been observed. To write this as an equation:<a href="#fn82" class="footnote-ref" id="fnref82"><sup>82</sup></a>
+<p>To say the same thing using fancy statistical jargon: divide the joint probability of the hypothesis and the data <span class="math inline">\(P(d,h)\)</span> by the <strong>marginal probability</strong> of the data <span class="math inline">\(P(d)\)</span>, and this is what gives us the posterior probability of the hypothesis <em>given</em> that we know the data have been observed. To write this as an equation:<a href="#fn81" class="footnote-ref" id="fnref81"><sup>81</sup></a>
 <span class="math display">\[
 P(h | d) = \frac{P(d,h)}{P(d)}
 \]</span></p>
@@ -867,12 +867,12 @@ P(h | d) = \frac{P(d|h) P(h)}{P(d)}
 </div>
 <div class="footnotes">
 <hr />
-<ol start="78">
-<li id="fn78"><p><a href="http://en.wikiquote.org/wiki/David_Hume" class="uri">http://en.wikiquote.org/wiki/David_Hume</a><a href="bayes.html#fnref78" class="footnote-back">↩︎</a></p></li>
-<li id="fn79"><p><a href="https://en.wikipedia.org/wiki/Climate_of_Budapest" class="uri">https://en.wikipedia.org/wiki/Climate_of_Budapest</a><a href="bayes.html#fnref79" class="footnote-back">↩︎</a></p></li>
-<li id="fn80"><p>I’m confident he is anything but forgetful. At least, that is how I know him. I hope he won’t mind this little easter egg of an example. – Robert<a href="bayes.html#fnref80" class="footnote-back">↩︎</a></p></li>
-<li id="fn81"><p>Some statisticians would object to using the word “likelihood” here. The problem is that the word “likelihood” has a very specific meaning in frequentist statistics, and it’s not quite the same as what it means in Bayesian statistics. Bayesians didn’t originally have any agreed-upon name for the likelihood, and so it became common practice for people to use the frequentist terminology. This wouldn’t have been a problem, except for the fact that the way that Bayesians use the word turns out to be quite different to the way frequentists do. This isn’t the place for yet another lengthy history lesson, but to put it crudely: when a Bayesian says “<em>a</em> likelihood function” they’re usually referring to one of the <em>rows</em> of the table. When a frequentist says the same thing, they’re referring to the same table, but to them, “<em>a</em> likelihood function” almost always refers to one of the <em>columns</em>. This distinction matters in some contexts, but it’s not important for our purposes.<a href="bayes.html#fnref81" class="footnote-back">↩︎</a></p></li>
-<li id="fn82"><p>You might notice that this equation is actually a restatement of the same basic rule from the start of the last section. If you multiply both sides of the equation by <span class="math inline">\(P(d)\)</span>, then you get <span class="math inline">\(P(d) P(h| d) = P(d,h)\)</span>, which is the rule for how joint probabilities are calculated.<a href="bayes.html#fnref82" class="footnote-back">↩︎</a></p></li>
+<ol start="77">
+<li id="fn77"><p><a href="http://en.wikiquote.org/wiki/David_Hume" class="uri">http://en.wikiquote.org/wiki/David_Hume</a><a href="bayes.html#fnref77" class="footnote-back">↩︎</a></p></li>
+<li id="fn78"><p><a href="https://en.wikipedia.org/wiki/Climate_of_Budapest" class="uri">https://en.wikipedia.org/wiki/Climate_of_Budapest</a><a href="bayes.html#fnref78" class="footnote-back">↩︎</a></p></li>
+<li id="fn79"><p>I’m confident he is anything but forgetful. At least, that is how I know him. I hope he won’t mind this little easter egg of an example. – Robert<a href="bayes.html#fnref79" class="footnote-back">↩︎</a></p></li>
+<li id="fn80"><p>Some statisticians would object to using the word “likelihood” here. The problem is that the word “likelihood” has a very specific meaning in frequentist statistics, and it’s not quite the same as what it means in Bayesian statistics. Bayesians didn’t originally have any agreed-upon name for the likelihood, and so it became common practice for people to use the frequentist terminology. This wouldn’t have been a problem, except for the fact that the way that Bayesians use the word turns out to be quite different to the way frequentists do. This isn’t the place for yet another lengthy history lesson, but to put it crudely: when a Bayesian says “<em>a</em> likelihood function” they’re usually referring to one of the <em>rows</em> of the table. When a frequentist says the same thing, they’re referring to the same table, but to them, “<em>a</em> likelihood function” almost always refers to one of the <em>columns</em>. This distinction matters in some contexts, but it’s not important for our purposes.<a href="bayes.html#fnref80" class="footnote-back">↩︎</a></p></li>
+<li id="fn81"><p>You might notice that this equation is actually a restatement of the same basic rule from the start of the last section. If you multiply both sides of the equation by <span class="math inline">\(P(d)\)</span>, then you get <span class="math inline">\(P(d) P(h| d) = P(d,h)\)</span>, which is the rule for how joint probabilities are calculated.<a href="bayes.html#fnref81" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

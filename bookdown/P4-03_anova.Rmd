@@ -48,11 +48,11 @@ H_1 &:& \mbox{it is *not* true that } \mu_P = \mu_A = \mu_J
 \end{array}
 $$
 
-This null hypothesis is a lot trickier to test than any of the ones we've seen previously. How shall we do it? A sensible guess would be to "do an ANOVA", since that's the title of the chapter, but it's not particularly clear why an "analysis of *variances*" will help us learn anything useful about the *means*. In fact, this is one of the biggest conceptual difficulties that people have when first encountering ANOVA. To see how this works, let us talk about variances first.
+This null hypothesis is a lot trickier to test than any of the ones we've seen previously. How shall we do it? A sensible guess would be to "do an ANOVA", since that's the title of the chapter, but it's not particularly clear why an "analysis of *variances*" will help us learn anything useful about the *means*. In fact, this is one of the greatest conceptual difficulties that people have when first encountering ANOVA. To see how this works, let us talk about variances first.
 
 ### From variance...
 
-We'll use $G$ to refer to the total number of groups. For our data set, there are three drugs, so there are $G=3$ groups. Next, we'll use $N$ to refer to the total sample size: there are a total of $N=18$ people in our data set. Similarly, let's use $N_k$ to denote the number of people in the $k$-th group. In our fake clinical trial, the sample size is $N_k = 6$ for all three groups.^[When all groups have the same number of observations, the experimental design is said to be "balanced". Balance isn't such a big deal for one-way ANOVA but becomes more important when you start doing more complicated ANOVAs.] Finally, we'll use $Y$ to denote the outcome variable (the mood change). Specifically, we'll use $Y_{ik}$ to refer to the mood change experienced by the $i$-th member of the $k$-th group. Similarly, we'll use $\bar{Y}$ to be the average mood change, taken across all 18 people in the experiment, and $\bar{Y}_k$ to refer to the average mood change experienced by the 6 people in group $k$.  
+We'll use $G$ to refer to the total number of groups. For our data set, there are three drugs, so there are $G=3$ groups. Next, we'll use $N$ to refer to the total sample size: there are a total of $N=18$ people in our data set. Similarly, let's use $N_k$ to denote the number of people in the $k$-th group. In our fake clinical trial, the sample size is $N_k = 6$ for all three groups.^[When all groups have the same number of observations, the experimental design is said to be "balanced". Balance isn't such a big deal for one-way ANOVA but becomes more important when you start doing more complicated ANOVAs.] Finally, we'll use $Y$ to denote the outcome variable (mood change). Specifically, we'll use $Y_{ik}$ to refer to the mood change experienced by the $i$-th member of the $k$-th group. Similarly, we'll use $\bar{Y}$ to be the average mood change, taken across all 18 people in the experiment, and $\bar{Y}_k$ to refer to the average mood change experienced by the 6 people in group $k$.  
 
 Excellent. Now that we've got our notation sorted out, we can start writing down formulas. To start with, let's recall the formula for the variance that we used in Chapter \@ref(var), way back in those kinder days when we were just doing descriptive statistics. The sample variance of $Y$ is defined as follows:
 $$
@@ -105,7 +105,7 @@ $$
 $$
 where $\bar{Y}_k$ is a group mean.
 
-In our example, $\bar{Y}_k$ would be the average mood change experienced by those people given  the $k$-th drug. So, instead of comparing individuals to the average of *all* people in the experiment, we're only comparing them to those people in the the same group. As a consequence, you'd expect the value of $\mbox{SS}_w$ to be smaller than the total sum of squares, because it's completely ignoring any group differences -- that is, the fact that the drugs (if they work) will have different effects on people's moods.
+In our example, $\bar{Y}_k$ would be the average mood change experienced by those people given  the $k$-th drug. So, instead of comparing individuals to the average of *all* people in the experiment, we're only comparing them to those people in the same group. As a consequence, you'd expect the value of $\mbox{SS}_w$ to be smaller than the total sum of squares, because it's completely ignoring any group differences -- that is, the fact that the drugs (if they work) will have different effects on people's moods.
 
 Next, we can define a third notion of variation which captures *only* the differences *between groups*. We do this by looking at the differences between the group means $\bar{Y}_k$ and grand mean $\bar{Y}$. In order to quantify the extent of this variation, what we do is calculate the **between-group sum of squares**:
 $$
@@ -123,7 +123,7 @@ $$
 
 Yay.
 
-```{r anovavara, fig.cap="Graphical illustration of \"between groups\" variation", echo=FALSE, fig.align="center", out.width="100%"}
+```{r anovavara, fig.cap="Graphical illustration of \"between-groups\" variation", echo=FALSE, fig.align="center", out.width="100%"}
 	width <- 7
 	height <- 4
 	# params
@@ -257,7 +257,7 @@ Our test statistic is called an **$F$-ratio**. It's defined as the ratio of the 
 
 In order to convert our SS values into an $F$-ratio, the first thing we need to calculate is the **degrees of freedom** associated with the SS$_b$ and SS$_w$ values. As usual, the degrees of freedom corresponds to the number of unique "data points" that contribute to a particular calculation, minus the number of "constraints" that they need to satisfy.
 
-For the within-groups variability, what we're calculating is the variation of the individual observations ($N$ data points) around the group means ($G$ constraints). In contrast, for the between groups variability, we're interested in the variation of the group means ($G$ data points) around the grand mean (1 constraint). Therefore, the degrees of freedom here are:
+For the within-groups variability, what we're calculating is the variation of the individual observations ($N$ data points) around the group means ($G$ constraints). In contrast, for the between-groups variability, we're interested in the variation of the group means ($G$ data points) around the grand mean (1 constraint). Therefore, the degrees of freedom here are:
 $$
 \begin{array}{lcl}
 \mbox{df}_b &=& G-1 \\
@@ -280,7 +280,7 @@ $$
 
 At a very general level, the intuition behind the $F$ statistic is straightforward: bigger values of $F$ means that the between-groups variation is large, relative to the within-groups variation. As a consequence, the larger the value of $F$, the more evidence we have against the null hypothesis. (To read more on how large does $F$ have to be to reject the null hypothesis, see the next chapter.)
 
-In order to complete our hypothesis test, we need to know the sampling distribution for $F$ if the null hypothesis is true. Not surprisingly, the sampling distribution for the $F$ *statistic* under the null hypothesis is an $F$ *distribution*. As seen in Chapter \@ref(probability), the $F$ distribution has two parameters, corresponding to the two degrees of freedom involved: the first one df$_1$ is the between groups degrees of freedom df$_b$, and the second one df$_2$ is the within groups degrees of freedom df$_w$.
+In order to complete our hypothesis test, we need to know the sampling distribution for $F$ if the null hypothesis is true. Not surprisingly, the sampling distribution for the $F$ *statistic* under the null hypothesis is an $F$ *distribution*. As seen in Chapter \@ref(probability), the $F$ distribution has two parameters, corresponding to the two degrees of freedom involved: the first one df$_1$ is the between-groups degrees of freedom df$_b$, and the second one df$_2$ is the within-groups degrees of freedom df$_w$.
 
 A summary of all the key quantities involved in a one-way ANOVA, including the formulas showing how they are calculated, is shown in Table \@ref(tab:anovatable). 
 
@@ -369,7 +369,7 @@ $$
 \epsilon \sim \mbox{Normal}(0, \sigma^2)
 $$
 
-Okay, now that we've described the statistical models underpinning $H_0$ and $H_1$ in more detail, it's now pretty straightforward to say what the mean square values are measuring, and what this means for the interpretation of $F$.
+Okay, now that we've described the statistical models underpinning $H_0$ and $H_1$ in more detail, it's now pretty straightforward to say what the mean square values are measuring and what this means for the interpretation of $F$.
 
 It turns out that the within-groups mean square, MS$_w$, can be viewed as an estimator (in the technical sense: Chapter \@ref(estimation)) of the error variance $\sigma^2$. The between-groups mean square MS$_b$ is also an estimator; but what it estimates is the error variance *plus* a quantity that depends on the true differences among the group means. If we call this quantity $Q$, then we can see that the $F$-statistic is basically
 $$
@@ -381,9 +381,9 @@ To be a bit more precise about the sampling distribution, notice that if the nul
 
 ## Interpreting our results in CogStat{#introduceaov}
 
-You already know the answers, because we calculated it step by step, but you have a more in-depth understanding of how it all ties together. CogStat will do all of this for you, but it's good to know what's going on behind the scenes. Let's see how CogStat interprets our data.
+You already know the answers because we calculated it step by step, but you have a more in-depth understanding of how it all ties together. CogStat will do all of this for you, but it's good to know what's going on behind the scenes. Let's see how CogStat interprets our data.
 
-So what we had to do, is simply run the `Compare groups` function with `mood_gain` by `drug`.
+So what we had to do, was simply run the `Compare groups` function with `mood_gain` by `drug`.
 ```{r cogcompbydrugdialog, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="CogStat dialogue for `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`."}
 knitr::include_graphics(c(
     "resources/image/comparegroupsbydrug.png"))
@@ -434,7 +434,7 @@ knitr::kable(
 )
 ```
 
-CogStat doesn't produce this table for you, or give the sums of squares or mean squares. But actually, you don't need it to understand what the statistic tells you. There's almost never a good reason to include the whole table in your write up, but you might see it in other statistical software.
+CogStat doesn't produce this table for you or give the sums of squares or mean squares. But actually, you don't need it to understand what the statistic tells you. There's almost never a good reason to include the whole table in your write-up, but you might see it in other statistical software.
 
 A pretty standard way of reporting this result would be to write something like this:
 
@@ -487,7 +487,7 @@ $$
 
 CogStat will give you this exact omega-squared value when running the one-way ANOVA inside the `Compare groups` function (see result set in Figure \@ref(fig:cogcompbydrug)).
 
-$\omega^2$ will take on values between $0$ and $1$, where 0 indicates there is no effect whatsoever. It is wise to quote the effect size when writing up our results in APA styled psychology research^[https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf]. For example, we could write:
+$\omega^2$ will take on values between $0$ and $1$, where 0 indicates there is no effect whatsoever. It is wise to quote the effect size when writing up our results in APA-styled psychology research^[https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf]. For example, we could write:
 
 > One-way ANOVA showed a significant effect of drug on mood gain (*F*(2,15) = 18.61, p < .001, $\omega^2$ = 0.662).
 
@@ -528,7 +528,7 @@ By rejecting the null hypothesis, we've decided that we *don't* believe that \#1
 
 There are actually quite a lot of different methods for performing multiple comparisons in the statistics literature [@Hsu1996], and it would be beyond the scope of an introductory text like this one to discuss all of them in any detail. That being said, there's one tool of importance, namely Tukey's "Honestly Significant Difference", or **Tukey's HSD** for short. While there is the possibility to run "pairwise" $t$-tests manually, or in other statistical software, CogStat opts for Tukey's HSD test as a robust tool for running post hoc tests.
 
-The basic idea in Tukey's HSD is to examine all relevant pairwise comparisons between groups, and it's only really appropriate to use Tukey's HSD if it is *pairwise* differences that you're interested in. If, for instance, you actually would find yourself interested to know if Group A is significantly different from the mean of Group B and Group C, then you need to use a different tool (e.g., Scheffe's method, which is more conservative, and beyond the scope this book).
+The basic idea of Tukey's HSD is to examine all relevant pairwise comparisons between groups, and it's only really appropriate to use Tukey's HSD if it is *pairwise* differences that you're interested in. If, for instance, you actually would find yourself interested to know if Group A is significantly different from the mean of Group B and Group C, then you need to use a different tool (e.g., Scheffe's method, which is more conservative, and beyond the scope this book).
 
 Tukey's HSD constructs **simultaneous confidence intervals** for all the comparisons. What we mean by 95\% "simultaneous" confidence interval is that there is a 95\% probability that *all* of these confidence intervals contain the relevant true value. Moreover, we can use these confidence intervals to calculate an adjusted $p$ value for any specific comparison.
 
@@ -551,15 +551,15 @@ knitr::kable(
     caption = "Multiple Comparison of Means - Tukey HSD, FWER=0.05")
 ```
 
-The first column shows one of the groups in our comparison, namely the drug. The second column shows which other group we are comparing against in pair. The third column is our statistic (the mean difference), and the fourth column is the adjusted $p$ value. The fifth and sixth columns show the lower and upper bounds of the 95\% confidence interval for the mean difference. The final column shows whether or not we reject the null hypothesis that the mean difference is zero.
+The first column shows one of the groups in our comparison, namely the drug. The second column shows which other group we are comparing against in pairs. The third column is our statistic (the mean difference), and the fourth column is the adjusted $p$ value. The fifth and sixth columns show the lower and upper bounds of the 95\% confidence interval for the mean difference. The final column shows whether or not we reject the null hypothesis that the mean difference is zero.
 
 The easiest way to interpret the results is to look at what pairs have rejected the null hypothesis (of not having a significant difference).
 
-In our case, we see in the first result line that Joyzepam is significantly better than Anxifree, because the mean difference is positive (meaning an improvement from Anxifree towards Joyzepam), our $p$-value is less than 0.05, and the confidence interval does not include zero. The last column indicates we rejected the null hypothesis.
+In our case, we see in the first result line that Joyzepam is significantly better than Anxifree, because the mean difference is positive (meaning an improvement from Anxifree to Joyzepam), our $p$-value is less than 0.05, and the confidence interval does not include zero. The last column indicates we rejected the null hypothesis.
 
-We also see in the third line that Joyzepam is significantly better than the placebo, because the mean difference is negative from Joyzepam towards placebo. The $p$-value is less than 0.05, and the confidence interval does not include zero, and the last column indicates we rejected the null hypothesis.
+We also see in the third line that Joyzepam is significantly better than the placebo because the mean difference is negative from Joyzepam to placebo. The $p$-value is less than 0.05, and the confidence interval does not include zero, and the last column indicates we rejected the null hypothesis.
 
-The second line, from Anxifree towards the placebo, we see a negative mean difference, meaning that while Anxifree looks like it's performing better than the placebo (as we've seen in the boxplot as well), the confidence interval does include zero, and the $p$-value is greater than 0.05, so we fail to reject the null hypothesis.
+In the second line, from Anxifree to the placebo, we see a negative mean difference, meaning that while Anxifree looks like it's performing better than the placebo (as we've seen in the boxplot as well), the confidence interval does include zero, and the $p$-value is greater than 0.05, so we fail to reject the null hypothesis.
 
 What we would write up next to our ANOVA result is the following:
 
@@ -575,7 +575,7 @@ $$
 Z_{ik} = \left| Y_{ik} - \bar{Y}_k \right|
 $$
 
-The value of $Z_{ik}$ is a measure of how the $i$-th observation in the $k$-th group deviates from its group mean. And our null hypothesis is that all groups have the same variance; that is, the same overall deviations from the group means. So the null hypothesis in a Levene's test is that the population means of $Z$ are identical for all groups. Isn't that what what ANOVA is Yes. All that the Levene's test does is run an ANOVA on the new variable $Z_{ik}$^[What about the Brown-Forsythe test? Does that do anything particularly different? Nope. The only change from the Levene's test is that it constructs the transformed variable $Z$ in a slightly different way, using deviations from the group *medians* rather than deviations from the group *means*.]. 
+The value of $Z_{ik}$ is a measure of how the $i$-th observation in the $k$-th group deviates from its group mean. And our null hypothesis is that all groups have the same variance; that is, the same overall deviations from the group means. So the null hypothesis in a Levene's test is that the population means of $Z$ are identical for all groups. Isn't that what ANOVA is? Yes. All that the Levene's test does is run an ANOVA on the new variable $Z_{ik}$^[What about the Brown-Forsythe test? Does that do anything particularly different? Nope. The only change from the Levene's test is that it constructs the transformed variable $Z$ in a slightly different way, using deviations from the group *medians* rather than deviations from the group *means*.]. 
 
 If we look at the output from Cogstat (Figure \@ref(fig:cogcompbydrug)), we see that the test is non-significant $W = 1.47, p = .262$. So it looks like the homogeneity of variance assumption is fine.
 
@@ -585,7 +585,7 @@ CogStat automatically checked for normality, and we covered the Shapiro-Wilk tes
 
 The Kruskal-Wallis test is a non-parametric alternative to the one-way ANOVA, and it is surprisingly similar to it in some ways. It is a rank-based test, meaning that it doesn't actually look at the values of the data, but rather at the order of the data.
 
-In ANOVA, we started with $Y_{ik}$, the value of the outcome variable for the $i$th person in the $k$th group. For the Kruskal-Wallis test, what we'll do is rank order all of these $Y_{ik}$ values, and conduct our analysis on the ranked data. So let's let $R_{ik}$ refer to the ranking given to the $i$th member of the $k$th group. Now, let's calculate $\bar{R}_k$, the average rank given to observations in the $k$th group:
+In ANOVA, we started with $Y_{ik}$, the value of the outcome variable for the $i$th person in the $k$th group. For the Kruskal-Wallis test, what we'll do is rank order all of these $Y_{ik}$ values and conduct our analysis on the ranked data. So let's let $R_{ik}$ refer to the ranking given to the $i$th member of the $k$th group. Now, let's calculate $\bar{R}_k$, the average rank given to observations in the $k$th group:
 $$
 \bar{R}_k = \frac{1}{N_K} \sum_{i} R_{ik}
 $$
@@ -594,11 +594,11 @@ $$
 \bar{R} = \frac{1}{N} \sum_{i} \sum_{k} R_{ik}
 $$
 
-Now that we've done this, we can calculate the squared deviations from the grand mean rank $\bar{R}$. When we do this for the individual scores -- i.e., if we calculate $(R_{ik} - \bar{R})^2$ -- what we have is a "nonparametric" measure of how far the $ik$-th observation deviates from the grand mean rank. When we calculate the squared deviation of the group means from the grand means -- i.e., if we calculate $(\bar{R}_k  - \bar{R} )^2$ -- then what we have is a nonparametric measure of how much the *group* deviates from the grand mean rank. With this in mind, let's follow the same logic that we did with ANOVA, and define our *ranked* sums of squares measures in much the same way that we did earlier. First, we have our "total ranked sums of squares":
+Now that we've done this, we can calculate the squared deviations from the grand mean rank $\bar{R}$. When we do this for the individual scores -- i.e., if we calculate $(R_{ik} - \bar{R})^2$ -- what we have is a "non-parametric" measure of how far the $ik$-th observation deviates from the grand mean rank. When we calculate the squared deviation of the group means from the grand means -- i.e., if we calculate $(\bar{R}_k  - \bar{R} )^2$ -- then what we have is a non-parametric measure of how much the *group* deviates from the grand mean rank. With this in mind, let's follow the same logic that we did with ANOVA, and define our *ranked* sums of squares measures in much the same way that we did earlier. First, we have our "total ranked sums of squares":
 $$
 \mbox{RSS}_{tot} = \sum_k \sum_i ( R_{ik} - \bar{R} )^2
 $$
-and we can define the "between groups ranked sums of squares" like this:
+and we can define the "between-groups ranked sums of squares" like this:
 $$
 \begin{array}{rcl}
 \mbox{RSS}_{b} &=& \sum_k \sum_i ( \bar{R}_k  - \bar{R} )^2 \\
@@ -612,7 +612,7 @@ H = (N - 1) \times \frac{\mbox{RSS}_b}{\mbox{RSS}_{tot}}
 $$
 and, if the null hypothesis is true, then the sampling distribution of $H$ is *approximately* chi-square with $G-1$ degrees of freedom (where $G$ is the number of groups). The larger the value of $H$, the less consistent the data are with null hypothesis, so this is a one-sided test: we reject our null hypothesis when $H$ is sufficiently large.
 
-At a conceptual level, this is the right way to think about how the test works. However, from a purely mathematical perspective it's needlessly complicated. The equation for $H$ can be rewritten as
+At a conceptual level, this is the right way to think about how the test works. However, from a purely mathematical perspective, it's needlessly complicated. The equation for $H$ can be rewritten as
 $$
 H = \frac{12}{N(N-1)} \sum_k N_k {\bar{R}_k}^2  -  3(N+1)
 $$
@@ -623,7 +623,7 @@ The story is true when there are no ties in the raw data. That is, if there are 
 knitr::include_graphics("resources/image/cogstatmoodgainfrequency.png")
 ```
 
-Looking at this table, notice that the the value of $0.3$ (and $0.6$, $1.3$, $1.4$) has a frequency of 2. This is telling us that two people's mood increased by 0.3 (and 0.6...). More to the point, note that we can say $f_3 = 2$, where 3 is the index of the value (i.e. row number 3). Yay. So, now that we know this, the tie correction factor (TCF) is:
+Looking at this table, notice that the value of $0.3$ (and $0.6$, $1.3$, $1.4$) has a frequency of 2. This is telling us that two people's mood increased by 0.3 (and 0.6...). More to the point, note that we can say $f_3 = 2$, where 3 is the index of the value (i.e. row number 3). Yay. So, now that we know this, the tie correction factor (TCF) is:
 $$
 \mbox{TCF} = 1 - \frac{\sum_j {f_j}^3 - f_j}{N^3 - N}
 $$
@@ -644,7 +644,7 @@ knitr::include_graphics(c(
     "resources/image/cogstatclinicalnonnormalbox.png"))
 ```
 
-The boxplot shows we have a similar setup like with our original data but we see that the placebo group's `mood_gain` is not normally distributed (because the Shapiro-Wilk test is significant with $p < 0.05$, and also the mood gain is now flattened on purpose for the sake of the exercise), so CogStat automatically calculates the non-parametric test. The results are:
+The boxplot shows we have a similar setup to our original data, but we see that the placebo group's `mood_gain` is not normally distributed (because the Shapiro-Wilk test is significant with $p < 0.05$, and also the mood gain is now flattened on purpose for the sake of the exercise), so CogStat automatically calculates the non-parametric test. The results are:
 
 `Result of the Kruskal-Wallis test:`
 $$
@@ -682,7 +682,7 @@ knitr::include_graphics(c(
 
 Having run a $t$-test, we get $t(16) = 1.31$ (or more precisely, $1.3068$ -- you'll see why this is important). The $p$-value is $.210$. Should we run a one-way ANOVA $F$-statistic in another software, we'd see $F(1,16) = 1.71$, and the $p$-value, which is -- not surprisingly -- $.210$. 
 
-But hang on, what is the story with the $F$ and $t$ stastistics? Actually, there is a fairly straightforward relationship here. If we square the $t$-statistic:
+But hang on, what is the story with the $F$ and $t$ statistics? Actually, there is a fairly straightforward relationship here. If we square the $t$-statistic:
 $$
 1.3068 ^ 2
 $$

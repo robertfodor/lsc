@@ -1,5 +1,19 @@
 # An introduction to automatic statistical analysis{#autostat}
 
+In recent years, the reliability of psychological science has been questioned, and the use of $p$-values and effect sizes was found to be overstated, and their replicability is lower than expected [@open_science_collaboration_estimating_2015]. This phenomenon may very well be due to the high pressure on researchers to produce research in vast quantities with positive results [@krajcsi_advancing_2021].
+
+One of the keys to producing strong research results is to have good data analysis, which can make or break a research project. In psychological research, this includes being able to identify a good design from many design options (which is something we will discuss in this book), sampling participants appropriately and handling missing values, observing ethical standards when collecting and documenting data, controlling for confounding variables, selecting appropriate statistics and permutations/replications of analyses, analysing data with appropriate software, assessing the effect sizes of results based on their inferential characteristics, reporting what they found accurately in the paper (and its supplementary material), and communicating well in writing. Some of these things can be automated to ensure that the appropriate protocol is followed, which is why we have CogStat, and you are reading this book.
+
+If some early protocols are neglected, errors increase. Using a tool designed to deal with a normal distribution will be inappropriate when used on a highly skewed data set. Ignoring the underpinnings of the tools used for hypothesis testing will aggravate the research reliability and, by extension, the reliability and prestige of psychology as a science. One advantage of automatic statistical software is that it is programmed to take into account all the necessary steps as part of its protocol. A good automatic statistical software will apply the most appropriate tools based on the latest consensus in statistics. That is CogStat.
+
+There are quite a few manual statistical programs, e.g. SPSS, SAS and Stata, and some programming languages used for data analysis, e.g. R and Python. These tools can be a hassle: making tables and graphs, doing normality and heteroscedasticity checks, calculating effect sizes, and performing hypothesis tests require up to tens of steps, even if you know the appropriate way to go about the data. In comparison, producing the same analysis with supporting charts and graphs might only take three steps in CogStat.
+
+Let us be fair, researchers have too little time to analyse their data properly, but at the same time, journals demand somewhat arbitrary standards (e.g. specific $p$-values are demanded whether or not they avoid Type I errors -- this is one of the topics in this book). By applying an automatic procedure, the time spent on data analysis can be redirected to thinking about what the test results imply about the research question.
+
+For more about the merits of automatic statistical analysis, here are some further reads from Attila Krajcsi, the creator of CogStat:
+
+- [Methodological considerations behind CogStat](https://psyarxiv.com/hnmsq)
+- [Reducing the replication crisis](https://docs.google.com/presentation/d/1HmSTPnTxDzW8hYZG7ujHaeHc0mRqqYeY95yKh56z61c)
 
 
 # An Introduction to CogStat{#cogstat_intro}

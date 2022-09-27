@@ -25,16 +25,17 @@ description: '*Learning Statistics with CogStat* covers the contents of an intro
 
 # About this book{.unnumbered}
 
-## Versions
+## Versions{.unnumbered}
 
-The online version of the book is updated regularly. The date of the last update is shown on the title page.
+First edition published on 27 September 2022.
+
+The online version of the book is updated regularly. The date of the last update is shown on the title page. The book features screenshots and result sets based on **CogStat version 2.3**.
+
 
 To reference the book, please use the following citation (APA7 format):
 
 > Navarro, D., & Fodor, R. (2022). Learning Statistics with CogStat. https://learningstatisticswithcogstat.com
 
-
-The book features screenshots and result sets based on **CogStat version 2.3**.
 
 ## Author's note{.unnumbered}
 

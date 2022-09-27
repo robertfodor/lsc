@@ -1,6 +1,6 @@
 # Comparing two means{#ttest}
 
-In the previous chapter, we covered the situation when your outcome variable is a nominal scale, and your predictor variable^[We won't cover multiple predictors until Chapter \@ref(regression)] is also a nominal scale. Many real-world situations have that character, so you'll find that chi-square tests are widely used.
+In the previous chapter, we covered the situation when your outcome variable is a nominal scale, and your predictor variable is also a nominal scale. Many real-world situations have that character, so you'll find that chi-square tests are widely used.
 
 However, you're much more likely to find yourself in a situation where your outcome variable is interval scale or higher, and you're interested in whether the outcome variable's average value is higher in one group or another. For instance, a psychologist might want to know if anxiety levels are higher among parents than non-parents; or if working memory capacity is reduced by listening to music (relative to not listening to music). In a medical context, we might want to know if a new drug increases or decreases blood pressure. An agricultural scientist might want to know whether adding phosphorus to Australian native plants will kill them. In all these situations, our outcome variable is a continuous interval or ratio scale variable; and our predictor is a binary "grouping" variable. In other words, we want to compare the *means of the two groups*.
 
@@ -297,9 +297,9 @@ knitr::include_graphics("resources/image/centraltendency.png")
 </div>
 ```
 
-In other words, while we can't say that we *know* that $\sigma = 9.5$, we *can* say that $\hat\sigma = 9.5$. (Actually it's $9.520615$ but CogStat rounds it to one decimal when displayed, but it uses the exact value for any calculation.)
+In other words, while we can't say that we *know* that $\sigma = 9.5$, we *can* say that $\hat\sigma = 9.5$. (Actually, it's $9.520615$ but CogStat rounds it to one decimal when displayed, but it uses the exact value for any calculation.)
 
-Because we are now relying on an *estimate* of the population standard deviation, we need to make some adjustment for the fact that we have some uncertainty about what the true population standard deviation actually is. Maybe our data are just a fluke ... maybe the true population standard deviation is 11, for instance. But if that were actually true, and we ran the $z$-test assuming $\sigma=11$, then the result would end up being *non-significant*. That's a problem, and it's one we're going to have to address.
+Because we are now relying on an *estimate* of the population standard deviation, we need to make some adjustment for the fact that we have some uncertainty about what the true population standard deviation actually is. Maybe our data are just a fluke, maybe the true population standard deviation is 11, for instance. But if that were actually true, and we ran the $z$-test assuming $\sigma=11$, then the result would end up being *non-significant*. That's a problem, and it's one we're going to have to address.
 
 ```{r ttesthyponesample, fig.cap="Graphical illustration of the null and alternative hypotheses assumed by the (two sided) one-sample $t$-test. Note the similarity to the $z$-test. The null hypothesis is that the population mean $\\mu$ is equal to some specified value $\\mu_0$, and the alternative hypothesis is that it is not. Like the $z$-test, we assume that the data are normally distributed; but we do not assume that the population standard deviation $\\sigma$ is known in advance.", echo=FALSE, fig.align="center", out.width="100%"}
 width <- 12
@@ -665,7 +665,7 @@ One last thing: please note that you *can't* do this for other types of test sta
 As always, our hypothesis test relies on some assumptions. For the Student t-test there are three assumptions, some of which we saw previously in the context of the one-sample $t$-test:
 
 - *Normality*. Specifically, we assume that both groups are normally distributed.
-- *Independence*. In the context of the Student test this has two aspects to it. Firstly, we assume that the observations within each sample are independent of one another (exactly the same as for the one-sample test). However, we also assume that there are no cross-sample dependencies. If, for instance, it turns out that you included some participants in both experimental conditions of your study (e.g. by accidentally allowing the same person to sign up to different conditions), then there are some cross sample dependencies that you'd need to take into account.
+- *Independence*. In the context of the Student test, this has two aspects to it. Firstly, we assume that the observations within each sample are independent of one another (exactly the same as for the one-sample test). However, we also assume that there are no cross-sample dependencies. If, for instance, it turns out that you included some participants in both experimental conditions of your study (e.g. by accidentally allowing the same person to sign up to different conditions), then there are some cross sample dependencies that you'd need to take into account.
 - *Homogeneity of variance* (also called "homoscedasticity"). The third assumption is that the population standard deviation is the same in both groups. CogStat tests this assumption using the Levene test automatically, as you've seen in the result output. But we'll talk about later on in the book (Section \@ref(levene)).
 
 ## The independent samples $t$-test (Welch test){#welchttest}
@@ -967,7 +967,7 @@ Our sample size is $N=4096$ for non-final games, and $N=200$ for the final games
 
 What does this score mean? Suppose we construct a table that compares every observation in group `isfinal:True` against every observation in group `isfinal:False`. Whenever the group `isfinal:True` attendance data is larger, we place a check mark in the table. We then count up the number of checkmarks. This is our test statistic, $W$.
 
-But how do we interpret this data? Well, we already see from the chart in Figure \@ref(fig:mwafl24) that the median attendance for the final games is higher than the median attendance for the non-final games. Our $W$ statistic is also a positive number (from `isfinal:False` > `isfinal:True`), the $p$ value is below our $\alpha$ level of 0.05. This means that we can reject the null hypothesis that the two groups have the same median attendance. In other words, we can conclude that the final games have a statistically significantly higher attendance.
+But how do we interpret this data? Well, we already see from the chart in Figure \@ref(fig:mwafl24) that the median attendance for the final games is higher than the median attendance for the non-final games. Our $W$ statistic is also a positive number (from `isfinal:False` > `isfinal:True`), the $p$ value is below our $\alpha$ level of 0.05. This means that we can reject the null hypothesis that the two groups have the same median attendance. In other words, we can conclude that the final games have a statistically significant higher attendance.
 
 When quoting the Mann-Whitney test, you should report the $U$ statistic and the $p$ value.
 
@@ -1000,7 +1000,7 @@ Let's see the results:
 </div>
 ```
 
-The $p$ value is 0.031, which is below our $\alpha$ level of 0.05. This means that we can reject the null hypothesis that the two groups have the same median happiness. In other words, we can conclude that taking the biology class has a statistically significantly negative effect on the happiness of students. Why negative? While the T value is positive, remember the rule, you have to plot your raw data and look at the descriptives as well, if something doesn't look right. And as you've seen, the median happiness score for the `before` group is higher than the median happiness score for the `after` group.
+The $p$ value is 0.031, which is below our $\alpha$ level of 0.05. This means that we can reject the null hypothesis that the two groups have the same median happiness. In other words, we can conclude that taking the biology class has a statistically significant negative effect on the happiness of students. Why negative? While the T value is positive, remember the rule, you have to plot your raw data and look at the descriptives as well, if something doesn't look right. And as you've seen, the median happiness score for the `before` group is higher than the median happiness score for the `after` group.
 
 Now, you can make sure by running a one-sample Wilcoxon test in CogStat. Let's use the `Explore variable` function with the `change` variable. This will serve two purposes. You'll see how the one-sample Wilcoxon test works, and you'll also see how the one-sample and two-sample tests relate to each other.
 

@@ -2,7 +2,7 @@
 
 In the past few chapters, we discussed how to test whether your outcome variable's average value is higher in one group or another. In other words, we have been focusing on *differences* between group means or their standard deviations. 
 
-The goal in this chapter is to introduce **linear regression**, the standard tool that statisticians rely on when analysing the ***relationship*** between interval scale *predictors* and interval scale *outcomes*. Stripped to its bare essentials, linear regression models are basically a slightly fancier version of the Pearson correlation (Chapter \@ref(correl)). Though as we'll see, regression models are much more powerful tools.
+The goal of this chapter is to introduce **linear regression**, the standard tool that statisticians rely on when analysing the ***relationship*** between interval scale *predictors* and interval scale *outcomes*. Stripped to its bare essentials, linear regression models are basically a slightly fancier version of the Pearson correlation (Chapter \@ref(correl)). Though as we'll see, regression models are much more powerful tools.
 
 You might have seen already in Chapter \@ref(correl) that CogStat gives you a linear regression result. You might also recall the charts with the regression line and the residuals. In this chapter, we'll learn how to interpret these results and how to use them to make predictions.
 
@@ -36,9 +36,9 @@ $$
 \hat{Y_i} = b_1 X_i + b_0
 $$
 
-Looks like the same formula, but there's some extra frilly bits in this version. Let's make sure we understand them. Firstly, notice that we have $X_i$ and $Y_i$ rather than just plain old $X$ and $Y$. This is because we want to remember that we're dealing with actual data. In this equation, $X_i$ is the value of predictor variable for the $i$th observation (i.e. the number of hours of sleep on day $i$), and $Y_i$ is the corresponding value of the outcome variable (i.e. the grumpiness on that day). We're assuming that this formula works for all observations in the data set (i.e. for all $i$). Secondly, we also have $\hat{Y}_i$ and not $Y_i$. This is because we want to make the distinction between the *actual data* $Y_i$, and the *estimate* $\hat{Y}_i$ (i.e. the prediction that our regression line is making). Thirdly, we changed the letters used to describe the coefficients from $m$ and $c$ to $b_1$ and $b_0$. That's just the way that statisticians like to refer to the coefficients in a regression model. In any case $b_0$ always refers to the intercept term, and $b_1$ refers to the slope.
+Looks like the same formula, but there are some extra frilly bits in this version. Let's make sure we understand them. Firstly, notice that we have $X_i$ and $Y_i$ rather than just plain old $X$ and $Y$. This is because we want to remember that we're dealing with actual data. In this equation, $X_i$ is the value of the predictor variable for the $i$th observation (i.e. the number of hours of sleep on day $i$), and $Y_i$ is the corresponding value of the outcome variable (i.e. the grumpiness on that day). We're assuming that this formula works for all observations in the data set (i.e. for all $i$). Secondly, we also have $\hat{Y}_i$ and not $Y_i$. This is because we want to make the distinction between the *actual data* $Y_i$, and the *estimate* $\hat{Y}_i$ (i.e. the prediction that our regression line is making). Thirdly, we changed the letters used to describe the coefficients from $m$ and $c$ to $b_1$ and $b_0$. That's just the way that statisticians like to refer to the coefficients in a regression model. In any case, $b_0$ always refers to the intercept term, and $b_1$ refers to the slope.
 
-We see that the data don't fall perfectly on the line. In other words, the data $Y_i$ are not identical to the predictions of the regression model $\hat{Y_i}$. Since statisticians love to attach letters, names and numbers to everything, let's refer to the difference between the model prediction and that actual data point as a *residual*, and we'll refer to it as $\epsilon_i$.^[The $\epsilon$ symbol is the Greek letter epsilon. It's traditional to use $\epsilon_i$ or $e_i$ to denote a residual.] Written using mathematics, the residuals are defined as:
+We see that the data don't fall perfectly on the line. In other words, the data $Y_i$ are not identical to the predictions of the regression model $\hat{Y_i}$. Since statisticians love to attach letters, names and numbers to everything, let's refer to the difference between the model prediction and that actual data point as a *residual*, and we'll refer to it as $\epsilon_i$.^[The $\epsilon$ symbol is the Greek letter epsilon. It's traditional to use $\epsilon_i$ or $e_i$ to denote a residual.] The residuals are defined as:
 $$
 \epsilon_i = Y_i - \hat{Y}_i
 $$
@@ -49,7 +49,7 @@ $$
 
 ## Estimating a linear regression model{#regressionestimation}
 
-Let's redraw the scatterplots just for this example's sake adding some dotted lines to show the distance of each data point to the regression line. The lenght of the lines from the points to the regression line is proportional to the size of the residual.
+Let's redraw the scatterplots just for this example's sake adding some dotted lines to show the distance of each data point to the regression line. The length of the lines from the points to the regression line is proportional to the size of the residual.
 
 ```{r parentscatterswithresiduals, echo=FALSE, fig.cap="Scatterplot outputs from CogStat of `parentsleep` and `parentgrump` with and without regression lines", fig.align="center", out.width="100%", fig.show="hold"}
 knitr::include_graphics("resources/image/parentresiduallines.png")
@@ -84,13 +84,13 @@ The next section in the output is a *Residual analysis*.
 knitr::include_graphics("resources/image/parentresidualanalysis.png")
 ```
 
-The residual plot shows a horizontal line at zero. The $x$ axis shows the independent variable (i.e. `parentsleep`), and the $y$ axis shows the residual values. Ideally, the points should be all over the place randomly. If they are not, then there is a problem with the model. This can be due to outliers or you have a nonlinear relationship between the variables. The residual plot is a good way to check for these problems.
+The residual plot shows a horizontal line at zero. The $x$ axis shows the independent variable (i.e. `parentsleep`), and the $y$ axis shows the residual values. Ideally, the points should be all over the place randomly. If they are not, then there is a problem with the model. This can be due to outliers, or you have a nonlinear relationship between the variables. The residual plot is a good way to check for these problems.
 
 Next to the residual plot, you see a sideways histogram. It depicts the distribution of the residuals. Ideally, the residuals should be normally distributed. If they are not, then, again, you have a problem with your model.
 
 In our example, the residuals are beautifully random, and their distribution is normal. This is a sign that our model is a good one.
 
-Within the `Population parameter estimations`, you'll see the estimated regression coefficients with their 95% confidence interval given. The confidence interval is a range of values that we are 95% confident that the true value of the parameter lies within. In this case, we are 95% confident that the true value of the slope is between -9.787 and -8.086, and that the true value of the intercept is between 119.971 and 131.942. You'll also see a chart depicting the confidence intervals for the regression line. You'll also note that normality and homoscedasticity are checked. These are two assumptions of linear regression. Normality means that the residuals are normally distributed, which we saw earlier. Homoscedasticity means, very simplisticly, that the residuals are equally distributed across the range of the independent variable, so there is no big chunk on one side of the residual plot.
+Within the `Population parameter estimations`, you'll see the estimated regression coefficients with their 95% confidence interval given. The confidence interval is a range of values that we are 95% confident that the true value of the parameter lies within. In this case, we are 95% confident that the true value of the slope is between -9.787 and -8.086, and that the true value of the intercept is between 119.971 and 131.942. You'll also see a chart depicting the confidence intervals for the regression line. You'll also note that normality and homoscedasticity are checked. These are two assumptions of linear regression. Normality means that the residuals are normally distributed, which we saw earlier. Homoscedasticity means, very simplistically, that the residuals are equally distributed across the range of the independent variable, so there is no big chunk on one side of the residual plot.
 
 ```{r parentregressionresults, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="Regression coefficients"}
 knitr::include_graphics("resources/image/cogstatregressioncoeff.png")
@@ -133,7 +133,7 @@ $$
 
 Well, it's a much bigger number than the previous one, so this does suggest that our regression model was making good predictions. But it's not very interpretable. 
 
-Perhaps we can fix this. What we'd like to do is to convert these two fairly meaningless numbers into one number. A nice, interpretable number, which for no particular reason we'll call $R^2$. What we would like is for the value of $R^2$ to be equal to 1 if the regression model makes no errors in predicting the data. In other words, if it turns out that the residual errors are zero -- that is, if $\mbox{SS}_{res} = 0$ -- then we expect $R^2 = 1$. The formula that provides us with out $R^2$ value is pretty simple to write down,
+Perhaps we can fix this. What we'd like to do is to convert these two fairly meaningless numbers into one number. A nice, interpretable number, which for no particular reason we'll call $R^2$. What we would like is for the value of $R^2$ to be equal to 1 if the regression model makes no errors in predicting the data. In other words, if it turns out that the residual errors are zero -- that is, if $\mbox{SS}_{res} = 0$ -- then we expect $R^2 = 1$. The formula that provides us with our $R^2$ value is pretty simple to write down,
 $$
 \begin{array}{rcl}
 R^2 &=& 1 - \frac{\mbox{SS}_{res}}{\mbox{SS}_{tot}}
@@ -152,7 +152,7 @@ At this point, we can revisit our claim that regression, in this very simple for
 
 The squared correlation $r^2$ is identical to the $R^2$ value for a linear regression with only a single predictor. So when you scroll down to the end of the result set, you can gather the Pearson correlation $r$.
 
-You can see a more precise value at the `Standardised effect sizes` section of the output: `Point estimation` for `Pearson's correlation, r` is $-0.903$ (with a CI 95% interval of $-0.934$ to $-0.859$).
+You can see a more precise value in the `Standardised effect sizes` section of the output: `Point estimation` for `Pearson's correlation, r` is $-0.903$ (with a CI 95% interval of $-0.934$ to $-0.859$).
 
 You'll also see a two-digit rounded version of it in the `Hypothesis tests` section:
 
@@ -201,7 +201,7 @@ However, it's still good to understand these tests, so let's talk about them bri
 
 ### Testing the model as a whole
 
-Okay, suppose you've estimated your regression model. The first hypothesis test you might want to try is one in which the null hypothesis that there is *no relationship* between the predictors and the outcome, and the alternative hypothesis is that *the data are distributed in exactly the way that the regression model predicts*. Formally, our "null model" corresponds to the fairly trivial "regression" model in which we include 0 predictors, and only include the intercept term $b_0$
+Okay, suppose you've estimated your regression model. The first hypothesis test you might want to try is one in which the null hypothesis is that there is *no relationship* between the predictors and the outcome, and the alternative hypothesis is that *the data are distributed in exactly the way that the regression model predicts*. Formally, our "null model" corresponds to the fairly trivial "regression" model in which we include 0 predictors, and only include the intercept term $b_0$
 $$
 H_0: Y_i = b_0 + \epsilon_i
 $$
@@ -264,7 +264,7 @@ knitr::kable(
 
 Given that these two variables are absolutely on the same scale (they're both measured in "hours slept"), this is suspicious. In fact, we should begin to suspect that the amount of sleep that the parent gets is what really only matters in order to predict their grumpiness.
 
-Once again, we can reuse a hypothesis test that we discussed earlier, this time the $t$-test. The test that we're interested has a null hypothesis that the true regression coefficient is zero ($b = 0$), which is to be tested against the alternative hypothesis that it isn't ($b \neq 0$). That is:
+Once again, we can reuse a hypothesis test that we discussed earlier, this time the $t$-test. The test that we're interested in has a null hypothesis that the true regression coefficient is zero ($b = 0$), which is to be tested against the alternative hypothesis that it isn't ($b \neq 0$). That is:
 $$
 \begin{array}{rl}
 H_0: & b = 0 \\
@@ -277,7 +277,7 @@ $$
 t = \frac{\hat{b}}{\mbox{SE}({\hat{b})}}
 $$
 
-Our degrees of freedom in this case are $df = N- K- 1$. Irritatingly, the estimate of the standard error of the regression coefficient, $\mbox{SE}({\hat{b}})$, is not as easy to calculate as the standard error of the mean that we used for the simpler $t$-tests in Chapter \@ref(ttest). In fact, the formula is somewhat ugly, and not terribly helpful to look at. For our purposes it's sufficient to point out that the standard error of the estimated regression coefficient depends on both the predictor and outcome variables, and is somewhat sensitive to violations of the homogeneity of variance assumption (discussed shortly).
+Our degrees of freedom in this case are $df = N- K- 1$. Irritatingly, the estimate of the standard error of the regression coefficient, $\mbox{SE}({\hat{b}})$, is not as easy to calculate as the standard error of the mean that we used for the simpler $t$-tests in Chapter \@ref(ttest). In fact, the formula is somewhat ugly, and not terribly helpful to look at. For our purposes, it's sufficient to point out that the standard error of the estimated regression coefficient depends on both the predictor and outcome variables, and is somewhat sensitive to violations of the homogeneity of variance assumption (discussed shortly).
 
 In any case, this $t$-statistic can be interpreted in the same way as the $t$-statistics that we discussed in Chapter \@ref(ttest). Assuming that you have a two-sided alternative (i.e. you don't really care if $b >0$ or $b < 0$), then it's the extreme values of $t$ (i.e. a lot less than zero or a lot greater than zero) that suggest that you should reject the null hypothesis. 
 
@@ -403,7 +403,7 @@ In this section, we discuss several different things you can theoretically do to
 
 The majority of regression diagnostics revolve around looking at the residuals. In particular, the following three kinds of residual are referred to in this section: "ordinary residuals" (which in some cases is identical to "Pearson residual"), "standardised residuals", and "Studentised residuals".
 
-The first and simplest kind of residuals that we care about are **ordinary residuals**. These are the actual, raw residuals we've been talking about throughout this chapter. The ordinary residual is just the difference between the fitted value $\hat{Y}_i$ and the observed value $Y_i$. We've been using the notation $\epsilon_i$ to refer to the $i$-th ordinary residual. With this in mind, we have the very simple equation:
+The first and simplest kind of residuals that we care about are **ordinary residuals**. These are the actual, raw residuals we've been talking about throughout this chapter. The ordinary residual is just the difference between the fitted value $\hat{Y}_i$ and the observed value $Y_i$. We've been using the notation $\epsilon_i$ to refer to the $i$-th ordinary residual. With this in mind, we have a very simple equation:
 $$
 \epsilon_i = Y_i - \hat{Y}_i
 $$
@@ -475,11 +475,11 @@ In such a case, CogStat will specifically call out that the confidence intervals
 
 ### Checking the homoscedasticity of the residuals{#regressionhomogeneity}
 
-The regression models that we've talked about all make a homogeneity of variance assumption: the variance of the residuals is assumed to be constant. Again, you might recall from Figure \@ref(fig:residualanalysisplot) that if on the left chart, the residuals are leaning towards one of the sides and are not spread more-or-less evenly, this is a sign that the variance is not constant, hence the homoscedasticity assumption is violated.
+The regression models that we've talked about all make a homogeneity of variance assumption: the variance of the residuals is assumed to be constant. Again, you might recall from Figure \@ref(fig:residualanalysisplot) that if on the left chart, the residuals are leaning towards one of the sides and are not spread more or less evenly, this is a sign that the variance is not constant, hence the homoscedasticity assumption is violated.
 
 CogStat uses two tests to determine whether the homoscedasticity assumption is violated (meaning the data is *heteroscedatic*):
 
-- **Koenker's studentized score test** is a studentized version of Breuschand Pagan's score test, and is robust when long-tailed errors or unusual observations are present [@lyon1996comparison];
+- **Koenker's studentised score test** is a studentised version of Breuschand Pagan's score test, and is robust when long-tailed errors or unusual observations are present [@lyon1996comparison];
 - **White's test** tests for bias due to heteroskedasticity, but it's generally advised to use Koenker's test instead [@lyon1996comparison].
 
 Both tests will give you a test statistic ($LM$^[Lagrange Multiplier -- which is beyond this textbook's scope to cover.]) and a $p$-value. If either test's $p$-value is less than 0.05, we can reject the null hypothesis that the residuals are homoscedastic, in which case CogStat will specifically call out that the confidence intervals for the regression coefficients and the intercept might be biased, and will run, again, only the Spearman's rank-order correlation as part of the Hypothesis tests.
