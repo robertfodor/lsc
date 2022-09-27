@@ -1,0 +1,26 @@
+bookdown::gitbook:
+  css: style.css
+  dev: svglite
+  link-citations: yes
+  config:
+    toc:
+      before: |
+        <li><a href="./">Learning Statistics with CogStat</a></li>
+      after: |
+        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+      collapse: section
+      number_sections: true
+      fig_caption: yes
+    toc_depth: 2
+    toolbar:
+      position: static
+    download: no
+    
+bookdown::pdf_book:
+  includes:
+    in_header: preamble.tex
+  link-citations: yes
+  latex_engine: xelatex
+  citation_package: natbib
+  keep_tex: yes
+bookdown::epub_book: default

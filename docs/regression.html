@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 14 Linear regression | Learning Statistics with CogStat</title>
+  <meta name="description" content="Chapter 14 Linear regression | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
+  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 14 Linear regression | Learning Statistics with CogStat" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  <meta property="og:description" content="Chapter 14 Linear regression | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
+  <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 14 Linear regression | Learning Statistics with CogStat" />
+  
+  <meta name="twitter:description" content="Chapter 14 Linear regression | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
+  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="anova2.html"/>
+<link rel="next" href="bayes.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Learning Statistics with CogStat</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this book</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#versions"><i class="fa fa-check"></i>Versions</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors-note"><i class="fa fa-check"></i>Author’s note</a></li>
+</ul></li>
+<li class="part"><span><b>INTRODUCTIONS</b></span></li>
+<li class="chapter" data-level="1" data-path="whywhywhy.html"><a href="whywhywhy.html"><i class="fa fa-check"></i><b>1</b> Why do we learn statistics?</a></li>
+<li class="chapter" data-level="2" data-path="autostat.html"><a href="autostat.html"><i class="fa fa-check"></i><b>2</b> An introduction to automatic statistical analysis</a></li>
+<li class="chapter" data-level="3" data-path="cogstat_intro.html"><a href="cogstat_intro.html"><i class="fa fa-check"></i><b>3</b> An Introduction to CogStat</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cogstat_intro.html"><a href="cogstat_intro.html#gettingstarted"><i class="fa fa-check"></i><b>3.1</b> Getting started with CogStat</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="researchdesign.html"><a href="researchdesign.html"><i class="fa fa-check"></i><b>4</b> A brief introduction to research design</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="researchdesign.html"><a href="researchdesign.html#measurement"><i class="fa fa-check"></i><b>4.1</b> Introduction to psychological measurement</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="researchdesign.html"><a href="researchdesign.html#some-thoughts-about-psychological-measurement"><i class="fa fa-check"></i><b>4.1.1</b> Some thoughts about psychological measurement</a></li>
+<li class="chapter" data-level="4.1.2" data-path="researchdesign.html"><a href="researchdesign.html#operationalisation-defining-your-measurement"><i class="fa fa-check"></i><b>4.1.2</b> Operationalisation: defining your measurement</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="researchdesign.html"><a href="researchdesign.html#scales"><i class="fa fa-check"></i><b>4.2</b> Scales of measurement</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="researchdesign.html"><a href="researchdesign.html#nominalscale"><i class="fa fa-check"></i><b>4.2.1</b> Nominal scale</a></li>
+<li class="chapter" data-level="4.2.2" data-path="researchdesign.html"><a href="researchdesign.html#ordinalscale"><i class="fa fa-check"></i><b>4.2.2</b> Ordinal scale</a></li>
+<li class="chapter" data-level="4.2.3" data-path="researchdesign.html"><a href="researchdesign.html#intervalscale"><i class="fa fa-check"></i><b>4.2.3</b> Interval scale</a></li>
+<li class="chapter" data-level="4.2.4" data-path="researchdesign.html"><a href="researchdesign.html#ratioscale"><i class="fa fa-check"></i><b>4.2.4</b> Ratio scale</a></li>
+<li class="chapter" data-level="4.2.5" data-path="researchdesign.html"><a href="researchdesign.html#continuousdiscrete"><i class="fa fa-check"></i><b>4.2.5</b> Continuous versus discrete variables</a></li>
+<li class="chapter" data-level="4.2.6" data-path="researchdesign.html"><a href="researchdesign.html#likertscale"><i class="fa fa-check"></i><b>4.2.6</b> Some complexities: the Likert scale</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="researchdesign.html"><a href="researchdesign.html#reliability"><i class="fa fa-check"></i><b>4.3</b> Assessing the reliability of a measurement</a></li>
+<li class="chapter" data-level="4.4" data-path="researchdesign.html"><a href="researchdesign.html#ivdv"><i class="fa fa-check"></i><b>4.4</b> The “role” of variables: predictors and outcomes</a></li>
+<li class="chapter" data-level="4.5" data-path="researchdesign.html"><a href="researchdesign.html#researchdesigns"><i class="fa fa-check"></i><b>4.5</b> Experimental and non-experimental research</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="researchdesign.html"><a href="researchdesign.html#experimental-research"><i class="fa fa-check"></i><b>4.5.1</b> Experimental research</a></li>
+<li class="chapter" data-level="4.5.2" data-path="researchdesign.html"><a href="researchdesign.html#non-experimental-research"><i class="fa fa-check"></i><b>4.5.2</b> Non-experimental research</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="researchdesign.html"><a href="researchdesign.html#validity"><i class="fa fa-check"></i><b>4.6</b> Assessing the validity of a study</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="researchdesign.html"><a href="researchdesign.html#internal-validity"><i class="fa fa-check"></i><b>4.6.1</b> Internal validity</a></li>
+<li class="chapter" data-level="4.6.2" data-path="researchdesign.html"><a href="researchdesign.html#external-validity"><i class="fa fa-check"></i><b>4.6.2</b> External validity</a></li>
+<li class="chapter" data-level="4.6.3" data-path="researchdesign.html"><a href="researchdesign.html#construct-validity"><i class="fa fa-check"></i><b>4.6.3</b> Construct validity</a></li>
+<li class="chapter" data-level="4.6.4" data-path="researchdesign.html"><a href="researchdesign.html#face-validity"><i class="fa fa-check"></i><b>4.6.4</b> Face validity</a></li>
+<li class="chapter" data-level="4.6.5" data-path="researchdesign.html"><a href="researchdesign.html#ecological-validity"><i class="fa fa-check"></i><b>4.6.5</b> Ecological validity</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="researchdesign.html"><a href="researchdesign.html#confounds-artefacts-and-other-threats-to-validity"><i class="fa fa-check"></i><b>4.7</b> Confounds, artefacts and other threats to validity</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="researchdesign.html"><a href="researchdesign.html#history-effects"><i class="fa fa-check"></i><b>4.7.1</b> History effects</a></li>
+<li class="chapter" data-level="4.7.2" data-path="researchdesign.html"><a href="researchdesign.html#maturation-effects"><i class="fa fa-check"></i><b>4.7.2</b> Maturation effects</a></li>
+<li class="chapter" data-level="4.7.3" data-path="researchdesign.html"><a href="researchdesign.html#repeated-testing-effects"><i class="fa fa-check"></i><b>4.7.3</b> Repeated testing effects</a></li>
+<li class="chapter" data-level="4.7.4" data-path="researchdesign.html"><a href="researchdesign.html#selection-bias"><i class="fa fa-check"></i><b>4.7.4</b> Selection bias</a></li>
+<li class="chapter" data-level="4.7.5" data-path="researchdesign.html"><a href="researchdesign.html#differentialattrition"><i class="fa fa-check"></i><b>4.7.5</b> Differential attrition</a></li>
+<li class="chapter" data-level="4.7.6" data-path="researchdesign.html"><a href="researchdesign.html#non-response-bias"><i class="fa fa-check"></i><b>4.7.6</b> Non-response bias</a></li>
+<li class="chapter" data-level="4.7.7" data-path="researchdesign.html"><a href="researchdesign.html#regression-to-the-mean"><i class="fa fa-check"></i><b>4.7.7</b> Regression to the mean</a></li>
+<li class="chapter" data-level="4.7.8" data-path="researchdesign.html"><a href="researchdesign.html#experimenter-bias"><i class="fa fa-check"></i><b>4.7.8</b> Experimenter bias</a></li>
+<li class="chapter" data-level="4.7.9" data-path="researchdesign.html"><a href="researchdesign.html#demand-effects-and-reactivity"><i class="fa fa-check"></i><b>4.7.9</b> Demand effects and reactivity</a></li>
+<li class="chapter" data-level="4.7.10" data-path="researchdesign.html"><a href="researchdesign.html#placebo-effects"><i class="fa fa-check"></i><b>4.7.10</b> Placebo effects</a></li>
+<li class="chapter" data-level="4.7.11" data-path="researchdesign.html"><a href="researchdesign.html#situation-measurement-and-subpopulation-effects"><i class="fa fa-check"></i><b>4.7.11</b> Situation, measurement and subpopulation effects</a></li>
+<li class="chapter" data-level="4.7.12" data-path="researchdesign.html"><a href="researchdesign.html#fraud-deception-and-self-deception"><i class="fa fa-check"></i><b>4.7.12</b> Fraud, deception and self-deception</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="researchdesign.html"><a href="researchdesign.html#summary"><i class="fa fa-check"></i><b>4.8</b> Summary</a></li>
+</ul></li>
+<li class="part"><span><b>DESCRIPTIVE STATISTICS</b></span></li>
+<li class="chapter" data-level="5" data-path="exploringavariable.html"><a href="exploringavariable.html"><i class="fa fa-check"></i><b>5</b> Exploring a single variable</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="exploringavariable.html"><a href="exploringavariable.html#centraltendency"><i class="fa fa-check"></i><b>5.1</b> Measures of central tendency</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="exploringavariable.html"><a href="exploringavariable.html#mean"><i class="fa fa-check"></i><b>5.1.1</b> The mean</a></li>
+<li class="chapter" data-level="5.1.2" data-path="exploringavariable.html"><a href="exploringavariable.html#median"><i class="fa fa-check"></i><b>5.1.2</b> The median</a></li>
+<li class="chapter" data-level="5.1.3" data-path="exploringavariable.html"><a href="exploringavariable.html#mean-or-median-whats-the-difference"><i class="fa fa-check"></i><b>5.1.3</b> Mean or median? What’s the difference?</a></li>
+<li class="chapter" data-level="5.1.4" data-path="exploringavariable.html"><a href="exploringavariable.html#trimmedmean"><i class="fa fa-check"></i><b>5.1.4</b> Trimmed mean</a></li>
+<li class="chapter" data-level="5.1.5" data-path="exploringavariable.html"><a href="exploringavariable.html#mode"><i class="fa fa-check"></i><b>5.1.5</b> Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="exploringavariable.html"><a href="exploringavariable.html#var"><i class="fa fa-check"></i><b>5.2</b> Measures of variability</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="exploringavariable.html"><a href="exploringavariable.html#range"><i class="fa fa-check"></i><b>5.2.1</b> Range</a></li>
+<li class="chapter" data-level="5.2.2" data-path="exploringavariable.html"><a href="exploringavariable.html#IQR"><i class="fa fa-check"></i><b>5.2.2</b> Interquartile range</a></li>
+<li class="chapter" data-level="5.2.3" data-path="exploringavariable.html"><a href="exploringavariable.html#aad"><i class="fa fa-check"></i><b>5.2.3</b> Mean absolute deviation</a></li>
+<li class="chapter" data-level="5.2.4" data-path="exploringavariable.html"><a href="exploringavariable.html#variance"><i class="fa fa-check"></i><b>5.2.4</b> Variance</a></li>
+<li class="chapter" data-level="5.2.5" data-path="exploringavariable.html"><a href="exploringavariable.html#sd"><i class="fa fa-check"></i><b>5.2.5</b> Standard deviation</a></li>
+<li class="chapter" data-level="5.2.6" data-path="exploringavariable.html"><a href="exploringavariable.html#mad"><i class="fa fa-check"></i><b>5.2.6</b> Median absolute deviation</a></li>
+<li class="chapter" data-level="5.2.7" data-path="exploringavariable.html"><a href="exploringavariable.html#which-measure-to-use"><i class="fa fa-check"></i><b>5.2.7</b> Which measure to use?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="exploringavariable.html"><a href="exploringavariable.html#skewnesskurtosis"><i class="fa fa-check"></i><b>5.3</b> Skewness and kurtosis</a></li>
+<li class="chapter" data-level="5.4" data-path="exploringavariable.html"><a href="exploringavariable.html#zscore"><i class="fa fa-check"></i><b>5.4</b> Standard scores (<span class="math inline">\(z\)</span>-score)</a></li>
+<li class="chapter" data-level="5.5" data-path="exploringavariable.html"><a href="exploringavariable.html#summary-descriptives"><i class="fa fa-check"></i><b>5.5</b> Summary: descriptives</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="correl.html"><a href="correl.html"><i class="fa fa-check"></i><b>6</b> Exploring a variable pair</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="correl.html"><a href="correl.html#the-strength-and-direction-of-a-relationship"><i class="fa fa-check"></i><b>6.1</b> The strength and direction of a relationship</a></li>
+<li class="chapter" data-level="6.2" data-path="correl.html"><a href="correl.html#pearson"><i class="fa fa-check"></i><b>6.2</b> The correlation coefficient</a></li>
+<li class="chapter" data-level="6.3" data-path="correl.html"><a href="correl.html#interpretingcorrelations"><i class="fa fa-check"></i><b>6.3</b> Interpreting a correlation</a></li>
+<li class="chapter" data-level="6.4" data-path="correl.html"><a href="correl.html#spearman"><i class="fa fa-check"></i><b>6.4</b> Spearman’s rank correlations</a></li>
+<li class="chapter" data-level="6.5" data-path="correl.html"><a href="correl.html#missingvaluespair"><i class="fa fa-check"></i><b>6.5</b> Missing values in pairwise calculations</a></li>
+<li class="chapter" data-level="6.6" data-path="correl.html"><a href="correl.html#summary-1"><i class="fa fa-check"></i><b>6.6</b> Summary</a></li>
+</ul></li>
+<li class="part"><span><b>INFERENTIAL STATISTICS</b></span></li>
+<li class="chapter" data-level="7" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>7</b> Probability and distributions</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="probability.html"><a href="probability.html#probabilitystats"><i class="fa fa-check"></i><b>7.1</b> How are probability and statistics different?</a></li>
+<li class="chapter" data-level="7.2" data-path="probability.html"><a href="probability.html#probabilitymeaning"><i class="fa fa-check"></i><b>7.2</b> What does probability mean?</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="probability.html"><a href="probability.html#the-frequentist-view"><i class="fa fa-check"></i><b>7.2.1</b> The frequentist view</a></li>
+<li class="chapter" data-level="7.2.2" data-path="probability.html"><a href="probability.html#the-bayesian-view"><i class="fa fa-check"></i><b>7.2.2</b> The Bayesian view</a></li>
+<li class="chapter" data-level="7.2.3" data-path="probability.html"><a href="probability.html#whats-the-difference-and-who-is-right"><i class="fa fa-check"></i><b>7.2.3</b> What’s the difference? And who is right?</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="probability.html"><a href="probability.html#basicprobability"><i class="fa fa-check"></i><b>7.3</b> Basic probability theory</a></li>
+<li class="chapter" data-level="7.4" data-path="probability.html"><a href="probability.html#distributions"><i class="fa fa-check"></i><b>7.4</b> Distributions</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="probability.html"><a href="probability.html#binomial"><i class="fa fa-check"></i><b>7.4.1</b> The binomial distribution</a></li>
+<li class="chapter" data-level="7.4.2" data-path="probability.html"><a href="probability.html#normal"><i class="fa fa-check"></i><b>7.4.2</b> The normal distribution</a></li>
+<li class="chapter" data-level="7.4.3" data-path="probability.html"><a href="probability.html#density"><i class="fa fa-check"></i><b>7.4.3</b> Probability density</a></li>
+<li class="chapter" data-level="7.4.4" data-path="probability.html"><a href="probability.html#otherdists"><i class="fa fa-check"></i><b>7.4.4</b> Other useful distributions</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="probability.html"><a href="probability.html#summary-2"><i class="fa fa-check"></i><b>7.5</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>8</b> Population, sampling, estimation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="estimation.html"><a href="estimation.html#srs"><i class="fa fa-check"></i><b>8.1</b> Samples, populations and sampling</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="estimation.html"><a href="estimation.html#pop"><i class="fa fa-check"></i><b>8.1.1</b> Defining a population</a></li>
+<li class="chapter" data-level="8.1.2" data-path="estimation.html"><a href="estimation.html#simple-random-samples"><i class="fa fa-check"></i><b>8.1.2</b> Simple random samples</a></li>
+<li class="chapter" data-level="8.1.3" data-path="estimation.html"><a href="estimation.html#most-samples-are-not-simple-random-samples"><i class="fa fa-check"></i><b>8.1.3</b> Most samples are not simple random samples</a></li>
+<li class="chapter" data-level="8.1.4" data-path="estimation.html"><a href="estimation.html#how-much-does-it-matter-if-you-dont-have-a-simple-random-sample"><i class="fa fa-check"></i><b>8.1.4</b> How much does it matter if you don’t have a simple random sample?</a></li>
+<li class="chapter" data-level="8.1.5" data-path="estimation.html"><a href="estimation.html#population-parameters-and-sample-statistics"><i class="fa fa-check"></i><b>8.1.5</b> Population parameters and sample statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="estimation.html"><a href="estimation.html#lawlargenumbers"><i class="fa fa-check"></i><b>8.2</b> The law of large numbers</a></li>
+<li class="chapter" data-level="8.3" data-path="estimation.html"><a href="estimation.html#samplesandclt"><i class="fa fa-check"></i><b>8.3</b> Sampling distributions and the central limit theorem</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="estimation.html"><a href="estimation.html#samplingdists"><i class="fa fa-check"></i><b>8.3.1</b> Sampling distribution of the mean</a></li>
+<li class="chapter" data-level="8.3.2" data-path="estimation.html"><a href="estimation.html#sampling-distributions-exist-for-any-sample-statistic"><i class="fa fa-check"></i><b>8.3.2</b> Sampling distributions exist for any sample statistic!</a></li>
+<li class="chapter" data-level="8.3.3" data-path="estimation.html"><a href="estimation.html#clt"><i class="fa fa-check"></i><b>8.3.3</b> The central limit theorem</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="estimation.html"><a href="estimation.html#pointestimates"><i class="fa fa-check"></i><b>8.4</b> Estimating population parameters</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="estimation.html"><a href="estimation.html#estimating-the-population-mean"><i class="fa fa-check"></i><b>8.4.1</b> Estimating the population mean</a></li>
+<li class="chapter" data-level="8.4.2" data-path="estimation.html"><a href="estimation.html#estimating-the-population-standard-deviation"><i class="fa fa-check"></i><b>8.4.2</b> Estimating the population standard deviation</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="estimation.html"><a href="estimation.html#ci"><i class="fa fa-check"></i><b>8.5</b> Estimating a confidence interval</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="estimation.html"><a href="estimation.html#a-slight-mistake-in-the-formula"><i class="fa fa-check"></i><b>8.5.1</b> A slight mistake in the formula</a></li>
+<li class="chapter" data-level="8.5.2" data-path="estimation.html"><a href="estimation.html#interpreting-a-confidence-interval"><i class="fa fa-check"></i><b>8.5.2</b> Interpreting a confidence interval</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="estimation.html"><a href="estimation.html#population-parameter-estimations-in-cogstat"><i class="fa fa-check"></i><b>8.6</b> Population parameter estimations in CogStat</a></li>
+<li class="chapter" data-level="8.7" data-path="estimation.html"><a href="estimation.html#summary-3"><i class="fa fa-check"></i><b>8.7</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="hypothesistesting.html"><a href="hypothesistesting.html"><i class="fa fa-check"></i><b>9</b> Hypothesis testing</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#hypotheses"><i class="fa fa-check"></i><b>9.1</b> A menagerie of hypotheses</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#research-hypotheses-versus-statistical-hypotheses"><i class="fa fa-check"></i><b>9.1.1</b> Research hypotheses versus statistical hypotheses</a></li>
+<li class="chapter" data-level="9.1.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#null-hypotheses-and-alternative-hypotheses"><i class="fa fa-check"></i><b>9.1.2</b> Null hypotheses and alternative hypotheses</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#errortypes"><i class="fa fa-check"></i><b>9.2</b> Two types of errors</a></li>
+<li class="chapter" data-level="9.3" data-path="hypothesistesting.html"><a href="hypothesistesting.html#teststatistics"><i class="fa fa-check"></i><b>9.3</b> Test statistics and sampling distributions</a></li>
+<li class="chapter" data-level="9.4" data-path="hypothesistesting.html"><a href="hypothesistesting.html#decisionmaking"><i class="fa fa-check"></i><b>9.4</b> Making decisions</a>
+<ul>
+<li class="chapter" data-level="9.4.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#critical-regions-and-critical-values"><i class="fa fa-check"></i><b>9.4.1</b> Critical regions and critical values</a></li>
+<li class="chapter" data-level="9.4.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#a-note-on-statistical-significance"><i class="fa fa-check"></i><b>9.4.2</b> A note on statistical “significance”</a></li>
+<li class="chapter" data-level="9.4.3" data-path="hypothesistesting.html"><a href="hypothesistesting.html#a-note-on-the-word-prove"><i class="fa fa-check"></i><b>9.4.3</b> A note on the word “prove”</a></li>
+<li class="chapter" data-level="9.4.4" data-path="hypothesistesting.html"><a href="hypothesistesting.html#onesidedtests"><i class="fa fa-check"></i><b>9.4.4</b> The difference between one sided and two sided tests</a></li>
+</ul></li>
+<li class="chapter" data-level="9.5" data-path="hypothesistesting.html"><a href="hypothesistesting.html#pvalue"><i class="fa fa-check"></i><b>9.5</b> The <span class="math inline">\(p\)</span> value of a test</a>
+<ul>
+<li class="chapter" data-level="9.5.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#a-softer-view-of-decision-making"><i class="fa fa-check"></i><b>9.5.1</b> A softer view of decision making</a></li>
+<li class="chapter" data-level="9.5.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#the-probability-of-extreme-data"><i class="fa fa-check"></i><b>9.5.2</b> The probability of extreme data</a></li>
+<li class="chapter" data-level="9.5.3" data-path="hypothesistesting.html"><a href="hypothesistesting.html#a-common-mistake"><i class="fa fa-check"></i><b>9.5.3</b> A common mistake</a></li>
+</ul></li>
+<li class="chapter" data-level="9.6" data-path="hypothesistesting.html"><a href="hypothesistesting.html#writeup"><i class="fa fa-check"></i><b>9.6</b> Reporting the results of a hypothesis test</a>
+<ul>
+<li class="chapter" data-level="9.6.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#the-issue"><i class="fa fa-check"></i><b>9.6.1</b> The issue</a></li>
+<li class="chapter" data-level="9.6.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#two-proposed-solutions"><i class="fa fa-check"></i><b>9.6.2</b> Two proposed solutions</a></li>
+</ul></li>
+<li class="chapter" data-level="9.7" data-path="hypothesistesting.html"><a href="hypothesistesting.html#effectsize"><i class="fa fa-check"></i><b>9.7</b> Effect size, sample size and power</a>
+<ul>
+<li class="chapter" data-level="9.7.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#the-power-function"><i class="fa fa-check"></i><b>9.7.1</b> The power function</a></li>
+<li class="chapter" data-level="9.7.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#effect-size"><i class="fa fa-check"></i><b>9.7.2</b> Effect size</a></li>
+<li class="chapter" data-level="9.7.3" data-path="hypothesistesting.html"><a href="hypothesistesting.html#increasing-the-power-of-your-study"><i class="fa fa-check"></i><b>9.7.3</b> Increasing the power of your study</a></li>
+</ul></li>
+<li class="chapter" data-level="9.8" data-path="hypothesistesting.html"><a href="hypothesistesting.html#nhstmess"><i class="fa fa-check"></i><b>9.8</b> Some issues to consider</a>
+<ul>
+<li class="chapter" data-level="9.8.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#neyman-versus-fisher"><i class="fa fa-check"></i><b>9.8.1</b> Neyman versus Fisher</a></li>
+<li class="chapter" data-level="9.8.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#bayesians-versus-frequentists"><i class="fa fa-check"></i><b>9.8.2</b> Bayesians versus frequentists</a></li>
+<li class="chapter" data-level="9.8.3" data-path="hypothesistesting.html"><a href="hypothesistesting.html#traps"><i class="fa fa-check"></i><b>9.8.3</b> Traps</a></li>
+</ul></li>
+<li class="chapter" data-level="9.9" data-path="hypothesistesting.html"><a href="hypothesistesting.html#summary-4"><i class="fa fa-check"></i><b>9.9</b> Summary</a></li>
+</ul></li>
+<li class="part"><span><b>STATISTICAL TOOLS</b></span></li>
+<li class="chapter" data-level="10" data-path="chisquare.html"><a href="chisquare.html"><i class="fa fa-check"></i><b>10</b> Categorical data analysis</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="chisquare.html"><a href="chisquare.html#goftest"><i class="fa fa-check"></i><b>10.1</b> The <span class="math inline">\(\chi^2\)</span> goodness-of-fit test</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="chisquare.html"><a href="chisquare.html#the-null-hypothesis-and-the-alternative-hypothesis"><i class="fa fa-check"></i><b>10.1.1</b> The null hypothesis and the alternative hypothesis</a></li>
+<li class="chapter" data-level="10.1.2" data-path="chisquare.html"><a href="chisquare.html#the-goodness-of-fit-test-statistic"><i class="fa fa-check"></i><b>10.1.2</b> The “goodness of fit” test statistic</a></li>
+<li class="chapter" data-level="10.1.3" data-path="chisquare.html"><a href="chisquare.html#the-sampling-distribution-of-the-gof-statistic-advanced"><i class="fa fa-check"></i><b>10.1.3</b> The sampling distribution of the GOF statistic (advanced)</a></li>
+<li class="chapter" data-level="10.1.4" data-path="chisquare.html"><a href="chisquare.html#degrees-of-freedom"><i class="fa fa-check"></i><b>10.1.4</b> Degrees of freedom</a></li>
+<li class="chapter" data-level="10.1.5" data-path="chisquare.html"><a href="chisquare.html#testing-the-null-hypothesis"><i class="fa fa-check"></i><b>10.1.5</b> Testing the null hypothesis</a></li>
+<li class="chapter" data-level="10.1.6" data-path="chisquare.html"><a href="chisquare.html#chisqreport"><i class="fa fa-check"></i><b>10.1.6</b> How to report the results of the test</a></li>
+<li class="chapter" data-level="10.1.7" data-path="chisquare.html"><a href="chisquare.html#a-comment-on-statistical-notation-advanced"><i class="fa fa-check"></i><b>10.1.7</b> A comment on statistical notation (advanced)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="chisquare.html"><a href="chisquare.html#chisqindependence"><i class="fa fa-check"></i><b>10.2</b> The <span class="math inline">\(\chi^2\)</span> test of independence (or association)</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="chisquare.html"><a href="chisquare.html#constructing-our-hypothesis-test"><i class="fa fa-check"></i><b>10.2.1</b> Constructing our hypothesis test</a></li>
+<li class="chapter" data-level="10.2.2" data-path="chisquare.html"><a href="chisquare.html#AssocTestInCogStat"><i class="fa fa-check"></i><b>10.2.2</b> The test results in CogStat</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="chisquare.html"><a href="chisquare.html#yates"><i class="fa fa-check"></i><b>10.3</b> Yates correction for 1 degree of freedom</a></li>
+<li class="chapter" data-level="10.4" data-path="chisquare.html"><a href="chisquare.html#chisqeffectsize"><i class="fa fa-check"></i><b>10.4</b> Effect size (Cramér’s <span class="math inline">\(V\)</span>)</a></li>
+<li class="chapter" data-level="10.5" data-path="chisquare.html"><a href="chisquare.html#chisqassumptions"><i class="fa fa-check"></i><b>10.5</b> Assumptions of the test(s)</a></li>
+<li class="chapter" data-level="10.6" data-path="chisquare.html"><a href="chisquare.html#fisherexacttest"><i class="fa fa-check"></i><b>10.6</b> The Fisher exact test</a></li>
+<li class="chapter" data-level="10.7" data-path="chisquare.html"><a href="chisquare.html#mcnemar"><i class="fa fa-check"></i><b>10.7</b> The McNemar test</a></li>
+<li class="chapter" data-level="10.8" data-path="chisquare.html"><a href="chisquare.html#whats-the-difference-between-mcnemar-and-independence"><i class="fa fa-check"></i><b>10.8</b> What’s the difference between McNemar and independence?</a></li>
+<li class="chapter" data-level="10.9" data-path="chisquare.html"><a href="chisquare.html#summary-5"><i class="fa fa-check"></i><b>10.9</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="ttest.html"><a href="ttest.html"><i class="fa fa-check"></i><b>11</b> Comparing two means</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="ttest.html"><a href="ttest.html#ztest"><i class="fa fa-check"></i><b>11.1</b> The one-sample <span class="math inline">\(z\)</span>-test</a></li>
+<li class="chapter" data-level="11.2" data-path="ttest.html"><a href="ttest.html#onesamplettest"><i class="fa fa-check"></i><b>11.2</b> The one-sample <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="11.3" data-path="ttest.html"><a href="ttest.html#studentttest"><i class="fa fa-check"></i><b>11.3</b> The independent samples <span class="math inline">\(t\)</span>-test (Student test)</a></li>
+<li class="chapter" data-level="11.4" data-path="ttest.html"><a href="ttest.html#welchttest"><i class="fa fa-check"></i><b>11.4</b> The independent samples <span class="math inline">\(t\)</span>-test (Welch test)</a></li>
+<li class="chapter" data-level="11.5" data-path="ttest.html"><a href="ttest.html#pairedsamplesttest"><i class="fa fa-check"></i><b>11.5</b> The paired-samples <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="11.6" data-path="ttest.html"><a href="ttest.html#cohensd"><i class="fa fa-check"></i><b>11.6</b> Effect size (Cohen’s <span class="math inline">\(d\)</span>)</a></li>
+<li class="chapter" data-level="11.7" data-path="ttest.html"><a href="ttest.html#shapiro"><i class="fa fa-check"></i><b>11.7</b> Normality of a sample</a></li>
+<li class="chapter" data-level="11.8" data-path="ttest.html"><a href="ttest.html#wilcox"><i class="fa fa-check"></i><b>11.8</b> Testing non-normal data with Wilcoxon tests</a>
+<ul>
+<li class="chapter" data-level="11.8.1" data-path="ttest.html"><a href="ttest.html#mannwhitney"><i class="fa fa-check"></i><b>11.8.1</b> Two-sample Wilcoxon test (Mann-Whitney test)</a></li>
+<li class="chapter" data-level="11.8.2" data-path="ttest.html"><a href="ttest.html#wilcoxon"><i class="fa fa-check"></i><b>11.8.2</b> One-sample and paired samples Wilcoxon tests</a></li>
+</ul></li>
+<li class="chapter" data-level="11.9" data-path="ttest.html"><a href="ttest.html#summary-6"><i class="fa fa-check"></i><b>11.9</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>12</b> Comparing several means (one-way ANOVA)</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="anova.html"><a href="anova.html#the-data"><i class="fa fa-check"></i><b>12.1</b> The data</a></li>
+<li class="chapter" data-level="12.2" data-path="anova.html"><a href="anova.html#anovaintro"><i class="fa fa-check"></i><b>12.2</b> How ANOVA works</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="anova.html"><a href="anova.html#from-variance"><i class="fa fa-check"></i><b>12.2.1</b> From variance…</a></li>
+<li class="chapter" data-level="12.2.2" data-path="anova.html"><a href="anova.html#to-total-sum-of-squares"><i class="fa fa-check"></i><b>12.2.2</b> … to total sum of squares</a></li>
+<li class="chapter" data-level="12.2.3" data-path="anova.html"><a href="anova.html#from-sums-of-squares-to-the-f-test"><i class="fa fa-check"></i><b>12.2.3</b> From sums of squares to the <span class="math inline">\(F\)</span>-test</a></li>
+<li class="chapter" data-level="12.2.4" data-path="anova.html"><a href="anova.html#anovamodel"><i class="fa fa-check"></i><b>12.2.4</b> Further reading: the meaning of <span class="math inline">\(F\)</span> (advanced)</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="anova.html"><a href="anova.html#introduceaov"><i class="fa fa-check"></i><b>12.3</b> Interpreting our results in CogStat</a></li>
+<li class="chapter" data-level="12.4" data-path="anova.html"><a href="anova.html#anovaeffect"><i class="fa fa-check"></i><b>12.4</b> Effect size</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="anova.html"><a href="anova.html#eta-squared"><i class="fa fa-check"></i><b>12.4.1</b> Eta-squared</a></li>
+<li class="chapter" data-level="12.4.2" data-path="anova.html"><a href="anova.html#omega-squared"><i class="fa fa-check"></i><b>12.4.2</b> Omega-squared</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="anova.html"><a href="anova.html#posthoc"><i class="fa fa-check"></i><b>12.5</b> Post hoc tests</a></li>
+<li class="chapter" data-level="12.6" data-path="anova.html"><a href="anova.html#levene"><i class="fa fa-check"></i><b>12.6</b> Checking the homogeneity of variance assumption</a></li>
+<li class="chapter" data-level="12.7" data-path="anova.html"><a href="anova.html#kruskalwallis"><i class="fa fa-check"></i><b>12.7</b> Testing for non-normal data with Kruskal-Wallis test</a></li>
+<li class="chapter" data-level="12.8" data-path="anova.html"><a href="anova.html#anovaandt"><i class="fa fa-check"></i><b>12.8</b> On the relationship between ANOVA and the Student <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="12.9" data-path="anova.html"><a href="anova.html#summary-7"><i class="fa fa-check"></i><b>12.9</b> Summary</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="anova2.html"><a href="anova2.html"><i class="fa fa-check"></i><b>13</b> Comparing several groups (factorial ANOVA)</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="anova2.html"><a href="anova2.html#factorialanovasimple"><i class="fa fa-check"></i><b>13.1</b> Balanced designs</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="anova2.html"><a href="anova2.html#factanovahyp"><i class="fa fa-check"></i><b>13.1.1</b> What hypotheses are we testing?</a></li>
+<li class="chapter" data-level="13.1.2" data-path="anova2.html"><a href="anova2.html#means-sums-of-squares-and-degrees-of-freedom"><i class="fa fa-check"></i><b>13.1.2</b> Means, sums of squares, and degrees of freedom</a></li>
+<li class="chapter" data-level="13.1.3" data-path="anova2.html"><a href="anova2.html#the-interaction"><i class="fa fa-check"></i><b>13.1.3</b> The <em>interaction</em></a></li>
+<li class="chapter" data-level="13.1.4" data-path="anova2.html"><a href="anova2.html#how-to-interpret-the-results"><i class="fa fa-check"></i><b>13.1.4</b> How to interpret the results</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="anova2.html"><a href="anova2.html#effectsizefactorialanova"><i class="fa fa-check"></i><b>13.2</b> Effect size</a></li>
+<li class="chapter" data-level="13.3" data-path="anova2.html"><a href="anova2.html#meansfactorialanova"><i class="fa fa-check"></i><b>13.3</b> Estimated group means and confidence intervals</a></li>
+<li class="chapter" data-level="13.4" data-path="anova2.html"><a href="anova2.html#posthoc2"><i class="fa fa-check"></i><b>13.4</b> Post hoc tests</a></li>
+<li class="chapter" data-level="13.5" data-path="anova2.html"><a href="anova2.html#unbalancedanova"><i class="fa fa-check"></i><b>13.5</b> Unbalanced designs and types of sums of squares</a>
+<ul>
+<li class="chapter" data-level="13.5.1" data-path="anova2.html"><a href="anova2.html#type-i-sum-of-squares"><i class="fa fa-check"></i><b>13.5.1</b> Type I sum of squares</a></li>
+<li class="chapter" data-level="13.5.2" data-path="anova2.html"><a href="anova2.html#type-iii-sum-of-squares"><i class="fa fa-check"></i><b>13.5.2</b> Type III sum of squares</a></li>
+<li class="chapter" data-level="13.5.3" data-path="anova2.html"><a href="anova2.html#type-ii-sum-of-squares"><i class="fa fa-check"></i><b>13.5.3</b> Type II sum of squares</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="regression.html"><a href="regression.html"><i class="fa fa-check"></i><b>14</b> Linear regression</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="regression.html"><a href="regression.html#introregression"><i class="fa fa-check"></i><b>14.1</b> What is a linear regression model?</a></li>
+<li class="chapter" data-level="14.2" data-path="regression.html"><a href="regression.html#regressionestimation"><i class="fa fa-check"></i><b>14.2</b> Estimating a linear regression model</a></li>
+<li class="chapter" data-level="14.3" data-path="regression.html"><a href="regression.html#regressioninterpretation"><i class="fa fa-check"></i><b>14.3</b> Interpreting the results of a linear regression</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="regression.html"><a href="regression.html#confidence-intervals-for-the-coefficients"><i class="fa fa-check"></i><b>14.3.1</b> Confidence intervals for the coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="regression.html"><a href="regression.html#r2"><i class="fa fa-check"></i><b>14.4</b> Quantifying the fit of the regression model</a>
+<ul>
+<li class="chapter" data-level="14.4.1" data-path="regression.html"><a href="regression.html#the-adjusted-r2-value"><i class="fa fa-check"></i><b>14.4.1</b> The adjusted <span class="math inline">\(R^2\)</span> value</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="regression.html"><a href="regression.html#regressiontests"><i class="fa fa-check"></i><b>14.5</b> Hypothesis tests for regression models</a>
+<ul>
+<li class="chapter" data-level="14.5.1" data-path="regression.html"><a href="regression.html#testing-the-model-as-a-whole"><i class="fa fa-check"></i><b>14.5.1</b> Testing the model as a whole</a></li>
+<li class="chapter" data-level="14.5.2" data-path="regression.html"><a href="regression.html#tests-for-individual-coefficients"><i class="fa fa-check"></i><b>14.5.2</b> Tests for individual coefficients</a></li>
+<li class="chapter" data-level="14.5.3" data-path="regression.html"><a href="regression.html#stdcoef"><i class="fa fa-check"></i><b>14.5.3</b> Calculating standardised regression coefficients</a></li>
+</ul></li>
+<li class="chapter" data-level="14.6" data-path="regression.html"><a href="regression.html#regressiondiagnostics"><i class="fa fa-check"></i><b>14.6</b> Model checking</a>
+<ul>
+<li class="chapter" data-level="14.6.1" data-path="regression.html"><a href="regression.html#three-kinds-of-residuals"><i class="fa fa-check"></i><b>14.6.1</b> Three kinds of residuals</a></li>
+<li class="chapter" data-level="14.6.2" data-path="regression.html"><a href="regression.html#regressionoutliers"><i class="fa fa-check"></i><b>14.6.2</b> Three kinds of anomalous data</a></li>
+<li class="chapter" data-level="14.6.3" data-path="regression.html"><a href="regression.html#regressionnormality"><i class="fa fa-check"></i><b>14.6.3</b> Checking the normality of the residuals</a></li>
+<li class="chapter" data-level="14.6.4" data-path="regression.html"><a href="regression.html#regressionhomogeneity"><i class="fa fa-check"></i><b>14.6.4</b> Checking the homoscedasticity of the residuals</a></li>
+</ul></li>
+<li class="chapter" data-level="14.7" data-path="regression.html"><a href="regression.html#regressionassumptions"><i class="fa fa-check"></i><b>14.7</b> Summary</a></li>
+</ul></li>
+<li class="part"><span><b>BAYESIAN STATISTICS</b></span></li>
+<li class="chapter" data-level="15" data-path="bayes.html"><a href="bayes.html"><i class="fa fa-check"></i><b>15</b> Introduction to Bayesian statistics</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="bayes.html"><a href="bayes.html#priors-what-you-believed-before"><i class="fa fa-check"></i><b>15.1</b> Priors: what you believed before</a></li>
+<li class="chapter" data-level="15.2" data-path="bayes.html"><a href="bayes.html#likelihoods-theories-about-the-data"><i class="fa fa-check"></i><b>15.2</b> Likelihoods: theories about the data</a></li>
+<li class="chapter" data-level="15.3" data-path="bayes.html"><a href="bayes.html#the-joint-probability-of-data-and-hypothesis"><i class="fa fa-check"></i><b>15.3</b> The joint probability of data and hypothesis</a></li>
+<li class="chapter" data-level="15.4" data-path="bayes.html"><a href="bayes.html#updating-beliefs-using-bayes-rule"><i class="fa fa-check"></i><b>15.4</b> Updating beliefs using Bayes’ rule</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html"><i class="fa fa-check"></i><b>16</b> Bayesian hypothesis tests</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#the-bayes-factor"><i class="fa fa-check"></i><b>16.1</b> The Bayes factor</a></li>
+<li class="chapter" data-level="16.2" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#interpreting-bayes-factors"><i class="fa fa-check"></i><b>16.2</b> Interpreting Bayes factors</a></li>
+<li class="chapter" data-level="16.3" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#bayesian-statistics-in-cogstat"><i class="fa fa-check"></i><b>16.3</b> Bayesian statistics in CogStat</a>
+<ul>
+<li class="chapter" data-level="16.3.1" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#one-sample-t-test"><i class="fa fa-check"></i><b>16.3.1</b> One-sample <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="16.3.2" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#independent-samples-t-test"><i class="fa fa-check"></i><b>16.3.2</b> Independent samples <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="16.3.3" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#anova-1"><i class="fa fa-check"></i><b>16.3.3</b> ANOVA</a></li>
+<li class="chapter" data-level="16.3.4" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#linear-regression"><i class="fa fa-check"></i><b>16.3.4</b> Linear regression</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="whybayes.html"><a href="whybayes.html"><i class="fa fa-check"></i><b>17</b> Why be a Bayesian?</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="whybayes.html"><a href="whybayes.html#evidentiary-standards-you-can-believe"><i class="fa fa-check"></i><b>17.1</b> Evidentiary standards you can believe</a></li>
+<li class="chapter" data-level="17.2" data-path="whybayes.html"><a href="whybayes.html#the-p-value-is-a-lie."><i class="fa fa-check"></i><b>17.2</b> The <span class="math inline">\(p\)</span>-value is a lie.</a></li>
+<li class="chapter" data-level="17.3" data-path="whybayes.html"><a href="whybayes.html#is-it-really-this-bad"><i class="fa fa-check"></i><b>17.3</b> Is it really this bad?</a></li>
+</ul></li>
+<li class="part"><span><b>APPENDICES</b></span></li>
+<li class="chapter" data-level="18" data-path="summaryguide.html"><a href="summaryguide.html"><i class="fa fa-check"></i><b>18</b> Summary guide</a>
+<ul>
+<li class="chapter" data-level="" data-path="summaryguide.html"><a href="summaryguide.html#descriptive-statistics"><i class="fa fa-check"></i>Descriptive statistics</a></li>
+<li class="chapter" data-level="" data-path="summaryguide.html"><a href="summaryguide.html#analysing-differences-with-hyptothesis-testing"><i class="fa fa-check"></i>Analysing differences with hyptothesis testing</a></li>
+<li class="chapter" data-level="" data-path="summaryguide.html"><a href="summaryguide.html#analysing-relationship-with-hyptothesis-testing"><i class="fa fa-check"></i>Analysing relationship with hyptothesis testing</a></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>19</b> Epilogue</a>
+<ul>
+<li class="chapter" data-level="" data-path="epilogue.html"><a href="epilogue.html#the-undiscovered-statistics"><i class="fa fa-check"></i>The undiscovered statistics</a>
+<ul>
+<li class="chapter" data-level="" data-path="epilogue.html"><a href="epilogue.html#omissions-within-the-topics-covered"><i class="fa fa-check"></i>Omissions within the topics covered</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="epilogue.html"><a href="epilogue.html#statistical-models-missing-from-the-book"><i class="fa fa-check"></i>Statistical models missing from the book</a></li>
+<li class="chapter" data-level="19.1" data-path="epilogue.html"><a href="epilogue.html#last-words"><i class="fa fa-check"></i><b>19.1</b> Last words</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Learning Statistics with CogStat</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="regression" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Chapter 14</span> Linear regression<a href="regression.html#regression" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In the past few chapters, we discussed how to test whether your outcome variable’s average value is higher in one group or another. In other words, we have been focusing on <em>differences</em> between group means or their standard deviations.</p>
+<p>The goal of this chapter is to introduce <strong>linear regression</strong>, the standard tool that statisticians rely on when analysing the <strong><em>relationship</em></strong> between interval scale <em>predictors</em> and interval scale <em>outcomes</em>. Stripped to its bare essentials, linear regression models are basically a slightly fancier version of the Pearson correlation (Chapter <a href="correl.html#correl">6</a>). Though as we’ll see, regression models are much more powerful tools.</p>
+<p>You might have seen already in Chapter <a href="correl.html#correl">6</a> that CogStat gives you a linear regression result. You might also recall the charts with the regression line and the residuals. In this chapter, we’ll learn how to interpret these results and how to use them to make predictions.</p>
+<div id="introregression" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> What is a linear regression model?<a href="regression.html#introregression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Since the basic ideas in regression are closely tied to correlation, we’ll return to the <a href="resources/data/parenthood.csv"><code>parenthood.csv</code></a> file that we were using to illustrate how correlations work. In this data set, we were analysing babies’, parents’ and their sleep, and the parents’ grumpiness.</p>
+<p>Let’s go ahead and use <code>Explore relation of a variable pair</code> function with <code>parentsleep</code> and <code>parentgrump</code> variables.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:parentscatters"></span>
+<img src="resources/image/parentsleepgrumpplotnolinreg.png" alt="Scatterplots of parent sleep and grumpiness" width="50%" /><img src="resources/image/parentsleepgrumpplot.png" alt="Scatterplots of parent sleep and grumpiness" width="50%" />
+<p class="caption">
+Figure 14.1: Scatterplots of parent sleep and grumpiness
+</p>
+</div>
+<p>You’ll notice that you have two charts (scatterplots) which are very similar: there’s one with and one without a line. The line is called a <strong>regression line</strong>, and it shows the relationship between two variables. It’s a straight line that goes through the data points. But what does this mean?</p>
+<p>The formula for a straight line is usually written like this:
+<span class="math display">\[
+y = mx + c
+\]</span></p>
+<p>The two <em>variables</em> are <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, and we have two <em>coefficients</em>, <span class="math inline">\(m\)</span> and <span class="math inline">\(c\)</span>. The coefficient <span class="math inline">\(m\)</span> represents the <em>slope</em> of the line (<strong>regression coefficient</strong>), and the coefficient <span class="math inline">\(c\)</span> represents the <em><span class="math inline">\(y\)</span>-intercept</em> (<strong>intercept</strong>) of the line.</p>
+<p>The regression coefficient is the change in the outcome variable for every unit change in the predictor variable. A slope of <span class="math inline">\(m\)</span> means that if you increase the <span class="math inline">\(x\)</span>-value by 1 unit, then the <span class="math inline">\(y\)</span>-value goes up by <span class="math inline">\(m\)</span> units; a negative slope means that the <span class="math inline">\(y\)</span>-value would go down rather than up. The intercept is the value of the outcome variable when the predictor variable is zero (<span class="math inline">\(x=0\)</span>).</p>
+<p>If <span class="math inline">\(Y\)</span> is the outcome variable (the DV) and <span class="math inline">\(X\)</span> is the predictor variable (the IV), then the formula that describes our regression is written like this:
+<span class="math display">\[
+\hat{Y_i} = b_1 X_i + b_0
+\]</span></p>
+<p>Looks like the same formula, but there are some extra frilly bits in this version. Let’s make sure we understand them. Firstly, notice that we have <span class="math inline">\(X_i\)</span> and <span class="math inline">\(Y_i\)</span> rather than just plain old <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. This is because we want to remember that we’re dealing with actual data. In this equation, <span class="math inline">\(X_i\)</span> is the value of the predictor variable for the <span class="math inline">\(i\)</span>th observation (i.e. the number of hours of sleep on day <span class="math inline">\(i\)</span>), and <span class="math inline">\(Y_i\)</span> is the corresponding value of the outcome variable (i.e. the grumpiness on that day). We’re assuming that this formula works for all observations in the data set (i.e. for all <span class="math inline">\(i\)</span>). Secondly, we also have <span class="math inline">\(\hat{Y}_i\)</span> and not <span class="math inline">\(Y_i\)</span>. This is because we want to make the distinction between the <em>actual data</em> <span class="math inline">\(Y_i\)</span>, and the <em>estimate</em> <span class="math inline">\(\hat{Y}_i\)</span> (i.e. the prediction that our regression line is making). Thirdly, we changed the letters used to describe the coefficients from <span class="math inline">\(m\)</span> and <span class="math inline">\(c\)</span> to <span class="math inline">\(b_1\)</span> and <span class="math inline">\(b_0\)</span>. That’s just the way that statisticians like to refer to the coefficients in a regression model. In any case, <span class="math inline">\(b_0\)</span> always refers to the intercept term, and <span class="math inline">\(b_1\)</span> refers to the slope.</p>
+<p>We see that the data don’t fall perfectly on the line. In other words, the data <span class="math inline">\(Y_i\)</span> are not identical to the predictions of the regression model <span class="math inline">\(\hat{Y_i}\)</span>. Since statisticians love to attach letters, names and numbers to everything, let’s refer to the difference between the model prediction and that actual data point as a <em>residual</em>, and we’ll refer to it as <span class="math inline">\(\epsilon_i\)</span>.<a href="#fn69" class="footnote-ref" id="fnref69"><sup>69</sup></a> The residuals are defined as:
+<span class="math display">\[
+\epsilon_i = Y_i - \hat{Y}_i
+\]</span>
+which in turn means that we can write down the complete linear regression model as:
+<span class="math display">\[
+Y_i = b_1 X_i + b_0 + \epsilon_i
+\]</span></p>
+</div>
+<div id="regressionestimation" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> Estimating a linear regression model<a href="regression.html#regressionestimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Let’s redraw the scatterplots just for this example’s sake adding some dotted lines to show the distance of each data point to the regression line. The length of the lines from the points to the regression line is proportional to the size of the residual.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:parentscatterswithresiduals"></span>
+<img src="resources/image/parentresiduallines.png" alt="Scatterplot outputs from CogStat of `parentsleep` and `parentgrump` with and without regression lines" width="100%" />
+<p class="caption">
+Figure 14.2: Scatterplot outputs from CogStat of <code>parentsleep</code> and <code>parentgrump</code> with and without regression lines
+</p>
+</div>
+<p>When the regression line is good, our residuals (the lengths of the dotted black lines) all look pretty small, but when the regression line is a bad one, the residuals are a lot larger. The “best fitting” regression line is the one that has the smallest residuals. Or better yet:</p>
+<blockquote>
+<p>The estimated regression coefficients, <span class="math inline">\(\hat{b}_0\)</span> and <span class="math inline">\(\hat{b}_1\)</span> are those that minimise the sum of the squared residuals, which we could either write as <span class="math inline">\(\sum_i (Y_i - \hat{Y}_i)^2\)</span> or as <span class="math inline">\(\sum_i {\epsilon_i}^2\)</span>.</p>
+</blockquote>
+<p>Do note that our regression coefficients are <em>estimates</em> (we’re trying to guess the parameters that describe a population), which is why he have the little hats, so that we get <span class="math inline">\(\hat{b}_0\)</span> and <span class="math inline">\(\hat{b}_1\)</span> rather than <span class="math inline">\(b_0\)</span> and <span class="math inline">\(b_1\)</span>. Since there’s actually more than one way to estimate a regression model, the more technical name for this estimation process is <strong>ordinary least squares (OLS) regression</strong>.</p>
+<p>At this point, we now have a concrete definition for what counts as our “best” choice of regression coefficients, <span class="math inline">\(\hat{b}_0\)</span> and <span class="math inline">\(\hat{b}_1\)</span>. The natural question to ask next is, if our optimal regression coefficients are those that minimise the sum squared residuals, how do we <em>find</em> these wonderful numbers? The actual answer to this question is complicated, and it doesn’t help you understand the logic of regression.<a href="#fn70" class="footnote-ref" id="fnref70"><sup>70</sup></a> As a result, this time we’re just going to interpret the results.</p>
+</div>
+<div id="regressioninterpretation" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> Interpreting the results of a linear regression<a href="regression.html#regressioninterpretation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We see that CogStat gave us the formula for our line:</p>
+<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
+     <p style="font-size:medium; font-weight:600; color:#4878ce;">Sample properties</p>
+     <p style="color:black;">Linear regression: y = -8.937x + 125.956</p>
+</div>
+<p>The most important thing to be able to understand is how to interpret these coefficients. Let’s start with <span class="math inline">\(\hat{b}_1\)</span>, the slope. If we remember the definition of the slope, a regression coefficient of <span class="math inline">\(\hat{b}_1 = -8.937\)</span> means that if we increase <span class="math inline">\(X_i\)</span> by 1, then we are decreasing <span class="math inline">\(Y_i\)</span> by 8.937. That is, each additional hour of sleep that the parent gains will improve their mood reducing their grumpiness by 8.937 grumpiness points.</p>
+<p>What about the intercept? Well, since <span class="math inline">\(\hat{b}_0\)</span> corresponds to “the expected value of <span class="math inline">\(Y_i\)</span> when <span class="math inline">\(X_i\)</span> equals 0”, it’s pretty straightforward. It implies that if the parent gets zero hours of sleep (<span class="math inline">\(X_i =0\)</span>) then their grumpiness will go off the scale, to an insane value of (<span class="math inline">\(Y_i = 125.956\)</span>). Best to be avoided.</p>
+<p>The next section in the output is a <em>Residual analysis</em>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:residualanalysisplot"></span>
+<img src="resources/image/parentresidualanalysis.png" alt="Residual analysis plots from CogStat" width="100%" />
+<p class="caption">
+Figure 14.3: Residual analysis plots from CogStat
+</p>
+</div>
+<p>The residual plot shows a horizontal line at zero. The <span class="math inline">\(x\)</span> axis shows the independent variable (i.e. <code>parentsleep</code>), and the <span class="math inline">\(y\)</span> axis shows the residual values. Ideally, the points should be all over the place randomly. If they are not, then there is a problem with the model. This can be due to outliers, or you have a nonlinear relationship between the variables. The residual plot is a good way to check for these problems.</p>
+<p>Next to the residual plot, you see a sideways histogram. It depicts the distribution of the residuals. Ideally, the residuals should be normally distributed. If they are not, then, again, you have a problem with your model.</p>
+<p>In our example, the residuals are beautifully random, and their distribution is normal. This is a sign that our model is a good one.</p>
+<p>Within the <code>Population parameter estimations</code>, you’ll see the estimated regression coefficients with their 95% confidence interval given. The confidence interval is a range of values that we are 95% confident that the true value of the parameter lies within. In this case, we are 95% confident that the true value of the slope is between -9.787 and -8.086, and that the true value of the intercept is between 119.971 and 131.942. You’ll also see a chart depicting the confidence intervals for the regression line. You’ll also note that normality and homoscedasticity are checked. These are two assumptions of linear regression. Normality means that the residuals are normally distributed, which we saw earlier. Homoscedasticity means, very simplistically, that the residuals are equally distributed across the range of the independent variable, so there is no big chunk on one side of the residual plot.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:parentregressionresults"></span>
+<img src="resources/image/cogstatregressioncoeff.png" alt="Regression coefficients" width="100%" />
+<p class="caption">
+Figure 14.4: Regression coefficients
+</p>
+</div>
+<div id="confidence-intervals-for-the-coefficients" class="section level3 hasAnchor" number="14.3.1">
+<h3><span class="header-section-number">14.3.1</span> Confidence intervals for the coefficients<a href="regression.html#confidence-intervals-for-the-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Like any population parameter, the regression coefficients cannot be estimated with complete precision from a sample of data; that’s part of why we need hypothesis tests. Given this, it’s quite useful to be able to report confidence intervals that capture our uncertainty about the true value of <span class="math inline">\(b\)</span>. This is especially useful when the research question focuses heavily on an attempt to find out <em>how</em> strongly variable <span class="math inline">\(X\)</span> is related to variable <span class="math inline">\(Y\)</span>, since in those situations the interest is primarily in the regression weight <span class="math inline">\(b\)</span>. Fortunately, confidence intervals for the regression weights can be constructed in the usual fashion,
+<span class="math display">\[
+\mbox{CI}(b) = \hat{b} \pm \left( t_{crit} \times \mbox{SE}({\hat{b})}  \right)
+\]</span>
+where <span class="math inline">\(\mbox{SE}({\hat{b}})\)</span> is the standard error of the regression coefficient, and <span class="math inline">\(t_{crit}\)</span> is the relevant critical value of the appropriate <span class="math inline">\(t\)</span> distribution. For instance, if it’s a 95% confidence interval that we want, then the critical value is the 97.5th quantile of a <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(N-K-1\)</span> degrees of freedom. In other words, this is basically the same approach to calculating confidence intervals that we’ve used throughout.</p>
+<p>As you’ve seen on Figure <a href="regression.html#fig:parentregressionresults">14.4</a>, CogStat gives us the confidence intervals for the regression coefficients.</p>
+<p>Simple enough.</p>
+</div>
+</div>
+<div id="r2" class="section level2 hasAnchor" number="14.4">
+<h2><span class="header-section-number">14.4</span> Quantifying the fit of the regression model<a href="regression.html#r2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So we now know how to estimate the coefficients of a linear regression model. The problem is, we don’t yet know if this regression model is any good. For example, the model <em>claims</em> that every hour of sleep will improve the mood (i.e. reduce grumpiness) by quite a lot, but it might just be rubbish. Remember, the regression model only produces a prediction <span class="math inline">\(\hat{Y}_i\)</span>. But the actual mood is <span class="math inline">\(Y_i\)</span>. If these two are very close, then the regression model has done a good job. If they are very different, then it has done a bad job.</p>
+<p>Once again, let’s wrap a little bit of mathematics around this. Firstly, we have the sum of the squared residuals:
+<span class="math display">\[
+\begin{array}{rcl}
+\mbox{SS}_{res} &amp;=&amp; \sum_i (Y_i - \hat{Y}_i)^2
+    \\
+    &amp;=&amp; 1838.722
+\end{array}
+\]</span></p>
+<p>Secondly, we have the total variability in the outcome variable:
+<span class="math display">\[
+\begin{array}{rcl}
+\mbox{SS}_{tot} &amp;=&amp; \sum_i (Y_i - \bar{Y})^2
+    \\
+    &amp;=&amp;  9998.59
+\end{array}
+\]</span></p>
+<p>Well, it’s a much bigger number than the previous one, so this does suggest that our regression model was making good predictions. But it’s not very interpretable.</p>
+<p>Perhaps we can fix this. What we’d like to do is to convert these two fairly meaningless numbers into one number. A nice, interpretable number, which for no particular reason we’ll call <span class="math inline">\(R^2\)</span>. What we would like is for the value of <span class="math inline">\(R^2\)</span> to be equal to 1 if the regression model makes no errors in predicting the data. In other words, if it turns out that the residual errors are zero – that is, if <span class="math inline">\(\mbox{SS}_{res} = 0\)</span> – then we expect <span class="math inline">\(R^2 = 1\)</span>. The formula that provides us with our <span class="math inline">\(R^2\)</span> value is pretty simple to write down,
+<span class="math display">\[
+\begin{array}{rcl}
+R^2 &amp;=&amp; 1 - \frac{\mbox{SS}_{res}}{\mbox{SS}_{tot}}
+    \\
+    &amp;=&amp; 1 - \frac{1838.722}{9998.59}
+    \\
+    &amp;=&amp; 0.816
+\end{array}
+\]</span></p>
+<p>The <span class="math inline">\(R^2\)</span> value, sometimes called the <strong>coefficient of determination</strong>, has a simple interpretation: it is the <em>proportion</em> of the variance in the outcome variable that can be accounted for by the predictor. So in this case, the fact that we have obtained <span class="math inline">\(R^2 = .816\)</span> means that the predictor (<code>parentsleep</code>) explains 81.6% of the variance in the outcome (<code>parentgrump</code>).</p>
+<p>The <span class="math inline">\(R^2\)</span> value is not currently calculated and displayed by CogStat, so if you need it, you’ll have to hold on to your hat and read on a bit.</p>
+<p>At this point, we can revisit our claim that regression, in this very simple form, is basically the same thing as a correlation. Previously, we used the symbol <span class="math inline">\(r\)</span> to denote a Pearson correlation. Might there be some relationship between the value of the correlation coefficient <span class="math inline">\(r\)</span> and the <span class="math inline">\(R^2\)</span> value from linear regression? Of course there is!</p>
+<p>The squared correlation <span class="math inline">\(r^2\)</span> is identical to the <span class="math inline">\(R^2\)</span> value for a linear regression with only a single predictor. So when you scroll down to the end of the result set, you can gather the Pearson correlation <span class="math inline">\(r\)</span>.</p>
+<p>You can see a more precise value in the <code>Standardised effect sizes</code> section of the output: <code>Point estimation</code> for <code>Pearson's correlation, r</code> is <span class="math inline">\(-0.903\)</span> (with a CI 95% interval of <span class="math inline">\(-0.934\)</span> to <span class="math inline">\(-0.859\)</span>).</p>
+<p>You’ll also see a two-digit rounded version of it in the <code>Hypothesis tests</code> section:</p>
+<blockquote>
+<p>Pearson’s correlation: <em>r</em>(98) = -0.90, <em>p</em> &lt; 0.001</p>
+</blockquote>
+<p><img src="resources/image/cogstatrvsrsqrd.png" width="100%" style="display: block; margin: auto;" /></p>
+<p>So how about you square the Pearson correlation coefficient <span class="math inline">\(r = -0.903\)</span>?</p>
+<p><span class="math display">\[
+\begin{array}{rcl}
+r^2 &amp;=&amp; (-0.903)^2
+    \\
+    &amp;=&amp; 0.816
+\end{array}
+\]</span></p>
+<p>Voilà, same number. In other words, running a Pearson correlation is more or less equivalent to running a linear regression model that uses only one predictor variable.</p>
+<div id="the-adjusted-r2-value" class="section level3 hasAnchor" number="14.4.1">
+<h3><span class="header-section-number">14.4.1</span> The adjusted <span class="math inline">\(R^2\)</span> value<a href="regression.html#the-adjusted-r2-value" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One final thing to point out before moving on. It’s quite common for people to report a slightly different measure of model performance, known as “adjusted <span class="math inline">\(R^2\)</span>”. The motivation behind calculating the adjusted <span class="math inline">\(R^2\)</span> value is the observation that adding more predictors into the model will <em>always</em> call the <span class="math inline">\(R^2\)</span> value to increase (or at least not decrease). The adjusted <span class="math inline">\(R^2\)</span> value introduces a slight change to the calculation, as follows. For a regression model with <span class="math inline">\(K\)</span> predictors, fit to a data set containing <span class="math inline">\(N\)</span> observations, the adjusted <span class="math inline">\(R^2\)</span> is:
+<span class="math display">\[
+\mbox{adj. } R^2 = 1 - \left(\frac{\mbox{SS}_{res}}{\mbox{SS}_{tot}} \times \frac{N-1}{N-K-1} \right)
+\]</span>
+This adjustment is an attempt to take the degrees of freedom into account. The big advantage of the adjusted <span class="math inline">\(R^2\)</span> value is that when you add more predictors to the model, the adjusted <span class="math inline">\(R^2\)</span> value will only increase if the new variables improve the model performance more than you’d expect by chance. The big disadvantage is that the adjusted <span class="math inline">\(R^2\)</span> value <em>can’t</em> be interpreted in the elegant way that <span class="math inline">\(R^2\)</span> can. <span class="math inline">\(R^2\)</span> has a simple interpretation as the proportion of variance in the outcome variable that is explained by the regression model but no equivalent interpretation exists for adjusted <span class="math inline">\(R^2\)</span>.</p>
+<p>An obvious question then, is whether you should report <span class="math inline">\(R^2\)</span> or adjusted <span class="math inline">\(R^2\)</span>. This is probably a matter of personal preference. If you care more about interpretability, then <span class="math inline">\(R^2\)</span> is better. If you care more about correcting for bias, then adjusted <span class="math inline">\(R^2\)</span> is probably better. This feature is not currently implemented in CogStat. Just for your reference, the statistic for our example is: <span class="math inline">\(adj. R^2 = 0.814\)</span>. Not too big a difference.</p>
+</div>
+</div>
+<div id="regressiontests" class="section level2 hasAnchor" number="14.5">
+<h2><span class="header-section-number">14.5</span> Hypothesis tests for regression models<a href="regression.html#regressiontests" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>So far, we’ve talked about what a regression model is, how the coefficients of a regression model are estimated, and how we quantify the performance of the model (the last of these, incidentally, is basically our measure of effect size). The next thing we need to talk about is hypothesis tests for the regression models themselves.</p>
+<p>There are two different (but related) kinds of hypothesis tests that we need to talk about: those in which we test whether the regression model as a whole is performing significantly better than a null model; and those in which we test whether a particular regression coefficient is significantly different from zero.</p>
+<p>At this point, you’re probably groaning internally, thinking we’re going to introduce a whole new collection of tests. You’re probably sick of hypothesis tests by now, and don’t want to learn any new ones. Well, you’re lucky, because we can shamelessly reuse the <span class="math inline">\(F\)</span>-test from Chapter <a href="anova.html#anova">12</a> as an overall model test, and the <span class="math inline">\(t\)</span>-test from Chapter <a href="ttest.html#ttest">11</a> as testing the coefficients.</p>
+<p>Testing the overall regression model is not implemented in CogStat yet. As you’ve seen in the result set, the Hypothesis tests section will show the Pearson’s correlation coefficient and the Spearman’s rank-order correlation coefficient. To be clear, it is testing particularly the null hypothesis that <em>the correlation coefficient is zero</em>, but not the null hypothesis that <em>the regression model is not performing significantly better than a null model</em>.</p>
+<p>However, it’s still good to understand these tests, so let’s talk about them briefly.</p>
+<div id="testing-the-model-as-a-whole" class="section level3 hasAnchor" number="14.5.1">
+<h3><span class="header-section-number">14.5.1</span> Testing the model as a whole<a href="regression.html#testing-the-model-as-a-whole" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Okay, suppose you’ve estimated your regression model. The first hypothesis test you might want to try is one in which the null hypothesis is that there is <em>no relationship</em> between the predictors and the outcome, and the alternative hypothesis is that <em>the data are distributed in exactly the way that the regression model predicts</em>. Formally, our “null model” corresponds to the fairly trivial “regression” model in which we include 0 predictors, and only include the intercept term <span class="math inline">\(b_0\)</span>
+<span class="math display">\[
+H_0: Y_i = b_0 + \epsilon_i
+\]</span></p>
+<p>If our regression model has <span class="math inline">\(K\)</span> predictors, the “alternative model” is described using the usual formula for a multiple regression model:
+<span class="math display">\[
+H_1: Y_i = \left( \sum_{k=1}^K b_{k} X_{ik} \right) + b_0 + \epsilon_i
+\]</span></p>
+<p>How can we test these two hypotheses against each other? The trick is to understand that just like we did with ANOVA, it’s possible to divide up the <em>total variance</em> <span class="math inline">\(\mbox{SS}_ {tot}\)</span> into the <em>sum of the residual variance</em> <span class="math inline">\(\mbox{SS}_ {res}\)</span> and the <em>regression model variance</em> <span class="math inline">\(\mbox{SS}_ {mod}\)</span>. Skipping over the technicalities, note that:
+<span class="math display">\[
+\mbox{SS}_{mod} = \mbox{SS}_{tot} - \mbox{SS}_{res}
+\]</span></p>
+<p>And, just like we did with the ANOVA, we can convert the sums of squares in to mean squares by dividing by the degrees of freedom.
+<span class="math display">\[
+\begin{array}{rcl}
+\mbox{MS}_{mod} &amp;=&amp; \displaystyle\frac{\mbox{SS}_{mod} }{df_{mod}} \\ \\
+\mbox{MS}_{res} &amp;=&amp; \displaystyle\frac{\mbox{SS}_{res} }{df_{res} }
+\end{array}
+\]</span></p>
+<p>So, how many degrees of freedom do we have? As you might expect, the <span class="math inline">\(df\)</span> associated with the model is closely tied to the number of predictors that we’ve included. In fact, it turns out that <span class="math inline">\(df_{mod} = K\)</span>. For the residuals, the total degrees of freedom is <span class="math inline">\(df_{res} = N - K - 1\)</span>.</p>
+<p>Now that we’ve got our mean square values, you’re probably going to be entirely unsurprised (possibly even bored) to discover that we can calculate an <span class="math inline">\(F\)</span>-statistic like this:
+<span class="math display">\[
+F =  \frac{\mbox{MS}_{mod}}{\mbox{MS}_{res}}
+\]</span>
+and the degrees of freedom associated with this are <span class="math inline">\(K\)</span> and <span class="math inline">\(N-K-1\)</span>. This <span class="math inline">\(F\)</span> statistic has exactly the same interpretation as the one we introduced in Chapter <a href="anova.html#anova">12</a>. Large <span class="math inline">\(F\)</span> values indicate that the null hypothesis is performing poorly in comparison to the alternative hypothesis.</p>
+<p>The <span class="math inline">\(F\)</span>-test for our <code>parentsleep</code> and <code>parentgrump</code> variable pair is:
+<span class="math display">\[
+F(1, 98) = 434.906, p &lt; 0.001
+\]</span>.</p>
+</div>
+<div id="tests-for-individual-coefficients" class="section level3 hasAnchor" number="14.5.2">
+<h3><span class="header-section-number">14.5.2</span> Tests for individual coefficients<a href="regression.html#tests-for-individual-coefficients" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <span class="math inline">\(F\)</span>-test that we’ve just introduced is useful for checking that the model as a whole is performing better than chance. This is important: if your regression model doesn’t produce a significant result for the <span class="math inline">\(F\)</span>-test then you probably don’t have a very good regression model (or, quite possibly, you don’t have very good data).</p>
+<p>However, while failing the <span class="math inline">\(F\)</span>-test is a pretty strong indicator that the model has problems, <em>passing</em> the test (i.e. rejecting the null) doesn’t imply that the model is good! Why is that, you might be wondering?</p>
+<p>The estimated regression coefficient is quite large for the <code>parentsleep</code> variable (<span class="math inline">\(-8.937\)</span>)<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a>. Should we run an analysis with the pair of <code>babysleep</code> and <code>parentgrump</code>, we’d notice the linear regression line is: <code>Linear regression: y = -2.742x + 85.782</code>, meaning our regression coefficient is much smaller.</p>
+<p>Let us combine these two predictors into a single model without CogStat<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a>, and add both <code>babysleep</code> and <code>parentsleep</code> to the model predicting <code>parentgrump</code>, we get the following result:</p>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-54">Table 14.1: </span>Model coefficients for the combined model with both predictors at <span class="math inline">\(\alpha = 0.05\)</span>
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Predictor
+</th>
+<th style="text-align:right;">
+Coefficient estimate
+</th>
+<th style="text-align:right;">
+95% CI (low)
+</th>
+<th style="text-align:right;">
+95% CI (high)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+babysleep
+</td>
+<td style="text-align:right;">
+0.011
+</td>
+<td style="text-align:right;">
+-0.527
+</td>
+<td style="text-align:right;">
+0.549
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+parentsleep
+</td>
+<td style="text-align:right;">
+-8.950
+</td>
+<td style="text-align:right;">
+-10.049
+</td>
+<td style="text-align:right;">
+-7.852
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:right;">
+125.966
+</td>
+<td style="text-align:right;">
+119.93
+</td>
+<td style="text-align:right;">
+132.001
+</td>
+</tr>
+</tbody>
+</table>
+<p>Given that these two variables are absolutely on the same scale (they’re both measured in “hours slept”), this is suspicious. In fact, we should begin to suspect that the amount of sleep that the parent gets is what really only matters in order to predict their grumpiness.</p>
+<p>Once again, we can reuse a hypothesis test that we discussed earlier, this time the <span class="math inline">\(t\)</span>-test. The test that we’re interested in has a null hypothesis that the true regression coefficient is zero (<span class="math inline">\(b = 0\)</span>), which is to be tested against the alternative hypothesis that it isn’t (<span class="math inline">\(b \neq 0\)</span>). That is:
+<span class="math display">\[
+\begin{array}{rl}
+H_0: &amp; b = 0 \\
+H_1: &amp; b \neq 0
+\end{array}
+\]</span></p>
+<p>How can we test this? Well, if the central limit theorem is kind to us, we might be able to guess that the sampling distribution of <span class="math inline">\(\hat{b}\)</span>, the estimated regression coefficient, is a normal distribution with mean centred on <span class="math inline">\(b\)</span>. What that would mean is that if the null hypothesis were true, then the sampling distribution of <span class="math inline">\(\hat{b}\)</span> has mean zero and unknown standard deviation. Assuming that we can come up with a good estimate for the standard error of the regression coefficient, <span class="math inline">\(\mbox{SE}({\hat{b}})\)</span>, then we’re in luck. That’s <em>exactly</em> the situation for which we introduced the one-sample <span class="math inline">\(t\)</span> way back in Chapter <a href="ttest.html#ttest">11</a>. So let’s define a <span class="math inline">\(t\)</span>-statistic like this,
+<span class="math display">\[
+t = \frac{\hat{b}}{\mbox{SE}({\hat{b})}}
+\]</span></p>
+<p>Our degrees of freedom in this case are <span class="math inline">\(df = N- K- 1\)</span>. Irritatingly, the estimate of the standard error of the regression coefficient, <span class="math inline">\(\mbox{SE}({\hat{b}})\)</span>, is not as easy to calculate as the standard error of the mean that we used for the simpler <span class="math inline">\(t\)</span>-tests in Chapter <a href="ttest.html#ttest">11</a>. In fact, the formula is somewhat ugly, and not terribly helpful to look at. For our purposes, it’s sufficient to point out that the standard error of the estimated regression coefficient depends on both the predictor and outcome variables, and is somewhat sensitive to violations of the homogeneity of variance assumption (discussed shortly).</p>
+<p>In any case, this <span class="math inline">\(t\)</span>-statistic can be interpreted in the same way as the <span class="math inline">\(t\)</span>-statistics that we discussed in Chapter <a href="ttest.html#ttest">11</a>. Assuming that you have a two-sided alternative (i.e. you don’t really care if <span class="math inline">\(b &gt;0\)</span> or <span class="math inline">\(b &lt; 0\)</span>), then it’s the extreme values of <span class="math inline">\(t\)</span> (i.e. a lot less than zero or a lot greater than zero) that suggest that you should reject the null hypothesis.</p>
+<table>
+<caption>
+<span id="tab:linrcombnobeta">Table 14.2: </span>Model coefficients for the combined model with both predictors at <span class="math inline">\(\alpha = 0.05\)</span> with <span class="math inline">\(t\)</span>-statistics
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Predictor
+</th>
+<th style="text-align:right;">
+Coefficient estimate
+</th>
+<th style="text-align:right;">
+95% CI (low)
+</th>
+<th style="text-align:right;">
+95% CI (high)
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(t\)</span>-statistic
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(p\)</span>-value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+babysleep
+</td>
+<td style="text-align:right;">
+0.011
+</td>
+<td style="text-align:right;">
+-0.527
+</td>
+<td style="text-align:right;">
+0.549
+</td>
+<td style="text-align:right;">
+0.039
+</td>
+<td style="text-align:right;">
+0.969
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+parentsleep
+</td>
+<td style="text-align:right;">
+-8.950
+</td>
+<td style="text-align:right;">
+-10.049
+</td>
+<td style="text-align:right;">
+-7.852
+</td>
+<td style="text-align:right;">
+-16.172
+</td>
+<td style="text-align:right;">
+&lt;.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:right;">
+125.966
+</td>
+<td style="text-align:right;">
+119.93
+</td>
+<td style="text-align:right;">
+132.001
+</td>
+<td style="text-align:right;">
+41.423
+</td>
+<td style="text-align:right;">
+&lt;.001
+</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s run the <span class="math inline">\(F\)</span>-test for the combined model with the total degrees of freedom is <span class="math inline">\(df_{res} = N - K - 1\)</span>, and we calculate the <span class="math inline">\(R^2\)</span>, we get:
+<span class="math display">\[
+F(2, 97) = 215.238, p &lt; 0.001
+\]</span></p>
+<p><span class="math display">\[
+R^2 = 0.816
+\]</span></p>
+<p>So in this case, the model performs significantly better than you’d expect by chance (<span class="math inline">\(F(2,97) = 215.2\)</span>, <span class="math inline">\(p&lt;.001\)</span>), which isn’t all that surprising: the <span class="math inline">\(R^2 = .816\)</span> value indicate that the regression model accounts for 81.6% of the variability in the outcome measure. However, when we look back up at the <span class="math inline">\(t\)</span>-tests for each of the individual coefficients, we have pretty strong evidence that the <code>babysleep</code> variable has no significant effect; all the work is being done by the <code>parentsleep</code> variable. Taken together, these results suggest that <code>babysleep &gt; parentgrump</code> is actually the wrong model for the data: you’d probably be better off dropping the <code>babysleep</code> predictor entirely. In other words, the <code>parentsleep &gt; parentgrump</code> model that we started with is the better model.</p>
+</div>
+<div id="stdcoef" class="section level3 hasAnchor" number="14.5.3">
+<h3><span class="header-section-number">14.5.3</span> Calculating standardised regression coefficients<a href="regression.html#stdcoef" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One more thing that you might want to do is to calculate “standardised” regression coefficients, often denoted <span class="math inline">\(\beta\)</span>. The rationale behind standardised coefficients goes like this. In a lot of situations, your variables are on fundamentally different scales. E.g. a 7-point Likert scale compared to a 5-point one; IQ scores compared to years of education; or, in our case, hours of sleep compared to grumpiness. In these situations, it’s not really fair to compare the regression coefficients for the two variables.</p>
+<p>Yet, there are situations where you simply must make comparisons between different coefficients. Specifically, you might want some kind of standard measure of which predictors have the strongest relationship to the outcome. This is what <strong>standardised coefficients</strong> aim to do.</p>
+<p>The basic idea is quite simple: the standardised coefficients are the coefficients that you would have obtained if you’d converted all the variables to <span class="math inline">\(z\)</span>-scores before running the regression. The idea here is that, by converting all the predictors to <span class="math inline">\(z\)</span>-scores, they all go into the regression on the same scale, thereby removing the problem of having variables on different scales. Regardless of what the original variables were, a <span class="math inline">\(\beta\)</span> value of 1 means that an increase in the predictor of 1 <em>standard deviation</em> will produce a corresponding 1 <em>standard deviation increase</em> in the outcome variable. Therefore, if variable A has a larger absolute value of <span class="math inline">\(\beta\)</span> than variable B, it is deemed to have a stronger relationship with the outcome. Or at least that’s the idea: it’s worth being a little cautious here, since this does rely very heavily on the assumption that “a 1 standard deviation change” is fundamentally the same kind of thing for all variables. It’s not always obvious that this is true.</p>
+<p>Leaving aside the interpretation issues, let’s look at how it’s calculated. What you could do is standardise all the variables yourself and then run a regression<a href="#fn73" class="footnote-ref" id="fnref73"><sup>73</sup></a>.</p>
+<p>The <span class="math inline">\(\beta\)</span> coefficient for a predictor <span class="math inline">\(X\)</span> and outcome <span class="math inline">\(Y\)</span> has a very simple formula, namely
+<span class="math display">\[
+\beta_X = b_X \times \frac{\sigma_X}{\sigma_Y}
+\]</span>
+where <span class="math inline">\(\sigma_X\)</span> is the standard deviation of the predictor, and <span class="math inline">\(\sigma_Y\)</span> is the standard deviation of the outcome variable <span class="math inline">\(Y\)</span>.</p>
+<p>What does this mean in our original example (i.e. <code>parentsleep</code> and <code>parentgrump</code>)?</p>
+<p>To calculate this manually with CogStat, you can use <code>Explore variable</code> function to get the Standard deviation of both the predictor and outcome variables:</p>
+<ul>
+<li>(<code>parentsleep</code> is <span class="math inline">\(X\)</span>) <span class="math inline">\(\sigma_X = 1.011\)</span>, and</li>
+<li>(<code>parentgrump</code> is <span class="math inline">\(Y\)</span>) <span class="math inline">\(\sigma_Y = 10.0\)</span>.</li>
+</ul>
+<p>Then you can use the <code>Explore relation of variable pair</code> function (which we’ve been using in this Chapter) to get the <span class="math inline">\(b_X\)</span> value. In this case, it was <span class="math inline">\(-8.937\)</span>. Let’s put these figures in the formula:</p>
+<p><span class="math display">\[
+\begin{array}{rcl}
+\beta_X &amp;=&amp; b_X \times \frac{\sigma_X}{\sigma_Y}
+    \\
+    &amp;=&amp; -8.937 \times \frac{1.011}{10}
+    \\
+    &amp;=&amp; -0.903
+\end{array}
+\]</span></p>
+<p>To calculate it for our combined model manually, we can use the same, just with different figures (see Table <a href="regression.html#tab:linrcombnobeta">14.2</a>): <span class="math inline">\(b_X\)</span> for <code>parentsleep</code> is <span class="math inline">\(-8.950\)</span> and <span class="math inline">\(b_X\)</span> for <code>babysleep</code> is <span class="math inline">\(0.011\)</span>. We know the <span class="math inline">\(\sigma\)</span> values for <code>parentsleep</code> and <code>parentgrump</code>, so we only need to calculate the <span class="math inline">\(\sigma\)</span> value for <code>babysleep</code> using the <code>Explore variable</code> and getting the Standard deviation. In this case, it’s <span class="math inline">\(2.064\)</span>.</p>
+<p>So putting these in the formula, we get the followings:</p>
+<ul>
+<li><code>parentsleep</code>:
+<span class="math display">\[
+\begin{array}{rcl}
+\beta_X &amp;=&amp; b_X \times \frac{\sigma_X}{\sigma_Y}
+  \\
+  &amp;=&amp; -8.950 \times \frac{1.011}{10}
+  \\
+  &amp;=&amp; -0.905
+\end{array}
+\]</span></li>
+<li><code>babysleep</code>:
+<span class="math display">\[
+\begin{array}{rcl}
+\beta_X &amp;=&amp; b_X \times \frac{\sigma_X}{\sigma_Y}
+  \\
+  &amp;=&amp; 0.011 \times \frac{2.064}{10}
+  \\
+  &amp;=&amp; 0.002
+\end{array}
+\]</span></li>
+</ul>
+<table>
+<caption>
+<span id="tab:unnamed-chunk-55">Table 14.3: </span>Model coefficients (both estimate and standardised estimate) for the combined model with both predictors at <span class="math inline">\(\alpha = 0.05\)</span> with <span class="math inline">\(t\)</span>-statistics
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Predictor
+</th>
+<th style="text-align:right;">
+Coefficient estimate
+</th>
+<th style="text-align:right;">
+Standardised coefficient (<span class="math inline">\(\beta\)</span>)
+</th>
+<th style="text-align:right;">
+95% CI (low)
+</th>
+<th style="text-align:right;">
+95% CI (high)
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(t\)</span>-statistic
+</th>
+<th style="text-align:right;">
+<span class="math inline">\(p\)</span>-value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+babysleep
+</td>
+<td style="text-align:right;">
+0.011
+</td>
+<td style="text-align:right;">
+0.002
+</td>
+<td style="text-align:right;">
+-0.527
+</td>
+<td style="text-align:right;">
+0.549
+</td>
+<td style="text-align:right;">
+0.039
+</td>
+<td style="text-align:right;">
+0.969
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+parentsleep
+</td>
+<td style="text-align:right;">
+-8.950
+</td>
+<td style="text-align:right;">
+-0.905
+</td>
+<td style="text-align:right;">
+-10.049
+</td>
+<td style="text-align:right;">
+-7.852
+</td>
+<td style="text-align:right;">
+-16.172
+</td>
+<td style="text-align:right;">
+&lt;.001
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Intercept
+</td>
+<td style="text-align:right;">
+125.966
+</td>
+<td style="text-align:right;">
+–
+</td>
+<td style="text-align:right;">
+119.93
+</td>
+<td style="text-align:right;">
+132.001
+</td>
+<td style="text-align:right;">
+41.423
+</td>
+<td style="text-align:right;">
+&lt;.001
+</td>
+</tr>
+</tbody>
+</table>
+<p>This clearly shows that the <code>parentsleep</code> variable has a much stronger effect than the <code>babysleep</code> variable. Also, let’s not forget that this <span class="math inline">\(\beta\)</span> coefficient can also have a confidence interval, which we are not going to cover now.</p>
+<p>This, however, is a perfect example of a situation where it would probably make sense to use the original coefficients <span class="math inline">\(b\)</span> rather than the standardised coefficients <span class="math inline">\(\beta\)</span>. After all, the parent’s sleep and the baby’s sleep are <em>already</em> on the same scale: number of hours slept. Why complicate matters by converting these to <span class="math inline">\(z\)</span>-scores?</p>
+</div>
+</div>
+<div id="regressiondiagnostics" class="section level2 hasAnchor" number="14.6">
+<h2><span class="header-section-number">14.6</span> Model checking<a href="regression.html#regressiondiagnostics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The main focus of this section is <strong>regression diagnostics</strong><a href="#fn74" class="footnote-ref" id="fnref74"><sup>74</sup></a>, a term that refers to the art of checking that the assumptions of your regression model have been met, figuring out how to fix the model if the assumptions are violated, and generally to check that nothing “funny” is going on.</p>
+<p>If done manually, and not with an automatic statistics software, it’s easy to get lost in all the details of checking this thing or that thing, and it’s quite exhausting to try to remember what all the different things are. This has the very nasty side effect that a lot of people get frustrated when trying to learn <em>all</em> the tools, so instead they decide not to do <em>any</em> model checking. This is a bit of a worry!</p>
+<p>In this section, we discuss several different things you can theoretically do to check that your regression model is doing what it’s supposed to.</p>
+<div id="three-kinds-of-residuals" class="section level3 hasAnchor" number="14.6.1">
+<h3><span class="header-section-number">14.6.1</span> Three kinds of residuals<a href="regression.html#three-kinds-of-residuals" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The majority of regression diagnostics revolve around looking at the residuals. In particular, the following three kinds of residual are referred to in this section: “ordinary residuals” (which in some cases is identical to “Pearson residual”), “standardised residuals”, and “Studentised residuals”.</p>
+<p>The first and simplest kind of residuals that we care about are <strong>ordinary residuals</strong>. These are the actual, raw residuals we’ve been talking about throughout this chapter. The ordinary residual is just the difference between the fitted value <span class="math inline">\(\hat{Y}_i\)</span> and the observed value <span class="math inline">\(Y_i\)</span>. We’ve been using the notation <span class="math inline">\(\epsilon_i\)</span> to refer to the <span class="math inline">\(i\)</span>-th ordinary residual. With this in mind, we have a very simple equation:
+<span class="math display">\[
+\epsilon_i = Y_i - \hat{Y}_i
+\]</span></p>
+<p>One drawback to using ordinary residuals is that they’re always on a different scale, depending on what the outcome variable is and how good the regression model is. The ordinary residuals will have mean 0; but the variance is different for every regression.</p>
+<p>In a lot of contexts, especially where you’re only interested in the <em>pattern</em> of the residuals and not their actual values, it’s convenient to estimate the <strong>standardised residuals</strong>, which are normalised in such a way as to have standard deviation 1. The way we calculate these is, we divide the ordinary residual by an estimate of the (population) standard deviation of these residuals. For technical reasons, the formula for this is:
+<span class="math display">\[
+\epsilon_{i}^\prime = \frac{\epsilon_i}{\hat{\sigma} \sqrt{1-h_i}}
+\]</span>
+where <span class="math inline">\(\hat\sigma\)</span> in this context is the estimated population standard deviation of the ordinary residuals, and <span class="math inline">\(h_i\)</span> is the “hat value” of the <span class="math inline">\(i\)</span>th observation. For now, it’s enough to interpret the standardised residuals as if we’d converted the ordinary residuals to <span class="math inline">\(z\)</span>-scores. In fact, that is more or less the truth, it’s just that we’re being a bit fancier.</p>
+<p>The third kind of residuals are <strong>Studentised residuals</strong>, and they’re even fancier than standardised residuals. Again, the idea is to take the ordinary residual and divide it by some quantity in order to estimate some standardised notion of the residual, but the formula for doing the calculations this time is subtly different:
+<span class="math display">\[
+\epsilon_{i}^* = \frac{\epsilon_i}{\hat{\sigma}_{(-i)} \sqrt{1-h_i}}
+\]</span></p>
+<p>Notice that our estimate of the standard deviation here is written <span class="math inline">\(\hat{\sigma}_{(-i)}\)</span>. This corresponds to the estimate of the residual standard deviation that you <em>would have obtained</em>, if you just deleted the <span class="math inline">\(i\)</span>th observation from the data set. This sounds like the sort of thing that would be a nightmare to calculate, since it seems to be saying that you have to run <span class="math inline">\(N\)</span> new regression models (even a modern computer might grumble a bit at that, especially if you’ve got a large data set). Fortunately, this standard deviation estimate is actually given by the following equation:
+<span class="math display">\[
+\hat\sigma_{(-i)} = \hat{\sigma} \ \sqrt{\frac{N-K-1 - {\epsilon_{i}^\prime}^2}{N-K-2}}
+\]</span></p>
+<p>It’s always nice to know how to actually get hold of these things yourself in case you ever need to do something non-standard.</p>
+</div>
+<div id="regressionoutliers" class="section level3 hasAnchor" number="14.6.2">
+<h3><span class="header-section-number">14.6.2</span> Three kinds of anomalous data<a href="regression.html#regressionoutliers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>One danger that you can run into with linear regression models is that your analysis might be disproportionately sensitive to a smallish number of “unusual” or “anomalous” observations. In the context of linear regression, there are three conceptually distinct ways in which an observation might be called “anomalous”. All three are interesting, but they have rather different implications for your analysis.</p>
+<p>The first kind of unusual observation is an <strong>outlier</strong>. The definition of an outlier (in this context) is an observation that is very different from what the regression model predicts. An example is shown in Figure <a href="regression.html#fig:outlier">14.5</a>. In practice, we operationalise this concept by saying that an outlier is an observation that has a very large Studentised residual, <span class="math inline">\(\epsilon_i^*\)</span>. Outliers are interesting: a big outlier <em>might</em> correspond to junk data. E.g. the variables might have been entered incorrectly, or some other defect may be detectable. Note that you shouldn’t throw an observation away just because it’s an outlier. But the fact that it’s an outlier is often a cue to look more closely at that case, and try to find out why it’s so different.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:outlier"></span>
+<img src="resources/image/unusual_outlier.png" alt="An illustration of outliers. The dotted lines plot the regression line that would have been estimated without the anomalous observation included, and the corresponding residual (i.e. the Studentised residual). The solid line shows the regression line with the anomalous observation included. The outlier has an unusual value on the outcome (y axis location) but not the predictor (x axis location), and lies a long way from the regression line." width="100%" />
+<p class="caption">
+Figure 14.5: An illustration of outliers. The dotted lines plot the regression line that would have been estimated without the anomalous observation included, and the corresponding residual (i.e. the Studentised residual). The solid line shows the regression line with the anomalous observation included. The outlier has an unusual value on the outcome (y axis location) but not the predictor (x axis location), and lies a long way from the regression line.
+</p>
+</div>
+<p>The second way in which an observation can be unusual is if it has high <strong>leverage</strong>: this happens when the observation is very different from all the other observations. This doesn’t necessarily have to correspond to a large residual: if the observation happens to be unusual on all variables in precisely the same way, it can actually lie very close to the regression line. An example of this is shown in Figure <a href="regression.html#fig:leverage">14.6</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:leverage"></span>
+<img src="resources/image/unusual_leverage.png" alt="An illustration of high leverage points. The anomalous observation in this case is unusual both in terms of the predictor (x axis) and the outcome (y axis), but this unusualness is highly consistent with the pattern of correlations that exists among the other observations; as a consequence, the observation falls very close to the regression line and does not distort it." width="100%" />
+<p class="caption">
+Figure 14.6: An illustration of high leverage points. The anomalous observation in this case is unusual both in terms of the predictor (x axis) and the outcome (y axis), but this unusualness is highly consistent with the pattern of correlations that exists among the other observations; as a consequence, the observation falls very close to the regression line and does not distort it.
+</p>
+</div>
+<p>The leverage of an observation is operationalised in terms of its <em>hat value</em>, usually written <span class="math inline">\(h_i\)</span>. The formula for the hat value is rather complicated<a href="#fn75" class="footnote-ref" id="fnref75"><sup>75</sup></a> but its interpretation is not: <span class="math inline">\(h_i\)</span> is a measure of the extent to which the <span class="math inline">\(i\)</span>-th observation is “in control” of where the regression line ends up going.</p>
+<p>In general, if an observation lies far away from the other ones in terms of the predictor variables, it will have a large hat value (as a rough guide, high leverage is when the hat value is more than 2-3 times the average; and note that the sum of the hat values is constrained to be equal to <span class="math inline">\(K+1\)</span>). High leverage points are also worth looking at in more detail, but they’re much less likely to be a cause for concern unless they are also outliers.</p>
+<p>This brings us to our third measure of unusualness, the <strong>influence</strong> of an observation. A high influence observation is an outlier that has high leverage. That is, it is an observation that is very different to all the other ones in some respect, and also lies a long way from the regression line. This is illustrated in Figure <a href="regression.html#fig:influence">14.7</a>. Notice the contrast to the previous two figures: outliers don’t move the regression line much, and neither do high leverage points. But an outlier that has high leverage will have a big effect on the regression line.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:influence"></span>
+<img src="resources/image/unusual_influence.png" alt="An illustration of high influence points. In this case, the anomalous observation is highly unusual on the predictor variable (x axis), and falls a long way from the regression line. As a consequence, the regression line is highly distorted, even though (in this case) the anomalous observation is entirely typical in terms of the outcome variable (y axis)." width="100%" />
+<p class="caption">
+Figure 14.7: An illustration of high influence points. In this case, the anomalous observation is highly unusual on the predictor variable (x axis), and falls a long way from the regression line. As a consequence, the regression line is highly distorted, even though (in this case) the anomalous observation is entirely typical in terms of the outcome variable (y axis).
+</p>
+</div>
+<p>That’s why we call these points high-influence; and it’s why they’re the biggest worry. We operationalise influence in terms of a measure known as <strong>Cook’s distance</strong>,
+<span class="math display">\[
+D_i = \frac{{\epsilon_i^*}^2 }{K+1} \times \frac{h_i}{1-h_i}
+\]</span></p>
+<p>Notice that this is a multiplication of something that measures the outlier-ness of the observation (the bit on the left), and something that measures the leverage of the observation (the bit on the right). In other words, in order to have a large Cook’s distance, an observation must be a fairly substantial outlier <em>and</em> have high leverage. Some statistics software will provide you with this measure, but it is not available in CogStat yet. It is good to know about it, though.</p>
+<p>As a rough guide, Cook’s distance greater than 1 is often considered large, though a quick scan of the internet and a few papers suggests that <span class="math inline">\(4/N\)</span> has also been suggested as a possible rule of thumb.</p>
+<p>An obvious question to ask next is, if you do have large values of Cook’s distance, what should you do? As always, there’s no hard-and-fast rules. Probably the first thing to do is to run the regression with that point excluded (i.e. removing it from the source data) and see what happens to the model performance and to the regression coefficients. If they really are substantially different, it’s time to start digging into your data set and your notes that you no doubt were scribbling as your ran your study; try to figure out <em>why</em> the point is so different. If you start to become convinced that this one data point is badly distorting your results, you might consider excluding it, but that’s less than ideal unless you have a solid explanation for why this particular case is qualitatively different from the others and therefore deserves to be handled separately.</p>
+</div>
+<div id="regressionnormality" class="section level3 hasAnchor" number="14.6.3">
+<h3><span class="header-section-number">14.6.3</span> Checking the normality of the residuals<a href="regression.html#regressionnormality" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Like many of the statistical tools we’ve discussed in this book, regression models rely on a normality assumption. In this case, we assume that the residuals are normally distributed. It never hurts to draw a histogram. You’ve seen an example of this very early on in this Chapter in Figure <a href="regression.html#fig:residualanalysisplot">14.3</a>. If the residuals are normally distributed, you should see a roughly bell-shaped curve in the right-hand chart. CogStat will automatically test for normality as usual.</p>
+<p>The test used by CogStat is not the Shapiro-Wilk test but the <strong>Henze-Zirkler test</strong> of multivariate normality, but it also provides us with a <span class="math inline">\(W\)</span>-value and <span class="math inline">\(p\)</span>-value. And the rule is, again, if the <span class="math inline">\(p\)</span>-value is less than 0.05, we can reject the null hypothesis that the residuals are normally distributed, meaning, our data set violates the assumption of normality.</p>
+<p>In such a case, CogStat will specifically call out that the confidence intervals for the regression coefficients and the intercept might be biased. Also, only the Spearman’s rank-order correlation will be run as part of the Hypothesis tests, because Pearson’s correlation assumes normality.</p>
+</div>
+<div id="regressionhomogeneity" class="section level3 hasAnchor" number="14.6.4">
+<h3><span class="header-section-number">14.6.4</span> Checking the homoscedasticity of the residuals<a href="regression.html#regressionhomogeneity" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The regression models that we’ve talked about all make a homogeneity of variance assumption: the variance of the residuals is assumed to be constant. Again, you might recall from Figure <a href="regression.html#fig:residualanalysisplot">14.3</a> that if on the left chart, the residuals are leaning towards one of the sides and are not spread more or less evenly, this is a sign that the variance is not constant, hence the homoscedasticity assumption is violated.</p>
+<p>CogStat uses two tests to determine whether the homoscedasticity assumption is violated (meaning the data is <em>heteroscedatic</em>):</p>
+<ul>
+<li><strong>Koenker’s studentised score test</strong> is a studentised version of Breuschand Pagan’s score test, and is robust when long-tailed errors or unusual observations are present <span class="citation">(Lyon &amp; Tsai, 1996)</span>;</li>
+<li><strong>White’s test</strong> tests for bias due to heteroskedasticity, but it’s generally advised to use Koenker’s test instead <span class="citation">(Lyon &amp; Tsai, 1996)</span>.</li>
+</ul>
+<p>Both tests will give you a test statistic (<span class="math inline">\(LM\)</span><a href="#fn76" class="footnote-ref" id="fnref76"><sup>76</sup></a>) and a <span class="math inline">\(p\)</span>-value. If either test’s <span class="math inline">\(p\)</span>-value is less than 0.05, we can reject the null hypothesis that the residuals are homoscedastic, in which case CogStat will specifically call out that the confidence intervals for the regression coefficients and the intercept might be biased, and will run, again, only the Spearman’s rank-order correlation as part of the Hypothesis tests.</p>
+</div>
+</div>
+<div id="regressionassumptions" class="section level2 hasAnchor" number="14.7">
+<h2><span class="header-section-number">14.7</span> Summary<a href="regression.html#regressionassumptions" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The linear regression model relies on several assumptions:</p>
+<ul>
+<li><em>Normality</em>. Like half the models in statistics, standard linear regression relies on an assumption of normality. Specifically, it assumes that the <em>residuals</em> are normally distributed. It’s actually okay if the predictors <span class="math inline">\(X\)</span> and the outcome <span class="math inline">\(Y\)</span> are non-normal, so long as the residuals <span class="math inline">\(\epsilon\)</span> are normal. See Section <a href="regression.html#regressionnormality">14.6.3</a>.</li>
+<li><em>Linearity</em>. A pretty fundamental assumption of the linear regression model is that relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span> actually be linear! Regardless of whether it’s a simple regression or a multiple regression, we assume that the relatiships involved are linear.</li>
+<li><em>Homogeneity of variance</em>. Strictly speaking, the regression model assumes that each residual <span class="math inline">\(\epsilon_i\)</span> is generated from a normal distribution with mean 0, and (more importantly for the current purposes) with a standard deviation <span class="math inline">\(\sigma\)</span> that is the same for every single residual. In practice, it’s impossible to test the assumption that every residual is identically distributed. Instead, what we care about is that the standard deviation of the residual is the same for all values of <span class="math inline">\(\hat{Y}\)</span>, and (if we’re being especially paranoid) all values of every predictor <span class="math inline">\(X\)</span> in the model. See Section <a href="regression.html#regressionhomogeneity">14.6.4</a>.</li>
+<li><em>Residuals are independent of each other</em>. This is really just a “catch all” assumption, to the effect that “there’s nothing else funny going on in the residuals”. If there is something weird (e.g., the residuals all depend heavily on some other unmeasured variable) going on, it might screw things up.</li>
+<li><em>No “bad” outliers</em>. Again, not actually a technical assumption of the model (or rather, it’s sort of implied by all the others), but there is an implicit assumption that your regression model isn’t being too strongly influenced by one or two anomalous data points; since this raises questions about the adequacy of the model, and the trustworthiness of the data in some cases. See Section <a href="regression.html#regressionoutliers">14.6.2</a>.</li>
+</ul>
+
+</div>
+</div>
+
+
+
+<div class="footnotes">
+<hr />
+<ol start="69">
+<li id="fn69"><p>The <span class="math inline">\(\epsilon\)</span> symbol is the Greek letter epsilon. It’s traditional to use <span class="math inline">\(\epsilon_i\)</span> or <span class="math inline">\(e_i\)</span> to denote a residual.<a href="regression.html#fnref69" class="footnote-back">↩︎</a></p></li>
+<li id="fn70"><p>On the off chance that someone reading this is a proper kung fu master of linear algebra, it <em>will</em> help <em>you</em> to know that the solution to the estimation problem turns out to be <span class="math inline">\(\hat{b} = (X^TX)^{-1} X^T y\)</span>, where <span class="math inline">\(\hat{b}\)</span> is a vector containing the estimated regression coefficients, <span class="math inline">\(X\)</span> is the “design matrix” that contains the predictor variables (plus an additional column containing all ones; strictly <span class="math inline">\(X\)</span> is a matrix of the regressors.), and <span class="math inline">\(y\)</span> is a vector containing the outcome variable. For everyone else, this isn’t exactly helpful, and can be downright scary. However, since quite a few things in linear regression can be written in linear algebra terms, you’ll see a bunch of footnotes like this one in this chapter. If you can follow the maths in them, great. If not, ignore it.<a href="regression.html#fnref70" class="footnote-back">↩︎</a></p></li>
+<li id="fn71"><p>If you recall our result was: <code>Linear regression: y = -8.937x + 125.95</code><a href="regression.html#fnref71" class="footnote-back">↩︎</a></p></li>
+<li id="fn72"><p>This feature is not available in CogStat at the moment of writing, but this section will definitely be updated when it is.<a href="regression.html#fnref72" class="footnote-back">↩︎</a></p></li>
+<li id="fn73"><p>Which is what you have to do now, as this is not implemented in CogStat yet.<a href="regression.html#fnref73" class="footnote-back">↩︎</a></p></li>
+<li id="fn74"><p>Some parts of this chapter was influenced by <span class="citation">Fox &amp; Weisberg (2011)</span>.<a href="regression.html#fnref74" class="footnote-back">↩︎</a></p></li>
+<li id="fn75"><p>For the linear algebra fanatics: the “hat matrix” is defined to be that matrix <span class="math inline">\(H\)</span> that converts the vector of observed values <span class="math inline">\(y\)</span> into a vector of fitted values <span class="math inline">\(\hat{y}\)</span>, such that <span class="math inline">\(\hat{y} = H y\)</span>. The name comes from the fact that this is the matrix that “puts a hat on <span class="math inline">\(y\)</span>”. The hat <em>value</em> of the <span class="math inline">\(i\)</span>-th observation is the <span class="math inline">\(i\)</span>-th diagonal element of this matrix (so technically: <span class="math inline">\(h_{ii}\)</span> rather than <span class="math inline">\(h_{i}\)</span>). Here’s how it’s calculated: <span class="math inline">\(H = X(X^TX)^{-1} X^T\)</span>. Pretty, isn’t it?<a href="regression.html#fnref75" class="footnote-back">↩︎</a></p></li>
+<li id="fn76"><p>Lagrange Multiplier – which is beyond this textbook’s scope to cover.<a href="regression.html#fnref76" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="anova2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bayes.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"number_sections": true,
+"fig_caption": true
+},
+"toc_depth": 2,
+"toolbar": {
+"position": "static"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
