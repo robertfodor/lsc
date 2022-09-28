@@ -40,7 +40,7 @@ Statistics is a huge field. The core tools in this book (chi-square tests, $t$-t
 
 Of course, even this list if far from complete.
 
-## Last words
+## Last words{-}
 
 In short, the big payoff for learning statistics the way of this book is *extensibility*. There are many other things that it pushes you to learn besides the specific analyses the book covers. You want to make sure that you learn to use the same tools that real data analysts use so that you can learn to do what they do. 
 
