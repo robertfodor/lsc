@@ -23,6 +23,23 @@ description: '*Learning Statistics with CogStat* covers the contents of an intro
   statistical analysis performed in CogStat.'
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(metathis)
+meta() %>%
+  meta_social(
+    og_type = "book",
+    og_author = c("Danielle Navarro", "Róbert Fodor")
+  ) %>%
+  meta_google_scholar(
+    title = "Learning Statistics with CogStat",
+    author = c("Danielle Navarro", "Róbert Fodor"),
+    publication_date = "2022/09/27"
+  )
+```
+
+
 # About this book{.unnumbered}
 
 ## Versions{.unnumbered}

@@ -366,4 +366,3 @@ the-p-value-is-a-lie.
 is-it-really-this-bad
 summaryguide
 epilogue
-last-words
