@@ -148,7 +148,6 @@ fig:type1
 whywhywhy
 autostat
 cogstat_intro
-gettingstarted
 researchdesign
 measurement
 some-thoughts-about-psychological-measurement
