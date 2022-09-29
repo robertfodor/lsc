@@ -18,8 +18,6 @@ For more about the merits of automatic statistical analysis, here are some furth
 
 # An Introduction to CogStat{#cogstat_intro}
 
-## Getting started with CogStat{#gettingstarted}
-
 CogStat is a statistical analysis program that stems from needs in psychology research, particularly cognitive science. It is designed to be easy to use and automatic, yet powerful enough to handle a wide range of statistical analyses. 
 
 CogStat is a free program and can be downloaded from the [CogStat website](http://cogstat.org). The program is written in Python and runs on Windows, macOS, and Linux.

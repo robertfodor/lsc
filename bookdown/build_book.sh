@@ -13,3 +13,4 @@ echo 'learningstatisticswithcogstat.com' > ../docs/CNAME
 
 # Cleanup
 rm -rf _bookdown_files
+rm -rf _book

@@ -1,8 +1,8 @@
 --- 
 title: "Learning Statistics with CogStat"
 author:
-- name: Danielle Navarro^[Danielle Navarro -- [Github](https://github.com/djnavarro/) | [![](resources/image/orcid_16x16.png)](https://orcid.org/0000-0001-7648-6578) 0000-0001-7648-6578]
-- name: Róbert Fodor^[Róbert Fodor -- [Github](https://github.com/robertfodor/) | [![](resources/image/orcid_16x16.png)](https://orcid.org/0000-0001-8470-335X) 0000-0001-8470-335X]
+- Danielle Navarro^[Danielle Navarro -- [Github](https://github.com/djnavarro/) | [![](resources/image/orcid_16x16.png)](https://orcid.org/0000-0001-7648-6578) 0000-0001-7648-6578]
+- Róbert Fodor^[Róbert Fodor -- [Github](https://github.com/robertfodor/) | [![](resources/image/orcid_16x16.png)](https://orcid.org/0000-0001-8470-335X) 0000-0001-8470-335X]
 date: "`r format(Sys.Date(), '%d %b %Y.')`"
 output:
   bookdown::gitbook:
@@ -21,6 +21,7 @@ description: '*Learning Statistics with CogStat* covers the contents of an intro
   statistics class, as typically taught to undergraduate psychology students based
   on Danielle Navarro''s original *Learning Statistics with R* with a focus on automatic
   statistical analysis performed in CogStat.'
+always_allow_html: true
 ---
 
 ```{r setup, include=FALSE}
