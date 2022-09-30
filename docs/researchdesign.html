@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 4 A brief introduction to research design | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
   <meta property="og:description" content="Chapter 4 A brief introduction to research design | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 4 A brief introduction to research design | Learning Statistics with CogStat" />
   
   <meta name="twitter:description" content="Chapter 4 A brief introduction to research design | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
@@ -645,32 +645,61 @@ div.csl-indent {
 <p>These definitions probably seem a bit abstract, but they’re pretty simple once you see some examples. For instance, response time is continuous. If Alan takes 3.1 seconds and Ben takes 2.3 seconds to respond to a question, then it’s possible for Cameron’s response time to lie in-between by taking 3.0 seconds. And, of course, it would also be possible for David to take 3.031 seconds to respond, meaning that his RT would lie in between Cameron’s and Alan’s. And while in practice, it might be impossible to measure RT that precisely, it’s certainly possible in principle. Because we can always find a new value for RT in between any two other ones, we say that RT is continuous.</p>
 <p>Discrete variables occur when this rule is violated. For example, nominal scale variables are always discrete: there isn’t a type of transportation that falls “in-between” trains and bicycles, not in the strict mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete. Similarly, ordinal scale variables are always discrete: although “2nd place” does fall between “1st place” and “3rd place”, there’s nothing that can logically fall in between “1st place” and “2nd place”. Interval scale and ratio scale variables can go either way. As we saw above, response time (a ratio scale variable) is continuous. Temperature in degrees Celsius (an interval scale variable) is also continuous. However, the year you went to school (an interval scale variable) is discrete. There’s no year in between 2002 and 2003. The number of questions you get right on a true-or-false test (a ratio scale variable) is also discrete: since a true-or-false question doesn’t allow you to be “partially correct”, there’s nothing in between 5/10 and 6/10. Table <a href="researchdesign.html#tab:scalescont">4.1</a> summarises the relationship between the measurement scales and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible. Some textbooks get this wrong, and people often say things like “discrete variable” when they mean “nominal scale variable”. It’s very unfortunate.</p>
 <table>
-<caption><span id="tab:scalescont">Table 4.1: </span>The relationship between the measurement scales and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible.</caption>
+<caption>
+<span id="tab:scalescont">Table 4.1: </span>The relationship between the measurement scales and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible.
+</caption>
 <tbody>
-<tr class="odd">
-<td align="left"></td>
-<td align="center">continuous</td>
-<td align="center">discrete</td>
+<tr>
+<td style="text-align:left;">
+</td>
+<td style="text-align:center;">
+continuous
+</td>
+<td style="text-align:center;">
+discrete
+</td>
 </tr>
-<tr class="even">
-<td align="left">nominal</td>
-<td align="center"></td>
-<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<tr>
+<td style="text-align:left;">
+nominal
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
 </tr>
-<tr class="odd">
-<td align="left">ordinal</td>
-<td align="center"></td>
-<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<tr>
+<td style="text-align:left;">
+ordinal
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
 </tr>
-<tr class="even">
-<td align="left">interval</td>
-<td align="center"><span class="math inline">\(\checkmark\)</span></td>
-<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<tr>
+<td style="text-align:left;">
+interval
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
 </tr>
-<tr class="odd">
-<td align="left">ratio</td>
-<td align="center"><span class="math inline">\(\checkmark\)</span></td>
-<td align="center"><span class="math inline">\(\checkmark\)</span></td>
+<tr>
+<td style="text-align:left;">
+ratio
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
 </tr>
 </tbody>
 </table>
@@ -724,24 +753,44 @@ div.csl-indent {
 <p>We’ve got one last piece of terminology that needs to be explained before moving away from variables. Usually, when we do some research, we end up with lots of different variables. Then, when we analyse our data, we typically try to explain some of the variables in terms of the other variables. It’s essential to keep the two roles, “thing doing the explaining” and “thing being explained”, distinct. So let’s be clear about this now. Firstly, we might as well get used to the idea of using mathematical symbols to describe variables since it’s going to happen repeatedly. Let’s denote the “to be explained” variable <span class="math inline">\(Y\)</span>, and the variables “doing the explaining” as <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, etc.</p>
 <p>Now, when we are doing analysis, we have different names for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, since they play different roles. The classical names for these roles are <strong>independent variable</strong> (IV) and <strong>dependent variable</strong> (DV). The IV is the variable you use to explain (i.e., <span class="math inline">\(X\)</span>) and the DV is the variable being explained (i.e., <span class="math inline">\(Y\)</span>). The logic behind these names goes like this: if there is a relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, then we can say that <span class="math inline">\(Y\)</span> depends on <span class="math inline">\(X\)</span>, and if we have designed our study “properly”, then <span class="math inline">\(X\)</span> isn’t dependent on anything else. However, those names are horrible: they’re hard to remember, and they’re highly misleading because (a) the IV is never actually “independent of everything else” and (b) if there’s no relationship, then the DV doesn’t actually depend on the IV. And, because we’re not the only people who think that IV and DV are just awful names, there are several alternatives that some find more appealing. The terms used in these notes are <strong><em>predictors</em></strong> and <strong><em>outcomes</em></strong>. The idea here is that you’re trying to use <span class="math inline">\(X\)</span> (the predictors) to make guesses about <span class="math inline">\(Y\)</span> (the outcomes). This is summarised in Table <a href="researchdesign.html#tab:ivdv">4.2</a>.</p>
 <table>
-<caption><span id="tab:ivdv">Table 4.2: </span>The terminology used to distinguish between different roles that a variable can play when analysing a data set. Note that this book will tend to avoid the classical terminology in favour of the newer names.</caption>
+<caption>
+<span id="tab:ivdv">Table 4.2: </span>The terminology used to distinguish between different roles that a variable can play when analysing a data set. Note that this book will tend to avoid the classical terminology in favour of the newer names.
+</caption>
 <thead>
-<tr class="header">
-<th align="left">role of the variable</th>
-<th align="left">classical name</th>
-<th align="left">modern name</th>
+<tr>
+<th style="text-align:left;">
+role of the variable
+</th>
+<th style="text-align:left;">
+classical name
+</th>
+<th style="text-align:left;">
+modern name
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">to be explained</td>
-<td align="left">dependent variable (DV)</td>
-<td align="left">outcome</td>
+<tr>
+<td style="text-align:left;">
+to be explained
+</td>
+<td style="text-align:left;">
+dependent variable (DV)
+</td>
+<td style="text-align:left;">
+outcome
+</td>
 </tr>
-<tr class="even">
-<td align="left">to do the explaining</td>
-<td align="left">independent variable (IV)</td>
-<td align="left">predictor</td>
+<tr>
+<td style="text-align:left;">
+to do the explaining
+</td>
+<td style="text-align:left;">
+independent variable (IV)
+</td>
+<td style="text-align:left;">
+predictor
+</td>
 </tr>
 </tbody>
 </table>

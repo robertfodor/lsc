@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 17 Why be a Bayesian? | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
   <meta property="og:description" content="Chapter 17 Why be a Bayesian? | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 17 Why be a Bayesian? | Learning Statistics with CogStat" />
   
   <meta name="twitter:description" content="Chapter 17 Why be a Bayesian? | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
@@ -473,7 +473,7 @@ div.csl-indent {
 <div id="evidentiary-standards-you-can-believe" class="section level2 hasAnchor" number="17.1">
 <h2><span class="header-section-number">17.1</span> Evidentiary standards you can believe<a href="whybayes.html#evidentiary-standards-you-can-believe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
-<p><em>If [<span class="math inline">\(p\)</span>] is below .02 it is strongly indicated that the [null] hypothesis fails to account for the whole of the facts. We shall not often be astray if we draw a conventional line at .05 and consider that [smaller values of <span class="math inline">\(p\)</span>] indicate a real discrepancy.</em><br />
+<p><em>If <span class="math inline">\(p\)</span> is below .02 it is strongly indicated that the null hypothesis fails to account for the whole of the facts. We shall not often be astray if we draw a conventional line at .05 and consider that smaller values of <span class="math inline">\(p\)</span> indicate a real discrepancy.</em><br />
 – Sir Ronald <span class="citation">Fisher (1925)</span></p>
 </blockquote>
 <p>Consider the quote above by Sir Ronald Fisher, one of the founders of what has become the orthodox approach to statistics. If anyone has ever been entitled to express an opinion about the intended function of <span class="math inline">\(p\)</span>-values, it’s Fisher. In this passage, taken from his classic guide <em>Statistical Methods for Research Workers</em>, he’s pretty clear about what it means to reject a null hypothesis at <span class="math inline">\(p&lt;.05\)</span>. In his opinion, if we take <span class="math inline">\(p&lt;.05\)</span> to mean there is “a real effect”, then “we shall not often be astray”. This view is hardly unusual: most practitioners express views very similar to Fisher’s. In essence, the <span class="math inline">\(p&lt;.05\)</span> convention is assumed to represent a fairly stringent evidentiary standard.</p>
@@ -501,70 +501,42 @@ div.csl-indent {
 <p>In real life, this is exactly what every researcher does. Unfortunately, the theory of null hypothesis testing, as described in Chapter <a href="hypothesistesting.html#hypothesistesting">9</a>, <em>forbids</em> you from doing this.<a href="#fn83" class="footnote-ref" id="fnref83"><sup>83</sup></a> The reason is that the theory assumes that the experiment is finished and all the data are in. And because it assumes the experiment is over, it only considers <em>two</em> possible decisions. If you’re using the conventional <span class="math inline">\(p&lt;.05\)</span> threshold, those decisions are:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-<span class="math inline">\(p\)</span>-value
-</th>
-<th style="text-align:left;">
-Decision
-</th>
+<tr class="header">
+<th align="left"><span class="math inline">\(p\)</span>-value</th>
+<th align="left">Decision</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(p &lt; .05\)</span>
-</td>
-<td style="text-align:left;">
-Reject <span class="math inline">\(H_0\)</span>
-</td>
+<tr class="odd">
+<td align="left"><span class="math inline">\(p &lt; .05\)</span></td>
+<td align="left">Reject <span class="math inline">\(H_0\)</span></td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(p &gt; .05\)</span>
-</td>
-<td style="text-align:left;">
-Retain <span class="math inline">\(H_0\)</span>
-</td>
+<tr class="even">
+<td align="left"><span class="math inline">\(p &gt; .05\)</span></td>
+<td align="left">Retain <span class="math inline">\(H_0\)</span></td>
 </tr>
 </tbody>
 </table>
 <p>What <em>you’re</em> doing is adding a third possible action to the decision-making problem. Specifically, what you’re doing is using the <span class="math inline">\(p\)</span>-value itself as a reason to justify continuing the experiment. And as a consequence, you’ve transformed the decision-making procedure into one that looks more like this:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-<span class="math inline">\(p\)</span>-value
-</th>
-<th style="text-align:left;">
-Decision
-</th>
+<tr class="header">
+<th align="left"><span class="math inline">\(p\)</span>-value</th>
+<th align="left">Decision</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(p &lt; .05\)</span>
-</td>
-<td style="text-align:left;">
-Stop the experiment and reject the null
-</td>
+<tr class="odd">
+<td align="left"><span class="math inline">\(p &lt; .05\)</span></td>
+<td align="left">Stop the experiment and reject the null</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(0.10 &gt; p &gt; .05\)</span>
-</td>
-<td style="text-align:left;">
-Continue the experiment and retain the null
-</td>
+<tr class="even">
+<td align="left"><span class="math inline">\(0.10 &gt; p &gt; .05\)</span></td>
+<td align="left">Continue the experiment and retain the null</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(p &gt; .10\)</span>
-</td>
-<td style="text-align:left;">
-Stop the experiment and retain the null
-</td>
+<tr class="odd">
+<td align="left"><span class="math inline">\(p &gt; .10\)</span></td>
+<td align="left">Stop the experiment and retain the null</td>
 </tr>
 </tbody>
 </table>

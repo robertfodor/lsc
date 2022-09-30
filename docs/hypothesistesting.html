@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 9 Hypothesis testing | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
   <meta property="og:description" content="Chapter 9 Hypothesis testing | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 9 Hypothesis testing | Learning Statistics with CogStat" />
   
   <meta name="twitter:description" content="Chapter 9 Hypothesis testing | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
@@ -474,7 +474,7 @@ div.csl-indent {
 <ul>
 <li><em>Listening to music reduces your ability to pay attention to other things.</em> This is a claim about the causal relationship between two psychologically meaningful concepts (listening to music and paying attention to things), so it’s a perfectly reasonable research hypothesis.</li>
 <li><em>Intelligence is related to personality</em>. Like the last one, this is a relational claim about two psychological constructs (intelligence and personality), but the claim is weaker: correlational, not causal.</li>
-<li><em>Intelligence </em>is* the speed of information processing<em>. This hypothesis has quite a different character: it’s not a relational claim at all. It’s an ontological claim about the fundamental character of intelligence. It’s worth expanding on this one actually: It’s usually easier to think about how to construct experiments to test research hypotheses of the form “does X affect Y?” than it is to address claims like “what is X?” And in practice, what usually happens is that you find ways of testing relational claims that follow from your ontological ones. For instance, if we believe that intelligence </em>is* the speed of information processing in the brain, our experiments will often involve looking for relationships between measures of intelligence and measures of speed. Consequently, most everyday research questions tend to be relational in nature, but they’re almost always motivated by deeper ontological questions about the state of nature.</li>
+<li><em>Intelligence is the speed of information processing</em>. This hypothesis has quite a different character: it’s not a relational claim at all. It’s an ontological claim about the fundamental character of intelligence. It’s worth expanding on this one actually: It’s usually easier to think about how to construct experiments to test research hypotheses of the form “does X affect Y?” than it is to address claims like “what is X?” And in practice, what usually happens is that you find ways of testing relational claims that follow from your ontological ones. For instance, if we believe that intelligence <em>is</em> the speed of information processing in the brain, our experiments will often involve looking for relationships between measures of intelligence and measures of speed. Consequently, most everyday research questions tend to be relational in nature, but they’re almost always motivated by deeper ontological questions about the state of nature.</li>
 </ul>
 <p>Notice that in practice, our research hypotheses could overlap a lot. The ultimate goal in the ESP experiment might be to test an ontological claim like “ESP exists”. But we might operationally restrict ourselves to a narrower hypothesis like “Some people can ‘see’ objects in a clairvoyant fashion”. That said, some things really don’t count as proper research hypotheses in any meaningful sense:</p>
 <ul>
@@ -491,27 +491,17 @@ div.csl-indent {
 </ul>
 <p>These are legitimate examples of statistical hypotheses because they are statements about a population parameter and are meaningfully related to my experiment. What this discussion hopefully makes clear is that when attempting to construct a statistical hypothesis test, the researcher has two quite distinct hypotheses to consider. They have a <em>research hypothesis</em> (a claim about psychology) corresponding to a <em>statistical hypothesis</em> (a claim about the data generating population).</p>
 <table>
-<caption>
-<span id="tab:unnamed-chunk-13">Table 9.1: </span>Research and statistical hypotheses in our ESP research example.
-</caption>
+<caption><span id="tab:unnamed-chunk-13">Table 9.1: </span>Research and statistical hypotheses in our ESP research example.</caption>
 <thead>
-<tr>
-<th style="text-align:left;">
-Research hypothesis
-</th>
-<th style="text-align:left;">
-Statistical hypothesis
-</th>
+<tr class="header">
+<th align="left">Research hypothesis</th>
+<th align="left">Statistical hypothesis</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-ESP exists
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\theta \neq 0.5\)</span>
-</td>
+<tr class="odd">
+<td align="left">ESP exists</td>
+<td align="left"><span class="math inline">\(\theta \neq 0.5\)</span></td>
 </tr>
 </tbody>
 </table>
@@ -530,39 +520,22 @@ ESP exists
 <p>At this point, we need to be more precise about what we mean by “errors”. Firstly, let’s state the obvious: it is either the case that the null hypothesis is true, or it is false. And our test will either reject the null hypothesis or retain it. So, as the table below illustrates, after we run the test and make our choice, one of four things might have happened:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:left;">
-Retain <span class="math inline">\(H_0\)</span>
-</th>
-<th style="text-align:left;">
-Reject <span class="math inline">\(H_0\)</span>
-</th>
+<tr class="header">
+<th align="left"></th>
+<th align="left">Retain <span class="math inline">\(H_0\)</span></th>
+<th align="left">Reject <span class="math inline">\(H_0\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(H_0\)</span> is true
-</td>
-<td style="text-align:left;">
-Correct decision
-</td>
-<td style="text-align:left;">
-Error (type I)
-</td>
+<tr class="odd">
+<td align="left"><span class="math inline">\(H_0\)</span> is true</td>
+<td align="left">Correct decision</td>
+<td align="left">Error (type I)</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(H_0\)</span> is false
-</td>
-<td style="text-align:left;">
-Error (type II)
-</td>
-<td style="text-align:left;">
-Correct decision
-</td>
+<tr class="even">
+<td align="left"><span class="math inline">\(H_0\)</span> is false</td>
+<td align="left">Error (type II)</td>
+<td align="left">Correct decision</td>
 </tr>
 </tbody>
 </table>
@@ -570,40 +543,28 @@ Correct decision
 <p>A criminal trial requires that you establish “beyond a reasonable doubt” that the defendant did it. The trial is designed to protect the rights of a defendant. In other words, a criminal trial doesn’t treat the two types of error in the same way: punishing the innocent is deemed to be much worse than letting the guilty go free. A statistical test is pretty much the same: the single most important design principle of the test is to <em>control</em> the probability of a type I error to keep it below some fixed probability. This probability, which is denoted <span class="math inline">\(\alpha\)</span>, is called the <strong>significance level</strong> of the test (or sometimes, the <em>size</em> of the test). A hypothesis test is said to have a significance level <span class="math inline">\(\alpha\)</span> if the type I error rate is no larger than <span class="math inline">\(\alpha\)</span>.</p>
 <p>So, what about the type II error rate? Well, we’d also like to keep those under control too, and we denote this probability by <span class="math inline">\(\beta\)</span>. However, it’s much more common to refer to the <strong>power</strong> of the test, which is the probability with which we reject a null hypothesis when it is false, which is <span class="math inline">\(1-\beta\)</span>. To help keep this straight, here’s the same table again, but with the relevant numbers added:</p>
 <table>
+<colgroup>
+<col width="16%" />
+<col width="50%" />
+<col width="33%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:left;">
-Retain <span class="math inline">\(H_0\)</span>
-</th>
-<th style="text-align:left;">
-Reject <span class="math inline">\(H_0\)</span>
-</th>
+<tr class="header">
+<th align="left"></th>
+<th align="left">Retain <span class="math inline">\(H_0\)</span></th>
+<th align="left">Reject <span class="math inline">\(H_0\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(H_0\)</span> is true
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(1-\alpha\)</span> (probability of correct retention)
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\alpha\)</span> (type I error rate)
-</td>
+<tr class="odd">
+<td align="left"><span class="math inline">\(H_0\)</span> is true</td>
+<td align="left"><span class="math inline">\(1-\alpha\)</span> (probability of correct retention)</td>
+<td align="left"><span class="math inline">\(\alpha\)</span> (type I error rate)</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(H_0\)</span> is false
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\beta\)</span> (type II error rate)
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(1-\beta\)</span> (power of the test)
-</td>
+<tr class="even">
+<td align="left"><span class="math inline">\(H_0\)</span> is false</td>
+<td align="left"><span class="math inline">\(\beta\)</span> (type II error rate)</td>
+<td align="left"><span class="math inline">\(1-\beta\)</span> (power of the test)</td>
 </tr>
 </tbody>
 </table>
@@ -638,8 +599,9 @@ X \sim \mbox{Binomial}(\theta,N)
 </ul>
 <p>You must understand this last point: the critical region corresponds to those values of <span class="math inline">\(X\)</span> for which we would reject the null hypothesis, and the sampling distribution in question describes the probability that we would obtain a particular value of <span class="math inline">\(X\)</span> if the null hypothesis were actually true.</p>
 <p>Now, let’s suppose that we chose a critical region that covers 20% of the sampling distribution, and assume that the null hypothesis is actually true. What would be the probability of incorrectly rejecting the null? The answer is, of course, 20%. And therefore, we would have built a test that had an <span class="math inline">\(\alpha\)</span> level of <span class="math inline">\(0.2\)</span>. If we want <span class="math inline">\(\alpha = .05\)</span>, the critical region is only <em>allowed</em> to cover 5% of the sampling distribution of our test statistic.</p>
+
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:crit2"></span>
-<img src="lsc_files/figure-html/crit2-1.svg" alt="The critical region associated with the hypothesis test for the ESP study, for a hypothesis test with a significance level of $\alpha = .05$. The plot shows the sampling distribution of $X$ under the null hypothesis: the grey bars correspond to those values of $X$, for which we would retain the null hypothesis. The black bars show the critical region: those values of $X$ for which we would reject the null. Because the alternative hypothesis is two-sided (i.e. allows both $\theta &lt;.5$ and $\theta &gt;.5$), the critical region covers both tails of the distribution. To ensure an $\alpha$ level of $.05$, we need to ensure that each of the two regions encompasses 2.5% of the sampling distribution." width="100%" />
+<img src="lsc_files/figure-html/crit2-1.svg" alt="The critical region associated with the hypothesis test for the ESP study, for a hypothesis test with a significance level of \(\alpha = .05\). The plot shows the sampling distribution of \(X\) under the null hypothesis: the grey bars correspond to those values of \(X\), for which we would retain the null hypothesis. The black bars show the critical region: those values of \(X\) for which we would reject the null. Because the alternative hypothesis is two-sided (i.e. allows both \(\theta &lt;.5\) and \(\theta &gt;.5\)), the critical region covers both tails of the distribution. To ensure an \(\alpha\) level of \(.05\), we need to ensure that each of the two regions encompasses 2.5% of the sampling distribution." width="100%" />
 <p class="caption">
 Figure 9.2: The critical region associated with the hypothesis test for the ESP study, for a hypothesis test with a significance level of <span class="math inline">\(\alpha = .05\)</span>. The plot shows the sampling distribution of <span class="math inline">\(X\)</span> under the null hypothesis: the grey bars correspond to those values of <span class="math inline">\(X\)</span>, for which we would retain the null hypothesis. The black bars show the critical region: those values of <span class="math inline">\(X\)</span> for which we would reject the null. Because the alternative hypothesis is two-sided (i.e. allows both <span class="math inline">\(\theta &lt;.5\)</span> and <span class="math inline">\(\theta &gt;.5\)</span>), the critical region covers both tails of the distribution. To ensure an <span class="math inline">\(\alpha\)</span> level of <span class="math inline">\(.05\)</span>, we need to ensure that each of the two regions encompasses 2.5% of the sampling distribution.
 </p>
@@ -679,8 +641,9 @@ H_1 : &amp; \theta &gt; .5
 \end{array}
 \]</span></p>
 <p>When this happens, we have what’s called a <strong>one-sided test</strong>, and when this happens, the critical region only covers one tail of the sampling distribution. This is illustrated in Figure <a href="hypothesistesting.html#fig:crit1">9.3</a>.</p>
+
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:crit1"></span>
-<img src="lsc_files/figure-html/crit1-1.svg" alt="The critical region for a one sided test. In this case, the alternative hypothesis is that $\theta &gt; .05$, so we would only reject the null hypothesis for large values of $X$. As a consequence, the critical region only covers the upper tail of the sampling distribution; specifically the upper 5% of the distribution. Contrast this to the two-sided version earlier)" width="100%" />
+<img src="lsc_files/figure-html/crit1-1.svg" alt="The critical region for a one sided test. In this case, the alternative hypothesis is that \(\theta &gt; .05\), so we would only reject the null hypothesis for large values of \(X\). As a consequence, the critical region only covers the upper tail of the sampling distribution; specifically the upper 5% of the distribution. Contrast this to the two-sided version earlier)" width="100%" />
 <p class="caption">
 Figure 9.3: The critical region for a one sided test. In this case, the alternative hypothesis is that <span class="math inline">\(\theta &gt; .05\)</span>, so we would only reject the null hypothesis for large values of <span class="math inline">\(X\)</span>. As a consequence, the critical region only covers the upper tail of the sampling distribution; specifically the upper 5% of the distribution. Contrast this to the two-sided version earlier)
 </p>
@@ -697,55 +660,31 @@ Figure 9.3: The critical region for a one sided test. In this case, the alternat
 <p>This is where the <span class="math inline">\(p\)</span> value comes in handy. To understand how it works, let’s suppose that we ran many hypothesis tests on the same data set: but with a different value of <span class="math inline">\(\alpha\)</span> in each case. When we do that for our ESP data, what we’d get is something like this:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-Value of <span class="math inline">\(\alpha\)</span>
-</th>
-<th style="text-align:left;">
-Reject the null?
-</th>
+<tr class="header">
+<th align="left">Value of <span class="math inline">\(\alpha\)</span></th>
+<th align="left">Reject the null?</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-0.05
-</td>
-<td style="text-align:left;">
-Yes
-</td>
+<tr class="odd">
+<td align="left">0.05</td>
+<td align="left">Yes</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-0.04
-</td>
-<td style="text-align:left;">
-Yes
-</td>
+<tr class="even">
+<td align="left">0.04</td>
+<td align="left">Yes</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-0.03
-</td>
-<td style="text-align:left;">
-Yes
-</td>
+<tr class="odd">
+<td align="left">0.03</td>
+<td align="left">Yes</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-0.02
-</td>
-<td style="text-align:left;">
-No
-</td>
+<tr class="even">
+<td align="left">0.02</td>
+<td align="left">No</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-0.01
-</td>
-<td style="text-align:left;">
-No
-</td>
+<tr class="odd">
+<td align="left">0.01</td>
+<td align="left">No</td>
 </tr>
 </tbody>
 </table>
@@ -788,80 +727,45 @@ No
 <h3><span class="header-section-number">9.6.2</span> Two proposed solutions<a href="hypothesistesting.html#two-proposed-solutions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In practice, it’s pretty rare for a researcher to specify a single <span class="math inline">\(\alpha\)</span> level ahead of time. Instead, the convention is that scientists rely on three standard significance levels: .05, .01 and .001. When reporting your results, you indicate which (if any) of these significance levels allow you to reject the null hypothesis. This is summarised in Table <a href="hypothesistesting.html#tab:pvaltable">9.2</a>. This allows us to soften the decision rule a little bit since <span class="math inline">\(p&lt;.01\)</span> implies that the data meet a stronger evidentiary standard than <span class="math inline">\(p&lt;.05\)</span> would. Nevertheless, since these levels are fixed in advance by convention, it does prevent people from choosing their <span class="math inline">\(\alpha\)</span> level after looking at the data.</p>
 <table>
-<caption>
-<span id="tab:pvaltable">Table 9.2: </span>A commonly adopted convention for reporting <span class="math inline">\(p\)</span> values: in many places it is conventional to report one of four different things (e.g., <span class="math inline">\(p&lt;.05\)</span>) as shown below. A “significance stars” notation (i.e., a * indicates <span class="math inline">\(p&lt;.05\)</span>) is sometimes produced by statistical software. It’s also worth noting that some people will write <em>n.s.</em> (not significant) rather than <span class="math inline">\(p&gt;.05\)</span>.
-</caption>
+<caption><span id="tab:pvaltable">Table 9.2: </span>A commonly adopted convention for reporting <span class="math inline">\(p\)</span> values: in many places it is conventional to report one of four different things (e.g., <span class="math inline">\(p&lt;.05\)</span>) as shown below. A “significance stars” notation (i.e., a * indicates <span class="math inline">\(p&lt;.05\)</span>) is sometimes produced by statistical software. It’s also worth noting that some people will write <em>n.s.</em> (not significant) rather than <span class="math inline">\(p&gt;.05\)</span>.</caption>
+<colgroup>
+<col width="11%" />
+<col width="10%" />
+<col width="67%" />
+<col width="11%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left;">
-Usual notation
-</th>
-<th style="text-align:left;">
-Signif. stars
-</th>
-<th style="text-align:left;">
-Meaning
-</th>
-<th style="text-align:left;">
-The null is…
-</th>
+<tr class="header">
+<th align="left">Usual notation</th>
+<th align="left">Signif. stars</th>
+<th align="left">Meaning</th>
+<th align="left">The null is…</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(p&gt;.05\)</span>
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-The test wasn’t significant
-</td>
-<td style="text-align:left;">
-Retained
-</td>
+<tr class="odd">
+<td align="left"><span class="math inline">\(p&gt;.05\)</span></td>
+<td align="left"></td>
+<td align="left">The test wasn’t significant</td>
+<td align="left">Retained</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(p&lt;.05\)</span>
-</td>
-<td style="text-align:left;">
-*
-</td>
-<td style="text-align:left;">
-The test was significant at $= .05 but not at <span class="math inline">\(\alpha =.01\)</span> or <span class="math inline">\(\alpha = .001\)</span>.$
-</td>
-<td style="text-align:left;">
-Rejected
-</td>
+<tr class="even">
+<td align="left"><span class="math inline">\(p&lt;.05\)</span></td>
+<td align="left">*</td>
+<td align="left">The test was significant at <span class="math inline">\(\alpha = .05\)</span> but not at <span class="math inline">\(\alpha =.01\)</span> or <span class="math inline">\(\alpha = .001\)</span>.</td>
+<td align="left">Rejected</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(p&lt;.01\)</span>
-</td>
-<td style="text-align:left;">
-**
-</td>
-<td style="text-align:left;">
-The test was significant at <span class="math inline">\(\alpha = .05\)</span> and <span class="math inline">\(\alpha = .01\)</span> but not at $= .001
-</td>
-<td style="text-align:left;">
-Rejected
-</td>
+<tr class="odd">
+<td align="left"><span class="math inline">\(p&lt;.01\)</span></td>
+<td align="left">**</td>
+<td align="left">The test was significant at <span class="math inline">\(\alpha = .05\)</span> and <span class="math inline">\(\alpha = .01\)</span> but not at <span class="math inline">\(\alpha = .001\)</span></td>
+<td align="left">Rejected</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(p&lt;.001\)</span>
-</td>
-<td style="text-align:left;">
-***
-</td>
-<td style="text-align:left;">
-The test was significant at all levels
-</td>
-<td style="text-align:left;">
-Rejected
-</td>
+<tr class="even">
+<td align="left"><span class="math inline">\(p&lt;.001\)</span></td>
+<td align="left">***</td>
+<td align="left">The test was significant at all levels</td>
+<td align="left">Rejected</td>
 </tr>
 </tbody>
 </table>
@@ -875,17 +779,19 @@ Rejected
 <p>In previous sections, we emphasised the fact that the major design principle behind statistical hypothesis testing is that we try to control our Type I error rate. When we fix <span class="math inline">\(\alpha = .05\)</span>, we are attempting to ensure that only 5% of true null hypotheses are incorrectly rejected. However, this doesn’t mean that we don’t care about Type II errors. In fact, from the researcher’s perspective, the error of failing to reject the null when it is actually false is an extremely annoying one. With that in mind, a secondary goal of hypothesis testing is to try to minimise <span class="math inline">\(\beta\)</span>, the Type II error rate, although we don’t usually <em>talk</em> in terms of minimising Type II errors. Instead, we talk about maximising the <em>power</em> of the test. Since power is defined as <span class="math inline">\(1-\beta\)</span>, this is the same thing.</p>
 <div id="the-power-function" class="section level3 hasAnchor" number="9.7.1">
 <h3><span class="header-section-number">9.7.1</span> The power function<a href="hypothesistesting.html#the-power-function" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:crit3"></span>
-<img src="lsc_files/figure-html/crit3-1.svg" alt="Sampling distribution under the *alternative* hypothesis, for a population parameter value of $\theta = 0.55$. A reasonable proportion of the distribution lies in the rejection region." width="100%" />
+<img src="lsc_files/figure-html/crit3-1.svg" alt="Sampling distribution under the alternative hypothesis, for a population parameter value of \(\\theta = 0.55\). A reasonable proportion of the distribution lies in the rejection region." width="100%" />
 <p class="caption">
-Figure 9.4: Sampling distribution under the <em>alternative</em> hypothesis, for a population parameter value of <span class="math inline">\(\theta = 0.55\)</span>. A reasonable proportion of the distribution lies in the rejection region.
+Figure 9.4: Sampling distribution under the <em>alternative</em> hypothesis, for a population parameter value of <span class="math inline">\(\\theta = 0.55\)</span>. A reasonable proportion of the distribution lies in the rejection region.
 </p>
 </div>
 <p>Let’s take a moment to think about what a Type II error actually is. A Type II error occurs when the alternative hypothesis is true, but we are nevertheless unable to reject the null hypothesis. Ideally, we’d be able to calculate a single number <span class="math inline">\(\beta\)</span> that tells us the Type II error rate, similarly to how we can set <span class="math inline">\(\alpha = .05\)</span> for the Type I error rate. Unfortunately, this is a lot trickier to do.</p>
 <p>To see this, notice that in the ESP study, the alternative hypothesis actually corresponds to lots of possible values of <span class="math inline">\(\theta\)</span>. In fact, the alternative hypothesis corresponds to every value of <span class="math inline">\(\theta\)</span> <em>except</em> 0.5. Let’s suppose that the true probability of someone choosing the correct response is 55% (i.e., <span class="math inline">\(\theta = .55\)</span>). If so, then the <em>true</em> sampling distribution for <span class="math inline">\(X\)</span> is not the same one that the null hypothesis predicts: the most likely value for <span class="math inline">\(X\)</span> is now 55 out of 100. Not only that, the whole sampling distribution has now shifted, as shown in Figure <a href="hypothesistesting.html#fig:crit3">9.4</a>. The critical regions, of course, do not change: by definition, the critical regions are based on what the null hypothesis predicts. What we’re seeing in this figure is the fact that when the null hypothesis is wrong, a much larger proportion of the sampling distribution falls in the critical region. And, of course, that’s what should happen: the probability of rejecting the null hypothesis is larger when the null hypothesis is actually false! However, <span class="math inline">\(\theta = .55\)</span> is not the only possibility that is consistent with the alternative hypothesis.</p>
 <p>Let’s instead suppose that the true value of <span class="math inline">\(\theta\)</span> is 0.7. What happens to the sampling distribution when this occurs? The answer, shown in Figure <a href="hypothesistesting.html#fig:crit4">9.5</a>, is that almost the entirety of the sampling distribution has now moved into the critical region. Therefore, if <span class="math inline">\(\theta = 0.7\)</span>, the probability of us correctly rejecting the null hypothesis (i.e. the power of the test) is much larger than if <span class="math inline">\(\theta = 0.55\)</span>. In short, while <span class="math inline">\(\theta = .55\)</span> and <span class="math inline">\(\theta = .70\)</span> are both part of the alternative hypothesis, the Type II error rate is different.</p>
+
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:crit4"></span>
-<img src="lsc_files/figure-html/crit4-1.svg" alt="Sampling distribution under the *alternative* hypothesis, for a population parameter value of $\theta = 0.70$. Almost all of the distribution lies in the rejection region." width="100%" />
+<img src="lsc_files/figure-html/crit4-1.svg" alt="Sampling distribution under the alternative hypothesis, for a population parameter value of \(\theta = 0.70\). Almost all of the distribution lies in the rejection region." width="100%" />
 <p class="caption">
 Figure 9.5: Sampling distribution under the <em>alternative</em> hypothesis, for a population parameter value of <span class="math inline">\(\theta = 0.70\)</span>. Almost all of the distribution lies in the rejection region.
 </p>
@@ -904,40 +810,28 @@ Figure 9.6: The probability that we will reject the null hypothesis is plotted a
 <p>Effect size is defined slightly differently in different contexts, but the qualitative idea that it tries to capture is always the same: how big is the difference between the <em>true</em> population parameters and the parameter values that are assumed by the null hypothesis.</p>
 <p>In our ESP example, if we let <span class="math inline">\(\theta_0 = 0.5\)</span> denote the value assumed by the null hypothesis, and let <span class="math inline">\(\theta\)</span> denote the true value, then a simple measure of effect size could be something like the difference between the true value and null (i.e., <span class="math inline">\(\theta - \theta_0\)</span>), or possibly just the magnitude of this difference, <span class="math inline">\(\mbox{abs}(\theta - \theta_0)\)</span>.</p>
 <table>
+<colgroup>
+<col width="21%" />
+<col width="39%" />
+<col width="39%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:center;">
-Big effect size
-</th>
-<th style="text-align:center;">
-Small effect size
-</th>
+<tr class="header">
+<th align="left"></th>
+<th align="center">Big effect size</th>
+<th align="center">Small effect size</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-<strong>Significant result</strong>
-</td>
-<td style="text-align:center;">
-difference is real, and of practical importance
-</td>
-<td style="text-align:center;">
-difference is real, but might not be interesting
-</td>
+<tr class="odd">
+<td align="left"><strong>Significant result</strong></td>
+<td align="center">difference is real, and of practical importance</td>
+<td align="center">difference is real, but might not be interesting</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<strong>Non-significant result</strong>
-</td>
-<td style="text-align:center;">
-no effect observed
-</td>
-<td style="text-align:center;">
-no effect observed
-</td>
+<tr class="even">
+<td align="left"><strong>Non-significant result</strong></td>
+<td align="center">no effect observed</td>
+<td align="center">no effect observed</td>
 </tr>
 </tbody>
 </table>

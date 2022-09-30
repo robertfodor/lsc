@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 7 Probability and distributions | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
   <meta property="og:description" content="Chapter 7 Probability and distributions | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 7 Probability and distributions | Learning Statistics with CogStat" />
   
   <meta name="twitter:description" content="Chapter 7 Probability and distributions | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
@@ -510,238 +510,112 @@ which you can read as “the probability of heads is 0.5”. As we’ll see late
 <p>In this case, 11 of these 20 coin flips (55%) came up heads. Now suppose that we’d been keeping a running tally of the number of heads (which we’ll call <span class="math inline">\(N_H\)</span>) that we’ve seen, across the first <span class="math inline">\(N\)</span> flips, and calculate the proportion of heads <span class="math inline">\(N_H / N\)</span> every time. Here’s what we’d get:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:center;">
-Number of flips
-</th>
-<th style="text-align:center;">
-Number of heads
-</th>
-<th style="text-align:center;">
-Proportion of heads
-</th>
+<tr class="header">
+<th align="center">Number of flips</th>
+<th align="center">Number of heads</th>
+<th align="center">Proportion of heads</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-0
-</td>
-<td style="text-align:center;">
-0.00
-</td>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">0.00</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-2
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-0.50
-</td>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">1</td>
+<td align="center">0.50</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-2
-</td>
-<td style="text-align:center;">
-0.67
-</td>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">2</td>
+<td align="center">0.67</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-0.75
-</td>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">3</td>
+<td align="center">0.75</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-5
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-0.80
-</td>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">4</td>
+<td align="center">0.80</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-6
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-0.67
-</td>
+<tr class="even">
+<td align="center">6</td>
+<td align="center">4</td>
+<td align="center">0.67</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-7
-</td>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-0.57
-</td>
+<tr class="odd">
+<td align="center">7</td>
+<td align="center">4</td>
+<td align="center">0.57</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-5
-</td>
-<td style="text-align:center;">
-0.63
-</td>
+<tr class="even">
+<td align="center">8</td>
+<td align="center">5</td>
+<td align="center">0.63</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-9
-</td>
-<td style="text-align:center;">
-6
-</td>
-<td style="text-align:center;">
-0.67
-</td>
+<tr class="odd">
+<td align="center">9</td>
+<td align="center">6</td>
+<td align="center">0.67</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-10
-</td>
-<td style="text-align:center;">
-7
-</td>
-<td style="text-align:center;">
-0.70
-</td>
+<tr class="even">
+<td align="center">10</td>
+<td align="center">7</td>
+<td align="center">0.70</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-11
-</td>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-0.73
-</td>
+<tr class="odd">
+<td align="center">11</td>
+<td align="center">8</td>
+<td align="center">0.73</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-12
-</td>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-0.67
-</td>
+<tr class="even">
+<td align="center">12</td>
+<td align="center">8</td>
+<td align="center">0.67</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-13
-</td>
-<td style="text-align:center;">
-9
-</td>
-<td style="text-align:center;">
-0.69
-</td>
+<tr class="odd">
+<td align="center">13</td>
+<td align="center">9</td>
+<td align="center">0.69</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-14
-</td>
-<td style="text-align:center;">
-10
-</td>
-<td style="text-align:center;">
-0.71
-</td>
+<tr class="even">
+<td align="center">14</td>
+<td align="center">10</td>
+<td align="center">0.71</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-15
-</td>
-<td style="text-align:center;">
-10
-</td>
-<td style="text-align:center;">
-0.67
-</td>
+<tr class="odd">
+<td align="center">15</td>
+<td align="center">10</td>
+<td align="center">0.67</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-16
-</td>
-<td style="text-align:center;">
-10
-</td>
-<td style="text-align:center;">
-0.63
-</td>
+<tr class="even">
+<td align="center">16</td>
+<td align="center">10</td>
+<td align="center">0.63</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-17
-</td>
-<td style="text-align:center;">
-10
-</td>
-<td style="text-align:center;">
-0.59
-</td>
+<tr class="odd">
+<td align="center">17</td>
+<td align="center">10</td>
+<td align="center">0.59</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-18
-</td>
-<td style="text-align:center;">
-10
-</td>
-<td style="text-align:center;">
-0.56
-</td>
+<tr class="even">
+<td align="center">18</td>
+<td align="center">10</td>
+<td align="center">0.56</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-19
-</td>
-<td style="text-align:center;">
-10
-</td>
-<td style="text-align:center;">
-0.53
-</td>
+<tr class="odd">
+<td align="center">19</td>
+<td align="center">10</td>
+<td align="center">0.53</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-20
-</td>
-<td style="text-align:center;">
-11
-</td>
-<td style="text-align:center;">
-0.55
-</td>
+<tr class="even">
+<td align="center">20</td>
+<td align="center">11</td>
+<td align="center">0.55</td>
 </tr>
 </tbody>
 </table>
@@ -774,7 +648,7 @@ However, for this approach to work, we need some way of operationalising the “
 <p>Let’s assume we own five pairs of pants: three pairs of jeans, the bottom half of a suit, and a pair of tracksuit pants. Let’s call them <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, <span class="math inline">\(X_3\)</span>, <span class="math inline">\(X_4\)</span> and <span class="math inline">\(X_5\)</span>. Now, on any given day, we pick out exactly one pair of pants. If we were to describe this situation using the language of probability theory, we would refer to each pair of pants (i.e., each <span class="math inline">\(X\)</span>) as an <strong>elementary event</strong>. The key characteristic of elementary events is that every time we make an observation (e.g., every time we put on a pair of pants), then the outcome will be one and only one of these events. As said, we only wear exactly one pair of pants, so it satisfies this constraint. Similarly, the set of all possible events is called a <strong>sample space</strong>.</p>
 <p>Okay, now that we have a sample space (a wardrobe) built from lots of possible elementary events (pants), we want to assign a <strong>probability</strong> of one of these elementary events. For an event <span class="math inline">\(X\)</span>, the probability of that event <span class="math inline">\(P(X)\)</span> is a number that lies between 0 and 1. The bigger the value of <span class="math inline">\(P(X)\)</span>, the more likely the event will occur. So, for example, if <span class="math inline">\(P(X) = 0\)</span>, it means the event <span class="math inline">\(X\)</span> is impossible (i.e., we never wear those pants). On the other hand, if <span class="math inline">\(P(X) = 1\)</span> it means that event <span class="math inline">\(X\)</span> is certain to occur (i.e., we always wear those pants). For probability values in the middle, it means that we sometimes wear those pants. For instance, if <span class="math inline">\(P(X) = 0.5\)</span>, it means that we wear those pants half of the time.</p>
 <p>At this point, we’re almost done. The last thing we need to recognise is that “something always happens”. Every time we put on pants, we really do end up wearing pants (crazy, right?). What this somewhat trite statement means, in probabilistic terms, is that the probabilities of the elementary events need to add up to 1. This is known as the <strong>law of total probability</strong>. More importantly, if these requirements are satisfied, then we have a <strong>probability distribution</strong>. For example, this is an example of a probability distribution</p>
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -974,8 +848,9 @@ X \sim \mbox{Normal}(\mu,\sigma)
 \]</span>
 Of course, that’s just notation. It doesn’t tell us anything interesting about the normal distribution itself. As was the case with the binomial distribution, the formula for the normal distribution in this book is tucked away in Table <a href="probability.html#tab:distformulas">7.2</a>.</p>
 <p>Instead of focusing on the maths, let’s try to understand what it means for a variable to be normally distributed. To that end, have a look at Figure <a href="probability.html#fig:normdist">7.4</a>, which plots a normal distribution with mean <span class="math inline">\(\mu = 0\)</span> and standard deviation <span class="math inline">\(\sigma = 1\)</span>. You can see where the name “bell curve” comes from: it looks a bit like a bell. Notice that, unlike the plots to illustrate the binomial distribution, the picture of the normal distribution in Figure <a href="probability.html#fig:normdist">7.4</a> shows a smooth curve instead of “histogram-like” bars. This isn’t an arbitrary choice: the normal distribution is <em>continuous</em>, whereas the binomial is <em>discrete</em>. For instance, in the die rolling example from the last section, it was possible to get 3 skulls or 4 skulls, but impossible to get 3.9 skulls. The figures in the previous section reflected this fact: in Figure <a href="probability.html#fig:binomial1">7.3</a>, for instance, there’s a bar located at <span class="math inline">\(X=3\)</span> and another one at <span class="math inline">\(X=4\)</span>, but there’s nothing in between. Continuous quantities don’t have this constraint. For instance, suppose we’re talking about the weather. The temperature on a pleasant Spring day could be 23 degrees, 24 degrees, 23.9 degrees, or anything in between since temperature is a continuous variable, and so a normal distribution might be quite appropriate for describing Spring temperatures.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a></p>
+
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:normdist"></span>
-<img src="lsc_files/figure-html/normdist-1.svg" alt="The normal distribution with mean $mu = 0$ and standard deviation $sigma = 1$. The $x$-axis corresponds to the value of some variable, and the $y$-axis tells us something about how likely we are to observe that value. However, notice that the $y$-axis is labelled &quot;Probability Density&quot; and not &quot;Probability&quot;. There is a subtle and somewhat frustrating characteristic of continuous distributions that makes the $y$ axis behave a bit oddly: the height of the curve here isn't actually the probability of observing a particular $x$ value. On the other hand, it *is* true that the heights of the curve tells you which $x$ values are more likely (the higher ones!)." width="100%" />
+<img src="lsc_files/figure-html/normdist-1.svg" alt="The normal distribution with mean \(mu = 0\) and standard deviation \(sigma = 1\). The \(x\)-axis corresponds to the value of some variable, and the \(y\)-axis tells us something about how likely we are to observe that value. However, notice that the \(y\)-axis is labelled “Probability Density” and not “Probability”. There is a subtle and somewhat frustrating characteristic of continuous distributions that makes the \(y\) axis behave a bit oddly: the height of the curve here isn’t actually the probability of observing a particular \(x\) value. On the other hand, it is true that the heights of the curve tells you which \(x\) values are more likely (the higher ones!)." width="100%" />
 <p class="caption">
 Figure 7.4: The normal distribution with mean <span class="math inline">\(mu = 0\)</span> and standard deviation <span class="math inline">\(sigma = 1\)</span>. The <span class="math inline">\(x\)</span>-axis corresponds to the value of some variable, and the <span class="math inline">\(y\)</span>-axis tells us something about how likely we are to observe that value. However, notice that the <span class="math inline">\(y\)</span>-axis is labelled “Probability Density” and not “Probability”. There is a subtle and somewhat frustrating characteristic of continuous distributions that makes the <span class="math inline">\(y\)</span> axis behave a bit oddly: the height of the curve here isn’t actually the probability of observing a particular <span class="math inline">\(x\)</span> value. On the other hand, it <em>is</em> true that the heights of the curve tells you which <span class="math inline">\(x\)</span> values are more likely (the higher ones!).
 </p>
@@ -995,16 +870,16 @@ Figure 7.6: An illustration of what happens when you change the the standard dev
 </p>
 </div>
 <p>Before moving on, there is one important characteristic of the normal distribution to point out. Irrespective of the actual mean and standard deviation, 68.3% of the area falls within 1 standard deviation of the mean. Similarly, 95.4% of the distribution falls within 2 standard deviations of the mean, and 99.7% of the distribution is within 3 standard deviations. This idea is illustrated in Figures <a href="probability.html#fig:sdnorm1">7.7</a> and <a href="probability.html#fig:sdnorm2">7.8</a>.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sdnorm1"></span>
-<img src="lsc_files/figure-html/sdnorm1-1.svg" alt="The area under the curve tells you the probability that an observation falls within a particular range. The solid lines plot normal distributions with mean $mu=0$ and standard deviation $sigma=1$ The shaded areas illustrate &quot;areas under the curve&quot; for two important cases. On the left, we can see that there is a 68.3% chance that an observation will fall within one standard deviation of the mean. On the right, we see that there is a 95.4% chance that an observation will fall within two standard deviations of the mean" width="100%" />
+<div class="figure"><span style="display:block;" id="fig:sdnorm1"></span>
+<img src="lsc_files/figure-html/sdnorm1-1.svg" alt="The area under the curve tells you the probability that an observation falls within a particular range. The solid lines plot normal distributions with mean $mu=0$ and standard deviation $sigma=1$. The shaded areas illustrate *areas under the curve* for two important cases. On the left, we can see that there is a 68.3% chance that an observation will fall within one standard deviation of the mean. On the right, we see that there is a 95.4% chance that an observation will fall within two standard deviations of the mean" width="672" />
 <p class="caption">
-Figure 7.7: The area under the curve tells you the probability that an observation falls within a particular range. The solid lines plot normal distributions with mean <span class="math inline">\(mu=0\)</span> and standard deviation <span class="math inline">\(sigma=1\)</span> The shaded areas illustrate “areas under the curve” for two important cases. On the left, we can see that there is a 68.3% chance that an observation will fall within one standard deviation of the mean. On the right, we see that there is a 95.4% chance that an observation will fall within two standard deviations of the mean
+Figure 7.7: The area under the curve tells you the probability that an observation falls within a particular range. The solid lines plot normal distributions with mean <span class="math inline">\(mu=0\)</span> and standard deviation <span class="math inline">\(sigma=1\)</span>. The shaded areas illustrate <em>areas under the curve</em> for two important cases. On the left, we can see that there is a 68.3% chance that an observation will fall within one standard deviation of the mean. On the right, we see that there is a 95.4% chance that an observation will fall within two standard deviations of the mean
 </p>
 </div>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:sdnorm2"></span>
-<img src="lsc_files/figure-html/sdnorm2-1.svg" alt="Two more examples of the &quot;area under the curve idea&quot;. There is a 15.9% chance that an observation is one standard deviation below the mean or smaller (left), and a 34.1% chance that the observation is greater than one standard deviation below the mean but still below the mean (right). Notice that if you add these two numbers together you get 15.9% + 34.1% = 50%. For normally distributed data, there is a 50% chance that an observation falls below the mean. And of course that also implies that there is a 50% chance that it falls above the mean." width="100%" />
+<div class="figure"><span style="display:block;" id="fig:sdnorm2"></span>
+<img src="lsc_files/figure-html/sdnorm2-1.svg" alt="Two more examples of the *area under the curve idea*. There is a 15.9% chance that an observation is one standard deviation below the mean or smaller (left), and a 34.1% chance that the observation is greater than one standard deviation below the mean but still below the mean (right). Notice that if you add these two numbers together you get 15.9% + 34.1% = 50%. For normally distributed data, there is a 50% chance that an observation falls below the mean. And of course that also implies that there is a 50% chance that it falls above the mean." width="672" />
 <p class="caption">
-Figure 7.8: Two more examples of the “area under the curve idea”. There is a 15.9% chance that an observation is one standard deviation below the mean or smaller (left), and a 34.1% chance that the observation is greater than one standard deviation below the mean but still below the mean (right). Notice that if you add these two numbers together you get 15.9% + 34.1% = 50%. For normally distributed data, there is a 50% chance that an observation falls below the mean. And of course that also implies that there is a 50% chance that it falls above the mean.
+Figure 7.8: Two more examples of the <em>area under the curve idea</em>. There is a 15.9% chance that an observation is one standard deviation below the mean or smaller (left), and a 34.1% chance that the observation is greater than one standard deviation below the mean but still below the mean (right). Notice that if you add these two numbers together you get 15.9% + 34.1% = 50%. For normally distributed data, there is a 50% chance that an observation falls below the mean. And of course that also implies that there is a 50% chance that it falls above the mean.
 </p>
 </div>
 </div>

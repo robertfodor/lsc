@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 6 Exploring a variable pair | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
   <meta property="og:description" content="Chapter 6 Exploring a variable pair | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 6 Exploring a variable pair | Learning Statistics with CogStat" />
   
   <meta name="twitter:description" content="Chapter 6 Exploring a variable pair | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
@@ -463,11 +463,11 @@ div.csl-indent {
 <div id="correl" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">Chapter 6</span> Exploring a variable pair<a href="correl.html#correl" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>Up to this point, we have focused entirely on how to construct descriptive statistics for a single variable. What we have not done is talk about how to describe the relationships <em>between</em> variables in the data. To do that, we want to talk mainly about the <strong>correlation</strong> between variables. But first, we need some data.</p>
-<p>After watching the AFL data, let’s turn to a topic close to every parent’s heart: sleep. The following data set is fictitious but based on real events. Suppose we’re curious to determine how much a baby’s sleeping habits affect the parent’s mood. Let’s say we can rate parent grumpiness very precisely on a scale from 0 (not at all grumpy) to 100 (very, very grumpy). And let’s also assume that we’ve been measuring parent grumpiness, parent sleeping patterns, and the baby’s sleeping patterns for 100 days.</p>
+<p>After watching the AFL data, let’s turn to a topic close to every parent’s heart: sleep. The following data set (<a href="resources/data/parenthood.csv">parenthood.csv</a>) is fictitious but based on real events. Suppose we’re curious to determine how much a baby’s sleeping habits affect the parent’s mood. Let’s say we can rate parent grumpiness very precisely on a scale from 0 (not at all grumpy) to 100 (very, very grumpy). And let’s also assume that we’ve been measuring parent grumpiness, parent sleeping patterns, and the baby’s sleeping patterns for 100 days.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:loadparenthood"></span>
-<img src="resources/image/cogstatparenthoodload.png" alt="This is what you would see after loading the [parenthood.csv](resources/data/parenthood.csv) dataset." width="100%" />
+<img src="resources/image/cogstatparenthoodload.png" alt="This is what you would see after loading the parenthood.csv dataset." width="100%" />
 <p class="caption">
-Figure 6.1: This is what you would see after loading the <a href="resources/data/parenthood.csv">parenthood.csv</a> dataset.
+Figure 6.1: This is what you would see after loading the parenthood.csv dataset.
 </p>
 </div>
 <p>As described in Chapter <a href="exploringavariable.html#exploringavariable">5</a>, we can get all the necessary descriptive statistics for all the variables: <code>parentsleep</code>, <code>babysleep</code> and <code>grumpiness</code>. Let’s summarise all these into a neat little table.</p>
@@ -477,33 +477,39 @@ Figure 6.1: This is what you would see after loading the <a href="resources/data
 </caption>
 <thead>
 <tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Parent grumpiness
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Parent’s hours slept
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Baby’s hours slept
+</div>
+</th>
+</tr>
+<tr>
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Parent grumpiness
+<code>parentgrump</code>
 </th>
 <th style="text-align:center;">
-Parent’s hours slept
+<code>parentsleep</code>
 </th>
 <th style="text-align:center;">
-Baby’s hours slept
+<code>babysleep</code>
 </th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-<code>parentgrump</code>
-</td>
-<td style="text-align:center;">
-<code>parentsleep</code>
-</td>
-<td style="text-align:center;">
-<code>babysleep</code>
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 Mean
@@ -848,7 +854,7 @@ Figure 6.7: The relationship between hours worked and grade received for a toy d
 <p>The data are stored in <a href="resources/data/effort.csv"><code>effort.csv</code></a>. CogStat will calculate a standard Pearson correlation first[^Unless, of course, you set your measurement level in the second row of the CSV as <code>"ord"</code> (<em>ordinal</em>), because then you already tell the software that Pearson’s <span class="math inline">\(r\)</span> does not make sense to look at.]. It shows a strong relationship between hours worked and grade received: <span class="math inline">\(r = 0.909\)</span>. But this doesn’t actually capture the observation that increasing hours worked <em>always</em> increases the grade. There’s a sense here in which we want to say that the correlation is <em>perfect</em> but for a somewhat different notion of a “relationship”. What we’re looking for is something that captures the fact that there is a perfect <strong>ordinal relationship</strong> here. That is, if student 1 works more hours than student 2, then we can guarantee that student 1 will get a better grade. That’s not what a correlation of <span class="math inline">\(r = 0.91\)</span> says at all.</p>
 <p>How should we address this? Actually, it’s really easy: if we’re looking for ordinal relationships, all we have to do is treat the data as if it were an ordinal scale! So, instead of measuring effort in terms of “hours worked”, let us rank all 10 of our students in order of hours worked. That is, student 1 did the least work out of anyone (2 hours), so they got the lowest rank (rank = 1). Student 4 was the next laziest, putting in only 6 hours of work over the whole semester, so they got the next lowest rank (rank = 2). Notice that we’re using “rank = 1” to mean “low rank”. Sometimes in everyday language, we talk about “rank = 1” to mean “top rank” rather than “bottom rank”. So be careful: you can rank “from smallest value to largest value” (i.e., small equals rank 1), or you can rank “from largest value to smallest value” (i.e., large equals rank 1). In this case, we’re ranking from smallest to largest. But in real life, it’s really easy to forget which way you set things up, so you have to put a bit of effort into remembering!</p>
 <p>Okay, so let’s have a look at our students when we rank them from worst to best in terms of effort and reward:</p>
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -989,9 +995,9 @@ Figure 6.8: This is what you would see in CogStat after loading the <code>effort
 <h2><span class="header-section-number">6.5</span> Missing values in pairwise calculations<a href="correl.html#missingvaluespair" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>To illustrate the issues, let’s open up a data set with missing values, <a href="resources/data/parenthood_missing.csv"><code>parenthood_missing.csv</code></a>. This file contains the same data as the original parenthood data but with some values deleted. While the original source could contain an empty value or <code>NA</code>, CogStat will display <code>NaN</code> for these missing values (Figure <a href="correl.html#fig:parenthoodmissing">6.9</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:parenthoodmissing"></span>
-<img src="resources/image/cogstatparenthood_missing.png" alt="This is what you would see in CogStat after loading the `parenthood_missing.csv` dataset." width="100%" />
+<img src="resources/image/cogstatparenthood_missing.png" alt="This is what you would see in CogStat after loading the adjusted dataset." width="100%" />
 <p class="caption">
-Figure 6.9: This is what you would see in CogStat after loading the <code>parenthood_missing.csv</code> dataset.
+Figure 6.9: This is what you would see in CogStat after loading the adjusted dataset.
 </p>
 </div>
 <p>Let’s calculate descriptive statistics using the <code>Explore variable</code> function (See Chapter: <a href="exploringavariable.html#exploringavariable">5</a>):</p>
@@ -1001,33 +1007,39 @@ Figure 6.9: This is what you would see in CogStat after loading the <code>parent
 </caption>
 <thead>
 <tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Parent grumpiness
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Parent’s hours slept
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Baby’s hours slept
+</div>
+</th>
+</tr>
+<tr>
 <th style="text-align:left;">
 </th>
 <th style="text-align:center;">
-Parent grumpiness
+<code>parentgrump</code>
 </th>
 <th style="text-align:center;">
-Parent’s hours slept
+<code>parentsleep</code>
 </th>
 <th style="text-align:center;">
-Baby’s hours slept
+<code>babysleep</code>
 </th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-<code>parentgrump</code>
-</td>
-<td style="text-align:center;">
-<code>parentsleep</code>
-</td>
-<td style="text-align:center;">
-<code>babysleep</code>
-</td>
-</tr>
 <tr>
 <td style="text-align:left;">
 Mean

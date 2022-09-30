@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 15 Introduction to Bayesian statistics | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
   <meta property="og:description" content="Chapter 15 Introduction to Bayesian statistics | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 15 Introduction to Bayesian statistics | Learning Statistics with CogStat" />
   
   <meta name="twitter:description" content="Chapter 15 Introduction to Bayesian statistics | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
@@ -480,31 +480,19 @@ div.csl-indent {
 <p>So, what might you believe about whether it will rain today? You probably know that Attila lives in Budapest and that the weather here is mild and relatively dry. In fact, you might have decided to take a quick look on Wikipedia<a href="#fn78" class="footnote-ref" id="fnref78"><sup>78</sup></a> and discovered that Budapest gets an average of 7.3 days of rain across the 31 days of January, let’s say. Without knowing anything else, you might conclude that the probability of January rain in Budapest is about (<span class="math inline">\(\frac{7.3}{31}=\)</span>) 23.5%, and the probability of a dry day is ($1 - 0.235 = $)76.5%. If this is what you believe about Budapest rainfall, then what we have written here is your <strong>prior distribution</strong>, written <span class="math inline">\(P(h)\)</span>:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-Hypothesis <span class="math inline">\(h\)</span>
-</th>
-<th style="text-align:center;">
-Degree of Belief <span class="math inline">\(P(h)\)</span>
-</th>
+<tr class="header">
+<th align="left">Hypothesis <span class="math inline">\(h\)</span></th>
+<th align="center">Degree of Belief <span class="math inline">\(P(h)\)</span></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Rainy day
-</td>
-<td style="text-align:center;">
-0.235
-</td>
+<tr class="odd">
+<td align="left">Rainy day</td>
+<td align="center">0.235</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Dry day
-</td>
-<td style="text-align:center;">
-0.765
-</td>
+<tr class="even">
+<td align="left">Dry day</td>
+<td align="center">0.765</td>
 </tr>
 </tbody>
 </table>
@@ -515,40 +503,22 @@ Dry day
 <p>Let’s suppose<a href="#fn79" class="footnote-ref" id="fnref79"><sup>79</sup></a> that on rainy days he remembers his umbrella about 30% of the time. Let’s say that on dry days, he’s only about 5% likely to be carrying an umbrella. So you might write out a little table like this:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-Hypothesis <span class="math inline">\(h\)</span>
-</th>
-<th style="text-align:center;">
-Umbrella
-</th>
-<th style="text-align:center;">
-No umbrella
-</th>
+<tr class="header">
+<th align="left">Hypothesis <span class="math inline">\(h\)</span></th>
+<th align="center">Umbrella</th>
+<th align="center">No umbrella</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Rainy day
-</td>
-<td style="text-align:center;">
-0.30
-</td>
-<td style="text-align:center;">
-0.70
-</td>
+<tr class="odd">
+<td align="left">Rainy day</td>
+<td align="center">0.30</td>
+<td align="center">0.70</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Dry day
-</td>
-<td style="text-align:center;">
-0.05
-</td>
-<td style="text-align:center;">
-0.95
-</td>
+<tr class="even">
+<td align="left">Dry day</td>
+<td align="center">0.05</td>
+<td align="center">0.95</td>
 </tr>
 </tbody>
 </table>
@@ -564,7 +534,7 @@ P(d,h) = P(d|h) P(h)
 \]</span></p>
 <p>So, what is the probability that today is a rainy day <em>and</em> that he carries an umbrella? The prior tells us that the probability of a rainy day is 23.5%, and the likelihood tells us that the probability of Attila carrying an umbrella on a rainy day is 30%. So the probability that both of these things are true is calculated by multiplying the two:</p>
 <p><span class="math display">\[
-\begin{array}
+\begin{array}{rcl}
 P(\mbox{rainy}, \mbox{umbrella}) &amp; = &amp; P(\mbox{umbrella} | \mbox{rainy}) \times P(\mbox{rainy}) \\
 &amp; = &amp; 0.30 \times 0.235 \\
 &amp; = &amp; 0.0705
@@ -573,63 +543,31 @@ P(\mbox{rainy}, \mbox{umbrella}) &amp; = &amp; P(\mbox{umbrella} | \mbox{rainy})
 <p>In other words, before being told anything about what actually happened, you think there is a 7.1% probability that today will be a rainy day and that Attila will remember to bring an umbrella. However, there are, of course, <em>four</em> possible things that could happen, right? So let’s repeat the exercise for all four. If we do that, we end up with the following table:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-Day
-</th>
-<th style="text-align:center;">
-Umbrella
-</th>
-<th style="text-align:center;">
-No umbrella
-</th>
-<th style="text-align:center;">
-Total
-</th>
+<tr class="header">
+<th align="left">Day</th>
+<th align="center">Umbrella</th>
+<th align="center">No umbrella</th>
+<th align="center">Total</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Rainy
-</td>
-<td style="text-align:center;">
-0.0705
-</td>
-<td style="text-align:center;">
-0.1645
-</td>
-<td style="text-align:center;">
-0.2350
-</td>
+<tr class="odd">
+<td align="left">Rainy</td>
+<td align="center">0.0705</td>
+<td align="center">0.1645</td>
+<td align="center">0.2350</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Dry
-</td>
-<td style="text-align:center;">
-0.0383
-</td>
-<td style="text-align:center;">
-0.7268
-</td>
-<td style="text-align:center;">
-0.7650
-</td>
+<tr class="even">
+<td align="left">Dry</td>
+<td align="center">0.0383</td>
+<td align="center">0.7268</td>
+<td align="center">0.7650</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Total
-</td>
-<td style="text-align:center;">
-0.1088
-</td>
-<td style="text-align:center;">
-0.8912
-</td>
-<td style="text-align:center;">
-1.0000
-</td>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">0.1088</td>
+<td align="center">0.8912</td>
+<td align="center">1.0000</td>
 </tr>
 </tbody>
 </table>
@@ -638,121 +576,62 @@ Total
 <p>Now, because this table is so useful, let’s make sure you understand what all the elements correspond to and how they are written:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-Day
-</th>
-<th style="text-align:center;">
-Umbrella
-</th>
-<th style="text-align:center;">
-No umbrella
-</th>
-<th style="text-align:center;">
-Total
-</th>
+<tr class="header">
+<th align="left">Day</th>
+<th align="center">Umbrella</th>
+<th align="center">No umbrella</th>
+<th align="center">Total</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Rainy
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P\)</span>(Umbrella, Rainy)
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P\)</span>(No umbrella, Rainy)
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P\)</span>(Rainy)
-</td>
+<tr class="odd">
+<td align="left">Rainy</td>
+<td align="center"><span class="math inline">\(P\)</span>(Umbrella, Rainy)</td>
+<td align="center"><span class="math inline">\(P\)</span>(No umbrella, Rainy)</td>
+<td align="center"><span class="math inline">\(P\)</span>(Rainy)</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Dry
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P\)</span>(Umbrella, Dry)
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P\)</span>(No umbrella, Dry)
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P\)</span>(Dry)
-</td>
+<tr class="even">
+<td align="left">Dry</td>
+<td align="center"><span class="math inline">\(P\)</span>(Umbrella, Dry)</td>
+<td align="center"><span class="math inline">\(P\)</span>(No umbrella, Dry)</td>
+<td align="center"><span class="math inline">\(P\)</span>(Dry)</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Total
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P\)</span>(Umbrella)
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P\)</span>(No umbrella)
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center"><span class="math inline">\(P\)</span>(Umbrella)</td>
+<td align="center"><span class="math inline">\(P\)</span>(No umbrella)</td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
 <p>Finally, let’s use “proper” statistical notation. So we’ll let <span class="math inline">\(d_1\)</span> refer to the possibility that you observe Attila carrying an umbrella, and <span class="math inline">\(d_2\)</span> refers to you observing him not carrying one. Similarly, <span class="math inline">\(h_1\)</span> is your hypothesis that today is rainy, and <span class="math inline">\(h_2\)</span> is the hypothesis that it is not. Using this notation, the table looks like this:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:center;">
-<span class="math inline">\(d_1\)</span>
-</th>
-<th style="text-align:center;">
-<span class="math inline">\(d_2\)</span>
-</th>
-<th style="text-align:center;">
-</th>
+<tr class="header">
+<th align="left"></th>
+<th align="center"><span class="math inline">\(d_1\)</span></th>
+<th align="center"><span class="math inline">\(d_2\)</span></th>
+<th align="center"></th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(h_1\)</span>
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P(h_1, d_1)\)</span>
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P(h_1, d_2)\)</span>
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P(h_1)\)</span>
-</td>
+<tr class="odd">
+<td align="left"><span class="math inline">\(h_1\)</span></td>
+<td align="center"><span class="math inline">\(P(h_1, d_1)\)</span></td>
+<td align="center"><span class="math inline">\(P(h_1, d_2)\)</span></td>
+<td align="center"><span class="math inline">\(P(h_1)\)</span></td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(h_2\)</span>
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P(h_2, d_1)\)</span>
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P(h_2, d_2)\)</span>
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P(h_2)\)</span>
-</td>
+<tr class="even">
+<td align="left"><span class="math inline">\(h_2\)</span></td>
+<td align="center"><span class="math inline">\(P(h_2, d_1)\)</span></td>
+<td align="center"><span class="math inline">\(P(h_2, d_2)\)</span></td>
+<td align="center"><span class="math inline">\(P(h_2)\)</span></td>
 </tr>
-<tr>
-<td style="text-align:left;">
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P\)</span>(d_1)
-</td>
-<td style="text-align:center;">
-<span class="math inline">\(P\)</span>(d_2)
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="odd">
+<td align="left"></td>
+<td align="center"><span class="math inline">\(P(d_1)\)</span></td>
+<td align="center"><span class="math inline">\(P(d_2)\)</span></td>
+<td align="center"></td>
 </tr>
 </tbody>
 </table>
@@ -763,48 +642,27 @@ Total
 <p>In the rainy day problem, you are told that Attila really <em>is</em> carrying an umbrella. This is something of a surprising event: according to our table, the probability of him carrying an umbrella is only 10.88%. But that makes sense, right? No matter how unlikely you thought it was, you must now adjust your beliefs to accommodate the fact that you now <em>know</em> that he has an umbrella. To reflect this new knowledge, our <em>revised</em> table must have the following numbers:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:center;">
-Umbrella
-</th>
-<th style="text-align:center;">
-No umbrella
-</th>
+<tr class="header">
+<th align="left"></th>
+<th align="center">Umbrella</th>
+<th align="center">No umbrella</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Rainy day
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="odd">
+<td align="left">Rainy day</td>
+<td align="center"></td>
+<td align="center">0</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Dry day
-</td>
-<td style="text-align:center;">
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="even">
+<td align="left">Dry day</td>
+<td align="center"></td>
+<td align="center">0</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Total
-</td>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">1</td>
+<td align="center">0</td>
 </tr>
 </tbody>
 </table>
@@ -812,50 +670,27 @@ Total
 <p>What two numbers should we put in the empty cells? Again, let’s not worry about the maths and instead use our intuitions. We worked out that the joint probability of “rain and umbrella” was 7.05%, and the joint probability of “dry and umbrella” was 3.83%. But notice that <em>both</em> of these possibilities are consistent with the fact that he actually is carrying an umbrella. So what we expect to see in our final table are some numbers that preserve the fact that “rain and umbrella” is more plausible than “dry and umbrella” while still ensuring that the numbers in the table add up. Something like this, perhaps?</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:center;">
-Umbrella
-</th>
-<th style="text-align:center;">
-No umbrella
-</th>
+<tr class="header">
+<th align="left"></th>
+<th align="center">Umbrella</th>
+<th align="center">No umbrella</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Rainy day
-</td>
-<td style="text-align:center;">
-0.648
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="odd">
+<td align="left">Rainy day</td>
+<td align="center">0.648</td>
+<td align="center">0</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Dry day
-</td>
-<td style="text-align:center;">
-0.352
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="even">
+<td align="left">Dry day</td>
+<td align="center">0.352</td>
+<td align="center">0</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Total
-</td>
-<td style="text-align:center;">
-1.000
-</td>
-<td style="text-align:center;">
-0
-</td>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="center">1.000</td>
+<td align="center">0</td>
 </tr>
 </tbody>
 </table>
