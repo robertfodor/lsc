@@ -170,7 +170,8 @@ knitr::kable(tibble::tribble(
                       ".05",      "1.959964",       "1.644854",
                       ".01",      "2.575829",       "2.326348",
                       ".001",      "3.290527",       "3.090232"
-  ), col.names = c("desired $\\alpha$ level", " two-sided test", " one-sided test"), align = 'ccc')
+  ), col.names = c("desired $\\alpha$ level", " two-sided test", " one-sided test"), align = 'ccc',
+  booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 which in turn meant that researchers could calculate their $z$-statistic by hand, and then look up the critical value in a text book. That was an incredibly handy thing to be able to do back then.
@@ -774,7 +775,9 @@ We'll use the data set this time from Dr Chico's class. In her class, students t
 
 The data frame `chico` contains three variables: an `id` nominal variable that identifies each student in the class, the `grade_test1` variable that records the student grade for the first test, and the `grade_test2` variable that has the grades for the second test. Let's take a quick look at the descriptive statistics. Since we are running a before and after test (like we already did in Chapter \@ref(mcnemar)), let's use the `Compare repeated measures variables` function.
 
-```{r chico, fig.cap="CogStat descriptives and boxplot for the variables `grade_test1` and `grade_test2` in the Compare repeated measures variables function.", echo=FALSE, fig.align="center", out.width="100%", fig.show="hold"}
+(ref:chicocap) CogStat descriptives and boxplot for the variables `grade_test1` and `grade_test2` in the Compare repeated measures variables function.
+
+```{r chico, fig.cap=paste("(ref:chicocap)"), echo=FALSE, fig.align="center", out.width="100%", fig.show="hold"}
 knitr::include_graphics(c("resources/image/cogstatchicodescr.png",
                           "resources/image/cogstatchicoboxplot.png"))
 ```
@@ -873,7 +876,8 @@ knitr::kable(tibble::tribble(
   "about 0.5",      "moderate effect",
   "about 0.8",         "large effect"
   ), col.names = c("Cohen's $d$", "Interpretation")
-  , caption = "A (very) rough guide to interpreting Cohen's $d$. Do not use these blindly. The $d$ statistic has a natural interpretation in and of itself: it redescribes the different in means as the number of standard deviations that separates those means. So it's generally a good idea to think about what that means in practical terms. In some contexts a \"small\" effect could be of big practical importance. In other situations a \"large\" effect may not be all that interesting.")
+  , caption = "A (very) rough guide to interpreting Cohen's $d$. Do not use these blindly. The $d$ statistic has a natural interpretation in and of itself: it redescribes the different in means as the number of standard deviations that separates those means. So it's generally a good idea to think about what that means in practical terms. In some contexts a \"small\" effect could be of big practical importance. In other situations a \"large\" effect may not be all that interesting.",
+  booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 Let us go back to our examples and see how CogStat calculates effect sizes for us. 
@@ -919,7 +923,9 @@ Unlike most of the test statistics, if the $p$-value of a Shapiro-Wilk test is l
 
 The sampling distribution for $W$  -- which is not one of the standard ones discussed in Chapter \@ref(probability) -- depends on the sample size $N$. To give you a feel for what these sampling distributions look like, we've plotted three of them in Figure \@ref(fig:swdist). Notice that, as the sample size starts to get large, the sampling distribution becomes very tightly clumped up near $W=1$, and as a consequence, for larger samples, $W$ doesn't have to be much smaller than 1 for the test to be significant.
 
-```{r swdist, fig.cap="Sampling distribution of the Shapiro-Wilk $W$ statistic, under the null hypothesis that the data are normally distributed, for samples of size 10, 20 and 50. Note that *small* values of $W$ indicate departure from normality.", echo=FALSE, fig.align="center", out.width="100%"}
+(ref:swdistcap) Sampling distribution of the Shapiro-Wilk $W$ statistic, under the null hypothesis that the data are normally distributed, for samples of size 10, 20 and 50. Note that *small* values of $W$ indicate departure from normality.
+
+```{r swdist, fig.cap=paste("(ref:swdistcap)"), echo=FALSE, fig.align="center", out.width="100%"}
 knitr::include_graphics("resources/image/shapirowilkdist.png")
 ```
 
@@ -939,7 +945,9 @@ Let's start with the **two-sample Wilcoxon test**, also known as the **Mann-Whit
 
 Let us recall our AFL example with the data set called [`afl24.csv`](resources/data/afl24.csv)^[This example is not the same as in Danielle's original textbook designated for R.]. We want to see if there is any statistically significant difference in the `attendance` if the game is a final or not (boolean variable name: `isfinal`).
 
-```{r mwafl24, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="AFL final and non-final attendance (`Compare groups` function used)."}
+(ref:mwafl24cap) AFL final and non-final attendance (`Compare groups` function used).
+
+```{r mwafl24, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap=paste("(ref:mwafl24cap)")}
 knitr::include_graphics(c(
      "resources/image/mannwhitneyafl24.png",
      "resources/image/mannwhitneyafl24box.png"
@@ -1004,7 +1012,7 @@ The $p$ value is 0.031, which is below our $\alpha$ level of 0.05. This means th
 
 Now, you can make sure by running a one-sample Wilcoxon test in CogStat. Let's use the `Explore variable` function with the `change` variable. This will serve two purposes. You'll see how the one-sample Wilcoxon test works, and you'll also see how the one-sample and two-sample tests relate to each other.
 
-You'll quickly see in the descriptives, that the Mean change is negative ($-9.6$) with a 95% confidence interval of $-18.7$ to #-0.4$ being both in the negative.
+You'll quickly see in the descriptives, that the Mean change is negative ($-9.6$) with a 95% confidence interval of $-18.7$ to $-0.4$ being both in the negative.
 
 ```{=html}
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">

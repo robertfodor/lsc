@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 18 Summary guide | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
   <meta property="og:description" content="Chapter 18 Summary guide | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 18 Summary guide | Learning Statistics with CogStat" />
   
   <meta name="twitter:description" content="Chapter 18 Summary guide | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
@@ -466,95 +466,56 @@ div.csl-indent {
 <div id="descriptive-statistics" class="section level2 unnumbered hasAnchor">
 <h2>Descriptive statistics<a href="summaryguide.html#descriptive-statistics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
+<colgroup>
+<col width="24%" />
+<col width="75%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:left;">
-Meaning
-</th>
+<tr class="header">
+<th align="left"></th>
+<th align="left">Meaning</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;min-width: 1.5in; ">
-<a href="exploringavariable.html#mean">Mean</a>
-</td>
-<td style="text-align:left;">
-Average – the “centre of gravity” of the data
-</td>
+<tr class="odd">
+<td align="left"><a href="exploringavariable.html#mean">Mean</a></td>
+<td align="left">Average – the “centre of gravity” of the data</td>
 </tr>
-<tr>
-<td style="text-align:left;min-width: 1.5in; ">
-<a href="exploringavariable.html#sd">Standard deviation</a>
-</td>
-<td style="text-align:left;">
-How clustered is the data around the mean (smaller figure means more clustered, larger figure closer to interquartile range means more spread out)
-</td>
+<tr class="even">
+<td align="left"><a href="exploringavariable.html#sd">Standard deviation</a></td>
+<td align="left">How clustered is the data around the mean (smaller figure means more clustered, larger figure closer to interquartile range means more spread out)</td>
 </tr>
-<tr>
-<td style="text-align:left;min-width: 1.5in; ">
-<a href="exploringavariable.html#skewnesskurtosis">Skewness</a>
-</td>
-<td style="text-align:left;">
-The assymetry of the data compared to a normal distribution (bell curve)
-</td>
+<tr class="odd">
+<td align="left"><a href="exploringavariable.html#skewnesskurtosis">Skewness</a></td>
+<td align="left">The assymetry of the data compared to a normal distribution (bell curve)</td>
 </tr>
-<tr>
-<td style="text-align:left;min-width: 1.5in; ">
-<a href="exploringavariable.html#skewnesskurtosis">Kurtosis</a>
-</td>
-<td style="text-align:left;">
-Pointiness of the data. Smaller figure means more pointy, larger figure means less pointy
-</td>
+<tr class="even">
+<td align="left"><a href="exploringavariable.html#skewnesskurtosis">Kurtosis</a></td>
+<td align="left">Pointiness of the data. Smaller figure means more pointy, larger figure means less pointy</td>
 </tr>
-<tr>
-<td style="text-align:left;min-width: 1.5in; ">
-<a href="exploringavariable.html#range">Range</a>
-</td>
-<td style="text-align:left;">
-The spread of the data set between the maximum and minimum values
-</td>
+<tr class="odd">
+<td align="left"><a href="exploringavariable.html#range">Range</a></td>
+<td align="left">The spread of the data set between the maximum and minimum values</td>
 </tr>
-<tr>
-<td style="text-align:left;min-width: 1.5in; ">
-<a href="exploringavariable.html#range">Maximum</a>
-</td>
-<td style="text-align:left;">
-The highest value in the data set
-</td>
+<tr class="even">
+<td align="left"><a href="exploringavariable.html#range">Maximum</a></td>
+<td align="left">The highest value in the data set</td>
 </tr>
-<tr>
-<td style="text-align:left;min-width: 1.5in; ">
-<a href="exploringavariable.html#IQR">Upper quartile</a>
-</td>
-<td style="text-align:left;">
-25% of the data points reside at and above this value
-</td>
+<tr class="odd">
+<td align="left"><a href="exploringavariable.html#IQR">Upper quartile</a></td>
+<td align="left">25% of the data points reside at and above this value</td>
 </tr>
-<tr>
-<td style="text-align:left;min-width: 1.5in; ">
-<a href="exploringavariable.html#median">Median</a>
-</td>
-<td style="text-align:left;">
-This is the value of the data point in the middle (or the average of the two middle points in case of even number of data points). 50-50% of data points reside at above and below this value
-</td>
+<tr class="even">
+<td align="left"><a href="exploringavariable.html#median">Median</a></td>
+<td align="left">This is the value of the data point in the middle (or the average of the two middle points in case of even number of data points). 50-50% of data points reside at above and below this value</td>
 </tr>
-<tr>
-<td style="text-align:left;min-width: 1.5in; ">
-<a href="exploringavariable.html#IQR">Lower quartile</a>
-</td>
-<td style="text-align:left;">
-25% of the data points reside at and below this value
-</td>
+<tr class="odd">
+<td align="left"><a href="exploringavariable.html#IQR">Lower quartile</a></td>
+<td align="left">25% of the data points reside at and below this value</td>
 </tr>
-<tr>
-<td style="text-align:left;min-width: 1.5in; ">
-<a href="exploringavariable.html#range">Minimum</a>
-</td>
-<td style="text-align:left;">
-The lowest value in the data set
-</td>
+<tr class="even">
+<td align="left"><a href="exploringavariable.html#range">Minimum</a></td>
+<td align="left">The lowest value in the data set</td>
 </tr>
 </tbody>
 </table>
@@ -562,206 +523,118 @@ The lowest value in the data set
 <div id="analysing-differences-with-hyptothesis-testing" class="section level2 unnumbered hasAnchor">
 <h2>Analysing differences with hyptothesis testing<a href="summaryguide.html#analysing-differences-with-hyptothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
+<colgroup>
+<col width="27%" />
+<col width="38%" />
+<col width="33%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left;">
-Test
-</th>
-<th style="text-align:left;">
-Description
-</th>
-<th style="text-align:left;">
-Example from the chapter
-</th>
+<tr class="header">
+<th align="left">Test</th>
+<th align="left">Description</th>
+<th align="left">Example from the chapter</th>
 </tr>
 </thead>
 <tbody>
-<tr grouplength="4">
-<td colspan="3" style="border-bottom: 1px solid;">
-<strong>CATEGORICAL DATA</strong>
-</td>
+<tr class="odd">
+<td align="left"><strong>CATEGORICAL DATA</strong></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-<a href="chisquare.html#goftest"><span class="math inline">\(\chi^2\)</span> goodness-of-fit test</a>
-</td>
-<td style="text-align:left;">
-Tests whether the observed data fits a theoretical distribution
-</td>
-<td style="text-align:left;">
-Probability of card suits being random
-</td>
+<tr class="even">
+<td align="left"><a href="chisquare.html#goftest"><span class="math inline">\(\chi^2\)</span> goodness‑of‑fit test</a></td>
+<td align="left">Tests whether the observed data fits a theoretical distribution</td>
+<td align="left">Probability of card suits being random</td>
 </tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-<a href="chisquare.html#chisqindependence"><span class="math inline">\(\chi^2\)</span> test of independence</a>
-</td>
-<td style="text-align:left;">
-Tests whether two distributions are the same
-</td>
-<td style="text-align:left;">
-Probability that a member of species <span class="math inline">\(j\)</span>
-gives response <span class="math inline">\(i\)</span> to aliens
-</td>
+<tr class="odd">
+<td align="left"><a href="chisquare.html#chisqindependence"><span class="math inline">\(\chi^2\)</span> test for independence</a></td>
+<td align="left">Tests whether two distributions are the same</td>
+<td align="left">Probability that a member of species <span class="math inline">\(j\)</span> gives response <span class="math inline">\(i\)</span> to aliens</td>
 </tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-<a href="chisquare.html#fisherexacttest">Fisher’s exact test</a>
-</td>
-<td style="text-align:left;">
-Tests whether two distributions are the same
-(small sample sizes and contingency tables
-</td>
-<td style="text-align:left;">
-Witches’ happiness being burned in Salem
-</td>
+<tr class="even">
+<td align="left"><a href="chisquare.html#fisherexacttest">Fisher’s exact test</a></td>
+<td align="left">Tests whether two distributions are the same (small sample sizes and contingency tables</td>
+<td align="left">Witches’ happiness being burned in Salem</td>
 </tr>
-<tr>
-<td style="text-align:left;padding-left: 2em;" indentlevel="1">
-<a href="chisquare.html#mcnemar">McNemar test of marginal homogeneity</a>
-</td>
-<td style="text-align:left;">
-2 by 2 contingency table with nominal data
-</td>
-<td style="text-align:left;">
-Whether the frequencies of suit choices
-are different the second time than the first time
-</td>
+<tr class="odd">
+<td align="left"><a href="chisquare.html#mcnemar">McNemar test of marginal homogeneity</a></td>
+<td align="left">2 by 2 contingency table with nominal data</td>
+<td align="left">Whether the frequencies of suit choices are different the second time than the first time</td>
 </tr>
-<tr grouplength="10">
-<td colspan="3" style="border-bottom: 1px solid;">
-<strong>NON-CATEGORICAL DATA</strong>
-</td>
+<tr class="even">
+<td align="left"><strong>NON-CATEGORICAL DATA</strong></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
-<tr grouplength="2">
-<td colspan="3" style="border-bottom: 1px solid;">
-<strong>One group in one situation</strong>
-</td>
+<tr class="odd">
+<td align="left"><strong>One group in one situation</strong></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
-<tr>
-<td style="text-align:left;padding-left: 4em;" indentlevel="2">
-<a href="ttest.html#ztest">One-sample <span class="math inline">\(z\)</span>-test</a>
-</td>
-<td style="text-align:left;">
-Tests whether the mean is equal to a given hypothetical value (you know the population standard deviation and your sample size is large)
-</td>
-<td style="text-align:left;">
-The mean of grades in Dr Zeppo’s class is above 67.5
-</td>
+<tr class="even">
+<td align="left"><a href="ttest.html#ztest">One-sample z‑test</a></td>
+<td align="left">Tests whether the mean is equal to a given hypothetical value (you know the population standard deviation and your sample size is large)</td>
+<td align="left">The mean of grades in Dr Zeppo’s class is above 67.5</td>
 </tr>
-<tr>
-<td style="text-align:left;padding-left: 4em;" indentlevel="2">
-<a href="ttest.html#onesamplettest">One-sample <span class="math inline">\(t\)</span>-test or Student’s <span class="math inline">\(t\)</span>-test</a>
-</td>
-<td style="text-align:left;">
-Tests whether the mean is equal to a given hypothetical value (you only have an estimated standard deviation, you cannot speak for the population)
-</td>
-<td style="text-align:left;">
-The mean of grades in Dr Zeppo’s class is above 67.5
-</td>
+<tr class="odd">
+<td align="left"><a href="ttest.html#onesamplettest">One-sample t-test or Student’s t-test</a></td>
+<td align="left">Tests whether the mean is equal to a given hypothetical value (you only have an estimated standard deviation, you cannot speak for the population)</td>
+<td align="left">The mean of grades in Dr Zeppo’s class is above 67.5</td>
 </tr>
-<tr grouplength="3">
-<td colspan="3" style="border-bottom: 1px solid;">
-<strong>Two groups in one situation</strong>
-</td>
+<tr class="even">
+<td align="left"><strong>Two groups in one situation</strong></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
-<tr>
-<td style="text-align:left;padding-left: 4em;" indentlevel="2">
-<a href="ttest.html#studentttest">Independent samples <span class="math inline">\(t\)</span>-test (Student’s)</a>
-</td>
-<td style="text-align:left;">
-Comparing two groups: Tests whether the means of two independent samples are equal (assumes normal distribution)
-</td>
-<td style="text-align:left;">
-The mean of grades of students tutored by Anastasia and Bernadette in Dr Harpo’s class
-</td>
+<tr class="odd">
+<td align="left"><a href="ttest.html#studentttest">Independent samples t-test (Student’s)</a></td>
+<td align="left">Comparing two groups: Tests whether the means of two independent samples are equal (assumes normal distribution)</td>
+<td align="left">The mean of grades of students tutored by Anastasia and Bernadette in Dr Harpo’s class</td>
 </tr>
-<tr>
-<td style="text-align:left;padding-left: 4em;" indentlevel="2">
-<a href="ttest.html#welchttest">Independent samples <span class="math inline">\(t\)</span>-test (Welch)</a>
-</td>
-<td style="text-align:left;">
-Comparing two groups: Tests whether the means of two independent samples are equal (assumes unequal variances)
-</td>
-<td style="text-align:left;">
-The mean of grades of students tutored by Anastasia and Bernadette in Dr Harpo’s class (with an alternative data set that violates normality assumption)
-</td>
+<tr class="even">
+<td align="left"><a href="ttest.html#welchttest">Independent samples t-test (Welch)</a></td>
+<td align="left">Comparing two groups: Tests whether the means of two independent samples are equal (assumes unequal variances)</td>
+<td align="left">The mean of grades of students tutored by Anastasia and Bernadette in Dr Harpo’s class (with an alternative data set that violates normality assumption)</td>
 </tr>
-<tr>
-<td style="text-align:left;padding-left: 4em;" indentlevel="2">
-<a href="ttest.html#mannwhitney">Two-sample Wilcoxon test (Mann-Whitney test)</a>
-</td>
-<td style="text-align:left;">
-Tests whether the means of two independent samples are equal (assumes non-normal distribution)
-</td>
-<td style="text-align:left;">
-AFL games attendance if the game is finals or not
-</td>
+<tr class="odd">
+<td align="left"><a href="ttest.html#mannwhitney">Two-sample Wilcoxon test (Mann-Whitney test)</a></td>
+<td align="left">Tests whether the means of two independent samples are equal (assumes non-normal distribution)</td>
+<td align="left">AFL games attendance if the game is finals or not</td>
 </tr>
-<tr grouplength="2">
-<td colspan="3" style="border-bottom: 1px solid;">
-<strong>One group in two situations</strong>
-</td>
+<tr class="even">
+<td align="left"><strong>One group in two situations</strong></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
-<tr>
-<td style="text-align:left;padding-left: 4em;" indentlevel="2">
-<a href="ttest.html#pairedsamplesttest">Paired samples <span class="math inline">\(t\)</span>-test</a>
-</td>
-<td style="text-align:left;">
-Tests whether the means of two samples are equal (assumes normal distribution)
-</td>
-<td style="text-align:left;">
-Changes to the mean of grades between the first test and the second test in Dr Chico’s class
-</td>
+<tr class="odd">
+<td align="left"><a href="ttest.html#pairedsamplesttest">Paired samples t-test</a></td>
+<td align="left">Tests whether the means of two samples are equal (assumes normal distribution)</td>
+<td align="left">Changes to the mean of grades between the first test and the second test in Dr Chico’s class</td>
 </tr>
-<tr>
-<td style="text-align:left;padding-left: 4em;" indentlevel="2">
-<a href="ttest.html#wilcoxon">Wilcoxon signed-rank test (paired)</a>
-</td>
-<td style="text-align:left;">
-Tests whether the means of two paired samples are equal (assumes non-normal distribution)
-</td>
-<td style="text-align:left;">
-Whether a biology class has any effect on the happiness of students
-</td>
+<tr class="even">
+<td align="left"><a href="ttest.html#wilcoxon">Wilcoxon signed-rank test (paired)</a></td>
+<td align="left">Tests whether the means of two paired samples are equal (assumes non-normal distribution)</td>
+<td align="left">Whether a biology class has any effect on the happiness of students</td>
 </tr>
-<tr grouplength="3">
-<td colspan="3" style="border-bottom: 1px solid;">
-<strong>Three or more groups</strong>
-</td>
+<tr class="odd">
+<td align="left"><strong>Three or more groups</strong></td>
+<td align="left"></td>
+<td align="left"></td>
 </tr>
-<tr>
-<td style="text-align:left;padding-left: 4em;" indentlevel="2">
-<a href="anova.html#anova">One-way ANOVA</a>
-</td>
-<td style="text-align:left;">
-Tests whether the means of three or more independent samples are equal (assumes normal distribution)
-</td>
-<td style="text-align:left;">
-Effects of 3 drugs on mood in our clinical trial
-</td>
+<tr class="even">
+<td align="left"><a href="anova.html#anova">One-way ANOVA</a></td>
+<td align="left">Tests whether the means of three or more independent samples are equal (assumes normal distribution)</td>
+<td align="left">Effects of 3 drugs on mood in our clinical trial</td>
 </tr>
-<tr>
-<td style="text-align:left;padding-left: 4em;" indentlevel="2">
-<a href="anova.html#kruskalwallis">Kruskal-Wallis rank sum test</a>
-</td>
-<td style="text-align:left;">
-Tests whether the means of three or more independent samples are equal (assumes non-normal distribution)
-</td>
-<td style="text-align:left;">
-Effects of 3 drugs on mood in our clinical trial (adjusted data set)
-</td>
+<tr class="odd">
+<td align="left"><a href="anova.html#kruskalwallis">Kruskal-Wallis rank sum test</a></td>
+<td align="left">Tests whether the means of three or more independent samples are equal (assumes non-normal distribution)</td>
+<td align="left">Effects of 3 drugs on mood in our clinical trial (adjusted data set)</td>
 </tr>
-<tr>
-<td style="text-align:left;padding-left: 4em;" indentlevel="2">
-<a href="anova2.html#anova2">Factorial ANOVA</a>
-</td>
-<td style="text-align:left;">
-Tests whether the means of three or more independent samples are equal but with more than one grouping variable
-</td>
-<td style="text-align:left;">
-Effects of 3 drugs and 2 therapy methods on mood in our clinical trial
-</td>
+<tr class="even">
+<td align="left"><a href="anova2.html#anova2">Factorial ANOVA</a></td>
+<td align="left">Tests whether the means of three or more independent samples are equal but with more than one grouping variable</td>
+<td align="left">Effects of 3 drugs and 2 therapy methods on mood in our clinical trial</td>
 </tr>
 </tbody>
 </table>
@@ -769,52 +642,33 @@ Effects of 3 drugs and 2 therapy methods on mood in our clinical trial
 <div id="analysing-relationship-with-hyptothesis-testing" class="section level2 unnumbered hasAnchor">
 <h2>Analysing relationship with hyptothesis testing<a href="summaryguide.html#analysing-relationship-with-hyptothesis-testing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
+<colgroup>
+<col width="26%" />
+<col width="36%" />
+<col width="36%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left;">
-Test
-</th>
-<th style="text-align:left;">
-Description
-</th>
-<th style="text-align:left;">
-Example from the chapter
-</th>
+<tr class="header">
+<th align="left">Test</th>
+<th align="left">Description</th>
+<th align="left">Example from the chapter</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-<a href="correl.html#pearson">Pearson’s correlation coefficient</a>
-</td>
-<td style="text-align:left;">
-Tests whether two variables are correlated (continuous data)
-</td>
-<td style="text-align:left;">
-Correlation between the number of hours of slept and mood
-</td>
+<tr class="odd">
+<td align="left"><a href="correl.html#pearson">Pearson’s correlation coefficient</a></td>
+<td align="left">Tests whether two variables are correlated (continuous data)</td>
+<td align="left">Correlation between the number of hours of slept and mood</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<a href="correl.html#spearman">Spearman’s rank-order correlation</a>
-</td>
-<td style="text-align:left;">
-Tests whether two variables are correlated (ordinal data)
-</td>
-<td style="text-align:left;">
-Correlation between effort and grade
-</td>
+<tr class="even">
+<td align="left"><a href="correl.html#spearman">Spearman’s rank-order correlation</a></td>
+<td align="left">Tests whether two variables are correlated (ordinal data)</td>
+<td align="left">Correlation between effort and grade</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<a href="#linearregression">Linear regression</a>
-</td>
-<td style="text-align:left;">
-Tests whether a linear relationship exists between two variables (continuous data)
-</td>
-<td style="text-align:left;">
-Correlation between the number of hours of sleep (parent, baby) and parent grumpiness
-</td>
+<tr class="odd">
+<td align="left"><a href="#linearregression">Linear regression</a></td>
+<td align="left">Tests whether a linear relationship exists between two variables (continuous data)</td>
+<td align="left">Correlation between the number of hours of sleep (parent, baby) and parent grumpiness</td>
 </tr>
 </tbody>
 </table>

@@ -2,24 +2,27 @@
 
 Up to this point, we have focused entirely on how to construct descriptive statistics for a single variable. What we have not done is talk about how to describe the relationships *between* variables in the data. To do that, we want to talk mainly about the **correlation** between variables. But first, we need some data.
 
-After watching the AFL data, let's turn to a topic close to every parent's heart: sleep. The following data set is fictitious but based on real events. Suppose we're curious to determine how much a baby's sleeping habits affect the parent's mood. Let's say we can rate parent grumpiness very precisely on a scale from 0 (not at all grumpy) to 100 (very, very grumpy). And let's also assume that we've been measuring parent grumpiness, parent sleeping patterns, and the baby's sleeping patterns for 100 days.
+After watching the AFL data, let's turn to a topic close to every parent's heart: sleep. The following data set ([parenthood.csv](resources/data/parenthood.csv)) is fictitious but based on real events. Suppose we're curious to determine how much a baby's sleeping habits affect the parent's mood. Let's say we can rate parent grumpiness very precisely on a scale from 0 (not at all grumpy) to 100 (very, very grumpy). And let's also assume that we've been measuring parent grumpiness, parent sleeping patterns, and the baby's sleeping patterns for 100 days.
 
-```{r loadparenthood, out.width='100%', fig.align='center',echo=FALSE, fig.cap="This is what you would see after loading the [parenthood.csv](resources/data/parenthood.csv) dataset."}
+```{r loadparenthood, out.width='100%', fig.align='center',echo=FALSE, fig.cap="This is what you would see after loading the parenthood.csv dataset."}
 knitr::include_graphics("resources/image/cogstatparenthoodload.png")
 ```
 
 As described in Chapter \@ref(exploringavariable), we can get all the necessary descriptive statistics for all the variables: `parentsleep`, `babysleep` and `grumpiness`. Let's summarise all these into a neat little table.
 
-```{r parenthoodtab, echo=FALSE}
+```{r parenthoodtab, echo=FALSE, fig.align="center"}
+library(kableExtra)
 knitr::kable(cbind(
- c("" , "Mean" , "Standard deviation" , "Skewness" , "Kurtosis" , "Range" , "Maximum", "Upper quartile" , "Median" , "Lower quartile" , "Minimum"),
- c("`parentgrump`", 63.7, 10.0, 0.4, -0.0, 50.0, 91.0, 71.0, 62.0, 57.0, 41.0),
- c("`parentsleep`" , 6.965, 1.011, -0.296, -0.649, 4.160, 9.000, 7.740, 7.030, 6.292, 4.840),
- c("`babysleep`" , 8.049, 2.064, -0.024, -0.613, 8.820, 12.070, 9.635, 7.950, 6.425, 3.250)),
- col.names=c("", "Parent grumpiness", "Parent's hours slept", "Baby's hours slept"),
+ c("Mean" , "Standard deviation" , "Skewness" , "Kurtosis" , "Range" , "Maximum", "Upper quartile" , "Median" , "Lower quartile" , "Minimum"),
+ c(63.7, 10.0, 0.4, -0.0, 50.0, 91.0, 71.0, 62.0, 57.0, 41.0),
+ c(6.965, 1.011, -0.296, -0.649, 4.160, 9.000, 7.740, 7.030, 6.292, 4.840),
+ c(8.049, 2.064, -0.024, -0.613, 8.820, 12.070, 9.635, 7.950, 6.425, 3.250)),
+ col.names=c("", "`parentgrump`", "`parentsleep`", "`babysleep`"),
  caption = 'Descriptive statistics for the parenthood data.',
  booktabs = TRUE,
- align = "lccc")
+ align = "lccc",
+ escape = FALSE) %>%
+  add_header_above(c("", "Parent grumpiness", "Parent's hours slept", "Baby's hours slept"))
 ```
 
 To start understanding the relationship between a pair of variables, select `Explore relation of variable pair` so a pop-up appears. Move the name of the two variables you wish to analyse (from `Available variables` to `Selected variables`, then click `OK`.
@@ -150,7 +153,7 @@ c("0.7 to 0.9", "Strong", "Positive"),
 c("0.9 to 1.0", "Very strong", "Positive")),
  col.names=c("Correlation", "Strength", "Direction"),
  booktabs = TRUE, caption = "Rough guide to interpreting correlations",
- align = c("l", "c", "c"))
+ align = c("l", "c", "c"), escape = FALSE)
 ```
 
 However, something that can never be stressed enough is that you should *always* look at the scatterplot before attaching any interpretation to the data. A correlation might not mean what you think it means. The classic illustration of this is "Anscombe's Quartet" [@Anscombe1973], which is a collection of four data sets. Each data set has two variables, an $X$ and a $Y$. For all four data sets, the mean value for $X$ is 9, and the mean for $Y$ is 7.5. The standard deviations for all $X$ variables are almost identical, as are the standard deviations for the $Y$ variables. And in each case the correlation between $X$ and $Y$ is $r = 0.816$.
@@ -215,14 +218,15 @@ How should we address this? Actually, it's really easy: if we're looking for ord
 Okay, so let's have a look at our students when we rank them from worst to best in terms of effort and reward:
 
 ```{r studenteffort, echo=FALSE}
+library(kableExtra)
 knitr::kable(cbind(
  c("student 1", "student 2", "student 3", "student 4", "student 5", "student 6", "student 7", "student 8", "student 9", "student 10"),
  c(1, 10, 6, 2, 3, 5, 4, 8, 7, 9),
  c(1, 10, 6, 2, 3, 5, 4, 8, 7, 9)
  ),
  col.names = c("Student", "Rank (hours worked)", "Rank (grade received)"),
- booktabs = TRUE, align = "lcc")
-
+ booktabs = TRUE, align = "lcc", escape = FALSE, linesep = "") %>%
+  kable_styling(position = "center")
 ```
 
 Hm. These are *identical*. The student who put in the most effort got the best grade, the student with the least effort got the worst grade, etc. We can rank students by hours worked, then rank students by grade received, and these two rankings would be identical. So if we now correlate them, we get a perfect relationship: $1$.
@@ -239,22 +243,25 @@ knitr::include_graphics("resources/image/cogstatcorrelationresult.png")
 
 To illustrate the issues, let's open up a data set with missing values, [`parenthood_missing.csv`](resources/data/parenthood_missing.csv). This file contains the same data as the original parenthood data but with some values deleted. While the original source could contain an empty value or `NA`, CogStat will display `NaN` for these missing values (Figure \@ref(fig:parenthoodmissing)).
 
-```{r parenthoodmissing, echo=FALSE, fig.align='center', out.width='100%', fig.cap="This is what you would see in CogStat after loading the `parenthood_missing.csv` dataset."}
+```{r parenthoodmissing, echo=FALSE, fig.align='center', out.width='100%', fig.cap="This is what you would see in CogStat after loading the adjusted dataset."}
 knitr::include_graphics("resources/image/cogstatparenthood_missing.png")
 ```
 
 Let's calculate descriptive statistics using the `Explore variable` function (See Chapter: \@ref(exploringavariable)):
 
 ```{r parenthoodmissingtab, echo=FALSE}
+library(kableExtra)
 knitr::kable(cbind(
- c("" , "Mean" , "Standard deviation" , "Skewness" , "Kurtosis" , "Range" , "Maximum", "Upper quartile" , "Median" , "Lower quartile" , "Minimum"),
- c("`parentgrump`", 63.2, 9.8, 0.4, -0.2, 48.0, 89.0, 70.2, 61.0, 56.0, 41.0),
- c("`parentsleep`", 6.977, 1.015, -0.346, -0.647, 4.160, 9.000, 7.785, 7.030, 6.285, 4.840),
- c("`babysleep`", 8.114, 2.035, -0.096, -0.500, 8.820, 12.070, 9.610, 8.200, 6.460, 3.250)),
- col.names=c("", "Parent grumpiness", "Parent's hours slept", "Baby's hours slept"),
+ c("Mean" , "Standard deviation" , "Skewness" , "Kurtosis" , "Range" , "Maximum", "Upper quartile" , "Median" , "Lower quartile" , "Minimum"),
+ c(63.2, 9.8, 0.4, -0.2, 48.0, 89.0, 70.2, 61.0, 56.0, 41.0),
+ c(6.977, 1.015, -0.346, -0.647, 4.160, 9.000, 7.785, 7.030, 6.285, 4.840),
+ c(8.114, 2.035, -0.096, -0.500, 8.820, 12.070, 9.610, 8.200, 6.460, 3.250)),
+ col.names=c(" ", "`parentgrump`", "`parentsleep`", "`babysleep`"),
  caption = 'Descriptive statistics for the parenthood data with missing values. We can observe the slight difference in our statistics when we have missing values.',
  booktabs = TRUE,
- align = "lccc")
+ align = "lccc", escape = FALSE) %>%
+   add_header_above(c(" " = 1, "Parent grumpiness" = 1, 
+   "Parent's hours slept" = 1, "Baby's hours slept" = 1))
 ```
 
 We can see that there are 9 missing values for `parentsleep` (`N of missing cases: 9`), 11 missing values for `babysleep` (`N of missing cases: 11`), and 8 missing values for `parentgrump` (`N of missing cases: 8`).

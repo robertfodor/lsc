@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 11 Comparing two means | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
   <meta property="og:description" content="Chapter 11 Comparing two means | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 11 Comparing two means | Learning Statistics with CogStat" />
   
   <meta name="twitter:description" content="Chapter 11 Comparing two means | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
@@ -549,62 +549,32 @@ z_{\bar{X}} \sim \mbox{Normal}(0,1)
 <p>In other words, regardless of what scale the original data are on, the <span class="math inline">\(z\)</span>-statistic itself always has the same interpretation: it’s equal to the number of standard errors that separate the observed sample mean <span class="math inline">\(\bar{X}\)</span> from the population mean <span class="math inline">\(\mu_0\)</span> predicted by the null hypothesis. Better yet, regardless of what the population parameters for the raw scores actually are, the 5% critical regions for <span class="math inline">\(z\)</span>-test are always the same, as illustrated in Figures <a href="ttest.html#fig:ztest1">11.6</a> and <a href="ttest.html#fig:ztest2">11.5</a>. And what this meant, way back in the days where people did all their statistics by hand, is that someone could publish a table like this:</p>
 <table>
 <thead>
-<tr>
-<th style="text-align:center;">
-desired <span class="math inline">\(\alpha\)</span> level
-</th>
-<th style="text-align:center;">
-two-sided test
-</th>
-<th style="text-align:center;">
-one-sided test
-</th>
+<tr class="header">
+<th align="center">desired <span class="math inline">\(\alpha\)</span> level</th>
+<th align="center">two-sided test</th>
+<th align="center">one-sided test</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center;">
-.1
-</td>
-<td style="text-align:center;">
-1.644854
-</td>
-<td style="text-align:center;">
-1.281552
-</td>
+<tr class="odd">
+<td align="center">.1</td>
+<td align="center">1.644854</td>
+<td align="center">1.281552</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-.05
-</td>
-<td style="text-align:center;">
-1.959964
-</td>
-<td style="text-align:center;">
-1.644854
-</td>
+<tr class="even">
+<td align="center">.05</td>
+<td align="center">1.959964</td>
+<td align="center">1.644854</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-.01
-</td>
-<td style="text-align:center;">
-2.575829
-</td>
-<td style="text-align:center;">
-2.326348
-</td>
+<tr class="odd">
+<td align="center">.01</td>
+<td align="center">2.575829</td>
+<td align="center">2.326348</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-.001
-</td>
-<td style="text-align:center;">
-3.290527
-</td>
-<td style="text-align:center;">
-3.090232
-</td>
+<tr class="even">
+<td align="center">.001</td>
+<td align="center">3.290527</td>
+<td align="center">3.090232</td>
 </tr>
 </tbody>
 </table>
@@ -925,8 +895,9 @@ Figure 11.12: CogStat result set when the Levene test is significant, hence a We
 <p>For example, we might be interested in whether listening to music reduces people’s working memory capacity. To that end, we could measure each person’s working memory capacity in two conditions: with music, and without music. In an experimental design such as this one,<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a> each participant appears in <em>both</em> groups. This requires us to approach the problem in a different way; by using the <strong>paired samples <span class="math inline">\(t\)</span>-test</strong>.</p>
 <p>We’ll use the data set this time from Dr Chico’s class. In her class, students take two very challenging tests, one early in the semester and one later. Her theory is that the first test is a bit of a “wake-up call” for students: when they realise how hard her class really is, they’ll work harder for the second test and get a better mark. Is she right? To test this, let’s load the <code>chico.csv</code> file into CogStat.</p>
 <p>The data frame <code>chico</code> contains three variables: an <code>id</code> nominal variable that identifies each student in the class, the <code>grade_test1</code> variable that records the student grade for the first test, and the <code>grade_test2</code> variable that has the grades for the second test. Let’s take a quick look at the descriptive statistics. Since we are running a before and after test (like we already did in Chapter <a href="chisquare.html#mcnemar">10.7</a>), let’s use the <code>Compare repeated measures variables</code> function.</p>
+
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:chico"></span>
-<img src="resources/image/cogstatchicodescr.png" alt="CogStat descriptives and boxplot for the variables `grade_test1` and `grade_test2` in the Compare repeated measures variables function." width="100%" /><img src="resources/image/cogstatchicoboxplot.png" alt="CogStat descriptives and boxplot for the variables `grade_test1` and `grade_test2` in the Compare repeated measures variables function." width="100%" />
+<img src="resources/image/cogstatchicodescr.png" alt="CogStat descriptives and boxplot for the variables grade_test1 and grade_test2 in the Compare repeated measures variables function." width="100%" /><img src="resources/image/cogstatchicoboxplot.png" alt="CogStat descriptives and boxplot for the variables grade_test1 and grade_test2 in the Compare repeated measures variables function." width="100%" />
 <p class="caption">
 Figure 11.13: CogStat descriptives and boxplot for the variables <code>grade_test1</code> and <code>grade_test2</code> in the Compare repeated measures variables function.
 </p>
@@ -1007,43 +978,25 @@ d = \frac{\mbox{(mean 1)} - \mbox{(mean 2)}}{\mbox{std dev}}
 \]</span>
 and he suggested a rough guide for interpreting <span class="math inline">\(d\)</span> in Table <a href="ttest.html#tab:cohensdinterpretation">11.1</a>. You’d think that this would be pretty unambiguous, but it’s not; largely because Cohen wasn’t too specific on what he thought should be used as the measure of the standard deviation. As discussed by <span class="citation">McGrath &amp; Meyer (2006)</span>, there are several different versions in common usage, and each author tends to adopt slightly different notation. Cohen’s <span class="math inline">\(d\)</span> is automatically produced as part of the output in CogStat whenever it makes sense.</p>
 <table>
-<caption>
-<span id="tab:cohensdinterpretation">Table 11.1: </span>A (very) rough guide to interpreting Cohen’s <span class="math inline">\(d\)</span>. Do not use these blindly. The <span class="math inline">\(d\)</span> statistic has a natural interpretation in and of itself: it redescribes the different in means as the number of standard deviations that separates those means. So it’s generally a good idea to think about what that means in practical terms. In some contexts a “small” effect could be of big practical importance. In other situations a “large” effect may not be all that interesting.
-</caption>
+<caption><span id="tab:cohensdinterpretation">Table 11.1: </span>A (very) rough guide to interpreting Cohen’s <span class="math inline">\(d\)</span>. Do not use these blindly. The <span class="math inline">\(d\)</span> statistic has a natural interpretation in and of itself: it redescribes the different in means as the number of standard deviations that separates those means. So it’s generally a good idea to think about what that means in practical terms. In some contexts a “small” effect could be of big practical importance. In other situations a “large” effect may not be all that interesting.</caption>
 <thead>
-<tr>
-<th style="text-align:left;">
-Cohen’s <span class="math inline">\(d\)</span>
-</th>
-<th style="text-align:left;">
-Interpretation
-</th>
+<tr class="header">
+<th align="left">Cohen’s <span class="math inline">\(d\)</span></th>
+<th align="left">Interpretation</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-about 0.2
-</td>
-<td style="text-align:left;">
-small effect
-</td>
+<tr class="odd">
+<td align="left">about 0.2</td>
+<td align="left">small effect</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-about 0.5
-</td>
-<td style="text-align:left;">
-moderate effect
-</td>
+<tr class="even">
+<td align="left">about 0.5</td>
+<td align="left">moderate effect</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-about 0.8
-</td>
-<td style="text-align:left;">
-large effect
-</td>
+<tr class="odd">
+<td align="left">about 0.8</td>
+<td align="left">large effect</td>
 </tr>
 </tbody>
 </table>
@@ -1084,8 +1037,9 @@ W = \frac{ \left( \sum_{i = 1}^N a_i X_i \right)^2 }{ \sum_{i = 1}^N (X_i - \bar
 where <span class="math inline">\(\bar{X}\)</span> is the mean of the observations, and the <span class="math inline">\(a_i\)</span> values are something complicated beyond the scope of an introductory text.</p>
 <p>Unlike most of the test statistics, if the <span class="math inline">\(p\)</span>-value of a Shapiro-Wilk test is less than <span class="math inline">\(0.05\)</span>, then you can conclude that the data are <em>not</em> normally distributed. If the <span class="math inline">\(p\)</span>-value is greater than <span class="math inline">\(0.05\)</span>, then you can conclude that the data are normally distributed.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a></p>
 <p>The sampling distribution for <span class="math inline">\(W\)</span> – which is not one of the standard ones discussed in Chapter <a href="probability.html#probability">7</a> – depends on the sample size <span class="math inline">\(N\)</span>. To give you a feel for what these sampling distributions look like, we’ve plotted three of them in Figure <a href="ttest.html#fig:swdist">11.17</a>. Notice that, as the sample size starts to get large, the sampling distribution becomes very tightly clumped up near <span class="math inline">\(W=1\)</span>, and as a consequence, for larger samples, <span class="math inline">\(W\)</span> doesn’t have to be much smaller than 1 for the test to be significant.</p>
+
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:swdist"></span>
-<img src="resources/image/shapirowilkdist.png" alt="Sampling distribution of the Shapiro-Wilk $W$ statistic, under the null hypothesis that the data are normally distributed, for samples of size 10, 20 and 50. Note that *small* values of $W$ indicate departure from normality." width="100%" />
+<img src="resources/image/shapirowilkdist.png" alt="Sampling distribution of the Shapiro-Wilk \(W\) statistic, under the null hypothesis that the data are normally distributed, for samples of size 10, 20 and 50. Note that small values of \(W\) indicate departure from normality." width="100%" />
 <p class="caption">
 Figure 11.17: Sampling distribution of the Shapiro-Wilk <span class="math inline">\(W\)</span> statistic, under the null hypothesis that the data are normally distributed, for samples of size 10, 20 and 50. Note that <em>small</em> values of <span class="math inline">\(W\)</span> indicate departure from normality.
 </p>
@@ -1101,8 +1055,9 @@ Figure 11.17: Sampling distribution of the Shapiro-Wilk <span class="math inline
 <h3><span class="header-section-number">11.8.1</span> Two-sample Wilcoxon test (Mann-Whitney test)<a href="ttest.html#mannwhitney" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s start with the <strong>two-sample Wilcoxon test</strong>, also known as the <strong>Mann-Whitney test</strong>, since it’s simpler than the one-sample version.</p>
 <p>Let us recall our AFL example with the data set called <a href="resources/data/afl24.csv"><code>afl24.csv</code></a><a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a>. We want to see if there is any statistically significant difference in the <code>attendance</code> if the game is a final or not (boolean variable name: <code>isfinal</code>).</p>
+
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:mwafl24"></span>
-<img src="resources/image/mannwhitneyafl24.png" alt="AFL final and non-final attendance (`Compare groups` function used)." width="100%" /><img src="resources/image/mannwhitneyafl24box.png" alt="AFL final and non-final attendance (`Compare groups` function used)." width="100%" />
+<img src="resources/image/mannwhitneyafl24.png" alt="AFL final and non-final attendance (Compare groups function used)." width="100%" /><img src="resources/image/mannwhitneyafl24box.png" alt="AFL final and non-final attendance (Compare groups function used)." width="100%" />
 <p class="caption">
 Figure 11.18: AFL final and non-final attendance (<code>Compare groups</code> function used).
 </p>
@@ -1148,7 +1103,7 @@ Figure 11.19: Happiness before and after statistics class (<code>Compare repeat 
 </div>
 <p>The <span class="math inline">\(p\)</span> value is 0.031, which is below our <span class="math inline">\(\alpha\)</span> level of 0.05. This means that we can reject the null hypothesis that the two groups have the same median happiness. In other words, we can conclude that taking the biology class has a statistically significant negative effect on the happiness of students. Why negative? While the T value is positive, remember the rule, you have to plot your raw data and look at the descriptives as well, if something doesn’t look right. And as you’ve seen, the median happiness score for the <code>before</code> group is higher than the median happiness score for the <code>after</code> group.</p>
 <p>Now, you can make sure by running a one-sample Wilcoxon test in CogStat. Let’s use the <code>Explore variable</code> function with the <code>change</code> variable. This will serve two purposes. You’ll see how the one-sample Wilcoxon test works, and you’ll also see how the one-sample and two-sample tests relate to each other.</p>
-<p>You’ll quickly see in the descriptives, that the Mean change is negative (<span class="math inline">\(-9.6\)</span>) with a 95% confidence interval of <span class="math inline">\(-18.7\)</span> to #-0.4$ being both in the negative.</p>
+<p>You’ll quickly see in the descriptives, that the Mean change is negative (<span class="math inline">\(-9.6\)</span>) with a 95% confidence interval of <span class="math inline">\(-18.7\)</span> to <span class="math inline">\(-0.4\)</span> being both in the negative.</p>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
      <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
      <p style="color:#008000;">Testing if mean deviates from the value 0.<br />

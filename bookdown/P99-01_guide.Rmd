@@ -6,123 +6,50 @@ This is a non-comprehensive summary guide about the tools used.
 
 ## Descriptive statistics{-}
 
-```{r echo=FALSE, fig.align="center"}
-library(kableExtra)
-knitr::kable(rbind(
-  c("[Mean](#mean)",
-  "Average -- the \"centre of gravity\" of the data"),
-  c("[Standard deviation](#sd)",
-  "How clustered is the data around the mean (smaller figure means more clustered, larger figure closer to interquartile range means more spread out)"),
-  c("[Skewness](#skewnesskurtosis)",
-  "The assymetry of the data compared to a normal distribution (bell curve)"),
-  c("[Kurtosis](#skewnesskurtosis)",
-  "Pointiness of the data. Smaller figure means more pointy, larger figure means less pointy"),
-  c("[Range](#range)",
-  "The spread of the data set between the maximum and minimum values"),
-  c("[Maximum](#range)",
-  "The highest value in the data set"),
-  c("[Upper quartile](#IQR)",
-  "25% of the data points reside at and above this value"),
-  c("[Median](#median)",
-  "This is the value of the data point in the middle (or the average of the two middle points in case of even number of data points). 50-50% of data points reside at above and below this value"),
-  c("[Lower quartile](#IQR)", 
-  "25% of the data points reside at and below this value"),
-  c("[Minimum](#range)",
-  "The lowest value in the data set")
-   ),
-  col.names = c("", "Meaning"),
-  booktabs = TRUE,
-  align = "l"
-  ) %>%
-  column_spec(1, width_min = "1.5in")
 
-```
+| | Meaning |
+|:------------|:----------------------------------------|
+| [Mean](#mean)  | Average -- the "centre of gravity" of the data  |
+| [Standard deviation](#sd)| How clustered is the data around the mean (smaller figure means more clustered, larger figure closer to interquartile range means more spread out)  |
+| [Skewness](#skewnesskurtosis) | The assymetry of the data compared to a normal distribution (bell curve) |
+| [Kurtosis](#skewnesskurtosis) | Pointiness of the data. Smaller figure means more pointy, larger figure means less pointy |
+| [Range](#range)| The spread of the data set between the maximum and minimum values|
+| [Maximum](#range) | The highest value in the data set  |
+| [Upper quartile](#IQR) | 25% of the data points reside at and above this value  |
+| [Median](#median) | This is the value of the data point in the middle (or the average of the two middle points in case of even number of data points). 50-50% of data points reside at above and below this value |
+| [Lower quartile](#IQR) | 25% of the data points reside at and below this value  |
+| [Minimum](#range) | The lowest value in the data set |
 
 ## Analysing differences with hyptothesis testing{-}
 
-```{r, fig.align="center", out.width="100%", echo=FALSE}
-knitr::kable(
-    rbind(
-        c("[$\\chi^2$ goodness-of-fit test](#goftest)",
-            "Tests whether the observed data fits a theoretical distribution",
-            "Probability of card suits being random"),
-        c("[$\\chi^2$ test of independence](#chisqindependence)",
-            "Tests whether two distributions are the same",
-            "Probability that a member of species $j$ 
-            gives response $i$ to aliens"),
-        c("[Fisher's exact test](#fisherexacttest)",
-            "Tests whether two distributions are the same 
-            (small sample sizes and contingency tables",
-            "Witches' happiness being burned in Salem"),
-        c("[McNemar test of marginal homogeneity](#mcnemar)",
-        "2 by 2 contingency table with nominal data",
-        "Whether the frequencies of suit choices 
-        are different the second time than the first time"),
+| Test | Description | Example from the chapter |
+|:----|:------|:-----|
+| **CATEGORICAL DATA** |||
+| [$\chi^2$ goodness‑of‑fit test](#goftest) | Tests whether the observed data fits a theoretical distribution | Probability of card suits being random |
+| [$\chi^2$ test for independence](#chisqindependence) | Tests whether two distributions are the same | Probability that a member of species $j$ gives response $i$ to aliens |
+| [Fisher's exact test](#fisherexacttest) | Tests whether two distributions are the same (small sample sizes and contingency tables | Witches' happiness being burned in Salem |
+| [McNemar test of marginal homogeneity](#mcnemar) | 2 by 2 contingency table with nominal data | Whether the frequencies of suit choices are different the second time than the first time |
+| **NON-CATEGORICAL DATA** |||
+| **One group in one situation** |||
+| [One-sample z‑test](#ztest) | Tests whether the mean is equal to a given hypothetical value (you know the population standard deviation and your sample size is large) | The mean of grades in Dr Zeppo's class is above 67.5 |
+| [One-sample t-test or Student's t-test](#onesamplettest) | Tests whether the mean is equal to a given hypothetical value (you only have an estimated standard deviation, you cannot speak for the population) | The mean of grades in Dr Zeppo's class is above 67.5 |
+| **Two groups in one situation** |||
+| [Independent samples t-test (Student's)](#studentttest) | Comparing two groups: Tests whether the means of two independent samples are equal (assumes normal distribution) | The mean of grades of students tutored by Anastasia and Bernadette in Dr Harpo's class |
+| [Independent samples t-test (Welch)](#welchttest) | Comparing two groups: Tests whether the means of two independent samples are equal (assumes unequal variances) | The mean of grades of students tutored by Anastasia and Bernadette in Dr Harpo's class (with an alternative data set that violates normality assumption) |
+| [Two-sample Wilcoxon test (Mann-Whitney test)](#mannwhitney) | Tests whether the means of two independent samples are equal (assumes non-normal distribution) | AFL games attendance if the game is finals or not |
+| **One group in two situations** |||
+| [Paired samples t-test](#pairedsamplesttest) | Tests whether the means of two samples are equal (assumes normal distribution) | Changes to the mean of grades between the first test and the second test in Dr Chico's class |
+| [Wilcoxon signed-rank test (paired)](#wilcoxon) | Tests whether the means of two paired samples are equal (assumes non-normal distribution) | Whether a biology class has any effect on the happiness of students |
+| **Three or more groups** |||
+| [One-way ANOVA](#anova) | Tests whether the means of three or more independent samples are equal (assumes normal distribution) | Effects of 3 drugs on mood in our clinical trial |
+| [Kruskal-Wallis rank sum test](#kruskalwallis) | Tests whether the means of three or more independent samples are equal (assumes non-normal distribution) | Effects of 3 drugs on mood in our clinical trial (adjusted data set) |
+| [Factorial ANOVA](#anova2) | Tests whether the means of three or more independent samples are equal but with more than one grouping variable | Effects of 3 drugs and 2 therapy methods on mood in our clinical trial |
 
-        c("[One-sample $z$-test](#ztest)",
-            "Tests whether the mean is equal to a given hypothetical value (you know the population standard deviation and your sample size is large)",
-            "The mean of grades in Dr Zeppo's class is above 67.5"),
-        c("[One-sample $t$-test or Student's $t$-test](#onesamplettest)",
-            "Tests whether the mean is equal to a given hypothetical value (you only have an estimated standard deviation, you cannot speak for the population)",
-            "The mean of grades in Dr Zeppo's class is above 67.5"),
-        c("[Independent samples $t$-test (Student's)](#studentttest)",
-            "Comparing two groups: Tests whether the means of two independent samples are equal (assumes normal distribution)",
-            "The mean of grades of students tutored by Anastasia and Bernadette in Dr Harpo's class"),
-        c("[Independent samples $t$-test (Welch)](#welchttest)",
-            "Comparing two groups: Tests whether the means of two independent samples are equal (assumes unequal variances)",
-            "The mean of grades of students tutored by Anastasia and Bernadette in Dr Harpo's class (with an alternative data set that violates normality assumption)"),
-        c("[Two-sample Wilcoxon test (Mann-Whitney test)](#mannwhitney)",
-            "Tests whether the means of two independent samples are equal (assumes non-normal distribution)",
-            "AFL games attendance if the game is finals or not"),
-        c("[Paired samples $t$-test](#pairedsamplesttest)",
-            "Tests whether the means of two samples are equal (assumes normal distribution)",
-            "Changes to the mean of grades between the first test and the second test in Dr Chico's class"),
-        c("[Wilcoxon signed-rank test (paired)](#wilcoxon)",
-            "Tests whether the means of two paired samples are equal (assumes non-normal distribution)",
-            "Whether a biology class has any effect on the happiness of students"),
-
-
-        c("[One-way ANOVA](#anova)",
-            "Tests whether the means of three or more independent samples are equal (assumes normal distribution)",
-            "Effects of 3 drugs on mood in our clinical trial"),
-        c("[Kruskal-Wallis rank sum test](#kruskalwallis)",
-            "Tests whether the means of three or more independent samples are equal (assumes non-normal distribution)",
-            "Effects of 3 drugs on mood in our clinical trial (adjusted data set)"),
-        c("[Factorial ANOVA](#anova2)",
-            "Tests whether the means of three or more independent samples are equal but with more than one grouping variable",
-            "Effects of 3 drugs and 2 therapy methods on mood in our clinical trial")
-    ),
-    col.names = c("Test", "Description", "Example from the chapter"),
-    escape = FALSE,
-    booktabs = TRUE,
-    align = "l"
-) %>%
-    pack_rows("CATEGORICAL DATA", 1, 4) %>%
-    pack_rows("NON-CATEGORICAL DATA", 5, 14) %>%
-        pack_rows("One group in one situation", 5, 6) %>%
-        pack_rows("Two groups in one situation", 7, 9) %>%
-        pack_rows("One group in two situations", 10, 11) %>%
-        pack_rows("Three or more groups", 12, 14)
-```
 
 ## Analysing relationship with hyptothesis testing{-}
 
-```{r, fig.align="center", out.width="100%", echo=FALSE}
-knitr::kable(
-    rbind(
-        c("[Pearson's correlation coefficient](#pearson)",
-            "Tests whether two variables are correlated (continuous data)",
-            "Correlation between the number of hours of slept and mood"),
-        c("[Spearman's rank-order correlation](#spearman)",
-            "Tests whether two variables are correlated (ordinal data)",
-            "Correlation between effort and grade"),
-        c("[Linear regression](#linearregression)",
-            "Tests whether a linear relationship exists between two variables (continuous data)",
-            "Correlation between the number of hours of sleep (parent, baby) and parent grumpiness")
-    ),
-    col.names = c("Test", "Description", "Example from the chapter"),
-    escape = FALSE,
-    booktabs = TRUE,
-    align = "l"
-)
-```
+| Test  |Description    |Example from the chapter    |
+|:----|:------|:------|
+| [Pearson's correlation coefficient](#pearson) |Tests whether two variables are correlated (continuous data) |Correlation between the number of hours of slept and mood   |
+| [Spearman's rank-order correlation](#spearman) |Tests whether two variables are correlated (ordinal data)  |Correlation between effort and grade  |
+| [Linear regression](#linearregression) |Tests whether a linear relationship exists between two variables (continuous data) |Correlation between the number of hours of sleep (parent, baby) and parent grumpiness |

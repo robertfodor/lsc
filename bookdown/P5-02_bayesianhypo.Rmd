@@ -56,8 +56,7 @@ knitr::kable(tibble::tribble(
  "20 - 150", "Strong evidence",
  "$>$ 150", "Very strong evidence"
  ), col.names = c( "Bayes factor", "Interpretation"), escape = FALSE,
- caption = "Interpretation of Bayes factors by @Kass1995"
-)
+ caption = "Interpretation of Bayes factors by @Kass1995", booktabs = TRUE)
 ```
 
 @Jeffreys1961 had the following guideline:
@@ -78,7 +77,8 @@ knitr::kable(
 
     ),
     col.names = c( "Bayes factor $BF_10$", "Interpretation"), escape = FALSE,
-    caption = "Interpretation of Bayes factors by @Jeffreys1961"
+    caption = "Interpretation of Bayes factors by @Jeffreys1961", booktabs = TRUE,
+    linesep = ""
 )
 ```
 

@@ -14,7 +14,7 @@ Once you've made the jump, you no longer have to wrap your head around counterin
 
 ## Evidentiary standards you can believe
 
-> *If [$p$] is below .02 it is strongly indicated that the [null] hypothesis fails to account for the whole of the facts. We shall not often be astray if we draw a conventional line at .05 and consider that [smaller values of $p$] indicate a real discrepancy.*  
+> *If $p$ is below .02 it is strongly indicated that the null hypothesis fails to account for the whole of the facts. We shall not often be astray if we draw a conventional line at .05 and consider that smaller values of $p$ indicate a real discrepancy.*  
 -- Sir Ronald @Fisher1925
 
 
@@ -61,7 +61,8 @@ knitr::kable(
     ),
     col.names = c("$p$-value", "Decision"),
     booktabs = TRUE,
-    align = "ll", escape = FALSE
+    align = "ll", escape = FALSE,
+    format = "markdown"
 )
 ```
 
@@ -77,7 +78,8 @@ knitr::kable(
     ),
     col.names = c("$p$-value", "Decision"),
     booktabs = TRUE,
-    align = "ll", escape = FALSE
+    align = "ll", escape = FALSE,
+    format = "markdown"
 )
 ```
 

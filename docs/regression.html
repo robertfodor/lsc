@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 14 Linear regression | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
   <meta property="og:description" content="Chapter 14 Linear regression | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 14 Linear regression | Learning Statistics with CogStat" />
   
   <meta name="twitter:description" content="Chapter 14 Linear regression | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
@@ -654,67 +654,33 @@ F(1, 98) = 434.906, p &lt; 0.001
 <p>The estimated regression coefficient is quite large for the <code>parentsleep</code> variable (<span class="math inline">\(-8.937\)</span>)<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a>. Should we run an analysis with the pair of <code>babysleep</code> and <code>parentgrump</code>, we’d notice the linear regression line is: <code>Linear regression: y = -2.742x + 85.782</code>, meaning our regression coefficient is much smaller.</p>
 <p>Let us combine these two predictors into a single model without CogStat<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a>, and add both <code>babysleep</code> and <code>parentsleep</code> to the model predicting <code>parentgrump</code>, we get the following result:</p>
 <table>
-<caption>
-<span id="tab:unnamed-chunk-54">Table 14.1: </span>Model coefficients for the combined model with both predictors at <span class="math inline">\(\alpha = 0.05\)</span>
-</caption>
+<caption><span id="tab:unnamed-chunk-53">Table 14.1: </span>Model coefficients for the combined model with both predictors at <span class="math inline">\(\alpha = 0.05\)</span></caption>
 <thead>
-<tr>
-<th style="text-align:left;">
-Predictor
-</th>
-<th style="text-align:right;">
-Coefficient estimate
-</th>
-<th style="text-align:right;">
-95% CI (low)
-</th>
-<th style="text-align:right;">
-95% CI (high)
-</th>
+<tr class="header">
+<th align="left">Predictor</th>
+<th align="right">Coefficient estimate</th>
+<th align="right">95% CI (low)</th>
+<th align="right">95% CI (high)</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-babysleep
-</td>
-<td style="text-align:right;">
-0.011
-</td>
-<td style="text-align:right;">
--0.527
-</td>
-<td style="text-align:right;">
-0.549
-</td>
+<tr class="odd">
+<td align="left">babysleep</td>
+<td align="right">0.011</td>
+<td align="right">-0.527</td>
+<td align="right">0.549</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-parentsleep
-</td>
-<td style="text-align:right;">
--8.950
-</td>
-<td style="text-align:right;">
--10.049
-</td>
-<td style="text-align:right;">
--7.852
-</td>
+<tr class="even">
+<td align="left">parentsleep</td>
+<td align="right">-8.950</td>
+<td align="right">-10.049</td>
+<td align="right">-7.852</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Intercept
-</td>
-<td style="text-align:right;">
-125.966
-</td>
-<td style="text-align:right;">
-119.93
-</td>
-<td style="text-align:right;">
-132.001
-</td>
+<tr class="odd">
+<td align="left">Intercept</td>
+<td align="right">125.966</td>
+<td align="right">119.93</td>
+<td align="right">132.001</td>
 </tr>
 </tbody>
 </table>
@@ -733,91 +699,49 @@ t = \frac{\hat{b}}{\mbox{SE}({\hat{b})}}
 <p>Our degrees of freedom in this case are <span class="math inline">\(df = N- K- 1\)</span>. Irritatingly, the estimate of the standard error of the regression coefficient, <span class="math inline">\(\mbox{SE}({\hat{b}})\)</span>, is not as easy to calculate as the standard error of the mean that we used for the simpler <span class="math inline">\(t\)</span>-tests in Chapter <a href="ttest.html#ttest">11</a>. In fact, the formula is somewhat ugly, and not terribly helpful to look at. For our purposes, it’s sufficient to point out that the standard error of the estimated regression coefficient depends on both the predictor and outcome variables, and is somewhat sensitive to violations of the homogeneity of variance assumption (discussed shortly).</p>
 <p>In any case, this <span class="math inline">\(t\)</span>-statistic can be interpreted in the same way as the <span class="math inline">\(t\)</span>-statistics that we discussed in Chapter <a href="ttest.html#ttest">11</a>. Assuming that you have a two-sided alternative (i.e. you don’t really care if <span class="math inline">\(b &gt;0\)</span> or <span class="math inline">\(b &lt; 0\)</span>), then it’s the extreme values of <span class="math inline">\(t\)</span> (i.e. a lot less than zero or a lot greater than zero) that suggest that you should reject the null hypothesis.</p>
 <table>
-<caption>
-<span id="tab:linrcombnobeta">Table 14.2: </span>Model coefficients for the combined model with both predictors at <span class="math inline">\(\alpha = 0.05\)</span> with <span class="math inline">\(t\)</span>-statistics
-</caption>
+<caption><span id="tab:linrcombnobeta">Table 14.2: </span>Model coefficients for the combined model with both predictors at <span class="math inline">\(\alpha = 0.05\)</span> with <span class="math inline">\(t\)</span>-statistics</caption>
+<colgroup>
+<col width="14%" />
+<col width="25%" />
+<col width="15%" />
+<col width="16%" />
+<col width="16%" />
+<col width="11%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left;">
-Predictor
-</th>
-<th style="text-align:right;">
-Coefficient estimate
-</th>
-<th style="text-align:right;">
-95% CI (low)
-</th>
-<th style="text-align:right;">
-95% CI (high)
-</th>
-<th style="text-align:right;">
-<span class="math inline">\(t\)</span>-statistic
-</th>
-<th style="text-align:right;">
-<span class="math inline">\(p\)</span>-value
-</th>
+<tr class="header">
+<th align="left">Predictor</th>
+<th align="right">Coefficient estimate</th>
+<th align="right">95% CI (low)</th>
+<th align="right">95% CI (high)</th>
+<th align="right"><span class="math inline">\(t\)</span>-statistic</th>
+<th align="right"><span class="math inline">\(p\)</span>-value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-babysleep
-</td>
-<td style="text-align:right;">
-0.011
-</td>
-<td style="text-align:right;">
--0.527
-</td>
-<td style="text-align:right;">
-0.549
-</td>
-<td style="text-align:right;">
-0.039
-</td>
-<td style="text-align:right;">
-0.969
-</td>
+<tr class="odd">
+<td align="left">babysleep</td>
+<td align="right">0.011</td>
+<td align="right">-0.527</td>
+<td align="right">0.549</td>
+<td align="right">0.039</td>
+<td align="right">0.969</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-parentsleep
-</td>
-<td style="text-align:right;">
--8.950
-</td>
-<td style="text-align:right;">
--10.049
-</td>
-<td style="text-align:right;">
--7.852
-</td>
-<td style="text-align:right;">
--16.172
-</td>
-<td style="text-align:right;">
-&lt;.001
-</td>
+<tr class="even">
+<td align="left">parentsleep</td>
+<td align="right">-8.950</td>
+<td align="right">-10.049</td>
+<td align="right">-7.852</td>
+<td align="right">-16.172</td>
+<td align="right">&lt;.001</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Intercept
-</td>
-<td style="text-align:right;">
-125.966
-</td>
-<td style="text-align:right;">
-119.93
-</td>
-<td style="text-align:right;">
-132.001
-</td>
-<td style="text-align:right;">
-41.423
-</td>
-<td style="text-align:right;">
-&lt;.001
-</td>
+<tr class="odd">
+<td align="left">Intercept</td>
+<td align="right">125.966</td>
+<td align="right">119.93</td>
+<td align="right">132.001</td>
+<td align="right">41.423</td>
+<td align="right">&lt;.001</td>
 </tr>
 </tbody>
 </table>
@@ -882,103 +806,54 @@ where <span class="math inline">\(\sigma_X\)</span> is the standard deviation of
 \]</span></li>
 </ul>
 <table>
-<caption>
-<span id="tab:unnamed-chunk-55">Table 14.3: </span>Model coefficients (both estimate and standardised estimate) for the combined model with both predictors at <span class="math inline">\(\alpha = 0.05\)</span> with <span class="math inline">\(t\)</span>-statistics
-</caption>
+<caption><span id="tab:unnamed-chunk-54">Table 14.3: </span>Model coefficients (both estimate and standardised estimate) for the combined model with both predictors at <span class="math inline">\(\alpha = 0.05\)</span> with <span class="math inline">\(t\)</span>-statistics</caption>
+<colgroup>
+<col width="10%" />
+<col width="17%" />
+<col width="29%" />
+<col width="10%" />
+<col width="11%" />
+<col width="11%" />
+<col width="8%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left;">
-Predictor
-</th>
-<th style="text-align:right;">
-Coefficient estimate
-</th>
-<th style="text-align:right;">
-Standardised coefficient (<span class="math inline">\(\beta\)</span>)
-</th>
-<th style="text-align:right;">
-95% CI (low)
-</th>
-<th style="text-align:right;">
-95% CI (high)
-</th>
-<th style="text-align:right;">
-<span class="math inline">\(t\)</span>-statistic
-</th>
-<th style="text-align:right;">
-<span class="math inline">\(p\)</span>-value
-</th>
+<tr class="header">
+<th align="left">Predictor</th>
+<th align="right">Coefficient estimate</th>
+<th align="right">Standardised coefficient (<span class="math inline">\(\beta\)</span>)</th>
+<th align="right">95% CI (low)</th>
+<th align="right">95% CI (high)</th>
+<th align="right"><span class="math inline">\(t\)</span>-statistic</th>
+<th align="right"><span class="math inline">\(p\)</span>-value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-babysleep
-</td>
-<td style="text-align:right;">
-0.011
-</td>
-<td style="text-align:right;">
-0.002
-</td>
-<td style="text-align:right;">
--0.527
-</td>
-<td style="text-align:right;">
-0.549
-</td>
-<td style="text-align:right;">
-0.039
-</td>
-<td style="text-align:right;">
-0.969
-</td>
+<tr class="odd">
+<td align="left">babysleep</td>
+<td align="right">0.011</td>
+<td align="right">0.002</td>
+<td align="right">-0.527</td>
+<td align="right">0.549</td>
+<td align="right">0.039</td>
+<td align="right">0.969</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-parentsleep
-</td>
-<td style="text-align:right;">
--8.950
-</td>
-<td style="text-align:right;">
--0.905
-</td>
-<td style="text-align:right;">
--10.049
-</td>
-<td style="text-align:right;">
--7.852
-</td>
-<td style="text-align:right;">
--16.172
-</td>
-<td style="text-align:right;">
-&lt;.001
-</td>
+<tr class="even">
+<td align="left">parentsleep</td>
+<td align="right">-8.950</td>
+<td align="right">-0.905</td>
+<td align="right">-10.049</td>
+<td align="right">-7.852</td>
+<td align="right">-16.172</td>
+<td align="right">&lt;.001</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Intercept
-</td>
-<td style="text-align:right;">
-125.966
-</td>
-<td style="text-align:right;">
-–
-</td>
-<td style="text-align:right;">
-119.93
-</td>
-<td style="text-align:right;">
-132.001
-</td>
-<td style="text-align:right;">
-41.423
-</td>
-<td style="text-align:right;">
-&lt;.001
-</td>
+<tr class="odd">
+<td align="left">Intercept</td>
+<td align="right">125.966</td>
+<td align="right">–</td>
+<td align="right">119.93</td>
+<td align="right">132.001</td>
+<td align="right">41.423</td>
+<td align="right">&lt;.001</td>
 </tr>
 </tbody>
 </table>

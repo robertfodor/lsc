@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 12 Comparing several means (one-way ANOVA) | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
-  <meta property="og:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
   <meta property="og:description" content="Chapter 12 Comparing several means (one-way ANOVA) | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 12 Comparing several means (one-way ANOVA) | Learning Statistics with CogStat" />
   
   <meta name="twitter:description" content="Chapter 12 Comparing several means (one-way ANOVA) | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/cover.jpg" />
+  
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
@@ -487,14 +487,14 @@ Figure 12.1: Mood gain by drug
 <p>Sidenote. This assumption of equal variances is Fisher’s ANOVA. When we are explicitly not assuming equal variances, we should be using Welch’s ANOVA, but that’s covered in this book or in CogStat actually.</p>
 <p>Back to our Fisher’s one-way ANOVA. Mathematically, we write this null hypothesis like this:
 <span class="math display">\[
-\begin{array}
-H_0 &amp;:&amp; \mbox{it is true that } \mu_P = \mu_A = \mu_J
+\begin{array}{rcl}
+{H}_{0} &amp;:&amp; \mbox{it is true that } \mu_P = \mu_A = \mu_J
 \end{array}
 \]</span></p>
 <p>As a consequence, our alternative hypothesis is that at least one of the three different treatments is different from the others. It’s a little trickier to write this mathematically, because there are quite a few different ways in which the null hypothesis can be false. So for now we’ll just write the alternative hypothesis like this:
 <span class="math display">\[
 \begin{array}{rcl}
-H_1 &amp;:&amp; \mbox{it is *not* true that } \mu_P = \mu_A = \mu_J
+{H}_{1} &amp;:&amp; \mbox{it is *not* true that } \mu_P = \mu_A = \mu_J
 \end{array}
 \]</span></p>
 <p>This null hypothesis is a lot trickier to test than any of the ones we’ve seen previously. How shall we do it? A sensible guess would be to “do an ANOVA”, since that’s the title of the chapter, but it’s not particularly clear why an “analysis of <em>variances</em>” will help us learn anything useful about the <em>means</em>. In fact, this is one of the greatest conceptual difficulties that people have when first encountering ANOVA. To see how this works, let us talk about variances first.</p>
@@ -507,20 +507,41 @@ H_1 &amp;:&amp; \mbox{it is *not* true that } \mu_P = \mu_A = \mu_J
 \]</span>
 This formula looks pretty much identical to the formula for the variance in Chapter <a href="exploringavariable.html#var">5.2</a>. The only difference is that we are now summing over groups (i.e. values for <span class="math inline">\(k\)</span>) and over the people within the groups (i.e. values for <span class="math inline">\(i\)</span>).</p>
 <p>Let’s consider a simple table to see how this formula works on our clinical trial data set. The table below shows the person, the drug they were given, and their mood change.</p>
-<table>
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
-<th style="text-align:left;">
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
 Row
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Drug group
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Index in group
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Mood change
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
 </th>
 <th style="text-align:left;">
-Drug group (<span class="math inline">\(k\)</span>)
+<span class="math inline">\(k\)</span>
 </th>
 <th style="text-align:center;">
-Index in group (<span class="math inline">\(i\)</span>)
+<span class="math inline">\(i\)</span>
 </th>
 <th style="text-align:center;">
-Mood change (<span class="math inline">\(Y_{ik}\)</span>)
+<span class="math inline">\(Y_{ik}\)</span>
 </th>
 </tr>
 </thead>
@@ -611,13 +632,15 @@ anxifree
 </tr>
 </tbody>
 </table>
-<p>Our average mood change is the mean of all the mood changes in the data set (which you can see if you run <code>Explore variable</code> for <code>mood_gain</code>), which is <span class="math inline">\(\bar{Y} = 0.88\)</span>. The variance of the mood changes is the sum of the squared differences between each mood change and the average mood change, divided by the total number of observations. So our formula filled in would look like this:
-<span class="math display">\[
-\mbox{Var}(Y) = \frac{1}{18} \left( \left(0.5 - 0.88 \right)^2 + \left(0.3 -0.88 \right)^2 + \left(0.1 - 0.88 \right)^2 + \\
-\left(0.6 - 0.88 \right)^2 + \left(0.4 - 0.88 \right)^2 + \left(0.2 - 0.88 \right)^2 + \left(1.4 - 0.88 \right)^2 + \\
-\left(1.7 - 0.88 \right)^2 + \left(1.3 - 0.88 \right)^2 + \left(0.6 - 0.88 \right)^2 + \left(0.9 - 0.88 \right)^2 + \\
-+ \left(0.3 - 0.88 \right)^2 + \left(1.1 - 0.88 \right)^2 + \left(0.8 - 0.88 \right)^2 + \left(1.2 - 0.88 \right)^2 + \\
-\left(1.8 - 0.88 \right)^2 + \left(1.3 - 0.88 \right)^2 + \left(1.4 - 0.88 \right)^2 \right)
+<p>Our average mood change is the mean of all the mood changes in the data set (which you can see if you run <code>Explore variable</code> for <code>mood_gain</code>), which is <span class="math inline">\(\bar{Y} = 0.88\)</span>. The variance of the mood changes is the sum of the squared differences between each mood change and the average mood change, divided by the total number of observations. So our formula filled in would look like this:</p>
+<p><span class="math display">\[
+\begin{array}{ll}
+{Var}(Y) =&amp; \frac{1}{18} ( (0.5 - 0.88 )^2 + (0.3 -0.88 )^2 + (0.1 - 0.88 )^2 + \\
+&amp; (0.6 - 0.88 )^2 + (0.4 - 0.88 )^2 + (0.2 - 0.88 )^2 + (1.4 - 0.88 )^2 + \\
+&amp; (1.7 - 0.88 )^2 + (1.3 - 0.88 )^2 + (0.6 - 0.88 )^2 + (0.9 - 0.88 )^2 + \\
+&amp; (0.3 - 0.88 )^2 + (1.1 - 0.88 )^2 + (0.8 - 0.88 )^2 + (1.2 - 0.88 )^2 + \\
+&amp; (1.8 - 0.88 )^2 + (1.3 - 0.88 )^2 + (1.4 - 0.88 )^2 )
+\end{array}
 \]</span></p>
 <p><span class="math display">\[
 \mbox{Var}(Y) = 0.269
@@ -649,14 +672,16 @@ where <span class="math inline">\(\bar{Y}_k\)</span> is a group mean.</p>
 \mbox{SS}_w  + \mbox{SS}_{b} = \mbox{SS}_{tot}
 \]</span></p>
 <p>Yay.</p>
+
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:anovavara"></span>
-<img src="lsc_files/figure-html/anovavara-1.svg" alt="Graphical illustration of &quot;between-groups&quot; variation" width="100%" />
+<img src="lsc_files/figure-html/anovavara-1.svg" alt="Graphical illustration of “between-groups” variation" width="100%" />
 <p class="caption">
 Figure 12.2: Graphical illustration of “between-groups” variation
 </p>
 </div>
+
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:anovavarb"></span>
-<img src="lsc_files/figure-html/anovavarb-1.svg" alt="Graphical illustration of  &quot;within groups&quot; variation" width="100%" />
+<img src="lsc_files/figure-html/anovavarb-1.svg" alt="Graphical illustration of “within groups” variation" width="100%" />
 <p class="caption">
 Figure 12.3: Graphical illustration of “within groups” variation
 </p>
@@ -708,85 +733,51 @@ F = \frac{\mbox{MS}_b }{ \mbox{MS}_w }
 <p>In order to complete our hypothesis test, we need to know the sampling distribution for <span class="math inline">\(F\)</span> if the null hypothesis is true. Not surprisingly, the sampling distribution for the <span class="math inline">\(F\)</span> <em>statistic</em> under the null hypothesis is an <span class="math inline">\(F\)</span> <em>distribution</em>. As seen in Chapter <a href="probability.html#probability">7</a>, the <span class="math inline">\(F\)</span> distribution has two parameters, corresponding to the two degrees of freedom involved: the first one df<span class="math inline">\(_1\)</span> is the between-groups degrees of freedom df<span class="math inline">\(_b\)</span>, and the second one df<span class="math inline">\(_2\)</span> is the within-groups degrees of freedom df<span class="math inline">\(_w\)</span>.</p>
 <p>A summary of all the key quantities involved in a one-way ANOVA, including the formulas showing how they are calculated, is shown in Table <a href="anova.html#tab:anovatable">12.1</a>.</p>
 <table>
-<caption>
-<span id="tab:anovatable">Table 12.1: </span>All of the key quantities involved in an ANOVA,
+<caption><span id="tab:anovatable">Table 12.1: </span>All of the key quantities involved in an ANOVA,
 organised into a “standard” ANOVA table.
 The formulas for all quantities (except the <span class="math inline">\(p\)</span>-value,
 which has a very ugly formula and would be nightmarishly
-hard to calculate without a computer) are shown.
-</caption>
+hard to calculate without a computer) are shown.</caption>
+<colgroup>
+<col width="12%" />
+<col width="42%" />
+<col width="44%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:left;">
-Between groups
-</th>
-<th style="text-align:left;">
-Within groups
-</th>
+<tr class="header">
+<th align="left"></th>
+<th align="left">Between groups</th>
+<th align="left">Within groups</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Degrees of freedom
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\mbox{df}_b = G-1\)</span>
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\mbox{df}_w = N-G\)</span>
-</td>
+<tr class="odd">
+<td align="left">Degrees of freedom</td>
+<td align="left"><span class="math inline">\(\mbox{df}_b = G-1\)</span></td>
+<td align="left"><span class="math inline">\(\mbox{df}_w = N-G\)</span></td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Sum of squares
-</td>
-<td style="text-align:left;">
-SS<span class="math inline">\(_b = \displaystyle\sum_{k=1}^G N_k (\bar{Y}_k - \bar{Y})^2\)</span>
-</td>
-<td style="text-align:left;">
-SS<span class="math inline">\(_w = \sum_{k=1}^G \sum_{i = 1}^{N_k} ( {Y}_{ik} - \bar{Y}_k)^2\)</span>
-</td>
+<tr class="even">
+<td align="left">Sum of squares</td>
+<td align="left">SS<span class="math inline">\(_b = \displaystyle\sum_{k=1}^G N_k (\bar{Y}_k - \bar{Y})^2\)</span></td>
+<td align="left">SS<span class="math inline">\(_w = \sum_{k=1}^G \sum_{i = 1}^{N_k} ( {Y}_{ik} - \bar{Y}_k)^2\)</span></td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Mean squares
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\mbox{MS}_b = \frac{\mbox{SS}_b}{\mbox{df}_b}\)</span>
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\mbox{MS}_w = \frac{\mbox{SS}_w}{\mbox{df}_w}\)</span>
-</td>
+<tr class="odd">
+<td align="left">Mean squares</td>
+<td align="left"><span class="math inline">\(\mbox{MS}_b = \frac{\mbox{SS}_b}{\mbox{df}_b}\)</span></td>
+<td align="left"><span class="math inline">\(\mbox{MS}_w = \frac{\mbox{SS}_w}{\mbox{df}_w}\)</span></td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(F\)</span> statistic
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(F = \frac{\mbox{MS}_b }{ \mbox{MS}_w }\)</span>
-</td>
-<td style="text-align:left;">
-<ul>
-<li></td>
+<tr class="even">
+<td align="left"><span class="math inline">\(F\)</span> statistic</td>
+<td align="left"><span class="math inline">\(F = \frac{\mbox{MS}_b }{ \mbox{MS}_w }\)</span></td>
+<td align="left">-</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-<span class="math inline">\(p\)</span> value
-</td>
-<td style="text-align:left;">
-[complicated]
-</td>
-<td style="text-align:left;">
-<ul>
-<li></td>
+<tr class="odd">
+<td align="left"><span class="math inline">\(p\)</span> value</td>
+<td align="left">[complicated]</td>
+<td align="left">-</td>
 </tr>
 </tbody>
-</table></li>
-</ul></li>
-</ul>
+</table>
 <p>Now let’s calculate these for our clinical trial example, again, behind the scenes. Let’s start with the degrees of freedom.</p>
 <p><span class="math display">\[
 \begin{array}{lcl}
@@ -857,21 +848,24 @@ where the true value <span class="math inline">\(Q=0\)</span> if the null hypoth
 <div id="introduceaov" class="section level2 hasAnchor" number="12.3">
 <h2><span class="header-section-number">12.3</span> Interpreting our results in CogStat<a href="anova.html#introduceaov" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>You already know the answers because we calculated it step by step, but you have a more in-depth understanding of how it all ties together. CogStat will do all of this for you, but it’s good to know what’s going on behind the scenes. Let’s see how CogStat interprets our data.</p>
-So what we had to do, was simply run the <code>Compare groups</code> function with <code>mood_gain</code> by <code>drug</code>.
+<p>So what we had to do, was simply run the <code>Compare groups</code> function with <code>mood_gain</code> by <code>drug</code>.</p>
+
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogcompbydrugdialog"></span>
-<img src="resources/image/comparegroupsbydrug.png" alt="CogStat dialogue for `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`." width="100%" />
+<img src="resources/image/comparegroupsbydrug.png" alt="CogStat dialogue for Compare groups function with our clinical trial data set with variables mood_gain grouped by drug." width="100%" />
 <p class="caption">
 Figure 12.4: CogStat dialogue for <code>Compare groups</code> function with our clinical trial data set with variables <code>mood_gain</code> grouped by <code>drug</code>.
 </p>
 </div>
+
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogcompbydrugdescr"></span>
-<img src="resources/image/moodbydrug.png" alt="CogStat result set displaying descriptives and boxplots as a result of `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`." width="100%" />
+<img src="resources/image/moodbydrug.png" alt="CogStat result set displaying descriptives and boxplots as a result of Compare groups function with our clinical trial data set with variables mood_gain grouped by drug." width="100%" />
 <p class="caption">
 Figure 12.5: CogStat result set displaying descriptives and boxplots as a result of <code>Compare groups</code> function with our clinical trial data set with variables <code>mood_gain</code> grouped by <code>drug</code>.
 </p>
 </div>
+
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogcompbydrug"></span>
-<img src="resources/image/moodbydrughypo.png" alt="CogStat result set with hypothesis test results, effect size and post hoc results after running `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`." width="100%" />
+<img src="resources/image/moodbydrughypo.png" alt="CogStat result set with hypothesis test results, effect size and post hoc results after running Compare groups function with our clinical trial data set with variables mood_gain grouped by drug." width="100%" />
 <p class="caption">
 Figure 12.6: CogStat result set with hypothesis test results, effect size and post hoc results after running <code>Compare groups</code> function with our clinical trial data set with variables <code>mood_gain</code> grouped by <code>drug</code>.
 </p>
@@ -894,70 +888,41 @@ Figure 12.6: CogStat result set with hypothesis test results, effect size and po
 <p>For now, let’s stop here. We’ll come back to the post hoc tests later. For now, let’s just focus on the hypothesis test results. We can see that the Shapiro-Wilk normality test was run on each of the groups. Testing the normality assumption is relatively straightforward. We covered the theory behind it in Chapter <a href="ttest.html#shapiro">11.7</a>. The Levene test was run to check for homogeneity of variance across groups. The one-way ANOVA was run, and the result was that the <span class="math inline">\(F\)</span>-value was 18.61, and the <span class="math inline">\(p\)</span>-value was less than 0.001.</p>
 <p>At this point, we’re basically done. (If you ran the test with us, you’ve seen something about post hoc tests. We will discuss them later.) Having completed our calculations, it’s traditional to organise all these numbers into an ANOVA table like the one in Table <a href="anova.html#tab:anovatableresults">12.2</a>. For our clinical trial data, the ANOVA table would look like this:</p>
 <table>
-<caption>
-<span id="tab:anovatableresults">Table 12.2: </span>ANOVA table for the <code>mood_gain</code> by <code>drug</code> variable
-</caption>
+<caption><span id="tab:anovatableresults">Table 12.2: </span>ANOVA table for the <code>mood_gain</code> by <code>drug</code> variable</caption>
+<colgroup>
+<col width="21%" />
+<col width="4%" />
+<col width="21%" />
+<col width="18%" />
+<col width="20%" />
+<col width="14%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left;">
-</th>
-<th style="text-align:left;">
-df
-</th>
-<th style="text-align:left;">
-Sum of squares
-</th>
-<th style="text-align:left;">
-Mean squares
-</th>
-<th style="text-align:left;">
-<span class="math inline">\(F\)</span>-statistic
-</th>
-<th style="text-align:left;">
-<span class="math inline">\(p\)</span>-value
-</th>
+<tr class="header">
+<th align="left"></th>
+<th align="left">df</th>
+<th align="left">Sum of squares</th>
+<th align="left">Mean squares</th>
+<th align="left"><span class="math inline">\(F\)</span>-statistic</th>
+<th align="left"><span class="math inline">\(p\)</span>-value</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-between groups
-</td>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-3.4533
-</td>
-<td style="text-align:left;">
-1.7267
-</td>
-<td style="text-align:left;">
-18.61
-</td>
-<td style="text-align:left;">
-&lt; .001
-</td>
+<tr class="odd">
+<td align="left">between groups</td>
+<td align="left">2</td>
+<td align="left">3.4533</td>
+<td align="left">1.7267</td>
+<td align="left">18.61</td>
+<td align="left">&lt; .001</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-within groups
-</td>
-<td style="text-align:left;">
-15
-</td>
-<td style="text-align:left;">
-1.3917
-</td>
-<td style="text-align:left;">
-0.0928
-</td>
-<td style="text-align:left;">
-–
-</td>
-<td style="text-align:left;">
-–
-</td>
+<tr class="even">
+<td align="left">within groups</td>
+<td align="left">15</td>
+<td align="left">1.3917</td>
+<td align="left">0.0928</td>
+<td align="left">–</td>
+<td align="left">–</td>
 </tr>
 </tbody>
 </table>
@@ -996,13 +961,13 @@ can be interpreted as if it referred to the <em>magnitude</em> of a Pearson corr
 \]</span>
 where <span class="math inline">\(\mbox{df}_b\)</span> is the degrees of freedom for the between-subjects factor, and <span class="math inline">\(\mbox{MS}_w\)</span> is the mean square for the within-subjects factor, <span class="math inline">\(\mbox{SS}_{tot}\)</span> is the total sum of squares, and <span class="math inline">\(\mbox{SS}_b\)</span> is the between-subjects sum of squares. Filled in, we get:</p>
 <p><span class="math display">\[
-{\begin{array}{ll}
+\begin{array}{rcl}
 \omega^2 &amp;=&amp; \frac{\mbox{SS}_b - \mbox{df}_b \times \mbox{MS}_w}{\mbox{SS}_{tot} + \mbox{MS}_w}
     \\
     &amp;=&amp; \frac{3.4533 - 2 \times 0.0928}{4.845 + 0.0928}
     \\
     &amp;=&amp; 0.662
-\end{array}}
+\end{array}
 \]</span></p>
 <p>CogStat will give you this exact omega-squared value when running the one-way ANOVA inside the <code>Compare groups</code> function (see result set in Figure <a href="anova.html#fig:cogcompbydrug">12.6</a>).</p>
 <p><span class="math inline">\(\omega^2\)</span> will take on values between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, where 0 indicates there is no effect whatsoever. It is wise to quote the effect size when writing up our results in APA-styled psychology research<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a>. For example, we could write:</p>
@@ -1022,150 +987,79 @@ where <span class="math inline">\(\mbox{df}_b\)</span> is the degrees of freedom
 </ul>
 <p>If any one of those three claims is false, then the null hypothesis is also false. So, now that we’ve rejected our null hypothesis, we’re thinking that <em>at least</em> one of those things isn’t true. But which ones? All three of these propositions are of interest: you certainly want to know if your new drug Joyzepam is better than a placebo, and it would be nice to know how well it stacks up against an existing commercial alternative (i.e., Anxifree). It would even be useful to check the performance of Anxifree against the placebo: even if Anxifree has already been extensively tested against placebos by other researchers, it can still be very useful to check that your study is producing similar results to earlier work.</p>
 <p>When we characterise the null hypothesis in terms of these three distinct propositions, it becomes clear that there are eight possible “states of the world” that we need to distinguish between:</p>
-<table>
+<table style="width:100%;">
+<colgroup>
+<col width="14%" />
+<col width="21%" />
+<col width="21%" />
+<col width="21%" />
+<col width="19%" />
+</colgroup>
 <thead>
-<tr>
-<th style="text-align:left;">
-possibility:
-</th>
-<th style="text-align:left;">
-is <span class="math inline">\(\mu_P = \mu_A\)</span>?
-</th>
-<th style="text-align:left;">
-is <span class="math inline">\(\mu_P = \mu_J\)</span>?
-</th>
-<th style="text-align:left;">
-is <span class="math inline">\(\mu_A = \mu_J\)</span>?
-</th>
-<th style="text-align:left;">
-which hypothesis?
-</th>
+<tr class="header">
+<th align="left">possibility:</th>
+<th align="left">is <span class="math inline">\(\mu_P = \mu_A\)</span>?</th>
+<th align="left">is <span class="math inline">\(\mu_P = \mu_J\)</span>?</th>
+<th align="left">is <span class="math inline">\(\mu_A = \mu_J\)</span>?</th>
+<th align="left">which hypothesis?</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-1
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\checkmark\)</span>
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\checkmark\)</span>
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\checkmark\)</span>
-</td>
-<td style="text-align:left;">
-null
-</td>
+<tr class="odd">
+<td align="left">1</td>
+<td align="left"><span class="math inline">\(\checkmark\)</span></td>
+<td align="left"><span class="math inline">\(\checkmark\)</span></td>
+<td align="left"><span class="math inline">\(\checkmark\)</span></td>
+<td align="left">null</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-2
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\checkmark\)</span>
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\checkmark\)</span>
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-alternative
-</td>
+<tr class="even">
+<td align="left">2</td>
+<td align="left"><span class="math inline">\(\checkmark\)</span></td>
+<td align="left"><span class="math inline">\(\checkmark\)</span></td>
+<td align="left"></td>
+<td align="left">alternative</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-3
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\checkmark\)</span>
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\checkmark\)</span>
-</td>
-<td style="text-align:left;">
-alternative
-</td>
+<tr class="odd">
+<td align="left">3</td>
+<td align="left"><span class="math inline">\(\checkmark\)</span></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(\checkmark\)</span></td>
+<td align="left">alternative</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-4
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\checkmark\)</span>
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-alternative
-</td>
+<tr class="even">
+<td align="left">4</td>
+<td align="left"><span class="math inline">\(\checkmark\)</span></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">alternative</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-5
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\checkmark\)</span>
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\checkmark\)</span>
-</td>
-<td style="text-align:left;">
-alternative
-</td>
+<tr class="odd">
+<td align="left">5</td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(\checkmark\)</span></td>
+<td align="left"><span class="math inline">\(\checkmark\)</span></td>
+<td align="left">alternative</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-6
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\checkmark\)</span>
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-alternative
-</td>
+<tr class="even">
+<td align="left">6</td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(\checkmark\)</span></td>
+<td align="left"></td>
+<td align="left">alternative</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-7
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-<span class="math inline">\(\checkmark\)</span>
-</td>
-<td style="text-align:left;">
-alternative
-</td>
+<tr class="odd">
+<td align="left">7</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"><span class="math inline">\(\checkmark\)</span></td>
+<td align="left">alternative</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-8
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-</td>
-<td style="text-align:left;">
-alternative
-</td>
+<tr class="even">
+<td align="left">8</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">alternative</td>
 </tr>
 </tbody>
 </table>
@@ -1175,103 +1069,45 @@ alternative
 <p>Tukey’s HSD constructs <strong>simultaneous confidence intervals</strong> for all the comparisons. What we mean by 95% “simultaneous” confidence interval is that there is a 95% probability that <em>all</em> of these confidence intervals contain the relevant true value. Moreover, we can use these confidence intervals to calculate an adjusted <span class="math inline">\(p\)</span> value for any specific comparison.</p>
 <p>Let’s look at the post hoc test result coming from CogStat, as seen in Figure <a href="anova.html#fig:cogcompbydrug">12.6</a>.</p>
 <table>
-<caption>
-<span id="tab:unnamed-chunk-31">Table 12.3: </span>Multiple Comparison of Means - Tukey HSD, FWER=0.05
-</caption>
+<caption><span id="tab:unnamed-chunk-31">Table 12.3: </span>Multiple Comparison of Means - Tukey HSD, FWER=0.05</caption>
 <thead>
-<tr>
-<th style="text-align:left;">
-group1
-</th>
-<th style="text-align:left;">
-group2
-</th>
-<th style="text-align:center;">
-meandiff
-</th>
-<th style="text-align:center;">
-p-adj
-</th>
-<th style="text-align:center;">
-lower
-</th>
-<th style="text-align:center;">
-upper
-</th>
-<th style="text-align:center;">
-reject
-</th>
+<tr class="header">
+<th align="left">group1</th>
+<th align="left">group2</th>
+<th align="center">meandiff</th>
+<th align="center">p-adj</th>
+<th align="center">lower</th>
+<th align="center">upper</th>
+<th align="center">reject</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-anxifree
-</td>
-<td style="text-align:left;">
-joyzepam
-</td>
-<td style="text-align:center;">
-0.7667
-</td>
-<td style="text-align:center;">
-0.0015
-</td>
-<td style="text-align:center;">
-0.3099
-</td>
-<td style="text-align:center;">
-1.2235
-</td>
-<td style="text-align:center;">
-True
-</td>
+<tr class="odd">
+<td align="left">anxifree</td>
+<td align="left">joyzepam</td>
+<td align="center">0.7667</td>
+<td align="center">0.0015</td>
+<td align="center">0.3099</td>
+<td align="center">1.2235</td>
+<td align="center">True</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-anxifree
-</td>
-<td style="text-align:left;">
-placebo
-</td>
-<td style="text-align:center;">
--0.2667
-</td>
-<td style="text-align:center;">
-0.3115
-</td>
-<td style="text-align:center;">
--0.7235
-</td>
-<td style="text-align:center;">
-0.1901
-</td>
-<td style="text-align:center;">
-False
-</td>
+<tr class="even">
+<td align="left">anxifree</td>
+<td align="left">placebo</td>
+<td align="center">-0.2667</td>
+<td align="center">0.3115</td>
+<td align="center">-0.7235</td>
+<td align="center">0.1901</td>
+<td align="center">False</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-joyzepam
-</td>
-<td style="text-align:left;">
-placebo
-</td>
-<td style="text-align:center;">
--1.0333
-</td>
-<td style="text-align:center;">
-0.0001
-</td>
-<td style="text-align:center;">
--1.4901
-</td>
-<td style="text-align:center;">
--0.5765
-</td>
-<td style="text-align:center;">
-True
-</td>
+<tr class="odd">
+<td align="left">joyzepam</td>
+<td align="left">placebo</td>
+<td align="center">-1.0333</td>
+<td align="center">0.0001</td>
+<td align="center">-1.4901</td>
+<td align="center">-0.5765</td>
+<td align="center">True</td>
 </tr>
 </tbody>
 </table>
@@ -1328,8 +1164,9 @@ and, if the null hypothesis is true, then the sampling distribution of <span cla
 H = \frac{12}{N(N-1)} \sum_k N_k {\bar{R}_k}^2  -  3(N+1)
 \]</span></p>
 <p>The story is true when there are no ties in the raw data. That is, if there are no two observations that have exactly the same value. If there <em>are</em> ties, then we have to introduce a correction factor to these calculations. At this point, even the most diligent reader might have stopped caring (or at least formed the opinion that the tie-correction factor is something that doesn’t require their immediate attention). So let us omit the tedious details about <em>why</em> it’s done this way. We can look at a frequency table for the raw data (under <code>Explore variable</code> function), and let <span class="math inline">\(f_j\)</span> be the number of observations that have the <span class="math inline">\(j\)</span>-th unique value.</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-32"></span>
-<img src="resources/image/cogstatmoodgainfrequency.png" alt="Frequency table for the raw data (`mood_gain`)." width="100%" />
+
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:moodgainfreq"></span>
+<img src="resources/image/cogstatmoodgainfrequency.png" alt="Frequency table for the raw data (mood_gain)." width="100%" />
 <p class="caption">
 Figure 12.7: Frequency table for the raw data (<code>mood_gain</code>).
 </p>

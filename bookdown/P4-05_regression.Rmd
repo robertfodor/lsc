@@ -248,7 +248,7 @@ The estimated regression coefficient is quite large for the `parentsleep` variab
 
 Let us combine these two predictors into a single model without CogStat^[This feature is not available in CogStat at the moment of writing, but this section will definitely be updated when it is.], and add both `babysleep` and `parentsleep` to the model predicting `parentgrump`, we get the following result:
 
-```{r echo=FALSE, fig.align="center", fig.show="hold"}
+```{r echo=FALSE, fig.align="center", warning=FALSE, message=FALSE}
 knitr::kable(
     cbind(
         c("babysleep", "parentsleep", "Intercept"),
@@ -256,7 +256,7 @@ knitr::kable(
         c(-0.527, -10.049, 119.930),
         c(0.549, -7.852, 132.001)
     ), caption = "Model coefficients for the combined model with both predictors at $\\alpha = 0.05$",
-    align = "lrrr", booktabs = TRUE, digits = 3, escape = FALSE,
+    align = "lrrr", booktabs = TRUE, escape = FALSE, format = "markdown",
     col.names = c("Predictor", "Coefficient estimate",
         "95% CI (low)", "95% CI (high)")
 )
@@ -292,6 +292,7 @@ knitr::kable(
         c(0.969, "<.001", "<.001")
     ), caption = "Model coefficients for the combined model with both predictors at $\\alpha = 0.05$ with $t$-statistics",
     align = "lrrrrr", booktabs = TRUE, digits = 3, escape = FALSE,
+    format = "markdown",
     col.names = c("Predictor", "Coefficient estimate",
         "95% CI (low)", "95% CI (high)", "$t$-statistic", "$p$-value")
 )
@@ -380,6 +381,7 @@ knitr::kable(
         c(0.969, "<.001", "<.001") # p-value
     ), caption = "Model coefficients (both estimate and standardised estimate) for the combined model with both predictors at $\\alpha = 0.05$ with $t$-statistics",
     align = "lrrrrrr", booktabs = TRUE, digits = 3, escape = FALSE,
+    format = "markdown",
     col.names = c("Predictor", "Coefficient estimate",
     "Standardised coefficient ($\\beta$)",
     "95% CI (low)", "95% CI (high)",
