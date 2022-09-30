@@ -53,7 +53,7 @@ Of course, this definition of the mean isn't news to anyone: averages (i.e. mean
 
 We used $N$ to denote the number of observations. Now let's attach a label to the observations themselves. It's traditional to use $X$ for this, and to use subscripts to indicate which observation we're actually talking about. That is, we'll use $X_1$ to refer to the first observation, $X_2$ to refer to the second observation, and so on, all the way up to $X_N$ for the last one. The following table lists the 5 observations in the `afl.margins` variable, along with the mathematical symbol used to refer to it, and the actual value that the observation corresponds to:
 
-```{r echo=FALSE}
+```{r echo=FALSE, fig.align="center"}
 knitr::kable(rbind(
               c("winning margin, game 1", "$X_1$", "56 points"),
               c("winning margin, game 2", "$X_2$", "31 points"),
@@ -61,7 +61,7 @@ knitr::kable(rbind(
               c("winning margin, game 4", "$X_4$", "8 points"),
               c("winning margin, game 5", "$X_5$", "32 points")),
 col.names = c("the observation", "its symbol", "the observed value"),
-  booktabs = TRUE)
+  booktabs = TRUE, escape = FALSE, format = "markdown")
 
 ```
 
@@ -214,7 +214,7 @@ knitr::kable(rbind(
  c("winning margin, game 4", "$X_4$", "8 points"),
  c("winning margin, game 5", "$X_5$", "32 points")),
 col.names = c("the observation", "its symbol", "the observed value"),
- booktabs = TRUE)
+ booktabs = TRUE, escape = FALSE, format="markdown")
 
 ```
 
@@ -247,17 +247,22 @@ Variances are *additive*. Here's what that means: suppose we have two variables 
 Now that we've got the basic idea let's look at a concrete example. Once again, let's use the first five AFL games as our data. If we follow the same approach that we took last time, we end up with the following table:
 
 ```{r echo=FALSE}
+library(kableExtra)
 knitr::kable(rbind(c(1 , 56 , 19.4 , 376.36),
  c(2 , 31 , -5.6 , 31.36),
  c(3 , 56 , 19.4 , 376.36),
  c(4 , 8 , -28.6 , 817.96),
  c(5 , 32 , -4.6 , 21.16)),
 col.names = c( 
- "$i$ [which game]",
- "$X_i$ [value]",
- "$X_i - \\bar{X}$ [deviation from mean]",
- "$(X_i - \\bar{X})^2$ [absolute squared deviation]"),
- booktabs = TRUE)
+ "$i$",
+ "$X_i$",
+ "$X_i - \\bar{X}$",
+ "$(X_i - \\bar{X})^2$"),
+ booktabs = TRUE, escape = FALSE) %>%
+  add_header_above(c("Which game" = 1, "Value" = 1, 
+                     "Deviation from mean" = 1, 
+                     "Absolute squared deviation" = 1)) %>%
+  kable_styling(position = "center")
 ```
 
 That last column contains all of our squared deviations, so all we have to do is average them.
@@ -399,7 +404,7 @@ knitr::kable(rbind(
  c("too pointy", "leptokurtic", "positive")),
 
 col.names = c("informal term", "technical name", "kurtosis value"),
- booktabs = TRUE)
+ booktabs = TRUE, escape = FALSE, format="markdown")
 ```
 
 The equation for kurtosis is similar in spirit to the formulas we've seen already for the variance and the skewness. Except that where the variance involved squared deviations and the skewness involved cubed deviations, the kurtosis involves raising the deviations to the fourth power:^[The "$-3$" part is something that statisticians tack on to ensure that the normal curve has kurtosis zero. It looks a bit funny, just sticking a "-3" at the end of the formula, but there are good mathematical reasons for doing this.]
@@ -456,13 +461,13 @@ knitr::kable(rbind(
               c("[Lower quartile](#IQR)", "12.8", "25% of the data points reside at and below this value"),
               c("[Minimum](#range)", "0.0", "The lowest value in the data set")
               ),
-  col.names = c("", "afl.margins", "Meaning"),
+  col.names = c("<span style='min-width:1em'></span>", "<span style='min-width:1em'>afl.margins</span>", "Meaning"),
   booktabs = TRUE,
   caption = "Descriptives for the variable",
-  align = c("l", "c", "l")
-  ) %>%
-  column_spec(1, width_min = "1.5in")
-
+  align = c("l", "r", "l"),
+  format = "markdown",
+  escape = FALSE
+  )
 ```
 
 We also discussed $z$-scores as very specific alternatives to percentiles in some cases, which will come in handy later on.

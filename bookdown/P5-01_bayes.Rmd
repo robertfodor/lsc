@@ -31,7 +31,7 @@ knitr::kable(
  ),
  col.names = c("Hypothesis $h$", "Degree of Belief $P(h)$"),
  align = "lc",
- booktabs = TRUE
+ booktabs = TRUE, escape = "FALSE", format = "markdown"
 )
 ```
 
@@ -49,7 +49,7 @@ knitr::kable(
  ),
  col.names = c("Hypothesis $h$", "Umbrella", "No umbrella"),
  align = "lcc",
- booktabs = TRUE
+ booktabs = TRUE, escape = "FALSE", format = "markdown"
 )
 ```
 
@@ -69,12 +69,13 @@ $$
 So, what is the probability that today is a rainy day *and* that he carries an umbrella? The prior tells us that the probability of a rainy day is 23.5\%, and the likelihood tells us that the probability of Attila carrying an umbrella on a rainy day is 30\%. So the probability that both of these things are true is calculated by multiplying the two:
 
 $$
-\begin{array}
+\begin{array}{rcl}
 P(\mbox{rainy}, \mbox{umbrella}) & = & P(\mbox{umbrella} | \mbox{rainy}) \times P(\mbox{rainy}) \\
 & = & 0.30 \times 0.235 \\
 & = & 0.0705
 \end{array}
 $$
+
 
 In other words, before being told anything about what actually happened, you think there is a 7.1\% probability that today will be a rainy day and that Attila will remember to bring an umbrella. However, there are, of course, *four* possible things that could happen, right? So let's repeat the exercise for all four. If we do that, we end up with the following table:
 
@@ -87,7 +88,7 @@ knitr::kable(
  ),
  col.names = c("Day", "Umbrella", "No umbrella", "Total"),
  align = "lccc",
- booktabs = TRUE
+ booktabs = TRUE, escape = "FALSE", format = "markdown"
 )
 ```
 
@@ -106,7 +107,7 @@ knitr::kable(
  ),
  col.names = c("Day", "Umbrella", "No umbrella", "Total"),
  align = "lccc",
- booktabs = TRUE
+ booktabs = TRUE, escape = "FALSE", format = "markdown"
 )
 ```
 
@@ -121,7 +122,7 @@ knitr::kable(
  ),
  col.names = c("", "$d_1$", "$d_2$", ""),
  align = "lccc",
- booktabs = TRUE
+ booktabs = TRUE, escape = "FALSE", format = "markdown"
 )
 ```
 
@@ -140,7 +141,7 @@ knitr::kable(
  ),
  col.names = c("", "Umbrella", "No umbrella"),
  align = "lcc",
- booktabs = TRUE
+ booktabs = TRUE, escape = "FALSE", format = "markdown"
 )
 ```
 
@@ -157,7 +158,7 @@ knitr::kable(
  ),
  col.names = c("", "Umbrella", "No umbrella"),
  align = "lcc",
- booktabs = TRUE
+ booktabs = TRUE, escape = "FALSE", format = "markdown"
 )
 ```
 

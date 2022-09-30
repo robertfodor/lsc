@@ -48,7 +48,7 @@ If the psychological data looked like this (or even a good approximation to this
 In a classic study, @Evans1983 ran an experiment looking at exactly this. What they found is that when pre-existing biases (i.e., beliefs) were in agreement with the structure of the data, everything went the way you'd hope:
 
 |          | conclusion feels true| conclusion feels false |
-|-------- |:--------:|:--------|
+|-------- |:--------:|:--------:|
 |argument is valid |92% say "valid"    |            |
 |argument is invalid|           |8% say "valid"     |
 
@@ -81,7 +81,20 @@ simpson <- cbind(c("A", "B", "C", "D", "E", "F"),
          c(108,25,593,375,393,341),
          c("82%","68%","34%","35%","24%","7%"))
 
-knitr::kable(simpson, col.names = c("Department","Male Applicants", "Male Percent Admitted", "Female Applicants", "Female Percent admitted"), align="c", caption = "Admission figures for the six largest departments by gender")
+
+library(kableExtra)
+knitr::kable(simpson, 
+    col.names = c("Department","Male Applicants", 
+        "Male Percent Admitted", "Female Applicants", 
+        "Female Percent admitted"), 
+        align="c", 
+        caption = "Admission figures for the six largest departments by gender", 
+        booktabs=TRUE
+) %>%
+    kable_styling(latex_options = c(
+        "hold_position",
+        "repeat_header",
+        "scale_down"))
 ```
 
 Remarkably, most departments had a *higher* rate of admissions for females than for males! Yet the overall rate of admission across the university for females was *lower* than for males. How can this be? How can both of these statements be true at the same time?

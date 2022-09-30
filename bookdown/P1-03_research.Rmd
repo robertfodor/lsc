@@ -146,7 +146,8 @@ knitr::kable(
   
  )
  , caption = 'The relationship between the measurement scales and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible.', align="lcc",
- booktabs = TRUE
+ booktabs = TRUE,
+ escape = FALSE
 )
 ```
 

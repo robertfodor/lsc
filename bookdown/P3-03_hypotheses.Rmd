@@ -16,7 +16,7 @@ The first distinction that you need to keep clear in your mind is between resear
 
 - *Listening to music reduces your ability to pay attention to other things.* This is a claim about the causal relationship between two psychologically meaningful concepts (listening to music and paying attention to things), so it's a perfectly reasonable research hypothesis.
 - *Intelligence is related to personality*. Like the last one, this is a relational claim about two psychological constructs (intelligence and personality), but the claim is weaker: correlational, not causal.
-- *Intelligence *is* the speed of information processing*. This hypothesis has quite a different character: it's not a relational claim at all. It's an ontological claim about the fundamental character of intelligence. It's worth expanding on this one actually: It's usually easier to think about how to construct experiments to test research hypotheses of the form "does X affect Y?" than it is to address claims like "what is X?" And in practice, what usually happens is that you find ways of testing relational claims that follow from your ontological ones. For instance, if we believe that intelligence *is* the speed of information processing in the brain, our experiments will often involve looking for relationships between measures of intelligence and measures of speed. Consequently, most everyday research questions tend to be relational in nature, but they're almost always motivated by deeper ontological questions about the state of nature.
+- *Intelligence is the speed of information processing*. This hypothesis has quite a different character: it's not a relational claim at all. It's an ontological claim about the fundamental character of intelligence. It's worth expanding on this one actually: It's usually easier to think about how to construct experiments to test research hypotheses of the form "does X affect Y?" than it is to address claims like "what is X?" And in practice, what usually happens is that you find ways of testing relational claims that follow from your ontological ones. For instance, if we believe that intelligence *is* the speed of information processing in the brain, our experiments will often involve looking for relationships between measures of intelligence and measures of speed. Consequently, most everyday research questions tend to be relational in nature, but they're almost always motivated by deeper ontological questions about the state of nature.
 
 Notice that in practice, our research hypotheses could overlap a lot. The ultimate goal in the ESP experiment might be to test an ontological claim like "ESP exists". But we might operationally restrict ourselves to a narrower hypothesis like "Some people can 'see' objects in a clairvoyant fashion". That said, some things really don't count as proper research hypotheses in any meaningful sense: 
 
@@ -38,7 +38,8 @@ knitr::kable(data.frame(stringsAsFactors = FALSE,
         `Research.hypothesis` = c("ESP exists"),
         `Statistical.hypothesis` = c("$\\theta \\neq 0.5$")),
     col.names = c("Research hypothesis", "Statistical hypothesis"),
-    caption = "Research and statistical hypotheses in our ESP research example.")
+    caption = "Research and statistical hypotheses in our ESP research example.",
+     booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 And the critical thing to recognise is this: *a statistical hypothesis test is a test of the statistical hypothesis, not the research hypothesis*. If your study is poorly designed, the link between your research hypothesis and your statistical hypothesis is broken. To give a silly example, suppose that the ESP study was conducted in a situation where the participant can actually see the card reflected in a window; if that happens, we would be able to find robust evidence that $\theta \neq 0.5$, but this would tell us nothing about whether "ESP exists".
@@ -62,7 +63,8 @@ knitr::kable(data.frame(stringsAsFactors=FALSE,
 NANA = c("$H_0$ is true", "$H_0$ is false"),
 `retain.$H_0$` = c("Correct decision", "Error (type II)"),
 `reject.$H_0$` = c("Error (type I)", "Correct decision")
-), col.names = c("", "Retain $H_0$", "Reject $H_0$"))
+), col.names = c("", "Retain $H_0$", "Reject $H_0$"),
+ booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 As a consequence, there are actually *two* different types of error here. If we reject a null hypothesis that is actually true, then we have made a **type I error**. On the other hand, if we retain the null hypothesis when it is, in fact, false, then we have made a **type II error**. 
@@ -79,7 +81,7 @@ retain = c("$1-\\alpha$ (probability of correct retention)",
 reject = c("$\\alpha$ (type I error rate)",
                    "$1-\\beta$  (power of the test)")),
 col.names=c("", "Retain $H_0$", "Reject $H_0$")
-)
+,  booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 A "powerful" hypothesis test has a small value of $\beta$ while still keeping $\alpha$ fixed at some (small) desired level. By convention, scientists make use of three different $\alpha$ levels: $.05$, $.01$ and $.001$. Notice the asymmetry here: the tests are designed to *ensure* that the $\alpha$ level is kept small, but there's no corresponding guarantee regarding $\beta$. We'd certainly *like* the type II error rate to be small, and we try to design tests that keep it small, but this is very much secondary to the overwhelming need to control the type I error rate. Paraphrasing Blackstone had he been a statistician: it is "better to retain ten false null hypotheses than to reject a single true one". However, there are situations where it might not make sense -- but that's neither here nor there. It's how the tests are built.
@@ -138,7 +140,9 @@ You must understand this last point: the critical region corresponds to those va
 
 Now, let's suppose that we chose a critical region that covers 20\% of the sampling distribution, and assume that the null hypothesis is actually true. What would be the probability of incorrectly rejecting the null? The answer is, of course, 20\%. And therefore, we would have built a test that had an $\alpha$ level of $0.2$. If we want $\alpha = .05$, the critical region is only *allowed* to cover 5\% of the sampling distribution of our test statistic.
 
-```{r crit2, fig.cap="The critical region associated with the hypothesis test for the ESP study, for a hypothesis test with a significance level of $\\alpha = .05$. The plot shows the sampling distribution of $X$ under the null hypothesis: the grey bars correspond to those values of $X$, for which we would retain the null hypothesis. The black bars show the critical region: those values of $X$ for which we would reject the null. Because the alternative hypothesis is two-sided (i.e. allows both $\\theta <.5$ and $\\theta >.5$), the critical region covers both tails of the distribution. To ensure an $\\alpha$ level of $.05$, we need to ensure that each of the two regions encompasses 2.5% of the sampling distribution.", echo=FALSE, fig.align="center", out.width="100%"}
+(ref:crit2cap) The critical region associated with the hypothesis test for the ESP study, for a hypothesis test with a significance level of $\alpha = .05$. The plot shows the sampling distribution of $X$ under the null hypothesis: the grey bars correspond to those values of $X$, for which we would retain the null hypothesis. The black bars show the critical region: those values of $X$ for which we would reject the null. Because the alternative hypothesis is two-sided (i.e. allows both $\theta <.5$ and $\theta >.5$), the critical region covers both tails of the distribution. To ensure an $\alpha$ level of $.05$, we need to ensure that each of the two regions encompasses 2.5% of the sampling distribution.
+
+```{r crit2, fig.cap=paste("(ref:crit2cap)"), echo=FALSE, fig.align="center", out.width="100%"}
 
 # needed for printing
 width <- 8
@@ -226,7 +230,9 @@ $$
 
 When this happens, we have what's called a **one-sided test**, and when this happens, the critical region only covers one tail of the sampling distribution. This is illustrated in Figure \@ref(fig:crit1).
 
-```{r crit1, echo=FALSE, fig.cap="The critical region for a one sided test. In this case, the alternative hypothesis is that $\\theta > .05$, so we would only reject the null hypothesis for large values of $X$. As a consequence, the critical region only covers the upper tail of the sampling distribution; specifically the upper 5% of the distribution. Contrast this to the two-sided version earlier)", fig.align="center", out.width="100%"}
+(ref:crit1cap) The critical region for a one sided test. In this case, the alternative hypothesis is that $\theta > .05$, so we would only reject the null hypothesis for large values of $X$. As a consequence, the critical region only covers the upper tail of the sampling distribution; specifically the upper 5% of the distribution. Contrast this to the two-sided version earlier)
+
+```{r crit1, echo=FALSE, fig.cap="(ref:crit1cap)", fig.align="center", out.width="100%"}
 setUpPlot()
 z <- x >= 58
 addDistPlot(x, y, z)
@@ -254,8 +260,8 @@ knitr::kable(data.frame(stringsAsFactors = FALSE,
    Value = c(0.05, 0.04, 0.03, 0.02, 0.01),
     Reject = c("Yes", "Yes", "Yes", "No", "No")),
     col.names = c("Value of $\\alpha$", "Reject the null?"),
-    align = c("l", "l"))
-
+    align = c("l", "l"),
+   booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 When we test ESP data ($X=62$ successes out of $N=100$ observations) using $\alpha$ levels of .03 and above, we always reject the null hypothesis. We always retain the null hypothesis for $\alpha$ levels of .02 and below. Therefore, somewhere between .02 and .03, there must be the smallest value of $\alpha$ that would allow us to reject the null hypothesis for this data. This is the $p$ value; as it turns out the ESP data has $p = .021$. In short:
@@ -311,13 +317,13 @@ knitr::kable(cbind(
     c("$p>.05$", "$p<.05$", "$p<.01$", "$p<.001$"),
     c("", "\\*", "**", "***"),
     c("The test wasn't significant",
-      "The test was significant at $\\alpha = .05 but not at  $\\alpha =.01$ or $\\alpha = .001$.$",
-      "The test was significant at $\\alpha = .05$  and $\\alpha = .01$ but not at  $\\alpha = .001",
+      "The test was significant at $\\alpha = .05$ but not at  $\\alpha =.01$ or $\\alpha = .001$.",
+      "The test was significant at $\\alpha = .05$  and $\\alpha = .01$ but not at  $\\alpha = .001$",
       "The test was significant at all levels"),
     c("Retained", "Rejected", "Rejected", "Rejected")),
 col.names = c("Usual notation", "Signif. stars", "Meaning", "The null is..."),
 caption = "A commonly adopted convention for reporting $p$ values: in many places it is conventional to report one of four different things (e.g., $p<.05$) as shown below. A \"significance stars\" notation (i.e., a * indicates $p<.05$) is sometimes produced by statistical software. It's also worth noting that some people will write *n.s.* (not significant) rather than $p>.05$."
-, booktabs = TRUE, escape = FALSE)
+, booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 Nevertheless, many people still prefer to report exact $p$ values. To many people, the advantage of allowing the reader to make up their own mind about how to interpret $p = .06$ outweighs any disadvantages. In practice, however, even among those researchers who prefer exact $p$ values, it is quite common to just write $p<.001$ instead of reporting an exact value for small $p$. This is in part because a lot of software doesn't actually print out the $p$ value when it's that small (e.g., SPSS just writes $p = .000$ whenever $p<.001$), and in part because a very small $p$ value can be kind of misleading. The human mind sees a number like .0000000001, and it's hard to suppress the gut feeling that the evidence in favour of the alternative hypothesis is a near certainty. In practice, however, this is usually wrong. Every statistical test ever invented relies on simplifications, approximations and assumptions. As a consequence, it's probably not reasonable to walk away from *any* statistical analysis with a feeling of confidence stronger than $p<.001$ implies. In other words, $p<.001$ is really code for "as far as *this test* is concerned, the evidence is overwhelming."
@@ -332,7 +338,10 @@ In previous sections, we emphasised the fact that the major design principle beh
 
 
 ### The power function
-```{r crit3, fig.cap="Sampling distribution under the *alternative* hypothesis, for a population parameter value of $\\theta = 0.55$. A reasonable proportion of the distribution lies in the rejection region.", echo=FALSE, fig.align="center", out.width="100%"}
+
+(ref:crit3cap) Sampling distribution under the *alternative* hypothesis, for a population parameter value of $\\theta = 0.55$. A reasonable proportion of the distribution lies in the rejection region.
+
+```{r crit3, fig.cap=paste("(ref:crit3cap)"), echo=FALSE, fig.align="center", out.width="100%"}
 setUpPlot()
 y <- dbinom(x, 100, .55)
 z <- x <= 40 | x >= 60
@@ -353,7 +362,9 @@ To see this, notice that in the ESP study, the alternative hypothesis actually c
 
 Let's instead suppose that the true value of $\theta$ is 0.7. What happens to the sampling distribution when this occurs? The answer, shown in Figure \@ref(fig:crit4), is that almost the entirety of the sampling distribution has now moved into the critical region. Therefore, if $\theta = 0.7$, the probability of us correctly rejecting the null hypothesis (i.e. the power of the test) is much larger than if $\theta = 0.55$. In short, while $\theta = .55$ and $\theta = .70$ are both part of the alternative hypothesis, the Type II error rate is different.
 
-```{r crit4, fig.cap="Sampling distribution under the *alternative* hypothesis, for a population parameter value of $\\theta = 0.70$. Almost all of the distribution lies in the rejection region.", echo=FALSE, fig.align="center", out.width="100%"}
+(ref:crit4cap) Sampling distribution under the *alternative* hypothesis, for a population parameter value of $\theta = 0.70$. Almost all of the distribution lies in the rejection region.
+
+```{r crit4, fig.cap=paste("(ref:crit4cap)"), echo=FALSE, fig.align="center", out.width="100%"}
 setUpPlot()
 y <- dbinom(x, 100, .7)
 z <- x <= 40 | x >= 60
@@ -409,7 +420,8 @@ NAbig.effect.size = c("difference is real, and  of practical importance",
 NAsmall.effect.size = c("difference is real, but might not be interesting",
                         "no effect observed")
 ), col.names = c("", "Big effect size", "Small effect size"),
-align = c("l", "c", "c"))
+align = c("l", "c", "c"),
+booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 Why calculate effect size? Let's assume that you've run your experiment, collected the data, and gotten a significant effect when you ran your hypothesis test. Isn't it enough just to say that you've gotten a significant effect? Surely that's the *point* of hypothesis testing? Well, sort of. Yes, the point of doing a hypothesis test is to try to demonstrate that the null hypothesis is wrong, but that's hardly the only thing we're interested in.

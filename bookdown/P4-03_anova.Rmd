@@ -18,7 +18,7 @@ For the purposes of this chapter, what we're really interested in is the effect 
 
 ```{r moodbydrug, echo=FALSE, fig.cap="Mood gain by drug", fig.align="center", out.width="100%", fig.show="hold"}
 knitr::include_graphics(
-    "resources/image/moodbydrug.png",
+    "resources/image/moodbydrug.png"
 )
 ```
 
@@ -36,15 +36,15 @@ Sidenote. This assumption of equal variances is Fisher's ANOVA. When we are expl
 
 Back to our Fisher's one-way ANOVA. Mathematically, we write this null hypothesis like this:
 $$
-\begin{array}
-H_0 &:& \mbox{it is true that } \mu_P = \mu_A = \mu_J
+\begin{array}{rcl}
+{H}_{0} &:& \mbox{it is true that } \mu_P = \mu_A = \mu_J
 \end{array}
 $$
 
 As a consequence, our alternative hypothesis is that at least one of the three different treatments is different from the others. It's a little trickier to write this mathematically, because there are quite a few different ways in which the null hypothesis can be false. So for now we'll just write the alternative hypothesis like this:
 $$
 \begin{array}{rcl}
-H_1 &:& \mbox{it is *not* true that } \mu_P = \mu_A = \mu_J
+{H}_{1} &:& \mbox{it is *not* true that } \mu_P = \mu_A = \mu_J
 \end{array}
 $$
 
@@ -63,6 +63,7 @@ This formula looks pretty much identical to the formula for the variance in Chap
 Let's consider a simple table to see how this formula works on our clinical trial data set. The table below shows the person, the drug they were given, and their mood change. 
 
 ```{r moodtable, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold"}
+library(kableExtra)
 knitr::kable(
     rbind(
           c(1, "placebo", 1, 0.5)
@@ -72,19 +73,27 @@ knitr::kable(
         , c(5, "anxifree", 2, 0.4)
         , c(6, "...", "...", "...")
     ),
-    col.names = c("Row", "Drug group ($k$)",
-                "Index in group ($i$)", "Mood change ($Y_{ik}$)"),
-    align = "llcc"
-)
+    col.names = c(" ", "$k$",
+                "$i$", "$Y_{ik}$"),
+    align = "llcc",
+    booktabs = TRUE, escape = FALSE
+) %>%
+  add_header_above(c("Row" = 1, "Drug group" = 1,
+                     "Index in group" = 1,
+                     "Mood change" = 1)) %>%
+    kable_styling(position = "center", latex_options = "hold_position")
 ```
 
 Our average mood change is the mean of all the mood changes in the data set (which you can see if you run `Explore variable` for `mood_gain`), which is $\bar{Y} = 0.88$. The variance of the mood changes is the sum of the squared differences between each mood change and the average mood change, divided by the total number of observations. So our formula filled in would look like this:
+
 $$
-\mbox{Var}(Y) = \frac{1}{18} \left( \left(0.5 - 0.88 \right)^2 + \left(0.3 -0.88 \right)^2 + \left(0.1 - 0.88 \right)^2 + \\
-\left(0.6 - 0.88 \right)^2 + \left(0.4 - 0.88 \right)^2 + \left(0.2 - 0.88 \right)^2 + \left(1.4 - 0.88 \right)^2 + \\
-\left(1.7 - 0.88 \right)^2 + \left(1.3 - 0.88 \right)^2 + \left(0.6 - 0.88 \right)^2 + \left(0.9 - 0.88 \right)^2 + \\
-+ \left(0.3 - 0.88 \right)^2 + \left(1.1 - 0.88 \right)^2 + \left(0.8 - 0.88 \right)^2 + \left(1.2 - 0.88 \right)^2 + \\
-\left(1.8 - 0.88 \right)^2 + \left(1.3 - 0.88 \right)^2 + \left(1.4 - 0.88 \right)^2 \right)
+\begin{array}{ll}
+{Var}(Y) =& \frac{1}{18} ( (0.5 - 0.88 )^2 + (0.3 -0.88 )^2 + (0.1 - 0.88 )^2 + \\
+ & (0.6 - 0.88 )^2 + (0.4 - 0.88 )^2 + (0.2 - 0.88 )^2 + (1.4 - 0.88 )^2 + \\
+ & (1.7 - 0.88 )^2 + (1.3 - 0.88 )^2 + (0.6 - 0.88 )^2 + (0.9 - 0.88 )^2 + \\
+ & (0.3 - 0.88 )^2 + (1.1 - 0.88 )^2 + (0.8 - 0.88 )^2 + (1.2 - 0.88 )^2 + \\
+ & (1.8 - 0.88 )^2 + (1.3 - 0.88 )^2 + (1.4 - 0.88 )^2 )
+\end{array}
 $$
 
 $$
@@ -123,7 +132,9 @@ $$
 
 Yay.
 
-```{r anovavara, fig.cap="Graphical illustration of \"between-groups\" variation", echo=FALSE, fig.align="center", out.width="100%"}
+(ref:anovavaracap) Graphical illustration of "between-groups" variation
+
+```{r anovavara, fig.cap=paste("(ref:anovavaracap)"), echo=FALSE, fig.align="center", out.width="100%"}
 	width <- 7
 	height <- 4
 	# params
@@ -180,7 +191,9 @@ Yay.
 	      font.main = 1)
 ```
 
-```{r anovavarb, fig.cap="Graphical illustration of  \"within groups\" variation", echo=FALSE, fig.align="center", out.width="100%"}
+(ref:anovavarbcap) Graphical illustration of "within groups" variation
+
+```{r anovavarb, fig.cap=paste("(ref:anovavarbcap)"), echo=FALSE, fig.align="center", out.width="100%"}
 width <- 7
 	height <- 4
 
@@ -299,7 +312,8 @@ knitr::kable(t(cbind(
   organised into a “standard” ANOVA table. 
   The formulas for all quantities (except the $p$-value, 
   which has a very ugly formula and would be nightmarishly 
-  hard to calculate without a computer) are shown.")
+  hard to calculate without a computer) are shown.",
+  booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 Now let's calculate these for our clinical trial example, again, behind the scenes. Let's start with the degrees of freedom.
@@ -384,17 +398,24 @@ To be a bit more precise about the sampling distribution, notice that if the nul
 You already know the answers because we calculated it step by step, but you have a more in-depth understanding of how it all ties together. CogStat will do all of this for you, but it's good to know what's going on behind the scenes. Let's see how CogStat interprets our data.
 
 So what we had to do, was simply run the `Compare groups` function with `mood_gain` by `drug`.
-```{r cogcompbydrugdialog, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="CogStat dialogue for `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`."}
+
+(ref:cogcompbydrugdialogcap) CogStat dialogue for `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`.
+
+```{r cogcompbydrugdialog, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap=paste("(ref:cogcompbydrugdialogcap)")}
 knitr::include_graphics(c(
     "resources/image/comparegroupsbydrug.png"))
 ```
 
-```{r cogcompbydrugdescr, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="CogStat result set displaying descriptives and boxplots as a result of `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`."}
+(ref:cogcompbydrugdescrcap) CogStat result set displaying descriptives and boxplots as a result of `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`.
+
+```{r cogcompbydrugdescr, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap=paste("(ref:cogcompbydrugdescrcap)")}
 knitr::include_graphics(c(
     "resources/image/moodbydrug.png"))
 ```
 
-```{r cogcompbydrug, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="CogStat result set with hypothesis test results, effect size and post hoc results after running `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`."}
+(ref:cogcompbydrugcap) CogStat result set with hypothesis test results, effect size and post hoc results after running `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`.
+
+```{r cogcompbydrug, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap=paste("(ref:cogcompbydrugcap)")}
 knitr::include_graphics(c(
     "resources/image/moodbydrughypo.png"))
 ```
@@ -430,7 +451,8 @@ knitr::kable(
     ),
     col.names = c("", "df", "Sum of squares",
             "Mean squares", "$F$-statistic", "$p$-value"),
-    caption = "ANOVA table for the `mood_gain` by `drug` variable"
+    caption = "ANOVA table for the `mood_gain` by `drug` variable",
+    booktabs = TRUE, escape = FALSE, format = "markdown"
 )
 ```
 
@@ -476,13 +498,13 @@ $$
 where $\mbox{df}_b$ is the degrees of freedom for the between-subjects factor, and $\mbox{MS}_w$ is the mean square for the within-subjects factor, $\mbox{SS}_{tot}$ is the total sum of squares, and $\mbox{SS}_b$ is the between-subjects sum of squares. Filled in, we get:
 
 $$
-{\begin{array}{ll}
+\begin{array}{rcl}
 \omega^2 &=& \frac{\mbox{SS}_b - \mbox{df}_b \times \mbox{MS}_w}{\mbox{SS}_{tot} + \mbox{MS}_w}
     \\
     &=& \frac{3.4533 - 2 \times 0.0928}{4.845 + 0.0928}
     \\
     &=& 0.662
-\end{array}}
+\end{array}
 $$
 
 CogStat will give you this exact omega-squared value when running the one-way ANOVA inside the `Compare groups` function (see result set in Figure \@ref(fig:cogcompbydrug)).
@@ -520,7 +542,8 @@ knitr::kable(
              "alternative", "alternative", "alternative", "alternative")
     ),
     col.names = c("possibility:", "is $\\mu_P = \\mu_A$?", 
-        "is $\\mu_P = \\mu_J$?", "is $\\mu_A = \\mu_J$?", "which hypothesis?")
+        "is $\\mu_P = \\mu_J$?", "is $\\mu_A = \\mu_J$?", "which hypothesis?"),
+        booktabs = TRUE, escape = FALSE, format = "markdown"
 )
 ```
 
@@ -548,7 +571,8 @@ knitr::kable(
     col.names = c("group1", "group2", "meandiff", "p-adj",
             "lower", "upper", "reject"),
     align = c("llccccc"),
-    caption = "Multiple Comparison of Means - Tukey HSD, FWER=0.05")
+    caption = "Multiple Comparison of Means - Tukey HSD, FWER=0.05",
+    booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 The first column shows one of the groups in our comparison, namely the drug. The second column shows which other group we are comparing against in pairs. The third column is our statistic (the mean difference), and the fourth column is the adjusted $p$ value. The fifth and sixth columns show the lower and upper bounds of the 95\% confidence interval for the mean difference. The final column shows whether or not we reject the null hypothesis that the mean difference is zero.
@@ -619,9 +643,12 @@ $$
 
 The story is true when there are no ties in the raw data. That is, if there are no two observations that have exactly the same value. If there *are* ties, then we have to introduce a correction factor to these calculations. At this point, even the most diligent reader might have stopped caring (or at least formed the opinion that the tie-correction factor is something that doesn't require their immediate attention). So let us omit the tedious details about *why* it's done this way. We can look at a frequency table for the raw data (under `Explore variable` function), and let $f_j$ be the number of observations that have the $j$-th unique value. 
 
-```{r echo=FALSE, fig.cap="Frequency table for the raw data (`mood_gain`).", fig.align="center", out.width="100%"}
+(ref:moodgainfreqcap) Frequency table for the raw data (`mood_gain`).
+
+```{r moodgainfreq, echo=FALSE, fig.cap=paste("(ref:moodgainfreqcap)"), fig.align="center", out.width="100%"}
 knitr::include_graphics("resources/image/cogstatmoodgainfrequency.png")
 ```
+
 
 Looking at this table, notice that the value of $0.3$ (and $0.6$, $1.3$, $1.4$) has a frequency of 2. This is telling us that two people's mood increased by 0.3 (and 0.6...). More to the point, note that we can say $f_3 = 2$, where 3 is the index of the value (i.e. row number 3). Yay. So, now that we know this, the tie correction factor (TCF) is:
 $$

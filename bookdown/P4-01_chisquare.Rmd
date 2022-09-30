@@ -14,7 +14,9 @@ The $\chi^2$ goodness-of-fit test is one of the oldest hypothesis tests around: 
 
 Over the years, there have been a lot of studies showing that humans have a lot of difficulties in simulating randomness. Try as we might to "act" random, we *think* in terms of patterns and structure, and so when asked to "do something at random", what people do is anything but random. Consequently, the study of human randomness (or non-randomness, as the case may be) opens up a lot of deep psychological questions about how we think about the world. With this in mind, let's consider a very simple study. Suppose we asked people to imagine a shuffled deck of cards and mentally pick one card from this imaginary deck "at random". After they've chosen one card, we ask them to select a second one mentally. For both choices, we're going to look at the suit (hearts, clubs, spades or diamonds) that people chose. After asking, say, $N=200$ people to do this, we'd like to look at the data and figure out whether or not the cards that people pretended to select were random. The data are contained in the [`cards.csv`](resources/data/cards.csv) file, which we will load into CogStat. For the moment, let's just focus on the first choice that people made (`choice_1`).
 
-```{r cogstatloadcards, echo=FALSE, fig.cap="Loading the cards.csv data and running `Explore variable` command on `choice_1`", fig.align="center", out.width="100%", fig.show="hold"}
+(ref:cogstatloadcardscap) Loading the cards.csv data and running `Explore variable` command on `choice_1`
+
+```{r cogstatloadcards, echo=FALSE, fig.cap=paste("(ref:cogstatloadcardscap)"), fig.align="center", out.width="100%", fig.show="hold"}
 knitr::include_graphics(c("resources/image/cogstatloadcards.png",
                   "resources/image/cogstatcardsdescrhisto.png"))
 ```
@@ -55,7 +57,8 @@ and the "mathematician friendly" version is
 knitr::kable(data.frame(stringsAsFactors=FALSE,
        H_0 = c("$P = (0.25, 0.25, 0.25, 0.25)$"),
        H_1 = c("$P \\neq (0.25,0.25,0.25,0.25)$")),
-       col.names = c("$H_0$", "$H_1$"), align = "cc")
+       col.names = c("$H_0$", "$H_1$"), align = "cc",
+       booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 ### The "goodness of fit" test statistic
@@ -81,8 +84,8 @@ diamondsuit = c(50, 51, 1),
 heartsuit = c(50, 64, 14),
 spadesuit = c(50, 50, 0)
 ), col.names = c("", "", "$\\clubsuit$", "$\\diamondsuit$",
-               "$\\heartsuit$", "$\\spadesuit$"))
-
+               "$\\heartsuit$", "$\\spadesuit$"),
+booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 It's clear that people chose more hearts and fewer clubs than the null hypothesis predicted. However, a moment's thought suggests that these raw differences aren't quite what we're looking for. Intuitively, it feels like it's just as bad when the null hypothesis predicts too few observations (which is what happened with hearts) as it is when it predicts too many (which is what happened with clubs). So it's a bit weird that we have a negative number for clubs and a positive number for hearts.
@@ -99,7 +102,8 @@ diamondsuit = c(50, 51, 1, 1),
 heartsuit = c(50, 64, 14, 196),
 spadesuit = c(50, 50, 0, 0)),
 col.names = c("", "", "$\\clubsuit$", "$\\diamondsuit$",
-               "$\\heartsuit$", "$\\spadesuit$"))
+               "$\\heartsuit$", "$\\spadesuit$"),
+booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 Now we're making progress. Now, we've got a collection of numbers that are big whenever the null hypothesis makes a lousy prediction (clubs and hearts) but small whenever it makes a good one (diamonds and spades). 
@@ -120,7 +124,8 @@ heartsuit = c(50, 64, 14, 196, "3.92"),
 spadesuit = c(50, 50, 0, 0, "0")),
 col.names = c("", "", "$\\clubsuit$", "$\\diamondsuit$",
                "$\\heartsuit$", "$\\spadesuit$"),
-align = "llccc")
+align = "llccc",
+booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 In effect, what we've got here are four different "error" scores, each one telling us how big a "mistake" the null hypothesis made when we tried to use it to predict our observed frequencies. So, in order to convert this into a useful test statistic, one thing we could do is just add these numbers up. We get
@@ -153,7 +158,9 @@ There's one last detail to talk about, namely the degrees of freedom. If you rem
 
 ### Degrees of freedom
 
-```{r manychi, fig.cap="Chi-square distributions with different values for the \"degrees of freedom\".", echo=FALSE, fig.align="center"}
+(ref:manychicap) Chi-square distributions with different values for the "degrees of freedom".
+
+```{r manychi, fig.cap=paste("(ref:manychicap)"), echo=FALSE, fig.align="center"}
 chiSqImg <- list()
 emphCol <- rgb(0,0,1)
 emphColLight <- rgb(.5,.5,1)
@@ -247,7 +254,7 @@ This is pretty straightforward, and hopefully it seems pretty unremarkable. Ther
 
 - *The statistical test is preceded by descriptive statistics*. That is, we told the reader something about what the data looked like before going on to do the test. In general, this is good practice: remember that your reader doesn't know your data anywhere near as well as you do. So unless you describe it to them adequately, the statistical tests won't make sense to them.
 - *The description tells you what the null hypothesis being tested is*. Writers don't always do this, but it's often a good idea in those situations where some ambiguity exists; or when you can't rely on your readership being intimately familiar with the statistical tools you're using. Quite often, the reader might not know (or remember) all the details of the test that your using, so it's a kind of politeness to "remind" them! As far as the goodness of fit test goes, you can usually rely on a scientific audience knowing how it works (since it's covered in most intro stats classes). However, it's still a good idea to explicitly state the null hypothesis (briefly!) because the null hypothesis can differ depending on your test. For instance, in the cards example our null hypothesis was that all the four suit probabilities were identical (i.e. $P_1 = P_2 = P_3 = P_4 = 0.25$), but there's nothing special about that hypothesis. We could just as easily have tested the null hypothesis that $P_1 = 0.7$ and $P_2 = P_3 = P_4 = 0.1$ using a goodness of fit test. So it's helpful to the reader to explain your null hypothesis to them. Also, we described the null hypothesis in words, not in maths. That's perfectly acceptable. You can describe it in maths if you like, but since most readers find words easier to read than symbols, most writers tend to describe the null using words if they can.
-- *A "stat block" is included*. When reporting the results of the test itself, We didn't just say that the result was significant; we included a "stat block" (i.e. the dense mathematical-looking part in the parentheses), which reports all the "raw" statistical data. For the chi-square goodness of fit test, the information that gets reported is the test statistic (that the goodness of fit statistic was 8.44), the information about the distribution used in the test ($\chi^2$ with 3 degrees of freedom, which is usually shortened to $\chi^2(3)$), and then the information about whether the result was significant (in this case $p<.05$). The particular information that needs to go into the stat block is different for every test, and so each time we introduce a new test, we'll show you what the stat block should look like. The general principle is that you should always provide enough information so that the reader can check the test results themselves if they really want to.
+- *A "stat block" is included*. When reporting the results of the test itself, we didn't just say that the result was significant; we included a "stat block" (i.e. the dense mathematical-looking part in the parentheses), which reports all the "raw" statistical data. For the chi-square goodness of fit test, the information that gets reported is the test statistic (that the goodness of fit statistic was 8.44), the information about the distribution used in the test ($\chi^2$ with 3 degrees of freedom, which is usually shortened to $\chi^2(3)$), and then the information about whether the result was significant (in this case $p<.05$). The particular information that needs to go into the stat block is different for every test, and so each time we introduce a new test, we'll show you what the stat block should look like. The general principle is that you should always provide enough information so that the reader can check the test results themselves if they really want to.
 - *The results are interpreted*. In addition to indicating that the result was significant, we provided an interpretation of the result (i.e. that people didn't choose randomly). This is also a kindness to the reader because it tells them what they should believe about your data. If you don't include something like this, it's tough for your reader to understand what's going on.^[To some people, this advice might sound odd or at least in conflict with the "usual" advice on how to write a technical report. Students are typically told that the "results" section of a report is for describing the data and reporting statistical analysis, and the "discussion" section provides interpretation. That's true as far as it goes, but people often interpret it way too literally. Provide a quick and simple interpretation of the data in the results section so that the reader understands what the data are telling us. Then, in the discussion, try to tell a bigger story; about how my results fit the rest of the scientific literature. In short, don't let the "interpretation goes in the discussion" advice turn your results section into incomprehensible garbage. Being understood by your reader is *much* more important.]
 
 As with everything else, your overriding concern should be that you *explain* things to your reader.
@@ -268,7 +275,9 @@ So why don't we live in a world where the stat block's contents uniquely specify
 
 The other day Danielle was watching an animated documentary examining the quaint customs of the natives of the planet *Chapek 9*. Apparently, in order to gain access to their capital city, a visitor must prove that they're a robot, not a human. In order to determine whether or not the visitor is human, they ask whether the visitor prefers puppies, flowers or large, properly formatted data files. But what if humans and robots have the same preferences? That probably wouldn't be a very good test then, would it? In order to determine whether or not a visitor is human, the natives of *Chapek 9* need to know whether or not the visitor's preferences are independent of their species. In other words, they need to know whether or not the visitor's preferences are associated with their species.
 
-```{r cogstatloadchapek9, echo=FALSE, fig.align="center", fig.show="hold", fig.cap="Loading the [`chapek9.csv`](resources/data/chapek9.csv) data set into CogStat."}
+(ref:cogstatloadchapek9cap) Loading the [`chapek9.csv`](resources/data/chapek9.csv) data set into CogStat.
+
+```{r cogstatloadchapek9, echo=FALSE, fig.align="center", fig.show="hold", fig.cap=paste("(ref:cogstatloadchapek9cap)")}
 knitr::include_graphics("resources/image/cogstatloadchapek9.png")
 ```
 
@@ -301,7 +310,8 @@ knitr::kable(cbind(
  c("Human", 15, 13, 65, 93),
  c("Total", 28, 43, 109, 180)),
  caption = "Cross-tabulation of `choices` by `species`",
- align = "lccc")
+ align = "lccc",
+ booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 It's quite clear that most humans chose the data file, whereas the robots tended to be a lot more even in their preferences. Leaving aside the question of *why* humans might be more likely to choose the data file for the moment, first, we must determine if the discrepancy between human choices and robot choices in the data set is statistically significant.
@@ -316,8 +326,8 @@ NANA = c("Puppy", "Flower", "Data file", "Total"),
 Robot = c("$O_{11}$", "$O_{21}$", "$O_{31}$", "$C_{1}$"),
 Human = c("$O_{12}$", "$O_{22}$", "$O_{32}$", "$C_{2}$"),
 Total = c("$R_{1}$", "$R_{2}$", "$R_{3}$", "$N$")
-), col.names = c("", "Robot", "Human", "Total"))
-
+), col.names = c("", "Robot", "Human", "Total")
+, booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 In this notation, we say that $O_{ij}$ is a count (observed frequency) of the number of respondents that are of species $j$ (`robot` or `human`) who answered $i$ (`puppy`, `flower` or `data`) when asked to make a choice. The total number of observations is written $N$, as usual. Finally,  $R_i$ denotes the row totals (e.g. $R_1$ is the total number of people who chose the flower), and $C_j$ denotes the column totals (e.g., $C_1$ is the total number of robots). To use the terminology from another mathematical statistics textbook [@Hogg2005], we should technically refer to this situation as a **chi-square test of homogeneity**; and reserve the term **chi-square test of independence** for the situation where both the row and column totals are random outcomes of the experiment.
@@ -331,7 +341,7 @@ knitr::kable(rbind(
    c("", "$P_{31} = P_{32}$", "same probability of saying `data file`")),
 col.names = c("$H_0$:", "All of the following are true:", ""),
 caption = "The null hypothesis for the $\\chi^2$ test of independence of the `chapek9` data set."
-)
+, booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 Since the null hypothesis claims that the true choice probabilities don't depend on the species of the person making the choice, we can let $P_i$ refer to this probability: e.g. $P_1$ is the true probability of choosing the puppy.
@@ -443,7 +453,9 @@ CogStat (or any other software, for that matter) introduces this correction, so 
 
 Let us overwrite all the `puppy` answers in our `chapek9` data frame to look at 1 degree of freedom (Figure \@ref(fig:chapek9two)).
 
-```{r chapek9two, fig.cap="CogStat results for [`chapek9two.csv`](resources/data/chapek9two.csv) with 1 degree of freedom", fig.align="center", out.width="100%", fig.show="hold", echo=FALSE}
+(ref:chapek9twocap) CogStat results for [`chapek9two.csv`](resources/data/chapek9two.csv) with 1 degree of freedom
+
+```{r chapek9two, fig.cap=paste("(ref:chapek9twocap)"), fig.align="center", out.width="100%", fig.show="hold", echo=FALSE}
 knitr::include_graphics(c("resources/image/cogstatchapek9twomatrix.png",
                     "resources/image/cogstatchapek9tworesult.png"))
 ```
@@ -496,7 +508,7 @@ A Cramer's V of 0.244 tells us that there is a moderate association between the 
 
 All statistical tests make assumptions, and it's usually a good idea to check that those assumptions are met. For the chi-square tests discussed so far in this chapter, the assumptions are:
 
-- *Expected frequencies are sufficiently large*. Remember how in the previous section, we saw that the $\chi^2$ sampling distribution emerges because the binomial distribution is similar to a normal distribution? Well, as we discussed in Chapter \@ref(probability), this is only true when the number of observations is sufficiently large. What that means in practice is that all of the expected frequencies need to be reasonably big. How big is reasonably big? Opinions differ, but the default assumption seems to be that you generally would like to see all your expected frequencies larger than about 5, though for larger tables, you would probably be okay if at least 80\% of the expected frequencies are above 5 and none of them are below 1. However, these seem to have been proposed as rough guidelines, not hard and fast rules; and they seem somewhat conservative [Larntz1978]. 
+- *Expected frequencies are sufficiently large*. Remember how in the previous section, we saw that the $\chi^2$ sampling distribution emerges because the binomial distribution is similar to a normal distribution? Well, as we discussed in Chapter \@ref(probability), this is only true when the number of observations is sufficiently large. What that means in practice is that all of the expected frequencies need to be reasonably big. How big is reasonably big? Opinions differ, but the default assumption seems to be that you generally would like to see all your expected frequencies larger than about 5, though for larger tables, you would probably be okay if at least 80\% of the expected frequencies are above 5 and none of them are below 1. However, these seem to have been proposed as rough guidelines, not hard and fast rules; and they seem somewhat conservative [@Larntz1978]. 
 - *Data are independent of one another*. One somewhat hidden assumption of the chi-square test is that you have to believe that the observations are genuinely independent. Suppose we are interested in the proportion of babies born at a particular hospital that are boys. We walk around the maternity wards and observe 20 girls and only 10 boys. Seems like a pretty convincing difference, right? But later on, it turns out that we'd actually walked into the same ward 10 times, and in fact, we'd only seen 2 girls and 1 boy. Not as convincing, is it? Our original 30 *observations* were massively non-independent. And were only, in fact, equivalent to 3 independent observations. Obviously, this is an extreme(ly silly) example, but it illustrates the fundamental issue. Non-independence "stuffs things up". Sometimes it causes you to falsely reject the null, as the silly hospital example illustrates, but it can go the other way too. Let's consider what would happen if we'd done the cards experiment slightly differently: instead of asking 200 people to try to imagine sampling one card at random, suppose we asked 50 people to select 4 cards. One possibility would be that *everyone* selects one heart, one club, one diamond and one spade (in keeping with the "representativeness heuristic"; Tversky \& Kahneman 1974). This is highly non-random behaviour from people, but in this case, we would get an observed frequency of 50 for all four suits. For this example, the fact that the observations are non-independent (because the four cards that you pick will be related to each other) actually leads to the opposite effect, falsely retaining the null.
 
 If you find yourself in a situation where independence is violated, it may be possible to use the McNemar test or the Cochran test. Similarly, if your expected cell counts are too small, check out the Fisher exact test.
@@ -515,7 +527,7 @@ Looking at this data, you'd be hard pressed not to suspect that people not on fi
 knitr::include_graphics("resources/image/cogstatsalemresult.png")
 ```
 
-We'd *really* like to be able to get a better answer than this provided we really don't want to be on fire. This is where **Fisher's exact test** \cite{Fisher1922} comes in very handy. The Fisher exact test works somewhat differently to the chi-square test (or in fact any of the other hypothesis tests that I talk about in this book) insofar as it doesn't have a test statistic; it calculates the $p$-value "directly".
+We'd *really* like to be able to get a better answer than this provided we really don't want to be on fire. This is where **Fisher's exact test** [@Fisher1922] comes in very handy. The Fisher exact test works somewhat differently to the chi-square test (or in fact any of the other hypothesis tests that I talk about in this book) insofar as it doesn't have a test statistic; it calculates the $p$-value "directly".
 
 Let's have some notation: 
 
@@ -525,7 +537,8 @@ knitr::kable(tibble::tribble(
     "Set on fire   ", " $O_{11}$ ", " $O_{12}$ ", " $R_{1}$ ",
   "Not set on fire ", " $O_{21}$ ", " $O_{22}$ ", " $R_{2}$ ",
             "Total ",  " $C_{1}$ ",  " $C_{2}$ ",      " $N$"
-  ), col.names = c("", "Happy", "Sad", "Total"))
+  ), col.names = c("", "Happy", "Sad", "Total"),
+  booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 In order to construct the test Fisher treats both the row and column totals ($R_1$, $R_2$, $C_1$ and $C_2$) are known, fixed quantities; and then calculates the probability that we would have obtained the observed frequencies that we did ($O_{11}$, $O_{12}$, $O_{21}$ and $O_{22}$) given those totals. In the notation that we developed in Chapter \@ref(probability) this is written:
@@ -546,7 +559,8 @@ knitr::kable(tibble::tribble(
   "Yes",     "30",    "10",    "40",
   "No",     "70",    "90",   "160",
   "Total",    "100 ",   "100",    "200"
-  ), col.names = c("", "Before", "After", "Total"), align = 'lccc')
+  ), col.names = c("", "Before", "After", "Total"), align = 'lccc',
+  booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 At first pass, you might think that this situation lends itself to the Pearson $\chi^2$ test of independence (as per Chapter \@ref(chisqindependence)). However, we've got a problem: we have 100 participants but 200 observations. This is because each person has given us an answer in *both* the before and after columns. What this means is that the 200 observations aren't independent of each other: if voter A says "yes" the first time and voter B says "no", then you'd expect that voter A is more likely to say "yes" the second time than voter B! The consequence of this is that the usual $\chi^2$ test won't give trustworthy answers due to the violation of the independence assumption. Now, if this were a really uncommon situation, I wouldn't be bothering to waste your time talking about it. But it's not uncommon at all: this is a *standard* repeated measures design, and none of the tests we've considered so far can handle it.
@@ -559,7 +573,8 @@ knitr::kable(tibble::tribble(
   "After: Yes",           "5",          "5",    "10",
   "After: No",          "25",         "65",    "90",
   "Total",          "30",         "70",    "100"
-  ), col.names = c("", "Before: Yes", "Before: No", "Total"), align = 'lccc')
+  ), col.names = c("", "Before: Yes", "Before: No", "Total"), align = 'lccc',
+  booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 This is exactly the same data, but it's been rewritten so that each of our 100 participants appears in only one cell. Because we've written our data this way, the independence assumption is now satisfied, and this is a contingency table that we *can* use to construct an $X^2$ goodness of fit statistic. However, as we'll see, we need to do it in a slightly nonstandard way. To see what's going on, it helps to label the entries in our table a little differently:
@@ -570,7 +585,8 @@ knitr::kable(tibble::tribble(
   "After: Yes",         "$a$",        "$b$", "$a+b$",
      "After: No",         "$c$",        "$d$", "$c+d$",
          "Total",       "$a+c$",      "$b+d$",    "$n$"
-  ), col.names = c("", "Before: Yes", "Before: No", "Total"), align = 'lccc')
+  ), col.names = c("", "Before: Yes", "Before: No", "Total"), align = 'lccc',
+  booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 Next, let's think about what our null hypothesis is: it's that the "before" test and the "after" test have the same proportion of people saying, "Yes, I will vote for AGPP". Because of the way we have rewritten the data, it means that we're now testing the hypothesis that the *row totals* and *column totals* come from the same distribution. Thus, the null hypothesis in McNemar's test is that we have "marginal homogeneity". That is, the row totals and column totals have the same distribution: $P_a + P_b = P_a + P_c$, and similarly that $P_c + P_d = P_b + P_d$. Notice that this means that the null hypothesis actually simplifies to $P_b = P_c$.
@@ -631,7 +647,8 @@ knitr::kable(rbind(
       c("spades", 18, 13, 15, 4, 50),
       c("Total", 68, 44, 41, 47, 200)
       )
-, caption = "Contingency table for the cards data set as seen in CogStat when runnig `Compare repeated measures variables` or `Explore relation of variable pair`.")
+, caption = "Contingency table for the cards data set as seen in CogStat when runnig `Compare repeated measures variables` or `Explore relation of variable pair`.",
+booktabs = TRUE, escape = FALSE, format = "markdown")
 ```
 
 First, we wanted to know whether the choice you make the second time is dependent on the choice you made the first time (for this, we'll run the `Explore relation of variable pair` analysis). This is where a test of independence is useful, and what we're trying to do is see if there's some relationship between the rows and columns of this table.

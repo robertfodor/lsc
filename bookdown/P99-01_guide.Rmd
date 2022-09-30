@@ -31,7 +31,7 @@ knitr::kable(rbind(
   "The lowest value in the data set")
    ),
   col.names = c("", "Meaning"),
-  booktabs = TRUE,
+  booktabs = TRUE, format = "markdown",
   align = "l"
   ) %>%
   column_spec(1, width_min = "1.5in")
