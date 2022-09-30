@@ -77,7 +77,8 @@ knitr::kable(
 
     ),
     col.names = c( "Bayes factor $BF_10$", "Interpretation"), escape = FALSE,
-    caption = "Interpretation of Bayes factors by @Jeffreys1961", booktabs = TRUE
+    caption = "Interpretation of Bayes factors by @Jeffreys1961", booktabs = TRUE,
+    linesep = ""
 )
 ```
 

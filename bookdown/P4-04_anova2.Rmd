@@ -434,12 +434,12 @@ There are quite a lot of these comparisons that you need to consider. So, the id
 library(kableExtra)
 knitr::kable(
     rbind(
-        c("anxifree-no_therapy",  "0.100", "-0.540", "0.740", "0.994"),
-        c("joyzepam-no_therapy",   "1.167", "0.527", "1.807", "0.001"),
+        c("anxifree-no\\_therapy",  "0.100", "-0.540", "0.740", "0.994"),
+        c("joyzepam-no\\_therapy",   "1.167", "0.527", "1.807", "0.001"),
         c("placebo-CBT",  "0.300", "-0.340", "0.940", "0.628"),
         c("anxifree-CBT",  "0.733", "0.093", "1.373", "0.022"),
         c("joyzepam-CBT",  "1.200", "0.560", "1.840", "0.000"),
-        c("joyzepam-no_therapy",  "1.067", "0.427", "1.707", "0.001"),
+        c("joyzepam-no\\_therapy",  "1.067", "0.427", "1.707", "0.001"),
         c("placebo-CBT",  "0.200", "-0.440", "0.840", "0.892"),
         c("anxifree-CBT",  "0.633", "-0.007", "1.273", "0.053"),
         c("joyzepam-CBT", "1.100", "0.460", "1.740", "0.001"),
@@ -449,16 +449,16 @@ knitr::kable(
         c("anxifree-CBT", "0.433", "-0.207", "1.073", "0.275"),
         c("joyzepam-CBT",  "0.900", "0.260", "1.540", "0.005"),
         c("joyzepam-CBT",  "0.467", "-0.173", "1.107", "0.214")),
-    col.names = c("Pair", "Difference", "CI 95% (Lower)", "CI 95% (Upper)", "$p$"),
+    col.names = c("Pair", "Difference", "CI 95\\% (Lower)", "CI 95\\% (Upper)", "$p$"),
     caption = "Tukey's HSD for a multi-way ANOVA", digits = 3,
-    booktabs = TRUE, escape = FALSE, format="markdown",
+    booktabs = TRUE, escape = FALSE,
     align = "lcccc"
 ) %>%
-    pack_rows("... - placebo-no_therapy", 1, 5) %>%
-    pack_rows("... - anxifree-no_therapy", 6, 9) %>%
-    pack_rows("... - joyzepam-no_therapy", 10, 12) %>%
-    pack_rows("... - placebo-CBT", 13, 14) %>%
-    pack_rows("... - anxifree-CBT", 15, 15)
+    group_rows("... - placebo-no_therapy", 1, 5) %>%
+    group_rows("... - anxifree-no_therapy", 6, 9) %>%
+    group_rows("... - joyzepam-no_therapy", 10, 12) %>%
+    group_rows("... - placebo-CBT", 13, 14) %>%
+    group_rows("... - anxifree-CBT", 15, 15)
 ```
 
 ## Unbalanced designs and types of sums of squares{#unbalancedanova}
@@ -488,15 +488,15 @@ The Type I method is sometimes referred to as the "sequential" sum of squares, b
 
 The simplest possible model for the data would be one in which neither milk nor sugar is assumed to have any effect on babbling. The only term that would be included in such a model is the intercept. This is our initial null hypothesis.
 
-The next simplest model for the data would be one in which only one of the two main effects is included. In the coffee data, there are two different possible choices here, because we could choose to add milk first or to add sugar first. The order actually matters, but for now, let's just make a choice arbitrarily, and pick sugar. So the second model in our sequence of models is `babble ~ sugar`. This comparison forms our hypothesis test of the main effect of `sugar`. The next step in our model-building exercise it to add the other main effect term, so the next model in our sequence is `babble ~ sugar + milk`. This comparison forms our hypothesis test of the main effect of `milk`. In one sense, this approach is very elegant: the alternative hypothesis from the first test forms the null hypothesis for the second one. It is in this sense that the Type I method is strictly sequential. Every test builds directly on the results of the last one. However, in another sense, it's very inelegant because there's a strong asymmetry between the two tests. The test of the main effect of `sugar` (the first test) completely ignores `milk`, whereas the test of the main effect of `milk` (the second test) does take `sugar` into account. In any case, the fourth model in our sequence is now the full model, `babble ~ sugar + milk + sugar:milk`.
+The next simplest model for the data would be one in which only one of the two main effects is included. In the coffee data, there are two different possible choices here, because we could choose to add milk first or to add sugar first. The order actually matters, but for now, let's just make a choice arbitrarily, and pick sugar. So the second model in our sequence of models is `babble ¦ sugar`. This comparison forms our hypothesis test of the main effect of `sugar`. The next step in our model-building exercise it to add the other main effect term, so the next model in our sequence is `babble ¦ sugar + milk`. This comparison forms our hypothesis test of the main effect of `milk`. In one sense, this approach is very elegant: the alternative hypothesis from the first test forms the null hypothesis for the second one. It is in this sense that the Type I method is strictly sequential. Every test builds directly on the results of the last one. However, in another sense, it's very inelegant because there's a strong asymmetry between the two tests. The test of the main effect of `sugar` (the first test) completely ignores `milk`, whereas the test of the main effect of `milk` (the second test) does take `sugar` into account. In any case, the fourth model in our sequence is now the full model, `babble ¦ sugar + milk + sugar:milk`.
 
 ```{r echo=FALSE, fig.align="center", out.width="100%"}
 library(kableExtra)
 knitr::kable(
     rbind(
-        c("Model 1", "babble ~ 1", "babble ~ sugar", "sugar"),
-        c("Model 2", "babble ~ sugar", "babble ~ sugar + milk", "milk"),
-        c("Model 3", "babble ~ sugar + milk", "babble ~ sugar + milk + sugar×milk", "sugar×milk")
+        c("Model 1", "babble ¦ 1", "babble ¦ sugar", "sugar"),
+        c("Model 2", "babble ¦ sugar", "babble ¦ sugar + milk", "milk"),
+        c("Model 3", "babble ¦ sugar + milk", "babble ¦ sugar + milk + sugar×milk", "sugar×milk")
     )
     , caption = "Hypotheses for the Type I Sum of Squares for the `coffee` dataset (sugar first).",
     booktabs = TRUE,
@@ -528,9 +528,9 @@ The big problem with using Type I sum of squares is the fact that it really does
 ```{r echo=FALSE, fig.align="center", out.width="100%"}
 knitr::kable(
     rbind(
-        c("Model 1", "babble ~ 1", "babble ~ milk", "milk"),
-        c("Model 2", "babble ~ milk", "babble ~ milk + sugar", "sugar"),
-        c("Model 3", "babble ~ milk + sugar", "babble ~ milk + sugar + milk×sugar", "milk×sugar")
+        c("Model 1", "babble ¦ 1", "babble ¦ milk", "milk"),
+        c("Model 2", "babble ¦ milk", "babble ¦ milk + sugar", "sugar"),
+        c("Model 3", "babble ¦ milk + sugar", "babble ¦ milk + sugar + milk×sugar", "milk×sugar")
     )
     , caption = "Hypotheses for the Type I Sum of Squares for the `coffee` dataset (milk first).",
     booktabs = TRUE,
@@ -568,21 +568,21 @@ Having just finished talking about Type I tests, you might think that the natura
 ```{r echo=FALSE, fig.align="center", out.width="100%"}
 knitr::kable(
     rbind(
-        c("Model 1", "babble ~ milk + sugar×milk", "babble ~ sugar + milk + sugar×milk", "sugar"),
-        c("Model 2", "babble ~ sugar + sugar×milk", "babble ~ sugar + milk + sugar×milk", "milk"),
-        c("Model 3", "babble ~ sugar + milk", "babble ~ sugar + milk + sugar×milk", "sugar×milk")
+        c("Model 1", "babble ¦ milk + sugar×milk", "babble ¦ sugar + milk + sugar×milk", "sugar"),
+        c("Model 2", "babble ¦ sugar + sugar×milk", "babble ¦ sugar + milk + sugar×milk", "milk"),
+        c("Model 3", "babble ¦ sugar + milk", "babble ¦ sugar + milk + sugar×milk", "sugar×milk")
     )
     , caption = "Hypotheses for the Type III Sum of Squares for the `coffee` dataset.",
     booktabs = TRUE, 
     col.names = c("Model", "$H_0$ Null hypothesis", "$H_1$ Alternative hypothesis", "Main effect")
-    , align = "l", escape = FALSE, format = "markdown"
+    , align = "l", escape = FALSE,
 ) %>%
     kable_styling(position = "center", full_width = FALSE, latex_options = "hold_position")
 ```
 
 At first pass, Type III tests seem like a nice idea. Firstly, we've removed the asymmetry that caused us to have problems when running Type I tests. And because we're now treating all terms the same way, the results of the hypothesis tests do not depend on the order in which we specify them. This is definitely a good thing.
 
-However, there is a big problem when interpreting the results of the tests, especially for main effect terms. Consider the coffee data. Suppose it turns out that the main effect of `milk` is not significant according to the Type III tests. What this is telling us is that `babble ~ sugar + sugar×milk` is a better model for the data than the full model. But what does that even *mean*? If the interaction term `sugar×milk` was also non-significant, we'd be tempted to conclude that the data are telling us that the only thing that matters is `sugar`. But suppose we have a significant interaction term, but a non-significant main effect of `milk`. In this case, are we to assume that there really is an "effect of sugar", an "interaction between milk and sugar", but no "effect of milk"? That seems crazy. The right answer simply *must* be that it's meaningless^[Or, at the very least, rarely of interest.] to talk about the main effect if the interaction is significant. In general, this seems to be what most statisticians advise us to do. But if it really is meaningless to talk about non-significant main effects in the presence of a significant interaction, then it's not at all obvious why Type III tests should allow the null hypothesis to rely on a model that includes the interaction but omits one of the main effects that make it up. When characterised in this fashion, the null hypotheses really don't make much sense at all. 
+However, there is a big problem when interpreting the results of the tests, especially for main effect terms. Consider the coffee data. Suppose it turns out that the main effect of `milk` is not significant according to the Type III tests. What this is telling us is that `babble ¦ sugar + sugar×milk` is a better model for the data than the full model. But what does that even *mean*? If the interaction term `sugar×milk` was also non-significant, we'd be tempted to conclude that the data are telling us that the only thing that matters is `sugar`. But suppose we have a significant interaction term, but a non-significant main effect of `milk`. In this case, are we to assume that there really is an "effect of sugar", an "interaction between milk and sugar", but no "effect of milk"? That seems crazy. The right answer simply *must* be that it's meaningless^[Or, at the very least, rarely of interest.] to talk about the main effect if the interaction is significant. In general, this seems to be what most statisticians advise us to do. But if it really is meaningless to talk about non-significant main effects in the presence of a significant interaction, then it's not at all obvious why Type III tests should allow the null hypothesis to rely on a model that includes the interaction but omits one of the main effects that make it up. When characterised in this fashion, the null hypotheses really don't make much sense at all. 
 
 Let's look at the results:
 ```{r echo=FALSE, fig.align="center", out.width="100%"}
@@ -593,7 +593,7 @@ knitr::kable(
         c("milk×sugar", "5.944", "2", "2.972", "11.277", "0.002")
     ),
     caption = "Test of between-subject effects with Type III Sum of Squares for the `coffee` dataset.",
-    booktabs = TRUE, format = "markdown",
+    booktabs = TRUE,
     col.names = c("Source", "Type III SS", "df", "MS", "$F$", "$p$"),
     align = "l", escape = FALSE
 ) %>%
@@ -639,8 +639,8 @@ Type II tests are broadly similar to Type III tests: start with a "full" model, 
 ```{r echo=FALSE, fig.align="center", out.width="100%"}
 knitr::kable(tibble::tribble(
                    ~V1,                                               ~V2,
-         "Null model:",     "`outcome ~ B + C + A:B + A:C + B:C + A:B:C`",
-  "Alternative model:", "`outcome ~ A + B + C + A:B + A:C + B:C + A:B:C`"
+         "Null model:",     "`outcome ¦ B + C + A:B + A:C + B:C + A:B:C`",
+  "Alternative model:", "`outcome ¦ A + B + C + A:B + A:C + B:C + A:B:C`"
   ), col.names = c("", ""), escape = FALSE, booktabs = TRUE, format="markdown")
 ```
 
@@ -649,8 +649,8 @@ Notice that the null hypothesis omits `A`, but includes `A:B`, `A:C` and `A:B:C`
 ```{r echo=FALSE}
 knitr::kable(tibble::tribble(
                    ~V1,                                               ~V2,
-         "Null model:",     "`outcome ~ B + C + B:C`",
-  "Alternative model:", "`outcome ~ A + B + C + B:C`"
+         "Null model:",     "`outcome ¦ B + C + B:C`",
+  "Alternative model:", "`outcome ¦ A + B + C + B:C`"
   ), col.names = c("", ""), escape = FALSE, booktabs = TRUE, format ="markdown")
 ```
 
@@ -660,9 +660,9 @@ In the context of the two way ANOVA that we've been using in the coffee data, th
 ```{r echo=FALSE, fig.align="center", out.width="100%"}
 knitr::kable(
     rbind(
-        c("Model 1", "babble ~ milk", "babble ~ sugar + milk", "sugar"),
-        c("Model 2", "babble ~ sugar", "babble ~ sugar + milk", "milk"),
-        c("Model 3", "babble ~ sugar + milk", "babble ~ sugar + milk + sugar×milk", "sugar×milk")
+        c("Model 1", "babble ¦ milk", "babble ¦ sugar + milk", "sugar"),
+        c("Model 2", "babble ¦ sugar", "babble ¦ sugar + milk", "milk"),
+        c("Model 3", "babble ¦ sugar + milk", "babble ¦ sugar + milk + sugar×milk", "sugar×milk")
     )
     , caption = "Hypotheses for the Type II Sum of Squares for the `coffee` dataset.",
     booktabs = TRUE,

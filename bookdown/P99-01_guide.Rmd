@@ -6,37 +6,19 @@ This is a non-comprehensive summary guide about the tools used.
 
 ## Descriptive statistics{-}
 
-```{r echo=FALSE, fig.align="center"}
-library(kableExtra)
-knitr::kable(rbind(
-  c("[Mean](#mean)",
-  "Average -- the \"centre of gravity\" of the data"),
-  c("[Standard deviation](#sd)",
-  "How clustered is the data around the mean (smaller figure means more clustered, larger figure closer to interquartile range means more spread out)"),
-  c("[Skewness](#skewnesskurtosis)",
-  "The assymetry of the data compared to a normal distribution (bell curve)"),
-  c("[Kurtosis](#skewnesskurtosis)",
-  "Pointiness of the data. Smaller figure means more pointy, larger figure means less pointy"),
-  c("[Range](#range)",
-  "The spread of the data set between the maximum and minimum values"),
-  c("[Maximum](#range)",
-  "The highest value in the data set"),
-  c("[Upper quartile](#IQR)",
-  "25% of the data points reside at and above this value"),
-  c("[Median](#median)",
-  "This is the value of the data point in the middle (or the average of the two middle points in case of even number of data points). 50-50% of data points reside at above and below this value"),
-  c("[Lower quartile](#IQR)", 
-  "25% of the data points reside at and below this value"),
-  c("[Minimum](#range)",
-  "The lowest value in the data set")
-   ),
-  col.names = c("", "Meaning"),
-  booktabs = TRUE, format = "markdown",
-  align = "l"
-  ) %>%
-  column_spec(1, width_min = "1.5in")
 
-```
+| | Meaning |
+|:------------|:----------------------------------------|
+| [Mean](#mean)  | Average -- the "centre of gravity" of the data  |
+| [Standard deviation](#sd)| How clustered is the data around the mean (smaller figure means more clustered, larger figure closer to interquartile range means more spread out)  |
+| [Skewness](#skewnesskurtosis) | The assymetry of the data compared to a normal distribution (bell curve) |
+| [Kurtosis](#skewnesskurtosis) | Pointiness of the data. Smaller figure means more pointy, larger figure means less pointy |
+| [Range](#range)| The spread of the data set between the maximum and minimum values|
+| [Maximum](#range) | The highest value in the data set  |
+| [Upper quartile](#IQR) | 25% of the data points reside at and above this value  |
+| [Median](#median) | This is the value of the data point in the middle (or the average of the two middle points in case of even number of data points). 50-50% of data points reside at above and below this value |
+| [Lower quartile](#IQR) | 25% of the data points reside at and below this value  |
+| [Minimum](#range) | The lowest value in the data set |
 
 ## Analysing differences with hyptothesis testing{-}
 
@@ -66,22 +48,8 @@ knitr::kable(rbind(
 
 ## Analysing relationship with hyptothesis testing{-}
 
-```{r, fig.align="center", out.width="100%", echo=FALSE}
-knitr::kable(
-    rbind(
-        c("[Pearson's correlation coefficient](#pearson)",
-            "Tests whether two variables are correlated (continuous data)",
-            "Correlation between the number of hours of slept and mood"),
-        c("[Spearman's rank-order correlation](#spearman)",
-            "Tests whether two variables are correlated (ordinal data)",
-            "Correlation between effort and grade"),
-        c("[Linear regression](#linearregression)",
-            "Tests whether a linear relationship exists between two variables (continuous data)",
-            "Correlation between the number of hours of sleep (parent, baby) and parent grumpiness")
-    ),
-    col.names = c("Test", "Description", "Example from the chapter"),
-    escape = FALSE,
-    booktabs = TRUE,
-    align = "l", format = "markdown"
-)
-```
+| Test  |Description    |Example from the chapter    |
+|:----|:------|:------|
+| [Pearson's correlation coefficient](#pearson) |Tests whether two variables are correlated (continuous data) |Correlation between the number of hours of slept and mood   |
+| [Spearman's rank-order correlation](#spearman) |Tests whether two variables are correlated (ordinal data)  |Correlation between effort and grade  |
+| [Linear regression](#linearregression) |Tests whether a linear relationship exists between two variables (continuous data) |Correlation between the number of hours of sleep (parent, baby) and parent grumpiness |
