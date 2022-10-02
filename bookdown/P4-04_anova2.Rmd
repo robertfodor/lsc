@@ -197,7 +197,7 @@ But hang on! You've run the analysis in CogStat and you see something vastly dif
 
 The ANOVA model that we've been talking about so far covers a range of different patterns that we might observe in our data. For instance, in a two-way ANOVA design, there are four possibilities: (a) only Factor A matters, (b) only Factor B matters, (c) both A and B matter, and (d) neither A nor B matters. An example of each of these four possibilities is plotted in Figure \@ref(fig:maineffects).
 
-```{r maineffects, fig.cap="Factor main effects", echo=FALSE, fig.align="center", out.width="50%", fig.show="hold"}
+```{r maineffects, fig.cap="Factor main effects", echo=FALSE, fig.align="center", out.width="45%", fig.show="hold"}
 knitr::include_graphics(c(
   "resources/image/maineffectA.png",
   "resources/image/maineffectB.png",
@@ -207,7 +207,7 @@ knitr::include_graphics(c(
 
 The four patterns of data shown in Figure \@ref(fig:maineffects) are all quite realistic: there are a great many data sets that produce exactly those patterns. However, they are not the whole story, and the ANOVA model that we have been talking about up to this point is not sufficient to fully account for a table of group means. Why not? Well, so far we have the ability to talk about the idea that drugs can influence mood, and therapy can influence mood, but no way of talking about the possibility of an **interaction** between the two. An interaction between A and B is said to occur whenever the effect of Factor A is *different*, depending on which level of Factor B we're talking about. Several examples of an interaction effect with the context of a 2 x 2 ANOVA are shown in Figure \@ref(fig:interaction). 
 
-```{r interaction, fig.cap="Qualitatively different interactions for a $2 \\times 2$ ANOVA", echo=FALSE, fig.align="center", out.width="50%", fig.show="hold"}
+```{r interaction, fig.cap="Qualitatively different interactions for a $2 \\times 2$ ANOVA", echo=FALSE, fig.align="center", out.width="45%", fig.show="hold"}
 knitr::include_graphics(c(
   "resources/image/interaction1.png",
   "resources/image/interaction2.png",

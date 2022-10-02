@@ -12,7 +12,7 @@ Since the basic ideas in regression are closely tied to correlation, we'll retur
 
 Let's go ahead and use `Explore relation of a variable pair` function with `parentsleep` and `parentgrump` variables. 
 
-```{r parentscatters, echo=FALSE, fig.cap="Scatterplots of parent sleep and grumpiness", fig.align="center", out.width="50%", fig.show="hold"}
+```{r parentscatters, echo=FALSE, fig.cap="Scatterplots of parent sleep and grumpiness", fig.align="center", out.width="45%", fig.show="hold"}
 knitr::include_graphics(c(
     "resources/image/parentsleepgrumpplotnolinreg.png",
     "resources/image/parentsleepgrumpplot.png"
