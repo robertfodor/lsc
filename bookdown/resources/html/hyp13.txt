@@ -1,0 +1,13 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {   \sffamily
+      \color{black}
+      Result of the Bayesian independent two-samples t-test: BF$_{10}$ = 1.75, BF$_{01}$ = 0.57
+
+      \normalfont
+  }
+\end{tcolorbox}

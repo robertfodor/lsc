@@ -1,0 +1,28 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {   \sffamily
+      \color{CSblue}\textbf{Hypothesis tests}
+      
+      \color{CSgreen}Testing if mean deviates from the value 0.
+      
+      Interval variable. \textgreater\textgreater  Choosing one-sample t-test or Wilcoxon signed-rank test depending on the assumption.
+
+      Checking for normality.
+
+      \color{black}
+      Shapiro-Wilk normality test in variable change: $W$ = 0.81, $p$ = .002
+
+      \color{CSgreen}
+      Normality is violated. \textgreater\textgreater Running Wilcoxon signed-rank test.
+
+      \color{black}
+      Median: -5.5
+
+      Result of Wilcoxon signed-rank test: $T$ = 31.50 $p$ = .035
+      \normalfont
+  }
+\end{tcolorbox}

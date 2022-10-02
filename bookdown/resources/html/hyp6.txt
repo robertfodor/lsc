@@ -1,0 +1,34 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {   \sffamily
+      \color{CSblue}\textbf{Hypothesis tests}
+      
+      \color{CSgreen}Testing if the means are the same.
+      
+      One grouping variable. Two groups. Interval variable. \textgreater\textgreater  Choosing two sample t-test, Mann-Whitney test or Welch's t-test depending on assumptions.
+
+      Checking for normality.
+
+      \color{black}
+      Shapiro-Wilk normality test in variable attendance (isfinal: False): $W$ = 0.94, $p <$ .001
+
+      Shapiro-Wilk normality test in variable attendance (isfinal: True): $W$ = 0.97, $p <$ .001
+
+      \color{CSgreen}
+      Checking for homogeneity of variance across groups.
+
+      \color{black}
+      Levene test: $W$ = 76.47, $p <$ .001
+
+      \color{CSgreen}
+      Normality is violated in variable attendance, group(s) ('False',), ('True',). \textgreater\textgreater Running Mann-Whitney test.
+
+      \color{black}
+      Result of independent samples Mann-Whitney rank test: $U$ = 97189.00 $p <$ .001
+      \normalfont
+  }
+\end{tcolorbox}

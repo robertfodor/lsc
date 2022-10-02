@@ -37,7 +37,7 @@ To answer the question, it helps to be able to write down what it is that we kno
 
 Next, it helps to be clear about what we want to learn from the data. In this case, the research hypothesis relates to the *population* mean $\mu$ for the psychology student grades, which is unknown. Specifically, we want to know if $\mu = 67.5$ or not. Given that this is what we know, can we devise a hypothesis test to solve our problem? The data, along with the hypothesised distribution from which they are thought to arise, are shown in Figure \@ref(fig:zeppo). Not entirely obvious what the right answer is, is it? For this, we are going to need some statistics.
 
-```{r zeppo, fig.cap="The theoretical distribution (dashed green line) from which the psychology student grades (blue bars) are generated in CogStat at the `Population properties` section of our result set.", echo=FALSE, fig.align="center", out.width="100%"}
+```{r zeppo, fig.cap="The theoretical distribution (dashed green line) from which the psychology student grades (blue bars) are generated in CogStat at the `Population properties` section of our result set.", echo=FALSE, fig.align="center"}
 knitr::include_graphics("resources/image/zeppohist.png")
 ```
 
@@ -55,7 +55,7 @@ though to be honest, this notation doesn't add much to our understanding of the 
 
 For the moment, we'll act as if these are absolutely trustworthy facts. In real life, this kind of absolutely trustworthy background knowledge doesn't exist, and so if we want to rely on these facts we'll just have make the *assumption* that these things are true. However, since these assumptions may or may not be warranted, we might need to check them. For now though, we'll keep things simple.
 
-```{r ztesthyp,  fig.cap="Graphical illustration of the null and alternative hypotheses assumed by the one-sample $z$-test (the two sided version, that is). The null and alternative hypotheses both assume that the population distribution is normal, and additionally assumes that the population standard deviation is known (fixed at some value $\\sigma_0$). The null hypothesis (left) is that the population mean $\\mu$ is equal to some specified value $\\mu_0$. The alternative hypothesis is that the population mean differs from this value, $\\mu \\neq \\mu_0$.", echo=FALSE, fig.align="center", out.width="100%"}
+```{r ztesthyp,  fig.cap="Graphical illustration of the null and alternative hypotheses assumed by the one-sample $z$-test (the two sided version, that is). The null and alternative hypotheses both assume that the population distribution is normal, and additionally assumes that the population standard deviation is known (fixed at some value $\\sigma_0$). The null hypothesis (left) is that the population mean $\\mu$ is equal to some specified value $\\mu_0$. The alternative hypothesis is that the population mean differs from this value, $\\mu \\neq \\mu_0$.", echo=FALSE, fig.align="center"}
 
 width <- 12
 height <- 4
@@ -176,7 +176,7 @@ knitr::kable(tibble::tribble(
 
 which in turn meant that researchers could calculate their $z$-statistic by hand, and then look up the critical value in a text book. That was an incredibly handy thing to be able to do back then.
 
-```{r ztest2, fig.cap="Rejection regions for the two-sided $z$-test", echo=FALSE, fig.align="center", fig.show="hold", out.width="100%"}
+```{r ztest2, fig.cap="Rejection regions for the two-sided $z$-test", echo=FALSE, fig.align="center", fig.show="hold"}
   width <- 6
   height <- 4
   
@@ -206,7 +206,7 @@ which in turn meant that researchers could calculate their $z$-statistic by hand
   title(xlab="Value of z Statistic", main="Two Sided Test", font.main=1)
 ```
 
-```{r ztest1, fig.cap="Rejection regions for the one-sided $z$-test", echo=FALSE, fig.align="center", out.width="100%"}
+```{r ztest1, fig.cap="Rejection regions for the one-sided $z$-test", echo=FALSE, fig.align="center"}
   plot.new()
   plot.window( xlim=c(-3,3), ylim=c(0,.4) )
   
@@ -267,42 +267,27 @@ It might not be safe to assume that the psychology student grades necessarily ha
 
 Having loaded the `grades` data and explored the descriptive statistics, let us take note of a few data points from the `Descriptives for the variable` and the `Population parameter estimations` section of the CogStat output. But first, let us re-run the `Explore variable` option, but now let us tell CogStat to use our null hypothesis of $67.5$. To do that, we have to fill in `67.5` in our dialogue:
 
-```{r centraltendencyexplorevar, echo=FALSE, fig.align="center", out.width="100%"}
+```{r centraltendencyexplorevar, echo=FALSE, fig.align="center"}
 knitr::include_graphics("resources/image/centraltendency.png")
 ```
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
- <h4 style="font-size:medium; font-weight:600; color:#3960a5;">Population parameter estimations</h4>
- <p>Present confidence interval values for the mean suppose normality.</p>
-  <table style="border: none; background-color: white;">
-     <tr>
-          <td style="border: 0px; background-color: white;"></td>
-          <td style="border: 0px; background-color: white;">Point estimation</td>
-          <td style="border: 0px; background-color: white;">95% confidence interval (low)</td>
-          <td style="border: 0px; background-color: white;">95% confidence interval (high)</td>
-     </tr>
-     <tr>
-          <td style="border: 0px; background-color: white;">Mean</td>
-          <td style="border: 0px; background-color: white;">72.3</td>
-          <td style="border: 0px; background-color: white;">67.8</td>
-          <td style="border: 0px; background-color: white;">76.8</td>
-     </tr>
-     <tr>
-          <td style="border: 0px; background-color: white;">Standard deviation</td>
-          <td style="border: 0px; background-color: white;">9.5</td>
-          <td style="border: 0px; background-color: white;">7.2</td>
-          <td style="border: 0px; background-color: white;">13.9</td>
-     </tr>
-  </table>
-</div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/paramest1.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/paramest1.txt")
+  )
+}
 ```
 
 In other words, while we can't say that we *know* that $\sigma = 9.5$, we *can* say that $\hat\sigma = 9.5$. (Actually, it's $9.520615$ but CogStat rounds it to one decimal when displayed, but it uses the exact value for any calculation.)
 
 Because we are now relying on an *estimate* of the population standard deviation, we need to make some adjustment for the fact that we have some uncertainty about what the true population standard deviation actually is. Maybe our data are just a fluke, maybe the true population standard deviation is 11, for instance. But if that were actually true, and we ran the $z$-test assuming $\sigma=11$, then the result would end up being *non-significant*. That's a problem, and it's one we're going to have to address.
 
-```{r ttesthyponesample, fig.cap="Graphical illustration of the null and alternative hypotheses assumed by the (two sided) one-sample $t$-test. Note the similarity to the $z$-test. The null hypothesis is that the population mean $\\mu$ is equal to some specified value $\\mu_0$, and the alternative hypothesis is that it is not. Like the $z$-test, we assume that the data are normally distributed; but we do not assume that the population standard deviation $\\sigma$ is known in advance.", echo=FALSE, fig.align="center", out.width="100%"}
+```{r ttesthyponesample, fig.cap="Graphical illustration of the null and alternative hypotheses assumed by the (two sided) one-sample $t$-test. Note the similarity to the $z$-test. The null hypothesis is that the population mean $\\mu$ is equal to some specified value $\\mu_0$, and the alternative hypothesis is that it is not. Like the $z$-test, we assume that the data are normally distributed; but we do not assume that the population standard deviation $\\sigma$ is known in advance.", echo=FALSE, fig.align="center"}
 width <- 12
 height <- 4
 
@@ -372,7 +357,7 @@ The only thing that has changed in the equation is that instead of using the kno
 
 Notice, though, that as df gets larger, the $t$-distribution starts to look identical to the standard normal distribution. This is as it should be: if you have a sample size of $N = 70000000$, then your "estimate" of the standard deviation would be pretty much perfect, right? So, you should expect that for large $N$, the $t$-test would behave the same way as a $z$-test. And that's exactly what happens!
 
-```{r ttestdist, fig.cap="The $t$ distribution with 2 degrees of freedom (left) and 10 degrees of freedom (right), with a standard normal distribution (i.e., mean 0 and std dev 1) plotted as dotted lines for comparison purposes. Notice that the $t$ distribution has heavier tails (higher kurtosis) than the normal distribution; this effect is quite exaggerated when the degrees of freedom are very small, but negligible for larger values. In other words, for large $df$ the $t$ distribution is essentially identical to a normal distribution.", echo=FALSE, fig.align="center", out.width="100%"}
+```{r ttestdist, fig.cap="The $t$ distribution with 2 degrees of freedom (left) and 10 degrees of freedom (right), with a standard normal distribution (i.e., mean 0 and std dev 1) plotted as dotted lines for comparison purposes. Notice that the $t$ distribution has heavier tails (higher kurtosis) than the normal distribution; this effect is quite exaggerated when the degrees of freedom are very small, but negligible for larger values. In other words, for large $df$ the $t$ distribution is essentially identical to a normal distribution.", echo=FALSE, fig.align="center"}
 knitr::include_graphics("resources/image/ttestdist.png")
 ```
 
@@ -380,18 +365,16 @@ As you might expect, the mechanics of the $t$-test are almost identical to the m
 
 So let's just do it quickly in CogStat: let's just go through the output. You can see that the `Population parameter estimations` stayed the same, so no need to quote them here again. However, let's see the `Hypothesis tests` results.
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-     <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
-     <p style="color:#008000;">Testing if mean deviates from the value 67.5.<br />
-     Interval variable. &gt;&gt; Choosing one-sample t-test or Wilcoxon signed-rank test depending on the assumption.<br />
-     Checking for normality.</p>
-     <p style="color:black;">Shapiro-Wilk normality test in variable x:<span style="font-style:italic;">W</span> = 0.96, <span style="font-style:italic;">p</span> = .586</p>
-     <p style="color:#008000;">Normality is not violated. &gt;&gt; Running one-sample t-test.</p>
-     <p style="color:black;">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in d: 0.85. </p>
-     <p style="color:black;">One sample t-test against 67.5: <span style="font-style:italic;">t</span>(19) = 2.25, <span style="font-style:italic;">p</span> = .036</p>
-     <p style="color:black;">Result of the Bayesian one sample t-test: BF<sub>10</sub> = 1.80, BF<sub>01</sub> = 0.56</p>
-</div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/hyp4.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/hyp4.txt")
+  )
+}
 ```
 
 Let us go through them line by line.
@@ -426,7 +409,7 @@ Suppose we have 33 students taking Dr Harpo's statistics lectures, and Dr Harpo 
 
 As usual, let's load the file [`harpo.csv`](resources/data/harpo.csv).
 
-```{r harpodata, echo=FALSE, fig.align="center", out.width="100%"}
+```{r harpodata, echo=FALSE, fig.align="center"}
 knitr::include_graphics("resources/image/cogstatloadharpo.png")
 ```
 
@@ -434,14 +417,14 @@ As we can see, we have two variables: `grade` and `tutor`. The `grade` variable 
 
 Let's run the `Compare groups` function so we can get some information about the grades by tutor.
 
-```{r harpocompare, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="Comparing grades by tutor in CogStat for our `harpo` data set."}
+```{r harpocompare, echo=FALSE, fig.align="center", fig.show="hold", fig.cap="Comparing grades by tutor in CogStat for our `harpo` data set."}
 knitr::include_graphics(c("resources/image/cogstatharpocomparedialog.png",
                          "resources/image/cogstatharposampleproperties.png"))
 ```
 
 In the boxplot generated by CogStat, we have the grades, the means and corresponding confidence intervals. We can see that the grades for Anastasia's students are slightly higher than those for Bernadette's students. We can also see that the variance of the grades for Bernadette's students is slightly higher than that for Anastasia's students.
 
-```{r harpoboxplot, fig.align="center", out.width="100%", echo=FALSE}
+```{r harpoboxplot, fig.align="center", echo=FALSE}
 knitr::include_graphics("resources/image/cogstatharpoboxplot.png")
 ```
 
@@ -458,7 +441,7 @@ H_1: & \mu_1 \neq \mu_2
 \end{array}
 $$
 
-```{r ttesthyp, fig.cap="Graphical illustration of the null and alternative hypotheses assumed by the Student $t$-test. The null hypothesis assumes that both groups have the same mean $\\mu$, whereas the alternative assumes that they have different means $\\mu_1$ and $\\mu_2$. Notice that it is assumed that the population distributions are normal, and that, although the alternative hypothesis allows the group to have different means, it assumes they have the same standard deviation", echo=FALSE, fig.align="center", out.width="100%"}
+```{r ttesthyp, fig.cap="Graphical illustration of the null and alternative hypotheses assumed by the Student $t$-test. The null hypothesis assumes that both groups have the same mean $\\mu$, whereas the alternative assumes that they have different means $\\mu_1$ and $\\mu_2$. Notice that it is assumed that the population distributions are normal, and that, although the alternative hypothesis allows the group to have different means, it assumes they have the same standard deviation", echo=FALSE, fig.align="center"}
 
     width <- 12
     height <- 4
@@ -598,43 +581,22 @@ $$
 
 Just as we saw with our one-sample test, the sampling distribution of this $t$-statistic is a $t$-distribution as long as the null hypothesis is true, and all of the assumptions of the test are met. The degrees of freedom, however, is slightly different. As usual, we can think of the degrees of freedom to be equal to the number of data points minus the number of constraints. In this case, we have $N$ observations ($N_1$ in sample 1, and $N_2$ in sample 2), and 2 constraints (the sample means). So the total degrees of freedom for this test are $N-2$.
 
-```{r cogstatharpohypo, fig.align="center", out.width="100%", echo=FALSE}
+```{r cogstatharpohypo, fig.align="center", echo=FALSE}
 knitr::include_graphics("resources/image/cogstatharpohypo.png")
 ```
 
 The output from CogStat has a very familiar form. Let's start to talk about the confidence interval, and for that, let's circle back to our `Population parameter estimations`:
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
- <h4 style="font-size:medium; font-weight:600; color:#3960a5;">Population parameter estimations</h4>
- <p>Means<br />Present confidence interval values suppose normality.</p>
-  <table style="border: none; background-color: white;">
-     <tr>
-          <td style="border: 0px; background-color: white;">tutor</td>
-          <td style="border: 0px; background-color: white;">Point estimation</td>
-          <td style="border: 0px; background-color: white;">95% CI (low)</td>
-          <td style="border: 0px; background-color: white;">95% CI (high)</td>
-     </tr>
-     <tr>
-          <td style="border: 0px; background-color: white;">Anastasia</td>
-          <td style="border: 0px; background-color: white;">74.5</td>
-          <td style="border: 0px; background-color: white;">69.5</td>
-          <td style="border: 0px; background-color: white;">79.5</td>
-     </tr>
-     <tr>
-          <td style="border: 0px; background-color: white;">Bernadette</td>
-          <td style="border: 0px; background-color: white;">69.1</td>
-          <td style="border: 0px; background-color: white;">66.2</td>
-          <td style="border: 0px; background-color: white;">71.9</td>
-     </tr>
-          <tr>
-          <td style="border: 0px; background-color: white;">Difference between the two groups:</td>
-          <td style="border: 0px; background-color: white;">5.5</td>
-          <td style="border: 0px; background-color: white;">0.2</td>
-          <td style="border: 0px; background-color: white;">10.8</td>
-     </tr>
-  </table>
-</div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/paramest2.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/paramest2.txt")
+  )
+}
 ```
 
 It's pretty important to be clear on what this confidence interval actually refers to: it is a confidence interval for the *difference* between the group means. In our example, Anastasia's students had an average grade of 74.5, and Bernadette's students had an average grade of 69.1, so the difference between the two sample means is 5.5 (due to rounding). But of course the difference between population means might be bigger or smaller than this. The confidence interval reported tells you that there's a 95\% chance that the true difference between means lies between 0.2 and 10.8.
@@ -690,7 +652,7 @@ $$
 
 What matters is that you'll see that the "df" value that pops out of a Welch test tends to be a little bit smaller than the one used for the Student test, and it doesn't have to be a whole number.
 
-```{r ttesthyp2, fig.cap="Graphical illustration of the null and alternative hypotheses assumed by the Welch $t$-test. Like the Student test, we assume that both samples are drawn from a normal population. However, the alternative hypothesis no longer requires the two populations to have equal variance.", echo=FALSE, fig.align="center", out.width="100%"}
+```{r ttesthyp2, fig.cap="Graphical illustration of the null and alternative hypotheses assumed by the Welch $t$-test. Like the Student test, we assume that both samples are drawn from a normal population. However, the alternative hypothesis no longer requires the two populations to have equal variance.", echo=FALSE, fig.align="center"}
 width <- 12
 height <- 4
 
@@ -756,7 +718,7 @@ Should we run a Welch test on the same data, it would not be significant ($t(23.
 
 However, let us explore what CogStat would display in case the normality was not violated but the homogeneity of variance was! We've prepared a tweaked version of the data set, where the variances are different, but the normality is not violated: [`harpo_welch.csv`](resources/data/harpo_welch.csv). 
 
-```{r harpowelch, fig.cap="CogStat result set when the Levene test is significant, hence a Welch test must be run.", echo=FALSE, fig.align="center", out.width="100%"}
+```{r harpowelch, fig.cap="CogStat result set when the Levene test is significant, hence a Welch test must be run.", echo=FALSE, fig.align="center"}
 knitr::include_graphics("resources/image/cogstatharpowelch.png")
 ```
 
@@ -777,7 +739,7 @@ The data frame `chico` contains three variables: an `id` nominal variable that i
 
 (ref:chicocap) CogStat descriptives and boxplot for the variables `grade_test1` and `grade_test2` in the Compare repeated measures variables function.
 
-```{r chico, fig.cap=paste("(ref:chicocap)"), echo=FALSE, fig.align="center", out.width="100%", fig.show="hold"}
+```{r chico, fig.cap=paste("(ref:chicocap)"), echo=FALSE, fig.align="center", fig.show="hold"}
 knitr::include_graphics(c("resources/image/cogstatchicodescr.png",
                           "resources/image/cogstatchicoboxplot.png"))
 ```
@@ -786,7 +748,7 @@ At a glance, it does seem like the class is a hard one (most grades are between 
 
 Nevertheless, this impression is wrong. To see why, take a look at the scatterplot of the grades for test 1 against the grades for test 2. Let us use CogStat's `Explore relation of variable pair` function, so we see a scatter plot with a linear regression line (shown in Figure \@ref(fig:pairedtb)).
 
-```{r pairedtb, fig.cap="Scatterplot showing the individual grades for test 1 and test 2", echo=FALSE, fig.align="center", out.width="100%"}
+```{r pairedtb, fig.cap="Scatterplot showing the individual grades for test 1 and test 2", echo=FALSE, fig.align="center"}
 knitr::include_graphics("resources/image/cogstatchicoscatter.png")
 ```
 
@@ -818,45 +780,28 @@ where $\hat\sigma_D$ is the standard deviation of the difference scores. Since t
 
 Looking at the CogStat result set, the software automatically decided to run a paired $t$-test when we used the `Compare repeated measures variables` function:
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
- <h4 style="font-size:medium; font-weight:600; color:#3960a5;">Population parameter estimations</h4>
- <p>Present confidence interval values suppose normality.</p>
-  <table style="border: none; background-color: white;">
-     <tr>
-          <td style="border: 0px; background-color: white;"></td>
-          <td style="border: 0px; background-color: white;">Point estimation</td>
-          <td style="border: 0px; background-color: white;">95% CI (low)</td>
-          <td style="border: 0px; background-color: white;">95% CI (high)</td>
-     </tr>
-     <tr>
-          <td style="border: 0px; background-color: white;">grade_test1</td>
-          <td style="border: 0px; background-color: white;">56.98</td>
-          <td style="border: 0px; background-color: white;">53.88</td>
-          <td style="border: 0px; background-color: white;">60.08</td>
-     </tr>
-     <tr>
-          <td style="border: 0px; background-color: white;">grade_test2</td>
-          <td style="border: 0px; background-color: white;">58.38</td>
-          <td style="border: 0px; background-color: white;">55.39</td>
-          <td style="border: 0px; background-color: white;">61.38</td>
-     </tr>
-  </table>
-</div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/paramest3.html")
 ```
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-     <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
-     <p style="color:#008000;">Testing if the means are the same.<br />
-     Two variables. Interval variables. &gt;&gt; Choosing paired t-test or paried Wilcoxon test depending on the assumptions.<br />
-     Checking for normality.</p>
-     <p style="color:black;">Shapiro-Wilk normality test in variable Difference of grade_test1 and grade_test2: <span style="font-style:italic;">W</span> = 0.97, <span style="font-style:italic;">p</span> = .678</p>
-     <p style="color:#008000;">Normality is not violated. &gt;&gt; Running paired t-test.</p>
-     <p style="color:black;">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in d: 0.85. </p>
-     <p style="color:black;">Result of paired samples t-test: <span style="font-style:italic;">t</span>(19) = -6.48, <span style="font-style:italic;">p</span> &lt; .001</p>
-     <p style="color:black;">Result of the Bayesian two-samples t-test: BF<sub>10</sub> = 5991.58, BF<sub>01</sub> = 0.00</p>
-</div>
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/paramest3.txt")
+  )
+}
+```
+
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/hyp5.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/hyp5.txt")
+  )
+}
 ```
 
 From the population paramenter estimations, we know there's an average improvement of 1.4 from test 1 to test 2 ($58.38 - 56.98$), and this is significantly different from 0 ($t(19)=-6.48, p<.001$).
@@ -869,7 +814,7 @@ d = \frac{\mbox{(mean 1)} - \mbox{(mean 2)}}{\mbox{std dev}}
 $$
 and he suggested a rough guide for interpreting $d$ in Table \@ref(tab:cohensdinterpretation). You'd think that this would be pretty unambiguous, but it's not; largely because Cohen wasn't too specific on what he thought should be used as the measure of the standard deviation. As discussed by @McGrath2006, there are several different versions in common usage, and each author tends to adopt slightly different notation. Cohen's $d$ is automatically produced as part of the output in CogStat whenever it makes sense.
 
-```{r cohensdinterpretation, echo=FALSE, fig.align="center", out.width="100%"}
+```{r cohensdinterpretation, echo=FALSE, fig.align="center"}
 knitr::kable(tibble::tribble(
           ~V1,                    ~V2,
   "about 0.2",         "small effect",
@@ -899,7 +844,7 @@ How can we check the normality of a sample?
 
 You might recall seeing this earlier in this chapter, but let's take another look at a histogram and QQ plot without going back to the beginning.
 
-```{r zeppore, fig.cap="Left: a histogram of the data points (observations) in the `zeppo.csv` data set with a green dashed line showing the normal distribution curve. Right: a QQ plot of the same.", echo=FALSE, fig.align="center", out.width="100%"}
+```{r zeppore, fig.cap="Left: a histogram of the data points (observations) in the `zeppo.csv` data set with a green dashed line showing the normal distribution curve. Right: a QQ plot of the same.", echo=FALSE, fig.align="center"}
 knitr::include_graphics("resources/image/zeppohist.png")
 ```
 
@@ -907,7 +852,7 @@ One way to check whether a sample violates the normality assumption is to draw a
 
 Now, let's see how the QQ plot would look like, if we had a data set that violates the assumption of normality. You can test for yourself on the `aflsmall` data set from earlier.
 
-```{r aflsmallqq, fig.cap="Left: a histogram of the data points (observations) in the `aflsmall.csv` data set with a green dashed line showing the normal distribution curve. Right: a QQ plot of the same showing how the data points curve and don't form a stright line.", echo=FALSE, fig.align="center", out.width="100%"}
+```{r aflsmallqq, fig.cap="Left: a histogram of the data points (observations) in the `aflsmall.csv` data set with a green dashed line showing the normal distribution curve. Right: a QQ plot of the same showing how the data points curve and don't form a stright line.", echo=FALSE, fig.align="center"}
 knitr::include_graphics("resources/image/aflsmallqq.png")
 ```
 
@@ -925,7 +870,7 @@ The sampling distribution for $W$  -- which is not one of the standard ones disc
 
 (ref:swdistcap) Sampling distribution of the Shapiro-Wilk $W$ statistic, under the null hypothesis that the data are normally distributed, for samples of size 10, 20 and 50. Note that *small* values of $W$ indicate departure from normality.
 
-```{r swdist, fig.cap=paste("(ref:swdistcap)"), echo=FALSE, fig.align="center", out.width="100%"}
+```{r swdist, fig.cap=paste("(ref:swdistcap)"), echo=FALSE, fig.align="center"}
 knitr::include_graphics("resources/image/shapirowilkdist.png")
 ```
 
@@ -947,7 +892,7 @@ Let us recall our AFL example with the data set called [`afl24.csv`](resources/d
 
 (ref:mwafl24cap) AFL final and non-final attendance (`Compare groups` function used).
 
-```{r mwafl24, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap=paste("(ref:mwafl24cap)")}
+```{r mwafl24, echo=FALSE, fig.align="center", fig.show="hold", fig.cap=paste("(ref:mwafl24cap)")}
 knitr::include_graphics(c(
      "resources/image/mannwhitneyafl24.png",
      "resources/image/mannwhitneyafl24box.png"
@@ -958,19 +903,16 @@ Once we ran the `Compare groups` function, the results are given.
 
 Our sample size is $N=4096$ for non-final games, and $N=200$ for the final games. The Mann-Whitney test is a non-parametric test, so we don't need to worry about the normality assumption.
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-     <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
-     <p style="color:#008000;">Testing if the means are the same.<br />
-     One grouping variable. Two groups. Interval variable. &gt;&gt; Choosing two sample t-test, Mann-Whitney test or Welch's t-test depending on assumptions.<br/>
-     Checking for normality.</p>
-     <p style="color:black;">Shapiro-Wilk normality test in variable attendance (isfinal: False): <span style="font-style:italic;">W</span> = 0.94, <span style="font-style:italic;">p</span> < .001</p>
-     <p style="color:black;">Shapiro-Wilk normality test in variable attendance (isfinal: True): <span style="font-style:italic;">W</span> = 0.97, <span style="font-style:italic;">p</span> < .001</p>
-     <p style="color:#008000;">Checking for homogeneity of variance across groups.</p>
-     <p style="color:black;">Levene test: <span style="font-style:italic;">W</span> = 76.47, <span style="font-style:italic;">p</span> < .001</p>
-     <p style="color:#008000;">Normality is violated in variable attendance, group(s) ('False',), ('True',). &gt;&gt; Running Mann-Whitney test.</p>
-     <p style="color:black;">Result of independent samples Mann-Whitney rank test: <span style="font-style:italic;">U</span> = 97189.00 <span style="font-style:italic;">p</span> &lt; .001</p>
-</div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/hyp6.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/hyp6.txt")
+  )
+}
 ```
 
 What does this score mean? Suppose we construct a table that compares every observation in group `isfinal:True` against every observation in group `isfinal:False`. Whenever the group `isfinal:True` attendance data is larger, we place a check mark in the table. We then count up the number of checkmarks. This is our test statistic, $W$.
@@ -987,7 +929,7 @@ What is measured here is the happiness of each student `before` taking the class
 
 Let us run a paired sample Wilcoxon test first in CogStat. Let's use the `Compare repeat measures variables` function with the `before` and `after` variables.
 
-```{r mwbeforeafter, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="Happiness before and after statistics class (`Compare repeat measures variables` function used)."}
+```{r mwbeforeafter, echo=FALSE, fig.align="center", fig.show="hold", fig.cap="Happiness before and after statistics class (`Compare repeat measures variables` function used)."}
 knitr::include_graphics(c(
      "resources/image/cogstathappinessdescr.png",
      "resources/image/cogstathappinessbox.png"
@@ -996,16 +938,16 @@ knitr::include_graphics(c(
 
 Let's see the results:
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-     <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
-     <p style="color:#008000;">Testing if the means are the same.<br />
-     Two variables. Interval variables. &gt;&gt; Choosing paired t-test or paired Wilcoxon test depending on the assumptions.<br/>
-     Checking for normality.</p>
-     <p style="color:black;">Shapiro-Wilk normality test in variable Difference of before and after: <span style="font-style:italic;">W</span> = 0.80, <span style="font-style:italic;">p</span> < .002</p>
-     <p style="color:#008000;">Normality is violated in variable(s) Difference of before and after. &gt;&gt; Running paired Wilcoxon test.</p>
-     <p style="color:black;">Result of Wilcoxon signed-rank test: <span style="font-style:italic;">T</span> = 31.00 <span style="font-style:italic;">p</span> = .031</p>
-</div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/hyp7.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/hyp7.txt")
+  )
+}
 ```
 
 The $p$ value is 0.031, which is below our $\alpha$ level of 0.05. This means that we can reject the null hypothesis that the two groups have the same median happiness. In other words, we can conclude that taking the biology class has a statistically significant negative effect on the happiness of students. Why negative? While the T value is positive, remember the rule, you have to plot your raw data and look at the descriptives as well, if something doesn't look right. And as you've seen, the median happiness score for the `before` group is higher than the median happiness score for the `after` group.
@@ -1014,17 +956,16 @@ Now, you can make sure by running a one-sample Wilcoxon test in CogStat. Let's u
 
 You'll quickly see in the descriptives, that the Mean change is negative ($-9.6$) with a 95% confidence interval of $-18.7$ to $-0.4$ being both in the negative.
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-     <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
-     <p style="color:#008000;">Testing if mean deviates from the value 0.<br />
-     Interval variable. &gt;&gt; Choosing one-sample t-test or Wilcoxon signed-rank test depending on the assumption.<br/>
-     Checking for normality.</p>
-     <p style="color:black;">Shapiro-Wilk normality test in variable change: <span style="font-style:italic;">W</span> = 0.81, <span style="font-style:italic;">p</span> < .002</p>
-     <p style="color:#008000;">Normality is violated. &gt;&gt; Running Wilcoxon signed-rank test.</p>
-     <p style="color:black;">Median: -5.5</p>
-     <p style="color:black;">Result of Wilcoxon signed-rank test: <span style="font-style:italic;">T</span> = 31.50 <span style="font-style:italic;">p</span> = .035</p>
-</div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/hyp8.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/hyp8.txt")
+  )
+}
 ```
 
 As this shows, we have a significant effect, and of the same size as the paired samples test. (Don't mind the rounding difference in the T value.)

@@ -1,0 +1,20 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {   \sffamily
+      \color{CSblue}\textbf{Hypothesis tests}
+      
+      \color{CSgreen}Testing if variables are independent.
+      
+      Nominal variables.  \textgreater\textgreater  Running Cramér's V.
+      
+      \color{black}
+      Sensitivity power analysis. Minimal effect size to reach 95\% power with the present sample size for the present hypothesis test. Minimal effect size in $\omega$: 0.34.
+      
+      Result of the Pearson's  chi-squared test: $\chi^2$(9, $N$ = 200) = 29.24, $p$ $<$ .001
+      \normalfont
+  }
+\end{tcolorbox}

@@ -1,0 +1,38 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {   \sffamily
+      \color{CSblue}\textbf{Hypothesis tests}
+      
+      \color{CSgreen}Testing if the means are the same.
+      
+      One grouping variable. More than two groups. Interval variable.  \textgreater\textgreater  Choosing one-way ANOVA or Kruskal-Wallis test depending on the assumptions.
+
+      Checking for normality.
+
+      \color{black}
+      Shapiro-Wilk normality test in variable mood\textunderscore gain (drug: anxifree): $W$ = 0.96, $p$ = .790
+
+      Shapiro-Wilk normality test in variable mood\textunderscore gain (drug: joyzepam): $W$ = 0.82, $p$ = .096
+
+      Shapiro-Wilk normality test in variable mood\textunderscore gain (drug: placebo): $W$ = 0.96, $p$ = .830
+
+      \color{CSgreen}
+      Checking for homogeneity of variance across groups.
+
+      \color{black}
+      Levene test: $W$ = 1.47, $p$ = .262
+
+      \color{CSgreen}
+      Normality and homogeneity of variance are not violated. \textgreater\textgreater Running one-way ANOVA.
+
+      \color{black}
+      Sensitivity power analysis. Minimal effect size to reach 95\% power with the present sample size for the present hypothesis test. Minimal effect size in eta-square: 0.23.
+
+      Result of one-way ANOVA: $F$(2, 15) = 18.61, $p <$ .001
+      \normalfont
+  }
+\end{tcolorbox}

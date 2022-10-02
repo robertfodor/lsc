@@ -1,0 +1,26 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {  \sffamily
+     \color{CSblue}\textbf{Population parameter estimations}
+
+    \color{black}
+    Means
+    
+    Present confidence interval values suppose normality.
+
+    \begin{longtable}[l]{m{0.25\linewidth}p{0.2\linewidth}p{0.15\linewidth}p{0.16\linewidth}}
+    \endhead
+    tutor
+    & Point estimation 
+    & 95\% CI (low) 
+    & 95\% CI (high) \\
+    Anastasia & 74.5 & 69.5 & 79.5 \\
+    Bernadette & 69.1 & 66.2 & 71.9 \\
+    Difference between the two groups: & 5.5 & 0.2 & 10.8 \\
+    \end{longtable}
+  }
+\end{tcolorbox}

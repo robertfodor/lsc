@@ -92,7 +92,7 @@ At this point, we need to start talking specifics about how to construct a hypot
 
 Having chosen a test statistic, now the next step is to state precisely which values of the test statistic would cause us to reject the null hypothesis and which values would cause us to keep it. To do so, we need to determine what the **sampling distribution of the test statistic** would be if the null hypothesis were true (we discussed sampling distributions earlier in Chapter \@ref(samplingdists)). Why do we need this? Because this distribution tells us precisely what values of $X$, our null hypothesis would lead us to expect. And therefore, we can use this distribution to assess how closely the null hypothesis agrees with our data.
 
-```{r samplingdist, fig.cap="The sampling distribution for our test statistic $X$ when the null hypothesis is true. For our ESP scenario, this is a binomial distribution. Not surprisingly, since the null hypothesis says that the probability of a correct response is $\\theta = .5$, the sampling distribution says that the most likely value is 50 (out of 100) correct responses. Most of the probability mass lies between 40 and 60.", echo=FALSE, fig.align="center", out.width="100%"}
+```{r samplingdist, fig.cap="The sampling distribution for our test statistic $X$ when the null hypothesis is true. For our ESP scenario, this is a binomial distribution. Not surprisingly, since the null hypothesis says that the probability of a correct response is $\\theta = .5$, the sampling distribution says that the most likely value is 50 (out of 100) correct responses. Most of the probability mass lies between 40 and 60.", echo=FALSE, fig.align="center"}
 
 
 nhstImg <- list()
@@ -142,7 +142,7 @@ Now, let's suppose that we chose a critical region that covers 20\% of the sampl
 
 (ref:crit2cap) The critical region associated with the hypothesis test for the ESP study, for a hypothesis test with a significance level of $\alpha = .05$. The plot shows the sampling distribution of $X$ under the null hypothesis: the grey bars correspond to those values of $X$, for which we would retain the null hypothesis. The black bars show the critical region: those values of $X$ for which we would reject the null. Because the alternative hypothesis is two-sided (i.e. allows both $\theta <.5$ and $\theta >.5$), the critical region covers both tails of the distribution. To ensure an $\alpha$ level of $.05$, we need to ensure that each of the two regions encompasses 2.5% of the sampling distribution.
 
-```{r crit2, fig.cap=paste("(ref:crit2cap)"), echo=FALSE, fig.align="center", out.width="100%"}
+```{r crit2, fig.cap=paste("(ref:crit2cap)"), echo=FALSE, fig.align="center"}
 
 # needed for printing
 width <- 8
@@ -232,7 +232,7 @@ When this happens, we have what's called a **one-sided test**, and when this hap
 
 (ref:crit1cap) The critical region for a one sided test. In this case, the alternative hypothesis is that $\theta > .05$, so we would only reject the null hypothesis for large values of $X$. As a consequence, the critical region only covers the upper tail of the sampling distribution; specifically the upper 5% of the distribution. Contrast this to the two-sided version earlier)
 
-```{r crit1, echo=FALSE, fig.cap="(ref:crit1cap)", fig.align="center", out.width="100%"}
+```{r crit1, echo=FALSE, fig.cap="(ref:crit1cap)", fig.align="center"}
 setUpPlot()
 z <- x >= 58
 addDistPlot(x, y, z)
@@ -341,7 +341,7 @@ In previous sections, we emphasised the fact that the major design principle beh
 
 (ref:crit3cap) Sampling distribution under the *alternative* hypothesis, for a population parameter value of $\\theta = 0.55$. A reasonable proportion of the distribution lies in the rejection region.
 
-```{r crit3, fig.cap=paste("(ref:crit3cap)"), echo=FALSE, fig.align="center", out.width="100%"}
+```{r crit3, fig.cap=paste("(ref:crit3cap)"), echo=FALSE, fig.align="center"}
 setUpPlot()
 y <- dbinom(x, 100, .55)
 z <- x <= 40 | x >= 60
@@ -364,7 +364,7 @@ Let's instead suppose that the true value of $\theta$ is 0.7. What happens to th
 
 (ref:crit4cap) Sampling distribution under the *alternative* hypothesis, for a population parameter value of $\theta = 0.70$. Almost all of the distribution lies in the rejection region.
 
-```{r crit4, fig.cap=paste("(ref:crit4cap)"), echo=FALSE, fig.align="center", out.width="100%"}
+```{r crit4, fig.cap=paste("(ref:crit4cap)"), echo=FALSE, fig.align="center"}
 setUpPlot()
 y <- dbinom(x, 100, .7)
 z <- x <= 40 | x >= 60
@@ -379,7 +379,7 @@ text(75, h + .007, "(2.5% of the distribution)")
 title(main = expression(paste("Sampling Distribution for X if ",theta,"=.70")), font.main = 1)
 ```
 
-```{r powerfunction, fig.cap="The probability that we will reject the null hypothesis is plotted as a function of the true value of $\\theta$. Obviously, the test is more powerful (greater chance of correct rejection) if the true value of $\\theta$ is very different from the value that the null hypothesis specifies (i.e., $\\theta=.5$). Notice that when $\\theta$ actually is equal to .5 (plotted as a black dot), the null hypothesis is, in fact, true: rejecting the null hypothesis in this instance would be a Type I error.", echo=FALSE, fig.align="center", out.width="100%"}
+```{r powerfunction, fig.cap="The probability that we will reject the null hypothesis is plotted as a function of the true value of $\\theta$. Obviously, the test is more powerful (greater chance of correct rejection) if the true value of $\\theta$ is very different from the value that the null hypothesis specifies (i.e., $\\theta=.5$). Notice that when $\\theta$ actually is equal to .5 (plotted as a black dot), the null hypothesis is, in fact, true: rejecting the null hypothesis in this instance would be a Type I error.", echo=FALSE, fig.align="center"}
 width <- 8
 height <- 5.5
 
@@ -444,7 +444,7 @@ Unfortunately, it's often the case that even with the best experimental designs,
 
 If we had 10 participants, and 7 of them correctly guessed the colour of the hidden card, you wouldn't be terribly impressed. But if we had 10,000 participants and 7,000 of them got the answer right, you would likely think we had discovered something. In other words, power increases with the sample size. This is illustrated in Figure \@ref(fig:powerfunctionsample), which shows the power of the test for a true parameter of $\theta = 0.7$, for all sample sizes $N$ from 1 to 100, where I'm assuming that the null hypothesis predicts that $\theta_0 = 0.5$.
 
-```{r powerfunctionsample, fig.cap="The power of our test, plotted as a function of the sample size $N$. In this case, the true value of $\\theta$ is 0.7, but the null hypothesis is that $\\theta = 0.5$. Overall, larger $N$ means greater power. (The small zig-zags in this function occur because of some odd interactions between $\\theta$, $\\alpha$ and the fact that the binomial distribution is discrete; it doesn't matter for any serious purpose) ", echo=FALSE, fig.align="center", out.width="100%"}
+```{r powerfunctionsample, fig.cap="The power of our test, plotted as a function of the sample size $N$. In this case, the true value of $\\theta$ is 0.7, but the null hypothesis is that $\\theta = 0.5$. Overall, larger $N$ means greater power. (The small zig-zags in this function occur because of some odd interactions between $\\theta$, $\\alpha$ and the fact that the binomial distribution is discrete; it doesn't matter for any serious purpose) ", echo=FALSE, fig.align="center"}
 width <- 8
 height <- 6
 

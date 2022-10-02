@@ -1,0 +1,24 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {  \sffamily
+     \color{CSblue}\textbf{Population parameter estimations}
+
+    \color{black}
+    Present confidence interval values for the mean suppose normality.
+
+    \begin{longtable}[l]{p{0.25\linewidth}p{0.15\linewidth}p{0.20\linewidth}p{0.20\linewidth}}
+    \endhead
+    
+    & Point estimation 
+    & 95\% confidence interval (low) 
+    & 95\% confidence
+    interval (high) \\
+    Mean & 72.3 & 67.8 & 76.8 \\
+    Standard deviation & 9.5 & 7.2 & 13.9 \\
+    \end{longtable}
+  }
+\end{tcolorbox}

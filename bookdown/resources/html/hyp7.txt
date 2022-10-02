@@ -1,0 +1,26 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {   \sffamily
+      \color{CSblue}\textbf{Hypothesis tests}
+      
+      \color{CSgreen}Testing if the means are the same.
+      
+      Two variables. Interval variables. \textgreater\textgreater  Choosing paired t-test or paired Wilcoxon test depending on the assumptions.
+
+      Checking for normality.
+
+      \color{black}
+      Shapiro-Wilk normality test in variable Difference of before and after: $W$ = 0.80, $p$ = .002
+
+      \color{CSgreen}
+      Normality is violated in variable(s) Difference of before and after. \textgreater\textgreater Running paired Wilcoxon test.
+
+      \color{black}
+      Result of Wilcoxon signed-rank test: $T$ = 31.00 $p$ = .031
+      \normalfont
+  }
+\end{tcolorbox}

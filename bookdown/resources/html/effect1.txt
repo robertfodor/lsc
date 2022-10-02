@@ -1,0 +1,21 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {   \sffamily
+      \color{CSblue}\textbf{Standardized effect sizes}
+      
+      \color{black}
+      \begin{longtable}[l]{@{}ll@{}}
+        \endhead
+        & Value \\
+        Cramér\textquotesingle s V measure of association 
+        & $\phi$\textsubscript{c} =
+        0.244 \\
+        \end{longtable}
+
+      \normalfont
+  }
+\end{tcolorbox}

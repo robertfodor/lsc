@@ -10,12 +10,12 @@ Let's take the example that appears in  Chapter \@ref(anova), in which we were l
 
 For this analysis, each person is cross-classified by the drug they were given (a factor with 3 levels) and what therapy they received (a factor with 2 levels). We refer to this as a $3 \times 2$ factorial design. Let's load the [`clinicaltrial.csv`](resources/data/clinicaltrial.csv) data set again to CogStat, and run the `Compare groups` function with both `drug` and `therapy` as grouping variables.
 
-```{r, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold"}
+```{r, echo=FALSE, fig.align="center", fig.show="hold"}
 knitr::include_graphics("resources/image/cogstatcompareclinanova2.png")
 ```
 
 We get the following table:
-```{r, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold"}
+```{r, echo=FALSE, fig.align="center", fig.show="hold"}
 knitr::include_graphics("resources/image/cogstatanova2clinload.png")
 ```
 
@@ -30,7 +30,7 @@ However, before we can even get to that point, it's really useful to have some c
 
 Now, this output by CogStat shows a cross-tabulation of the group means and other descriptive statistics for all possible combinations of the two factors (e.g. people who received the placebo and no therapy, people who received the placebo while getting CBT etc.), and it also shows a boxplot comparing these combinations.
 
-```{r anova2clinicalbox, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold"}
+```{r anova2clinicalbox, echo=FALSE, fig.align="center", fig.show="hold"}
 knitr::include_graphics("resources/image/cogstatanova2boxplotclinical.png")
 ```
 
@@ -38,7 +38,7 @@ But sometimes, we want to dissect our data in a different output format. To do t
 
 (ref:anova2clinicalpivotcap) Cross-tabulation of the means of `mood_gain` for each combination of `drug` and `therapy` in `Pivot table` function. You can select different functions to tabulate: *N* (count), *Sum*, *Mean*, *Median*, *Lower* and *Upper quartile*, *Standard deviation*, and *Variance*.
 
-```{r anova2clinicalpivot, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap=paste("(ref:anova2clinicalpivotcap)")}
+```{r anova2clinicalpivot, echo=FALSE, fig.align="center", fig.show="hold", fig.cap=paste("(ref:anova2clinicalpivotcap)")}
 knitr::include_graphics(c(
     "resources/image/cogstatpivotclinicaldialog.png",
     "resources/image/cogstatpivotclinicalpivot.png")
@@ -49,7 +49,7 @@ Let's use some mathematical notation and the symbol $\mu$ to denote a population
 
 We'll use lowercase letters to refer to specific rows and columns, so $\mu_{rc}$ refers to the population mean associated with the $r$th level of Factor A (i.e. row number $r$) and the $c$th level of Factor B (column number $c$).^[The nice thing about the subscript notation is that generalises nicely: if our experiment had involved a third factor, then we could just add a third subscript. In principle, the notation extends to as many factors as you might care to include.] We use the "dot" notation to express averages across rows and columns. In the case of Joyzepam, notice that we're talking about the mean associated with the third row in the table. That is, we're averaging across two cell means (i.e., $\mu_{31}$ and $\mu_{32}$). The result of this averaging is referred to as a **marginal mean**, and would be denoted $\mu_{3.}$ in this case. The marginal mean for CBT corresponds to the population mean associated with the second column in the table, so we use the notation $\mu_{.2}$ to describe it. The grand mean is denoted $\mu_{..}$ because it is the mean obtained by averaging (marginalising^[Technically, marginalising isn't quite identical to a regular mean: it's a weighted average, where you take into account the frequency of the different events that you're averaging over. However, in a balanced design, all of our cell frequencies are equal by definition, so the two are equivalent.]) over both. So our full table of population means can be written down like this:
 
-```{r echo=FALSE, fig.align="center", out.width="100%"}
+```{r echo=FALSE, fig.align="center"}
 library(kableExtra)
 knitr::kable(
     rbind(
@@ -69,7 +69,7 @@ Now that we have this notation, it is straightforward to formulate and express s
 
 Consider the first test. If the drug has no effect, then we would expect all of the row means to be identical, right? So that's our null hypothesis. On the other hand, if the drug does matter, then we should expect these row means to be different. Formally, we write down our null and alternative hypotheses in terms of the *equality of marginal means*:
 
-```{r echo=FALSE, fig.align="center", out.width="100%"}
+```{r echo=FALSE, fig.align="center"}
 knitr::kable(
     rbind(
         c("Null hypothesis $H_0$:", "row means are the same i.e. $\\mu_{1.} = \\mu_{2.} = \\mu_{3.}$"),
@@ -84,7 +84,7 @@ It's worth noting that these are *exactly* the same statistical hypotheses that 
 
 Speaking of the other grouping variable, you won't be surprised to discover that our second hypothesis test is formulated the same way. However, since we're talking about the psychological therapy rather than drugs, our null hypothesis now corresponds to the equality of the column means:
 
-```{r echo=FALSE, fig.align="center", out.width="100%"}
+```{r echo=FALSE, fig.align="center"}
 knitr::kable(
     rbind(
         c("Null hypothesis $H_0$:", "column means are the same, i.e., $\\mu_{.1} = \\mu_{.2}$"),
@@ -101,7 +101,7 @@ The null and alternative hypotheses might seem awfully familiar: they're basical
 
 We used $\mu$ for population means, but we'll use $\bar{Y}$ to refer to a sample mean. For the rest of the formulas, we can use the same notation as before to refer to group means, marginal means and grand means: that is, $\bar{Y}_{rc}$ is the sample mean associated with the $r$th level of Factor A and the $c$th level of Factor B, $\bar{Y}_{r.}$ would be the marginal mean for the $r$th level of Factor A, $\bar{Y}_{.c}$ would be the marginal mean for the $c$th level of Factor B, and $\bar{Y}_{..}$ is the grand mean. In other words, our sample means can be organised into the same table as the population means. For our clinical trial data, that table looks like this:
 
-```{r echo=FALSE, fig.align="center", out.width="100%"}
+```{r echo=FALSE, fig.align="center"}
 knitr::kable(
     rbind(
         c("Placebo", "$\\bar{Y}_{11}$", "$\\bar{Y}_{12}$", "$\\bar{Y}_{1.}$"),
@@ -217,7 +217,7 @@ knitr::include_graphics(c(
 
 To give a more concrete example, suppose that the operation of Anxifree and Joyzepam is governed quite different physiological mechanisms, and one consequence of this is that while Joyzepam has more or less the same effect on mood regardless of whether one is in therapy, Anxifree is actually much more effective when administered in conjunction with CBT. The ANOVA that we developed manually, does not capture this idea. To get some idea of whether an interaction is actually happening here, it helps to plot the various group means.
 
-```{r interactionplot, fig.cap="Interaction plot for our clinical trial data", echo=FALSE, fig.align="center", out.width="100%", fig.show="hold"}
+```{r interactionplot, fig.cap="Interaction plot for our clinical trial data", echo=FALSE, fig.align="center", fig.show="hold"}
 knitr::include_graphics(c(
   "resources/image/interactionplot.png"))
 ```
@@ -304,16 +304,16 @@ This means that our residual degrees of freedom are for the model with interacti
 
 This changes the $F$-statistic for all of the effects in the model. Let's look at the CogStat results now.
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-     <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
-     <p style="color:#008000;">Testing if the means are the same.<br />
-     At least two grouping variables. Interval variable. &gt;&gt; Choosing factorial ANOVA.</p>
-     <p style="color:black;">Result of multi-way ANOVA:</p>
-     <p style="color:black">Main effect of drug: <span style="font-style:italic;">F</span>(2, 12) = 31.71, <span style="font-style:italic;">p</span> &lt; .001</p>
-    <p style="color:black">Main effect of therapy: <span style="font-style:italic;">F</span>(1, 12) = 8.58, <span style="font-style:italic;">p</span> = .013</p>
-    <p style="color:black">Interaction of drug and therapy: <span style="font-style:italic;">F</span>(2, 12) = 2.49, <span style="font-style:italic;">p</span> = .125</p>
-</div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/hyp10.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/hyp10.txt")
+  )
+}
 ```
 
 ### How to interpret the results
@@ -340,7 +340,7 @@ CogStat currently doesn't provide effect sizes for multi-way ANOVAs. But if you'
 
 First, let's have a look at the effect sizes for the original ANOVA without the interaction term:
 
-```{r echo=FALSE, fig.align="center", fig.cap="Effect sizes for the ANOVA without the interaction term", out.width="100%"}
+```{r echo=FALSE, fig.align="center", fig.cap="Effect sizes for the ANOVA without the interaction term"}
 knitr::kable(
     rbind(
         c("Drug", "0.713", "0.789"),
@@ -360,7 +360,7 @@ The partial $\eta^2$ for the main effect of Factor A is a statement about a hypo
 
 Speaking of interaction effects, here's what we get when we calculate the effect sizes for the model that includes the interaction term. As you can see, the $\eta^2$ values for the main effects don't change, but the partial $\eta^2$ values do:
 
-```{r echo=FALSE, fig.align="center", fig.cap="Effect sizes for the ANOVA without the interaction term", out.width="100%"}
+```{r echo=FALSE, fig.align="center", fig.cap="Effect sizes for the ANOVA without the interaction term"}
 knitr::kable(
     rbind(
         c("Drug", "0.713", "0.841"),
@@ -379,28 +379,59 @@ You will find yourself wanting to report estimates of all the group means based 
 
 If you look at the `Population parameter estimations` output from CogStat, you see that there are confidence intervals given for each combination of our variables (Figure \@ref(fig:cogstatafci)). Estimated mean mood gain for the placebo group with no therapy was $0.30$, with a 95\% confidence interval from $-0.20$ to $0.80$. However, that is when you calculate the confidence intervals separately for each group.
 
-```{r cogstatafci, echo=FALSE, fig.align="center", fig.cap="Population parameter estimations: estimated group means -- reduced model", out.width="100%"}
+```{r cogstatafci, echo=FALSE, fig.align="center", fig.cap="Population parameter estimations: estimated group means -- reduced model"}
 knitr::include_graphics("resources/image/cogstatafci.png")
 ```
 
 In a saturated model, the estimated mean mood gain for the placebo group with no therapy should still be $0.30$, but with a 95\% confidence interval from $0.006$ to $0.594$.
 
-```{=html}
-<table>
-<caption colspan="6">Estimated group means and confidence intervals</caption>
-<thead>
-    <tr><th class="cornerLabels" rowspan="2">drug</th><th class="cornerLabels" rowspan="2">therapy</th><th rowspan="2">Mean</th><th rowspan="2">Std. Error</th><th colspan="2">95% Confidence Interval</th></tr>
-    <tr><th>Lower Bound</th><th>Upper Bound</th></tr>
-</thead>
-<tbody data-rect="0,5,0,3">
-    <tr><th rowspan="2" style="min-width:71px">Placebo</th><th style="min-width:78px">No therapy</th><td class=" har" style="min-width:68px">.300</td><td class=" har" style="min-width:69px">.135</td><td class=" har" style="min-width:88px">.006</td><td class=" har" style="min-width:90px">.594</td></tr>
-    <tr><th>CBT</th><td class=" har">.600</td><td class=" har">.135</td><td class=" har">.306</td><td class=" har">.894</td></tr>
-    <tr><th rowspan="2">Anxifree</th><th>No therapy</th><td class=" har">.400</td><td class=" har">.135</td><td class=" har">.106</td><td class=" har">.694</td></tr>
-    <tr><th>CBT</th><td class=" har">1.033</td><td class=" har">.135</td><td class=" har">.740</td><td class=" har">1.327</td></tr>
-    <tr><th rowspan="2">Joyzepam</th><th>No therapy</th><td class=" har">1.467</td><td class=" har">.135</td><td class=" har">1.173</td><td class=" har">1.760</td></tr>
-    <tr><th>CBT</th><td class=" har">1.500</td><td class=" har">.135</td><td class=" har">1.206</td><td class=" har">1.794</td></tr>
-</tbody>
-</table>
+```{r echo=FALSE, fig.align="center"}
+estgroup <- as.data.frame(
+  rbind(
+        c("Placebo", "No therapy", "0.300", "0.135", "0.006", "0.594"),
+        c("Placebo", "CBT", "0.600", "0.135", "0.306", "0.894"),
+        c("Anxifree", "No therapy", "0.400", "0.135", "0.106", "0.694"),
+        c("Anxifree", "CBT", "1.033", "0.135", "0.740", "1.327"),
+        c("Joyzepam", "No therapy", "1.467", "0.135", "1.173", "1.760"),
+        c("Joyzepam", "CBT", "1.500", "0.135", "1.206", "1.794")
+    )
+)
+
+estcap <- "Estimated group means and confidence intervals"
+
+library(kableExtra)
+```
+
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+    knitr::kable(estgroup[-1],
+        col.names = c(" ", " ", " ", 
+        "Lower Bound", "Upper Bound"),
+        booktabs = TRUE, escape = FALSE,
+        caption = estcap,
+        align = "llcccc"
+    ) %>%
+    add_header_above(c(" " = 1, "Mean" = 1,
+                "Std. Error" = 1, "95% Confidence Interval" = 2)) %>%
+    group_rows(group_label = "Placebo", start_row = 1, end_row = 2) %>%
+    group_rows(group_label = "Anxifree", start_row = 3, end_row = 4) %>%
+    group_rows(group_label = "Joyzepam", start_row = 5, end_row = 6)
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+    knitr::kable(estgroup,
+        col.names = c("Drug", "Therapy", "Mean", "Std. Error",
+        "Lower Bound", "Upper Bound"),
+        booktabs = TRUE, escape = FALSE,
+        caption = estcap,
+        align = "llcccc"
+        ) %>%
+        add_header_above(c(" " = 1, " " = 1, " " = 1,
+                " " = 1, "95% Confidence Interval" = 2)) %>%
+        collapse_rows(columns = 1:1, valign = "middle", latex_hline = "major",
+                  row_group_label_position = "identity") %>%
+        kable_styling(latex_options = "hold_position")
+}
 ```
 
 ## Post hoc tests{#posthoc2}
@@ -469,7 +500,7 @@ Unbalanced designs need to be treated with a lot more care than balanced designs
 
 As usual, it will help us to work with some data. The [`coffee.csv`](resources/data/coffee.csv) file contains a hypothetical data set that produces an unbalanced $3 \times 2$ ANOVA. Suppose we were interested in finding out whether or not the tendency of people to `babble` when they have too much coffee is purely an effect of the coffee itself, or whether there's some effect of the `milk` and `sugar` that people add to the coffee. Suppose we took 18 people, and gave them some coffee to drink. The amount of coffee / caffeine was held constant, and we varied whether or not milk was added: so `milk` is a binary factor with two levels, `"yes"` and `"no"`. We also varied the kind of sugar involved. The coffee might contain `"real"` sugar, or it might contain `"fake"` sugar (i.e., artificial sweetener), or it might contain `"none"` at all, so the `sugar` variable is a three-level factor. Our outcome variable is a continuous variable that presumably refers to some psychologically sensible measure of the extent to which someone is "babbling". The details don't really matter for our purpose. To get a sense of what the data look like, let's load it into CogStat and run the `Compare groups` function. Let's look at the sample properties:
 
-```{r, echo=FALSE, fig.align="center", fig.cap="The coffee data set", out.width="100%"}
+```{r, echo=FALSE, fig.align="center", fig.cap="The coffee data set"}
 knitr::include_graphics("resources/image/cogstatcoffeedescr.png")
 ```
 
@@ -490,7 +521,7 @@ The simplest possible model for the data would be one in which neither milk nor 
 
 The next simplest model for the data would be one in which only one of the two main effects is included. In the coffee data, there are two different possible choices here, because we could choose to add milk first or to add sugar first. The order actually matters, but for now, let's just make a choice arbitrarily, and pick sugar. So the second model in our sequence of models is `babble ¦ sugar`. This comparison forms our hypothesis test of the main effect of `sugar`. The next step in our model-building exercise it to add the other main effect term, so the next model in our sequence is `babble ¦ sugar + milk`. This comparison forms our hypothesis test of the main effect of `milk`. In one sense, this approach is very elegant: the alternative hypothesis from the first test forms the null hypothesis for the second one. It is in this sense that the Type I method is strictly sequential. Every test builds directly on the results of the last one. However, in another sense, it's very inelegant because there's a strong asymmetry between the two tests. The test of the main effect of `sugar` (the first test) completely ignores `milk`, whereas the test of the main effect of `milk` (the second test) does take `sugar` into account. In any case, the fourth model in our sequence is now the full model, `babble ¦ sugar + milk + sugar:milk`.
 
-```{r echo=FALSE, fig.align="center", out.width="100%"}
+```{r echo=FALSE, fig.align="center"}
 library(kableExtra)
 knitr::kable(
     rbind(
@@ -508,7 +539,7 @@ knitr::kable(
 
 When run (in another statistical software package that allows for selection of Type I, II or III), the results of the analysis are the following:
 
-```{r echo=FALSE, fig.align="center", out.width="100%"}
+```{r echo=FALSE, fig.align="center"}
 knitr::kable(
     rbind(
         c("sugar", "3.558", "2", "1.779", "6.749", "0.011"),
@@ -525,7 +556,7 @@ knitr::kable(
 
 The big problem with using Type I sum of squares is the fact that it really does depend on the order in which you enter the variables. Yet, in many situations, the researcher has no reason to prefer one ordering over another. This is presumably the case for our milk and sugar problem. Should we add milk first, or sugar first? It feels exactly as arbitrary as a data analysis question as it does as a coffee-making question. There may in fact be some people with firm opinions about ordering, but it's hard to imagine a principled answer to the question. Yet, look what happens when we change the ordering:
 
-```{r echo=FALSE, fig.align="center", out.width="100%"}
+```{r echo=FALSE, fig.align="center"}
 knitr::kable(
     rbind(
         c("Model 1", "babble ¦ 1", "babble ¦ milk", "milk"),
@@ -540,7 +571,7 @@ knitr::kable(
     kable_styling(position = "center", full_width = FALSE, latex_options = "hold_position")
 ```
 
-```{r echo=FALSE, fig.align="center", out.width="100%"}
+```{r echo=FALSE, fig.align="center"}
 knitr::kable(
     rbind(
         c("milk", "1.444", "1", "1.444", "5.479", "0.037"),
@@ -565,7 +596,7 @@ The consequence of all this is that Type I tests are very rarely of much interes
 
 Having just finished talking about Type I tests, you might think that the natural thing to do next would be to talk about Type II tests. However, it's actually a bit more natural to discuss Type III tests (which are simple) before talking about Type II tests (which are trickier). The basic idea behind Type III tests is extremely simple: regardless of which term you're trying to evaluate, run the $F$-test in which the alternative hypothesis corresponds to the full ANOVA model as specified by the user, and the null model just deletes that one term that you're testing. For instance, in the coffee example, the hypotheses would look like this:
 
-```{r echo=FALSE, fig.align="center", out.width="100%"}
+```{r echo=FALSE, fig.align="center"}
 knitr::kable(
     rbind(
         c("Model 1", "babble ¦ milk + sugar×milk", "babble ¦ sugar + milk + sugar×milk", "sugar"),
@@ -585,7 +616,7 @@ At first pass, Type III tests seem like a nice idea. Firstly, we've removed the 
 However, there is a big problem when interpreting the results of the tests, especially for main effect terms. Consider the coffee data. Suppose it turns out that the main effect of `milk` is not significant according to the Type III tests. What this is telling us is that `babble ¦ sugar + sugar×milk` is a better model for the data than the full model. But what does that even *mean*? If the interaction term `sugar×milk` was also non-significant, we'd be tempted to conclude that the data are telling us that the only thing that matters is `sugar`. But suppose we have a significant interaction term, but a non-significant main effect of `milk`. In this case, are we to assume that there really is an "effect of sugar", an "interaction between milk and sugar", but no "effect of milk"? That seems crazy. The right answer simply *must* be that it's meaningless^[Or, at the very least, rarely of interest.] to talk about the main effect if the interaction is significant. In general, this seems to be what most statisticians advise us to do. But if it really is meaningless to talk about non-significant main effects in the presence of a significant interaction, then it's not at all obvious why Type III tests should allow the null hypothesis to rely on a model that includes the interaction but omits one of the main effects that make it up. When characterised in this fashion, the null hypotheses really don't make much sense at all. 
 
 Let's look at the results:
-```{r echo=FALSE, fig.align="center", out.width="100%"}
+```{r echo=FALSE, fig.align="center"}
 knitr::kable(
     rbind(
         c("milk", "1.004", "1", "1.004", "3.810", "0.075"),
@@ -604,39 +635,37 @@ You'll notice that CogStat will automatically use Type III Sums of Squares. This
 
 With `milk` first, we get:
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-     <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
-     <p style="color:#008000;">Testing if the means are the same.<br />
-     At least two grouping variables. Interval variable. &gt;&gt; Choosing factorial ANOVA.</p>
-     <p style="color:black;">Result of multi-way ANOVA:</p>
-     <p style="color:black">Main effect of milk: <span style="font-style:italic;">F</span>(1, 12) = 3.81, <span style="font-style:italic;">p</span> = .075</p>
-    <p style="color:black">Main effect of sugar: <span style="font-style:italic;">F</span>(2, 12) = 4.04, <span style="font-style:italic;">p</span> = .045</p>
-    <p style="color:black">Interaction of milk and sugar: <span style="font-style:italic;">F</span>(2, 12) = 11.28, <span style="font-style:italic;">p</span> = .002</p>
-</div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/hyp11.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/hyp11.txt")
+  )
+}
 ```
 
 With `sugar` first, we get:
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-     <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
-     <p style="color:#008000;">Testing if the means are the same.<br />
-     At least two grouping variables. Interval variable. &gt;&gt; Choosing factorial ANOVA.</p>
-     <p style="color:black;">Result of multi-way ANOVA:</p>
-     <p style="color:black">Main effect of sugar: <span style="font-style:italic;">F</span>(2, 12) = 4.04, <span style="font-style:italic;">p</span> = .045</p>
-     <p style="color:black">Main effect of milk: <span style="font-style:italic;">F</span>(1, 12) = 3.81, <span style="font-style:italic;">p</span> = .075</p>
-     <p style="color:black">Interaction of sugar and milk: <span style="font-style:italic;">F</span>(2, 12) = 11.28, <span style="font-style:italic;">p</span> = .002</p>
-</div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/hyp12.html")
 ```
 
-
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/hyp12.txt")
+  )
+}
+```
 
 ### Type II sum of squares
 
 Type II tests are broadly similar to Type III tests: start with a "full" model, and test a particular term by deleting it from that model. However, Type II tests are based on the **marginality principle** which states that you should not omit a lower order term from your model if there are any higher order ones that depend on it. So, for instance, if your model contains the interaction `A:B` (a 2nd order term), then it really ought to contain the main effects `A` and `B` (1st order terms). Similarly, if it contains a three-way interaction term `A:B:C`, then the model must also include the main effects `A`, `B` and `C` as well as the simpler interactions `A:B`, `A:C` and `B:C`. Type III tests routinely violate the marginality principle. For instance, consider the test of the main effect of `A` in the context of a three-way ANOVA that includes all possible interaction terms. According to Type III tests, our null and alternative models are:
 
-```{r echo=FALSE, fig.align="center", out.width="100%"}
+```{r echo=FALSE, fig.align="center"}
 knitr::kable(tibble::tribble(
                    ~V1,                                               ~V2,
          "Null model:",     "`outcome ¦ B + C + A:B + A:C + B:C + A:B:C`",
@@ -657,7 +686,7 @@ knitr::kable(tibble::tribble(
 
 In the context of the two way ANOVA that we've been using in the coffee data, the hypothesis tests are even simpler.
 
-```{r echo=FALSE, fig.align="center", out.width="100%"}
+```{r echo=FALSE, fig.align="center"}
 knitr::kable(
     rbind(
         c("Model 1", "babble ¦ milk", "babble ¦ sugar + milk", "sugar"),
@@ -674,7 +703,7 @@ knitr::kable(
 
 The results would be:
 
-```{r echo=FALSE, fig.align="center", out.width="100%"}
+```{r echo=FALSE, fig.align="center"}
 knitr::kable(
     rbind(
         c("milk", "0.956", "1", "0.956", "3.628", "0.081"),
