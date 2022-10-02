@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 14 Linear regression | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
-  
+  <meta property="og:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
   <meta property="og:description" content="Chapter 14 Linear regression | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 14 Linear regression | Learning Statistics with CogStat" />
   
   <meta name="twitter:description" content="Chapter 14 Linear regression | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  
+  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
@@ -500,7 +500,7 @@ Y_i = b_1 X_i + b_0 + \epsilon_i
 <h2><span class="header-section-number">14.2</span> Estimating a linear regression model<a href="regression.html#regressionestimation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Let’s redraw the scatterplots just for this example’s sake adding some dotted lines to show the distance of each data point to the regression line. The length of the lines from the points to the regression line is proportional to the size of the residual.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:parentscatterswithresiduals"></span>
-<img src="resources/image/parentresiduallines.png" alt="Scatterplot outputs from CogStat of `parentsleep` and `parentgrump` with and without regression lines" width="100%" />
+<img src="resources/image/parentresiduallines.png" alt="Scatterplot outputs from CogStat of `parentsleep` and `parentgrump` with and without regression lines"  />
 <p class="caption">
 Figure 14.2: Scatterplot outputs from CogStat of <code>parentsleep</code> and <code>parentgrump</code> with and without regression lines
 </p>
@@ -515,15 +515,17 @@ Figure 14.2: Scatterplot outputs from CogStat of <code>parentsleep</code> and <c
 <div id="regressioninterpretation" class="section level2 hasAnchor" number="14.3">
 <h2><span class="header-section-number">14.3</span> Interpreting the results of a linear regression<a href="regression.html#regressioninterpretation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We see that CogStat gave us the formula for our line:</p>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
      <p style="font-size:medium; font-weight:600; color:#4878ce;">Sample properties</p>
      <p style="color:black;">Linear regression: y = -8.937x + 125.956</p>
 </div>
+</html>
 <p>The most important thing to be able to understand is how to interpret these coefficients. Let’s start with <span class="math inline">\(\hat{b}_1\)</span>, the slope. If we remember the definition of the slope, a regression coefficient of <span class="math inline">\(\hat{b}_1 = -8.937\)</span> means that if we increase <span class="math inline">\(X_i\)</span> by 1, then we are decreasing <span class="math inline">\(Y_i\)</span> by 8.937. That is, each additional hour of sleep that the parent gains will improve their mood reducing their grumpiness by 8.937 grumpiness points.</p>
 <p>What about the intercept? Well, since <span class="math inline">\(\hat{b}_0\)</span> corresponds to “the expected value of <span class="math inline">\(Y_i\)</span> when <span class="math inline">\(X_i\)</span> equals 0”, it’s pretty straightforward. It implies that if the parent gets zero hours of sleep (<span class="math inline">\(X_i =0\)</span>) then their grumpiness will go off the scale, to an insane value of (<span class="math inline">\(Y_i = 125.956\)</span>). Best to be avoided.</p>
 <p>The next section in the output is a <em>Residual analysis</em>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:residualanalysisplot"></span>
-<img src="resources/image/parentresidualanalysis.png" alt="Residual analysis plots from CogStat" width="100%" />
+<img src="resources/image/parentresidualanalysis.png" alt="Residual analysis plots from CogStat"  />
 <p class="caption">
 Figure 14.3: Residual analysis plots from CogStat
 </p>
@@ -533,7 +535,7 @@ Figure 14.3: Residual analysis plots from CogStat
 <p>In our example, the residuals are beautifully random, and their distribution is normal. This is a sign that our model is a good one.</p>
 <p>Within the <code>Population parameter estimations</code>, you’ll see the estimated regression coefficients with their 95% confidence interval given. The confidence interval is a range of values that we are 95% confident that the true value of the parameter lies within. In this case, we are 95% confident that the true value of the slope is between -9.787 and -8.086, and that the true value of the intercept is between 119.971 and 131.942. You’ll also see a chart depicting the confidence intervals for the regression line. You’ll also note that normality and homoscedasticity are checked. These are two assumptions of linear regression. Normality means that the residuals are normally distributed, which we saw earlier. Homoscedasticity means, very simplistically, that the residuals are equally distributed across the range of the independent variable, so there is no big chunk on one side of the residual plot.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:parentregressionresults"></span>
-<img src="resources/image/cogstatregressioncoeff.png" alt="Regression coefficients" width="100%" />
+<img src="resources/image/cogstatregressioncoeff.png" alt="Regression coefficients"  />
 <p class="caption">
 Figure 14.4: Regression coefficients
 </p>
@@ -588,7 +590,7 @@ R^2 &amp;=&amp; 1 - \frac{\mbox{SS}_{res}}{\mbox{SS}_{tot}}
 <blockquote>
 <p>Pearson’s correlation: <em>r</em>(98) = -0.90, <em>p</em> &lt; 0.001</p>
 </blockquote>
-<p><img src="resources/image/cogstatrvsrsqrd.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="resources/image/cogstatrvsrsqrd.png" style="display: block; margin: auto;" /></p>
 <p>So how about you square the Pearson correlation coefficient <span class="math inline">\(r = -0.903\)</span>?</p>
 <p><span class="math display">\[
 \begin{array}{rcl}
@@ -654,7 +656,7 @@ F(1, 98) = 434.906, p &lt; 0.001
 <p>The estimated regression coefficient is quite large for the <code>parentsleep</code> variable (<span class="math inline">\(-8.937\)</span>)<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a>. Should we run an analysis with the pair of <code>babysleep</code> and <code>parentgrump</code>, we’d notice the linear regression line is: <code>Linear regression: y = -2.742x + 85.782</code>, meaning our regression coefficient is much smaller.</p>
 <p>Let us combine these two predictors into a single model without CogStat<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a>, and add both <code>babysleep</code> and <code>parentsleep</code> to the model predicting <code>parentgrump</code>, we get the following result:</p>
 <table>
-<caption><span id="tab:unnamed-chunk-53">Table 14.1: </span>Model coefficients for the combined model with both predictors at <span class="math inline">\(\alpha = 0.05\)</span></caption>
+<caption><span id="tab:unnamed-chunk-90">Table 14.1: </span>Model coefficients for the combined model with both predictors at <span class="math inline">\(\alpha = 0.05\)</span></caption>
 <thead>
 <tr class="header">
 <th align="left">Predictor</th>
@@ -806,7 +808,7 @@ where <span class="math inline">\(\sigma_X\)</span> is the standard deviation of
 \]</span></li>
 </ul>
 <table>
-<caption><span id="tab:unnamed-chunk-54">Table 14.3: </span>Model coefficients (both estimate and standardised estimate) for the combined model with both predictors at <span class="math inline">\(\alpha = 0.05\)</span> with <span class="math inline">\(t\)</span>-statistics</caption>
+<caption><span id="tab:unnamed-chunk-91">Table 14.3: </span>Model coefficients (both estimate and standardised estimate) for the combined model with both predictors at <span class="math inline">\(\alpha = 0.05\)</span> with <span class="math inline">\(t\)</span>-statistics</caption>
 <colgroup>
 <col width="10%" />
 <col width="17%" />
@@ -894,14 +896,14 @@ where <span class="math inline">\(\hat\sigma\)</span> in this context is the est
 <p>One danger that you can run into with linear regression models is that your analysis might be disproportionately sensitive to a smallish number of “unusual” or “anomalous” observations. In the context of linear regression, there are three conceptually distinct ways in which an observation might be called “anomalous”. All three are interesting, but they have rather different implications for your analysis.</p>
 <p>The first kind of unusual observation is an <strong>outlier</strong>. The definition of an outlier (in this context) is an observation that is very different from what the regression model predicts. An example is shown in Figure <a href="regression.html#fig:outlier">14.5</a>. In practice, we operationalise this concept by saying that an outlier is an observation that has a very large Studentised residual, <span class="math inline">\(\epsilon_i^*\)</span>. Outliers are interesting: a big outlier <em>might</em> correspond to junk data. E.g. the variables might have been entered incorrectly, or some other defect may be detectable. Note that you shouldn’t throw an observation away just because it’s an outlier. But the fact that it’s an outlier is often a cue to look more closely at that case, and try to find out why it’s so different.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:outlier"></span>
-<img src="resources/image/unusual_outlier.png" alt="An illustration of outliers. The dotted lines plot the regression line that would have been estimated without the anomalous observation included, and the corresponding residual (i.e. the Studentised residual). The solid line shows the regression line with the anomalous observation included. The outlier has an unusual value on the outcome (y axis location) but not the predictor (x axis location), and lies a long way from the regression line." width="100%" />
+<img src="resources/image/unusual_outlier.png" alt="An illustration of outliers. The dotted lines plot the regression line that would have been estimated without the anomalous observation included, and the corresponding residual (i.e. the Studentised residual). The solid line shows the regression line with the anomalous observation included. The outlier has an unusual value on the outcome (y axis location) but not the predictor (x axis location), and lies a long way from the regression line."  />
 <p class="caption">
 Figure 14.5: An illustration of outliers. The dotted lines plot the regression line that would have been estimated without the anomalous observation included, and the corresponding residual (i.e. the Studentised residual). The solid line shows the regression line with the anomalous observation included. The outlier has an unusual value on the outcome (y axis location) but not the predictor (x axis location), and lies a long way from the regression line.
 </p>
 </div>
 <p>The second way in which an observation can be unusual is if it has high <strong>leverage</strong>: this happens when the observation is very different from all the other observations. This doesn’t necessarily have to correspond to a large residual: if the observation happens to be unusual on all variables in precisely the same way, it can actually lie very close to the regression line. An example of this is shown in Figure <a href="regression.html#fig:leverage">14.6</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:leverage"></span>
-<img src="resources/image/unusual_leverage.png" alt="An illustration of high leverage points. The anomalous observation in this case is unusual both in terms of the predictor (x axis) and the outcome (y axis), but this unusualness is highly consistent with the pattern of correlations that exists among the other observations; as a consequence, the observation falls very close to the regression line and does not distort it." width="100%" />
+<img src="resources/image/unusual_leverage.png" alt="An illustration of high leverage points. The anomalous observation in this case is unusual both in terms of the predictor (x axis) and the outcome (y axis), but this unusualness is highly consistent with the pattern of correlations that exists among the other observations; as a consequence, the observation falls very close to the regression line and does not distort it."  />
 <p class="caption">
 Figure 14.6: An illustration of high leverage points. The anomalous observation in this case is unusual both in terms of the predictor (x axis) and the outcome (y axis), but this unusualness is highly consistent with the pattern of correlations that exists among the other observations; as a consequence, the observation falls very close to the regression line and does not distort it.
 </p>
@@ -910,7 +912,7 @@ Figure 14.6: An illustration of high leverage points. The anomalous observation 
 <p>In general, if an observation lies far away from the other ones in terms of the predictor variables, it will have a large hat value (as a rough guide, high leverage is when the hat value is more than 2-3 times the average; and note that the sum of the hat values is constrained to be equal to <span class="math inline">\(K+1\)</span>). High leverage points are also worth looking at in more detail, but they’re much less likely to be a cause for concern unless they are also outliers.</p>
 <p>This brings us to our third measure of unusualness, the <strong>influence</strong> of an observation. A high influence observation is an outlier that has high leverage. That is, it is an observation that is very different to all the other ones in some respect, and also lies a long way from the regression line. This is illustrated in Figure <a href="regression.html#fig:influence">14.7</a>. Notice the contrast to the previous two figures: outliers don’t move the regression line much, and neither do high leverage points. But an outlier that has high leverage will have a big effect on the regression line.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:influence"></span>
-<img src="resources/image/unusual_influence.png" alt="An illustration of high influence points. In this case, the anomalous observation is highly unusual on the predictor variable (x axis), and falls a long way from the regression line. As a consequence, the regression line is highly distorted, even though (in this case) the anomalous observation is entirely typical in terms of the outcome variable (y axis)." width="100%" />
+<img src="resources/image/unusual_influence.png" alt="An illustration of high influence points. In this case, the anomalous observation is highly unusual on the predictor variable (x axis), and falls a long way from the regression line. As a consequence, the regression line is highly distorted, even though (in this case) the anomalous observation is entirely typical in terms of the outcome variable (y axis)."  />
 <p class="caption">
 Figure 14.7: An illustration of high influence points. In this case, the anomalous observation is highly unusual on the predictor variable (x axis), and falls a long way from the regression line. As a consequence, the regression line is highly distorted, even though (in this case) the anomalous observation is entirely typical in terms of the outcome variable (y axis).
 </p>

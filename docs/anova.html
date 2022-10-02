@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 12 Comparing several means (one-way ANOVA) | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
-  
+  <meta property="og:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
   <meta property="og:description" content="Chapter 12 Comparing several means (one-way ANOVA) | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 12 Comparing several means (one-way ANOVA) | Learning Statistics with CogStat" />
   
   <meta name="twitter:description" content="Chapter 12 Comparing several means (one-way ANOVA) | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  
+  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
@@ -472,7 +472,7 @@ div.csl-indent {
 <p>With that as the study design, let’s load our data file: <a href="resources/data/clinicaltrial.csv"><code>clinicaltrial.csv</code></a>. We have three variables: <code>drug</code>, <code>therapy</code> and <code>mood_gain</code>. Next, let’s print the data frame to get a sense of what the data actually look like.</p>
 <p>For the purposes of this chapter, what we’re really interested in is the effect of <code>drug</code> on <code>mood_gain</code>. The first thing to do is use the <code>Compare groups</code> function. (But don’t jump ahead by adding both <code>drug</code> and <code>therapy</code> to the <code>Group(s)</code> box. That’s going to be our factorial ANOVA in Chapter <a href="anova2.html#anova2">13</a>.)</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:moodbydrug"></span>
-<img src="resources/image/moodbydrug.png" alt="Mood gain by drug" width="100%" />
+<img src="resources/image/moodbydrug.png" alt="Mood gain by drug"  />
 <p class="caption">
 Figure 12.1: Mood gain by drug
 </p>
@@ -674,14 +674,14 @@ where <span class="math inline">\(\bar{Y}_k\)</span> is a group mean.</p>
 <p>Yay.</p>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:anovavara"></span>
-<img src="lsc_files/figure-html/anovavara-1.svg" alt="Graphical illustration of “between-groups” variation" width="100%" />
+<img src="lsc_files/figure-html/anovavara-1.svg" alt="Graphical illustration of “between-groups” variation" width="672" />
 <p class="caption">
 Figure 12.2: Graphical illustration of “between-groups” variation
 </p>
 </div>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:anovavarb"></span>
-<img src="lsc_files/figure-html/anovavarb-1.svg" alt="Graphical illustration of “within groups” variation" width="100%" />
+<img src="lsc_files/figure-html/anovavarb-1.svg" alt="Graphical illustration of “within groups” variation" width="672" />
 <p class="caption">
 Figure 12.3: Graphical illustration of “within groups” variation
 </p>
@@ -851,26 +851,27 @@ where the true value <span class="math inline">\(Q=0\)</span> if the null hypoth
 <p>So what we had to do, was simply run the <code>Compare groups</code> function with <code>mood_gain</code> by <code>drug</code>.</p>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogcompbydrugdialog"></span>
-<img src="resources/image/comparegroupsbydrug.png" alt="CogStat dialogue for Compare groups function with our clinical trial data set with variables mood_gain grouped by drug." width="100%" />
+<img src="resources/image/comparegroupsbydrug.png" alt="CogStat dialogue for Compare groups function with our clinical trial data set with variables mood_gain grouped by drug."  />
 <p class="caption">
 Figure 12.4: CogStat dialogue for <code>Compare groups</code> function with our clinical trial data set with variables <code>mood_gain</code> grouped by <code>drug</code>.
 </p>
 </div>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogcompbydrugdescr"></span>
-<img src="resources/image/moodbydrug.png" alt="CogStat result set displaying descriptives and boxplots as a result of Compare groups function with our clinical trial data set with variables mood_gain grouped by drug." width="100%" />
+<img src="resources/image/moodbydrug.png" alt="CogStat result set displaying descriptives and boxplots as a result of Compare groups function with our clinical trial data set with variables mood_gain grouped by drug."  />
 <p class="caption">
 Figure 12.5: CogStat result set displaying descriptives and boxplots as a result of <code>Compare groups</code> function with our clinical trial data set with variables <code>mood_gain</code> grouped by <code>drug</code>.
 </p>
 </div>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogcompbydrug"></span>
-<img src="resources/image/moodbydrughypo.png" alt="CogStat result set with hypothesis test results, effect size and post hoc results after running Compare groups function with our clinical trial data set with variables mood_gain grouped by drug." width="100%" />
+<img src="resources/image/moodbydrughypo.png" alt="CogStat result set with hypothesis test results, effect size and post hoc results after running Compare groups function with our clinical trial data set with variables mood_gain grouped by drug."  />
 <p class="caption">
 Figure 12.6: CogStat result set with hypothesis test results, effect size and post hoc results after running <code>Compare groups</code> function with our clinical trial data set with variables <code>mood_gain</code> grouped by <code>drug</code>.
 </p>
 </div>
 <p>We’ve seen this before. Let us explore the hypothesis test results.</p>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
      <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
      <p style="color:#008000;">Testing if the means are the same.<br />
@@ -885,6 +886,7 @@ Figure 12.6: CogStat result set with hypothesis test results, effect size and po
      <p style="color:black;">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in eta-square: 0.23. </p>
      <p style="color:black;">Result of one-way ANOVA: <span style="font-style:italic;">F</span>(2, 15) = 18.61, <span style="font-style:italic;">p</span> &lt; .001</p>
 </div>
+</html>
 <p>For now, let’s stop here. We’ll come back to the post hoc tests later. For now, let’s just focus on the hypothesis test results. We can see that the Shapiro-Wilk normality test was run on each of the groups. Testing the normality assumption is relatively straightforward. We covered the theory behind it in Chapter <a href="ttest.html#shapiro">11.7</a>. The Levene test was run to check for homogeneity of variance across groups. The one-way ANOVA was run, and the result was that the <span class="math inline">\(F\)</span>-value was 18.61, and the <span class="math inline">\(p\)</span>-value was less than 0.001.</p>
 <p>At this point, we’re basically done. (If you ran the test with us, you’ve seen something about post hoc tests. We will discuss them later.) Having completed our calculations, it’s traditional to organise all these numbers into an ANOVA table like the one in Table <a href="anova.html#tab:anovatableresults">12.2</a>. For our clinical trial data, the ANOVA table would look like this:</p>
 <table>
@@ -1069,7 +1071,7 @@ where <span class="math inline">\(\mbox{df}_b\)</span> is the degrees of freedom
 <p>Tukey’s HSD constructs <strong>simultaneous confidence intervals</strong> for all the comparisons. What we mean by 95% “simultaneous” confidence interval is that there is a 95% probability that <em>all</em> of these confidence intervals contain the relevant true value. Moreover, we can use these confidence intervals to calculate an adjusted <span class="math inline">\(p\)</span> value for any specific comparison.</p>
 <p>Let’s look at the post hoc test result coming from CogStat, as seen in Figure <a href="anova.html#fig:cogcompbydrug">12.6</a>.</p>
 <table>
-<caption><span id="tab:unnamed-chunk-31">Table 12.3: </span>Multiple Comparison of Means - Tukey HSD, FWER=0.05</caption>
+<caption><span id="tab:unnamed-chunk-57">Table 12.3: </span>Multiple Comparison of Means - Tukey HSD, FWER=0.05</caption>
 <thead>
 <tr class="header">
 <th align="left">group1</th>
@@ -1166,7 +1168,7 @@ H = \frac{12}{N(N-1)} \sum_k N_k {\bar{R}_k}^2  -  3(N+1)
 <p>The story is true when there are no ties in the raw data. That is, if there are no two observations that have exactly the same value. If there <em>are</em> ties, then we have to introduce a correction factor to these calculations. At this point, even the most diligent reader might have stopped caring (or at least formed the opinion that the tie-correction factor is something that doesn’t require their immediate attention). So let us omit the tedious details about <em>why</em> it’s done this way. We can look at a frequency table for the raw data (under <code>Explore variable</code> function), and let <span class="math inline">\(f_j\)</span> be the number of observations that have the <span class="math inline">\(j\)</span>-th unique value.</p>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:moodgainfreq"></span>
-<img src="resources/image/cogstatmoodgainfrequency.png" alt="Frequency table for the raw data (mood_gain)." width="100%" />
+<img src="resources/image/cogstatmoodgainfrequency.png" alt="Frequency table for the raw data (mood_gain)."  />
 <p class="caption">
 Figure 12.7: Frequency table for the raw data (<code>mood_gain</code>).
 </p>
@@ -1183,7 +1185,7 @@ H = 12.076
 <p>However, it’s good to take a look at how CogStat would display the results for non-normal data, particularly because the post hoc test results are different.</p>
 <p>So, here’s some tweaking of our clinical trial data with the placebo results not meeting the normality assumption: <a href="resources/data/clinical_nonnormal.csv"><code>clinical_nonnormal.csv</code></a> (the placebo group’s data is more “flat” when plotted). Let’s load it in CogStat and explore the <code>Compare groups</code> result set.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:kruskalclinical"></span>
-<img src="resources/image/cogstatclinicalnonnormal.png" alt="CogStat results for the non-normal data." width="100%" /><img src="resources/image/cogstatclinicalnonnormalbox.png" alt="CogStat results for the non-normal data." width="100%" />
+<img src="resources/image/cogstatclinicalnonnormal.png" alt="CogStat results for the non-normal data."  /><img src="resources/image/cogstatclinicalnonnormalbox.png" alt="CogStat results for the non-normal data."  />
 <p class="caption">
 Figure 12.8: CogStat results for the non-normal data.
 </p>
@@ -1212,7 +1214,7 @@ Figure 12.8: CogStat results for the non-normal data.
 <h2><span class="header-section-number">12.8</span> On the relationship between ANOVA and the Student <span class="math inline">\(t\)</span>-test<a href="anova.html#anovaandt" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It’s something that a lot of people find kind of surprising but it’s worth knowing about: an ANOVA with two groups is identical to the Student <span class="math inline">\(t\)</span>-test. It’s not just that they are similar, but they are actually equivalent in every meaningful way. Suppose that, instead of running an ANOVA on our <code>mood_gain ~ drug</code> model, let’s instead do it using <code>therapy</code> as the predictor. If we run this in <code>Compare group</code>, CogStat automatically selects the independent sample <span class="math inline">\(t\)</span>-test, as we’ve seen in Chapter <a href="ttest.html#ttest">11</a>. Here’s the result when running the <code>therapy</code> model:</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ttesttherapy"></span>
-<img src="resources/image/csmoodgaintherapybox.png" alt="CogStat results for the `therapy` model." width="100%" /><img src="resources/image/csmoodgaintherapyresult.png" alt="CogStat results for the `therapy` model." width="100%" />
+<img src="resources/image/csmoodgaintherapybox.png" alt="CogStat results for the `therapy` model."  /><img src="resources/image/csmoodgaintherapyresult.png" alt="CogStat results for the `therapy` model."  />
 <p class="caption">
 Figure 12.9: CogStat results for the <code>therapy</code> model.
 </p>

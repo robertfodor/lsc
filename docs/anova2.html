@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 13 Comparing several groups (factorial ANOVA) | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
-  
+  <meta property="og:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
   <meta property="og:description" content="Chapter 13 Comparing several groups (factorial ANOVA) | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 13 Comparing several groups (factorial ANOVA) | Learning Statistics with CogStat" />
   
   <meta name="twitter:description" content="Chapter 13 Comparing several groups (factorial ANOVA) | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  
+  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
@@ -468,20 +468,20 @@ div.csl-indent {
 <p>When we discussed the analysis of variance in Chapter <a href="anova.html#anova">12</a>, we assumed a fairly simple experimental design: each person falls into one of several groups, and we want to know whether these groups have different means on some outcome variable. In this section, we will look at a broader class of experimental designs, known as <strong>factorial designs</strong>, where we have more than one grouping variable.</p>
 <p>Let’s take the example that appears in Chapter <a href="anova.html#anova">12</a>, in which we were looking at the effect of different drugs on the <code>mood_gain</code> experienced by each person. In that chapter, we did find a significant effect of <code>drug</code> (Chapter <a href="anova.html#introduceaov">12.3</a>), but at the end of the chapter we also ran an analysis to see if there was an effect of <code>therapy</code> (Chapter <a href="anova.html#anovaandt">12.8</a>). We didn’t find one, but there’s something a bit worrying about trying to run two <em>separate</em> analyses trying to predict the same outcome. Maybe there actually <em>is</em> an effect of therapy on mood gain, but we couldn’t find it because it was being “hidden” by the effect of drug? In other words, we’re going to want to run a <em>single</em> analysis that includes <em>both</em> <code>drug</code> and <code>therapy</code> as predictors.</p>
 <p>For this analysis, each person is cross-classified by the drug they were given (a factor with 3 levels) and what therapy they received (a factor with 2 levels). We refer to this as a <span class="math inline">\(3 \times 2\)</span> factorial design. Let’s load the <a href="resources/data/clinicaltrial.csv"><code>clinicaltrial.csv</code></a> data set again to CogStat, and run the <code>Compare groups</code> function with both <code>drug</code> and <code>therapy</code> as grouping variables.</p>
-<p><img src="resources/image/cogstatcompareclinanova2.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="resources/image/cogstatcompareclinanova2.png" style="display: block; margin: auto;" /></p>
 <p>We get the following table:
-<img src="resources/image/cogstatanova2clinload.png" width="100%" style="display: block; margin: auto;" /></p>
+<img src="resources/image/cogstatanova2clinload.png" style="display: block; margin: auto;" /></p>
 <p>As you can see, not only do we have participants corresponding to all possible combinations of the two factors, indicating that our design is <strong>completely crossed</strong>, it turns out that there are an equal number of people in each group. In other words, we have a <strong>balanced</strong> design.</p>
 <div id="factanovahyp" class="section level3 hasAnchor" number="13.1.1">
 <h3><span class="header-section-number">13.1.1</span> What hypotheses are we testing?<a href="anova2.html#factanovahyp" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Like one-way ANOVA, factorial ANOVA is a tool for testing certain types of hypotheses about population means. So a sensible place to start would be to be explicit about what our hypotheses actually are.</p>
 <p>However, before we can even get to that point, it’s really useful to have some clean and simple ways to describe the means. Because of the fact that observations are cross-classified in terms of two different factors, we’ll need a cross-tabulation of sorts.</p>
 <p>Now, this output by CogStat shows a cross-tabulation of the group means and other descriptive statistics for all possible combinations of the two factors (e.g. people who received the placebo and no therapy, people who received the placebo while getting CBT etc.), and it also shows a boxplot comparing these combinations.</p>
-<p><img src="resources/image/cogstatanova2boxplotclinical.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="resources/image/cogstatanova2boxplotclinical.png" style="display: block; margin: auto;" /></p>
 <p>But sometimes, we want to dissect our data in a different output format. To do that, we have the <code>Pivot table</code> function in CogStat. Let’s use it to create a cross-tabulation of the means of <code>mood_gain</code> for each combination of <code>drug</code> and <code>therapy</code>.</p>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:anova2clinicalpivot"></span>
-<img src="resources/image/cogstatpivotclinicaldialog.png" alt="Cross-tabulation of the means of mood_gain for each combination of drug and therapy in Pivot table function. You can select different functions to tabulate: N (count), Sum, Mean, Median, Lower and Upper quartile, Standard deviation, and Variance." width="100%" /><img src="resources/image/cogstatpivotclinicalpivot.png" alt="Cross-tabulation of the means of mood_gain for each combination of drug and therapy in Pivot table function. You can select different functions to tabulate: N (count), Sum, Mean, Median, Lower and Upper quartile, Standard deviation, and Variance." width="100%" />
+<img src="resources/image/cogstatpivotclinicaldialog.png" alt="Cross-tabulation of the means of mood_gain for each combination of drug and therapy in Pivot table function. You can select different functions to tabulate: N (count), Sum, Mean, Median, Lower and Upper quartile, Standard deviation, and Variance."  /><img src="resources/image/cogstatpivotclinicalpivot.png" alt="Cross-tabulation of the means of mood_gain for each combination of drug and therapy in Pivot table function. You can select different functions to tabulate: N (count), Sum, Mean, Median, Lower and Upper quartile, Standard deviation, and Variance."  />
 <p class="caption">
 Figure 13.1: Cross-tabulation of the means of <code>mood_gain</code> for each combination of <code>drug</code> and <code>therapy</code> in <code>Pivot table</code> function. You can select different functions to tabulate: <em>N</em> (count), <em>Sum</em>, <em>Mean</em>, <em>Median</em>, <em>Lower</em> and <em>Upper quartile</em>, <em>Standard deviation</em>, and <em>Variance</em>.
 </p>
@@ -490,7 +490,7 @@ Figure 13.1: Cross-tabulation of the means of <code>mood_gain</code> for each co
 <p>We’ll use lowercase letters to refer to specific rows and columns, so <span class="math inline">\(\mu_{rc}\)</span> refers to the population mean associated with the <span class="math inline">\(r\)</span>th level of Factor A (i.e. row number <span class="math inline">\(r\)</span>) and the <span class="math inline">\(c\)</span>th level of Factor B (column number <span class="math inline">\(c\)</span>).<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a> We use the “dot” notation to express averages across rows and columns. In the case of Joyzepam, notice that we’re talking about the mean associated with the third row in the table. That is, we’re averaging across two cell means (i.e., <span class="math inline">\(\mu_{31}\)</span> and <span class="math inline">\(\mu_{32}\)</span>). The result of this averaging is referred to as a <strong>marginal mean</strong>, and would be denoted <span class="math inline">\(\mu_{3.}\)</span> in this case. The marginal mean for CBT corresponds to the population mean associated with the second column in the table, so we use the notation <span class="math inline">\(\mu_{.2}\)</span> to describe it. The grand mean is denoted <span class="math inline">\(\mu_{..}\)</span> because it is the mean obtained by averaging (marginalising<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a>) over both. So our full table of population means can be written down like this:</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-34">Table 13.1: </span>Population means in factorial ANOVA.
+<span id="tab:unnamed-chunk-60">Table 13.1: </span>Population means in factorial ANOVA.
 </caption>
 <thead>
 <tr>
@@ -724,7 +724,7 @@ Figure 13.3: Qualitatively different interactions for a <span class="math inline
 </div>
 <p>To give a more concrete example, suppose that the operation of Anxifree and Joyzepam is governed quite different physiological mechanisms, and one consequence of this is that while Joyzepam has more or less the same effect on mood regardless of whether one is in therapy, Anxifree is actually much more effective when administered in conjunction with CBT. The ANOVA that we developed manually, does not capture this idea. To get some idea of whether an interaction is actually happening here, it helps to plot the various group means.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:interactionplot"></span>
-<img src="resources/image/interactionplot.png" alt="Interaction plot for our clinical trial data" width="100%" />
+<img src="resources/image/interactionplot.png" alt="Interaction plot for our clinical trial data"  />
 <p class="caption">
 Figure 13.4: Interaction plot for our clinical trial data
 </p>
@@ -798,15 +798,17 @@ which is just the product of the degrees of freedom associated with the row fact
 <li><span class="math inline">\(C-1\)</span> for the main effect of Factor B (<code>therapy</code>): 2 levels - 1 = 1</li>
 </ul>
 <p>This changes the <span class="math inline">\(F\)</span>-statistic for all of the effects in the model. Let’s look at the CogStat results now.</p>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
      <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
      <p style="color:#008000;">Testing if the means are the same.<br />
      At least two grouping variables. Interval variable. &gt;&gt; Choosing factorial ANOVA.</p>
      <p style="color:black;">Result of multi-way ANOVA:</p>
      <p style="color:black">Main effect of drug: <span style="font-style:italic;">F</span>(2, 12) = 31.71, <span style="font-style:italic;">p</span> &lt; .001</p>
-    <p style="color:black">Main effect of therapy: <span style="font-style:italic;">F</span>(1, 12) = 8.58, <span style="font-style:italic;">p</span> = .013</p>
-    <p style="color:black">Interaction of drug and therapy: <span style="font-style:italic;">F</span>(2, 12) = 2.49, <span style="font-style:italic;">p</span> = .125</p>
+     <p style="color:black">Main effect of therapy: <span style="font-style:italic;">F</span>(1, 12) = 8.58, <span style="font-style:italic;">p</span> = .013</p>
+     <p style="color:black">Interaction of drug and therapy: <span style="font-style:italic;">F</span>(2, 12) = 2.49, <span style="font-style:italic;">p</span> = .125</p>
 </div>
+</html>
 </div>
 <div id="how-to-interpret-the-results" class="section level3 hasAnchor" number="13.1.4">
 <h3><span class="header-section-number">13.1.4</span> How to interpret the results<a href="anova2.html#how-to-interpret-the-results" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -882,25 +884,169 @@ which is just the product of the degrees of freedom associated with the row fact
 <p>You will find yourself wanting to report estimates of all the group means based on the results of your ANOVA, as well as confidence intervals associated with them. If the ANOVA that you have run is a <strong>saturated model</strong> (i.e. contains all possible main effects and all possible interaction effects), then the estimates of the group means are actually identical to the sample means, though the confidence intervals will use a pooled estimate of the standard errors, rather than use a separate one for each group.</p>
 <p>If you look at the <code>Population parameter estimations</code> output from CogStat, you see that there are confidence intervals given for each combination of our variables (Figure <a href="anova2.html#fig:cogstatafci">13.5</a>). Estimated mean mood gain for the placebo group with no therapy was <span class="math inline">\(0.30\)</span>, with a 95% confidence interval from <span class="math inline">\(-0.20\)</span> to <span class="math inline">\(0.80\)</span>. However, that is when you calculate the confidence intervals separately for each group.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogstatafci"></span>
-<img src="resources/image/cogstatafci.png" alt="Population parameter estimations: estimated group means -- reduced model" width="100%" />
+<img src="resources/image/cogstatafci.png" alt="Population parameter estimations: estimated group means -- reduced model"  />
 <p class="caption">
 Figure 13.5: Population parameter estimations: estimated group means – reduced model
 </p>
 </div>
 <p>In a saturated model, the estimated mean mood gain for the placebo group with no therapy should still be <span class="math inline">\(0.30\)</span>, but with a 95% confidence interval from <span class="math inline">\(0.006\)</span> to <span class="math inline">\(0.594\)</span>.</p>
 <table>
-<caption colspan="6">Estimated group means and confidence intervals</caption>
+<caption>
+<span id="tab:unnamed-chunk-69">Table 13.2: </span>Estimated group means and confidence intervals
+</caption>
 <thead>
-    <tr><th class="cornerLabels" rowspan="2">drug</th><th class="cornerLabels" rowspan="2">therapy</th><th rowspan="2">Mean</th><th rowspan="2">Std. Error</th><th colspan="2">95% Confidence Interval</th></tr>
-    <tr><th>Lower Bound</th><th>Upper Bound</th></tr>
+<tr>
+<th style="empty-cells: hide;border-bottom:hidden;" colspan="1">
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Mean
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Std. Error
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+95% Confidence Interval
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+</th>
+<th style="text-align:center;">
+</th>
+<th style="text-align:center;">
+Lower Bound
+</th>
+<th style="text-align:center;">
+Upper Bound
+</th>
+</tr>
 </thead>
-<tbody data-rect="0,5,0,3">
-    <tr><th rowspan="2" style="min-width:71px">Placebo</th><th style="min-width:78px">No therapy</th><td class=" har" style="min-width:68px">.300</td><td class=" har" style="min-width:69px">.135</td><td class=" har" style="min-width:88px">.006</td><td class=" har" style="min-width:90px">.594</td></tr>
-    <tr><th>CBT</th><td class=" har">.600</td><td class=" har">.135</td><td class=" har">.306</td><td class=" har">.894</td></tr>
-    <tr><th rowspan="2">Anxifree</th><th>No therapy</th><td class=" har">.400</td><td class=" har">.135</td><td class=" har">.106</td><td class=" har">.694</td></tr>
-    <tr><th>CBT</th><td class=" har">1.033</td><td class=" har">.135</td><td class=" har">.740</td><td class=" har">1.327</td></tr>
-    <tr><th rowspan="2">Joyzepam</th><th>No therapy</th><td class=" har">1.467</td><td class=" har">.135</td><td class=" har">1.173</td><td class=" har">1.760</td></tr>
-    <tr><th>CBT</th><td class=" har">1.500</td><td class=" har">.135</td><td class=" har">1.206</td><td class=" har">1.794</td></tr>
+<tbody>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Placebo</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+No therapy
+</td>
+<td style="text-align:left;">
+0.300
+</td>
+<td style="text-align:center;">
+0.135
+</td>
+<td style="text-align:center;">
+0.006
+</td>
+<td style="text-align:center;">
+0.594
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+CBT
+</td>
+<td style="text-align:left;">
+0.600
+</td>
+<td style="text-align:center;">
+0.135
+</td>
+<td style="text-align:center;">
+0.306
+</td>
+<td style="text-align:center;">
+0.894
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Anxifree</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+No therapy
+</td>
+<td style="text-align:left;">
+0.400
+</td>
+<td style="text-align:center;">
+0.135
+</td>
+<td style="text-align:center;">
+0.106
+</td>
+<td style="text-align:center;">
+0.694
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+CBT
+</td>
+<td style="text-align:left;">
+1.033
+</td>
+<td style="text-align:center;">
+0.135
+</td>
+<td style="text-align:center;">
+0.740
+</td>
+<td style="text-align:center;">
+1.327
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Joyzepam</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+No therapy
+</td>
+<td style="text-align:left;">
+1.467
+</td>
+<td style="text-align:center;">
+0.135
+</td>
+<td style="text-align:center;">
+1.173
+</td>
+<td style="text-align:center;">
+1.760
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;" indentlevel="1">
+CBT
+</td>
+<td style="text-align:left;">
+1.500
+</td>
+<td style="text-align:center;">
+0.135
+</td>
+<td style="text-align:center;">
+1.206
+</td>
+<td style="text-align:center;">
+1.794
+</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -927,7 +1073,7 @@ Figure 13.5: Population parameter estimations: estimated group means – reduced
 <p>There are quite a lot of these comparisons that you need to consider. So, the ideal output of Tukey’s HSD would make a <em>lot</em> of pairwise comparisons (19 in total). This is not yet possible in CogStat, but let’s look at what the result would look like if it were.</p>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-40">Table 13.2: </span>Tukey’s HSD for a multi-way ANOVA
+<span id="tab:unnamed-chunk-71">Table 13.3: </span>Tukey’s HSD for a multi-way ANOVA
 </caption>
 <thead>
 <tr>
@@ -1237,8 +1383,8 @@ joyzepam-CBT
 <p>In real life, we’re rarely lucky enough to have perfectly balanced designs. For one reason or another, it’s typical to end up with more observations in some cells than in others. Or, to put it another way, we have an <strong>unbalanced design</strong>.</p>
 <p>Unbalanced designs need to be treated with a lot more care than balanced designs, and the statistical theory that underpins them is a lot messier. But we must not ignore this issue, like a lot of stats textbooks (or psychology students) tend to do. The net result of this is that a lot of active researchers in the field don’t actually know that there’s several different “types” of unbalanced ANOVAs, and they produce quite different answers. In fact, reading the psychological literature, it seems that most people don’t even realise that their statistical software package is making a whole lot of substantive data analysis decisions on their behalf. CogStat will also make all decisions for you, but when interpreting the results, it’s important to know what the software is doing and what is the underlying statistical theory.</p>
 <p>As usual, it will help us to work with some data. The <a href="resources/data/coffee.csv"><code>coffee.csv</code></a> file contains a hypothetical data set that produces an unbalanced <span class="math inline">\(3 \times 2\)</span> ANOVA. Suppose we were interested in finding out whether or not the tendency of people to <code>babble</code> when they have too much coffee is purely an effect of the coffee itself, or whether there’s some effect of the <code>milk</code> and <code>sugar</code> that people add to the coffee. Suppose we took 18 people, and gave them some coffee to drink. The amount of coffee / caffeine was held constant, and we varied whether or not milk was added: so <code>milk</code> is a binary factor with two levels, <code>"yes"</code> and <code>"no"</code>. We also varied the kind of sugar involved. The coffee might contain <code>"real"</code> sugar, or it might contain <code>"fake"</code> sugar (i.e., artificial sweetener), or it might contain <code>"none"</code> at all, so the <code>sugar</code> variable is a three-level factor. Our outcome variable is a continuous variable that presumably refers to some psychologically sensible measure of the extent to which someone is “babbling”. The details don’t really matter for our purpose. To get a sense of what the data look like, let’s load it into CogStat and run the <code>Compare groups</code> function. Let’s look at the sample properties:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-41"></span>
-<img src="resources/image/cogstatcoffeedescr.png" alt="The coffee data set" width="100%" />
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-72"></span>
+<img src="resources/image/cogstatcoffeedescr.png" alt="The coffee data set"  />
 <p class="caption">
 Figure 13.6: The coffee data set
 </p>
@@ -1254,7 +1400,7 @@ Figure 13.6: The coffee data set
 <p>The next simplest model for the data would be one in which only one of the two main effects is included. In the coffee data, there are two different possible choices here, because we could choose to add milk first or to add sugar first. The order actually matters, but for now, let’s just make a choice arbitrarily, and pick sugar. So the second model in our sequence of models is <code>babble ¦ sugar</code>. This comparison forms our hypothesis test of the main effect of <code>sugar</code>. The next step in our model-building exercise it to add the other main effect term, so the next model in our sequence is <code>babble ¦ sugar + milk</code>. This comparison forms our hypothesis test of the main effect of <code>milk</code>. In one sense, this approach is very elegant: the alternative hypothesis from the first test forms the null hypothesis for the second one. It is in this sense that the Type I method is strictly sequential. Every test builds directly on the results of the last one. However, in another sense, it’s very inelegant because there’s a strong asymmetry between the two tests. The test of the main effect of <code>sugar</code> (the first test) completely ignores <code>milk</code>, whereas the test of the main effect of <code>milk</code> (the second test) does take <code>sugar</code> into account. In any case, the fourth model in our sequence is now the full model, <code>babble ¦ sugar + milk + sugar:milk</code>.</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-42">Table 13.3: </span>Hypotheses for the Type I Sum of Squares for the <code>coffee</code> dataset (sugar first).
+<span id="tab:unnamed-chunk-73">Table 13.4: </span>Hypotheses for the Type I Sum of Squares for the <code>coffee</code> dataset (sugar first).
 </caption>
 <thead>
 <tr>
@@ -1320,7 +1466,7 @@ sugar×milk
 <p>When run (in another statistical software package that allows for selection of Type I, II or III), the results of the analysis are the following:</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-43">Table 13.4: </span>Test of between-subject effects with Type I Sum of Squares for the <code>coffee</code> dataset (sugar first).
+<span id="tab:unnamed-chunk-74">Table 13.5: </span>Test of between-subject effects with Type I Sum of Squares for the <code>coffee</code> dataset (sugar first).
 </caption>
 <thead>
 <tr>
@@ -1410,7 +1556,7 @@ sugar×milk
 <p>The big problem with using Type I sum of squares is the fact that it really does depend on the order in which you enter the variables. Yet, in many situations, the researcher has no reason to prefer one ordering over another. This is presumably the case for our milk and sugar problem. Should we add milk first, or sugar first? It feels exactly as arbitrary as a data analysis question as it does as a coffee-making question. There may in fact be some people with firm opinions about ordering, but it’s hard to imagine a principled answer to the question. Yet, look what happens when we change the ordering:</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-44">Table 13.5: </span>Hypotheses for the Type I Sum of Squares for the <code>coffee</code> dataset (milk first).
+<span id="tab:unnamed-chunk-75">Table 13.6: </span>Hypotheses for the Type I Sum of Squares for the <code>coffee</code> dataset (milk first).
 </caption>
 <thead>
 <tr>
@@ -1475,7 +1621,7 @@ milk×sugar
 </table>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-45">Table 13.6: </span>Test of between-subject effects with Type I Sum of Squares for the <code>coffee</code> dataset (milk first)
+<span id="tab:unnamed-chunk-76">Table 13.7: </span>Test of between-subject effects with Type I Sum of Squares for the <code>coffee</code> dataset (milk first)
 </caption>
 <thead>
 <tr>
@@ -1571,7 +1717,7 @@ milk×sugar
 <p>Having just finished talking about Type I tests, you might think that the natural thing to do next would be to talk about Type II tests. However, it’s actually a bit more natural to discuss Type III tests (which are simple) before talking about Type II tests (which are trickier). The basic idea behind Type III tests is extremely simple: regardless of which term you’re trying to evaluate, run the <span class="math inline">\(F\)</span>-test in which the alternative hypothesis corresponds to the full ANOVA model as specified by the user, and the null model just deletes that one term that you’re testing. For instance, in the coffee example, the hypotheses would look like this:</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-46">Table 13.7: </span>Hypotheses for the Type III Sum of Squares for the <code>coffee</code> dataset.
+<span id="tab:unnamed-chunk-77">Table 13.8: </span>Hypotheses for the Type III Sum of Squares for the <code>coffee</code> dataset.
 </caption>
 <thead>
 <tr>
@@ -1639,7 +1785,7 @@ sugar×milk
 Let’s look at the results:
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-47">Table 13.8: </span>Test of between-subject effects with Type III Sum of Squares for the <code>coffee</code> dataset.
+<span id="tab:unnamed-chunk-78">Table 13.9: </span>Test of between-subject effects with Type III Sum of Squares for the <code>coffee</code> dataset.
 </caption>
 <thead>
 <tr>
@@ -1728,16 +1874,19 @@ milk×sugar
 </table>
 <p>You’ll notice that CogStat will automatically use Type III Sums of Squares. This is exactly the same result set that we get from CogStat whether we put <code>milk</code> or <code>sugar</code> first in the <code>Compare groups</code> dialog’s <code>Group(s)</code> list.</p>
 <p>With <code>milk</code> first, we get:</p>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
      <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
      <p style="color:#008000;">Testing if the means are the same.<br />
      At least two grouping variables. Interval variable. &gt;&gt; Choosing factorial ANOVA.</p>
      <p style="color:black;">Result of multi-way ANOVA:</p>
      <p style="color:black">Main effect of milk: <span style="font-style:italic;">F</span>(1, 12) = 3.81, <span style="font-style:italic;">p</span> = .075</p>
-    <p style="color:black">Main effect of sugar: <span style="font-style:italic;">F</span>(2, 12) = 4.04, <span style="font-style:italic;">p</span> = .045</p>
-    <p style="color:black">Interaction of milk and sugar: <span style="font-style:italic;">F</span>(2, 12) = 11.28, <span style="font-style:italic;">p</span> = .002</p>
+     <p style="color:black">Main effect of sugar: <span style="font-style:italic;">F</span>(2, 12) = 4.04, <span style="font-style:italic;">p</span> = .045</p>
+     <p style="color:black">Interaction of milk and sugar: <span style="font-style:italic;">F</span>(2, 12) = 11.28, <span style="font-style:italic;">p</span> = .002</p>
 </div>
+</html>
 <p>With <code>sugar</code> first, we get:</p>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
      <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
      <p style="color:#008000;">Testing if the means are the same.<br />
@@ -1747,6 +1896,7 @@ milk×sugar
      <p style="color:black">Main effect of milk: <span style="font-style:italic;">F</span>(1, 12) = 3.81, <span style="font-style:italic;">p</span> = .075</p>
      <p style="color:black">Interaction of sugar and milk: <span style="font-style:italic;">F</span>(2, 12) = 11.28, <span style="font-style:italic;">p</span> = .002</p>
 </div>
+</html>
 </div>
 <div id="type-ii-sum-of-squares" class="section level3 hasAnchor" number="13.5.3">
 <h3><span class="header-section-number">13.5.3</span> Type II sum of squares<a href="anova2.html#type-ii-sum-of-squares" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -1779,7 +1929,7 @@ milk×sugar
 <p>In the context of the two way ANOVA that we’ve been using in the coffee data, the hypothesis tests are even simpler.</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-50">Table 13.9: </span>Hypotheses for the Type II Sum of Squares for the <code>coffee</code> dataset.
+<span id="tab:unnamed-chunk-85">Table 13.10: </span>Hypotheses for the Type II Sum of Squares for the <code>coffee</code> dataset.
 </caption>
 <thead>
 <tr>
@@ -1845,7 +1995,7 @@ sugar×milk
 <p>The results would be:</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-51">Table 13.10: </span>Test of between-subject effects with Type II Sum of Squares for the <code>coffee</code> dataset.
+<span id="tab:unnamed-chunk-86">Table 13.11: </span>Test of between-subject effects with Type II Sum of Squares for the <code>coffee</code> dataset.
 </caption>
 <thead>
 <tr>
