@@ -12,7 +12,7 @@ Since the basic ideas in regression are closely tied to correlation, we'll retur
 
 Let's go ahead and use `Explore relation of a variable pair` function with `parentsleep` and `parentgrump` variables. 
 
-```{r parentscatters, echo=FALSE, fig.cap="Scatterplots of parent sleep and grumpiness", fig.align="center", out.width="50%", fig.show="hold"}
+```{r parentscatters, echo=FALSE, fig.cap="Scatterplots of parent sleep and grumpiness", fig.align="center", out.width="45%", fig.show="hold"}
 knitr::include_graphics(c(
     "resources/image/parentsleepgrumpplotnolinreg.png",
     "resources/image/parentsleepgrumpplot.png"
@@ -51,7 +51,7 @@ $$
 
 Let's redraw the scatterplots just for this example's sake adding some dotted lines to show the distance of each data point to the regression line. The length of the lines from the points to the regression line is proportional to the size of the residual.
 
-```{r parentscatterswithresiduals, echo=FALSE, fig.cap="Scatterplot outputs from CogStat of `parentsleep` and `parentgrump` with and without regression lines", fig.align="center", out.width="100%", fig.show="hold"}
+```{r parentscatterswithresiduals, echo=FALSE, fig.cap="Scatterplot outputs from CogStat of `parentsleep` and `parentgrump` with and without regression lines", fig.align="center", fig.show="hold"}
 knitr::include_graphics("resources/image/parentresiduallines.png")
 ```
 
@@ -67,11 +67,16 @@ At this point, we now have a concrete definition for what counts as our "best" c
 
 We see that CogStat gave us the formula for our line:
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-     <p style="font-size:medium; font-weight:600; color:#4878ce;">Sample properties</p>
-     <p style="color:black;">Linear regression: y = -8.937x + 125.956</p>
-</div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/samprop1.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/samprop1.txt")
+  )
+}
 ```
 
 The most important thing to be able to understand is how to interpret these coefficients. Let's start with $\hat{b}_1$, the slope. If we remember the definition of the slope, a regression coefficient of $\hat{b}_1 = -8.937$ means that if we increase $X_i$ by 1, then we are decreasing $Y_i$ by 8.937. That is, each additional hour of sleep that the parent gains will improve their mood reducing their grumpiness by 8.937 grumpiness points.
@@ -80,7 +85,7 @@ What about the intercept? Well, since $\hat{b}_0$ corresponds to "the expected v
 
 The next section in the output is a *Residual analysis*.
 
-```{r residualanalysisplot, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="Residual analysis plots from CogStat"}
+```{r residualanalysisplot, echo=FALSE, fig.align="center", fig.show="hold", fig.cap="Residual analysis plots from CogStat"}
 knitr::include_graphics("resources/image/parentresidualanalysis.png")
 ```
 
@@ -92,7 +97,7 @@ In our example, the residuals are beautifully random, and their distribution is 
 
 Within the `Population parameter estimations`, you'll see the estimated regression coefficients with their 95% confidence interval given. The confidence interval is a range of values that we are 95% confident that the true value of the parameter lies within. In this case, we are 95% confident that the true value of the slope is between -9.787 and -8.086, and that the true value of the intercept is between 119.971 and 131.942. You'll also see a chart depicting the confidence intervals for the regression line. You'll also note that normality and homoscedasticity are checked. These are two assumptions of linear regression. Normality means that the residuals are normally distributed, which we saw earlier. Homoscedasticity means, very simplistically, that the residuals are equally distributed across the range of the independent variable, so there is no big chunk on one side of the residual plot.
 
-```{r parentregressionresults, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="Regression coefficients"}
+```{r parentregressionresults, echo=FALSE, fig.align="center", fig.show="hold", fig.cap="Regression coefficients"}
 knitr::include_graphics("resources/image/cogstatregressioncoeff.png")
 ```
 
@@ -158,7 +163,7 @@ You'll also see a two-digit rounded version of it in the `Hypothesis tests` sect
 
 > Pearson's correlation: *r*(98) = -0.90, *p* < 0.001
 
-```{r echo=FALSE, fig.align="center", out.width="100%", fig.show="hold"}
+```{r echo=FALSE, fig.align="center", fig.show="hold"}
 knitr::include_graphics("resources/image/cogstatrvsrsqrd.png")
 ```
 
@@ -436,13 +441,13 @@ One danger that you can run into with linear regression models is that your anal
 
 The first kind of unusual observation is an **outlier**. The definition of an outlier (in this context) is an observation that is very different from what the regression model predicts. An example is shown in Figure \@ref(fig:outlier). In practice, we operationalise this concept by saying that an outlier is an observation that has a very large Studentised residual, $\epsilon_i^*$. Outliers are interesting: a big outlier *might* correspond to junk data. E.g. the variables might have been entered incorrectly, or some other defect may be detectable. Note that you shouldn't throw an observation away just because it's an outlier. But the fact that it's an outlier is often a cue to look more closely at that case, and try to find out why it's so different.
 
-```{r outlier, fig.cap="An illustration of outliers. The dotted lines plot the regression line that would have been estimated without the anomalous observation included, and the corresponding residual (i.e. the Studentised residual). The solid line shows the regression line with the anomalous observation included. The outlier has an unusual value on the outcome (y axis location) but not the predictor (x axis location), and lies a long way from the regression line.", echo=FALSE, fig.align="center", out.width="100%"}
+```{r outlier, fig.cap="An illustration of outliers. The dotted lines plot the regression line that would have been estimated without the anomalous observation included, and the corresponding residual (i.e. the Studentised residual). The solid line shows the regression line with the anomalous observation included. The outlier has an unusual value on the outcome (y axis location) but not the predictor (x axis location), and lies a long way from the regression line.", echo=FALSE, fig.align="center"}
 knitr::include_graphics("resources/image/unusual_outlier.png")
 ```
 
 The second way in which an observation can be unusual is if it has high **leverage**: this happens when the observation is very different from all the other observations. This doesn't necessarily have to correspond to a large residual: if the observation happens to be unusual on all variables in precisely the same way, it can actually lie very close to the regression line. An example of this is shown in Figure \@ref(fig:leverage).
 
-```{r leverage, fig.cap="An illustration of high leverage points. The anomalous observation in this case is unusual both in terms of the predictor (x axis) and the outcome (y axis), but this unusualness is highly consistent with the pattern of correlations that exists among the other observations; as a consequence, the observation falls very close to the regression line and does not distort it.", echo=FALSE, fig.align="center", out.width="100%"}
+```{r leverage, fig.cap="An illustration of high leverage points. The anomalous observation in this case is unusual both in terms of the predictor (x axis) and the outcome (y axis), but this unusualness is highly consistent with the pattern of correlations that exists among the other observations; as a consequence, the observation falls very close to the regression line and does not distort it.", echo=FALSE, fig.align="center"}
 knitr::include_graphics("resources/image/unusual_leverage.png")
 ```
 The leverage of an observation is operationalised in terms of its *hat value*, usually written $h_i$. The formula for the hat value is rather complicated^[For the linear algebra fanatics: the "hat matrix" is defined to be that matrix $H$ that converts the vector of observed values $y$ into a vector of fitted values $\hat{y}$, such that $\hat{y} = H y$. The name comes from the fact that this is the matrix that "puts a hat on $y$". The  hat *value* of the $i$-th observation is the $i$-th diagonal element of this matrix (so technically: $h_{ii}$ rather than $h_{i}$). Here's how it's calculated: $H = X(X^TX)^{-1} X^T$. Pretty, isn't it?] but its interpretation is not: $h_i$ is a measure of the extent to which the $i$-th observation is "in control" of where the regression line ends up going.
@@ -451,7 +456,7 @@ In general, if an observation lies far away from the other ones in terms of the 
 
 This brings us to our third measure of unusualness, the **influence** of an observation. A high influence observation is an outlier that has high leverage. That is, it is an observation that is very different to all the other ones in some respect, and also lies a long way from the regression line. This is illustrated in Figure \@ref(fig:influence). Notice the contrast to the previous two figures: outliers don't move the regression line much, and neither do high leverage points. But an outlier that has high leverage will have a big effect on the regression line.
 
-```{r influence, fig.cap="An illustration of high influence points. In this case, the anomalous observation is highly unusual on the predictor variable (x axis), and falls a long way from the regression line. As a consequence, the regression line is highly distorted, even though (in this case) the anomalous observation is entirely typical in terms of the outcome variable (y axis).", echo=FALSE, fig.align="center", out.width="100%"}
+```{r influence, fig.cap="An illustration of high influence points. In this case, the anomalous observation is highly unusual on the predictor variable (x axis), and falls a long way from the regression line. As a consequence, the regression line is highly distorted, even though (in this case) the anomalous observation is entirely typical in terms of the outcome variable (y axis).", echo=FALSE, fig.align="center"}
 knitr::include_graphics("resources/image/unusual_influence.png")
 ```
 

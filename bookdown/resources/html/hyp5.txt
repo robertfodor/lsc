@@ -1,0 +1,30 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {   \sffamily
+      \color{CSblue}\textbf{Hypothesis tests}
+      
+      \color{CSgreen}Testing if the means are the same.
+      
+      Two variables. Interval variables.  \textgreater\textgreater  Choosing paired t-test or paried Wilcoxon test depending on the assumptions.
+
+      Checking for normality.
+
+      \color{black}
+      Shapiro-Wilk normality test in variable Difference of grade\textunderscore test1 and grade\textunderscore test2: $W$ = 0.97, $p$ = .678
+
+      \color{CSgreen}
+      Normality is not violated. \textgreater\textgreater Running paired t-test.
+
+      \color{black}
+      Sensitivity power analysis. Minimal effect size to reach 95\% power with the present sample size for the present hypothesis test. Minimal effect size in d: 0.85.
+      
+      Result of paired samples t-test: $t$(19) = -6.48, $p <$ .001
+
+      Result of the Bayesian one sample t-test: BF$_{10}$ = 5991.58, BF$_{01}$ = 0.00
+      \normalfont
+  }
+\end{tcolorbox}

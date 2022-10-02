@@ -16,6 +16,7 @@ biblio-style: apa
 csl: apa7.csl
 github-repo: https://github.com/robertfodor/lsc
 url: https://learningstatisticswithcogstat.com
+cover-image: "resources/bookcover/LSC_small.png"
 description: '*Learning Statistics with CogStat* covers the contents of an introductory
   statistics class, as typically taught to undergraduate psychology students based
   on Danielle Navarro''s original *Learning Statistics with R* with a focus on automatic
@@ -25,6 +26,10 @@ always_allow_html: true
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+
+if (knitr::is_latex_output()) {
+  knitr::opts_chunk$set(out.width = "66%")
+}
 
 
 library(metathis)
@@ -42,6 +47,10 @@ meta() %>%
 
 
 # About this book{.unnumbered}
+
+```{r, eval=knitr::is_html_output(), echo=FALSE, out.width="50%", out.extra="style='box-shadow: 0px 3px 12px 1px rgba(0,0,0,0.66);'"}
+knitr::include_graphics("resources/bookcover/LSC_small.png")
+```
 
 ## Versions{.unnumbered}
 
@@ -70,5 +79,3 @@ This book will always be a living thing. As CogStat expands and evolves, so will
 This book is published under a Creative Commons BY-SA license (CC BY-SA) version 4.0. This means that this book can be reused, remixed, retained, revised and redistributed (including commercially) as long as appropriate credit is given to the authors. If you remix, or modify the original version of this open textbook, you must redistribute all versions of this open textbook under the same license - CC BY-SA. 
 
 https://creativecommons.org/licenses/by-sa/4.0/
-
-Cover design contains background photo by <a href="https://unsplash.com/@hngstrm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Henry & Co.</a> on <a href="https://unsplash.com/s/photos/pattern?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>.

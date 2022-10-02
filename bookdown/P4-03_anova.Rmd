@@ -16,7 +16,7 @@ With that as the study design, let's load our data file: [`clinicaltrial.csv`](r
 
 For the purposes of this chapter, what we're really interested in is the effect of `drug` on `mood_gain`. The first thing to do is use the `Compare groups` function. (But don't jump ahead by adding both `drug` and `therapy` to the `Group(s)` box. That's going to be our factorial ANOVA in Chapter \@ref(anova2).)
 
-```{r moodbydrug, echo=FALSE, fig.cap="Mood gain by drug", fig.align="center", out.width="100%", fig.show="hold"}
+```{r moodbydrug, echo=FALSE, fig.cap="Mood gain by drug", fig.align="center", fig.show="hold"}
 knitr::include_graphics(
     "resources/image/moodbydrug.png"
 )
@@ -62,7 +62,7 @@ This formula looks pretty much identical to the formula for the variance in Chap
 
 Let's consider a simple table to see how this formula works on our clinical trial data set. The table below shows the person, the drug they were given, and their mood change. 
 
-```{r moodtable, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold"}
+```{r moodtable, echo=FALSE, fig.align="center", fig.show="hold"}
 library(kableExtra)
 knitr::kable(
     rbind(
@@ -134,7 +134,7 @@ Yay.
 
 (ref:anovavaracap) Graphical illustration of "between-groups" variation
 
-```{r anovavara, fig.cap=paste("(ref:anovavaracap)"), echo=FALSE, fig.align="center", out.width="100%"}
+```{r anovavara, fig.cap=paste("(ref:anovavaracap)"), echo=FALSE, fig.align="center"}
 	width <- 7
 	height <- 4
 	# params
@@ -193,7 +193,7 @@ Yay.
 
 (ref:anovavarbcap) Graphical illustration of "within groups" variation
 
-```{r anovavarb, fig.cap=paste("(ref:anovavarbcap)"), echo=FALSE, fig.align="center", out.width="100%"}
+```{r anovavarb, fig.cap=paste("(ref:anovavarbcap)"), echo=FALSE, fig.align="center"}
 width <- 7
 	height <- 4
 
@@ -401,42 +401,37 @@ So what we had to do, was simply run the `Compare groups` function with `mood_ga
 
 (ref:cogcompbydrugdialogcap) CogStat dialogue for `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`.
 
-```{r cogcompbydrugdialog, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap=paste("(ref:cogcompbydrugdialogcap)")}
+```{r cogcompbydrugdialog, echo=FALSE, fig.align="center", fig.show="hold", fig.cap=paste("(ref:cogcompbydrugdialogcap)")}
 knitr::include_graphics(c(
     "resources/image/comparegroupsbydrug.png"))
 ```
 
 (ref:cogcompbydrugdescrcap) CogStat result set displaying descriptives and boxplots as a result of `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`.
 
-```{r cogcompbydrugdescr, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap=paste("(ref:cogcompbydrugdescrcap)")}
+```{r cogcompbydrugdescr, echo=FALSE, fig.align="center", fig.show="hold", fig.cap=paste("(ref:cogcompbydrugdescrcap)")}
 knitr::include_graphics(c(
     "resources/image/moodbydrug.png"))
 ```
 
 (ref:cogcompbydrugcap) CogStat result set with hypothesis test results, effect size and post hoc results after running `Compare groups` function with our clinical trial data set with variables `mood_gain` grouped by `drug`.
 
-```{r cogcompbydrug, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap=paste("(ref:cogcompbydrugcap)")}
+```{r cogcompbydrug, echo=FALSE, fig.align="center", fig.show="hold", fig.cap=paste("(ref:cogcompbydrugcap)")}
 knitr::include_graphics(c(
     "resources/image/moodbydrughypo.png"))
 ```
 
 We've seen this before. Let us explore the hypothesis test results.
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-     <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
-     <p style="color:#008000;">Testing if the means are the same.<br />
-     One grouping variable. More than two groups. Interval variable. &gt;&gt;  Choosing one-way ANOVA or Kruskal-Wallis test depending on the assumptions.<br />
-     Checking for normality.</p>
-     <p style="color:black;">Shapiro-Wilk normality test in variable mood_gain (drug: anxifree): <span style="font-style:italic;">W</span> = 0.96, <span style="font-style:italic;">p</span> = .790</p>
-     <p style="color:black;">Shapiro-Wilk normality test in variable mood_gain (drug: joyzepam): <span style="font-style:italic;">W</span> = 0.82, <span style="font-style:italic;">p</span> = .096</p>
-     <p style="color:black;">Shapiro-Wilk normality test in variable mood_gain (drug: placebo): <span style="font-style:italic;">W</span> = 0.96, <span style="font-style:italic;">p</span> = .830</p>
-     <p style="color:#008000;">Checking for homogeneity of variance across groups.</p>
-     <p style="color:black;">Levene test: <span style="font-style:italic;">W</span> = 1.47, <span style="font-style:italic;">p</span> = .262</p>
-     <p style="color:#008000;">Normality and homogeneity of variance are not violated. &gt;&gt; Running one-way ANOVA.</p>
-     <p style="color:black;">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in eta-square: 0.23. </p>
-     <p style="color:black;">Result of one-way ANOVA: <span style="font-style:italic;">F</span>(2, 15) = 18.61, <span style="font-style:italic;">p</span> &lt; .001</p>
-</div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/hyp9.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/hyp9.txt")
+  )
+}
 ```
 
 For now, let's stop here. We'll come back to the post hoc tests later. For now, let's just focus on the hypothesis test results. We can see that the Shapiro-Wilk normality test was run on each of the groups. Testing the normality assumption is relatively straightforward. We covered the theory behind it in Chapter \@ref(shapiro). The Levene test was run to check for homogeneity of variance across groups. The one-way ANOVA was run, and the result was that the $F$-value was 18.61, and the $p$-value was less than 0.001.
@@ -645,7 +640,7 @@ The story is true when there are no ties in the raw data. That is, if there are 
 
 (ref:moodgainfreqcap) Frequency table for the raw data (`mood_gain`).
 
-```{r moodgainfreq, echo=FALSE, fig.cap=paste("(ref:moodgainfreqcap)"), fig.align="center", out.width="100%"}
+```{r moodgainfreq, echo=FALSE, fig.cap=paste("(ref:moodgainfreqcap)"), fig.align="center"}
 knitr::include_graphics("resources/image/cogstatmoodgainfrequency.png")
 ```
 
@@ -665,7 +660,7 @@ However, it's good to take a look at how CogStat would display the results for n
 
 So, here's some tweaking of our clinical trial data with the placebo results not meeting the normality assumption: [`clinical_nonnormal.csv`](resources/data/clinical_nonnormal.csv) (the placebo group's data is more "flat" when plotted). Let's load it in CogStat and explore the `Compare groups` result set.
 
-```{r kruskalclinical, echo=FALSE, fig.cap="CogStat results for the non-normal data.", fig.align="center", out.width="100%", fig.show="hold"}
+```{r kruskalclinical, echo=FALSE, fig.cap="CogStat results for the non-normal data.", fig.align="center", fig.show="hold"}
 knitr::include_graphics(c(
     "resources/image/cogstatclinicalnonnormal.png",
     "resources/image/cogstatclinicalnonnormalbox.png"))
@@ -701,7 +696,7 @@ And we're done.
 
 It's something that a lot of people find kind of surprising but it's worth knowing about: an ANOVA with two groups is identical to the Student $t$-test. It's not just that they are similar, but they are actually equivalent in every meaningful way. Suppose that, instead of running an ANOVA on our `mood_gain ~ drug` model, let's instead do it using `therapy` as the predictor. If we run this in `Compare group`, CogStat automatically selects the independent sample $t$-test, as we've seen in Chapter \@ref(ttest). Here's the result when running the `therapy` model:
 
-```{r ttesttherapy, echo=FALSE, fig.cap="CogStat results for the `therapy` model.", fig.align="center", out.width="100%", fig.show="hold"}
+```{r ttesttherapy, echo=FALSE, fig.cap="CogStat results for the `therapy` model.", fig.align="center", fig.show="hold"}
 knitr::include_graphics(c(
     "resources/image/csmoodgaintherapybox.png",
     "resources/image/csmoodgaintherapyresult.png"))

@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 16 Bayesian hypothesis tests | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
-  
+  <meta property="og:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
   <meta property="og:description" content="Chapter 16 Bayesian hypothesis tests | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 16 Bayesian hypothesis tests | Learning Statistics with CogStat" />
   
   <meta name="twitter:description" content="Chapter 16 Bayesian hypothesis tests | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  
+  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
@@ -498,7 +498,7 @@ P(h_1 | d) = \frac{P(d|h_1) P(h_1)}{P(d)}
 <p>One of the nice things about the Bayes factor is that the numbers are inherently meaningful. An experiment with a Bayes factor of 4 corresponds to betting odds of 4:1 in favour of the alternative. However, some have attempted to quantify the standards of evidence that would be considered meaningful in a scientific context. The two most widely used are <span class="citation">Jeffreys (1961)</span> and <span class="citation">Kass &amp; Raftery (1995)</span>. Of the two, <span class="citation">Kass &amp; Raftery (1995)</span> is somewhat more conservative.</p>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-62">Table 16.1: </span>Interpretation of Bayes factors by <span class="citation">Kass &amp; Raftery (1995)</span>
+<span id="tab:unnamed-chunk-100">Table 16.1: </span>Interpretation of Bayes factors by <span class="citation">Kass &amp; Raftery (1995)</span>
 </caption>
 <thead>
 <tr>
@@ -548,7 +548,7 @@ Very strong evidence
 <span class="citation">Jeffreys (1961)</span> had the following guideline:
 <table>
 <caption>
-<span id="tab:unnamed-chunk-63">Table 16.2: </span>Interpretation of Bayes factors by <span class="citation">Jeffreys (1961)</span>
+<span id="tab:unnamed-chunk-101">Table 16.2: </span>Interpretation of Bayes factors by <span class="citation">Jeffreys (1961)</span>
 </caption>
 <thead>
 <tr>
@@ -674,17 +674,19 @@ Extreme evidence for <span class="math inline">\(h_0\)</span>
 <div id="one-sample-t-test" class="section level3 hasAnchor" number="16.3.1">
 <h3><span class="header-section-number">16.3.1</span> One-sample <span class="math inline">\(t\)</span>-test<a href="bayesianhypothesistests.html#one-sample-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>You might recall Dr Zeppo’s psychology students and their grades from Chapter <a href="ttest.html#onesamplettest">11.2</a>. The file was called <a href="resources/data/zeppo.csv"><code>zeppo.csv</code></a>. Let us load it again to CogStat, and let’s use the function <code>Explore variable</code>, and let us use our last null hypothesis of <span class="math inline">\(67.5\)</span> as the population standard deviation (fill in <code>67.5</code> in the dialog box’s <code>Central tendency test value</code>). The results were:</p>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
      <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
      <p style="color:#008000;">Testing if mean deviates from the value 67.5.<br />
      Interval variable. &gt;&gt; Choosing one-sample t-test or Wilcoxon signed-rank test depending on the assumption.<br />
      Checking for normality.</p>
-     <p style="color:black;">Shapiro-Wilk normality test in variable x:<span style="font-style:italic;">W</span> = 0.96, <span style="font-style:italic;">p</span> = .586</p>
+     <p style="color:black;">Shapiro-Wilk normality test in variable x: <span style="font-style:italic;">W</span> = 0.96, <span style="font-style:italic;">p</span> = .586</p>
      <p style="color:#008000;">Normality is not violated. &gt;&gt; Running one-sample t-test.</p>
      <p style="color:black;">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in d: 0.85. </p>
      <p style="color:black;">One sample t-test against 67.5: <span style="font-style:italic;">t</span>(19) = 2.25, <span style="font-style:italic;">p</span> = .036</p>
      <p style="color:black;">Result of the Bayesian one sample t-test: BF<sub>10</sub> = 1.80, BF<sub>01</sub> = 0.56</p>
 </div>
+</html>
 <p>While the one-sample <span class="math inline">\(t\)</span>-test statistic was significant, the Bayes factor (<span class="math inline">\(BF_10\)</span>) was 1.80:1 in favour of the alternative, which is not very strong evidence by any of the guidances. So we should not be able to reject the null hypothesis. So what we would write up is:</p>
 <blockquote>
 <p>With a mean grade of 72.3, the psychology students scored slightly higher than the average grade of 67.5 but there is no statistical evidence for a difference (<span class="math inline">\(BF_{10} = 1.80\)</span>).</p>
@@ -693,7 +695,7 @@ Extreme evidence for <span class="math inline">\(h_0\)</span>
 <div id="independent-samples-t-test" class="section level3 hasAnchor" number="16.3.2">
 <h3><span class="header-section-number">16.3.2</span> Independent samples <span class="math inline">\(t\)</span>-test<a href="bayesianhypothesistests.html#independent-samples-t-test" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s load the file <a href="resources/data/harpo.csv"><code>harpo.csv</code></a>, where we see the grades for Dr Harpo’s lectures with the two tutors for the class (Anastasia and Bernadette). We’ll use the <code>Compare groups</code> functions with <code>grades</code> in the <code>Dependent variable(s)</code> box and <code>tutor</code> in the <code>Group(s)</code> box. The results were:</p>
-<p><img src="resources/image/cogstatharpohypo.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="resources/image/cogstatharpohypo.png" style="display: block; margin: auto;" /></p>
 <p>And again, with a bayesian approach, there is not much evidence of significant difference.</p>
 <blockquote>
 <p>The mean grade in Anastasia’s class was 74.5 (SD = 8.7), whereas the mean in Bernadette’s class was 69.1 (SD = 5.6). A Student’s independent samples <span class="math inline">\(t\)</span>-test showed that this 5.5 difference was significant (<span class="math inline">\(t(31) = 2.12\)</span>, <span class="math inline">\(p&lt;.05\)</span>, <span class="math inline">\(CI_{95} = [0.2, 10.8]\)</span>), suggesting that a genuine difference in learning outcomes has occurred. However, the Bayes factor (<span class="math inline">\(BF_{10} = 1.75\)</span>) is not strong enough to reject the null hypothesis, so we cannot conclude that the difference is real.</p>
@@ -702,18 +704,22 @@ Extreme evidence for <span class="math inline">\(h_0\)</span>
 <div id="anova-1" class="section level3 hasAnchor" number="16.3.3">
 <h3><span class="header-section-number">16.3.3</span> ANOVA<a href="bayesianhypothesistests.html#anova-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s jump back to our clinical trial from Chapter <a href="anova.html#anova">12</a>: <a href="resources/data/clinicaltrial.csv"><code>clinicaltrial.csv</code></a>. Let’s put <code>therapy</code> in the <code>Dependent variable(s)</code> box and <code>mood_gain</code> in the <code>Group(s)</code> box in the <code>Compare groups</code> function. The results were given:</p>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
      <p style="color:black;">Result of the Bayesian independent two-samples t-test: BF<sub>10</sub> = 1.75, BF<sub>01</sub> = 0.57</p>
 </div>
+</html>
 <p>You’ll notice that when running the same exercise with <code>drug</code> instead of <code>therapy</code>, there is no Bayes factor in the results. Bayesian statistics is not yet implemented for ANOVA (more than two groups or more than one grouping variables).</p>
 </div>
 <div id="linear-regression" class="section level3 hasAnchor" number="16.3.4">
 <h3><span class="header-section-number">16.3.4</span> Linear regression<a href="bayesianhypothesistests.html#linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Let’s use our <a href="resources/data/parenthood.csv"><code>parenthood.csv</code></a> file, and let’s use the <code>Explore relation of variable pair</code> function with <code>parentgrump</code> and <code>parentsleep</code>. The results are staggering:</p>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
      <p style="color:black;">Pearson's correlation: <span style="font-style:italic;">r</span>(98) = -0.90, <span style="font-style:italic;">p</span> &lt .001</p>
      <p style="color:black;">Bayes Factor for Pearson correlation: BF<sub>10</sub> = 25912605631674947492297885431627776.00, BF<sub>01</sub> = 0.00</p>
 </div>
+</html>
 <p>As you see, the Pearson’s correlation is <span class="math inline">\(-0.90\)</span> with a <span class="math inline">\(p &lt; .001\)</span>. An <span class="math inline">\(r\)</span> value close to 1 is already very strong (particularly with a significant <span class="math inline">\(p\)</span>-value), but that’s a frequentist statistic. The Bayes factor of <span class="math inline">\(BF_{10} = 2.59 \times 10^{28}\)</span>:1 in favour of the alternative is a very strong evidence. And the inverted notation <span class="math inline">\(BF_{01} = 0.00\)</span> also speaks volumes. So we have no doubt that there is a strong correlation between the two variables.</p>
 
 </div>

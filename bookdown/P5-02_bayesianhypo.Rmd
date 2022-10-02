@@ -115,18 +115,16 @@ Bayesian hypothesis testing is a new feature since CogStat 2.3. You might have a
 
 You might recall Dr Zeppo's psychology students and their grades from Chapter \@ref(onesamplettest). The file was called [`zeppo.csv`](resources/data/zeppo.csv). Let us load it again to CogStat, and let's use the function `Explore variable`, and let us use our last null hypothesis of $67.5$ as the population standard deviation (fill in `67.5` in the dialog box's `Central tendency test value`). The results were:
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-     <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
-     <p style="color:#008000;">Testing if mean deviates from the value 67.5.<br />
-     Interval variable. &gt;&gt; Choosing one-sample t-test or Wilcoxon signed-rank test depending on the assumption.<br />
-     Checking for normality.</p>
-     <p style="color:black;">Shapiro-Wilk normality test in variable x:<span style="font-style:italic;">W</span> = 0.96, <span style="font-style:italic;">p</span> = .586</p>
-     <p style="color:#008000;">Normality is not violated. &gt;&gt; Running one-sample t-test.</p>
-     <p style="color:black;">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in d: 0.85. </p>
-     <p style="color:black;">One sample t-test against 67.5: <span style="font-style:italic;">t</span>(19) = 2.25, <span style="font-style:italic;">p</span> = .036</p>
-     <p style="color:black;">Result of the Bayesian one sample t-test: BF<sub>10</sub> = 1.80, BF<sub>01</sub> = 0.56</p>
-</div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/hyp4.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/hyp4.txt")
+  )
+}
 ```
 
 While the one-sample $t$-test statistic was significant, the Bayes factor ($BF_10$) was 1.80:1 in favour of the alternative, which is not very strong evidence by any of the guidances. So we should not be able to reject the null hypothesis. So what we would write up is:
@@ -137,7 +135,7 @@ While the one-sample $t$-test statistic was significant, the Bayes factor ($BF_1
 
 Let's load the file [`harpo.csv`](resources/data/harpo.csv), where we see the grades for Dr Harpo's lectures with the two tutors for the class (Anastasia and Bernadette). We'll use the `Compare groups` functions with `grades` in the `Dependent variable(s)` box and `tutor` in the `Group(s)` box. The results were:
 
-```{r, fig.align="center", out.width="100%", echo=FALSE}
+```{r, fig.align="center", echo=FALSE}
 knitr::include_graphics("resources/image/cogstatharpohypo.png")
 ```
 
@@ -149,22 +147,34 @@ And again, with a bayesian approach, there is not much evidence of significant d
 
 Let's jump back to our clinical trial from Chapter \@ref(anova): [`clinicaltrial.csv`](resources/data/clinicaltrial.csv). Let's put `therapy` in the `Dependent variable(s)` box and `mood_gain` in the `Group(s)` box in the `Compare groups` function. The results were given:
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-     <p style="color:black;">Result of the Bayesian independent two-samples t-test: BF<sub>10</sub> = 1.75, BF<sub>01</sub> = 0.57</p>
-</div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/hyp13.html")
 ```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/hyp13.txt")
+  )
+}
+```
+
 You'll notice that when running the same exercise with `drug` instead of `therapy`, there is no Bayes factor in the results. Bayesian statistics is not yet implemented for ANOVA (more than two groups or more than one grouping variables).
 
 ### Linear regression
 
 Let's use our [`parenthood.csv`](resources/data/parenthood.csv) file, and let's use the `Explore relation of variable pair` function with `parentgrump` and `parentsleep`. The results are staggering:
 
-```{=html}
-<div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-     <p style="color:black;">Pearson's correlation: <span style="font-style:italic;">r</span>(98) = -0.90, <span style="font-style:italic;">p</span> &lt .001</p>
-     <p style="color:black;">Bayes Factor for Pearson correlation: BF<sub>10</sub> = 25912605631674947492297885431627776.00, BF<sub>01</sub> = 0.00</p>
-</div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/hyp14.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/hyp14.txt")
+  )
+}
 ```
 
 As you see, the Pearson's correlation is $-0.90$ with a $p < .001$. An $r$ value close to 1 is already very strong (particularly with a significant $p$-value), but that's a frequentist statistic. The Bayes factor of $BF_{10} = 2.59 \times 10^{28}$:1 in favour of the alternative is a very strong evidence. And the inverted notation $BF_{01} = 0.00$ also speaks volumes. So we have no doubt that there is a strong correlation between the two variables.

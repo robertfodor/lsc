@@ -1,0 +1,24 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {  \sffamily
+     \color{CSblue}\textbf{Population parameter estimations}
+
+    \color{black}
+    Present confidence interval values suppose normality.
+
+    \begin{longtable}[l]{m{0.2\linewidth}p{0.2\linewidth}p{0.15\linewidth}p{0.16\linewidth}}
+    \endhead
+    
+    & Point estimation 
+    & 95\% CI (low) 
+    & 95\% CI (high) \\
+    grade\textunderscore test1 & 56.98 & 53.88 & 60.08 \\
+    grade\textunderscore test2 & 58.38 & 55.39 & 61.38 \\
+
+    \end{longtable}
+  }
+\end{tcolorbox}

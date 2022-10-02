@@ -1,0 +1,15 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {   \sffamily
+      \color{CSbluelight}\textbf{Sample properties}
+      
+      \color{black}
+      Linear regression: y = -8.937x + 125.956
+
+      \normalfont
+  }
+\end{tcolorbox}

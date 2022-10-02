@@ -1,0 +1,15 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {   \sffamily
+      \color{black}
+      Pearson's correlation: $r$(98) = -0.90, $p <$ .001
+
+      Bayes Factor for Pearson correlation: BF$_{10}$ = 25912605631674947492297885431627776.00, BF$_{01}$ = 0.00
+
+      \normalfont
+  }
+\end{tcolorbox}

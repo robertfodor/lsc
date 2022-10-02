@@ -1,0 +1,24 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {   \sffamily
+      \color{CSblue}\textbf{Hypothesis tests}
+      
+      \color{CSgreen}Testing if the means are the same.
+      
+      At least two grouping variables. Interval variable. \textgreater\textgreater Choosing factorial ANOVA.
+
+      \color{black}
+      Result of multi-way ANOVA:
+
+      Main effect of sugar: $F$(2, 12) = 4.04, $p$ = .045
+
+      Main effect of milk: $F$(1, 12) = 3.81, $p$ = .075
+
+      Interaction of sugar and milk: $F$(2, 12) = 11.28, $p$ = .002
+      \normalfont
+  }
+\end{tcolorbox}

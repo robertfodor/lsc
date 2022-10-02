@@ -1,0 +1,24 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {   \sffamily
+      \color{CSblue}\textbf{Hypothesis tests}
+      
+      \color{CSgreen}Testing if the means are the same.
+      
+      At least two grouping variables. Interval variable. \textgreater\textgreater Choosing factorial ANOVA.
+
+      \color{black}
+      Result of multi-way ANOVA:
+
+      Main effect of drug: $F$(2, 12) = 31.71, $p <$ .001
+
+      Main effect of therapy: $F$(1, 12) = 8.58, $p$ = .013
+
+      Interaction of drug and therapy: $F$(2, 12) = 2.49, $p$ = .125
+      \normalfont
+  }
+\end{tcolorbox}

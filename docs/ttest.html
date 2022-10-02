@@ -10,7 +10,7 @@
 
   <meta property="og:title" content="Chapter 11 Comparing two means | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
-  
+  <meta property="og:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
   <meta property="og:description" content="Chapter 11 Comparing two means | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
@@ -18,7 +18,7 @@
   <meta name="twitter:title" content="Chapter 11 Comparing two means | Learning Statistics with CogStat" />
   
   <meta name="twitter:description" content="Chapter 11 Comparing two means | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  
+  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
@@ -476,14 +476,14 @@ div.csl-indent {
 <h2><span class="header-section-number">11.1</span> The one-sample <span class="math inline">\(z\)</span>-test<a href="ttest.html#ztest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In this section, we’ll discuss one of the most useless tests in all of statistics: the <strong><span class="math inline">\(z\)</span>-test</strong>. Seriously – this test is seldom used in real life. Its only real purpose is that, when teaching statistics, it’s a very convenient stepping stone towards the <span class="math inline">\(t\)</span>-test, which is probably the most (over)used tool in all statistics.</p>
 <p>Let’s use a simple example to introduce the idea behind the <span class="math inline">\(z\)</span>-test. A friend of Danielle’s, Dr Zeppo, grades his introductory statistics class on a curve. Let’s suppose that the average grade in his class is 67.5, and the standard deviation is 9.5. Of his many hundreds of students, it turns out that 20 of them also take psychology classes. Out of curiosity: do psychology students tend to get the same grades as everyone else (i.e. mean 67.5), or do they tend to score higher or lower? Let’s explore this by looking at the <a href="resources/data/zeppo.csv"><code>zeppo.csv</code></a> data file by loading the file to CogStat.</p>
-<div class="figure"><span style="display:block;" id="fig:cogstatloadzeppo"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogstatloadzeppo"></span>
 <img src="resources/image/cogstatloadzeppo.png" alt="The `zeppo.csv` data file loaded into CogStat."  />
 <p class="caption">
 Figure 11.1: The <code>zeppo.csv</code> data file loaded into CogStat.
 </p>
 </div>
 <p>Let’s explore the data a bit by looking at some summary statistics with the <code>Explore variable</code> function.</p>
-<div class="figure"><span style="display:block;" id="fig:cogstatexplorezeppo"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:cogstatexplorezeppo"></span>
 <img src="resources/image/cogstatexplorezeppo.png" alt="The `Explore variable` function in CogStat."  />
 <p class="caption">
 Figure 11.2: The <code>Explore variable</code> function in CogStat.
@@ -493,7 +493,7 @@ Figure 11.2: The <code>Explore variable</code> function in CogStat.
 <p>To answer the question, it helps to be able to write down what it is that we know. Firstly, we know that the sample mean is <span class="math inline">\(\bar{X} = 72.3\)</span>. If we assume that the psychology students have the same standard deviation as the rest of the class, then we can say that the population standard deviation is <span class="math inline">\(\sigma = 9.5\)</span>. We’ll also assume that since Dr Zeppo is grading to a curve, the psychology student grades are normally distributed.</p>
 <p>Next, it helps to be clear about what we want to learn from the data. In this case, the research hypothesis relates to the <em>population</em> mean <span class="math inline">\(\mu\)</span> for the psychology student grades, which is unknown. Specifically, we want to know if <span class="math inline">\(\mu = 67.5\)</span> or not. Given that this is what we know, can we devise a hypothesis test to solve our problem? The data, along with the hypothesised distribution from which they are thought to arise, are shown in Figure <a href="ttest.html#fig:zeppo">11.3</a>. Not entirely obvious what the right answer is, is it? For this, we are going to need some statistics.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:zeppo"></span>
-<img src="resources/image/zeppohist.png" alt="The theoretical distribution (dashed green line) from which the psychology student grades (blue bars) are generated in CogStat at the `Population properties` section of our result set." width="100%" />
+<img src="resources/image/zeppohist.png" alt="The theoretical distribution (dashed green line) from which the psychology student grades (blue bars) are generated in CogStat at the `Population properties` section of our result set."  />
 <p class="caption">
 Figure 11.3: The theoretical distribution (dashed green line) from which the psychology student grades (blue bars) are generated in CogStat at the <code>Population properties</code> section of our result set.
 </p>
@@ -512,7 +512,7 @@ though to be honest, this notation doesn’t add much to our understanding of th
 </ul>
 <p>For the moment, we’ll act as if these are absolutely trustworthy facts. In real life, this kind of absolutely trustworthy background knowledge doesn’t exist, and so if we want to rely on these facts we’ll just have make the <em>assumption</em> that these things are true. However, since these assumptions may or may not be warranted, we might need to check them. For now though, we’ll keep things simple.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ztesthyp"></span>
-<img src="lsc_files/figure-html/ztesthyp-1.svg" alt="Graphical illustration of the null and alternative hypotheses assumed by the one-sample $z$-test (the two sided version, that is). The null and alternative hypotheses both assume that the population distribution is normal, and additionally assumes that the population standard deviation is known (fixed at some value $\sigma_0$). The null hypothesis (left) is that the population mean $\mu$ is equal to some specified value $\mu_0$. The alternative hypothesis is that the population mean differs from this value, $\mu \neq \mu_0$." width="100%" />
+<img src="lsc_files/figure-html/ztesthyp-1.svg" alt="Graphical illustration of the null and alternative hypotheses assumed by the one-sample $z$-test (the two sided version, that is). The null and alternative hypotheses both assume that the population distribution is normal, and additionally assumes that the population standard deviation is known (fixed at some value $\sigma_0$). The null hypothesis (left) is that the population mean $\mu$ is equal to some specified value $\mu_0$. The alternative hypothesis is that the population mean differs from this value, $\mu \neq \mu_0$." width="672" />
 <p class="caption">
 Figure 11.4: Graphical illustration of the null and alternative hypotheses assumed by the one-sample <span class="math inline">\(z\)</span>-test (the two sided version, that is). The null and alternative hypotheses both assume that the population distribution is normal, and additionally assumes that the population standard deviation is known (fixed at some value <span class="math inline">\(\sigma_0\)</span>). The null hypothesis (left) is that the population mean <span class="math inline">\(\mu\)</span> is equal to some specified value <span class="math inline">\(\mu_0\)</span>. The alternative hypothesis is that the population mean differs from this value, <span class="math inline">\(\mu \neq \mu_0\)</span>.
 </p>
@@ -580,13 +580,13 @@ z_{\bar{X}} \sim \mbox{Normal}(0,1)
 </table>
 <p>which in turn meant that researchers could calculate their <span class="math inline">\(z\)</span>-statistic by hand, and then look up the critical value in a text book. That was an incredibly handy thing to be able to do back then.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ztest2"></span>
-<img src="lsc_files/figure-html/ztest2-1.svg" alt="Rejection regions for the two-sided $z$-test" width="100%" />
+<img src="lsc_files/figure-html/ztest2-1.svg" alt="Rejection regions for the two-sided $z$-test" width="672" />
 <p class="caption">
 Figure 11.5: Rejection regions for the two-sided <span class="math inline">\(z\)</span>-test
 </p>
 </div>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ztest1"></span>
-<img src="lsc_files/figure-html/ztest1-1.svg" alt="Rejection regions for the one-sided $z$-test" width="100%" />
+<img src="lsc_files/figure-html/ztest1-1.svg" alt="Rejection regions for the one-sided $z$-test" width="672" />
 <p class="caption">
 Figure 11.6: Rejection regions for the one-sided <span class="math inline">\(z\)</span>-test
 </p>
@@ -624,7 +624,8 @@ Figure 11.6: Rejection regions for the one-sided <span class="math inline">\(z\)
 <h2><span class="header-section-number">11.2</span> The one-sample <span class="math inline">\(t\)</span>-test<a href="ttest.html#onesamplettest" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>It might not be safe to assume that the psychology student grades necessarily have the same standard deviation as the other students in Dr Zeppo’s class. After all, if we were entertaining the hypothesis that they don’t have the same mean, why should we assume they have the same standard deviation? In view of this, we must stop assuming we know the true value of <span class="math inline">\(\sigma\)</span>. However, this violates the assumptions of the <span class="math inline">\(z\)</span>-test, which brings us back to square one. However, we still have the raw data loaded into CogStat, and those can give us an <em>estimate</em> of the population standard deviation.</p>
 <p>Having loaded the <code>grades</code> data and explored the descriptive statistics, let us take note of a few data points from the <code>Descriptives for the variable</code> and the <code>Population parameter estimations</code> section of the CogStat output. But first, let us re-run the <code>Explore variable</code> option, but now let us tell CogStat to use our null hypothesis of <span class="math inline">\(67.5\)</span>. To do that, we have to fill in <code>67.5</code> in our dialogue:</p>
-<p><img src="resources/image/centraltendency.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="resources/image/centraltendency.png" style="display: block; margin: auto;" /></p>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
  <h4 style="font-size:medium; font-weight:600; color:#3960a5;">Population parameter estimations</h4>
  <p>Present confidence interval values for the mean suppose normality.</p>
@@ -649,10 +650,11 @@ Figure 11.6: Rejection regions for the one-sided <span class="math inline">\(z\)
      </tr>
   </table>
 </div>
+</html>
 <p>In other words, while we can’t say that we <em>know</em> that <span class="math inline">\(\sigma = 9.5\)</span>, we <em>can</em> say that <span class="math inline">\(\hat\sigma = 9.5\)</span>. (Actually, it’s <span class="math inline">\(9.520615\)</span> but CogStat rounds it to one decimal when displayed, but it uses the exact value for any calculation.)</p>
 <p>Because we are now relying on an <em>estimate</em> of the population standard deviation, we need to make some adjustment for the fact that we have some uncertainty about what the true population standard deviation actually is. Maybe our data are just a fluke, maybe the true population standard deviation is 11, for instance. But if that were actually true, and we ran the <span class="math inline">\(z\)</span>-test assuming <span class="math inline">\(\sigma=11\)</span>, then the result would end up being <em>non-significant</em>. That’s a problem, and it’s one we’re going to have to address.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ttesthyponesample"></span>
-<img src="lsc_files/figure-html/ttesthyponesample-1.svg" alt="Graphical illustration of the null and alternative hypotheses assumed by the (two sided) one-sample $t$-test. Note the similarity to the $z$-test. The null hypothesis is that the population mean $\mu$ is equal to some specified value $\mu_0$, and the alternative hypothesis is that it is not. Like the $z$-test, we assume that the data are normally distributed; but we do not assume that the population standard deviation $\sigma$ is known in advance." width="100%" />
+<img src="lsc_files/figure-html/ttesthyponesample-1.svg" alt="Graphical illustration of the null and alternative hypotheses assumed by the (two sided) one-sample $t$-test. Note the similarity to the $z$-test. The null hypothesis is that the population mean $\mu$ is equal to some specified value $\mu_0$, and the alternative hypothesis is that it is not. Like the $z$-test, we assume that the data are normally distributed; but we do not assume that the population standard deviation $\sigma$ is known in advance." width="672" />
 <p class="caption">
 Figure 11.7: Graphical illustration of the null and alternative hypotheses assumed by the (two sided) one-sample <span class="math inline">\(t\)</span>-test. Note the similarity to the <span class="math inline">\(z\)</span>-test. The null hypothesis is that the population mean <span class="math inline">\(\mu\)</span> is equal to some specified value <span class="math inline">\(\mu_0\)</span>, and the alternative hypothesis is that it is not. Like the <span class="math inline">\(z\)</span>-test, we assume that the data are normally distributed; but we do not assume that the population standard deviation <span class="math inline">\(\sigma\)</span> is known in advance.
 </p>
@@ -665,24 +667,26 @@ t = \frac{\bar{X} - \mu}{\hat{\sigma}/\sqrt{N} }
 <p>The only thing that has changed in the equation is that instead of using the known true value <span class="math inline">\(\sigma\)</span>, we use the estimate <span class="math inline">\(\hat{\sigma}\)</span>. And if this estimate has been constructed from <span class="math inline">\(N\)</span> observations, then the sampling distribution turns into a <span class="math inline">\(t\)</span>-distribution with <span class="math inline">\(N-1\)</span> <strong>degrees of freedom</strong> (df). The <span class="math inline">\(t\)</span> distribution is very similar to the normal distribution but has “heavier” tails, as discussed earlier in Chapter <a href="probability.html#otherdists">7.4.4</a> and illustrated in Figure <a href="ttest.html#fig:ttestdist">11.8</a>.</p>
 <p>Notice, though, that as df gets larger, the <span class="math inline">\(t\)</span>-distribution starts to look identical to the standard normal distribution. This is as it should be: if you have a sample size of <span class="math inline">\(N = 70000000\)</span>, then your “estimate” of the standard deviation would be pretty much perfect, right? So, you should expect that for large <span class="math inline">\(N\)</span>, the <span class="math inline">\(t\)</span>-test would behave the same way as a <span class="math inline">\(z\)</span>-test. And that’s exactly what happens!</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ttestdist"></span>
-<img src="resources/image/ttestdist.png" alt="The $t$ distribution with 2 degrees of freedom (left) and 10 degrees of freedom (right), with a standard normal distribution (i.e., mean 0 and std dev 1) plotted as dotted lines for comparison purposes. Notice that the $t$ distribution has heavier tails (higher kurtosis) than the normal distribution; this effect is quite exaggerated when the degrees of freedom are very small, but negligible for larger values. In other words, for large $df$ the $t$ distribution is essentially identical to a normal distribution." width="100%" />
+<img src="resources/image/ttestdist.png" alt="The $t$ distribution with 2 degrees of freedom (left) and 10 degrees of freedom (right), with a standard normal distribution (i.e., mean 0 and std dev 1) plotted as dotted lines for comparison purposes. Notice that the $t$ distribution has heavier tails (higher kurtosis) than the normal distribution; this effect is quite exaggerated when the degrees of freedom are very small, but negligible for larger values. In other words, for large $df$ the $t$ distribution is essentially identical to a normal distribution."  />
 <p class="caption">
 Figure 11.8: The <span class="math inline">\(t\)</span> distribution with 2 degrees of freedom (left) and 10 degrees of freedom (right), with a standard normal distribution (i.e., mean 0 and std dev 1) plotted as dotted lines for comparison purposes. Notice that the <span class="math inline">\(t\)</span> distribution has heavier tails (higher kurtosis) than the normal distribution; this effect is quite exaggerated when the degrees of freedom are very small, but negligible for larger values. In other words, for large <span class="math inline">\(df\)</span> the <span class="math inline">\(t\)</span> distribution is essentially identical to a normal distribution.
 </p>
 </div>
 <p>As you might expect, the mechanics of the <span class="math inline">\(t\)</span>-test are almost identical to the mechanics of the <span class="math inline">\(z\)</span>-test. So there’s not much point in going through the tedious exercise of showing you how to do the calculations: it’s pretty much identical to the calculations that we did earlier, except that we use the estimated standard deviation, and then we test our hypothesis using the <span class="math inline">\(t\)</span> distribution rather than the normal distribution.</p>
 <p>So let’s just do it quickly in CogStat: let’s just go through the output. You can see that the <code>Population parameter estimations</code> stayed the same, so no need to quote them here again. However, let’s see the <code>Hypothesis tests</code> results.</p>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
      <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
      <p style="color:#008000;">Testing if mean deviates from the value 67.5.<br />
      Interval variable. &gt;&gt; Choosing one-sample t-test or Wilcoxon signed-rank test depending on the assumption.<br />
      Checking for normality.</p>
-     <p style="color:black;">Shapiro-Wilk normality test in variable x:<span style="font-style:italic;">W</span> = 0.96, <span style="font-style:italic;">p</span> = .586</p>
+     <p style="color:black;">Shapiro-Wilk normality test in variable x: <span style="font-style:italic;">W</span> = 0.96, <span style="font-style:italic;">p</span> = .586</p>
      <p style="color:#008000;">Normality is not violated. &gt;&gt; Running one-sample t-test.</p>
      <p style="color:black;">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in d: 0.85. </p>
      <p style="color:black;">One sample t-test against 67.5: <span style="font-style:italic;">t</span>(19) = 2.25, <span style="font-style:italic;">p</span> = .036</p>
      <p style="color:black;">Result of the Bayesian one sample t-test: BF<sub>10</sub> = 1.80, BF<sub>01</sub> = 0.56</p>
 </div>
+</html>
 <p>Let us go through them line by line.</p>
 <ul>
 <li><code>Testing if mean deviates from the value 67.5.</code>: good, we are made sure we are testing against a null hypothesis of <span class="math inline">\(\mu = 67.5\)</span>.</li>
@@ -711,17 +715,17 @@ Figure 11.8: The <span class="math inline">\(t\)</span> distribution with 2 degr
 <p>Although the one-sample <span class="math inline">\(t\)</span>-test has its uses, it’s not the most typical example of a <span class="math inline">\(t\)</span>-test. A much more common situation arises when you’ve got two different groups of observations. In psychology, this tends to correspond to two different groups of participants, where each group corresponds to a different condition in your study. For each person in the study, you measure some outcome variable of interest, and the research question that you’re asking is whether or not the two groups have the same population mean. This is the situation that the independent samples <span class="math inline">\(t\)</span>-test is designed for.</p>
 <p>Suppose we have 33 students taking Dr Harpo’s statistics lectures, and Dr Harpo doesn’t grade to a curve. Actually, Dr Harpo’s grading is a bit of a mystery, so we don’t really know anything about what the average grade is for the class as a whole. There are two tutors for the class, Anastasia and Bernadette. There are <span class="math inline">\(N_1 = 15\)</span> students in Anastasia’s tutorials, and <span class="math inline">\(N_2 = 18\)</span> in Bernadette’s tutorials. The research question we’re interested in is whether Anastasia or Bernadette is a better tutor, or if it doesn’t make much of a difference.</p>
 <p>As usual, let’s load the file <a href="resources/data/harpo.csv"><code>harpo.csv</code></a>.</p>
-<p><img src="resources/image/cogstatloadharpo.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="resources/image/cogstatloadharpo.png" style="display: block; margin: auto;" /></p>
 <p>As we can see, we have two variables: <code>grade</code> and <code>tutor</code>. The <code>grade</code> variable is a numeric interval variable, containing the grades for all <span class="math inline">\(N = 33\)</span> students taking Dr Harpo’s class; the <code>tutor</code> variable is a categorical (nominal) data that indicates who each student’s tutor was.</p>
 <p>Let’s run the <code>Compare groups</code> function so we can get some information about the grades by tutor.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:harpocompare"></span>
-<img src="resources/image/cogstatharpocomparedialog.png" alt="Comparing grades by tutor in CogStat for our `harpo` data set." width="100%" /><img src="resources/image/cogstatharposampleproperties.png" alt="Comparing grades by tutor in CogStat for our `harpo` data set." width="100%" />
+<img src="resources/image/cogstatharpocomparedialog.png" alt="Comparing grades by tutor in CogStat for our `harpo` data set."  /><img src="resources/image/cogstatharposampleproperties.png" alt="Comparing grades by tutor in CogStat for our `harpo` data set."  />
 <p class="caption">
 Figure 11.9: Comparing grades by tutor in CogStat for our <code>harpo</code> data set.
 </p>
 </div>
 <p>In the boxplot generated by CogStat, we have the grades, the means and corresponding confidence intervals. We can see that the grades for Anastasia’s students are slightly higher than those for Bernadette’s students. We can also see that the variance of the grades for Bernadette’s students is slightly higher than that for Anastasia’s students.</p>
-<p><img src="resources/image/cogstatharpoboxplot.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="resources/image/cogstatharpoboxplot.png" style="display: block; margin: auto;" /></p>
 <p>The <strong>independent samples <span class="math inline">\(t\)</span>-test</strong> comes in two different forms, Student’s and Welch’s. The original Student <span class="math inline">\(t\)</span>-test – which is the one we’ll describe in this section – is the simpler of the two but relies on much more restrictive assumptions than the Welch <span class="math inline">\(t\)</span>-test. Assuming for the moment that you want to run a two-sided test, the goal is to determine whether two “independent samples” of data are drawn from populations with the same mean (the null hypothesis) or different means (the alternative hypothesis).</p>
 <p>When we say “independent” samples, what we really mean here is that there’s no special relationship between observations in the two samples. This probably doesn’t make a lot of sense right now, but it will be clearer when we come to talk about the paired samples <span class="math inline">\(t\)</span>-test later on. For now, let’s just point out that if we have an experimental design where participants are randomly allocated to one of two groups, and we want to compare the two groups’ mean performance on some outcome measure, then an independent samples <span class="math inline">\(t\)</span>-test (rather than a paired samples <span class="math inline">\(t\)</span>-test) is what we’re after.</p>
 <p>Okay, so let’s let <span class="math inline">\(\mu_1\)</span> denote the true population mean for group 1 (e.g., Anastasia’s students), and <span class="math inline">\(\mu_2\)</span> will be the true population mean for group 2 (e.g., Bernadette’s students),<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a> and as usual, we’ll let <span class="math inline">\(\bar{X}_1\)</span> and <span class="math inline">\(\bar{X}_2\)</span> denote the observed sample means for both of these groups. Our null hypothesis states that the two population means are identical (<span class="math inline">\(\mu_1 = \mu_2\)</span>), and the alternative to this is that they are not (<span class="math inline">\(\mu_1 \neq \mu_2\)</span>).</p>
@@ -732,7 +736,7 @@ H_1: &amp; \mu_1 \neq \mu_2
 \end{array}
 \]</span></p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ttesthyp"></span>
-<img src="lsc_files/figure-html/ttesthyp-1.svg" alt="Graphical illustration of the null and alternative hypotheses assumed by the Student $t$-test. The null hypothesis assumes that both groups have the same mean $\mu$, whereas the alternative assumes that they have different means $\mu_1$ and $\mu_2$. Notice that it is assumed that the population distributions are normal, and that, although the alternative hypothesis allows the group to have different means, it assumes they have the same standard deviation" width="100%" />
+<img src="lsc_files/figure-html/ttesthyp-1.svg" alt="Graphical illustration of the null and alternative hypotheses assumed by the Student $t$-test. The null hypothesis assumes that both groups have the same mean $\mu$, whereas the alternative assumes that they have different means $\mu_1$ and $\mu_2$. Notice that it is assumed that the population distributions are normal, and that, although the alternative hypothesis allows the group to have different means, it assumes they have the same standard deviation" width="672" />
 <p class="caption">
 Figure 11.10: Graphical illustration of the null and alternative hypotheses assumed by the Student <span class="math inline">\(t\)</span>-test. The null hypothesis assumes that both groups have the same mean <span class="math inline">\(\mu\)</span>, whereas the alternative assumes that they have different means <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span>. Notice that it is assumed that the population distributions are normal, and that, although the alternative hypothesis allows the group to have different means, it assumes they have the same standard deviation
 </p>
@@ -789,8 +793,9 @@ and our <span class="math inline">\(t\)</span>-statistic is therefore
 t = \frac{\bar{X}_1 - \bar{X}_2}{\mbox{SE}({\bar{X}_1 - \bar{X}_2})}
 \]</span></p>
 <p>Just as we saw with our one-sample test, the sampling distribution of this <span class="math inline">\(t\)</span>-statistic is a <span class="math inline">\(t\)</span>-distribution as long as the null hypothesis is true, and all of the assumptions of the test are met. The degrees of freedom, however, is slightly different. As usual, we can think of the degrees of freedom to be equal to the number of data points minus the number of constraints. In this case, we have <span class="math inline">\(N\)</span> observations (<span class="math inline">\(N_1\)</span> in sample 1, and <span class="math inline">\(N_2\)</span> in sample 2), and 2 constraints (the sample means). So the total degrees of freedom for this test are <span class="math inline">\(N-2\)</span>.</p>
-<p><img src="resources/image/cogstatharpohypo.png" width="100%" style="display: block; margin: auto;" /></p>
+<p><img src="resources/image/cogstatharpohypo.png" style="display: block; margin: auto;" /></p>
 <p>The output from CogStat has a very familiar form. Let’s start to talk about the confidence interval, and for that, let’s circle back to our <code>Population parameter estimations</code>:</p>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
  <h4 style="font-size:medium; font-weight:600; color:#3960a5;">Population parameter estimations</h4>
  <p>Means<br />Present confidence interval values suppose normality.</p>
@@ -820,7 +825,7 @@ t = \frac{\bar{X}_1 - \bar{X}_2}{\mbox{SE}({\bar{X}_1 - \bar{X}_2})}
           <td style="border: 0px; background-color: white;">10.8</td>
      </tr>
   </table>
-</div>
+</html>
 <p>It’s pretty important to be clear on what this confidence interval actually refers to: it is a confidence interval for the <em>difference</em> between the group means. In our example, Anastasia’s students had an average grade of 74.5, and Bernadette’s students had an average grade of 69.1, so the difference between the two sample means is 5.5 (due to rounding). But of course the difference between population means might be bigger or smaller than this. The confidence interval reported tells you that there’s a 95% chance that the true difference between means lies between 0.2 and 10.8.</p>
 <p>In any case, the difference between the two groups is significant (just barely), so we might write up the result using text like this:</p>
 <blockquote>
@@ -866,7 +871,7 @@ t = \frac{\bar{X}_1 - \bar{X}_2}{\mbox{SE}({\bar{X}_1 - \bar{X}_2})}
 \]</span></p>
 <p>What matters is that you’ll see that the “df” value that pops out of a Welch test tends to be a little bit smaller than the one used for the Student test, and it doesn’t have to be a whole number.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:ttesthyp2"></span>
-<img src="lsc_files/figure-html/ttesthyp2-1.svg" alt="Graphical illustration of the null and alternative hypotheses assumed by the Welch $t$-test. Like the Student test, we assume that both samples are drawn from a normal population. However, the alternative hypothesis no longer requires the two populations to have equal variance." width="100%" />
+<img src="lsc_files/figure-html/ttesthyp2-1.svg" alt="Graphical illustration of the null and alternative hypotheses assumed by the Welch $t$-test. Like the Student test, we assume that both samples are drawn from a normal population. However, the alternative hypothesis no longer requires the two populations to have equal variance." width="672" />
 <p class="caption">
 Figure 11.11: Graphical illustration of the null and alternative hypotheses assumed by the Welch <span class="math inline">\(t\)</span>-test. Like the Student test, we assume that both samples are drawn from a normal population. However, the alternative hypothesis no longer requires the two populations to have equal variance.
 </p>
@@ -881,7 +886,7 @@ Levene test: <span class="math inline">\(W\)</span> = 2.13, <span class="math in
 <p>Should we run a Welch test on the same data, it would not be significant (<span class="math inline">\(t(23.03) = 2.03\)</span>, <span class="math inline">\(p = .054\)</span>). What does this mean? Should we panic? Is the sky burning? Probably not. The fact that one test is significant and the other isn’t doesn’t itself mean very much, especially since I kind of rigged the data so that this would happen. As a general rule, it’s not a good idea to go out of your way to try to interpret or explain the difference between a <span class="math inline">\(p\)</span>-value of .049 and a <span class="math inline">\(p\)</span>-value of .051. If this sort of thing happens in real life, the <em>difference</em> in these <span class="math inline">\(p\)</span>-values is almost certainly due to chance. What does matter is that you take a little bit of care in thinking about what test you use. The Student test and the Welch test have different strengths and weaknesses. If the two populations really do have equal variances, then the Student test is slightly more powerful (lower Type II error rate) than the Welch test. However, if they <em>don’t</em> have the same variances, then the assumptions of the Student test are violated and you may not be able to trust it: you might end up with a higher Type I error rate. So it’s a trade-off.</p>
 <p>However, let us explore what CogStat would display in case the normality was not violated but the homogeneity of variance was! We’ve prepared a tweaked version of the data set, where the variances are different, but the normality is not violated: <a href="resources/data/harpo_welch.csv"><code>harpo_welch.csv</code></a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:harpowelch"></span>
-<img src="resources/image/cogstatharpowelch.png" alt="CogStat result set when the Levene test is significant, hence a Welch test must be run." width="100%" />
+<img src="resources/image/cogstatharpowelch.png" alt="CogStat result set when the Levene test is significant, hence a Welch test must be run."  />
 <p class="caption">
 Figure 11.12: CogStat result set when the Levene test is significant, hence a Welch test must be run.
 </p>
@@ -897,7 +902,7 @@ Figure 11.12: CogStat result set when the Levene test is significant, hence a We
 <p>The data frame <code>chico</code> contains three variables: an <code>id</code> nominal variable that identifies each student in the class, the <code>grade_test1</code> variable that records the student grade for the first test, and the <code>grade_test2</code> variable that has the grades for the second test. Let’s take a quick look at the descriptive statistics. Since we are running a before and after test (like we already did in Chapter <a href="chisquare.html#mcnemar">10.7</a>), let’s use the <code>Compare repeated measures variables</code> function.</p>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:chico"></span>
-<img src="resources/image/cogstatchicodescr.png" alt="CogStat descriptives and boxplot for the variables grade_test1 and grade_test2 in the Compare repeated measures variables function." width="100%" /><img src="resources/image/cogstatchicoboxplot.png" alt="CogStat descriptives and boxplot for the variables grade_test1 and grade_test2 in the Compare repeated measures variables function." width="100%" />
+<img src="resources/image/cogstatchicodescr.png" alt="CogStat descriptives and boxplot for the variables grade_test1 and grade_test2 in the Compare repeated measures variables function."  /><img src="resources/image/cogstatchicoboxplot.png" alt="CogStat descriptives and boxplot for the variables grade_test1 and grade_test2 in the Compare repeated measures variables function."  />
 <p class="caption">
 Figure 11.13: CogStat descriptives and boxplot for the variables <code>grade_test1</code> and <code>grade_test2</code> in the Compare repeated measures variables function.
 </p>
@@ -905,7 +910,7 @@ Figure 11.13: CogStat descriptives and boxplot for the variables <code>grade_tes
 <p>At a glance, it does seem like the class is a hard one (most grades are between 50 and 60), but it does look like there’s an improvement from the first test to the second one. We see that this impression seems to be supported. Across all 20 students, the mean grade for the first test is 56.98, but this rises to 58.38 for the second test. Although, given that the standard deviations are 6.45 and 6.24 respectively, it’s starting to feel like maybe the improvement is just illusory; maybe just random variation. This impression is reinforced when you look at the means (i.e. horizontal blue line in the rectangle) and confidence intervals (i.e. the blue rectangles themselves) plotted in the boxplot. Looking at how wide those confidence intervals are, we’d be tempted to think that the apparent improvement in student performance is pure chance.</p>
 <p>Nevertheless, this impression is wrong. To see why, take a look at the scatterplot of the grades for test 1 against the grades for test 2. Let us use CogStat’s <code>Explore relation of variable pair</code> function, so we see a scatter plot with a linear regression line (shown in Figure <a href="ttest.html#fig:pairedtb">11.14</a>).</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:pairedtb"></span>
-<img src="resources/image/cogstatchicoscatter.png" alt="Scatterplot showing the individual grades for test 1 and test 2" width="100%" />
+<img src="resources/image/cogstatchicoscatter.png" alt="Scatterplot showing the individual grades for test 1 and test 2"  />
 <p class="caption">
 Figure 11.14: Scatterplot showing the individual grades for test 1 and test 2
 </p>
@@ -933,6 +938,7 @@ t = \frac{\bar{D}}{\hat\sigma_D / \sqrt{N}}
 \]</span>
 where <span class="math inline">\(\hat\sigma_D\)</span> is the standard deviation of the difference scores. Since this is just an ordinary, one-sample <span class="math inline">\(t\)</span>-test, with nothing special about it, the degrees of freedom are still <span class="math inline">\(N-1\)</span>. And that’s it: the paired samples <span class="math inline">\(t\)</span>-test really isn’t a new test at all: it’s a one-sample <span class="math inline">\(t\)</span>-test, but applied to the difference between two variables. It’s actually very simple; the only reason it merits a discussion as long as this one, is that you need to be able to recognise <em>when</em> a paired samples test is appropriate, and to understand <em>why</em> it’s better than an independent samples <span class="math inline">\(t\)</span> test.</p>
 <p>Looking at the CogStat result set, the software automatically decided to run a paired <span class="math inline">\(t\)</span>-test when we used the <code>Compare repeated measures variables</code> function:</p>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
  <h4 style="font-size:medium; font-weight:600; color:#3960a5;">Population parameter estimations</h4>
  <p>Present confidence interval values suppose normality.</p>
@@ -956,7 +962,8 @@ where <span class="math inline">\(\hat\sigma_D\)</span> is the standard deviatio
           <td style="border: 0px; background-color: white;">61.38</td>
      </tr>
   </table>
-</div>
+</html>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
      <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
      <p style="color:#008000;">Testing if the means are the same.<br />
@@ -968,6 +975,7 @@ where <span class="math inline">\(\hat\sigma_D\)</span> is the standard deviatio
      <p style="color:black;">Result of paired samples t-test: <span style="font-style:italic;">t</span>(19) = -6.48, <span style="font-style:italic;">p</span> &lt; .001</p>
      <p style="color:black;">Result of the Bayesian two-samples t-test: BF<sub>10</sub> = 5991.58, BF<sub>01</sub> = 0.00</p>
 </div>
+</html>
 <p>From the population paramenter estimations, we know there’s an average improvement of 1.4 from test 1 to test 2 (<span class="math inline">\(58.38 - 56.98\)</span>), and this is significantly different from 0 (<span class="math inline">\(t(19)=-6.48, p&lt;.001\)</span>).</p>
 </div>
 <div id="cohensd" class="section level2 hasAnchor" number="11.6">
@@ -1016,7 +1024,7 @@ and he suggested a rough guide for interpreting <span class="math inline">\(d\)<
 <p>How can we check the normality of a sample?</p>
 <p>You might recall seeing this earlier in this chapter, but let’s take another look at a histogram and QQ plot without going back to the beginning.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:zeppore"></span>
-<img src="resources/image/zeppohist.png" alt="Left: a histogram of the data points (observations) in the `zeppo.csv` data set with a green dashed line showing the normal distribution curve. Right: a QQ plot of the same." width="100%" />
+<img src="resources/image/zeppohist.png" alt="Left: a histogram of the data points (observations) in the `zeppo.csv` data set with a green dashed line showing the normal distribution curve. Right: a QQ plot of the same."  />
 <p class="caption">
 Figure 11.15: Left: a histogram of the data points (observations) in the <code>zeppo.csv</code> data set with a green dashed line showing the normal distribution curve. Right: a QQ plot of the same.
 </p>
@@ -1024,7 +1032,7 @@ Figure 11.15: Left: a histogram of the data points (observations) in the <code>z
 <p>One way to check whether a sample violates the normality assumption is to draw a <strong>“quantile-quantile” plot</strong> (QQ plot). This allows you to visually check whether you see any systematic violations. In a QQ plot, each observation is plotted as a single dot. The x coordinate is the <em>theoretical quantile</em> that the observation should fall in if the data were normally distributed (with mean and variance estimated from the sample), and the y coordinate is the actual quantile of the data within the sample (i.e. <em>sample quantile</em>). If the data are normal, the dots should form a straight line, or rather, should fit onto the green line more-or-less seamlessly.</p>
 <p>Now, let’s see how the QQ plot would look like, if we had a data set that violates the assumption of normality. You can test for yourself on the <code>aflsmall</code> data set from earlier.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:aflsmallqq"></span>
-<img src="resources/image/aflsmallqq.png" alt="Left: a histogram of the data points (observations) in the `aflsmall.csv` data set with a green dashed line showing the normal distribution curve. Right: a QQ plot of the same showing how the data points curve and don't form a stright line." width="100%" />
+<img src="resources/image/aflsmallqq.png" alt="Left: a histogram of the data points (observations) in the `aflsmall.csv` data set with a green dashed line showing the normal distribution curve. Right: a QQ plot of the same showing how the data points curve and don't form a stright line."  />
 <p class="caption">
 Figure 11.16: Left: a histogram of the data points (observations) in the <code>aflsmall.csv</code> data set with a green dashed line showing the normal distribution curve. Right: a QQ plot of the same showing how the data points curve and don’t form a stright line.
 </p>
@@ -1039,7 +1047,7 @@ where <span class="math inline">\(\bar{X}\)</span> is the mean of the observatio
 <p>The sampling distribution for <span class="math inline">\(W\)</span> – which is not one of the standard ones discussed in Chapter <a href="probability.html#probability">7</a> – depends on the sample size <span class="math inline">\(N\)</span>. To give you a feel for what these sampling distributions look like, we’ve plotted three of them in Figure <a href="ttest.html#fig:swdist">11.17</a>. Notice that, as the sample size starts to get large, the sampling distribution becomes very tightly clumped up near <span class="math inline">\(W=1\)</span>, and as a consequence, for larger samples, <span class="math inline">\(W\)</span> doesn’t have to be much smaller than 1 for the test to be significant.</p>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:swdist"></span>
-<img src="resources/image/shapirowilkdist.png" alt="Sampling distribution of the Shapiro-Wilk \(W\) statistic, under the null hypothesis that the data are normally distributed, for samples of size 10, 20 and 50. Note that small values of \(W\) indicate departure from normality." width="100%" />
+<img src="resources/image/shapirowilkdist.png" alt="Sampling distribution of the Shapiro-Wilk \(W\) statistic, under the null hypothesis that the data are normally distributed, for samples of size 10, 20 and 50. Note that small values of \(W\) indicate departure from normality."  />
 <p class="caption">
 Figure 11.17: Sampling distribution of the Shapiro-Wilk <span class="math inline">\(W\)</span> statistic, under the null hypothesis that the data are normally distributed, for samples of size 10, 20 and 50. Note that <em>small</em> values of <span class="math inline">\(W\)</span> indicate departure from normality.
 </p>
@@ -1057,13 +1065,14 @@ Figure 11.17: Sampling distribution of the Shapiro-Wilk <span class="math inline
 <p>Let us recall our AFL example with the data set called <a href="resources/data/afl24.csv"><code>afl24.csv</code></a><a href="#fn51" class="footnote-ref" id="fnref51"><sup>51</sup></a>. We want to see if there is any statistically significant difference in the <code>attendance</code> if the game is a final or not (boolean variable name: <code>isfinal</code>).</p>
 
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:mwafl24"></span>
-<img src="resources/image/mannwhitneyafl24.png" alt="AFL final and non-final attendance (Compare groups function used)." width="100%" /><img src="resources/image/mannwhitneyafl24box.png" alt="AFL final and non-final attendance (Compare groups function used)." width="100%" />
+<img src="resources/image/mannwhitneyafl24.png" alt="AFL final and non-final attendance (Compare groups function used)."  /><img src="resources/image/mannwhitneyafl24box.png" alt="AFL final and non-final attendance (Compare groups function used)."  />
 <p class="caption">
 Figure 11.18: AFL final and non-final attendance (<code>Compare groups</code> function used).
 </p>
 </div>
 <p>Once we ran the <code>Compare groups</code> function, the results are given.</p>
 <p>Our sample size is <span class="math inline">\(N=4096\)</span> for non-final games, and <span class="math inline">\(N=200\)</span> for the final games. The Mann-Whitney test is a non-parametric test, so we don’t need to worry about the normality assumption.</p>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
      <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
      <p style="color:#008000;">Testing if the means are the same.<br />
@@ -1076,6 +1085,7 @@ Figure 11.18: AFL final and non-final attendance (<code>Compare groups</code> fu
      <p style="color:#008000;">Normality is violated in variable attendance, group(s) ('False',), ('True',). &gt;&gt; Running Mann-Whitney test.</p>
      <p style="color:black;">Result of independent samples Mann-Whitney rank test: <span style="font-style:italic;">U</span> = 97189.00 <span style="font-style:italic;">p</span> &lt; .001</p>
 </div>
+</html>
 <p>What does this score mean? Suppose we construct a table that compares every observation in group <code>isfinal:True</code> against every observation in group <code>isfinal:False</code>. Whenever the group <code>isfinal:True</code> attendance data is larger, we place a check mark in the table. We then count up the number of checkmarks. This is our test statistic, <span class="math inline">\(W\)</span>.</p>
 <p>But how do we interpret this data? Well, we already see from the chart in Figure <a href="ttest.html#fig:mwafl24">11.18</a> that the median attendance for the final games is higher than the median attendance for the non-final games. Our <span class="math inline">\(W\)</span> statistic is also a positive number (from <code>isfinal:False</code> &gt; <code>isfinal:True</code>), the <span class="math inline">\(p\)</span> value is below our <span class="math inline">\(\alpha\)</span> level of 0.05. This means that we can reject the null hypothesis that the two groups have the same median attendance. In other words, we can conclude that the final games have a statistically significant higher attendance.</p>
 <p>When quoting the Mann-Whitney test, you should report the <span class="math inline">\(U\)</span> statistic and the <span class="math inline">\(p\)</span> value.</p>
@@ -1086,34 +1096,38 @@ Figure 11.18: AFL final and non-final attendance (<code>Compare groups</code> fu
 <p>What is measured here is the happiness of each student <code>before</code> taking the class and <code>after</code> taking the class. The <code>change</code> score is the difference between the two. There’s no fundamental difference between doing a paired-samples test using <code>before</code> and <code>after</code>, versus doing a one-sample test using the <code>change</code> scores.</p>
 <p>Let us run a paired sample Wilcoxon test first in CogStat. Let’s use the <code>Compare repeat measures variables</code> function with the <code>before</code> and <code>after</code> variables.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:mwbeforeafter"></span>
-<img src="resources/image/cogstathappinessdescr.png" alt="Happiness before and after statistics class (`Compare repeat measures variables` function used)." width="100%" /><img src="resources/image/cogstathappinessbox.png" alt="Happiness before and after statistics class (`Compare repeat measures variables` function used)." width="100%" />
+<img src="resources/image/cogstathappinessdescr.png" alt="Happiness before and after statistics class (`Compare repeat measures variables` function used)."  /><img src="resources/image/cogstathappinessbox.png" alt="Happiness before and after statistics class (`Compare repeat measures variables` function used)."  />
 <p class="caption">
 Figure 11.19: Happiness before and after statistics class (<code>Compare repeat measures variables</code> function used).
 </p>
 </div>
 <p>Let’s see the results:</p>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
      <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
      <p style="color:#008000;">Testing if the means are the same.<br />
      Two variables. Interval variables. &gt;&gt; Choosing paired t-test or paired Wilcoxon test depending on the assumptions.<br/>
      Checking for normality.</p>
-     <p style="color:black;">Shapiro-Wilk normality test in variable Difference of before and after: <span style="font-style:italic;">W</span> = 0.80, <span style="font-style:italic;">p</span> < .002</p>
+     <p style="color:black;">Shapiro-Wilk normality test in variable Difference of before and after: <span style="font-style:italic;">W</span> = 0.80, <span style="font-style:italic;">p</span> = .002</p>
      <p style="color:#008000;">Normality is violated in variable(s) Difference of before and after. &gt;&gt; Running paired Wilcoxon test.</p>
      <p style="color:black;">Result of Wilcoxon signed-rank test: <span style="font-style:italic;">T</span> = 31.00 <span style="font-style:italic;">p</span> = .031</p>
 </div>
+</html>
 <p>The <span class="math inline">\(p\)</span> value is 0.031, which is below our <span class="math inline">\(\alpha\)</span> level of 0.05. This means that we can reject the null hypothesis that the two groups have the same median happiness. In other words, we can conclude that taking the biology class has a statistically significant negative effect on the happiness of students. Why negative? While the T value is positive, remember the rule, you have to plot your raw data and look at the descriptives as well, if something doesn’t look right. And as you’ve seen, the median happiness score for the <code>before</code> group is higher than the median happiness score for the <code>after</code> group.</p>
 <p>Now, you can make sure by running a one-sample Wilcoxon test in CogStat. Let’s use the <code>Explore variable</code> function with the <code>change</code> variable. This will serve two purposes. You’ll see how the one-sample Wilcoxon test works, and you’ll also see how the one-sample and two-sample tests relate to each other.</p>
 <p>You’ll quickly see in the descriptives, that the Mean change is negative (<span class="math inline">\(-9.6\)</span>) with a 95% confidence interval of <span class="math inline">\(-18.7\)</span> to <span class="math inline">\(-0.4\)</span> being both in the negative.</p>
+<html>
 <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
      <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
      <p style="color:#008000;">Testing if mean deviates from the value 0.<br />
      Interval variable. &gt;&gt; Choosing one-sample t-test or Wilcoxon signed-rank test depending on the assumption.<br/>
      Checking for normality.</p>
-     <p style="color:black;">Shapiro-Wilk normality test in variable change: <span style="font-style:italic;">W</span> = 0.81, <span style="font-style:italic;">p</span> < .002</p>
+     <p style="color:black;">Shapiro-Wilk normality test in variable change: <span style="font-style:italic;">W</span> = 0.81, <span style="font-style:italic;">p</span> = .002</p>
      <p style="color:#008000;">Normality is violated. &gt;&gt; Running Wilcoxon signed-rank test.</p>
      <p style="color:black;">Median: -5.5</p>
      <p style="color:black;">Result of Wilcoxon signed-rank test: <span style="font-style:italic;">T</span> = 31.50 <span style="font-style:italic;">p</span> = .035</p>
 </div>
+</html>
 <p>As this shows, we have a significant effect, and of the same size as the paired samples test. (Don’t mind the rounding difference in the T value.)</p>
 </div>
 </div>

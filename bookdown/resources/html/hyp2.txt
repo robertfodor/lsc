@@ -1,0 +1,18 @@
+\begin{tcolorbox}[colback=white,
+  colframe=lightgray,
+  coltext=black,
+  boxsep=4pt,
+  boxrule=0.3pt,
+  arc=0pt]
+  {   \sffamily
+      \color{CSblue}\textbf{Hypothesis tests}
+      
+      \color{CSgreen}Testing if the distributions are the same.
+      
+      Two variables. Nominal dichotomous variables. \textgreater\textgreater  Running McNemar test.
+      
+      \color{black}
+      Result of the McNemar test: $\chi^2$(1, $N$ = 100) = 12.03, $p$ $<$ .001
+      \normalfont
+  }
+\end{tcolorbox}

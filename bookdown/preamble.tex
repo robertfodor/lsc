@@ -1,11 +1,52 @@
+% Page
+\usepackage[a4paper,margin=1.2in,bindingoffset=0.5in,footskip=0.25in]{geometry}
+
+% Don't hyphenate
+\usepackage[none]{hyphenat}
+
+% Math
+\usepackage{amsmath,amssymb}
+\usepackage{array}
+
+% CS colors
+\usepackage{xcolor}
+\definecolor{CSblue}{HTML}{3960A5}
+\definecolor{CSbluelight}{HTML}{4878CE}
+\definecolor{CSgreen}{HTML}{008000}
+\definecolor{capcol}{HTML}{087830}
+\definecolor{chap}{HTML}{E03616}
+
+% Font
+\usepackage{fontspec}
+\usepackage[default,light,bold]{sourceserifpro}
+\usepackage[sfdefault]{sourcesanspro}
+\usepackage{caption}
+\captionsetup[figure]{font={small,sf}}
+\usepackage[labelfont={color=capcol,bf}]{caption}
+\usepackage[font={small,sf}]{caption}
+
+% For formatting tables
 \usepackage{booktabs}
 \usepackage{longtable}
-\usepackage{array}
 \usepackage{multirow}
+
+% Package to tweak width
+\usepackage{varwidth}
+
+% For positioning figures
 \usepackage{wrapfig}
 \usepackage{float}
 \floatplacement{figure}{H}
-\usepackage[default,regular,black]{sourceserifpro}
-\usepackage[a4paper,margin=1in,bindingoffset=0.2in,footskip=0.25in]{geometry}
-\usepackage{caption}
-\captionsetup[figure]{font=small}
+
+% Titles and chapters
+\usepackage{sectsty}
+\chaptertitlefont{\Huge\bfseries\sourcesanspro\color{chap}}
+\chapternumberfont{\huge\bfseries\sourcesanspro\color{chap}}
+\sectionfont{\normalfont\Large\bfseries\sourcesanspro}
+\subsectionfont{\normalfont\large\bfseries\sourcesanspro}
+
+
+% Adding a framed box around text
+\usepackage{tcolorbox}
+
+\frontmatter

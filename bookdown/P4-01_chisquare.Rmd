@@ -16,7 +16,7 @@ Over the years, there have been a lot of studies showing that humans have a lot 
 
 (ref:cogstatloadcardscap) Loading the cards.csv data and running `Explore variable` command on `choice_1`
 
-```{r cogstatloadcards, echo=FALSE, fig.cap=paste("(ref:cogstatloadcardscap)"), fig.align="center", out.width="100%", fig.show="hold"}
+```{r cogstatloadcards, echo=FALSE, fig.cap=paste("(ref:cogstatloadcardscap)"), fig.align="center", fig.show="hold"}
 knitr::include_graphics(c("resources/image/cogstatloadcards.png",
                   "resources/image/cogstatcardsdescrhisto.png"))
 ```
@@ -76,7 +76,7 @@ Clearly, what we want to do is compare the *expected* number of observations in 
 
 ```{r echo=FALSE}
 knitr::kable(data.frame(stringsAsFactors=FALSE,
-NANA = c("Expected frequency", "Observed frequency",
+N = c("Expected frequency", "Observed frequency",
          "Difference score"),
 NANA = c("$E_i$", "$O_i$", "$O_i - E_i$"),
 club = c(50, 35, -15),
@@ -265,7 +265,7 @@ If you've been reading very closely, there is one thing about how we wrote up th
 
 In one sense, this is kind of stupid. There are *lots* of different test statistics out there that have a chi-square sampling distribution: the $X^2$ statistic that we've used for our goodness of fit test is only one of many (albeit one of the most commonly encountered ones). In a sensible, perfectly organised world, we'd *always* have a separate name for the test statistic and the sampling distribution: that way, the stat block itself would tell you precisely what it was that the researcher had calculated. Sometimes this happens.
 
-For instance, the test statistic used in the Pearson goodness of fit test is written $X^2$; but there's a closely related test known as the $G$-test^[Complicating matters, the $G$-test is a special case of a whole class of tests that are known as *likelihood ratio tests*.] \cite{Sokal1994}, in which the test statistic is written as $G$. As it happens, the Pearson goodness of fit test and the $G$-test both test the same null hypothesis; and the sampling distribution is exactly the same (i.e. chi-square with $k-1$ degrees of freedom). If we'd done a $G$-test for the cards data rather than a goodness of fit test, then we'd have ended up with a test statistic of $G = 8.65$, which is slightly different from the $X^2 = 8.44$; and produces a slightly smaller $p$-value of $p = .034$. Suppose that the convention was to report the test statistic, then the sampling distribution, and then the $p$-value. If that were true, then these two situations would produce different stat blocks: the original result would be written $X^2 = 8.44, \chi^2(3), p = .038$, whereas the new version using the $G$-test would be written as $G = 8.65, \chi^2(3), p = .034$. However, using the condensed reporting standard, the original result is written $\chi^2(3) = 8.44, p = .038$, and the new one is written $\chi^2(3) = 8.65, p = .034$, and so it's actually unclear which test was actually run.
+For instance, the test statistic used in the Pearson goodness of fit test is written $X^2$; but there's a closely related test known as the $G$-test^[Complicating matters, the $G$-test is a special case of a whole class of tests that are known as *likelihood ratio tests*.] [Sokal1994], in which the test statistic is written as $G$. As it happens, the Pearson goodness of fit test and the $G$-test both test the same null hypothesis; and the sampling distribution is exactly the same (i.e. chi-square with $k-1$ degrees of freedom). If we'd done a $G$-test for the cards data rather than a goodness of fit test, then we'd have ended up with a test statistic of $G = 8.65$, which is slightly different from the $X^2 = 8.44$; and produces a slightly smaller $p$-value of $p = .034$. Suppose that the convention was to report the test statistic, then the sampling distribution, and then the $p$-value. If that were true, then these two situations would produce different stat blocks: the original result would be written $X^2 = 8.44, \chi^2(3), p = .038$, whereas the new version using the $G$-test would be written as $G = 8.65, \chi^2(3), p = .034$. However, using the condensed reporting standard, the original result is written $\chi^2(3) = 8.44, p = .038$, and the new one is written $\chi^2(3) = 8.65, p = .034$, and so it's actually unclear which test was actually run.
 
 So why don't we live in a world where the stat block's contents uniquely specify what tests were run? Any test statistic that follows a $\chi^2$ distribution is commonly called a "chi-square statistic"; anything that follows a $t$-distribution is called a "$t$-statistic" and so on. But, as the $X^2$ versus $G$ example illustrates, two different things with the same sampling distribution are still, well, different. Consequently, it's sometimes a good idea to be clear about what the actual test was that you ran, especially if you're doing something unusual. If you just say "chi-square test", it's unclear what test you're talking about. Although, since the two most common chi-square tests are the goodness of fit test and the independence test (Section \@ref(chisqindependence)), most readers with stats training can probably guess. Nevertheless, it's something to be aware of.
 
@@ -311,7 +311,8 @@ knitr::kable(cbind(
  c("Total", 28, 43, 109, 180)),
  caption = "Cross-tabulation of `choices` by `species`",
  align = "lccc",
- booktabs = TRUE, escape = FALSE, format = "markdown")
+ booktabs = TRUE, escape = FALSE) %>%
+  kable_styling(latex_options = c("hold_position"))
 ```
 
 It's quite clear that most humans chose the data file, whereas the robots tended to be a lot more even in their preferences. Leaving aside the question of *why* humans might be more likely to choose the data file for the moment, first, we must determine if the discrepancy between human choices and robot choices in the data set is statistically significant.
@@ -321,7 +322,7 @@ It's quite clear that most humans chose the data file, whereas the robots tended
 How do we analyse this data manually? Specifically, since our *research* hypothesis is that "humans and robots answer the question in different ways", how can we construct a test of the *null* hypothesis that "humans and robots answer the question the same way"? As before, we begin by establishing some notation to describe the data:
 
 ```{r echo=FALSE}
-knitr::kable(data.frame(stringsAsFactors=FALSE,
+knitr::kable(data.frame(stringsAsFactors = FALSE,
 NANA = c("Puppy", "Flower", "Data file", "Total"),
 Robot = c("$O_{11}$", "$O_{21}$", "$O_{31}$", "$C_{1}$"),
 Human = c("$O_{12}$", "$O_{22}$", "$O_{32}$", "$C_{2}$"),
@@ -401,19 +402,22 @@ Amazing.
 
 The test is automatically done in CogStat using the `Compare groups` feature. The result set will contain information about the sample and its properties, as seen in Figure \@ref(fig:cogstatchapek9descriptives). Further scrolling down, you'll see the effect size (which we will cover in a short while in Chapter \@ref(chisqeffectsize)). The last part of the result set is the hypothesis test itself (see Figure \@ref(fig:cogstatchapek9hypo)).
 
-```{r cogstatchapek9hypo, fig.cap="Population properties and Hypothesis tests for the `chapek9.csv` data set.", echo=FALSE, fig.align="center", out.width="100%"}
+```{r cogstatchapek9hypo, fig.cap="Population properties and Hypothesis tests for the `chapek9.csv` data set.", echo=FALSE, fig.align="center"}
 knitr::include_graphics("resources/image/cogstatchapek9hypo.png")
 ```
 
 Let us go through the `Hypothesis tests` section line by line.
 
-```{=html}
-      <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-            <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
-            <p style="color:#008000;">Testing if the distributions are the same.<br/>One grouping variable. Two groups. Nominal variable. &gt;&gt; Running chi-squared test.</p>
-            <p style="color:black">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in w: 0.29.</p>
-            <p>Result of the Pearson's chi-squared test: &#967;<span style=" vertical-align:super;">2</span>(2, <span style=" font-style:italic;">N</span> = 180) = 10.72, <span style=" font-style:italic;">p</span> = .005</p>
-      </div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/hyp1.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/hyp1.txt")
+  )
+}
 ```
 
 - `Testing if the distributions are the same.`: This, in plain English, tells us that we are testing for a null hypothesis where all distributions, or probabilities, are the same. It does not differ in essence from the $H_0$ we described more eloquently in Table \@ref(tab:chapeknullhypo).
@@ -455,7 +459,7 @@ Let us overwrite all the `puppy` answers in our `chapek9` data frame to look at 
 
 (ref:chapek9twocap) CogStat results for [`chapek9two.csv`](resources/data/chapek9two.csv) with 1 degree of freedom
 
-```{r chapek9two, fig.cap=paste("(ref:chapek9twocap)"), fig.align="center", out.width="100%", fig.show="hold", echo=FALSE}
+```{r chapek9two, fig.cap=paste("(ref:chapek9twocap)"), fig.align="center", fig.show="hold", echo=FALSE}
 knitr::include_graphics(c("resources/image/cogstatchapek9twomatrix.png",
                     "resources/image/cogstatchapek9tworesult.png"))
 ```
@@ -486,20 +490,16 @@ And you're done. This seems to be a reasonably popular measure, presumably becau
 
 Calculating $V$ is automatic in CogStat, as you've seen in the result sets earlier in both the original chapek9 data set (Figure \@ref(fig:cogstatchapek9hypo)) and the modified one (Figure \@ref(fig:chapek9two)). Now let's look at the original chapek9 effect size.
 
-```{=html}
-        <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-            <p style="font-size: medium; font-weight: 600; color: #3960a5;">Standardized effect sizes</p> 
-            <table style="border: 0px; background-color: white;">
-                <tr>
-                    <td style="border: 0px; background-color: white;"></td>
-                    <td style="border: 0px; background-color: white;">Value</td>
-                </tr>
-                <tr>
-                    <td style="border: 0px; background-color: white; padding-right: 10px">Cram&eacute;r's V measure of association</td>
-                    <td style="border: 0px; background-color: white;">&#981;<sub>c</sub> = 0.244</td>
-                </tr>
-            </table>
-        </div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/effect1.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/effect1.txt")
+  )
+}
 ```
 
 A Cramer's V of 0.244 tells us that there is a moderate association between the two variables. The usual guidance is that anything below 0.2 is a weak association, 0.2 to 0.6 is a moderate association, and anything above 0.6 is a strong association. However, you must always look at the context of your data when determining the effect size.
@@ -517,17 +517,17 @@ If you find yourself in a situation where independence is violated, it may be po
 
 What should you do if your cell counts are too small, but you'd still like to test the null hypothesis that the two variables are independent? One answer would be "collect more data", but that's far too glib: there are a lot of situations in which it would be either infeasible or unethical to do. If so, statisticians are morally obligated to provide scientists with better tests. In this instance, Fisher (1922) kindly provided the right answer to the question. To illustrate the basic idea, let's suppose we're analysing data from a field experiment, looking at the emotional status of people accused of witchcraft. Some of them are currently being burned at the stake.^[This example is based on a joke article published in the *Journal of Irreproducible Results*.] Unfortunately for the scientist (but rather fortunately for the general populace), it's quite hard to find people in the process of being set on fire, so the cell counts are microscopic. The [`salem.csv`](resources/data/salem.csv) file illustrates the point.
 
-```{r cogstatsalemload, echo=FALSE, fig.align="center", fig.cap="The `salem` data set", out.width="100%"}
+```{r cogstatsalemload, echo=FALSE, fig.align="center", fig.cap="The `salem` data set"}
 knitr::include_graphics("resources/image/cogstatsalemload.png")
 ```
 
 Looking at this data, you'd be hard pressed not to suspect that people not on fire are more likely to be happy than people on fire. However, the chi-square test (even with the Yates correction for the 2x2 data) makes this very hard to test because of the small sample size.
 
-```{r cogstatsalemresult, echo=FALSE, fig.align="center", out.width="100%"}
+```{r cogstatsalemresult, echo=FALSE, fig.align="center"}
 knitr::include_graphics("resources/image/cogstatsalemresult.png")
 ```
 
-We'd *really* like to be able to get a better answer than this provided we really don't want to be on fire. This is where **Fisher's exact test** [@Fisher1922] comes in very handy. The Fisher exact test works somewhat differently to the chi-square test (or in fact any of the other hypothesis tests that I talk about in this book) insofar as it doesn't have a test statistic; it calculates the $p$-value "directly".
+We'd *really* like to be able to get a better answer than this provided we really don't want to be on fire. This is where **Fisher's exact test** [@Fisher1922] comes in very handy. The Fisher exact test works somewhat differently to the chi-square test (or in fact any of the other hypothesis tests in this book) insofar as it doesn't have a test statistic; it calculates the $p$-value "directly".
 
 Let's have some notation: 
 
@@ -603,28 +603,31 @@ and this statistic has an (approximately) $\chi^2$ distribution with $df=1$. How
 
 Now that you know what the McNemar test is all about, lets actually run one. The [`agpp.csv`](resources/data/agpp.csv) file contains the raw data. It contains three variables, an `id` variable that labels each participant in the data set, a `responseBefore` variable that records the person's answer when they were asked the question the first time, and a `responseAfter` variable that shows the answer that they gave when asked the same question a second time.
 
-```{r cogstatloadagpp, echo=FALSE, fig.align="center", out.width="100%"}
+```{r cogstatloadagpp, echo=FALSE, fig.align="center"}
 knitr::include_graphics("resources/image/cogstatloadagpp.png")
 ```
 
 Let us think what we want to do here. We have the same participants giving us two answers. We want to test whether the two answers (the *before* and the *after*) are independent of each other. Or, in other words, we want to compare a **reapeated measure**. In CogStat, we need to select `Compare repeated measures variables` and add the `responseBefore` and `responseAfter` variables to the `Selected variables` box to run an analysis (Figure \@ref(fig:cogstatrepeatagpp)). The results are shown in Figure \@ref(fig:cogstatagppresults).
 
-```{r cogstatrepeatagpp, echo=FALSE, fig.align="center", out.width="100%", fig.cap="Repeated measures analysis of the AGPP data in CogStat."}
+```{r cogstatrepeatagpp, echo=FALSE, fig.align="center", fig.cap="Repeated measures analysis of the AGPP data in CogStat."}
 knitr::include_graphics("resources/image/cogstatrepeatagpp.png")
 ```
 
-```{r cogstatagppresults, echo=FALSE, fig.align="center", out.width="100%", fig.cap="Results of the repeated measures analysis of the AGPP data in CogStat.", fig.show="hold"}
+```{r cogstatagppresults, echo=FALSE, fig.align="center", fig.cap="Results of the repeated measures analysis of the AGPP data in CogStat.", fig.show="hold"}
 knitr::include_graphics(c("resources/image/cogstatagppresults1.png",
                           "resources/image/cogstatagppresults2.png"))
 ```
 
-```{=html}
-      <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-            <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
-            <p style="color:#008000;">Testing if the distributions are the same.<br />
-            Two variables. Nominal dichotomous variables. &gt;&gt; Running McNemar test.</p>
-            <p style="color:black;">Result of the McNemar test: &#967;<span style=" vertical-align:super;">2</span>(1, <span style=" font-style:italic;">N</span> = 100) = 12.03, <span style="font-style:italic;">p</span> &lt; .001</p>
-      </div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/hyp2.html")
+```
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/hyp2.txt")
+  )
+}
 ```
 
 And we're done. We've just run a McNemar's test automatically, since our data set was identified by CogStat as categorical data.
@@ -639,6 +642,7 @@ The results would tell us something like this:
 Let's go back to the beginning of the chapter and look at the `cards` data set again. If you recall, the experimental design described involved people making *two* choices. Because we have information about the first choice and the second choice that everyone made, we can construct the following contingency table that cross-tabulates the first choice against the second choice.
 
 ```{r echo=FALSE}
+library(kableExtra)
 knitr::kable(rbind(
       c("", "clubs", "diamonds", "hearts", "spades", "Total"),
       c("clubs", 10, 9, 10, 6, 35),
@@ -648,7 +652,8 @@ knitr::kable(rbind(
       c("Total", 68, 44, 41, 47, 200)
       )
 , caption = "Contingency table for the cards data set as seen in CogStat when runnig `Compare repeated measures variables` or `Explore relation of variable pair`.",
-booktabs = TRUE, escape = FALSE, format = "markdown")
+booktabs = TRUE, escape = FALSE, linesep = "") %>%
+  kable_styling(latex_options = c("hold_position"))
 ```
 
 First, we wanted to know whether the choice you make the second time is dependent on the choice you made the first time (for this, we'll run the `Explore relation of variable pair` analysis). This is where a test of independence is useful, and what we're trying to do is see if there's some relationship between the rows and columns of this table.
@@ -657,16 +662,19 @@ Second, we wanted to know if *on average*, the frequencies of suit choices were 
 
 Here's the result if we run the `Explore relation of variable pair` analysis in CogStat:
 
-```{=html}
-      <div style="margin: 0 0 1.275em; border: 1px solid #ddd; padding:.85em 1em;">
-            <p style="font-size:medium; font-weight:600; color:#3960a5;">Hypothesis tests</p>
-            <p style="color:#008000;">Testing if variables are independent.<br />
-            Nominal variables. &gt;&gt; Running Cram&eacute;r's V.</p>
-            <p style="color:black;">Sensitivity power analysis. Minimal effect size to reach 95% power with the present sample size for the present hypothesis test. Minimal effect size in w: 0.34.</p>
-            <p style="color:black;">Result of the Pearson's chi-squared test: &#967;<span style=" vertical-align:super;">2</span>(9, <span style=" font-style:italic;">N</span> = 200) = 29.24, <span style="font-style:italic;">p</span> &lt; .001</p>
-      </div>
+```{r, eval=knitr::is_html_output(), echo=FALSE}
+htmltools::includeHTML("resources/html/hyp3.html")
 ```
-```{r cogstatmcn, echo=FALSE, fig.align="center", out.width="100%", fig.show="hold", fig.cap="Hypothesis test results when running either `Compare repeated measures variables` or `Explore relation of variable pair` in CogStat."}
+
+```{r, echo=FALSE}
+if (knitr::is_latex_output()) {
+  knitr::asis_output(
+      xfun::file_string("resources/html/hyp3.txt")
+  )
+}
+```
+
+```{r cogstatmcn, echo=FALSE, fig.align="center", fig.show="hold", fig.cap="Hypothesis test results when running either `Compare repeated measures variables` or `Explore relation of variable pair` in CogStat."}
 knitr::include_graphics(c("resources/image/cogstatmcn1.png",
                         "resources/image/cogstatmcn2.png"))
 ```
