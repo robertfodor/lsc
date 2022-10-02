@@ -8,12 +8,20 @@
 \usepackage{amsmath,amssymb}
 \usepackage{array}
 
+% CS colors
+\usepackage{xcolor}
+\definecolor{CSblue}{HTML}{3960A5}
+\definecolor{CSbluelight}{HTML}{4878CE}
+\definecolor{CSgreen}{HTML}{008000}
+\definecolor{capcol}{HTML}{087830}
+\definecolor{chap}{HTML}{E03616}
+
 % Font
 \usepackage{fontspec}
 \usepackage[default,regular,black]{sourceserifpro}
 \usepackage[sfdefault]{sourcesanspro}
 \usepackage{caption}
-\captionsetup[figure]{font=small}
+\captionsetup[figure]{font={small,sf}}
 \usepackage[labelfont={color=capcol,bf}]{caption}
 \usepackage[font={small,sf}]{caption}
 
@@ -30,13 +38,13 @@
 \usepackage{float}
 \floatplacement{figure}{H}
 
-% CS colors
-\usepackage{xcolor}
-\definecolor{CSblue}{HTML}{3960A5}
-\definecolor{CSbluelight}{HTML}{4878CE}
-\definecolor{CSgreen}{HTML}{008000}
-\definecolor{capcol}{HTML}{087830}
-\definecolor{chap}{HTML}{E03616}
+% Titles and chapters
+\usepackage{sectsty}
+\chaptertitlefont{\Huge\bfseries\sourcesanspro\color{chap}}
+\chapternumberfont{\huge\bfseries\sourcesanspro\color{chap}}
+\sectionfont{\normalfont\Large\bfseries\sourcesanspro}
+\subsectionfont{\normalfont\large\bfseries\sourcesanspro}
+
 
 % Adding a framed box around text
 \usepackage{tcolorbox}
