@@ -490,7 +490,7 @@ Figure 13.1: Cross-tabulation of the means of <code>mood_gain</code> for each co
 <p>We’ll use lowercase letters to refer to specific rows and columns, so <span class="math inline">\(\mu_{rc}\)</span> refers to the population mean associated with the <span class="math inline">\(r\)</span>th level of Factor A (i.e. row number <span class="math inline">\(r\)</span>) and the <span class="math inline">\(c\)</span>th level of Factor B (column number <span class="math inline">\(c\)</span>).<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a> We use the “dot” notation to express averages across rows and columns. In the case of Joyzepam, notice that we’re talking about the mean associated with the third row in the table. That is, we’re averaging across two cell means (i.e., <span class="math inline">\(\mu_{31}\)</span> and <span class="math inline">\(\mu_{32}\)</span>). The result of this averaging is referred to as a <strong>marginal mean</strong>, and would be denoted <span class="math inline">\(\mu_{3.}\)</span> in this case. The marginal mean for CBT corresponds to the population mean associated with the second column in the table, so we use the notation <span class="math inline">\(\mu_{.2}\)</span> to describe it. The grand mean is denoted <span class="math inline">\(\mu_{..}\)</span> because it is the mean obtained by averaging (marginalising<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a>) over both. So our full table of population means can be written down like this:</p>
 <table class="table" style="margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-60">Table 13.1: </span>Population means in factorial ANOVA.
+<span id="tab:unnamed-chunk-61">Table 13.1: </span>Population means in factorial ANOVA.
 </caption>
 <thead>
 <tr>
@@ -710,14 +710,14 @@ and an equivalent formula exists for factor B (i.e. <code>therapy</code>).</p>
 <h3><span class="header-section-number">13.1.3</span> The <em>interaction</em><a href="anova2.html#the-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The ANOVA model that we’ve been talking about so far covers a range of different patterns that we might observe in our data. For instance, in a two-way ANOVA design, there are four possibilities: (a) only Factor A matters, (b) only Factor B matters, (c) both A and B matter, and (d) neither A nor B matters. An example of each of these four possibilities is plotted in Figure <a href="anova2.html#fig:maineffects">13.2</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:maineffects"></span>
-<img src="resources/image/maineffectA.png" alt="Factor main effects" width="50%" /><img src="resources/image/maineffectB.png" alt="Factor main effects" width="50%" /><img src="resources/image/maineffectAB.png" alt="Factor main effects" width="50%" /><img src="resources/image/maineffectO.png" alt="Factor main effects" width="50%" />
+<img src="resources/image/maineffectA.png" alt="Factor main effects" width="45%" /><img src="resources/image/maineffectB.png" alt="Factor main effects" width="45%" /><img src="resources/image/maineffectAB.png" alt="Factor main effects" width="45%" /><img src="resources/image/maineffectO.png" alt="Factor main effects" width="45%" />
 <p class="caption">
 Figure 13.2: Factor main effects
 </p>
 </div>
 <p>The four patterns of data shown in Figure <a href="anova2.html#fig:maineffects">13.2</a> are all quite realistic: there are a great many data sets that produce exactly those patterns. However, they are not the whole story, and the ANOVA model that we have been talking about up to this point is not sufficient to fully account for a table of group means. Why not? Well, so far we have the ability to talk about the idea that drugs can influence mood, and therapy can influence mood, but no way of talking about the possibility of an <strong>interaction</strong> between the two. An interaction between A and B is said to occur whenever the effect of Factor A is <em>different</em>, depending on which level of Factor B we’re talking about. Several examples of an interaction effect with the context of a 2 x 2 ANOVA are shown in Figure <a href="anova2.html#fig:interaction">13.3</a>.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:interaction"></span>
-<img src="resources/image/interaction1.png" alt="Qualitatively different interactions for a $2 \times 2$ ANOVA" width="50%" /><img src="resources/image/interaction2.png" alt="Qualitatively different interactions for a $2 \times 2$ ANOVA" width="50%" /><img src="resources/image/interaction3.png" alt="Qualitatively different interactions for a $2 \times 2$ ANOVA" width="50%" /><img src="resources/image/interaction4.png" alt="Qualitatively different interactions for a $2 \times 2$ ANOVA" width="50%" />
+<img src="resources/image/interaction1.png" alt="Qualitatively different interactions for a $2 \times 2$ ANOVA" width="45%" /><img src="resources/image/interaction2.png" alt="Qualitatively different interactions for a $2 \times 2$ ANOVA" width="45%" /><img src="resources/image/interaction3.png" alt="Qualitatively different interactions for a $2 \times 2$ ANOVA" width="45%" /><img src="resources/image/interaction4.png" alt="Qualitatively different interactions for a $2 \times 2$ ANOVA" width="45%" />
 <p class="caption">
 Figure 13.3: Qualitatively different interactions for a <span class="math inline">\(2 \times 2\)</span> ANOVA
 </p>
@@ -892,7 +892,7 @@ Figure 13.5: Population parameter estimations: estimated group means – reduced
 <p>In a saturated model, the estimated mean mood gain for the placebo group with no therapy should still be <span class="math inline">\(0.30\)</span>, but with a 95% confidence interval from <span class="math inline">\(0.006\)</span> to <span class="math inline">\(0.594\)</span>.</p>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-69">Table 13.2: </span>Estimated group means and confidence intervals
+<span id="tab:unnamed-chunk-70">Table 13.2: </span>Estimated group means and confidence intervals
 </caption>
 <thead>
 <tr>
@@ -1073,7 +1073,7 @@ CBT
 <p>There are quite a lot of these comparisons that you need to consider. So, the ideal output of Tukey’s HSD would make a <em>lot</em> of pairwise comparisons (19 in total). This is not yet possible in CogStat, but let’s look at what the result would look like if it were.</p>
 <table>
 <caption>
-<span id="tab:unnamed-chunk-71">Table 13.3: </span>Tukey’s HSD for a multi-way ANOVA
+<span id="tab:unnamed-chunk-72">Table 13.3: </span>Tukey’s HSD for a multi-way ANOVA
 </caption>
 <thead>
 <tr>
@@ -1383,7 +1383,7 @@ joyzepam-CBT
 <p>In real life, we’re rarely lucky enough to have perfectly balanced designs. For one reason or another, it’s typical to end up with more observations in some cells than in others. Or, to put it another way, we have an <strong>unbalanced design</strong>.</p>
 <p>Unbalanced designs need to be treated with a lot more care than balanced designs, and the statistical theory that underpins them is a lot messier. But we must not ignore this issue, like a lot of stats textbooks (or psychology students) tend to do. The net result of this is that a lot of active researchers in the field don’t actually know that there’s several different “types” of unbalanced ANOVAs, and they produce quite different answers. In fact, reading the psychological literature, it seems that most people don’t even realise that their statistical software package is making a whole lot of substantive data analysis decisions on their behalf. CogStat will also make all decisions for you, but when interpreting the results, it’s important to know what the software is doing and what is the underlying statistical theory.</p>
 <p>As usual, it will help us to work with some data. The <a href="resources/data/coffee.csv"><code>coffee.csv</code></a> file contains a hypothetical data set that produces an unbalanced <span class="math inline">\(3 \times 2\)</span> ANOVA. Suppose we were interested in finding out whether or not the tendency of people to <code>babble</code> when they have too much coffee is purely an effect of the coffee itself, or whether there’s some effect of the <code>milk</code> and <code>sugar</code> that people add to the coffee. Suppose we took 18 people, and gave them some coffee to drink. The amount of coffee / caffeine was held constant, and we varied whether or not milk was added: so <code>milk</code> is a binary factor with two levels, <code>"yes"</code> and <code>"no"</code>. We also varied the kind of sugar involved. The coffee might contain <code>"real"</code> sugar, or it might contain <code>"fake"</code> sugar (i.e., artificial sweetener), or it might contain <code>"none"</code> at all, so the <code>sugar</code> variable is a three-level factor. Our outcome variable is a continuous variable that presumably refers to some psychologically sensible measure of the extent to which someone is “babbling”. The details don’t really matter for our purpose. To get a sense of what the data look like, let’s load it into CogStat and run the <code>Compare groups</code> function. Let’s look at the sample properties:</p>
-<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-72"></span>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-73"></span>
 <img src="resources/image/cogstatcoffeedescr.png" alt="The coffee data set"  />
 <p class="caption">
 Figure 13.6: The coffee data set
@@ -1400,7 +1400,7 @@ Figure 13.6: The coffee data set
 <p>The next simplest model for the data would be one in which only one of the two main effects is included. In the coffee data, there are two different possible choices here, because we could choose to add milk first or to add sugar first. The order actually matters, but for now, let’s just make a choice arbitrarily, and pick sugar. So the second model in our sequence of models is <code>babble ¦ sugar</code>. This comparison forms our hypothesis test of the main effect of <code>sugar</code>. The next step in our model-building exercise it to add the other main effect term, so the next model in our sequence is <code>babble ¦ sugar + milk</code>. This comparison forms our hypothesis test of the main effect of <code>milk</code>. In one sense, this approach is very elegant: the alternative hypothesis from the first test forms the null hypothesis for the second one. It is in this sense that the Type I method is strictly sequential. Every test builds directly on the results of the last one. However, in another sense, it’s very inelegant because there’s a strong asymmetry between the two tests. The test of the main effect of <code>sugar</code> (the first test) completely ignores <code>milk</code>, whereas the test of the main effect of <code>milk</code> (the second test) does take <code>sugar</code> into account. In any case, the fourth model in our sequence is now the full model, <code>babble ¦ sugar + milk + sugar:milk</code>.</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-73">Table 13.4: </span>Hypotheses for the Type I Sum of Squares for the <code>coffee</code> dataset (sugar first).
+<span id="tab:unnamed-chunk-74">Table 13.4: </span>Hypotheses for the Type I Sum of Squares for the <code>coffee</code> dataset (sugar first).
 </caption>
 <thead>
 <tr>
@@ -1466,7 +1466,7 @@ sugar×milk
 <p>When run (in another statistical software package that allows for selection of Type I, II or III), the results of the analysis are the following:</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-74">Table 13.5: </span>Test of between-subject effects with Type I Sum of Squares for the <code>coffee</code> dataset (sugar first).
+<span id="tab:unnamed-chunk-75">Table 13.5: </span>Test of between-subject effects with Type I Sum of Squares for the <code>coffee</code> dataset (sugar first).
 </caption>
 <thead>
 <tr>
@@ -1556,7 +1556,7 @@ sugar×milk
 <p>The big problem with using Type I sum of squares is the fact that it really does depend on the order in which you enter the variables. Yet, in many situations, the researcher has no reason to prefer one ordering over another. This is presumably the case for our milk and sugar problem. Should we add milk first, or sugar first? It feels exactly as arbitrary as a data analysis question as it does as a coffee-making question. There may in fact be some people with firm opinions about ordering, but it’s hard to imagine a principled answer to the question. Yet, look what happens when we change the ordering:</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-75">Table 13.6: </span>Hypotheses for the Type I Sum of Squares for the <code>coffee</code> dataset (milk first).
+<span id="tab:unnamed-chunk-76">Table 13.6: </span>Hypotheses for the Type I Sum of Squares for the <code>coffee</code> dataset (milk first).
 </caption>
 <thead>
 <tr>
@@ -1621,7 +1621,7 @@ milk×sugar
 </table>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-76">Table 13.7: </span>Test of between-subject effects with Type I Sum of Squares for the <code>coffee</code> dataset (milk first)
+<span id="tab:unnamed-chunk-77">Table 13.7: </span>Test of between-subject effects with Type I Sum of Squares for the <code>coffee</code> dataset (milk first)
 </caption>
 <thead>
 <tr>
@@ -1717,7 +1717,7 @@ milk×sugar
 <p>Having just finished talking about Type I tests, you might think that the natural thing to do next would be to talk about Type II tests. However, it’s actually a bit more natural to discuss Type III tests (which are simple) before talking about Type II tests (which are trickier). The basic idea behind Type III tests is extremely simple: regardless of which term you’re trying to evaluate, run the <span class="math inline">\(F\)</span>-test in which the alternative hypothesis corresponds to the full ANOVA model as specified by the user, and the null model just deletes that one term that you’re testing. For instance, in the coffee example, the hypotheses would look like this:</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-77">Table 13.8: </span>Hypotheses for the Type III Sum of Squares for the <code>coffee</code> dataset.
+<span id="tab:unnamed-chunk-78">Table 13.8: </span>Hypotheses for the Type III Sum of Squares for the <code>coffee</code> dataset.
 </caption>
 <thead>
 <tr>
@@ -1785,7 +1785,7 @@ sugar×milk
 Let’s look at the results:
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-78">Table 13.9: </span>Test of between-subject effects with Type III Sum of Squares for the <code>coffee</code> dataset.
+<span id="tab:unnamed-chunk-79">Table 13.9: </span>Test of between-subject effects with Type III Sum of Squares for the <code>coffee</code> dataset.
 </caption>
 <thead>
 <tr>
@@ -1929,7 +1929,7 @@ milk×sugar
 <p>In the context of the two way ANOVA that we’ve been using in the coffee data, the hypothesis tests are even simpler.</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-85">Table 13.10: </span>Hypotheses for the Type II Sum of Squares for the <code>coffee</code> dataset.
+<span id="tab:unnamed-chunk-86">Table 13.10: </span>Hypotheses for the Type II Sum of Squares for the <code>coffee</code> dataset.
 </caption>
 <thead>
 <tr>
@@ -1995,7 +1995,7 @@ sugar×milk
 <p>The results would be:</p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <caption>
-<span id="tab:unnamed-chunk-86">Table 13.11: </span>Test of between-subject effects with Type II Sum of Squares for the <code>coffee</code> dataset.
+<span id="tab:unnamed-chunk-87">Table 13.11: </span>Test of between-subject effects with Type II Sum of Squares for the <code>coffee</code> dataset.
 </caption>
 <thead>
 <tr>
