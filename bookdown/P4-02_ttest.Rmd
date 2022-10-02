@@ -21,13 +21,13 @@ In this section, we'll discuss one of the most useless tests in all of statistic
 
 Let's use a simple example to introduce the idea behind the $z$-test. A friend of Danielle's, Dr Zeppo, grades his introductory statistics class on a curve. Let's suppose that the average grade in his class is 67.5, and the standard deviation is 9.5. Of his many hundreds of students, it turns out that 20 of them also take psychology classes. Out of curiosity: do psychology students tend to get the same grades as everyone else (i.e. mean 67.5), or do they tend to score higher or lower? Let's explore this by looking at the [`zeppo.csv`](resources/data/zeppo.csv) data file by loading the file to CogStat.
 
-```{r cogstatloadzeppo, echo=FALSE, fig.cap="The `zeppo.csv` data file loaded into CogStat."}
+```{r cogstatloadzeppo, echo=FALSE, fig.cap="The `zeppo.csv` data file loaded into CogStat.", fig.align="center"}
 knitr::include_graphics("resources/image/cogstatloadzeppo.png")
 ```
 
 Let's explore the data a bit by looking at some summary statistics with the `Explore variable` function.
 
-```{r cogstatexplorezeppo, echo=FALSE, fig.cap="The `Explore variable` function in CogStat."}
+```{r cogstatexplorezeppo, echo=FALSE, fig.align="center", fig.cap="The `Explore variable` function in CogStat."}
 knitr::include_graphics("resources/image/cogstatexplorezeppo.png")
 ```
 

@@ -197,7 +197,7 @@ knitr::include_graphics("resources/image/sampleDistMax.png")
 
 Here's an illustration of how the sampling distribution of the mean depends on the sample size. In each panel, there are 10,000 generated samples of IQ data and the mean IQ observed within each set. The histograms in these plots show the distribution of these means (i.e. the sampling distribution of the mean). Each individual IQ score was drawn from a normal distribution with mean 100 and standard deviation 15, which is shown as the solid black line).
 
-```{r IQsampa, fig.cap="Each data set contained only a single observation, so the mean of each sample is just one person's IQ score. As a consequence, the sampling distribution of the mean is of course identical to the population distribution of IQ scores.", echo=FALSE}
+```{r IQsampa, fig.cap="Each data set contained only a single observation, so the mean of each sample is just one person's IQ score. As a consequence, the sampling distribution of the mean is of course identical to the population distribution of IQ scores.", echo=FALSE, fig.align="center"}
 width <- 4.5
 height <- 4.5
 
@@ -221,7 +221,7 @@ plotSamples(10000, 1)
 lines(x, y, lwd = 2, col = "black", type = "l")
 ```
 
-```{r IQsampb, fig.cap="When we raise the sample size to 2, the mean of any one sample tends to be closer to the population mean than a one person's IQ score, and so the histogram (i.e., the sampling distribution) is a bit narrower than the population distribution.", echo=FALSE}
+```{r IQsampb, fig.cap="When we raise the sample size to 2, the mean of any one sample tends to be closer to the population mean than a one person's IQ score, and so the histogram (i.e., the sampling distribution) is a bit narrower than the population distribution.", echo=FALSE, fig.align="center"}
 width <- 4.5
 height <- 4.5
 
@@ -230,7 +230,7 @@ plotSamples(1000, 2)
 lines(x, y, lwd = 2, col = "black", type = "l")
 ```
 
-```{r IQsampc, fig.cap="By the time we raise the sample size to 10, we can see that the distribution of sample means tend to be fairly tightly clustered around the true population mean.", echo=FALSE}
+```{r IQsampc, fig.cap="By the time we raise the sample size to 10, we can see that the distribution of sample means tend to be fairly tightly clustered around the true population mean.", echo=FALSE, fig.align="center"}
 width <- 4.5
 height <- 4.5
 

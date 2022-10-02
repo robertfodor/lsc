@@ -311,7 +311,8 @@ knitr::kable(cbind(
  c("Total", 28, 43, 109, 180)),
  caption = "Cross-tabulation of `choices` by `species`",
  align = "lccc",
- booktabs = TRUE, escape = FALSE, format = "markdown")
+ booktabs = TRUE, escape = FALSE) %>%
+  kable_styling(latex_options = c("hold_position"))
 ```
 
 It's quite clear that most humans chose the data file, whereas the robots tended to be a lot more even in their preferences. Leaving aside the question of *why* humans might be more likely to choose the data file for the moment, first, we must determine if the discrepancy between human choices and robot choices in the data set is statistically significant.
@@ -321,7 +322,7 @@ It's quite clear that most humans chose the data file, whereas the robots tended
 How do we analyse this data manually? Specifically, since our *research* hypothesis is that "humans and robots answer the question in different ways", how can we construct a test of the *null* hypothesis that "humans and robots answer the question the same way"? As before, we begin by establishing some notation to describe the data:
 
 ```{r echo=FALSE}
-knitr::kable(data.frame(stringsAsFactors=FALSE,
+knitr::kable(data.frame(stringsAsFactors = FALSE,
 NANA = c("Puppy", "Flower", "Data file", "Total"),
 Robot = c("$O_{11}$", "$O_{21}$", "$O_{31}$", "$C_{1}$"),
 Human = c("$O_{12}$", "$O_{22}$", "$O_{32}$", "$C_{2}$"),
@@ -641,6 +642,7 @@ The results would tell us something like this:
 Let's go back to the beginning of the chapter and look at the `cards` data set again. If you recall, the experimental design described involved people making *two* choices. Because we have information about the first choice and the second choice that everyone made, we can construct the following contingency table that cross-tabulates the first choice against the second choice.
 
 ```{r echo=FALSE}
+library(kableExtra)
 knitr::kable(rbind(
       c("", "clubs", "diamonds", "hearts", "spades", "Total"),
       c("clubs", 10, 9, 10, 6, 35),
@@ -650,7 +652,8 @@ knitr::kable(rbind(
       c("Total", 68, 44, 41, 47, 200)
       )
 , caption = "Contingency table for the cards data set as seen in CogStat when runnig `Compare repeated measures variables` or `Explore relation of variable pair`.",
-booktabs = TRUE, escape = FALSE, format = "markdown")
+booktabs = TRUE, escape = FALSE, linesep = "") %>%
+  kable_styling(latex_options = c("hold_position"))
 ```
 
 First, we wanted to know whether the choice you make the second time is dependent on the choice you made the first time (for this, we'll run the `Explore relation of variable pair` analysis). This is where a test of independence is useful, and what we're trying to do is see if there's some relationship between the rows and columns of this table.

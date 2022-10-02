@@ -19,7 +19,7 @@ knitr::kable(cbind(
  c(8.049, 2.064, -0.024, -0.613, 8.820, 12.070, 9.635, 7.950, 6.425, 3.250)),
  col.names=c("", "`parentgrump`", "`parentsleep`", "`babysleep`"),
  caption = 'Descriptive statistics for the parenthood data.',
- booktabs = TRUE,
+ booktabs = TRUE, linesep = "",
  align = "lccc",
  escape = FALSE) %>%
   add_header_above(c("", "Parent grumpiness", "Parent's hours slept", "Baby's hours slept"))
@@ -152,7 +152,8 @@ c("0.4 to 0.7", "Moderate", "Positive"),
 c("0.7 to 0.9", "Strong", "Positive"), 
 c("0.9 to 1.0", "Very strong", "Positive")),
  col.names=c("Correlation", "Strength", "Direction"),
- booktabs = TRUE, caption = "Rough guide to interpreting correlations",
+ booktabs = TRUE, linesep = "",
+ caption = "Rough guide to interpreting correlations",
  align = c("l", "c", "c"), escape = FALSE)
 ```
 
@@ -258,7 +259,7 @@ knitr::kable(cbind(
  c(8.114, 2.035, -0.096, -0.500, 8.820, 12.070, 9.610, 8.200, 6.460, 3.250)),
  col.names=c(" ", "`parentgrump`", "`parentsleep`", "`babysleep`"),
  caption = 'Descriptive statistics for the parenthood data with missing values. We can observe the slight difference in our statistics when we have missing values.',
- booktabs = TRUE,
+ booktabs = TRUE, linesep = "",
  align = "lccc", escape = FALSE) %>%
    add_header_above(c(" " = 1, "Parent grumpiness" = 1, 
    "Parent's hours slept" = 1, "Baby's hours slept" = 1))
