@@ -49,4 +49,10 @@
 % Adding a framed box around text
 \usepackage{tcolorbox}
 
+% Dependencies for merging with external cover page
+\usepackage{pdfpages}
+\let\oldmaketitle\maketitle
+\AtBeginDocument{\let\maketitle\relax}
+
+% This sets numbering of intro chapters like TOC to roman numerals
 \frontmatter

@@ -1,3 +1,9 @@
+% This inserts the cover page as the first page of the book in frontmatter
+\includepdf[pages={1}, scale=1]{LSC_cover.pdf}
+\newpage
+    % This now makes the LaTeX title page after the cover page
+\let\maketitle\oldmaketitle
+\maketitle
 
-
+% This now sets numbering to arabic numerals
 \mainmatter
