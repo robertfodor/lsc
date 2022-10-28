@@ -27,6 +27,6 @@ The main feature is the *automatic hypothesis test selection*, which you will fi
 The data is automatically analysed based on its scale type, normality and heteroscedasticity, and the appropriate hypothesis test is run. The results are presented in a clear format in line with APA7 guidelines. The program also generates a graphical representation of the results.
 
 
-To install CogStat, you need to download the latest version from the [CogStat website](http://cogstat.org). The installation is straightforward and should not take more than a few minutes. If you have any problems. To get help on installation, please visit our [GitHub page](https://github.com/cogstat/cogstat/wiki/Installation).
+To install CogStat, you need to download the latest version from the [CogStat website](http://cogstat.org). The installation is straightforward and should not take more than a few minutes. To get help on installation, please visit our [GitHub page](https://github.com/cogstat/cogstat/wiki/Installation).
 
 Use the Wiki on our [GitHub page](https://github.com/cogstat/cogstat/wiki/Documentation-for-users) to find out how to prepare your data first, how to load data, etc.
