@@ -3,7 +3,7 @@ title: "Learning Statistics with CogStat"
 author:
 - Danielle Navarro^[Danielle Navarro -- [Github](https://github.com/djnavarro/) | [![](resources/image/orcid_16x16.png)](https://orcid.org/0000-0001-7648-6578) 0000-0001-7648-6578]
 - Róbert Fodor^[Róbert Fodor -- [Github](https://github.com/robertfodor/) | [![](resources/image/orcid_16x16.png)](https://orcid.org/0000-0001-8470-335X) 0000-0001-8470-335X]
-date: "27 Sept 2022"
+date: "5 Nov 2022"
 output:
   bookdown::gitbook:
     config:
@@ -54,7 +54,7 @@ knitr::include_graphics("resources/bookcover/LSC_small.png")
 
 ## Versions{.unnumbered}
 
-First edition published on 27 September 2022.
+First edition published on 27 September 2022. Critical fixes applied on 5 November 2022.
 
 The online version of the book is updated regularly. The date of the last update is shown on the title page. The book features screenshots and result sets based on **CogStat version 2.3**.
 
