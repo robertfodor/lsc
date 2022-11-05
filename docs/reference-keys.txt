@@ -88,8 +88,8 @@ fig:cogstatloadzeppo
 fig:cogstatexplorezeppo
 fig:zeppo
 fig:ztesthyp
-fig:ztest2
 fig:ztest1
+fig:ztest2
 fig:ttesthyponesample
 fig:ttestdist
 fig:harpocompare
@@ -147,6 +147,10 @@ tab:unnamed-chunk-100
 tab:unnamed-chunk-101
 fig:type1
 whywhywhy
+the-curse-of-belief-bias
+the-simpsons-paradox
+statistics-in-psychology
+theres-more-to-research-methods-than-statistics
 autostat
 cogstat_intro
 researchdesign
@@ -252,7 +256,6 @@ teststatistics
 decisionmaking
 critical-regions-and-critical-values
 a-note-on-statistical-significance
-a-note-on-the-word-prove
 onesidedtests
 pvalue
 a-softer-view-of-decision-making

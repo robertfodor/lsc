@@ -22,7 +22,7 @@ knitr::include_graphics(
 )
 ```
 
-The results are shown in the boxplot in Figure \@ref(fig:moodbydrug), which plots the average mood gain for all three conditions; error bars show 95\% confidence intervals. As the plot makes clear, there is a larger improvement in mood for participants in the Joyzepam group than for either the Anxifree group or the placebo group. The Anxifree group shows a larger mood gain than the control (i.e. placebo) group, but the difference isn't as large. 
+The results are shown in the boxplot in Figure \@ref(fig:moodbydrug), which plots the average mood gain for all three conditions; error bars show upper and lower quartile. As the plot makes clear, there is a larger improvement in mood for participants in the Joyzepam group than for either the Anxifree group or the placebo group. The Anxifree group shows a larger mood gain than the control (i.e. placebo) group, but the difference isn't as large. 
 
 The question that we want to answer is: are these difference "real", or are they just due to chance?
 
@@ -395,7 +395,7 @@ To be a bit more precise about the sampling distribution, notice that if the nul
 
 ## Interpreting our results in CogStat{#introduceaov}
 
-You already know the answers because we calculated it step by step, but you have a more in-depth understanding of how it all ties together. CogStat will do all of this for you, but it's good to know what's going on behind the scenes. Let's see how CogStat interprets our data.
+You already know the answers because we calculated it step by step, but you have a more in-depth understanding of how it all ties together. CogStat will do all of this for you, but it's good to know what's going on behind the scenes. Let's see how CogStat displays our data.
 
 So what we had to do, was simply run the `Compare groups` function with `mood_gain` by `drug`.
 
@@ -544,7 +544,7 @@ knitr::kable(
 
 By rejecting the null hypothesis, we've decided that we *don't* believe that \#1 is the true state of the world. The next question to ask is, which of the other seven possibilities *do* we think is right? When faced with this situation, it usually helps to look at the data. For instance, if we look at the plots in Figure \@ref(fig:moodbydrug), it's tempting to conclude that Joyzepam is better than the placebo and better than Anxifree, but there's no real difference between Anxifree and the placebo. However, if we want to get a clearer answer about this, it might help to run some tests.
 
-There are actually quite a lot of different methods for performing multiple comparisons in the statistics literature [@Hsu1996], and it would be beyond the scope of an introductory text like this one to discuss all of them in any detail. That being said, there's one tool of importance, namely Tukey's "Honestly Significant Difference", or **Tukey's HSD** for short. While there is the possibility to run "pairwise" $t$-tests manually, or in other statistical software, CogStat opts for Tukey's HSD test as a robust tool for running post hoc tests.
+There are actually quite a lot of different methods for performing multiple comparisons in the statistics literature [@Hsu1996], and it would be beyond the scope of an introductory text like this one to discuss all of them in any detail. That being said, there's one tool of importance, namely Tukey's "Honestly Significant Difference", or **Tukey's HSD** for short. While there is the possibility to run "pairwise" $t$-tests manually in other statistical software, CogStat opts for Tukey's HSD test as a robust tool for running post hoc tests.
 
 The basic idea of Tukey's HSD is to examine all relevant pairwise comparisons between groups, and it's only really appropriate to use Tukey's HSD if it is *pairwise* differences that you're interested in. If, for instance, you actually would find yourself interested to know if Group A is significantly different from the mean of Group B and Group C, then you need to use a different tool (e.g., Scheffe's method, which is more conservative, and beyond the scope this book).
 
@@ -587,7 +587,7 @@ What we would write up next to our ANOVA result is the following:
 
 ## Checking the homogeneity of variance assumption{#levene}
 
-There's more than one way to skin a cat, as the saying goes, and more than one way to test the homogeneity of variance assumption, too. The most commonly used test for this is the **Levene test** [@Levene1960], which CogStat uses.^[There's the closely related *Brown-Forsythe test* [@BrownForsythe1974] as well, but that's not implemented in CogStat.]
+There's more than one way to skin a cat, as the saying goes, and more than one way to test the homogeneity of variance assumption, too. The most commonly used test for this is the **Levene test** [@Levene1960], which CogStat uses.^[There's the closely related *Brown-Forsythe test* [@BrownForsythe1974] as well, which is what CogStat uses.]
 
 Levene's test is shockingly simple. Suppose we have our outcome variable $Y_{ik}$. All we do is define a new variable, say, $Z_{ik}$, corresponding to the absolute deviation from the group mean:
 $$
@@ -636,7 +636,7 @@ $$
 H = \frac{12}{N(N-1)} \sum_k N_k {\bar{R}_k}^2  -  3(N+1)
 $$
 
-The story is true when there are no ties in the raw data. That is, if there are no two observations that have exactly the same value. If there *are* ties, then we have to introduce a correction factor to these calculations. At this point, even the most diligent reader might have stopped caring (or at least formed the opinion that the tie-correction factor is something that doesn't require their immediate attention). So let us omit the tedious details about *why* it's done this way. We can look at a frequency table for the raw data (under `Explore variable` function), and let $f_j$ be the number of observations that have the $j$-th unique value. 
+The story is true when there are no ties in the raw data. That is, if there are no two observations that have exactly the same value. If there *are* ties, then we have to introduce a correction factor to these calculations. At this point, even the most diligent reader might have stopped caring (or at least formed the opinion that the tie-correction factor is something that doesn't require their immediate attention). So let us omit the tedious details about *why* it's done this way. We can look at a frequency table for the raw data (under `Explore variable`), and let $f_j$ be the number of observations that have the $j$-th unique value. 
 
 (ref:moodgainfreqcap) Frequency table for the raw data (`mood_gain`).
 
@@ -726,4 +726,4 @@ Like any statistical test, analysis of variance relies on some assumptions about
 - **Homogeneity of variance**. Notice that we've only got the one value for the population standard deviation (i.e. $\sigma$), rather than allowing each group to have its own value (i.e. $\sigma_k$). This is referred to as the homogeneity of variance or homoscedasticity assumption. ANOVA assumes that the population standard deviation is the same for all groups. See Chapter \@ref(levene). If the homogeneity of variance assumption fails, CogStat runs the Kruskal-Wallis test instead (see Chapter \@ref(kruskalwallis)), similarly to when the normality assumption is violated.
 - **Independence**. The independence assumption is a little trickier. What it basically means is that, knowing one residual tells you nothing about any other residual. All of the $\epsilon_{ik}$ values are assumed to have been generated without any "regard for" or "relationship to" any of the other ones. There's not an obvious or simple way to test for this, but there are some situations that are clear violations of this: for instance, if you have a repeated measures design, where each participant in your study appears in more than one condition, then independence doesn't hold. When that happens, you need to use repeated measures ANOVA (accessible in `Compare repeated measures variable`).
 
-Some part of this chapter was influenced by @Sahai2000, which is an excellent book for more advanced readers who are interested in understanding the mathematics behind ANOVA.
+Some parts of this chapter was influenced by @Sahai2000, which is an excellent book for more advanced readers who are interested in understanding the mathematics behind ANOVA.

@@ -5,6 +5,7 @@
 ### Critical
 
 - Table and figure numbers inconsistent with website.
+- Figures in Ch 7.4.2 show \begin{figure} in PDF
 
 ### Nice-to-have
 
