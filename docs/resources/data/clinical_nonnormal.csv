@@ -1,4 +1,5 @@
 "drug","therapy","mood_gain"
+"nom","nom","int"
 "placebo","no_therapy",0.1
 "placebo","no_therapy",0.1
 "placebo","no_therapy",0.1

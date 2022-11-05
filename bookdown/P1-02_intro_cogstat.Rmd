@@ -22,11 +22,11 @@ CogStat is a statistical analysis program that stems from needs in psychology re
 
 CogStat is a free program and can be downloaded from the [CogStat website](http://cogstat.org). The program is written in Python and runs on Windows, macOS, and Linux.
 
-The main feature is the *automatic hypothesis test selection*, which you will find very handy after reading through the statistical theory of hypothesis testing. The program will automatically select the most appropriate statistical test for your data. It is designed for those researchers who need to perform statistical analyses but want to save time by not having to manually select the appropriate statistical test or are not that sure what test best fits their purpose.
+The main feature is the *automatic analysis* of the source data and the *automatic hypothesis test selection*, which you will find very handy after reading through the statistical theory of samples versus population, and hypothesis testing. The program will automatically select the most appropriate statistical test for your data. It is designed for those researchers who need to perform statistical analyses but want to save time by not having to manually select the appropriate statistical test or are not that sure what test best fits their purpose.
 
-The data is automatically analysed based on its scale type, normality and heteroscedasticity, and the appropriate hypothesis test is run. The results are presented in a clear format in line with APA7 guidelines. The program also generates a graphical representation of the results.
+The data is automatically analysed based on its scale type, then the right pre-checks are run (e.g. normality and heteroscedasticity), and finally the appropriate hypothesis test is run. The results are presented in a clear format in line with APA7 guidelines. The program also generates a graphical representation of the results.
 
 
 To install CogStat, you need to download the latest version from the [CogStat website](http://cogstat.org). The installation is straightforward and should not take more than a few minutes. To get help on installation, please visit our [GitHub page](https://github.com/cogstat/cogstat/wiki/Installation).
 
-Use the Wiki on our [GitHub page](https://github.com/cogstat/cogstat/wiki/Documentation-for-users) to find out how to prepare your data first, how to load data, etc.
+Use the Wiki on our [GitHub page](https://github.com/cogstat/cogstat/wiki/Documentation-for-users) to find out more on how to get started to use Cogstat, e.g. how to prepare your data prior to loading, how to load the data, etc. With regards to the analysis and testing features, hold on to your hat and read on!
