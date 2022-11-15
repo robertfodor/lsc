@@ -4,7 +4,7 @@ set -ev
 
 # Define variables
 type=$1
-optnsprompt=("[1] bookdown::gitbook" "[2] bookdown::pdf_book")
+optnsprompt=("[0] bookdown::gitbook" "[2] bookdown::pdf_book")
 savlocinput=$2
 savlocprompt=("[0] Project home: output_dir='../docs'" "[d] output_dir='~/Desktop'")
 
@@ -22,8 +22,8 @@ then
 fi
 
 
-# If user input 1, build gitbook, if 2 then build pdf. If savloc is 0 save to , if d then 
-if [ $type -eq 1 ]
+# If user input 0, build gitbook, if 2 then build pdf. If savloc is 0 save to , if d then 
+if [ $type -eq 0 ]
 then
   echo "Building gitbook"
   Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook', output_dir='$savloc')"
