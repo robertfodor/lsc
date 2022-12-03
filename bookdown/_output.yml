@@ -1,7 +1,7 @@
 bookdown::gitbook:
   css: style.css
   dev: svglite
-  link-citations: yes
+  link-citations: true
   includes:
     css: customstyle.css
   config:
@@ -17,13 +17,13 @@ bookdown::gitbook:
     toolbar:
       position: static
     download: no
-    
+
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
     before_body: before_body.tex
-  link-citations: yes
+  link-citations: true
   latex_engine: xelatex
   keep_tex: no
-  
+
 bookdown::epub_book: default

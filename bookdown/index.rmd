@@ -22,6 +22,9 @@ description: '*Learning Statistics with CogStat* covers the contents of an intro
   on Danielle Navarro''s original *Learning Statistics with R* with a focus on automatic
   statistical analysis performed in CogStat.'
 always_allow_html: true
+urlcolor: CSbluelight
+linkcolor: CSbluelight
+citecolor: CSbluelight
 ---
 
 ```{r setup, include=FALSE}
