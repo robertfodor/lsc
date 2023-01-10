@@ -179,6 +179,10 @@ Likert scales are convenient, if somewhat limited, tools. The question is, what 
 
 But are they ordinal scale or interval scale? One argument says that we can't prove that the difference between "strongly agree" and "agree" is of the same size as the difference between "agree" and "neither agree nor disagree". In fact, in everyday life, it's pretty apparent they're not the same. So this suggests that we ought to treat Likert scales as ordinal variables. On the other hand, in practice, most participants do seem to take the whole "on a scale from 1 to 5" part fairly seriously, and they tend to act as if the differences between the five response options were fairly similar to one another. As a consequence, a lot of researchers treat Likert scale data as if it were interval scale. It's not interval scale, but in practice, it's close enough that we usually think of it as being ***quasi-interval scale***.
 
+### How to set measurement levels for use in CogStat{#setlevels}
+
+
+
 ## Assessing the reliability of a measurement{#reliability}
 
 At this point, we've thought a little bit about how to operationalise a theoretical construct and thereby create a psychological measure. We've seen that by applying psychological measures we end up with variables, which can come in many different types. At this point, we should start discussing the obvious question: is the measurement any good? We'll do this in terms of two related ideas: *reliability* and *validity*. Put simply, the **reliability** of a measure tells you how *precisely* and *consistenly* you are measuring something (i.e. you are measuring the precise thing you inted to measure, and if you repeat the measurement on other samples or on the same sample some time later, you are still measuring the same variable). Whereas the **validity** of a measure tells you how *accurate* the measure is (i.e. the measurement is measuring the thing they are meant to measure and they do that exactly). See more in Chapter \@ref(validity).

@@ -25,6 +25,8 @@ always_allow_html: true
 urlcolor: CSbluelight
 linkcolor: CSbluelight
 citecolor: CSbluelight
+toccolor: black
+link-citations: true
 ---
 
 ```{r setup, include=FALSE}
