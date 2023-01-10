@@ -19,10 +19,10 @@ In the short list above, the **bolded part** is "the thing to be measured", and 
 
 - **Age** (in years) could have been *0, 1, 2, 3 ...*, etc. The upper bound on what the age could be is a bit fuzzy, but in practice, you'd be safe in saying that the largest possible age is *150* since no human has ever lived that long.
 - When asked if someone **likes anchovies**, they might say *I do*, *I do not*, *I have no opinion*, or *I sometimes do*.
-- **Chromosomal gender** is almost certainly going to be *male (XY)* or *female (XX)*, but there are a few other possibilities. With *Klinefelter's syndrome (XXY)*, it is more similar to male than to female. And there are other possibilities, too.
+- **Chromosomal gender** is almost certainly going to be *male (XY)* or *female (XX)*, but there are a few other possibilities: with *Klinefelter's syndrome (XXY)*, it is more similar to male than to female. And there are other possibilities, too.
 - **Self-identified gender** is also very likely to be *male* or *female*, *transgender*, *nonbinary*, *queer* etc.
 
-As you can see, for some things (like age), it seems pretty apparent what the set of possible measurements should be, whereas, for other things, it gets a bit tricky. But even regarding someone's age, it's much more subtle than this. For instance, if you're a developmental psychologist, measuring in *years* is way too crude, and so you often measure age in *years and months* (if a child is 2 years and 11 months, this is usually written as "2;11"). If you're interested in newborns, you might want to measure age in *days since birth*, maybe even *hours since birth*.
+As you can see, for some things (like age), it seems pretty apparent what the set of possible measurements should be, whereas, for other things, it gets a bit tricky. But even regarding someone's age, it's much more subtle than this. For instance, if you're a developmental psychologist, measuring in *years* is way too crude, and so you often measure age in *years and months* (if a child is 2 years and 11 months, this is usually written as "2;11"). If you're interested in newborns, you might want to measure age in *days since birth*, or maybe even *hours since birth*.
 
 Looking at this a bit more closely, you might also realise that the concept of "age" isn't all that precise. Generally, when we say "age", we implicitly mean "the length of time since birth". But that's not always the right way to do it. Suppose you're interested in how newborn babies control their eye movements. If you're interested in kids that young, you might also start to worry that "birth" is not the only significant point in time to care about. If Baby Alice is born 3 weeks premature and Baby Bianca is born 1 week late, would it really make sense to say that they are the "same age" if we encountered them "2 hours after birth"? In a sense, yes. By social convention, we use birth as our reference point for talking about age in everyday life since it defines the amount of time the person has been operating as an independent entity in the world. But from a scientific perspective, that's not the only thing we care about. When we think about the biology of human beings, it's often helpful to think of ourselves as organisms that have been growing and maturing since conception. From that perspective, Alice and Bianca aren't the same age at all. So you might want to define the concept of "age" in two different ways: the length of time since conception and the length of time since birth. It won't make much difference when dealing with adults, but when dealing with newborns, it might.
 
@@ -40,7 +40,7 @@ All of the ideas discussed in the previous section relate to the concept of **op
 
 - Being precise about what you are trying to measure. For instance, does "age" mean "time since birth" or "time since conception" in the context of your research?
 - Determining what method you will use to measure it. Will you use self-report to measure age, ask a parent, or look up an official record? If you're using self-report, how will you phrase the question?
-- Defining the set of the allowable values that the measurement can take. Note that these values don't always have to be numerical, though they often are. When measuring age, the values are numerical, but we still need to think carefully about what numbers are allowed. Do we want age in years, years and months, days, or hours? The values aren't numerical for other types of measurements (e.g. gender). But, as before, we need to consider what values are allowed. If we're asking people to self-report their gender, what options do we allow them to choose from? Is it enough to allow only "male" or "female"? Do you need an "other" option? Or should we not give people any specific options and let them answer in their own words? And if you open up the set of possible values to include all verbal responses, how will you interpret their answers?
+- Defining the set of allowable values that the measurement can take. Note that these values don't always have to be numerical, though they often are. When measuring age, the values are numerical, but we still need to think carefully about what numbers are allowed. Do we want age in years, years and months, days, or hours? The values aren't numerical for other types of measurements (e.g. gender). But, as before, we need to consider what values are allowed. If we're asking people to self-report their gender, what options do we allow them to choose from? Is it enough to allow only "male" or "female"? Do you need an "other" option? Or should we not give people any specific options and let them answer in their own words? And if you open up the set of possible values to include all verbal responses, how will you interpret their answers?
 
 Operationalisation is tricky, and there's no "one, true way" to do it. How you operationalise the informal concept of "age" or "gender" into a formal measurement depends on what you need to use the measurement for. You'll often find that the community of scientists who work in your area have some well-established ideas for how to go about it. In other words, operationalisation needs to be thought through case-by-case. Nevertheless, while there are a lot of issues that are specific to each individual research project, there are some aspects to it that are pretty general. 
 
@@ -63,21 +63,56 @@ A **nominal scale** variable (also referred to as a **categorical** variable) is
 
 Let's take a slightly closer look at this. Suppose we were researching how people commute to and from work. One variable we would have to measure would be what kind of transportation people use to get to work. This "transport type" variable could have quite a few possible values, including: "train", "bus", "car", "bicycle", etc. For now, let's suppose that these four are the only possibilities, and suppose that when we ask 100 people how they got to work today, we get this:
 
-|Transportation|Number of people|
-|:-:|:-:|
-| (1) Train | 12|
-| (2) Bus | 30|
-| (3) Car | 48|
-| (4) Bicycle | 10|
+```{r echo=FALSE}
+knitr::kable(
+  rbind(
+    c("(1) Train", 12),
+    c("(2) Bus", 30),
+    c("(3) Car", 48),
+    c("(4) Bicycle", 10)
+  ),
+   col.names = c("Transportation", "Number of people"),
+   caption = NULL,
+   label = "transportation1",
+   linesep = "",
+   escape = TRUE,
+   booktabs = TRUE,
+   align = "lc"
+) %>%
+  kable_styling(
+   bootstrap_options = c("hover", "condensed", "responsive"),
+   full_width = FALSE,
+   position = "center",
+   latex_options = c("HOLD_position", "repeat_header")
+  )
+```
+
 
 So, what's the average transportation type? Obviously, the answer here is that there isn't one. It's a silly question to ask. You can say that travel by car is the most popular method, and travel by train is the least popular method, but that's about all. Similarly, notice that the order in which the options are listed isn't very exciting. We could have chosen to display the data like this:
 
-|Transportation|Number of people|
-|:-:|:-:|
-| (3) Car | 48|
-| (1) Train | 12|
-| (4) Bicycle | 10|
-| (2) Bus | 30|
+```{r echo=FALSE}
+knitr::kable(
+  rbind(
+    c("(3) Car", 48),
+    c("(1) Train", 12),
+    c("(4) Bicycle", 10),
+    c("(2) Bus", 30)
+  ),
+   col.names = c("Transportation", "Number of people"),
+   caption = NULL,
+   label = "transportation2",
+   linesep = "",
+   escape = TRUE,
+   booktabs = TRUE,
+   align = "lc"
+) %>%
+  kable_styling(
+   bootstrap_options = c("hover", "condensed", "responsive"),
+   full_width = FALSE,
+   position = "center",
+   latex_options = c("HOLD_position", "repeat_header")
+  )
+```
 
 -- and nothing really changes.
 
@@ -102,12 +137,29 @@ Notice that these four statements actually do have a natural ordering in terms o
 
 So, let's suppose I asked 100 people these questions and got the following answers:
 
-|Response | Number|
-|-------- |:-----:|
-|(1) Temperatures are rising because of human activity | 51 |
-|(2) Temperatures are rising, but we don't know why   | 20 |
-|(3) Temperatures are rising, but not because of humans | 10 |
-|(4) Temperatures are not rising | 19 |
+```{r echo=FALSE}
+knitr::kable(
+  rbind(
+    c("(1) Temperatures are rising because of human activity", 51),
+    c("(2) Temperatures are rising, but we don't know why", 20),
+    c("(3) Temperatures are rising, but not because of humans", 10),
+    c("(4) Temperatures are not rising", 19)
+  ),
+   col.names = c("Response", "Number"),
+   caption = NULL,
+   label = "climate1",
+   linesep = "",
+   escape = TRUE,
+   booktabs = TRUE,
+   align = "lc"
+) %>%
+  kable_styling(
+   bootstrap_options = c("hover", "condensed", "responsive"),
+   full_width = FALSE,
+   position = "center",
+   latex_options = c("HOLD_position", "repeat_header")
+  )
+```
 
 When analysing these data, it seems quite reasonable to try to group (1), (2) and (3) together and say that 81 of 100 people were willing to *at least partially* endorse the science. And it's *also* quite reasonable to group (2), (3) and (4) together and say that 49 of 100 people registered *at least some disagreement* with the dominant scientific view. However, it would be entirely bizarre to try to group (1), (2) and (4) together and say that 90 of 100 people said what? There's nothing sensible that allows you to group those responses together at all.
 
@@ -132,23 +184,36 @@ There's a second kind of distinction that you need to be aware of regarding what
 - A **continuous variable** is one in which, for any two values you can think of, it's always logically possible to have another value in between.
 - A **discrete variable** is, in effect, a variable that isn't continuous. For a discrete variable, it's sometimes the case that there's nothing in the middle.
 
-These definitions probably seem a bit abstract, but they're pretty simple once you see some examples. For instance, response time is continuous. If Alan takes 3.1 seconds and Ben takes 2.3 seconds to respond to a question, then it's possible for Cameron's response time to lie in-between by taking 3.0 seconds. And, of course, it would also be possible for David to take 3.031 seconds to respond, meaning that his RT would lie in between Cameron's and Alan's. And while in practice, it might be impossible to measure RT that precisely, it's certainly possible in principle. Because we can always find a new value for RT in between any two other ones, we say that RT is continuous.
+These definitions probably seem a bit abstract, but they're pretty simple once you see some examples. For instance, response time is continuous. If Alan takes 3.1 seconds and Ben takes 2.3 seconds to respond to a question, then Cameron's response time can lie in between by taking 3.0 seconds. And, of course, it would also be possible for David to take 3.031 seconds to respond, meaning that his RT would lie in between Cameron's and Alan's. And while in practice, it might be impossible to measure RT that precisely, it's certainly possible in principle. Because we can always find a new value for RT in between any two other ones, we say that RT is continuous.
 
-Discrete variables occur when this rule is violated. For example, nominal scale variables are always discrete: there isn't a type of transportation that falls "in-between" trains and bicycles, not in the strict mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete. Similarly, ordinal scale variables are always discrete: although "2nd place" does fall between "1st place" and "3rd place", there's nothing that can logically fall in between "1st place" and "2nd place". Interval scale and ratio scale variables can go either way. As we saw above, response time (a ratio scale variable) is continuous. Temperature in degrees Celsius (an interval scale variable) is also continuous. However, the year you went to school (an interval scale variable) is discrete. There's no year in between 2002 and 2003. The number of questions you get right on a true-or-false test (a ratio scale variable) is also discrete: since a true-or-false question doesn't allow you to be "partially correct", there's nothing in between 5/10 and 6/10. Table \@ref(tab:scalescont) summarises the relationship between the measurement scales and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible. Some textbooks get this wrong, and people often say things like "discrete variable" when they mean "nominal scale variable". It's very unfortunate.
+Discrete variables occur when this rule is violated. For example, nominal scale variables are always discrete: there isn't a type of transportation that falls "in-between" trains and bicycles, not in the strict mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete. Similarly, ordinal scale variables are always discrete: although "2nd place" does fall between "1st place" and "3rd place", there's nothing that can logically fall in between "1st place" and "2nd place". Interval scale and ratio scale variables can go either way. As we saw above, response time (a ratio scale variable) is continuous. Temperature in degrees Celsius (an interval scale variable) is also continuous. However, the year you went to school (an interval scale variable) is discrete. There's no year between 2002 and 2003. The number of questions you get right on a true-or-false test (a ratio scale variable) is also discrete: since a true-or-false question doesn't allow you to be "partially correct", there's nothing in between 5/10 and 6/10. Table \@ref(tab:scalescont) summarises the relationship between the measurement scales and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible. Some textbooks get this wrong, and people often say things like "discrete variable" when they mean "nominal scale variable". It's very unfortunate.
 
-```{r scalescont, tidy=FALSE, echo=FALSE}
+```{r echo=FALSE}
 knitr::kable(
- rbind(c("", "continuous", "discrete"),
+  rbind(
     c("nominal", "", "$\\checkmark$"),
     c("ordinal", "", "$\\checkmark$"),
     c("interval", "$\\checkmark$", "$\\checkmark$"),
     c("ratio", "$\\checkmark$", "$\\checkmark$")
-  
- )
- , caption = 'The relationship between the measurement scales and the discrete/continuity distinction. Cells with a tick mark correspond to things that are possible.', align="lcc",
- booktabs = TRUE,
- escape = FALSE
-)
+  ),
+   col.names = c("", "continuous", "discrete"),
+   caption = "The relationship between the measurement scales
+       and the discrete/continuity distinction",
+   label = "scalescont",
+   linesep = "",
+   escape = FALSE,
+   booktabs = TRUE,
+   align = "lcc"
+) %>%
+  kable_styling(
+   bootstrap_options = c("hover"),
+   full_width = FALSE,
+   position = "center",
+   latex_options = c("HOLD_position", "repeat_header")
+  ) %>%
+  footnote(
+   general = "Cells with a tick mark correspond to things that are possible."
+   )
 ```
 
 ### Some complexities: the Likert scale{#likertscale}
@@ -179,9 +244,6 @@ Likert scales are convenient, if somewhat limited, tools. The question is, what 
 
 But are they ordinal scale or interval scale? One argument says that we can't prove that the difference between "strongly agree" and "agree" is of the same size as the difference between "agree" and "neither agree nor disagree". In fact, in everyday life, it's pretty apparent they're not the same. So this suggests that we ought to treat Likert scales as ordinal variables. On the other hand, in practice, most participants do seem to take the whole "on a scale from 1 to 5" part fairly seriously, and they tend to act as if the differences between the five response options were fairly similar to one another. As a consequence, a lot of researchers treat Likert scale data as if it were interval scale. It's not interval scale, but in practice, it's close enough that we usually think of it as being ***quasi-interval scale***.
 
-### How to set measurement levels for use in CogStat{#setlevels}
-
-
 
 ## Assessing the reliability of a measurement{#reliability}
 
@@ -202,14 +264,30 @@ We've got one last piece of terminology that needs to be explained before moving
 
 Now, when we are doing analysis, we have different names for $X$ and $Y$, since they play different roles. The classical names for these roles are **independent variable** (IV) and **dependent variable** (DV). The IV is the variable you use to explain (i.e., $X$) and the DV is the variable being explained (i.e., $Y$). The logic behind these names goes like this: if there is a relationship between $X$ and $Y$, then we can say that $Y$ depends on $X$, and if we have designed our study "properly", then $X$ isn't dependent on anything else. However, those names are horrible: they're hard to remember, and they're highly misleading because (a) the IV is never actually "independent of everything else" and (b) if there's no relationship, then the DV doesn't actually depend on the IV. And, because we're not the only people who think that IV and DV are just awful names, there are several alternatives that some find more appealing. The terms used in these notes are ***predictors*** and ***outcomes***. The idea here is that you're trying to use $X$ (the predictors) to make guesses about $Y$ (the outcomes). This is summarised in Table \@ref(tab:ivdv).
 
-```{r ivdv, tidy=FALSE, echo=FALSE}
-knitr::kable(rbind
-       (c("to be explained", "dependent variable (DV)", "outcome"),
-       c("to do the explaining", "independent variable (IV)", "predictor")),
-caption = 'The terminology used to distinguish between different roles that a variable can play when analysing a data set. Note that this book will tend to avoid the classical terminology in favour of the newer names.',col.names = c(
- "role of the variable", "classical name","modern name"),
- booktabs = TRUE
-)
+```{r echo=FALSE}
+knitr::kable(
+  rbind(
+       c("to be explained", "dependent variable (DV)", "outcome"),
+       c("to do the explaining", "independent variable (IV)", "predictor")
+  ),
+   col.names = c("role of the variable", "classical name", "modern name"),
+   caption = "The terminology used to distinguish between 
+      different roles that a variable can play when analysing a data set",
+   label = "ivdv",
+   linesep = "",
+   escape = TRUE,
+   booktabs = TRUE,
+   align = "llc"
+) %>%
+  kable_styling(
+   bootstrap_options = c("hover"),
+   full_width = FALSE,
+   position = "center",
+   latex_options = c("HOLD_position", "repeat_header")
+  ) %>%
+  footnote(
+      general = "This book will tend to avoid the classical terminology in favour of the newer names."
+  )
 ```
 
 ## Experimental and non-experimental research{#researchdesigns}

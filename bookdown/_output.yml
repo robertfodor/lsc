@@ -1,9 +1,6 @@
 bookdown::gitbook:
-  css: style.css
+  css: styles.css
   dev: svglite
-  link-citations: true
-  includes:
-    css: customstyle.css
   config:
     toc:
       before: |
@@ -14,6 +11,8 @@ bookdown::gitbook:
       number_sections: true
       fig_caption: yes
     toc_depth: 2
+    tof: true
+    tot: true
     toolbar:
       position: static
     download: no
@@ -22,8 +21,11 @@ bookdown::pdf_book:
   includes:
     in_header: preamble.tex
     before_body: before_body.tex
-  link-citations: true
   latex_engine: xelatex
-  keep_tex: no
+  keep_tex: yes
+  toc: true
+  tof: true
+  tot: true
+  extra_dependencies: "subfig"
 
 bookdown::epub_book: default

@@ -48,6 +48,8 @@ meta() %>%
     author = c("Danielle Navarro", "Róbert Fodor"),
     publication_date = "2022/09/27"
   )
+
+library(kableExtra)
 ```
 
 
@@ -57,17 +59,34 @@ meta() %>%
 knitr::include_graphics("resources/bookcover/LSC_small.png")
 ```
 
+**First revised edition** (v1.1 published XX January 2023)
+
+Based on **Cogstat v2.3**
+
+To reference this book, please use the following citation (APA7 format):
+
+> Navarro, D., & Fodor, R. (2023). Learning Statistics with CogStat (Rev. ed.). \
+>        https://learningstatisticswithcogstat.com
+
 ## Versions{.unnumbered}
 
-First edition published on 27 September 2022. Critical fixes applied on 5 November 2022.
+The online version of the book is updated regularly. The date of the last update is shown on the title page. The book features screenshots and result sets based on CogStat version 2.3.
 
-The online version of the book is updated regularly. The date of the last update is shown on the title page. The book features screenshots and result sets based on **CogStat version 2.3**.
+- v1 *First edition* was published on 27 September 2022 (electronic).
+- v1.0.1 Critical fixes applied (typos and minor errors) on 5 November 2022.
+- v1.1 *First Revised Edition* was published on XX January 2023 (electronic).
 
+### What changed in *First Revised Edition*?{.unnumbered}
 
-To reference the book, please use the following citation (APA7 format):
-
-> Navarro, D., & Fodor, R. (2022). Learning Statistics with CogStat. https://learningstatisticswithcogstat.com
-
+- Chapters \@ref(autostat) and \@ref(cogstatintro) were amended and slightly expanded.
+- Chapter \@ref(researchdesign) was largely revised to make explanations and examples more accurate.
+- Chapter \@ref(exploringavariable) was largely revised to tie to other statistics textbooks, also focusing on differentiating between population and sample measures.
+- New: callout boxes added throughout the chapters to explain chart types and other concepts.
+- New: definitions and examples are now presented markedly in the text.
+- New: explanatory charts were added to the text.
+- Typos and minor errors were fixed all throughout the book.
+ 
+Acknowledgements are due to Attila Krajcsi for his helpful notes as consulting editor for this version.
 
 ## Author's note{.unnumbered}
 
@@ -78,6 +97,7 @@ This book is intended for psychology students and other beginners who are intere
 This book will always be a living thing. As CogStat expands and evolves, so will this book. If you have any suggestions, comments or questions, please feel free to reach out to me on [GitHub](https://github.com/robertfodor/lsc/issues).
 
 -- Robert
+
 
 ## Licensing{.unlisted .unnumbered}
 

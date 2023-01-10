@@ -1,0 +1,20 @@
+.callout {
+  border-left: 2em solid #0096c8;
+  border-radius: 10px;
+  background-color: #e6f0f0;
+  padding: 1em 2em 1em 4em;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.callouttitle {
+  font-weight: bold;
+}
+
+div.definition {
+  padding-left: 2em;
+}
+
+div.example {
+  padding-left: 2em;
+}

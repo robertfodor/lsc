@@ -4,10 +4,6 @@
 % Don't hyphenate
 \usepackage[none]{hyphenat}
 
-% Math
-\usepackage{amsmath,amssymb}
-\usepackage{array}
-
 % CS colors
 \usepackage{xcolor}
 \definecolor{CSblue}{HTML}{3960A5}
@@ -15,20 +11,38 @@
 \definecolor{CSgreen}{HTML}{008000}
 \definecolor{capcol}{HTML}{087830}
 \definecolor{chap}{HTML}{E03616}
+\definecolor{calloutbackground}{HTML}{F2F3F4}
+\definecolor{calloutborder}{HTML}{0096C8}
 
 % Font
+%% Main serif fonts with math
+\usepackage{amsmath}
 \usepackage{fontspec}
-\usepackage[default,light,bold]{sourceserifpro}
+\defaultfontfeatures{Ligatures=TeX}
+\setmainfont{STIXTwoText}[ 
+Extension = {.otf}, 
+UprightFont = {*-Regular}, 
+ItalicFont = {*-Italic}, 
+BoldFont = {*-Bold}, 
+BoldItalicFont = {*-BoldItalic} 
+]
+\setmathfont{STIX Two Math}
+\setmathfont{STIX Two Math}[range={scr,bfscr}, StylisticSet=1]
+\usepackage{bm} 
+ 
+%% Sans serif font
+%\usepackage[default,light,bold]{sourceserifpro}
 \usepackage[sfdefault]{sourcesanspro}
+
+% Captions and subfigures
 \usepackage{caption}
-\captionsetup[figure]{font={small,sf}}
+\captionsetup[figure]{width=0.8\linewidth}
+\captionsetup[table]{width=0.8\linewidth}
 \usepackage[labelfont={color=capcol,bf}]{caption}
 \usepackage[font={small,sf}]{caption}
+\usepackage{subfig}
 
-% For formatting tables
-\usepackage{booktabs}
-\usepackage{longtable}
-\usepackage{multirow}
+\usepackage{array}
 
 % Package to tweak width
 \usepackage{varwidth}
@@ -37,6 +51,13 @@
 \usepackage{wrapfig}
 \usepackage{float}
 \floatplacement{figure}{H}
+\renewcommand{\topfraction}{.85}
+\renewcommand{\bottomfraction}{.7}
+\renewcommand{\textfraction}{.15}
+\renewcommand{\floatpagefraction}{.66}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{3}
+\setcounter{totalnumber}{4}
 
 % Titles and chapters
 \usepackage{sectsty}
@@ -44,10 +65,29 @@
 \chapternumberfont{\huge\bfseries\sourcesanspro\color{chap}}
 \sectionfont{\normalfont\Large\bfseries\sourcesanspro}
 \subsectionfont{\normalfont\large\bfseries\sourcesanspro}
-
+\usepackage{titlesec}
+\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{12pt plus 4pt minus 2pt}
 
 % Adding a framed box around text
-\usepackage{tcolorbox}
+\usepackage[most]{tcolorbox}
+\newtcolorbox{callout}[1][]{%
+  colback=calloutbackground,
+  colframe=calloutborder,
+  boxrule=0pt,
+  leftrule=2pt,
+  sharp corners,
+  halign=left,
+  parbox=false,
+  before upper={\vspace{1em}},
+  after upper={\vspace{1em}},
+  fontupper=\sourcesanspro\small,
+  breakable, enhanced,
+  title=#1,
+  fonttitle=\sourcesanspro\normalsize,
+}
+
+\newenvironment{callouttitle}{}{}
+
 
 % Dependencies for merging with external cover page
 \usepackage{pdfpages}

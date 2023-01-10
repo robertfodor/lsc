@@ -38,26 +38,79 @@ And finally, an invalid argument with an unbelievable conclusion:
 
 Now, suppose that people really are perfectly able to set aside their pre-existing biases about what is true and what isn't, and purely evaluate an argument on its logical merits. We'd expect 100% of people to say that the valid arguments are valid, and 0% of people to say that the invalid arguments are valid. So if you ran an experiment looking at this, you'd expect to see data like this:
 
-|  | conclusion feels true| conclusion feels false |
-|-------- |:--------:|:--------:|
-|argument is valid |100% say "valid"|100% say "valid"|
-|argument is invalid|0% say "valid"|0% say "valid"|
+```{r echo=FALSE}
+library(kableExtra)
+knitr::kable(
+  rbind(
+    c("argument is valid", "100\\% say \"valid\"", "100\\% say \"valid\""),
+    c("argument is invalid", "0\\% say \"valid\"", "0\\% say \"valid\"")
+  ),
+   col.names = c(" ", "conclusion feels true", "conclusion feels false"),
+   caption = NULL,
+   label = "conclusion1",
+   linesep = "",
+   escape = FALSE,
+   booktabs = TRUE,
+   align = "lcc"
+) %>%
+  kable_styling(
+   bootstrap_options = c("hover"),
+   full_width = FALSE,
+   position = "center",
+   latex_options = c("HOLD_position", "repeat_header")
+  )
+```
+
 
 If the psychological data looked like this (or even a good approximation to this), we might feel safe in just trusting our gut instincts. That is, it'd be perfectly okay just to let scientists evaluate data based on their common sense, and not bother with all this murky statistics stuff.
 
 In a classic study, @Evans1983 ran an experiment looking at exactly this. What they found is that when pre-existing biases (i.e., beliefs) were in agreement with the structure of the data, everything went the way you'd hope:
 
-|          | conclusion feels true| conclusion feels false |
-|-------- |:--------:|:--------:|
-|argument is valid |92% say "valid"    |            |
-|argument is invalid|           |8% say "valid"     |
+```{r echo=FALSE}
+knitr::kable(
+  rbind(
+    c("argument is valid", "92\\% say \"valid\"", ""),
+    c("argument is invalid", " ", "8\\% say \"valid\"")
+  ),
+   col.names = c(" ", "conclusion feels true", "conclusion feels false"),
+   caption = NULL,
+   label = "conclusion2",
+   linesep = "",
+   escape = FALSE,
+   booktabs = TRUE,
+   align = "lcc"
+) %>%
+  kable_styling(
+   bootstrap_options = c("hover"),
+   full_width = FALSE,
+   position = "center",
+   latex_options = c("HOLD_position", "repeat_header")
+  )
+```
 
 Not perfect, but that's pretty good. But look what happens when our intuitive feelings about the truth of the conclusion run against the logical structure of the argument:
 
-|          | conclusion feels true| conclusion feels false |
-|-------- |:--------:|:--------:|
-|argument is valid |92% say "valid"    |**46% say "valid"**   |
-|argument is invalid|**92% say "valid"**  |8% say "valid"     |
+```{r echo=FALSE}
+knitr::kable(
+  rbind(
+    c("argument is valid", "92\\% say \"valid\"", "**46\\% say \"valid\"**"),
+    c("argument is invalid", "**92\\% say \"valid\"**", "8\\% say \"valid\"")
+  ),
+   col.names = c(" ", "conclusion feels true", "conclusion feels false"),
+   caption = NULL,
+   label = "conclusion3",
+   linesep = "",
+   escape = FALSE,
+   booktabs = TRUE,
+   align = "lcc"
+) %>%
+  kable_styling(
+   bootstrap_options = c("hover"),
+   full_width = FALSE,
+   position = "center",
+   latex_options = c("HOLD_position", "repeat_header")
+    )
+```
 
 Apparently, when people are presented with a strong argument that contradicts our pre-existing beliefs, we find it pretty hard to even perceive it to be a strong argument (people only did so 46% of the time). Even worse, when people are presented with a weak argument that agrees with our pre-existing biases, almost no-one can see that the argument is weak.
 
@@ -67,34 +120,55 @@ It's just *too easy* for us to "believe what we want to believe"; so if we want 
 
 In 1973, the University of California, Berkeley had some worries about the admissions of students into their postgraduate courses. Specifically, the thing that caused the problem was that the gender breakdown of their admissions, which looked like this:
 
-|   | Number of applicants | Percent admitted |
-|-------|:--------------------:|:----------------:|
-|Males |8442 |46% |
-|Females|4321 |35% |
+```{r echo=FALSE}
+knitr::kable(
+  rbind(
+    c("Males", "8442", "46%"),
+    c("Females", "4321", "35%")
+  ),
+   col.names = c(" ", "Number of applicants", "Percent admitted"),
+   caption = NULL,
+   label = "applicants",
+   linesep = "",
+   escape = TRUE,
+   booktabs = TRUE,
+   align = "lcc"
+) %>%
+  kable_styling(
+   bootstrap_options = c("hover"),
+   full_width = FALSE,
+   position = "center",
+   latex_options = c("HOLD_position", "repeat_header")
+    )
+```
 
 Given that there were nearly 13,000 applicants, a difference of 9% in admission rates between males and females is just way too big to be a coincidence. When people started looking more carefully at the admissions data [@Bickel1975] on a department by department basis, it turned out that most of the departments actually had a slightly *higher* success rate for female applicants than for male applicants. Table \@ref(tab:simpsontable) shows the admission figures for the six largest departments:
 
-```{r simpsontable, echo=FALSE, warning = FALSE}
-simpson <- cbind(c("A", "B", "C", "D", "E", "F"), 
-         c(825,560,325,417,191,272), 
-         c("62%","63%","37%","33%","28%","6%"),
-         c(108,25,593,375,393,341),
-         c("82%","68%","34%","35%","24%","7%"))
+```{r echo=FALSE, warning = FALSE}
+simpson <- cbind(c("A", "B", "C", "D", "E", "F"),
+         c(825, 560, 325, 417, 191, 272),
+         c("62%", "63%", "37%", "33%", "28%", "6%"),
+         c(108, 25, 593, 375, 393, 341),
+         c("82%", "68%", "34%", "35%", "24%", "7%"))
 
-
-library(kableExtra)
-knitr::kable(simpson, 
-    col.names = c("Department","Male Applicants", 
-        "Male Percent Admitted", "Female Applicants", 
-        "Female Percent admitted"), 
-        align="c", 
-        caption = "Admission figures for the six largest departments by gender", 
-        booktabs=TRUE
+knitr::kable(
+    simpson,
+    col.names = c("Department", "Male Applicants",
+        "Male Percent Admitted", "Female Applicants",
+        "Female Percent admitted"),
+   caption = "Admission figures for the six largest departments by gender",
+   label = "simpsontable",
+   linesep = "",
+   escape = TRUE,
+   booktabs = TRUE,
+   align = "lcc"
 ) %>%
-    kable_styling(latex_options = c(
-        "hold_position",
-        "repeat_header",
-        "scale_down"))
+  kable_styling(
+   bootstrap_options = c("hover"),
+   full_width = FALSE,
+   position = "center",
+   latex_options = c("HOLD_position", "repeat_header", "scale_down")
+    )
 ```
 
 Remarkably, most departments had a *higher* rate of admissions for females than for males! Yet the overall rate of admission across the university for females was *lower* than for males. How can this be? How can both of these statements be true at the same time?
@@ -105,7 +179,9 @@ In other words, what these data seem to be suggesting is that the female applica
 
 When doing research, there are *lots* of subtle, counterintuitive traps lying in wait for the unwary. Truth is sometimes cunningly hidden in the nooks and crannies of complicated data.
 
-```{r berkeley, echo=FALSE, fig.cap="The Berkeley 1973 college admissions data. This figure plots the admission rate for the 85 departments that had at least one female applicant, as a function of the percentage of applicants that were female. The plot is a redrawing of Figure 1 from [@Bickel1975]. Circles plot departments with more than 40 applicants; the area of the circle is proportional to the total number of applicants. The crosses plot department with fewer than 40 applicants.", fig.align="center"}
+(ref:berkeleyFigCap) The Berkeley 1973 college admissions data. This figure plots the admission rate for the 85 departments that had at least one female applicant, as a function of the percentage of applicants that were female. The plot is a redrawing of Figure 1 from [@Bickel1975]. Circles plot departments with more than 40 applicants; the area of the circle is proportional to the total number of applicants. The crosses plot department with fewer than 40 applicants.
+
+```{r berkeley, echo=FALSE, fig.cap="(ref:berkeleyFigCap)", fig.scap="The Berkeley 1973 college admissions data.", fig.align="center"}
 knitr::include_graphics("resources/image/berkeley.png")
 ```
 
