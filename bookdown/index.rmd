@@ -27,6 +27,8 @@ linkcolor: CSbluelight
 citecolor: CSbluelight
 toccolor: black
 link-citations: true
+geometry: a4paper, margin=1in, bindingoffset=0.5in, footskip=0.5in
+fontsize: 11pt
 ---
 
 ```{r setup, include=FALSE}
@@ -59,36 +61,21 @@ library(kableExtra)
 knitr::include_graphics("resources/bookcover/LSC_small.png")
 ```
 
-**First revised edition** (v1.1 published XX January 2023)
-
-Based on **Cogstat v2.3**
+**Revised edition** published XX January 2023. Aligns with **Cogstat v2.3**.
 
 To reference this book, please use the following citation (APA7 format):
 
 > Navarro, D., & Fodor, R. (2023). Learning Statistics with CogStat (Rev. ed.). \
 >        https://learningstatisticswithcogstat.com
 
-## Versions{.unnumbered}
+The online version of the book is updated regularly. The date of the last update is shown on the title page. The book features screenshots based on CogStat version 2.3.
 
-The online version of the book is updated regularly. The date of the last update is shown on the title page. The book features screenshots and result sets based on CogStat version 2.3.
+- *First edition* was published on 27 September 2022 (electronic).
+- Critical fixes applied (typos and minor errors) on 5 November 2022.
+- *Revised Edition* was published on XX January 2023 (electronic).
 
-- v1 *First edition* was published on 27 September 2022 (electronic).
-- v1.0.1 Critical fixes applied (typos and minor errors) on 5 November 2022.
-- v1.1 *First Revised Edition* was published on XX January 2023 (electronic).
 
-### What changed in *First Revised Edition*?{.unnumbered}
-
-- Chapters \@ref(autostat) and \@ref(cogstatintro) were amended and slightly expanded.
-- Chapter \@ref(researchdesign) was largely revised to make explanations and examples more accurate.
-- Chapter \@ref(exploringavariable) was largely revised to tie to other statistics textbooks, also focusing on differentiating between population and sample measures.
-- New: callout boxes added throughout the chapters to explain chart types and other concepts.
-- New: definitions and examples are now presented markedly in the text.
-- New: explanatory charts were added to the text.
-- Typos and minor errors were fixed all throughout the book.
- 
-Acknowledgements are due to Attila Krajcsi for his helpful notes as consulting editor for this version.
-
-## Author's note{.unnumbered}
+## Author's note for the *First Edition* {.unnumbered}
 
 This book is intended for psychology students and other beginners who are interested in learning statistics and want to use CogStat to perform their analyses. [CogStat](https://www.cogstat.org) is a statistics software written in Python by Attila Krajcsi^[Attila Krajcsi -- [Website](http://www.attilakrajcsi.hu) | [![](resources/image/orcid_16x16.png)](https://orcid.org/0000-0001-9792-9091) 0000-0001-9792-9091] and developed with the help of supporters. Its distinct advantage is automatic hypothesis test selection and chart creation with an APA-style output to suit the needs of psychology researchers and students.
 
@@ -97,6 +84,23 @@ This book is intended for psychology students and other beginners who are intere
 This book will always be a living thing. As CogStat expands and evolves, so will this book. If you have any suggestions, comments or questions, please feel free to reach out to me on [GitHub](https://github.com/robertfodor/lsc/issues).
 
 -- Robert
+
+## Changes in the *Revised Edition* {.unnumbered}
+
+#### Author's note {.unnumbered .unlisted}
+
+This edition brings in plenty of changes, well beyond 10% of the book, which should warrant, per publishing standards, for it to be called "Second Edition" instead of a "Revised Edition" of the first one. However, it sounds quite conceited considering I've done some of the work that really should've gone into the original edition in the first place. The main drive behind these edits was reflections on the material's usefulness and *accuracy*, since some explanations and wordings needed to be more robust to withstand scientific scrutiny, which Attila Krajcsi provided. I must thank him for his helpful notes as consulting editor for this version, not due to sheer obligation but on account of genuine appreciation. His feedback was essential, and while I spent quite some time defending most of my earlier decisions (some of which I still do), I had to accept that I simply couldn't have got it quite right the first time, and I shouldn't be too attached to the source material. I loved that the original was accessible and the opposite of stuffy, but I decided to cut down some of the chattiness and informality while aiming to make it scientifically more accurate and still accessible to students and other audiences. I consulted some open textbooks on the web and the textbooks I am studying at Ulster University. I hope that this version is a step in the right direction.
+
+-- Robert
+
+#### Changelog {.unnumbered .unlisted}
+- Chapters \@ref(autostat) and \@ref(cogstatintro) were amended and slightly expanded, and now they follow Chapter \@ref(researchdesign), so that the reader can better appreciate automatic statistical analysis.
+- Chapter \@ref(researchdesign) was largely revised to make explanations and examples more accurate.
+- Chapter \@ref(exploringavariable) was largely revised to tie to other statistics textbooks, also focusing on differentiating between population and sample measures.
+- New: callout boxes added throughout the chapters to explain chart types and other concepts.
+- New: definitions and examples are now presented markedly in the text.
+- New: explanatory charts were added to the text.
+- Typos and minor errors were fixed all throughout the book.
 
 
 ## Licensing{.unlisted .unnumbered}

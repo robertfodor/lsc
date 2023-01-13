@@ -1,0 +1,418 @@
+# (PART\*) INFERENTIAL STATISTICS{-}
+
+# Probability and distributions {#probability}
+
+A valuable part of statistics provides tools that let you make *inferences* about data. Once you start thinking about statistics in these terms -- that statistics are there to help us draw inferences from data -- you start seeing examples everywhere. For instance, here's a small extract from a newspaper article in the Sydney Morning Herald (30 Oct 2010):
+
+> "I have a tough job," the Premier said in response to a poll which found her government is now the most unpopular Labor administration in polling history, with a primary vote of just 23 per cent.
+
+This kind of remark is unremarkable in the papers or in everyday life, but let's consider what it entails. A polling company has conducted an extensive survey because they can afford it. Let's imagine that they called 1000 NSW voters at random, and 230 (23\%) of those claimed that they intended to vote for the ALP. For the 2010 Federal election, the Australian Electoral Commission reported 4,610,795 enrolled voters in NSW, so the opinions of the remaining 4,609,795 voters (about 99.98\% of voters) remain unknown to us. Even assuming that no one lied to the polling company, we can only say with 100\% confidence that the actual ALP primary vote is somewhere between 230/4610795 (about 0.005\%) and 4610025/4610795 (about 99.83\%). So, on what basis is it legitimate for the polling company, the newspaper, and the readership to conclude that the ALP primary vote is only about 23\%?
+
+The answer to the question is pretty obvious: if we call 1000 people at random, and 230 of them say they intend to vote for the ALP, then it seems very unlikely that these are the *only* 230 people out of the entire voting public who actually intend to do so. In other words, we assume that the data collected by the polling company is pretty representative of the population at large. But how representative? Would we be surprised to discover that the true ALP primary vote is actually 24\%? 29\%? 37\%? At this point, everyday intuition starts to break down a bit. No one would be surprised by 24\%, and everybody would be surprised by 37\%, but it's hard to say whether 29\% is plausible. We need more powerful tools than just looking at the numbers and guessing.
+
+**Inferential statistics** provides the tools we need to answer these questions. Since these questions lie at the heart of the scientific enterprise, they take up the lion's share of every introductory course on statistics and research methods. However, the theory of statistical inference is built on top of **probability theory**. And it is to probability theory that we must now turn. This discussion of probability theory is basically background: there's not a lot of statistics per se in this chapter, and you don't need to understand this material in as much depth as in the other chapters in this part of the book. Nevertheless, because probability theory does underpin so much of statistics, it's worth covering some of the basics. 
+
+## How are probability and statistics different?{#probabilitystats}
+
+Before discussing probability theory, it's helpful to consider the relationship between probability and statistics. The two disciplines are closely related, but they're not identical. Probability theory is "the doctrine of chances". It's a branch of mathematics that tells you how often different events will happen. For example, all of these questions are things you can answer using probability theory:
+
+- What are the chances of a fair coin coming up heads 10 times in a row?
+- If we roll two six-sided dice, how likely is it that we'll roll two sixes?
+- How likely is it that five cards drawn from a perfectly shuffled deck will all be hearts?
+- What are the chances that we'll win the lottery?
+
+Notice that all of these questions have something in common. In each case the "truth of the world" is known, and my question relates to the "what kind of events" will happen. In the first question, we *know* that the coin is fair, so there's a 50\% chance that any individual coin flip will come up heads. In the second question, we *know* that the chance of rolling a 6 on a single die is 1 in 6. In the third question, we *know* that the deck is shuffled properly. And in the fourth question, we *know* that the lottery follows specific rules. You get the idea. The critical point is that probabilistic questions start with a known **_model_** of the world, and we use that model to do some calculations. The underlying model can be quite simple. For instance, in the coin flipping example, we can write down the model like this:
+$$
+P(\mbox{heads}) = 0.5
+$$
+which you can read as "the probability of heads is 0.5". As we'll see later, in the same way, percentages are numbers that range from 0\% to 100\%, and probabilities are just numbers that range from 0 to 1. When using this probability model to answer the first question, we don't know exactly what will happen. Maybe we'll get 10 heads like the question says. But perhaps we'll get three heads. That's the key thing: in probability theory, the *model* is known, but the *data* are not.
+
+So that's probability. What about statistics? Statistical questions work the other way around. In statistics, we *do not* know the truth about the world. All we have is the data from which we want to *learn* the truth about the world. Statistical questions tend to look more like these:
+
+- If a friend flips a coin 10 times and gets 10 heads, are they playing a trick?
+- If five cards off the top of the deck are all hearts, how likely is it that the deck was shuffled? 
+- If the lottery commissioner's spouse wins the lottery, how likely is it that the lottery was rigged?
+
+This time around, the only thing we have are data. What we *know* is that we saw a friend flip the coin 10 times, and it came up heads every time. And what we want to **infer** is whether or not we should conclude that what we just saw was actually a fair coin being flipped 10 times in a row, or whether we should suspect that the friend is playing a trick on us. The data we have look like this:
+```
+H H H H H H H H H H H
+```
+and what we're trying to do is work out which "model of the world" we should put my trust in. If the coin is fair, then the model we should adopt is one that says that the probability of heads is 0.5; that is, $P(\mbox{heads}) = 0.5$. If the coin is not fair, then we should conclude that the probability of heads is *not* 0.5, which we would write as $P(\mbox{heads}) \neq 0.5$. In other words, the statistical inference problem is to figure out which of these probability models is right. Clearly, the statistical question isn't the same as the probability question, but they're deeply connected to one another. Because of this, a good introduction to statistical theory will start with a discussion of what probability is and how it works.
+
+## What does probability mean?{#probabilitymeaning}
+
+Let's start with the first of these questions. What is "probability"? It might seem surprising to you, but while statisticians and mathematicians (mostly) agree on what the *rules* of probability are, there's much less of a consensus on what the word really *means*. It seems weird because we're all very comfortable using words like "chance", "likely", "possible", and "probable", and it doesn't seem like it should be a complicated question to answer. If you had to explain "probability" to a five-year-old, you could do a pretty good job. But if you've ever had that experience in real life, you might walk away from the conversation feeling like you didn't quite get it right and that (like many everyday concepts) it turns out that you don't *really* know what it's all about. 
+
+Let's suppose we want to bet on a soccer game between two teams of robots, *Arduino Arsenal* and *C Milan*. After thinking about it, we decide that there is an 80\% probability that *Arduino Arsenal* winning. What do we mean by that? Here are three possibilities:
+
+- They're robot teams, so we can make them play over and over again, and if we did that, *Arduino Arsenal* would win 8 out of every 10 games on average.
+- For any given game, we would only agree that betting on this game is only "fair" if a \$1 bet on *C Milan* gives a \$5 payoff (i.e. we get \$1 back plus a \$4 reward for being correct), as would a \$4 bet on *Arduino Arsenal* (i.e., \$4 bet plus a \$1 reward). 
+- Our subjective "belief" or "confidence" in an *Arduino Arsenal* victory is four times as strong as our belief in a *C Milan* victory.
+
+Each of these seems sensible. However, they're not identical, and not every statistician would endorse all of them. The reason is that there are different statistical ideologies (yes, really!) and depending on which one you subscribe to, you might say that some of those statements are meaningless or irrelevant. In this section, we give a brief introduction to the two main approaches that exist in the literature. These are by no means the only approaches, but they're the two big ones.
+
+
+### The frequentist view
+
+The first of the two major approaches to probability, and the more dominant one in statistics, is referred to as the **_frequentist view_**, which defines probability as a **_long-run frequency_**. Suppose we were to try flipping a fair coin over and over again. By definition, this is a coin that has $P(H) = 0.5$. What might we observe? One possibility is that the first 20 flips might look like this:
+```
+T,H,H,H,H,T,T,H,H,H,H,T,H,H,T,T,T,T,T,H
+```
+In this case, 11 of these 20 coin flips (55\%) came up heads. Now suppose that we'd been keeping a running tally of the number of heads (which we'll call $N_H$) that we've seen, across the first $N$ flips, and calculate the proportion of heads $N_H / N$ every time. Here's what we'd get:
+
+
+```{r echo=FALSE}
+knitr::kable(data.frame(stringsAsFactors=FALSE,
+`number of flips` = c(1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10, 11 , 12 , 13 , 14 , 15 , 16 , 17 , 18 , 19 , 20),
+`number of heads` = c( 0 , 1 , 2 , 3 , 4 , 4 , 4 , 5 , 6 , 7,  8  ,  8 ,  9 , 10 , 10 , 10 , 10 , 10 , 10 , 11 ), 
+`proportion` = c( .00 , .50 , .67 , .75 , .80 , .67 , .57 , .63 , .67 , .70, .73 , .67 , .69 , .71 , .67 ,  .63 , .59 , .56 , .53 , .55)),
+col.names = c("Number of flips", "Number of heads", "Proportion of heads"), align="ccc",
+booktabs = TRUE, format = "markdown")
+```
+
+Notice that at the start of the sequence, the *proportion* of heads fluctuates wildly, starting at .00 and rising as high as .80. Later on, one gets the impression that it dampens out a bit, with more and more of the values actually being pretty close to the "right" answer of .50. This is the frequentist definition of probability in a nutshell: flip a fair coin over and over again, and as $N$ grows large (approaches infinity, denoted $N\rightarrow \infty$), the proportion of heads will converge to 50\%. There are some subtle technicalities that mathematicians care about, but qualitatively speaking, that's how the frequentists define probability. Unfortunately, we don't have an infinite number of coins, or the infinite patience required to flip a coin an infinite number of times. However, we do have a computer, and computers excel at mindless repetitive tasks. So let's ask a computer to simulate flipping a coin 1000 times, and then draw a picture of what happens to the proportion $N_H / N$ as $N$ increases.  The results are shown in Figure \@ref(fig:frequentistprobability). As you can see, the *proportion of observed heads* eventually stops fluctuating, and settles down; when it does, the number at which it finally settles is the true probability of heads.
+
+```{r frequentistprobability, fig.cap="An illustration of how frequentist probability works. If you flip a fair coin over and over again, the proportion of heads that you've seen eventually settles down, and converges to the true probability of 0.5. Each panel shows four different simulated experiments: in each case, we pretend we flipped a coin 1000 times, and kept track of the proportion of flips that were heads as we went along. Although none of these sequences actually ended up with an exact value of .5, if we'd extended the experiment for an infinite number of coin flips they would have.", echo=FALSE, fig.align="center", fig.align="center"}
+
+emphCol <- rgb(0,0,1)
+emphColLight <- rgb(.5,.5,1)
+emphGrey <- grey(.5)
+
+eps <- TRUE
+colour <- TRUE
+
+	width <- 12
+	height <- 8
+
+	def.par <- par(no.readonly = TRUE)
+	layout( matrix(1:4,2,2) )
+	for( i in 1:4 ) {
+		
+		X <- as.numeric( runif(1000) > .5 )
+		X <- cumsum(X) / (1:1000)
+		plot( 1:1000, X, type="l", ylim=c(.3,.7), col=ifelse(colour,emphCol,emphGrey),
+			xlab = "Number of Flips", ylab = "Proportion of Heads", lwd=3
+			) 
+		abline(h=.5,lty=2,col=emphGrey,lwd=2)
+		
+	}
+	par(def.par)#- reset to default
+
+```
+
+
+The frequentist definition of probability has some desirable characteristics. Firstly, it is objective: the probability of an event is *necessarily* grounded in the world. The only way that probability statements can make sense is if they refer to (a sequence of) events that occur in the physical universe.^[This doesn't mean that frequentists can't make hypothetical statements, of course; it's just that if you want to make a statement about probability, then it must be possible to redescribe that statement in terms of a sequence of potentially observable events, and the relative frequencies of different outcomes that appear within that sequence.] Secondly, it is unambiguous: any two people watching the same sequence of events unfold, trying to calculate the probability of an event, must inevitably come up with the same answer. However, it also has undesirable characteristics. Firstly, infinite sequences don't exist in the physical world. Suppose you picked up a coin from your pocket and started to flip it. Every time it lands, it impacts the ground. Each impact wears the coin down a bit; eventually, the coin will be destroyed. So, one might ask whether it really makes sense to pretend that an "infinite" sequence of coin flips is even a meaningful concept or an objective one. We can't say that an "infinite sequence" of events is a real thing in the physical universe because the physical universe doesn't allow infinite anything. More seriously, the frequentist definition has a narrow scope. There are many things out there that human beings are happy to assign a probability to in everyday language but cannot (even in theory) be mapped onto a hypothetical sequence of events. For instance, if a meteorologist comes on TV and says, "the probability of rain in Adelaide on 2 November 2048 is 60\%", we humans are happy to accept this. But it's not clear how to define this in frequentist terms. There's only one city of Adelaide, and only 2 November 2048. There's no infinite sequence of events here, just a once-off thing. Frequentist probability genuinely *forbids* us from making probability statements about a single event. From the frequentist perspective, it will either rain tomorrow or not; there is no "probability" that attaches to a single non-repeatable event. Now, it should be said that there are some very clever tricks that frequentists can use to get around this. One possibility is that what the meteorologist means is something like this: "There is a category of days for which we predict a 60\% chance of rain; if we look only across those days for which we make this prediction, then on 60\% of those days it will actually rain". It's very weird and counterintuitive to think of it this way, but you do see frequentists do this sometimes. And it *will* come up later in this book (see Chapter \@ref(ci)).
+
+### The Bayesian view
+
+The **Bayesian view** of probability is often called the *subjectivist view*, and it is a minority view among statisticians but one that has been steadily gaining traction for the last several decades. There are many flavours of Bayesianism, making it hard to say what "the" Bayesian view is. The most common way of thinking about subjective probability is to define the probability of an event as the **degree of belief** that an intelligent and rational agent assigns to the truth of that event. From that perspective, probabilities don't exist in the world but rather in the thoughts and assumptions of people and other intelligent beings.
+However, for this approach to work, we need some way of operationalising the "degree of belief". One way you can do this is to formalise it in terms of "rational gambling", though there are many other ways. Suppose that we believe that there's a 60\% probability of rain tomorrow. If someone offers us a bet: if it rains tomorrow, then we win \$5, but if it doesn't rain, then we lose \$5. Clearly, from our perspective, this is a pretty good bet. On the other hand, if we think the probability of rain is only 40\%, then it's a bad bet. Thus, we can operationalise the notion of a "subjective probability" in terms of what bets we're willing to accept. 
+
+What are the advantages and disadvantages of the Bayesian approach? The main advantage is that it allows you to assign probabilities to any event you want to. You don't need to be limited to those events that are repeatable. The main disadvantage (to many people) is that we can't be purely objective -- specifying a probability requires us to specify an entity with the relevant degree of belief. This entity might be a human, an alien, a robot, or even a statistician, but there has to be an intelligent agent out there that believes in things. To many people, this is uncomfortable: it seems to make probability arbitrary. While the Bayesian approach does require that the agent in question be rational (i.e., obey the rules of probability), it does allow everyone to have their own beliefs; I can believe the coin is fair, and you don't have to, even though we're both rational. The frequentist view doesn't allow any two observers to attribute different probabilities to the same event: when that happens, then at least one of them must be wrong. The Bayesian view does not prevent this from occurring. Two observers with different background knowledge can legitimately hold different beliefs about the same event. In short, where the frequentist view is sometimes considered to be too narrow (forbids lots of things that that we want to assign probabilities to), the Bayesian view is sometimes thought to be too broad (allows too many differences between observers).
+
+### What's the difference? And who is right?
+
+Now that you've seen these two views independently, it's useful to make sure you can compare them. Go back to the hypothetical robot soccer game at the start of the section. What would a frequentist and a Bayesian say about these three statements? Which statement would a frequentist say is the correct definition of probability? Which one would a Bayesian do? Would some of these statements be meaningless to a frequentist or a Bayesian? If you've understood the two perspectives, you should have some sense of how to answer those questions.
+
+Okay, assuming you understand the difference, you might be wondering which of them is *right*? Honestly, we don't know that there is a right answer. As far as we can tell, there's nothing mathematically incorrect about the way frequentists think about sequences of events, and there's nothing mathematically incorrect about the way that Bayesians define the beliefs of a rational agent. In fact, when you dig down into the details, Bayesians and frequentists actually agree about a lot of things. Many frequentist methods lead to decisions that Bayesians agree a rational agent would make. Many Bayesian methods have very good frequentist properties. 
+
+Consider Sir Ronald Fisher, one of the towering figures of 20th-century statistics and a vehement opponent of all things Bayesian, whose paper on the mathematical foundations of statistics referred to Bayesian probability as "an impenetrable jungle [that] arrests progress towards precision of statistical concepts" @Fisher1922b. Or the psychologist Paul Meehl, who suggests that relying on frequentist methods could turn you into "a potent but sterile intellectual rake who leaves in his merry path a long train of ravished maidens but no viable scientific offspring" @Meehl1967. The history of statistics, as you might gather, is not devoid of entertainment.
+
+In any case, while Danielle personally prefers the Bayesian view, the majority of statistical analyses are based on the frequentist approach. My reasoning is pragmatic: the goal of this book is to cover roughly the same territory as a typical undergraduate stats class in psychology, and if you want to understand the statistical tools used by most psychologists, you'll need a good grasp of frequentist methods. We promise you that this isn't a wasted effort. Even if you end up wanting to switch to the Bayesian perspective, you really should read through at least one book on the "orthodox" frequentist view. Every now and then, we'll add some commentary from a Bayesian point of view, and we'll revisit the topic in more depth in Chapter \@ref(bayes). 
+ 
+ 
+## Basic probability theory{#basicprobability}
+
+Although there are ideological arguments between Bayesians and frequentists, it turns out that people mostly agree on the rules that probabilities should obey. There are lots of different ways of arriving at these rules. The most commonly used approach is based on the work of Andrey Kolmogorov, one of the great Soviet mathematicians of the 20th century. Without going into a lot of detail, we'll try to give you a sense of how it works.
+
+Let's assume we own five pairs of pants: three pairs of jeans, the bottom half of a suit, and a pair of tracksuit pants. Let's call them $X_1$, $X_2$, $X_3$, $X_4$ and $X_5$. Now, on any given day, we pick out exactly one pair of pants. If we were to describe this situation using the language of probability theory, we would refer to each pair of pants (i.e., each $X$) as an **elementary event**. The key characteristic of elementary events is that every time we make an observation (e.g., every time we put on a pair of pants), then the outcome will be one and only one of these events. As said, we only wear exactly one pair of pants, so it satisfies this constraint. Similarly, the set of all possible events is called a **sample space**.
+
+Okay, now that we have a sample space (a wardrobe) built from lots of possible elementary events (pants), we want to assign a **probability** of one of these elementary events. For an event $X$, the probability of that event $P(X)$ is a number that lies between 0 and 1. The bigger the value of $P(X)$, the more likely the event will occur. So, for example, if $P(X) = 0$, it means the event $X$ is impossible (i.e., we never wear those pants). On the other hand, if $P(X) = 1$ it means that event $X$ is certain to occur (i.e., we always wear those pants). For probability values in the middle, it means that we sometimes wear those pants. For instance, if $P(X) = 0.5$, it means that we wear those pants half of the time. 
+
+At this point, we're almost done. The last thing we need to recognise is that "something always happens". Every time we put on pants, we really do end up wearing pants (crazy, right?). What this somewhat trite statement means, in probabilistic terms, is that the probabilities of the elementary events need to add up to 1. This is known as the **law of total probability**. More importantly, if these requirements are satisfied, then we have a **probability distribution**. For example, this is an example of a probability distribution:
+
+```{r echo=FALSE}
+library(kableExtra)
+knitr::kable(data.frame(stringsAsFactors=FALSE,
+`Which.pants` = c( "Label" , "Probability" ), 
+`Blue.jeans` = c( "$X_1$" , "$P(X_1) = .5$" ),
+`Grey.jeans` = c( "$X_2$ ", "$P(X_2) = .3$ "),
+`Black.jeans` = c( "$X_3$ ", "$P(X_3) = .1$" ),
+`Black.suit` = c( "$X_4$" , "$P(X_4) = 0$ "),
+`Blue.tracksuit` = c( "$X_5$ ", "$P(X_5) = .1$")),
+col.names = c( "" , "Blue jeans" , "Grey jeans" , "Black jeans" , "Black suit" , "Blue tracksuit" ),
+escape = FALSE, booktabs = TRUE) %>%
+	kable_styling(position = "center")
+```
+
+Each of the events has a probability that lies between 0 and 1, and if we add up the probability of all events, they sum to 1, as shown in Figure \@ref(fig:pantsprob). And at this point, we've all achieved something. You've learned what probability distribution is.
+
+```{r pantsprob, fig.cap="A visual depiction of the \"pants\" probability distribution. There are five \"elementary events\", corresponding to the five pairs of pants. Each event has some probability of occurring: this probability is a number between 0 to 1. The sum of these probabilities is 1.", echo=FALSE, fig.align="center"}
+
+
+probabilities <- c( .5, .3, .1, 0, .1)
+ eventNames <- c( "Blue jeans", "Grey jeans", "Black jeans", 
+ "Black suit", "Blue track" )
+ 
+ # draw the plot
+ barplot( 
+ height= probabilities, 
+ xlab = "Event",
+ ylab = "Probability of event",
+ names.arg = eventNames,
+ density = 10,
+ col = ifelse(colour,emphCol,emphGrey)
+ )
+```
+
+The only other thing that needs pointing out is that probability theory allows you to talk about **non-elementary events** as well as elementary ones. The easiest way to illustrate the concept is with an example. In the pants example, it's legitimate to refer to the probability that we wear jeans. In this scenario, the "We wear jeans" event is said to have happened as long as the elementary event that actually did occur is one of the appropriate ones; in this case "blue jeans", "black jeans", or "grey jeans". In mathematical terms, we defined the "jeans" event $E$ to correspond to the set of elementary events $(X_1, X_2, X_3)$. If any of these elementary events occurs, then $E$ is also said to have occurred. Having decided to write down the definition of the $E$ this way, it's pretty straightforward to state what the probability $P(E)$ is: we just add everything up. In this particular case
+$$
+P(E) = P(X_1) + P(X_2) + P(X_3)
+$$ 
+and, since the probabilities of blue, grey and black jeans respectively are .5, .3 and .1, the probability that we wear jeans is equal to .9. 
+
+At this point, you might be thinking that this is all terribly obvious and simple, and you'd be right. All we've done is wrap some basic mathematics around a few common sense intuitions. However, from these simple beginnings, it's possible to construct some extremely powerful mathematical tools. Without going into the details in this book, we list -- in Table \@ref(tab:probrules) -- some of the other rules that probabilities satisfy. These rules can be derived from the simple assumptions that we've outlined above.
+
+```{r probrules, echo=FALSE}
+library(kableExtra)
+knitr::kable(data.frame(stringsAsFactors=FALSE,
+English = c("Not $A$", "$A$ or $B$", "$A$ and $B$"),
+Notation = c("$P(\\neg A)$", "$P(A \\cup B)$", "$P(A \\cap B)$"),
+NANA = c("=", "=", "="),
+Formula = c("$1-P(A)$", "$P(A) + P(B) - P(A \\cap B)$", "$P(A|B) P(B)$")),
+caption = "Some basic rules that probabilities must satisfy. You don't really need to know these rules in order to understand the analyses that we'll talk about later in the book, but they are important if you want to understand probability theory a bit more deeply.",
+col.names = c("English", "Notation", "", "Formula"),
+escape = FALSE, booktabs = TRUE) %>%
+	kable_styling(latex_options = c("hold_position"), position = "center")
+```
+
+## Distributions{#distributions}
+
+As you might imagine, probability distributions vary enormously, and there's an enormous range of distributions. However, they aren't all equally important. In fact, the vast majority of the content in this book relies on one of five distributions: the binomial distribution, the normal distribution, the $t$ distribution, the $\chi^2$ ("chi-square") distribution and the $F$ distribution. Given this, the next few sections will briefly introduce all five of these, paying special attention to the binomial and the normal.
+
+### The binomial distribution{#binomial}
+
+The theory of probability originated in an attempt to describe how games of chance work. Hence, it seems fitting that our discussion of the **binomial distribution** should involve a discussion of rolling dice and flipping coins. Let's imagine a simple "experiment": we're holding 20 identical six-sided dice. There's a picture of a skull on one face of each die; the other five faces are all blank. If we roll all 20 dice, what's the probability of getting exactly 4 skulls? Assuming that the dice are fair, we know that the chance of any one die coming up skulls is 1 in 6; to say this another way, the skull probability for a single die is approximately $0.167$. This is enough information to answer our question, so let's have a look at how it's done. 
+
+As usual, we'll want to introduce some names and some notation. We'll let $N$ denote the number of dice rolls in our experiment, which is often referred to as the **size parameter** of our binomial distribution. We'll also use $\theta$ to refer to the probability that a single die comes up skulls, a quantity that is usually called the **success probability** of the binomial.^[Note that the term "success" is pretty arbitrary and doesn't actually imply that the outcome is something to be desired. If $\theta$ referred to the probability that any one passenger gets injured in a bus crash, it is still called the success probability.] Finally, we'll use $X$ to refer to the results of our experiment, namely the number of skulls we get when rolling the dice. Since the actual value of $X$ is due to chance, we refer to it as a **random variable**. In any case, now that we have all this terminology and notation, we can use it to state the problem a little more precisely. The quantity that we want to calculate is the probability that $X = 4$ given that we know that $\theta = .167$ and $N=20$. The general "form" of the thing could be written as 
+$$
+P(X \ | \ \theta, N)
+$$
+and we're interested in the special case where $X=4$, $\theta = 0.167$ and $N=20$. 
+There's only one more piece of notation. If we want to say that $X$ is generated randomly from a binomial distribution with parameters $\theta$ and $N$, the notation is as follows:
+$$
+X \sim \mbox{Binomial}(\theta, N)
+$$ 
+
+Yeah, yeah. I know what you're thinking: notation, notation, notation. Really, who cares? Very few readers of this book are here for the notation, so we should probably move on and talk about how to use the binomial distribution. We've included the formula for the binomial distribution in Table \@ref(tab:distformulas), since some readers may want to play with it themselves, but since most people probably don't care that much and because we don't need the formula in this book, let's not talk about it in any detail. Instead, let's just see what the binomial distribution looks like. To that end, Figure \@ref(fig:binomial1) plots the binomial probabilities for all possible values of $X$ for our dice rolling experiment, from $X=0$ (no skulls) all the way up to $X=20$ (all skulls). Note that this is basically a bar chart, and is no different to the "pants probability" plot in Figure \@ref(fig:pantsprob). On the horizontal axis we have all the possible events, and on the vertical axis we can read off the probability of each of those events. So, the probability of rolling 4 skulls out of 20 times is about 0.20 (the actual answer is 0.2022036). In other words, you'd expect that to happen about 20\% of the times you repeated this experiment.
+
+```{r distformulas, echo=FALSE, fig.align="center"}
+knitr::kable(data.frame(stringsAsFactors=FALSE, Binomial = c("$P(X | \\theta, N) = \\displaystyle\\frac{N!}{X! (N-X)!} \\theta^X (1-\\theta)^{N-X}$"), 
+Normal = c("$p(X | \\mu, \\sigma) = \\displaystyle\\frac{1}{\\sqrt{2\\pi}\\sigma} \\exp \\left( -\\frac{(X - \\mu)^2}{2\\sigma^2} \\right)$ ")), caption = "Formulas for the binomial and normal distributions. We don't use these formulas for anything in this book, but they're pretty important for more advanced work. In the equation for the binomial, $X!$ is the factorial function (i.e., multiply all whole numbers from 1 to $X$), and for the normal distribution \"exp\" refers to the exponential function, which we discussed in the Chapter on Data Handling. If these equations don't make a lot of sense to you, don't worry too much about them.", escape = FALSE, booktabs = TRUE) 
+
+```
+
+
+```{r binomial1, fig.cap="The binomial distribution with size parameter of $N=20$ and an underlying success probability of $theta = 1/6$. Each vertical bar depicts the probability of one specific outcome (i.e., one possible value of $X$). Because this is a probability distribution, each of the probabilities must be a number between 0 and 1, and the heights of the bars must sum to 1 as well.", echo=FALSE, fig.align="center"}
+# plots the three examples of a binomial distribution
+ 
+ # needed for printing
+ width <- 8
+ height <- 6
+ 
+ # function to produce a styled binomial plot
+ binomPlot <- function( n,p, ... ) {
+ 
+ # probabilities of each outcome
+ out <- 0:n
+ prob <- dbinom( x=out, size=n, prob=p )
+ 
+ # plot
+ plot( 
+ out, prob, type="h", lwd=3, ylab="Probability", 
+ frame.plot=FALSE, col=ifelse(colour,emphCol,"black"), ...
+ )
+ 
+ }
+ 
+ # skulls image...
+ binomPlot( n=20, p=1/6, xlab="Number of skulls observed" )
+
+
+```
+
+### The normal distribution{#normal}
+
+While the binomial distribution is conceptually the simplest distribution to understand, it's not the most important one. That particular honour goes to the **normal distribution**, which is also referred to as "the bell curve" or "Gaussian distribution". A normal distribution is described using two parameters, the mean of the distribution $\mu$ and the standard deviation of the distribution $\sigma$. The notation that we sometimes use to say that a variable $X$ is normally distributed is as follows:
+$$
+X \sim \mbox{Normal}(\mu,\sigma)
+$$
+Of course, that's just notation. It doesn't tell us anything relevant about the normal distribution itself. As was the case with the binomial distribution, the formula for the normal distribution in this book is tucked away in Table \@ref(tab:distformulas).
+
+Instead of focusing on the maths, let's try to understand what it means for a variable to be normally distributed. To that end, have a look at Figure \@ref(fig:normdist), which plots a normal distribution with mean $\mu = 0$ and standard deviation $\sigma = 1$. You can see where the name "bell curve" comes from: it looks a bit like a bell. Notice that, unlike the plots to illustrate the binomial distribution, the picture of the normal distribution in Figure \@ref(fig:normdist) shows a smooth curve instead of "histogram-like" bars. This isn't an arbitrary choice: the normal distribution is *continuous*, whereas the binomial is *discrete*. For instance, in the die rolling example from the last section, it was possible to get 3 skulls or 4 skulls, but impossible to get 3.9 skulls. The figures in the previous section reflected this fact: in Figure \@ref(fig:binomial1), for instance, there's a bar located at $X=3$ and another one at $X=4$, but there's nothing in between. Continuous quantities don't have this constraint. For instance, suppose we're talking about the weather. The temperature on a pleasant Spring day could be 23 degrees, 24 degrees, 23.9 degrees, or anything in between since temperature is a continuous variable, and so a normal distribution might be quite appropriate for describing Spring temperatures.^[In practice, the normal distribution is so handy that people tend to use it even when the variable isn't actually continuous. As long as there are enough categories (e.g., Likert scale responses to a questionnaire), it's pretty standard practice to use the normal distribution as an approximation. This works out much better in practice than you'd think.] 
+
+(ref:normdistcap) The normal distribution with mean $mu = 0$ and standard deviation $sigma = 1$. The $x$-axis corresponds to the value of some variable, and the $y$-axis tells us something about how likely we are to observe that value. However, notice that the $y$-axis is labelled "Probability Density" and not "Probability". There is a subtle and somewhat frustrating characteristic of continuous distributions that makes the $y$ axis behave a bit oddly: the height of the curve here isn't actually the probability of observing a particular $x$ value. On the other hand, it *is* true that the heights of the curve tells you which $x$ values are more likely (the higher ones!).
+
+```{r normdist, fig.cap=paste("(ref:normdistcap)"), echo=FALSE, fig.align="center"}
+# plots the standard normal
+ 
+ # needed for printing
+ width <- 8
+ height <- 6
+ fileName <- "standardNormal.eps" 
+ 
+ # draw the plot
+ xval <- seq(-3,3,.01)
+ yval <- dnorm( xval, 0, 1)
+ plot( xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
+ frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
+ )
+
+```
+
+With this in mind, let's see if we can get an intuition for how the normal distribution works. Firstly, let's have a look at what happens when we play around with the parameters of the distribution. To that end, Figure \@ref(fig:normmean) plots normal distributions that have different means, but have the same standard deviation. As you might expect, all of these distributions have the same "width". The only difference between them is that they've been shifted to the left or to the right. In every other respect, they're identical.
+
+In contrast, if we increase the standard deviation while keeping the mean constant, the peak of the distribution stays in the same place, but the distribution gets wider, as you can see in Figure \@ref(fig:normsd). Notice, though, that when we widen the distribution, the height of the peak shrinks. This has to happen: in the same way that the heights of the bars that we used to draw a discrete binomial distribution have to *sum* to 1, the total *area under the curve* for the normal distribution must equal 1. 
+
+```{r normmean, fig.cap="An illustration of what happens when you change the mean of a normal distribution. The solid line depicts a normal distribution with a mean of $mu=4$. The dashed line shows a normal distribution with a mean of $mu=7$. In both cases, the standard deviation is $sigma=1$. Not surprisingly, the two distributions have the same shape, but the dashed line is shifted to the right.", echo=FALSE, fig.align="center"}
+ # draw the plot
+ xval <- seq(0,11,.01)
+ yval.1 <- dnorm( xval, 4, 1)
+ yval.2 <- dnorm( xval, 7, 1)
+ plot( xval, yval.1, lwd=3, ylab="Probability Density", xlab="Observed Value",
+ frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
+ )
+ lines( xval, yval.2, lwd=3, col=ifelse(colour,emphCol,"black"), lty=2 )
+
+```
+
+
+```{r normsd, fig.cap="An illustration of what happens when you change the the standard deviation of a normal distribution. Both distributions plotted in this figure have a mean of $mu = 5$, but they have different standard deviations. The solid line plots a distribution with standard deviation $sigma=1$, and the dashed line shows a distribution with standard deviation $sigma = 2$. As a consequence, both distributions are \"centred\" on the same spot, but the dashed line is wider than the solid one.", echo=FALSE, fig.align="center"}
+# draw the plot
+ xval <- seq(0,10,.01)
+ yval.1 <- dnorm( xval, 5, 1)
+ yval.2 <- dnorm( xval, 5, 2)
+ plot( xval, yval.1, lwd=3, ylab="Probability Density", xlab="Observed Value",
+ frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
+ )
+ lines( xval, yval.2, lwd=3, col=ifelse(colour,emphCol,"black"), lty=2 )
+
+```
+
+Before moving on, there is one important characteristic of the normal distribution to point out. Irrespective of the actual mean and standard deviation, 68.3\% of the area falls within 1 standard deviation of the mean. Similarly, 95.4\% of the distribution falls within 2 standard deviations of the mean, and 99.7\% of the distribution is within 3 standard deviations. This idea is illustrated in Figures \@ref(fig:sdnorm1) and \@ref(fig:sdnorm2).
+
+```{r sdnorm1, fig.cap="The area under the curve tells you the probability that an observation falls within a particular range. The solid lines plot normal distributions with mean $mu=0$ and standard deviation $sigma=1$. The shaded areas illustrate *areas under the curve* for two important cases. On the left, we can see that there is a 68.3% chance that an observation will fall within one standard deviation of the mean. On the right, we see that there is a 95.4% chance that an observation will fall within two standard deviations of the mean", echo=FALSE}
+
+par(mfrow=c(1,2))
+
+ plotOne <- function( a,b ) {
+ plot.new()
+ w<-4
+ plot.window( xlim = c(-w,w), ylim = c(0,.4))
+ xval <- seq( max(a,-w),min(b,w),.01)
+ yval <- dnorm(xval,0,1)
+ end <- length(xval)
+ polygon( c(xval[1],xval,xval[end]), 
+ c(0,yval,0),
+ col=ifelse(colour,emphCol,"black"),
+ density = 10 
+ )
+ xval <- seq(-w,w,.01)
+ yval <- dnorm( xval, 0, 1) 
+ lines( xval,yval, lwd=2, col="black" )
+ axis( side=1, at=-w:w )
+ area <- abs(pnorm(b,0,1)-pnorm(a,0,1))
+ title( main= paste("Shaded Area = ",round(area*100,1),"%", sep=""), font.main=1 )
+ 
+ }
+ 
+
+plotOne(-1,1)
+plotOne(-2,2)
+
+par(mfrow=c(1,1))
+
+```
+
+
+```{r sdnorm2, fig.cap="Two more examples of the *area under the curve idea*. There is a 15.9% chance that an observation is one standard deviation below the mean or smaller (left), and a 34.1% chance that the observation is greater than one standard deviation below the mean but still below the mean (right). Notice that if you add these two numbers together you get 15.9% + 34.1% = 50%. For normally distributed data, there is a 50% chance that an observation falls below the mean. And of course that also implies that there is a 50% chance that it falls above the mean.", echo=FALSE}
+
+par(mfrow=c(1,2))
+plotOne(-1,0)
+plotOne(-50,-1)
+par(mfrow=c(1,1))
+```
+
+
+### Probability density{#density}
+
+There's something we missed throughout the discussion of the normal distribution, something that some introductory textbooks omit completely. Fortunately, it's not something that you need to understand at a deep level in order to do basic statistics: rather, it's something that starts to become important later on when you move beyond the basics. So, if it doesn't make complete sense, don't worry: try to make sure that you follow the gist of it.
+
+There have been one or two things that don't quite make sense. Perhaps you noticed that the $y$-axis in these figures is labelled "Probability Density" rather than density. Maybe you noticed that we used $p(X)$ instead of $P(X)$ when giving the formula for the normal distribution.
+
+Let us spend a little time thinking about what it really *means* to say that $X$ is a continuous variable. Let's say we're talking about the temperature outside. The thermometer tells me it's 23 degrees, but we know that's not really true. It's not *exactly* 23 degrees. Maybe it's 23.1 degrees. But we know that that's not really true either, because it might actually be 23.09 degrees. But, we know that... well, you get the idea. The tricky thing with genuinely continuous quantities is that you never really know *exactly* what they are.
+
+Now think about what this implies when we talk about probabilities. Suppose that tomorrow's maximum temperature is sampled from a normal distribution with mean 23 and standard deviation 1. What's the probability that the temperature will be *exactly* 23 degrees? The answer is "zero", or possibly, "a number so close to zero that it might as well be zero". Why is this? It's like trying to throw a dart at an infinitely small dart board: no matter how good your aim, you'll never hit it. In real life, you'll never get a value of exactly 23. It'll always be something like 23.1 or 22.99998 or something. In other words, it's completely meaningless to talk about the probability that the temperature is exactly 23 degrees. 
+
+However, in everyday language, if we say that it was 23 degrees outside and turned out to be 22.9998 degrees, you probably wouldn't make a fuss. Because in everyday language, "23 degrees" usually means something like "somewhere between 22.5 and 23.5 degrees". And while it doesn't feel very meaningful to ask about the probability that the temperature is exactly 23 degrees, it does seem sensible to ask about the probability that the temperature lies between 22.5 and 23.5, or between 20 and 30, or any other range of temperatures. 
+
+The point of this discussion is to make clear that, when we're talking about continuous distributions, it's not meaningful to talk about the probability of a specific value. However, what we *can* talk about is the probability that the value lies within a particular range of values. To find out the probability associated with a particular range, what you need to do is calculate the "area under the curve". We've seen this concept already: in Figure \@ref(fig:sdnorm1), the shaded areas shown depict genuine probabilities (e.g., in the left-hand panel of Figure \@ref(fig:sdnorm1), it shows the probability of observing a value that falls within 1 standard deviation of the mean). 
+
+Okay, so that explains part of the story. We've explained a little bit about how continuous probability distributions should be interpreted (i.e., the area under the curve is the key thing), but we haven't actually explained what the formula for $p(x)$ actually means. Obviously, $p(x)$ doesn't describe a probability, but what is it? The name for this quantity $p(x)$ is a **probability density**, and in terms of the plots we've been drawing, it corresponds to the *height* of the curve. The densities themselves aren't meaningful in and of themselves: but they're "rigged" to ensure that the *area* under the curve is always interpretable as genuine probabilities. To be honest, that's about as much as you really need to know for now.
+
+For those readers who know a little calculus, let's give a slightly more precise explanation. In the same way that probabilities are non-negative numbers that must sum to 1, probability densities are non-negative numbers that must integrate to 1 (where the integral is taken across all possible values of $X$). To calculate the probability that $X$ falls between $a$ and $b$ we calculate the definite integral of the density function over the corresponding range, $\int_a^b p(x) \ dx$. If you don't remember or never learned calculus, don't worry about this. It's not needed for this book.
+
+
+### Other useful distributions{#otherdists}
+
+The normal distribution is the distribution that statistics makes the most use of (for reasons to be discussed shortly), and the binomial distribution is handy for many purposes. But the world of statistics is filled with probability distributions, some of which we'll run into in passing. In particular, the three that will appear in this book are the $t$ distribution, the $\chi^2$ distribution and the $F$ distribution. We won't give formulas for any of these or talk about them in too much detail, but we will show you some pictures. 
+
+- The **_$t$ distribution_** is a continuous distribution that looks very similar to a normal distribution but has heavier tails: see Figure \@ref(fig:tdist). This distribution tends to arise in situations where you think that the data actually follow a normal distribution, but you don't know the mean or standard deviation. We'll run into this distribution again in Chapter \@ref(ttest). 
+
+```{r tdist, fig.cap="A $t$ distribution with 3 degrees of freedom (solid line). It looks similar to a normal distribution, but it's not quite the same. For comparison purposes, we've plotted a standard normal distribution as the dashed line. Note that the \"tails\" of the $t$ distribution are \"heavier\" (i.e., extend further outwards) than the tails of the normal distribution? That's the important difference between the two. ", echo=FALSE, fig.align="center"}
+xval <- seq(-5,5,.01)
+ yval <- dt( xval, df=3)
+ plot( xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
+ frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l", ylim=c(0,.4)
+ )
+ lines( xval, dnorm(xval,0,1), lty=2, col=emphGrey)
+
+```
+
+- The **_$\chi^2$ distribution_** is another distribution that turns up in lots of different places. The situation in which we'll see it is when doing categorical data analysis (Chapter \@ref(chisquare)), but it's one of those things that actually pops up all over the place. When you dig into the maths (and who doesn't love doing that?), it turns out that the main reason why the $\chi^2$ distribution turns up all over the place is that if you have a bunch of variables that are normally distributed, square their values and then add them up (a procedure referred to as taking a "sum of squares"), this sum has a $\chi^2$ distribution. You'd be amazed how often this fact turns out to be useful. Anyway, here's what a $\chi^2$ distribution looks like: Figure \@ref(fig:chisqdist).
+
+```{r chisqdist, fig.cap="A $chi^2$ distribution with 3 degrees of freedom. Notice that the observed values must always be greater than zero, and that the distribution is pretty skewed. These are the key features of a chi-square distribution.", echo=FALSE, fig.align="center"}
+ xval <- seq(0,10,.01)
+ yval <- dchisq( xval, df=3)
+ plot( xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
+ frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
+ )
+
+```
+
+- The **_$F$ distribution_** looks a bit like a $\chi^2$ distribution, and it arises whenever you need to compare two $\chi^2$ distributions to one another. Admittedly, this doesn't exactly sound like something that any sane person would want to do, but it turns out to be very important in real-world data analysis. Remember when we said that $\chi^2$ turns out to be the key distribution when we're taking a "sum of squares"? Well, what that means is if you want to compare two different "sums of squares", you're probably talking about something that has an $F$ distribution. Of course, we still haven't given you an example of anything involving a sum of squares, but we will in Chapter \@ref(anova). And that's where we'll run into the $F$ distribution. Oh, and here's a picture: Figure \@ref(fig:Fdist).
+
+```{r Fdist, fig.cap="An $F$ distribution with 3 and 5 degrees of freedom. Qualitatively speaking, it looks pretty similar to a chi-square distribution, but they're not quite the same in general.", echo=FALSE, fig.align="center"}
+ # draw the plot
+ xval <- seq(0,10,.01)
+ yval <- df( xval, df1=3, df2=5)
+ plot( xval, yval, lwd=3, ylab="Probability Density", xlab="Observed Value",
+ frame.plot = FALSE, col=ifelse(colour,emphCol,"black"), type="l"
+ )
+
+```
+
+They're all continuous distributions, and they're all closely related to the normal distribution. The key thing for our purposes, however, is not that you have a deep understanding of all these different distributions, nor that you remember the precise relationships between them. The main thing is that you grasp the basic idea that these distributions are all deeply related to one another and to the normal distribution. Later on, we're going to run into data that are normally distributed or at least assumed to be normally distributed. What you have to understand right now is that if you make the assumption that your data are normally distributed, you shouldn't be surprised to see $\chi^2$, $t$ and $F$ distributions popping up all over the place when you start trying to do your data analysis.
+
+
+## Summary
+
+In this chapter we've talked about probability. We've talked about what probability means, and why statisticians can't agree on what it means. We talked about the rules that probabilities have to obey. And we introduced the idea of a probability distribution, and we spent a good portion of the chapter talking about some of the more important probability distributions that statisticians work with. The section by section breakdown looks like this:
+
+- Probability theory versus statistics (Section \@ref(probabilitystats))
+- Frequentist versus Bayesian views of probability (Section \@ref(probabilitymeaning))
+- Basics of probability theory (Section \@ref(basicprobability))
+- Binomial distribution (Section \@ref(binomial)), normal distribution (Section \@ref(normal)), and others (Section \@ref(otherdists))
+
+
+Many undergraduate psychology classes on statistics skim over this content very quickly, and even the more advanced courses will often "forget" to revisit the basic foundations of the field. Most academic psychologists would not know the difference between probability and density; until recently, very few would have been aware of the difference between Bayesian and frequentist probability. However, it's essential to understand these things before moving on to the applications. For example, there are a lot of rules about what you're "allowed" to say when making statistical inferences, and many of these can seem arbitrary and weird. However, they start to make sense if you understand this Bayesian/frequentist distinction. Similarly, in Chapter \@ref(ttest) we're going to talk about something called the $t$-test, and if you really want to have a grasp of the mechanics of the $t$-test it really helps to have a sense of what a $t$-distribution actually looks like. You get the idea.

@@ -94,14 +94,14 @@ knitr::kable(rbind(
    caption = NULL,
    label = "winningmargin",
    linesep = "",
-   escape = FALSE, format = "pandoc",
+   escape = FALSE,
    align = "lcc"
 ) %>%
   kable_styling(
    bootstrap_options = c("hover", "condensed", "responsive"),
    full_width = FALSE,
    position = "center",
-   latex_options = c("HOLD_position", "repeat_header", "scale_down")
+   latex_options = c("HOLD_position", "repeat_header")
   )
 ```
 
@@ -124,11 +124,13 @@ $$
 
 In all honesty, all this mathematical notation is just a fancy way of laying out the same things said in words: *add all the values up, and then divide by the total number of items*.
 
-:::: {.callout #summation data-latex=""}
-::: {.callouttitle data-latex=""}
-**Summation symbol**: $\scriptstyle\sum$ and **Product symbol**: $\scriptstyle\prod$ notations
-:::
-\nopagebreak
+:::: {.callout #summation data-latex="[Summation symbol: $\scriptstyle\sum$ and Product symbol: $\scriptstyle\prod$ notations]"}
+
+```{=html}
+<div class="callout-title">
+Summation symbol: ∑ and Product symbol: ∏ notations
+</div>
+```
 
 The summation symbol $\scriptstyle\sum$ is used to denote the operation of adding up a sequence of numbers. It is used to write out formulas in a concise way, and is used extensively in mathematics.
 
@@ -142,7 +144,7 @@ The choice to use $\Sigma$ to denote summation isn't arbitrary: it's the Greek u
 Similarly, there's an equivalent symbol used to denote the multiplication of lots of numbers: because multiplications are also called "products", we use the $\Pi$ symbol for this; the Greek upper case pi, which is the analogue of the letter P.
 
 Check out more examples of [summation notation](https://en.wikipedia.org/wiki/Summation#Capital-sigma_notation) and [product notation](https://en.wikipedia.org/wiki/Multiplication#Product_of_a_sequence) on Wikipedia.
-:::
+::::
 
 CogStat calculates the mean automatically when exploring a variable using all valid data points, not just the first five. It will be part of the `Descriptives for the variable` section, as seen in Figure \@ref(fig:histogramaflsmall). The result for our variable is:
 
@@ -319,19 +321,12 @@ $$
 It is clear that the range is not robust since this has a range of $110$, but if the outlier was removed, we would have a range of only $8$.
 :::
 
-### Interquartile range{#IQR}
-
-The **interquartile range** (IQR) is similar to the range in terms of measuring variability, but instead of calculating the difference between the largest and smallest value, it calculates the difference between the 25th and 75th quantile, hence, somewhat minimising the effect of a few outliers.
-
-::: {.definition #defIQR name="Interquartile range"}
-The **interquartile range** (IQR) is the difference between the 25th and 75th quantile of a data set. It is a measure of variability that is less sensitive to outliers than the range.
-:::
-
-:::: {.callout #calloutquantile data-latex=""}
-::: {.callouttitle data-latex=""}
-**Quantiles**
-:::
-\nopagebreak
+:::: {.callout #calloutquantile data-latex="[Quantiles]"}
+```{=html}
+<div class="callout-title">
+Quantiles
+</div>
+```
 Quantiles are cut points that divide an ordered data set (or a distribution) into equal-sized groups of observations when the data is continuous. Or more generally, they cut a [probability distribution](#probability) to equally probable intervals (see Chapter \@ref(probability)).
 
 For example, a data set of 40 observations can be divided into 4 equal-sized groups of 10 observations each.
@@ -352,12 +347,12 @@ knitr::kable(
   digits = 0,
   align = "c",
   label="quantile",
-  escape=FALSE, format = "pandoc"
+  escape=FALSE
 ) %>%
   kableExtra::kable_styling(
     bootstrap_options = c("hover", "condensed", "responsive"),
     full_width = FALSE,
-    latex_options = c("HOLD_position", "scale_down")
+    latex_options = c("HOLD_position")
   )
 ```
 
@@ -371,6 +366,14 @@ The data can be divided into other quantiles as well: e.g. a distribution cut in
 
 There are different methods to cutting discrete data into quantiles, but we're not going to discuss them here.
 ::::
+
+### Interquartile range{#IQR}
+
+The **interquartile range** (IQR) is similar to the range in terms of measuring variability, but instead of calculating the difference between the largest and smallest value, it calculates the difference between the 25th and 75th quantile, hence, somewhat minimising the effect of a few outliers.
+
+::: {.definition #defIQR name="Interquartile range"}
+The **interquartile range** (IQR) is the difference between the 25th and 75th quantile of a data set. It is a measure of variability that is less sensitive to outliers than the range.
+:::
 
 CogStat provides you with both the 25th (`Lower quartile`) and 75th quantiles (`Upper quartile`) automatically:
 
@@ -386,12 +389,15 @@ $$
 
 While it's obvious how to interpret the range, it's a little less obvious how to interpret the IQR. The simplest way to think about it is like this: the interquartile range is the range spanned by the "middle half" of the data, ignoring any data between $-\infty$ and $Q_1$, and between $Q_3$ and $+\infty$. That is, one quarter of the data falls below the 25th percentile, one quarter of the data is above the 75th percentile, leaving the "middle half" of the data lying in between the two. And the IQR is the range covered by this middle half.
 
-:::: {.callout #boxplot data-latex=""}
-::: {.callouttitle data-latex=""}
-**Boxplots**
-:::
-\nopagebreak
+:::: {.callout #boxplot data-latex="[Boxplots]"}
+```{=html}
+<div class="callout-title">
+Boxplots
+</div>
+```
 Boxplots (or “box and whiskers” plots) are a standardised method to display the distribution of a data set based on a five-number summary:
+
+\nopagebreak
 
 - the minimum and maximum (i.e., range), 
 - first quartile and third quartile (i.e., IQR),
@@ -442,7 +448,7 @@ ggplot(data=data_df, aes(x=x, y=y, group=group)) +
  
 ```
 
-Like histograms, they're most suited to interval or ratio scale data. Some boxplots separate out those observations that are “suspiciously” distant from the rest of the data, i.e., the outliers. These are usually displayed with a circle or a dot.
+Like histograms, they're most suited for interval or ratio scale data. Some boxplots separate out those observations that are “suspiciously” distant from the rest of the data, i.e., the outliers. These are usually displayed with a circle or a dot.
 
 ::::
 
@@ -475,7 +481,7 @@ knitr::kable(rbind(
  c("winning margin, game 4", "$X_4$", "8 points", "8 - 36.6 = -28.6", "28.6"),
  c("winning margin, game 5", "$X_5$", "32 points", "32 - 36.6 = -4.6", "4.6")),
 col.names = c("Observation", "Symbol", "Observed value", "Deviation score $X_i - \\bar{X}$", "Absolute d.s. $|X_i - \\bar{X}|$"),
- booktabs = TRUE, escape = FALSE, format = "pandoc") %>%
+ booktabs = TRUE, escape = FALSE) %>%
   kableExtra::kable_styling(
     bootstrap_options = c("hover", "condensed", "responsive"),
     full_width = F,
@@ -531,11 +537,12 @@ $$
 where $n$ is the number of observations, $X_i$ is the $i$th observation, and $\bar{X}$ is the mean of the data set.
 :::
 
-:::: {.callout #calloutVar data-latex=""}
-::: {.callouttitle data-latex=""}
-**Population variance versus variance estimate**
-:::
-\nopagebreak
+:::: {.callout #calloutVar data-latex="[Population variance versus variance estimate]"}
+```{=html}
+<div class="callout-title">
+Population variance versus variance estimate
+</div>
+```
 
 If you are extremely lucky and have a data set that contains the entire population, then you can calculate the variance as given in Definition \@ref(def:defVar). This is called **population variance**. In this case the variance is denoted $\sigma^2$, the mean is denoted as $\mu$.
 
@@ -600,11 +607,12 @@ $$
 $$
 :::
 
-:::: {.callout #calloutSD data-latex=""}
-::: {.callouttitle data-latex=""}
-**Population SD versus estimated SD**
-:::
-\nopagebreak
+:::: {.callout #calloutSD data-latex="[Population SD versus estimated SD]"}
+```{=html}
+<div class="callout-title">
+Population SD versus estimated SD
+</div>
+```
 
 Similarly to variance, we can differentiate the formula for a population-based standard deviation and a sample-based standard deviation.
 

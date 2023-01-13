@@ -1,6 +1,7 @@
 bookdown::gitbook:
   css: styles.css
   dev: svglite
+  table_css: false
   config:
     toc:
       before: |
@@ -10,7 +11,7 @@ bookdown::gitbook:
       collapse: section
       number_sections: true
       fig_caption: yes
-    toc_depth: 2
+    toc_depth: 3
     tof: true
     tot: true
     toolbar:
@@ -26,6 +27,7 @@ bookdown::pdf_book:
   toc: true
   tof: true
   tot: true
+  fontsize: 12pt
   extra_dependencies: "subfig"
 
 bookdown::epub_book: default

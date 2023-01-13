@@ -2,13 +2,27 @@
   border-left: 2em solid #0096c8;
   border-radius: 10px;
   background-color: #e6f0f0;
-  padding: 1em 2em 1em 4em;
   margin-top: 2em;
   margin-bottom: 2em;
+  padding-bottom: 1em;
 }
 
-.callouttitle {
+.callout p {
+  padding-left: 4em;
+  padding-right: 2em;
+}
+
+.callout li {
+  margin-left: 4em;
+}
+
+.callout-title {
   font-weight: bold;
+  background-color: #0096c8;
+  padding-top: 1em;
+  padding-bottom: 1pt;
+  margin-bottom: 1em;
+  color: white;
 }
 
 div.definition {
@@ -17,4 +31,38 @@ div.definition {
 
 div.example {
   padding-left: 2em;
+}
+
+.caption {
+  font-size: smaller;
+  padding: 0em 3em 2em 3em;
+}
+
+table caption {
+  padding: 0em 3em 0em 3em;
+}
+
+table {
+  border-top: solid 1pt;
+  border-bottom: solid 1pt;
+  font-size: 90%;
+}
+
+tfoot {
+  border-top: solid 1pt;
+}
+
+th {
+  border-bottom: solid 1pt;
+}
+
+th,
+td {
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal table {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
 }

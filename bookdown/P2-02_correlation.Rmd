@@ -50,11 +50,12 @@ knitr::include_graphics(
 
 When looking at these two plots side by side, it's clear that the relationship is *qualitatively* the same in both cases: more sleep equals less grump! However, it's also obvious that the relationship between `parentsleep` and `parentgrump` is *stronger* than between `babysleep` and `parentgrump`. The plot on the left is "neater" than on the right. It feels like if you want to predict the parent's mood, it will help you a little bit to know how many hours the baby slept, but it'd be *more* helpful to know how many hours the parent slept.
 
-:::: {.callout data-latex=""}
-::: {.callouttitle data-latex=""}
-**Scatterplots**
-:::
-\nopagebreak
+:::: {.callout data-latex="[Scatterplots]"}
+```{=html}
+<div class="callout-title">
+Scatterplots
+</div>
+```
 
 On a scatterplot graph, each observation is represented by one dot in a coordinate system. The horizontal location of the dot plots the value of the observation on one variable, and the vertical location displays its value on the other variable.
 
@@ -64,7 +65,7 @@ Scatterplots are used often:
 - to identify trends, which can be further explored with regression analysis (see Chapter \@ref(regression)),
 - and to detect outliers.
 
-Scatterplots can only be used with [*continuous variables*](#continuousdiscrete). If you have a [*discrete variable*](#continuousdiscrete), you can use a boxplot instead (see Chapter \@ref(boxplots)).
+Scatterplots can only be used with [*continuous variables*](#continuousdiscrete). If you have a [*discrete variable*](#continuousdiscrete), you can use a [boxplot](#boxplots) instead.
 ::::
 
 In contrast, let's consider Figure \@ref(fig:scatterparent1) vs. Figure \@ref(fig:scatterparent2). If we compare the scatterplot of "`babysleep` v `parentgrump`" to the scatterplot of "``babysleep` v `parentsleep`", the overall strength of the relationship is the same, but the direction is different. If the baby sleeps more, the parent gets *more* sleep (positive relationship, but if the baby sleeps more, then the parent gets *less* grumpy (negative relationship).

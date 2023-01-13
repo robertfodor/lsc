@@ -1,5 +1,5 @@
 % Page
-\usepackage[a4paper,margin=1in,bindingoffset=0.5in,footskip=0.25in]{geometry}
+%\usepackage[a4paper,margin=1in,bindingoffset=0.5in,footskip=0.5in]{geometry}
 
 % Don't hyphenate
 \usepackage[none]{hyphenat}
@@ -15,24 +15,25 @@
 \definecolor{calloutborder}{HTML}{0096C8}
 
 % Font
-%% Main serif fonts with math
-\usepackage{amsmath}
-\usepackage{fontspec}
-\defaultfontfeatures{Ligatures=TeX}
-\setmainfont{STIXTwoText}[ 
-Extension = {.otf}, 
-UprightFont = {*-Regular}, 
-ItalicFont = {*-Italic}, 
-BoldFont = {*-Bold}, 
-BoldItalicFont = {*-BoldItalic} 
-]
-\setmathfont{STIX Two Math}
-\setmathfont{STIX Two Math}[range={scr,bfscr}, StylisticSet=1]
-\usepackage{bm} 
+  
+  %% Main serif fonts with math
+    \usepackage{amsmath}
+    \usepackage{fontspec}
+    \defaultfontfeatures{Ligatures=TeX}
+    \setmainfont{STIXTwoText}[ 
+    Extension = {.otf}, 
+    UprightFont = {*-Regular}, 
+    ItalicFont = {*-Italic}, 
+    BoldFont = {*-Bold}, 
+    BoldItalicFont = {*-BoldItalic}
+    ]
+    \setmathfont{STIX Two Math}
+    \setmathfont{STIX Two Math}[range={scr,bfscr}, StylisticSet=1]
+    \usepackage{bm} 
  
-%% Sans serif font
-%\usepackage[default,light,bold]{sourceserifpro}
-\usepackage[sfdefault]{sourcesanspro}
+    %% Sans serif font
+    \usepackage[sfdefault]{sourcesanspro}
+
 
 % Captions and subfigures
 \usepackage{caption}
@@ -65,7 +66,7 @@ BoldItalicFont = {*-BoldItalic}
 \chapternumberfont{\huge\bfseries\sourcesanspro\color{chap}}
 \sectionfont{\normalfont\Large\bfseries\sourcesanspro}
 \subsectionfont{\normalfont\large\bfseries\sourcesanspro}
-\usepackage{titlesec}
+\usepackage[nobottomtitles*]{titlesec}
 \titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{12pt plus 4pt minus 2pt}
 
 % Adding a framed box around text
@@ -74,19 +75,60 @@ BoldItalicFont = {*-BoldItalic}
   colback=calloutbackground,
   colframe=calloutborder,
   boxrule=0pt,
-  leftrule=2pt,
+  leftrule=0.3em,
   sharp corners,
   halign=left,
   parbox=false,
-  before upper={\vspace{1em}},
-  after upper={\vspace{1em}},
+  toptitle = 0.5em,
+  bottomtitle = 0.5em,
   fontupper=\sourcesanspro\small,
-  breakable, enhanced,
-  title=#1,
-  fonttitle=\sourcesanspro\normalsize,
+  breakable = false,
+  enhanced,
+  title={#1},
+  fonttitle=\bfseries\sourcesanspro\normalsize,
 }
 
-\newenvironment{callouttitle}{}{}
+\newif\ifhidecallouttitledivs
+
+\ifhidecallouttitledivs
+  \usepackage{environ}
+  \NewEnviron{callouttitle}{}
+  \let\callouttitle
+  \let\endcallouttitle
+\fi
+
+% Formatting theorems
+\usepackage{amsthm}
+
+
+\newtheoremstyle{indenteddefinition}
+  {} % Space above
+  {} % Space below
+  {} % Body font
+  {3em} % Indent amount
+  {\bfseries} % Theorem head font
+  {.} % Punctuation after theorem head
+  {.5em} % Space after theorem head
+  {} % Theorem head spec (can be left empty, meaning `normal')
+
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{conjecture}{Conjecture}[chapter]
+%%\theoremstyle{definition}
+\theoremstyle{indenteddefinition}
+\newtheorem{definition}{Definition}[chapter]
+%%\theoremstyle{definition}
+\theoremstyle{indenteddefinition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[chapter]
+\theoremstyle{definition}
+\newtheorem{hypothesis}{Hypothesis}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
 
 
 % Dependencies for merging with external cover page
