@@ -86,9 +86,6 @@
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
 \newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
-% Page
-%\usepackage[a4paper,margin=1in,bindingoffset=0.5in,footskip=0.5in]{geometry}
-
 % Don't hyphenate
 \usepackage[none]{hyphenat}
 
@@ -98,9 +95,14 @@
 \definecolor{CSbluelight}{HTML}{4878CE}
 \definecolor{CSgreen}{HTML}{008000}
 \definecolor{capcol}{HTML}{087830}
+\definecolor{graycaption}{HTML}{595959}
 \definecolor{chap}{HTML}{E03616}
 \definecolor{calloutbackground}{HTML}{F2F3F4}
 \definecolor{calloutborder}{HTML}{0096C8}
+\definecolor{exampleborder}{HTML}{EBEDEF}
+\definecolor{examplebackground}{HTML}{FBFCFC}
+\definecolor{definitionborder}{HTML}{EBEDEF}
+\definecolor{definitionbackground}{HTML}{FBFCFC}
 
 % Font
   
@@ -127,9 +129,13 @@
 \usepackage{caption}
 \captionsetup[figure]{width=0.8\linewidth}
 \captionsetup[table]{width=0.8\linewidth}
-\usepackage[labelfont={color=capcol,bf}]{caption}
-\usepackage[font={small,sf}]{caption}
+\usepackage[labelfont={color=graycaption,bf}]{caption}
+\usepackage[font={small,color=graycaption}]{caption}
+\captionsetup[table]{font=sf} % Sans serif caption font
+\captionsetup[figure]{font=sf} % Sans serif caption font
 \usepackage{subfig}
+%\setlength\abovecaptionskip{-5pt}
+\captionsetup[figure]{skip=0pt}
 
 \usepackage{array}
 
@@ -157,67 +163,52 @@
 \usepackage[nobottomtitles*]{titlesec}
 \titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{12pt plus 4pt minus 2pt}
 
+% Keep things together, page breaks
+\makeatletter       %% <- make @ usable in command sequences
+\@secpenalty=0      %% <- don't encourage breaks before section heading
+\@beginparpenalty=0 %% <- don't encourage breaks at start of list environments
+\@endparpenalty=0   %% <- don't encourage breaks at end of list environments
+\@itempenalty=0     %% <- don't encourage breaks between items
+\makeatother        %% <- revert @
+
 % Adding a framed box around text
 \usepackage[most]{tcolorbox}
 \newtcolorbox{callout}[1][]{%
   colback=calloutbackground,
   colframe=calloutborder,
-  boxrule=0pt,
-  leftrule=0.3em,
-  sharp corners,
-  halign=left,
+  leftrule=3em,
   parbox=false,
-  toptitle = 0.5em,
-  bottomtitle = 0.5em,
   fontupper=\sourcesanspro\small,
   breakable = false,
-  enhanced,
   title={#1},
   fonttitle=\bfseries\sourcesanspro\normalsize,
 }
 
-\newif\ifhidecallouttitledivs
+% Definitions and examples have left margin
+\newtcolorbox{exenv}{
+  breakable = true,
+  leftrule = 3em,
+  colframe = exampleborder,
+  colback = examplebackground,
+}
 
-\ifhidecallouttitledivs
-  \usepackage{environ}
-  \NewEnviron{callouttitle}{}
-  \let\callouttitle
-  \let\endcallouttitle
-\fi
+\newtcolorbox{defenv}{
+  breakable = true,
+  leftrule = 3em,
+  colframe = definitionborder,
+  colback = definitionbackground,
+}
 
-% Formatting theorems
-\usepackage{amsthm}
+% Definitions and examples have left margin (tcolorbox)
+\BeforeBeginEnvironment{example}{\begin{exenv}}
+  \AfterEndEnvironment{example}{\end{exenv}}
 
+\BeforeBeginEnvironment{definition}{\begin{defenv}}
+  \AfterEndEnvironment{definition}{\end{defenv}}
 
-\newtheoremstyle{indenteddefinition}
-  {} % Space above
-  {} % Space below
-  {} % Body font
-  {3em} % Indent amount
-  {\bfseries} % Theorem head font
-  {.} % Punctuation after theorem head
-  {.5em} % Space after theorem head
-  {} % Theorem head spec (can be left empty, meaning `normal')
-
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{lemma}{Lemma}[chapter]
-\newtheorem{corollary}{Corollary}[chapter]
-\newtheorem{proposition}{Proposition}[chapter]
-\newtheorem{conjecture}{Conjecture}[chapter]
-%%\theoremstyle{definition}
-\theoremstyle{indenteddefinition}
-\newtheorem{definition}{Definition}[chapter]
-%%\theoremstyle{definition}
-\theoremstyle{indenteddefinition}
-\newtheorem{example}{Example}[chapter]
-\theoremstyle{definition}
-\newtheorem{exercise}{Exercise}[chapter]
-\theoremstyle{definition}
-\newtheorem{hypothesis}{Hypothesis}[chapter]
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-\newtheorem*{solution}{Solution}
-
+% Shrink space between figure and rest
+\BeforeBeginEnvironment{figure}{\vskip-2ex}
+\AfterEndEnvironment{figure}{\vskip-2ex}
 
 % Dependencies for merging with external cover page
 \usepackage{pdfpages}
@@ -265,6 +256,23 @@
 \author{Danielle Navarro\footnote{Danielle Navarro -- \href{https://github.com/djnavarro/}{Github} \textbar{} \href{https://orcid.org/0000-0001-7648-6578}{\includegraphics{resources/image/orcid_16x16.png}} 0000-0001-7648-6578} \and Róbert Fodor\footnote{Róbert Fodor -- \href{https://github.com/robertfodor/}{Github} \textbar{} \href{https://orcid.org/0000-0001-8470-335X}{\includegraphics{resources/image/orcid_16x16.png}} 0000-0001-8470-335X}}
 \date{5 Nov 2022}
 
+\usepackage{amsthm}
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{corollary}{Corollary}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
+\newtheorem{conjecture}{Conjecture}[chapter]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[chapter]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[chapter]
+\theoremstyle{definition}
+\newtheorem{exercise}{Exercise}[chapter]
+\theoremstyle{definition}
+\newtheorem{hypothesis}{Hypothesis}[chapter]
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{solution}{Solution}
 \begin{document}
 \maketitle
 
@@ -1393,16 +1401,16 @@ We used \(N\) to denote the number of observations. Now let's attach a label to 
 
 \begin{table}[H]
 \centering
-\begin{tabular}{l|c|c}
-\hline
+\begin{tabular}{lcc}
+\toprule
 Observation & Symbol & Observed value\\
-\hline
+\midrule
 winning margin, game 1 & $X_1$ & 56 points\\
 winning margin, game 2 & $X_2$ & 31 points\\
 winning margin, game 3 & $X_3$ & 56 points\\
 winning margin, game 4 & $X_4$ & 8 points\\
 winning margin, game 5 & $X_5$ & 32 points\\
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -1679,13 +1687,15 @@ Quantile & Number of observations & Lower bound & Upper bound\\
 
 This is called a \textbf{\emph{quartile}} (i.e., 1/4). If we wanted to define in percentages, this would be able to define 25th, 50th and 75th \textbf{\emph{percentiles}} of a data set. The \emph{25th percentile} (\emph{1st quartile} or \emph{lower quartile}) holds the value in a distribution that is greater than 25\% of the values and less than 75\% of the values. The \emph{50th percentile} (\emph{2nd quartile}) is the \emph{median}, and the \emph{75th percentile} (\emph{3rd quartile} or \emph{upper quartile}) is the value that is greater than 75\% of the values and less than 25\% of the values.
 
+
+
 \begin{figure}
 
 {\centering \includegraphics[width=0.45\linewidth]{resources/image/1920px-NormalCDFQuartile3} 
 
 }
 
-\caption{The 25th, 50th and 75th percentiles of a cumulative distribution of a normal distribution. (StevenJYang on [Wikipedia: Quartile](https://en.wikipedia.org/wiki/Quartile))}\label{fig:unnamed-chunk-17}
+\caption{The 25th, 50th and 75th percentiles of a cumulative distribution of a normal distribution. (StevenJYang on \href{https://en.wikipedia.org/wiki/Quartile}{Wikipedia: Quartile})}\label{fig:unnamed-chunk-17}
 \end{figure}
 
 The data can be divided into other quantiles as well: e.g.~a distribution cut in 5 equal-sized groups are called \textbf{\emph{quintiles}}, and a distribution cut in 10 equal-sized groups are called \textbf{\emph{deciles}}, and so on.
@@ -1724,8 +1734,6 @@ While it's obvious how to interpret the range, it's a little less obvious how to
 
 Boxplots (or ``box and whiskers'' plots) are a standardised method to display the distribution of a data set based on a five-number summary:
 
-\nopagebreak
-
 \begin{itemize}
 \tightlist
 \item
@@ -1736,14 +1744,7 @@ Boxplots (or ``box and whiskers'' plots) are a standardised method to display th
   and the median.
 \end{itemize}
 
-\begin{figure}
-
-{\centering \includegraphics[width=0.75\linewidth]{lsc_files/figure-latex/unnamed-chunk-18-1} 
-
-}
-
-\caption{Boxplot explained}\label{fig:unnamed-chunk-18}
-\end{figure}
+\begin{center}\includegraphics[width=0.75\linewidth]{lsc_files/figure-latex/unnamed-chunk-18-1} \end{center}
 
 Like histograms, they're most suited for interval or ratio scale data. Some boxplots separate out those observations that are ``suspiciously'' distant from the rest of the data, i.e., the outliers. These are usually displayed with a circle or a dot.
 
@@ -1841,25 +1842,6 @@ Variance isn't all too different from the \protect\hyperlink{aad}{mean absolute 
 where \(n\) is the number of observations, \(X_i\) is the \(i\)th observation, and \(\bar{X}\) is the mean of the data set.
 \end{definition}
 
-\hypertarget{calloutVar}{}
-\begin{callout}[Population variance versus variance estimate]
-
-If you are extremely lucky and have a data set that contains the entire population, then you can calculate the variance as given in Definition \ref{def:defVar}. This is called \textbf{population variance}. In this case the variance is denoted \(\sigma^2\), the mean is denoted as \(\mu\).
-
-\[
-\sigma^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \mu)^2
-\]
-
-In research, however, you are most likely to have gathered data for merely a \emph{sample} of the population. There is an alternative formula for this case. This is called \textbf{variance estimate}, or \emph{estimated variance}, or \emph{sample variance}, or \emph{estimated population variance}, and is denoted \(s^2\). The formula for the variance estimate is:
-
-\[
-s^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2
-\]
-
-where \(n\) is the number of observations in the sample, \(X_i\) is the \(i\)th observation, and \(\bar{X}\) is the mean of the sample. You'll notice the difference is the denominator using \(n-1\) instead of \(n\).
-
-\end{callout}
-
 Variances are \emph{additive}. Suppose we have two variables (\(X\) and \(Y\)), whose variances are \(\mbox{Var}(X)\) and \(\mbox{Var}(Y)\) respectively. Now imagine we want to define a new variable \(Z\) that is the sum of the two, \(Z = X+Y\). As it turns out, the variance of \(Z\) is equal to \(\mbox{Var}(X) + \mbox{Var}(Y)\).
 
 \begin{example}[Additive property of the variance]
@@ -1894,6 +1876,25 @@ Let's tackle the burning question you're probably thinking: how do you \emph{int
 
 CogStat will not attempt to interpret the variance nor will it give you the raw value.
 
+\hypertarget{calloutVar}{}
+\begin{callout}[Population variance versus variance estimate]
+
+If you are extremely lucky and have a data set that contains the entire population, then you can calculate the variance as given in Definition \ref{def:defVar}. This is called \textbf{population variance}. In this case the variance is denoted \(\sigma^2\), the mean is denoted as \(\mu\).
+
+\[
+\sigma^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \mu)^2
+\]
+
+In research, however, you are most likely to have gathered data for merely a \emph{sample} of the population. There is an alternative formula for this case. This is called \textbf{variance estimate}, or \emph{estimated variance}, or \emph{sample variance}, or \emph{estimated population variance}, and is denoted \(s^2\). The formula for the variance estimate is:
+
+\[
+s^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2
+\]
+
+where \(n\) is the number of observations in the sample, \(X_i\) is the \(i\)th observation, and \(\bar{X}\) is the mean of the sample. You'll notice the difference is the denominator using \(n-1\) instead of \(n\).
+
+\end{callout}
+
 \hypertarget{sd}{%
 \subsection{Standard deviation}\label{sd}}
 
@@ -1906,6 +1907,10 @@ Suppose you would like to have a measure expressed in the same units as the data
 \mbox{SD} = \sqrt{ \frac{1}{n} \sum_{i=1}^n \left( X_i - \bar{X} \right)^2 }
 \]
 \end{definition}
+
+So how do we interpret standard deviation? Standard deviation has the same unit of measure as the observations, e.g., nmol/L, but just like variance, it doesn't have a simple interpretation either. The interpretation is based on the scale of the measurement. E.g. 3.5 can be big or small depending on the scale of measurement. For example, a 3.5 nmol/L SD value for vitamin D level suggests a fairly consistent measurement, considering 50-75 nmol/L is adequate, \textgreater75 is optimum, and \textless25 is deficient according to NHS UK guidelines\footnote{\url{https://www.southtees.nhs.uk/services/pathology/tests/vitamin-d/}} in 2023. But an SD of 3.5 for a 5-level Likert scale is massive, indicating a less consistent data point and high variability.
+
+There are different ways to standardise the SD. One way is to divide the SD by the mean, which gives you the \textbf{coefficient of variation} (CV). Another way is by utilizing \(z\)-scores which assumes the data are \emph{normally} distributed, which is an important concept discussed in Chapter \ref{probability}. We'll discuss z-scores shortly in Chapter \ref{zscore}.
 
 \hypertarget{calloutSD}{}
 \begin{callout}[Population SD versus estimated SD]
@@ -1927,10 +1932,6 @@ s = \sqrt{ \frac{1}{n-1} \sum_{i=1}^n \left( X_i - \bar{X} \right)^2 }
 where \(n\) is the number of observations in the sample, \(X_i\) is the \(i\)th observation, and \(\bar{X}\) is the mean of the sample. The denominator is \(n-1\) instead of \(n\).
 
 \end{callout}
-
-So how do we interpret standard deviation? Standard deviation has the same unit of measure as the observations, e.g., nmol/L, but just like variance, it doesn't have a simple interpretation either. The interpretation is based on the scale of the measurement. E.g. 3.5 can be big or small depending on the scale of measurement. For example, a 3.5 nmol/L SD value for vitamin D level suggests a fairly consistent measurement, considering 50-75 nmol/L is adequate, \textgreater75 is optimum, and \textless25 is deficient according to NHS UK guidelines\footnote{\url{https://www.southtees.nhs.uk/services/pathology/tests/vitamin-d/}} in 2023. But an SD of 3.5 for a 5-level Likert scale is massive, indicating a less consistent data point and high variability.
-
-There are different ways to standardise the SD. One way is to divide the SD by the mean, which gives you the \textbf{coefficient of variation} (CV). Another way is by utilizing \(z\)-scores which assumes the data are \emph{normally} distributed, which is an important concept discussed in Chapter \ref{probability}. We'll discuss z-scores shortly in Chapter \ref{zscore}.
 
 \hypertarget{which-measure-to-use}{%
 \subsection{Which measure to use?}\label{which-measure-to-use}}
@@ -2131,7 +2132,7 @@ To start understanding the relationship between a pair of variables, select \tex
 
 We can draw scatterplots to give us a general sense of how closely related two variables are. Ideally, though, we might want to say a bit more about it than that. For instance, let's compare the relationship between \texttt{parentsleep} and \texttt{parentgrump} with that between \texttt{babysleep} and \texttt{parentgrump} (Figure \ref{fig:scatterparent1}).
 
-\begin{figure}[h]
+\begin{figure}
 
 {\centering \includegraphics[width=0.45\linewidth]{resources/image/parentsleepgrumpplot} \includegraphics[width=0.45\linewidth]{resources/image/babysleepgrumpplot} 
 
@@ -2162,8 +2163,6 @@ Scatterplots can only be used with \protect\hyperlink{continuousdiscrete}{\emph{
 
 \end{callout}
 
-In contrast, let's consider Figure \ref{fig:scatterparent1} vs.~Figure \ref{fig:scatterparent2}. If we compare the scatterplot of ``\texttt{babysleep} v \texttt{parentgrump}'' to the scatterplot of ```\texttt{babysleep} v \texttt{parentsleep}'', the overall strength of the relationship is the same, but the direction is different. If the baby sleeps more, the parent gets \emph{more} sleep (positive relationship, but if the baby sleeps more, then the parent gets \emph{less} grumpy (negative relationship).
-
 \begin{figure}
 
 {\centering \includegraphics[width=0.66\linewidth]{resources/image/parentsleepbabysleepplot} 
@@ -2172,6 +2171,8 @@ In contrast, let's consider Figure \ref{fig:scatterparent1} vs.~Figure \ref{fig:
 
 \caption{Scatterplot drawn by CogStat showing the relationship between `babysleep` and `parentsleep`}\label{fig:scatterparent2}
 \end{figure}
+
+In contrast, let's consider Figure \ref{fig:scatterparent1} vs.~Figure \ref{fig:scatterparent2}. If we compare the scatterplot of ``\texttt{babysleep} v \texttt{parentgrump}'' to the scatterplot of ```\texttt{babysleep} v \texttt{parentsleep}'', the overall strength of the relationship is the same, but the direction is different. If the baby sleeps more, the parent gets \emph{more} sleep (positive relationship, but if the baby sleeps more, then the parent gets \emph{less} grumpy (negative relationship).
 
 \hypertarget{pearson}{%
 \section{The correlation coefficient}\label{pearson}}

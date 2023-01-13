@@ -95,7 +95,7 @@ knitr::kable(rbind(
    label = "winningmargin",
    linesep = "",
    escape = FALSE,
-   align = "lcc"
+   align = "lcc", booktabs = TRUE
 ) %>%
   kable_styling(
    bootstrap_options = c("hover", "condensed", "responsive"),
@@ -358,7 +358,9 @@ knitr::kable(
 
 This is called a ***quartile*** (i.e., 1/4). If we wanted to define in percentages, this would be able to define 25th, 50th and 75th ***percentiles*** of a data set. The *25th percentile* (*1st quartile* or *lower quartile*) holds the value in a distribution that is greater than 25% of the values and less than 75% of the values. The *50th percentile* (*2nd quartile*) is the *median*, and the *75th percentile* (*3rd quartile* or *upper quartile*) is the value that is greater than 75% of the values and less than 25% of the values.
 
-```{r echo=FALSE, fig.align="center", out.width="45%", fig.cap="The 25th, 50th and 75th percentiles of a cumulative distribution of a normal distribution. (StevenJYang on [Wikipedia: Quartile](https://en.wikipedia.org/wiki/Quartile))"}
+(ref:quartilefigcap) The 25th, 50th and 75th percentiles of a cumulative distribution of a normal distribution. (StevenJYang on [Wikipedia: Quartile](https://en.wikipedia.org/wiki/Quartile))
+
+```{r echo=FALSE, fig.align="center", out.width="45%", fig.cap="(ref:quartilefigcap)"}
 knitr::include_graphics("resources/image/1920px-NormalCDFQuartile3.png")
 ```
 
@@ -397,13 +399,11 @@ Boxplots
 ```
 Boxplots (or “box and whiskers” plots) are a standardised method to display the distribution of a data set based on a five-number summary:
 
-\nopagebreak
-
 - the minimum and maximum (i.e., range), 
 - first quartile and third quartile (i.e., IQR),
 - and the median.
 
-```{r echo=FALSE, fig.align="center", fig.cap="Boxplot explained", fig.show="hold", out.width="75%"}
+```{r echo=FALSE, fig.align="center", fig.show="hold", out.width="75%"}
 set.seed(42)
 data1 <- rnorm(50, mean = 10, sd = 2)
 data2 <- rnorm(50, mean = 10, sd = 1.7)
@@ -537,28 +537,6 @@ $$
 where $n$ is the number of observations, $X_i$ is the $i$th observation, and $\bar{X}$ is the mean of the data set.
 :::
 
-:::: {.callout #calloutVar data-latex="[Population variance versus variance estimate]"}
-```{=html}
-<div class="callout-title">
-Population variance versus variance estimate
-</div>
-```
-
-If you are extremely lucky and have a data set that contains the entire population, then you can calculate the variance as given in Definition \@ref(def:defVar). This is called **population variance**. In this case the variance is denoted $\sigma^2$, the mean is denoted as $\mu$.
-
-$$
-\sigma^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \mu)^2
-$$
-
-In research, however, you are most likely to have gathered data for merely a *sample* of the population. There is an alternative formula for this case. This is called **variance estimate**, or *estimated variance*, or *sample variance*, or *estimated population variance*, and is denoted $s^2$. The formula for the variance estimate is:
-
-$$
-s^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2
-$$
-
-where $n$ is the number of observations in the sample, $X_i$ is the $i$th observation, and $\bar{X}$ is the mean of the sample. You'll notice the difference is the denominator using $n-1$ instead of $n$.
-::::
-
 Variances are *additive*. Suppose we have two variables ($X$ and $Y$), whose variances are $\mbox{Var}(X)$ and $\mbox{Var}(Y)$ respectively. Now imagine we want to define a new variable $Z$ that is the sum of the two, $Z = X+Y$. As it turns out, the variance of $Z$ is equal to $\mbox{Var}(X) + \mbox{Var}(Y)$.
 
 ::: {.example #exVarAddit name="Additive property of the variance"}
@@ -595,6 +573,28 @@ Let's tackle the burning question you're probably thinking: how do you *interpre
 
 CogStat will not attempt to interpret the variance nor will it give you the raw value.
 
+:::: {.callout #calloutVar data-latex="[Population variance versus variance estimate]"}
+```{=html}
+<div class="callout-title">
+Population variance versus variance estimate
+</div>
+```
+
+If you are extremely lucky and have a data set that contains the entire population, then you can calculate the variance as given in Definition \@ref(def:defVar). This is called **population variance**. In this case the variance is denoted $\sigma^2$, the mean is denoted as $\mu$.
+
+$$
+\sigma^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \mu)^2
+$$
+
+In research, however, you are most likely to have gathered data for merely a *sample* of the population. There is an alternative formula for this case. This is called **variance estimate**, or *estimated variance*, or *sample variance*, or *estimated population variance*, and is denoted $s^2$. The formula for the variance estimate is:
+
+$$
+s^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2
+$$
+
+where $n$ is the number of observations in the sample, $X_i$ is the $i$th observation, and $\bar{X}$ is the mean of the sample. You'll notice the difference is the denominator using $n-1$ instead of $n$.
+::::
+
 ### Standard deviation{#sd}
 
 Suppose you would like to have a measure expressed in the same units as the data itself (i.e. nmol/L, not nmol/L-squared). What should you do? The solution to the problem is obvious: take the square root of the variance, known as the **standard deviation** (usually shortened as *SD* or *Std dev.*), also called the *root mean squared deviation*, or RMSD. This solves our problem with variance fairly neatly: it's much easier to understand "a standard deviation of 18.01 nmol/L" since it's expressed in the original units.
@@ -606,6 +606,10 @@ $$
 \mbox{SD} = \sqrt{ \frac{1}{n} \sum_{i=1}^n \left( X_i - \bar{X} \right)^2 }
 $$
 :::
+
+So how do we interpret standard deviation? Standard deviation has the same unit of measure as the observations, e.g., nmol/L, but just like variance, it doesn't have a simple interpretation either. The interpretation is based on the scale of the measurement. E.g. 3.5 can be big or small depending on the scale of measurement. For example, a 3.5 nmol/L SD value for vitamin D level suggests a fairly consistent measurement, considering 50-75 nmol/L is adequate, >75 is optimum, and <25 is deficient according to NHS UK guidelines^[https://www.southtees.nhs.uk/services/pathology/tests/vitamin-d/] in 2023. But an SD of 3.5 for a 5-level Likert scale is massive, indicating a less consistent data point and high variability.
+
+There are different ways to standardise the SD. One way is to divide the SD by the mean, which gives you the **coefficient of variation** (CV). Another way is by utilizing $z$-scores which assumes the data are *normally* distributed, which is an important concept discussed in Chapter \@ref(probability). We'll discuss z-scores shortly in Chapter \@ref(zscore).
 
 :::: {.callout #calloutSD data-latex="[Population SD versus estimated SD]"}
 ```{=html}
@@ -630,10 +634,6 @@ $$
 
 where $n$ is the number of observations in the sample, $X_i$ is the $i$th observation, and $\bar{X}$ is the mean of the sample. The denominator is $n-1$ instead of $n$.
 ::::
-
-So how do we interpret standard deviation? Standard deviation has the same unit of measure as the observations, e.g., nmol/L, but just like variance, it doesn't have a simple interpretation either. The interpretation is based on the scale of the measurement. E.g. 3.5 can be big or small depending on the scale of measurement. For example, a 3.5 nmol/L SD value for vitamin D level suggests a fairly consistent measurement, considering 50-75 nmol/L is adequate, >75 is optimum, and <25 is deficient according to NHS UK guidelines^[https://www.southtees.nhs.uk/services/pathology/tests/vitamin-d/] in 2023. But an SD of 3.5 for a 5-level Likert scale is massive, indicating a less consistent data point and high variability.
-
-There are different ways to standardise the SD. One way is to divide the SD by the mean, which gives you the **coefficient of variation** (CV). Another way is by utilizing $z$-scores which assumes the data are *normally* distributed, which is an important concept discussed in Chapter \@ref(probability). We'll discuss z-scores shortly in Chapter \@ref(zscore).
 
 ### Which measure to use?
 

@@ -1,6 +1,3 @@
-% Page
-%\usepackage[a4paper,margin=1in,bindingoffset=0.5in,footskip=0.5in]{geometry}
-
 % Don't hyphenate
 \usepackage[none]{hyphenat}
 
@@ -10,9 +7,14 @@
 \definecolor{CSbluelight}{HTML}{4878CE}
 \definecolor{CSgreen}{HTML}{008000}
 \definecolor{capcol}{HTML}{087830}
+\definecolor{graycaption}{HTML}{595959}
 \definecolor{chap}{HTML}{E03616}
 \definecolor{calloutbackground}{HTML}{F2F3F4}
 \definecolor{calloutborder}{HTML}{0096C8}
+\definecolor{exampleborder}{HTML}{EBEDEF}
+\definecolor{examplebackground}{HTML}{FBFCFC}
+\definecolor{definitionborder}{HTML}{EBEDEF}
+\definecolor{definitionbackground}{HTML}{FBFCFC}
 
 % Font
   
@@ -39,9 +41,13 @@
 \usepackage{caption}
 \captionsetup[figure]{width=0.8\linewidth}
 \captionsetup[table]{width=0.8\linewidth}
-\usepackage[labelfont={color=capcol,bf}]{caption}
-\usepackage[font={small,sf}]{caption}
+\usepackage[labelfont={color=graycaption,bf}]{caption}
+\usepackage[font={small,color=graycaption}]{caption}
+\captionsetup[table]{font=sf} % Sans serif caption font
+\captionsetup[figure]{font=sf} % Sans serif caption font
 \usepackage{subfig}
+%\setlength\abovecaptionskip{-5pt}
+\captionsetup[figure]{skip=0pt}
 
 \usepackage{array}
 
@@ -69,67 +75,52 @@
 \usepackage[nobottomtitles*]{titlesec}
 \titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{12pt plus 4pt minus 2pt}
 
+% Keep things together, page breaks
+\makeatletter       %% <- make @ usable in command sequences
+\@secpenalty=0      %% <- don't encourage breaks before section heading
+\@beginparpenalty=0 %% <- don't encourage breaks at start of list environments
+\@endparpenalty=0   %% <- don't encourage breaks at end of list environments
+\@itempenalty=0     %% <- don't encourage breaks between items
+\makeatother        %% <- revert @
+
 % Adding a framed box around text
 \usepackage[most]{tcolorbox}
 \newtcolorbox{callout}[1][]{%
   colback=calloutbackground,
   colframe=calloutborder,
-  boxrule=0pt,
-  leftrule=0.3em,
-  sharp corners,
-  halign=left,
+  leftrule=3em,
   parbox=false,
-  toptitle = 0.5em,
-  bottomtitle = 0.5em,
   fontupper=\sourcesanspro\small,
   breakable = false,
-  enhanced,
   title={#1},
   fonttitle=\bfseries\sourcesanspro\normalsize,
 }
 
-\newif\ifhidecallouttitledivs
+% Definitions and examples have left margin
+\newtcolorbox{exenv}{
+  breakable = true,
+  leftrule = 3em,
+  colframe = exampleborder,
+  colback = examplebackground,
+}
 
-\ifhidecallouttitledivs
-  \usepackage{environ}
-  \NewEnviron{callouttitle}{}
-  \let\callouttitle
-  \let\endcallouttitle
-\fi
+\newtcolorbox{defenv}{
+  breakable = true,
+  leftrule = 3em,
+  colframe = definitionborder,
+  colback = definitionbackground,
+}
 
-% Formatting theorems
-\usepackage{amsthm}
+% Definitions and examples have left margin (tcolorbox)
+\BeforeBeginEnvironment{example}{\begin{exenv}}
+  \AfterEndEnvironment{example}{\end{exenv}}
 
+\BeforeBeginEnvironment{definition}{\begin{defenv}}
+  \AfterEndEnvironment{definition}{\end{defenv}}
 
-\newtheoremstyle{indenteddefinition}
-  {} % Space above
-  {} % Space below
-  {} % Body font
-  {3em} % Indent amount
-  {\bfseries} % Theorem head font
-  {.} % Punctuation after theorem head
-  {.5em} % Space after theorem head
-  {} % Theorem head spec (can be left empty, meaning `normal')
-
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{lemma}{Lemma}[chapter]
-\newtheorem{corollary}{Corollary}[chapter]
-\newtheorem{proposition}{Proposition}[chapter]
-\newtheorem{conjecture}{Conjecture}[chapter]
-%%\theoremstyle{definition}
-\theoremstyle{indenteddefinition}
-\newtheorem{definition}{Definition}[chapter]
-%%\theoremstyle{definition}
-\theoremstyle{indenteddefinition}
-\newtheorem{example}{Example}[chapter]
-\theoremstyle{definition}
-\newtheorem{exercise}{Exercise}[chapter]
-\theoremstyle{definition}
-\newtheorem{hypothesis}{Hypothesis}[chapter]
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-\newtheorem*{solution}{Solution}
-
+% Shrink space between figure and rest
+\BeforeBeginEnvironment{figure}{\vskip-2ex}
+\AfterEndEnvironment{figure}{\vskip-2ex}
 
 % Dependencies for merging with external cover page
 \usepackage{pdfpages}

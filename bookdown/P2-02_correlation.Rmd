@@ -41,7 +41,7 @@ knitr::include_graphics("resources/image/cogstatexplorevariablepair.png")
 
 We can draw scatterplots to give us a general sense of how closely related two variables are. Ideally, though, we might want to say a bit more about it than that. For instance, let's compare the relationship between `parentsleep` and `parentgrump` with that between `babysleep` and `parentgrump` (Figure \@ref(fig:scatterparent1)).
 
-```{r scatterparent1, fig.align='center',echo=FALSE, fig.cap="Scatterplot drawn by CogStat showing the relationship between `parentsleep` and `parentgrump` and between `babysleep` and `parentgrump`", out.width="45%",  fig.show="hold", fig.pos="h"}
+```{r scatterparent1, fig.align='center',echo=FALSE, fig.cap="Scatterplot drawn by CogStat showing the relationship between `parentsleep` and `parentgrump` and between `babysleep` and `parentgrump`", out.width="45%",  fig.show="hold"}
 knitr::include_graphics(
     c("resources/image/parentsleepgrumpplot.png",
       "resources/image/babysleepgrumpplot.png")
@@ -68,11 +68,12 @@ Scatterplots are used often:
 Scatterplots can only be used with [*continuous variables*](#continuousdiscrete). If you have a [*discrete variable*](#continuousdiscrete), you can use a [boxplot](#boxplots) instead.
 ::::
 
-In contrast, let's consider Figure \@ref(fig:scatterparent1) vs. Figure \@ref(fig:scatterparent2). If we compare the scatterplot of "`babysleep` v `parentgrump`" to the scatterplot of "``babysleep` v `parentsleep`", the overall strength of the relationship is the same, but the direction is different. If the baby sleeps more, the parent gets *more* sleep (positive relationship, but if the baby sleeps more, then the parent gets *less* grumpy (negative relationship).
- 
 ```{r scatterparent2, fig.align='center',echo=FALSE, fig.cap="Scatterplot drawn by CogStat showing the relationship between `babysleep` and `parentsleep`"}
 knitr::include_graphics("resources/image/parentsleepbabysleepplot.png")
 ```
+
+In contrast, let's consider Figure \@ref(fig:scatterparent1) vs. Figure \@ref(fig:scatterparent2). If we compare the scatterplot of "`babysleep` v `parentgrump`" to the scatterplot of "``babysleep` v `parentsleep`", the overall strength of the relationship is the same, but the direction is different. If the baby sleeps more, the parent gets *more* sleep (positive relationship, but if the baby sleeps more, then the parent gets *less* grumpy (negative relationship).
+
 
 ## The correlation coefficient{#pearson}
 
