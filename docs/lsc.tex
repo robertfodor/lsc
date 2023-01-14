@@ -976,7 +976,7 @@ Note that some people might say ``discrete variable'' when they mean ``nominal s
 \end{tabu}}
 
 \hypertarget{ivdv}{%
-\section{The ``role'' of variables: predictors and outcomes}\label{ivdv}}
+\section{Independent and dependent variables}\label{ivdv}}
 
 Usually, when we do some research, we end up with lots of different variables. Then, when we analyse our data, we often try to explain some of the variables in terms of the other variables. It's essential to keep the two roles, ``thing doing the explaining'' and ``thing being explained'', distinct. So let's be clear about this now. Firstly, we might as well get used to the idea of using mathematical symbols to describe variables since it's going to happen repeatedly. Let's denote the ``to be explained'' variable \(Y\), and the variables ``doing the explaining'' as \(X_1\), \(X_2\), etc.
 
@@ -1008,13 +1008,13 @@ By applying psychological measures we end up with variables, which can come in m
 \protect\hypertarget{def:defreliability}{}\label{def:defreliability}The \textbf{reliability} of a measure is the extent to which it is dependably, consistently, and stably giving the same result when measuring the same observation.
 \end{definition}
 
-\begin{example}[Reliability example 1]
+\begin{example}[Reliability example A]
 \protect\hypertarget{exm:exreliability1}{}\label{exm:exreliability1}You are designing a health psychology experiment to test the effect of psilocybin on mood disorders\footnote{Read up on actual research on dosing, if interested. At the time of writing, this is an excellent starting point: Garcia-Romeu et al. (\protect\hyperlink{ref-garcia-romeuOptimalDosingPsilocybin2021}{2021})}. You are trying to find the right bodyweight-adjusted dose. You have a scale in the lab in Room A. You ask a participant to step on and you read 65 kg. For some reason, within a minute (in which they didn't drink, eat or go to the bathroom), you have to ask them to step back, but this time, the scale shows 74 kg. Disbelief creeps in, rightly. You are confused, and you decide to ask them to step on the scale again. This time, the scale shows 65 kg. Can you trust this 65 kg reading?
 
 You borrow a scale from Room B and ask the same participant to step on it -- again, within a minute or two, so no weight shift should occur. This time, the scale shows 68 kg after three consecutive readings. But can you trust this 68 kg reading? You have your doubts. So you go into Room C, which has a different type of scale. The participant steps on the scale three times, and it consistently shows 68 kg.
 \end{example}
 
-\begin{example}[Reliability example 2]
+\begin{example}[Reliability example B]
 \protect\hypertarget{exm:exreliability2}{}\label{exm:exreliability2}You have a patient admitted to a ward, and you and your colleague are asked to evaluate them. You both use the same version of the Questionnaire X, still within the same time of day, but you both end up with different scores and different diagnoses. Can you trust either of your scores?
 
 A senior colleague provides you with SCID-5, a structured clinical interview for diagnosing mental disorders based on DSM-5. You use it to evaluate the patient. You both get a diagnosis of major depressive disorder.
@@ -1025,16 +1025,18 @@ The examples already hints at different ways of thinking about reliability, but 
 \begin{itemize}
 \tightlist
 \item
-  \textbf{\emph{Test-retest reliability}}. This relates to consistency over time: if we repeat the measurement on the same thing at a later date, do we get the same answer? In \protect\hyperlink{exreliability1}{Example 1}, the scale in Room A is not reliable in this sense, but the scale in Room B is.
+  \textbf{\emph{Test-retest reliability}}. This relates to consistency over time: if we repeat the measurement on the same thing at a later date, do we get the same answer? In Example \ref{exm:exreliability1}, the scale in Room A was not reliable, but the scale in Room B and Room C was.
 \item
-  \textbf{\emph{Parallel/alternative forms reliability}}. This relates to consistency across theoretically-equivalent measurements. In \protect\hyperlink{exreliability1}{Example 1}, the scales in both Room B and Room C gave the same reading. Two different ``versions'' of a measurement instrument were used to measure the same concept (human body weight), and they gave the same answer.
+  \textbf{\emph{Inter-rater reliability}}. This relates to consistency across people: if someone else repeats the measurement, will they produce the same answer? In Example \ref{exm:exreliability2}, the two raters gave different answers with the same Questionnaire X, so clearly it was not reliable in this sense, however the SCID-5 was\footnote{SCID-5 is a golden standard, but it is not fully void of inter-rater reliability issues, particularly among recently trained clinicians (\protect\hyperlink{ref-brodeyValidationNetSCIDAutomated2016}{Brodey et al., 2016}), however, there are always new tools or versions to help tackle this.}.
 \item
-  \textbf{\emph{Inter-rater reliability}}. This relates to consistency across people: if someone else repeats the measurement, will they produce the same answer? In \protect\hyperlink{exreliability2}{Example 2}, the two raters gave different answers with the same Questionnaire X, so clearly it was not reliable in this sense, however the SCID-5 was\footnote{SCID-5 is a golden standard, but it is not fully void of inter-rater reliability issues, particularly among recently trained clinicians (\protect\hyperlink{ref-brodeyValidationNetSCIDAutomated2016}{Brodey et al., 2016}), however, there are always new tools or versions to help tackle this.}.
+  \textbf{\emph{Internal consistency reliability}} or \textbf{\emph{homogeneity}}. Suppose a measurement is constructed from many different parts that perform similar functions. Inventories and scales use multiple questions to measure a single concept. If the questions are all measuring the same thing, then they should be consistent with each other. Ideally, items relating to the same concept should be highly correlated with each other, i.e., they should be consistent with each other\footnote{Of course if some items are too highly correlated, one or two of them might even be redundant to be dropped while keeping the overall consistency high. However, we won't cover in detail survey design in this book.}.
 \item
-  \textbf{\emph{Internal consistency reliability}} or \textbf{\emph{homogeneity}}. Suppose a measurement is constructed from many different parts that perform similar functions. A personality questionnaire result is added up across several questions. Do the individual parts tend to give similar answers?
+  \textbf{\emph{Parallel/alternative forms reliability}}. This relates to consistency across theoretically-equivalent measurements. In Example \ref{exm:exreliability1}, the scales in both Room B and Room C gave the same reading. Two different ``versions'' of a measurement instrument were used to measure the same concept (human body weight), and they gave the same answer\footnote{Making different versions of the same test, e.g.~by switching up the order of items is one possible way to test for reliability.}.
+\item
+  \textbf{\emph{Split-half reliability}}. This is a very specific concept widely used in survey design: divide a test into two halves, and see if the two halves are consistent with each other by calculating the reliability coefficient.
 \end{itemize}
 
-Not all measurements need to possess all forms of reliability.
+Not all measurements need to possess all forms of reliability. Nevertheless, it is important to be aware of reliability as a concept with its forms.
 
 \hypertarget{researchdesigns}{%
 \section{Experimental and non-experimental research}\label{researchdesigns}}
