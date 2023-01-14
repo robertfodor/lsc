@@ -181,11 +181,11 @@ Firstly, notice that the departments are *not* equal to one another in terms of 
 
 (ref:berkeleyFigCap) The Berkeley 1973 college admission rate for the 85 departments that had at least one female applicant based on Bickel et al. [-@Bickel1975]. Circles plot departments with more than 40 applicants; the area of the circle is proportional to the total number of applicants. The crosses plot department with fewer than 40 applicants.
 
-```{r berkeley, echo=FALSE, fig.cap="(ref:berkeleyFigCap)", fig.scap="The Berkeley 1973 college admissions data.", fig.align="center", fig.pos="h"}
+In other words, what these data seem to be suggesting is that the female applicants tended to apply to "harder" departments. And in fact, if we look at Figure \@ref(fig:berkeley), we see that this trend is systematic, and quite striking. This effect is known as Simpson's paradox. It's not common, but it does happen in real life, and most people are very surprised by it when they first encounter it, and many people refuse to even believe that it's real. It is very real.
+
+```{r berkeley, echo=FALSE, fig.cap="(ref:berkeleyFigCap)", fig.scap="The Berkeley 1973 college admissions data.", fig.align="center"}
 knitr::include_graphics("resources/image/berkeley.png")
 ```
-
-In other words, what these data seem to be suggesting is that the female applicants tended to apply to "harder" departments. And in fact, if we look at Figure \@ref(fig:berkeley), we see that this trend is systematic, and quite striking. This effect is known as Simpson's paradox. It's not common, but it does happen in real life, and most people are very surprised by it when they first encounter it, and many people refuse to even believe that it's real. It is very real.
 
 When doing research, there are *lots* of subtle, counterintuitive traps lying in wait for the unwary. Truth is sometimes cunningly hidden in the nooks and crannies of complicated data. Statistics only solves *part* of the problem.
 
@@ -199,6 +199,8 @@ We hope that the discussion above helped explain why science in general is so fo
 
 **Why does psychology have so much statistics?**
 
+\nopagebreak[4]
+
 The most important reason is that psychology is a statistical science. There's a saying used sometimes in physics, to the effect that "if your experiment needs statistics, you should have done a better experiment".
 
 The "things" that we study are *people*. Real, complicated, gloriously messy people. The "things" of physics include object like electrons, and while there are all sorts of complexities that arise in physics, electrons don't have minds of their own. They don't have opinions, they don't differ from each other in weird and arbitrary ways, they don't get bored in the middle of an experiment, and they don't get angry at the experimenter and then deliberately try to sabotage the data set.^[Some may argue that natural science experiments still struggle with data quality, noise etc. But to the best of my knowledge, there's no evidence of electron producing response bias in the lab due to over- or undercompliance. -- Robert]
@@ -206,6 +208,8 @@ The "things" that we study are *people*. Real, complicated, gloriously messy peo
 We teach statistics to you as psychologists because you need to be better at stats than physicists. They have the luxury of being able to say that because their objects of study are simple in comparison to the vast mess that confronts social scientists.
 
 **Can't someone else do the statistics?**
+
+\nopagebreak[4]
 
 To some extent, but not completely. It's true that you don't need to become a fully trained statistician just to do psychology, but you do need to reach a certain level of statistical competence. There's three reasons that every psychological researcher ought to be able to do basic statistics:
 
@@ -216,6 +220,8 @@ To some extent, but not completely. It's true that you don't need to become a fu
 Note that a lot of these reasons generalise beyond researchers. If you want to be a practicing psychologist and stay on top of the field, it helps to be able to read the scientific literature, which relies pretty heavily on statistics.
 
 **I don't care about jobs, research, or clinical work. Do I need statistics?**
+
+\nopagebreak[4]
 
 Statistics should matter to you in the same way that statistics should matter to *everyone*: we live in the 21st century, and data are *everywhere*. Frankly, given the world in which we live these days, a basic knowledge of statistics is pretty damn close to a survival tool! Which is the topic of the next section...
 

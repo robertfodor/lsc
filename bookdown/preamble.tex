@@ -1,6 +1,13 @@
 % Don't hyphenate
 \usepackage[none]{hyphenat}
 
+% Widow control
+\usepackage[defaultlines=3,all]{nowidow}
+
+% Footnotes
+\addtolength{\skip\footins}{1.5pc plus 5pt} % Footnote spacing from text
+\setlength{\footnotesep}{1.2pc} % Space between footnotes
+
 % CS colors
 \usepackage{xcolor}
 \definecolor{CSblue}{HTML}{3960A5}
@@ -47,7 +54,7 @@
 \captionsetup[figure]{font=sf} % Sans serif caption font
 \usepackage{subfig}
 %\setlength\abovecaptionskip{-5pt}
-\captionsetup[figure]{skip=0pt}
+%\captionsetup[figure]{skip=0pt}
 
 \usepackage{array}
 
@@ -75,6 +82,13 @@
 \usepackage[nobottomtitles*]{titlesec}
 \titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{12pt plus 4pt minus 2pt}
 
+  %% Chapter number and title in the same line
+  \titleformat{\chapter}[display]
+    {\normalfont\Large\bfseries\sourcesanspro\color{black}}
+    {\chaptertitlename\ \thechapter}{0em}
+    {\Huge\bfseries\sourcesanspro\color{chap}}
+
+
 % Keep things together, page breaks
 \makeatletter       %% <- make @ usable in command sequences
 \@secpenalty=0      %% <- don't encourage breaks before section heading
@@ -88,25 +102,30 @@
 \newtcolorbox{callout}[1][]{%
   colback=calloutbackground,
   colframe=calloutborder,
-  leftrule=3em,
-  parbox=false,
+  parbox=true,
+  leftrule=0.6em,
   fontupper=\sourcesanspro\small,
   breakable = false,
   title={#1},
   fonttitle=\bfseries\sourcesanspro\normalsize,
+  sharp corners,
+  rounded corners = uphill,
+  arc=10pt,
+  toptitle=0.4em,
+  bottomtitle=0.4em,
 }
 
 % Definitions and examples have left margin
 \newtcolorbox{exenv}{
   breakable = true,
-  leftrule = 3em,
+  leftrule = 2em,
   colframe = exampleborder,
   colback = examplebackground,
 }
 
 \newtcolorbox{defenv}{
   breakable = true,
-  leftrule = 3em,
+  leftrule = 2em,
   colframe = definitionborder,
   colback = definitionbackground,
 }
@@ -121,6 +140,13 @@
 % Shrink space between figure and rest
 \BeforeBeginEnvironment{figure}{\vskip-2ex}
 \AfterEndEnvironment{figure}{\vskip-2ex}
+
+% tcolorbox to keep text together
+\newtcolorbox{keepTogether}{%
+  breakable = false,
+  parbox = true,
+  blanker,
+}
 
 % Dependencies for merging with external cover page
 \usepackage{pdfpages}

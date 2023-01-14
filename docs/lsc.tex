@@ -89,6 +89,13 @@
 % Don't hyphenate
 \usepackage[none]{hyphenat}
 
+% Widow control
+\usepackage[defaultlines=3,all]{nowidow}
+
+% Footnotes
+\addtolength{\skip\footins}{1.5pc plus 5pt} % Footnote spacing from text
+\setlength{\footnotesep}{1.2pc} % Space between footnotes
+
 % CS colors
 \usepackage{xcolor}
 \definecolor{CSblue}{HTML}{3960A5}
@@ -135,7 +142,7 @@
 \captionsetup[figure]{font=sf} % Sans serif caption font
 \usepackage{subfig}
 %\setlength\abovecaptionskip{-5pt}
-\captionsetup[figure]{skip=0pt}
+%\captionsetup[figure]{skip=0pt}
 
 \usepackage{array}
 
@@ -163,6 +170,13 @@
 \usepackage[nobottomtitles*]{titlesec}
 \titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{12pt plus 4pt minus 2pt}
 
+  %% Chapter number and title in the same line
+  \titleformat{\chapter}[display]
+    {\normalfont\Large\bfseries\sourcesanspro\color{black}}
+    {\chaptertitlename\ \thechapter}{0em}
+    {\Huge\bfseries\sourcesanspro\color{chap}}
+
+
 % Keep things together, page breaks
 \makeatletter       %% <- make @ usable in command sequences
 \@secpenalty=0      %% <- don't encourage breaks before section heading
@@ -176,25 +190,30 @@
 \newtcolorbox{callout}[1][]{%
   colback=calloutbackground,
   colframe=calloutborder,
-  leftrule=3em,
-  parbox=false,
+  parbox=true,
+  leftrule=0.6em,
   fontupper=\sourcesanspro\small,
   breakable = false,
   title={#1},
   fonttitle=\bfseries\sourcesanspro\normalsize,
+  sharp corners,
+  rounded corners = uphill,
+  arc=10pt,
+  toptitle=0.4em,
+  bottomtitle=0.4em,
 }
 
 % Definitions and examples have left margin
 \newtcolorbox{exenv}{
   breakable = true,
-  leftrule = 3em,
+  leftrule = 2em,
   colframe = exampleborder,
   colback = examplebackground,
 }
 
 \newtcolorbox{defenv}{
   breakable = true,
-  leftrule = 3em,
+  leftrule = 2em,
   colframe = definitionborder,
   colback = definitionbackground,
 }
@@ -209,6 +228,13 @@
 % Shrink space between figure and rest
 \BeforeBeginEnvironment{figure}{\vskip-2ex}
 \AfterEndEnvironment{figure}{\vskip-2ex}
+
+% tcolorbox to keep text together
+\newtcolorbox{keepTogether}{%
+  breakable = false,
+  parbox = true,
+  blanker,
+}
 
 % Dependencies for merging with external cover page
 \usepackage{pdfpages}
@@ -301,7 +327,11 @@
 \chapter*{About this book}\label{about-this-book}}
 \addcontentsline{toc}{chapter}{About this book}
 
-\textbf{Revised edition} published XX January 2023. Aligns with \textbf{Cogstat v2.3}.
+First published on 27 September 2022 (electronic).
+
+Critical fixes applied (typos and minor errors) on 5 November 2022.
+
+\textbf{Second edition} published on XX January \textbf{2023} (electronic). Aligns with \textbf{Cogstat v2.3}.
 
 To reference this book, please use the following citation (APA7 format):
 
@@ -310,40 +340,37 @@ Navarro, D., \& Fodor, R. (2023). Learning Statistics with CogStat (Rev.~ed.).\\
 \url{https://learningstatisticswithcogstat.com}
 \end{quote}
 
-The online version of the book is updated regularly. The date of the last update is shown on the title page. The book features screenshots based on CogStat version 2.3.
-
-\begin{itemize}
-\tightlist
-\item
-  \emph{First edition} was published on 27 September 2022 (electronic).
-\item
-  Critical fixes applied (typos and minor errors) on 5 November 2022.
-\item
-  \emph{Revised Edition} was published on XX January 2023 (electronic).
-\end{itemize}
-
-\hypertarget{authors-note-for-the-first-edition}{%
-\section*{\texorpdfstring{Author's note for the \emph{First Edition}}{Author's note for the First Edition}}\label{authors-note-for-the-first-edition}}
-\addcontentsline{toc}{section}{Author's note for the \emph{First Edition}}
-
-This book is intended for psychology students and other beginners who are interested in learning statistics and want to use CogStat to perform their analyses. \href{https://www.cogstat.org}{CogStat} is a statistics software written in Python by Attila Krajcsi\footnote{Attila Krajcsi -- \href{http://www.attilakrajcsi.hu}{Website} \textbar{} \href{https://orcid.org/0000-0001-9792-9091}{\includegraphics{resources/image/orcid_16x16.png}} 0000-0001-9792-9091} and developed with the help of supporters. Its distinct advantage is automatic hypothesis test selection and chart creation with an APA-style output to suit the needs of psychology researchers and students.
-
-\emph{Learning Statistics with CogStat} is a book which covers the contents of an introductory statistics class. It is an adaptation made by Róbert Fodor based on Danielle Navarro's original \emph{(Learning Statistics with R)\footnote{\url{https://learningstatisticswithr.com}}} (Version 0.6\footnote{This book is compiled from scratch in bookdown but some code snippets rely on \href{https://twitter.com/emilyandthelime}{Emily Kothe}'s bookdown adaptation of the original material (e.g.~some knitr plots and tables appear in the source code without alteration), numbered as version \href{https://learningstatisticswithr.com/book/}{0.6.1}}). While the theory laid out in the original book is still valid, this book focuses on the practical application of statistical methods in CogStat. The book is not intended to be a comprehensive guide to either CogStat or statistical theory, though. One of the key challenges of the adaptation was to balance between a fully applied approach (like how CogStat handles analysis) and a theoretical one (like the fantastic textbook it is based on). Danielle's original content, while making up a massive chunk of the material, has been revised, reorganised, redacted, expanded on and rewritten to fit the new purpose.
-
-This book will always be a living thing. As CogStat expands and evolves, so will this book. If you have any suggestions, comments or questions, please feel free to reach out to me on \href{https://github.com/robertfodor/lsc/issues}{GitHub}.
-
--- Robert
-
-\hypertarget{changes-in-the-revised-edition}{%
-\section*{\texorpdfstring{Changes in the \emph{Revised Edition}}{Changes in the Revised Edition}}\label{changes-in-the-revised-edition}}
-\addcontentsline{toc}{section}{Changes in the \emph{Revised Edition}}
+\hypertarget{foreword-for-the-first-edition}{%
+\section*{\texorpdfstring{Foreword for the \emph{First Edition}}{Foreword for the First Edition}}\label{foreword-for-the-first-edition}}
+\addcontentsline{toc}{section}{Foreword for the \emph{First Edition}}
 
 \hypertarget{authors-note}{%
 \subsubsection*{Author's note}\label{authors-note}}
 
-This edition brings in plenty of changes, well beyond 10\% of the book, which should warrant, per publishing standards, for it to be called ``Second Edition'' instead of a ``Revised Edition'' of the first one. However, it sounds quite conceited considering I've done some of the work that really should've gone into the original edition in the first place. The main drive behind these edits was reflections on the material's usefulness and \emph{accuracy}, since some explanations and wordings needed to be more robust to withstand scientific scrutiny, which Attila Krajcsi provided. I must thank him for his helpful notes as consulting editor for this version, not due to sheer obligation but on account of genuine appreciation. His feedback was essential, and while I spent quite some time defending most of my earlier decisions (some of which I still do), I had to accept that I simply couldn't have got it quite right the first time, and I shouldn't be too attached to the source material. I loved that the original was accessible and the opposite of stuffy, but I decided to cut down some of the chattiness and informality while aiming to make it scientifically more accurate and still accessible to students and other audiences. I consulted some open textbooks on the web and the textbooks I am studying at Ulster University. I hope that this version is a step in the right direction.
+This book is intended for psychology students and other beginners who are interested in learning statistics and want to use CogStat to perform their analyses. \href{https://www.cogstat.org}{CogStat} is a statistics software written in Python by Attila Krajcsi\footnote{Attila Krajcsi -- \href{http://www.attilakrajcsi.hu}{Website} \textbar{} \href{https://orcid.org/0000-0001-9792-9091}{\includegraphics{resources/image/orcid_16x16.png}} 0000-0001-9792-9091} and developed with the help of supporters. Its distinct advantage is automatic hypothesis test selection and chart creation with an APA-style output to suit the needs of psychology researchers and students.
 
--- Robert
+\emph{Learning Statistics with CogStat} is a book which covers the contents of an introductory statistics class. It is an adaptation made by Róbert Fodor based on Danielle Navarro's original, \href{https://learningstatisticswithr.com}{Learning Statistics with R}, version 0.6\footnote{This book is compiled from scratch in bookdown but some code snippets rely on \href{https://twitter.com/emilyandthelime}{Emily Kothe}'s bookdown adaptation of the originasl material (e.g.~some knitr plots and tables appear in the source code without alteration), numbered as version \href{https://learningstatisticswithr.com/book/}{0.6.1}}. While the theory laid out in the original book is still valid, this book focuses on the practical application of statistical methods in CogStat. The book is not intended to be a comprehensive guide to either CogStat or statistical theory, though. One of the key challenges of the adaptation was to balance between a fully applied approach (like how CogStat handles analysis) and a theoretical one (like the fantastic textbook it is based on). Danielle's original content, while making up a massive chunk of the material, has been revised, reorganised, redacted, expanded on and rewritten to fit the new purpose.
+
+This book will always be a living thing. As CogStat expands and evolves, so will this book. If you have any suggestions, comments or questions, please feel free to reach out to me on \href{https://github.com/robertfodor/lsc/issues}{GitHub}.
+
+\nopagebreak[4]
+
+--- Robert
+
+\hypertarget{foreword-for-the-second-edition}{%
+\section*{\texorpdfstring{Foreword for the \emph{Second Edition}}{Foreword for the Second Edition}}\label{foreword-for-the-second-edition}}
+\addcontentsline{toc}{section}{Foreword for the \emph{Second Edition}}
+
+\hypertarget{authors-note-1}{%
+\subsubsection*{Author's note}\label{authors-note-1}}
+
+This edition brings in plenty of changes, well beyond 10\% of the book, which should warrant, per publishing standards, for it to be called ``second edition''. While it sounds quite conceited to me, considering I've done some of the work that really should've gone into the original edition in the first place, I opted for this numbering in the aim that whenever a new CogStat version is released and some of the material needs to be updated, I can just call it ``\emph{revised} second edition''. I also want to avoid any confusion where we'd have a textbook v1, v3.14 against a CogStat v2.4RC -- it's tedious. I really love this material, and maybe this is my grandiosity, but I hope this makes sense to you as well.
+
+The main drive behind these edits was reflections on the material's usefulness and \emph{accuracy}, since some explanations and wordings needed to be more robust to withstand scientific scrutiny, which Attila Krajcsi provided. I must thank him for his helpful notes as consulting editor for this version, not due to sheer obligation but on account of genuine appreciation. His feedback was essential, and while I spent quite some time defending most of my earlier decisions (some of which I still do), I had to accept that I simply couldn't have got it quite right the first time, and I shouldn't be too attached to the source material. I loved that the original was accessible and the opposite of stuffy, but I decided to cut down plenty (mostly the chattiness) and replace it with, hopefully still accessible but scientifically more accurate parts. I consulted some other textbooks comparing the way they present the material for it not to be stuffy. I firmly believe scientific communication in all its forms needs to be in everyday language while using precise terminology, appropriate analogies, and accurate examples. I hope that this edition is something you, dear reader, will love to read. I hope this edition is a step in the right direction.
+
+\nopagebreak[4]
+
+--- Robert
 
 \hypertarget{changelog}{%
 \subsubsection*{Changelog}\label{changelog}}
@@ -353,7 +380,7 @@ This edition brings in plenty of changes, well beyond 10\% of the book, which sh
 \item
   Chapters \ref{autostat} and \ref{cogstatintro} were amended and slightly expanded, and now they follow Chapter \ref{researchdesign}, so that the reader can better appreciate automatic statistical analysis.
 \item
-  Chapter \ref{researchdesign} was largely revised to make explanations and examples more accurate.
+  Chapter \ref{researchdesign} was largely replaced to make definitions and examples more accurate.
 \item
   Chapter \ref{exploringavariable} was largely revised to tie to other statistics textbooks, also focusing on differentiating between population and sample measures.
 \item
@@ -363,15 +390,17 @@ This edition brings in plenty of changes, well beyond 10\% of the book, which sh
 \item
   New: explanatory charts were added to the text.
 \item
+  New: health psychology examples were added to the text.
+\item
   Typos and minor errors were fixed all throughout the book.
 \end{itemize}
 
 \hypertarget{licensing}{%
 \section*{Licensing}\label{licensing}}
 
-This book is published under a Creative Commons BY-SA license (CC BY-SA) version 4.0. This means that this book can be reused, remixed, retained, revised and redistributed (including commercially) as long as appropriate credit is given to the authors. If you remix, or modify the original version of this open textbook, you must redistribute all versions of this open textbook under the same license - CC BY-SA.
+\includegraphics[width=0.66\linewidth]{resources/image/by-sa}
 
-\url{https://creativecommons.org/licenses/by-sa/4.0/}
+This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit \url{http://creativecommons.org/licenses/by-sa/4.0/} or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \hypertarget{part-introductions}{%
 \part*{INTRODUCTIONS}\label{part-introductions}}
@@ -513,7 +542,9 @@ Firstly, notice that the departments are \emph{not} equal to one another in term
 
 
 
-\begin{figure}[h]
+In other words, what these data seem to be suggesting is that the female applicants tended to apply to ``harder'' departments. And in fact, if we look at Figure \ref{fig:berkeley}, we see that this trend is systematic, and quite striking. This effect is known as Simpson's paradox. It's not common, but it does happen in real life, and most people are very surprised by it when they first encounter it, and many people refuse to even believe that it's real. It is very real.
+
+\begin{figure}
 
 {\centering \includegraphics[width=0.66\linewidth]{resources/image/berkeley} 
 
@@ -521,8 +552,6 @@ Firstly, notice that the departments are \emph{not} equal to one another in term
 
 \caption[The Berkeley 1973 college admissions data.]{The Berkeley 1973 college admission rate for the 85 departments that had at least one female applicant based on Bickel et al. (\protect\hyperlink{ref-Bickel1975}{1975}). Circles plot departments with more than 40 applicants; the area of the circle is proportional to the total number of applicants. The crosses plot department with fewer than 40 applicants.}\label{fig:berkeley}
 \end{figure}
-
-In other words, what these data seem to be suggesting is that the female applicants tended to apply to ``harder'' departments. And in fact, if we look at Figure \ref{fig:berkeley}, we see that this trend is systematic, and quite striking. This effect is known as Simpson's paradox. It's not common, but it does happen in real life, and most people are very surprised by it when they first encounter it, and many people refuse to even believe that it's real. It is very real.
 
 When doing research, there are \emph{lots} of subtle, counterintuitive traps lying in wait for the unwary. Truth is sometimes cunningly hidden in the nooks and crannies of complicated data. Statistics only solves \emph{part} of the problem.
 
@@ -537,6 +566,8 @@ We hope that the discussion above helped explain why science in general is so fo
 
 \textbf{Why does psychology have so much statistics?}
 
+\nopagebreak[4]
+
 The most important reason is that psychology is a statistical science. There's a saying used sometimes in physics, to the effect that ``if your experiment needs statistics, you should have done a better experiment''.
 
 The ``things'' that we study are \emph{people}. Real, complicated, gloriously messy people. The ``things'' of physics include object like electrons, and while there are all sorts of complexities that arise in physics, electrons don't have minds of their own. They don't have opinions, they don't differ from each other in weird and arbitrary ways, they don't get bored in the middle of an experiment, and they don't get angry at the experimenter and then deliberately try to sabotage the data set.\footnote{Some may argue that natural science experiments still struggle with data quality, noise etc. But to the best of my knowledge, there's no evidence of electron producing response bias in the lab due to over- or undercompliance. -- Robert}
@@ -544,6 +575,8 @@ The ``things'' that we study are \emph{people}. Real, complicated, gloriously me
 We teach statistics to you as psychologists because you need to be better at stats than physicists. They have the luxury of being able to say that because their objects of study are simple in comparison to the vast mess that confronts social scientists.
 
 \textbf{Can't someone else do the statistics?}
+
+\nopagebreak[4]
 
 To some extent, but not completely. It's true that you don't need to become a fully trained statistician just to do psychology, but you do need to reach a certain level of statistical competence. There's three reasons that every psychological researcher ought to be able to do basic statistics:
 
@@ -560,6 +593,8 @@ To some extent, but not completely. It's true that you don't need to become a fu
 Note that a lot of these reasons generalise beyond researchers. If you want to be a practicing psychologist and stay on top of the field, it helps to be able to read the scientific literature, which relies pretty heavily on statistics.
 
 \textbf{I don't care about jobs, research, or clinical work. Do I need statistics?}
+
+\nopagebreak[4]
 
 Statistics should matter to you in the same way that statistics should matter to \emph{everyone}: we live in the 21st century, and data are \emph{everywhere}. Frankly, given the world in which we live these days, a basic knowledge of statistics is pretty damn close to a survival tool! Which is the topic of the next section\ldots{}
 
@@ -738,6 +773,8 @@ Note that you can have a numeric code assigned to an ordinal variable. However, 
 \begin{example}[Ordinal scale variable example]
 \protect\hypertarget{exm:exordinal}{}\label{exm:exordinal}Suppose we're interested in people's attitudes to climate change, and we ask them to pick one of these four statements that most closely matches their beliefs:
 
+\begin{keepTogether}
+
 \begin{quote}
 \begin{enumerate}
 \def\labelenumi{(\arabic{enumi})}
@@ -753,7 +790,11 @@ Note that you can have a numeric code assigned to an ordinal variable. However, 
 \end{enumerate}
 \end{quote}
 
+\end{keepTogether}
+
 Notice that these four statements actually do have a natural ordering in terms of ``the extent to which they agree with the current science''. Statement 1 is a close match, statement 2 is a suitable match, statement 3 isn't a perfect match, and statement 4 strongly opposes science. So, in terms of the thing we're interested in (the extent to which people endorse the science), we can order the items as 1 \textgreater{} 2 \textgreater{} 3 \textgreater{} 4. Since this ordering exists, it would be peculiar to list the options like this:
+
+\begin{keepTogether}
 
 \begin{quote}
 \begin{enumerate}
@@ -770,6 +811,8 @@ Notice that these four statements actually do have a natural ordering in terms o
   Temperatures are rising, but we don't know why
 \end{enumerate}
 \end{quote}
+
+\end{keepTogether}
 
 -- because it seems to violate the natural ``structure'' of the question.
 
@@ -829,7 +872,11 @@ The humble Likert scale is all survey designs' bread and butter tool. You have f
 Which of the following best describes your opinion of the statement that ``all pirates are awesome'' \ldots{}
 \end{quote}
 
+\nopagebreak[4]
+
 and then, the options presented to the participant are these:
+
+\begin{keepTogether}
 
 \begin{quote}
 \begin{enumerate}
@@ -848,7 +895,11 @@ and then, the options presented to the participant are these:
 \end{enumerate}
 \end{quote}
 
+\end{keepTogether}
+
 This set of items is an example of a 5-point Likert scale: people are asked to choose among one of several (in this case, 5) clearly ordered possibilities, generally with a verbal descriptor given in each case. However, it's not necessary that all items be explicitly described. This is a perfect example of a 5-point Likert scale too:
+
+\begin{keepTogether}
 
 \begin{quote}
 \begin{enumerate}
@@ -863,6 +914,8 @@ This set of items is an example of a 5-point Likert scale: people are asked to c
   Strongly agree
 \end{enumerate}
 \end{quote}
+
+\end{keepTogether}
 
 Likert scales are convenient, if somewhat limited, tools. The question is, what kind of variable are they? They're obviously discrete since you can't give a response of 2.5. They're obviously not nominal scale since the items are ordered, and they're not ratio scale either since there's no natural zero\footnote{And you can't cheat. You can code your Likert scale from 0 to 4 instead of 1 to 5, but these are arbitrary, just like deciding that the freezing temperature is labelled as 0.}.
 
@@ -949,23 +1002,39 @@ to do the explaining & independent variable (IV) & predictor\\
 \hypertarget{reliability}{%
 \section{Reliability}\label{reliability}}
 
-At this point, we've thought a little bit about how to operationalise a theoretical construct and thereby create a psychological measure. We've seen that by applying psychological measures we end up with variables, which can come in many different types. At this point, we should start discussing the obvious question: is the measurement any good? We'll do this in terms of two related ideas: \emph{reliability} and \emph{validity}. Put simply, the \textbf{reliability} of a measure tells you how \emph{precisely} and \emph{consistenly} you are measuring something (i.e.~you are measuring the precise thing you inted to measure, and if you repeat the measurement on other samples or on the same sample some time later, you are still measuring the same variable). Whereas the \textbf{validity} of a measure tells you how \emph{accurate} the measure is (i.e.~the measurement is measuring the thing they are meant to measure and they do that exactly). See more in Chapter \ref{validity}.
+By applying psychological measures we end up with variables, which can come in many different types. But the inevitable question arises: is the measurement any good? We'll do this in terms of two related ideas: \emph{reliability} and \emph{validity}.
 
-Let's think about the different ways in which we might measure reliability:
+\begin{definition}[Reliability]
+\protect\hypertarget{def:defreliability}{}\label{def:defreliability}The \textbf{reliability} of a measure is the extent to which it is dependably, consistently, and stably giving the same result when measuring the same observation.
+\end{definition}
+
+\begin{example}[Reliability example 1]
+\protect\hypertarget{exm:exreliability1}{}\label{exm:exreliability1}You are designing a health psychology experiment to test the effect of psilocybin on mood disorders\footnote{Read up on actual research on dosing, if interested. At the time of writing, this is an excellent starting point: Garcia-Romeu et al. (\protect\hyperlink{ref-garcia-romeuOptimalDosingPsilocybin2021}{2021})}. You are trying to find the right bodyweight-adjusted dose. You have a scale in the lab in Room A. You ask a participant to step on and you read 65 kg. For some reason, within a minute (in which they didn't drink, eat or go to the bathroom), you have to ask them to step back, but this time, the scale shows 74 kg. Disbelief creeps in, rightly. You are confused, and you decide to ask them to step on the scale again. This time, the scale shows 65 kg. Can you trust this 65 kg reading?
+
+You borrow a scale from Room B and ask the same participant to step on it -- again, within a minute or two, so no weight shift should occur. This time, the scale shows 68 kg after three consecutive readings. But can you trust this 68 kg reading? You have your doubts. So you go into Room C, which has a different type of scale. The participant steps on the scale three times, and it consistently shows 68 kg.
+\end{example}
+
+\begin{example}[Reliability example 2]
+\protect\hypertarget{exm:exreliability2}{}\label{exm:exreliability2}You have a patient admitted to a ward, and you and your colleague are asked to evaluate them. You both use the same version of the Questionnaire X, still within the same time of day, but you both end up with different scores and different diagnoses. Can you trust either of your scores?
+
+A senior colleague provides you with SCID-5, a structured clinical interview for diagnosing mental disorders based on DSM-5. You use it to evaluate the patient. You both get a diagnosis of major depressive disorder.
+\end{example}
+
+The examples already hints at different ways of thinking about reliability, but let's summarise what the different types of reliability might be:
 
 \begin{itemize}
 \tightlist
 \item
-  \textbf{\emph{Test-retest reliability}}. This relates to consistency over time: if we repeat the measurement at a later date, do we get the same answer?
+  \textbf{\emph{Test-retest reliability}}. This relates to consistency over time: if we repeat the measurement on the same thing at a later date, do we get the same answer? In \protect\hyperlink{exreliability1}{Example 1}, the scale in Room A is not reliable in this sense, but the scale in Room B is.
 \item
-  \textbf{\emph{Inter-rater reliability}}. This relates to consistency across people: if someone else repeats the measurement (e.g.~someone else rates our intelligence), will they produce the same answer?
+  \textbf{\emph{Parallel/alternative forms reliability}}. This relates to consistency across theoretically-equivalent measurements. In \protect\hyperlink{exreliability1}{Example 1}, the scales in both Room B and Room C gave the same reading. Two different ``versions'' of a measurement instrument were used to measure the same concept (human body weight), and they gave the same answer.
 \item
-  \textbf{\emph{Parallel forms reliability}}. This relates to consistency across theoretically-equivalent measurements: if we use a different set of bathroom scales to measure our weight, does it give the same answer?
+  \textbf{\emph{Inter-rater reliability}}. This relates to consistency across people: if someone else repeats the measurement, will they produce the same answer? In \protect\hyperlink{exreliability2}{Example 2}, the two raters gave different answers with the same Questionnaire X, so clearly it was not reliable in this sense, however the SCID-5 was\footnote{SCID-5 is a golden standard, but it is not fully void of inter-rater reliability issues, particularly among recently trained clinicians (\protect\hyperlink{ref-brodeyValidationNetSCIDAutomated2016}{Brodey et al., 2016}), however, there are always new tools or versions to help tackle this.}.
 \item
-  \textbf{\emph{Internal consistency reliability}}. Suppose a measurement is constructed from many different parts that perform similar functions (e.g.~a personality questionnaire result is added up across several questions). Do the individual parts tend to give similar answers?
+  \textbf{\emph{Internal consistency reliability}} or \textbf{\emph{homogeneity}}. Suppose a measurement is constructed from many different parts that perform similar functions. A personality questionnaire result is added up across several questions. Do the individual parts tend to give similar answers?
 \end{itemize}
 
-Not all measurements need to possess all forms of reliability. For instance, educational assessment can be thought of as a form of measurement. One of the subjects that Danielle teaches, \emph{Computational Cognitive Science}, has an assessment structure that has a research component and an exam component (plus other things). The exam component is \emph{intended} to measure something different from the research component, so the assessment as a whole has low internal consistency. However, within the exam, several questions are intended to (approximately) measure the same things, and those tend to produce similar outcomes, so the exam on its own has a relatively high internal consistency, which is as it should be. You should only demand reliability when you want to measure the same thing!
+Not all measurements need to possess all forms of reliability.
 
 \hypertarget{researchdesigns}{%
 \section{Experimental and non-experimental research}\label{researchdesigns}}
@@ -1374,7 +1443,7 @@ In the rest of this chapter, we will explore what these measures mean and what t
 
 In most situations, the first thing that you'll want to calculate is a measure of \textbf{\emph{central tendency}}. That is, you'd like to know something about the ``average'' or ``middle'' of your data lies.
 
-\begin{center}\includegraphics[width=0.66\linewidth]{lsc_files/figure-latex/unnamed-chunk-13-1} \end{center}
+\begin{center}\includegraphics[width=0.66\linewidth]{lsc_files/figure-latex/unnamed-chunk-14-1} \end{center}
 
 \hypertarget{mean}{%
 \subsection{The mean}\label{mean}}
@@ -1627,11 +1696,11 @@ The statistics that we've discussed so far all relate to \emph{central tendency}
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{lsc_files/figure-latex/unnamed-chunk-15-1} 
+{\centering \includegraphics[width=0.66\linewidth]{lsc_files/figure-latex/unnamed-chunk-16-1} 
 
 }
 
-\caption{Data sets with the same mean but different dispersion.}\label{fig:unnamed-chunk-15}
+\caption{Data sets with the same mean but different dispersion.}\label{fig:unnamed-chunk-16}
 \end{figure}
 
 For now, let's assume that the data are interval or ratio scale, so we'll continue to use the \texttt{afl.margins} data. We'll use this data to discuss several different measures of spread, each with different strengths and weaknesses.
@@ -1695,7 +1764,7 @@ This is called a \textbf{\emph{quartile}} (i.e., 1/4). If we wanted to define in
 
 }
 
-\caption{The 25th, 50th and 75th percentiles of a cumulative distribution of a normal distribution. (StevenJYang on \href{https://en.wikipedia.org/wiki/Quartile}{Wikipedia: Quartile})}\label{fig:unnamed-chunk-17}
+\caption{The 25th, 50th and 75th percentiles of a cumulative distribution of a normal distribution. (StevenJYang on \href{https://en.wikipedia.org/wiki/Quartile}{Wikipedia: Quartile})}\label{fig:unnamed-chunk-18}
 \end{figure}
 
 The data can be divided into other quantiles as well: e.g.~a distribution cut in 5 equal-sized groups are called \textbf{\emph{quintiles}}, and a distribution cut in 10 equal-sized groups are called \textbf{\emph{deciles}}, and so on.
@@ -1744,7 +1813,7 @@ Boxplots (or ``box and whiskers'' plots) are a standardised method to display th
   and the median.
 \end{itemize}
 
-\begin{center}\includegraphics[width=0.75\linewidth]{lsc_files/figure-latex/unnamed-chunk-18-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth]{lsc_files/figure-latex/unnamed-chunk-19-1} \end{center}
 
 Like histograms, they're most suited for interval or ratio scale data. Some boxplots separate out those observations that are ``suspiciously'' distant from the rest of the data, i.e., the outliers. These are usually displayed with a circle or a dot.
 
@@ -2044,7 +2113,7 @@ We have covered some key aspects of how to summarise what we have learned about 
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1319}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1722}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.6960}}@{}}
-\caption{\label{tab:unnamed-chunk-21}Descriptives for the variable}\tabularnewline
+\caption{\label{tab:unnamed-chunk-22}Descriptives for the variable}\tabularnewline
 \toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 {}
@@ -2390,6 +2459,9 @@ Anscombe, F. J. (1973). Graphs in statistical analysis. \emph{American Statistic
 \leavevmode\vadjust pre{\hypertarget{ref-Bickel1975}{}}%
 Bickel, P. J., Hammel, E. A., \& O'Connell, J. W. (1975). Sex bias in graduate admissions: Data from {B}erkeley. \emph{Science}, \emph{187}, 398--404.
 
+\leavevmode\vadjust pre{\hypertarget{ref-brodeyValidationNetSCIDAutomated2016}{}}%
+Brodey, B. B., First, M., Linthicum, J., Haman, K., Sasiela, J. W., \& Ayer, D. (2016). Validation of the {NetSCID}: An automated web-based adaptive version of the {SCID}. \emph{Comprehensive Psychiatry}, \emph{66}, 67--70. \url{https://doi.org/10.1016/j.comppsych.2015.10.005}
+
 \leavevmode\vadjust pre{\hypertarget{ref-Campbell1963}{}}%
 Campbell, D. T., \& Stanley, J. C. (1963). \emph{Experimental and quasi-experimental designs for research}. Houghton Mifflin.
 
@@ -2398,6 +2470,9 @@ Cowan, N. (2015). George {Miller}'s magical number of immediate memory in retros
 
 \leavevmode\vadjust pre{\hypertarget{ref-Evans1983}{}}%
 Evans, J. St. B. T., Barston, J. L., \& Pollard, P. (1983). On the conflict between logic and belief in syllogistic reasoning. \emph{Memory and Cognition}, \emph{11}, 295--306.
+
+\leavevmode\vadjust pre{\hypertarget{ref-garcia-romeuOptimalDosingPsilocybin2021}{}}%
+Garcia-Romeu, A., Barrett, F. S., Carbonaro, T. M., Johnson, M. W., \& Griffiths, R. R. (2021). Optimal dosing for psilocybin pharmacotherapy: {Considering} weight-adjusted and fixed dosing approaches. \emph{Journal of Psychopharmacology}, \emph{35}(4), 353--361. \url{https://doi.org/10.1177/0269881121991822}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Hothersall2004}{}}%
 Hothersall, D. (2004). \emph{History of psychology}. McGraw-Hill.
