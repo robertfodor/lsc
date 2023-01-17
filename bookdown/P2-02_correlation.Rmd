@@ -307,7 +307,7 @@ knitr::include_graphics("resources/image/cogstatbabysleepparentgrumpmissing.png"
 knitr::include_graphics("resources/image/cogstatparentsleepbabysleepmissing.png")
 ```
 
-## Summary
+## Summary {.unnumbered .unlisted}
 
 In this chapter, we discussed how to measure the strength of the relationship between two variables. We introduced the concept of correlation and how to calculate it using CogStat. We also discussed the difference between **Pearson's correlation** (Chapter \@ref(pearson)) and **Spearman's rank order correlation** (Chapter \@ref(spearman)), and how CogStat will calculate it for you. Finally, we discussed how CogStat handles missing values (Chapter \@ref(missingvaluespair)) in pairwise calculations.
 

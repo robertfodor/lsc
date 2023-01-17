@@ -26,12 +26,21 @@
   color: white;
 }
 
-div.definition {
+div.definition,
+div.example {
+  border: 0.2em solid hsl(197, 0%, 75%);
+  border-left-width: 2.5em;
+  background-color: hsl(197, 0%, 95%);
+  border-radius: 1em;
+  padding: 0.4em;
   padding-left: 2em;
 }
 
-div.example {
-  padding-left: 2em;
+div.definition span::after,
+div.example span::after {
+  margin-right: 1em;
+  content: "\a";
+  white-space: pre;
 }
 
 .caption {

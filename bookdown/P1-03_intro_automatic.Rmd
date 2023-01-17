@@ -17,3 +17,4 @@ For more about the merits of automatic statistical analysis, here are some furth
 - [Methodological considerations behind CogStat](https://psyarxiv.com/hnmsq)
 - [Reducing the replication crisis](https://docs.google.com/presentation/d/1HmSTPnTxDzW8hYZG7ujHaeHc0mRqqYeY95yKh56z61c)
 
+## References {.unnumbered .unlisted}
