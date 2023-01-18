@@ -23,10 +23,10 @@ bookdown::pdf_book:
     in_header: preamble.tex
     before_body: before_body.tex
   latex_engine: xelatex
-  pandoc_args:
-    - --lua-filter=section-refs.lua
-  section-refs-bibliography: book.bib
-  section-refs-level: 1
+  # pandoc_args:
+  #   - --lua-filter=section-refs.lua
+  # section-refs-bibliography: book.bib
+  # section-refs-level: 1
   keep_tex: yes
   toc: true
   tof: true

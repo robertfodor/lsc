@@ -163,12 +163,14 @@
 
 % Titles and chapters
 \usepackage{sectsty}
-\chaptertitlefont{\Huge\bfseries\sourcesanspro\color{chap}}
-\chapternumberfont{\huge\bfseries\sourcesanspro\color{chap}}
-\sectionfont{\normalfont\Large\bfseries\sourcesanspro}
-\subsectionfont{\normalfont\large\bfseries\sourcesanspro}
+\allsectionsfont{\bfseries\sourcesanspro\color{chap}}
+\sectionfont{\bfseries\LARGE\sourcesanspro\color{chap}}
+\subsectionfont{\bfseries\Large\sourcesanspro\color{chap}}
+\subsubsectionfont{\bfseries\large\sourcesanspro\color{black}}
 \usepackage[nobottomtitles*]{titlesec}
-\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{12pt plus 4pt minus 2pt}
+\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{8pt plus 4pt minus 2pt}
+\titlespacing\subsection{0pt}{8pt plus 4pt minus 2pt}{6pt plus 4pt minus 2pt}
+\titlespacing\subsubsection{0pt}{6pt plus 4pt minus 2pt}{4pt plus 4pt minus 2pt}
 
   %% Chapter number and title in the same line
   \titleformat{\chapter}[display]
@@ -187,10 +189,11 @@
 
 % Adding a framed box around text
 \usepackage[most]{tcolorbox}
+\usepackage{thmtools}
 \newtcolorbox{callout}[1][]{%
   colback=calloutbackground,
   colframe=calloutborder,
-  parbox=true,
+  parbox=false,
   leftrule=0.6em,
   fontupper=\sourcesanspro\small,
   breakable = false,
@@ -205,10 +208,15 @@
 
 % Definitions and examples have left margin
 \newtcolorbox{exenv}{
+  %blanker,
   breakable = true,
   leftrule = 2em,
+  toprule = 0.1em,
+  bottomrule = 0.1em,
+  rightrule = 0.1em,
   colframe = exampleborder,
   colback = examplebackground,
+  parbox = false,
 }
 
 \newtcolorbox{defenv}{
@@ -216,6 +224,9 @@
   leftrule = 2em,
   colframe = definitionborder,
   colback = definitionbackground,
+  parbox = false,
+  toptitle=0em,
+  bottomtitle=0em,
 }
 
 % Definitions and examples have left margin (tcolorbox)
@@ -235,6 +246,18 @@
   parbox = true,
   blanker,
 }
+
+% Theorems
+\usepackage{amsthm}
+\newtheoremstyle{definition}
+                {0em} % Space above
+                {0.5em} % Space below
+                {} % Body font
+                {} % Indent of title
+                {\itshape\bfseries}  % Title font
+                {.} % Separator character
+                {\newline} % Space after separator
+                {} % Head template
 
 % Dependencies for merging with external cover page
 \usepackage{pdfpages}
@@ -340,12 +363,19 @@ Navarro, D., \& Fodor, R. (2023). Learning Statistics with CogStat (Rev.~ed.).\\
 \url{https://learningstatisticswithcogstat.com}
 \end{quote}
 
+\hypertarget{licensing}{%
+\section*{Licensing}\label{licensing}}
+
+\includegraphics[width=0.66\linewidth]{resources/image/by-sa}
+
+This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit \url{http://creativecommons.org/licenses/by-sa/4.0/} or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+\hypertarget{foreword}{%
+\chapter*{Foreword}\label{foreword}}
+\addcontentsline{toc}{chapter}{Foreword}
+
 \hypertarget{foreword-for-the-first-edition}{%
 \section*{\texorpdfstring{Foreword for the \emph{First Edition}}{Foreword for the First Edition}}\label{foreword-for-the-first-edition}}
-\addcontentsline{toc}{section}{Foreword for the \emph{First Edition}}
-
-\hypertarget{authors-note}{%
-\subsubsection*{Author's note}\label{authors-note}}
 
 This book is intended for psychology students and other beginners who are interested in learning statistics and want to use CogStat to perform their analyses. \href{https://www.cogstat.org}{CogStat} is a statistics software written in Python by Attila Krajcsi\footnote{Attila Krajcsi -- \href{http://www.attilakrajcsi.hu}{Website} \textbar{} \href{https://orcid.org/0000-0001-9792-9091}{\includegraphics{resources/image/orcid_16x16.png}} 0000-0001-9792-9091} and developed with the help of supporters. Its distinct advantage is automatic hypothesis test selection and chart creation with an APA-style output to suit the needs of psychology researchers and students.
 
@@ -361,9 +391,6 @@ This book will always be a living thing. As CogStat expands and evolves, so will
 \section*{\texorpdfstring{Foreword for the \emph{Second Edition}}{Foreword for the Second Edition}}\label{foreword-for-the-second-edition}}
 \addcontentsline{toc}{section}{Foreword for the \emph{Second Edition}}
 
-\hypertarget{authors-note-1}{%
-\subsubsection*{Author's note}\label{authors-note-1}}
-
 This edition brings in plenty of changes, well beyond 10\% of the book, which should warrant, per publishing standards, for it to be called ``second edition''. While it sounds quite conceited to me, considering I've done some of the work that really should've gone into the original edition in the first place, I opted for this numbering in the aim that whenever a new CogStat version is released and some of the material needs to be updated, I can just call it ``\emph{revised} second edition''. I also want to avoid any confusion where we'd have a textbook v1, v3.14 against a CogStat v2.4RC -- it's tedious. I really love this material, and maybe this is my grandiosity, but I hope this makes sense to you as well.
 
 The main drive behind these edits was reflections on the material's usefulness and \emph{accuracy}, since some explanations and wordings needed to be more robust to withstand scientific scrutiny, which Attila Krajcsi provided. I must thank him for his helpful notes as consulting editor for this version, not due to sheer obligation but on account of genuine appreciation. His feedback was essential, and while I spent quite some time defending most of my earlier decisions (some of which I still do), I had to accept that I simply couldn't have got it quite right the first time, and I shouldn't be too attached to the source material. I loved that the original was accessible and the opposite of stuffy, but I decided to cut down plenty (mostly the chattiness) and replace it with, hopefully still accessible but scientifically more accurate parts. I consulted some other textbooks comparing the way they present the material for it not to be stuffy. I firmly believe scientific communication in all its forms needs to be in everyday language while using precise terminology, appropriate analogies, and accurate examples. I hope that this edition is something you, dear reader, will love to read. I hope this edition is a step in the right direction.
@@ -372,8 +399,7 @@ The main drive behind these edits was reflections on the material's usefulness a
 
 --- Robert
 
-\hypertarget{changelog}{%
-\subsubsection*{Changelog}\label{changelog}}
+\textbf{Changelog:}
 
 \begin{itemize}
 \tightlist
@@ -394,13 +420,6 @@ The main drive behind these edits was reflections on the material's usefulness a
 \item
   Typos and minor errors were fixed all throughout the book.
 \end{itemize}
-
-\hypertarget{licensing}{%
-\section*{Licensing}\label{licensing}}
-
-\includegraphics[width=0.66\linewidth]{resources/image/by-sa}
-
-This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit \url{http://creativecommons.org/licenses/by-sa/4.0/} or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
 \hypertarget{part-introductions}{%
 \part*{INTRODUCTIONS}\label{part-introductions}}
@@ -606,19 +625,6 @@ Most research methods courses will cover a lot of topics that relate much more t
 Introductory classes focus a lot on the statistics because you almost always find yourself needing statistics before you need the other research methods training. Why? Because almost all of your assignments in other classes will rely on statistical training, to a much greater extent than they rely on other methodological tools. It's not common for undergraduate assignments to require you to design your own study from the ground up (in which case you would need to know a lot about research design), but it is common for assignments to ask you to analyse and interpret data that were collected in a study that someone else designed (in which case you need statistics). In that sense, from the perspective of allowing you to do well in all your other classes, the statistics is more urgent.
 
 But note that ``urgent'' is different from ``important'' -- they both matter. We really do want to stress that research design is just as important as data analysis, and this book does spend a fair amount of time on it. However, while statistics has a kind of universality, and provides a set of core tools that are useful for most types of psychological research, the research methods side isn't quite so universal. There are some general principles that everyone should think about, but a lot of research design is very idiosyncratic, and is specific to the area of research that you want to engage in. To the extent that it's the details that matter, those details don't usually show up in an introductory stats and research methods class.
-
-\hypertarget{references}{%
-\section*{References}\label{references}}
-
-\hypertarget{refs-1}{}
-\begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-Bickel1975}{}}%
-Bickel, P. J., Hammel, E. A., \& O'Connell, J. W. (1975). Sex bias in graduate admissions: Data from {B}erkeley. \emph{Science}, \emph{187}, 398--404.
-
-\leavevmode\vadjust pre{\hypertarget{ref-Evans1983}{}}%
-Evans, J. St. B. T., Barston, J. L., \& Pollard, P. (1983). On the conflict between logic and belief in syllogistic reasoning. \emph{Memory and Cognition}, \emph{11}, 295--306.
-
-\end{CSLReferences}
 
 \hypertarget{researchdesign}{%
 \chapter{Basic concepts}\label{researchdesign}}
@@ -950,11 +956,15 @@ There's a second kind of distinction that you need to be aware of regarding what
 \end{definition}
 
 \begin{example}[Continuous variable example]
-\protect\hypertarget{exm:excontinuous}{}\label{exm:excontinuous}These definitions probably seem a bit abstract, but they're pretty simple once you see some examples. For instance, response time is continuous. If Alan takes 3.1 seconds and Ben takes 2.3 seconds to respond to a question, then Cameron's response time can lie in between by taking 3.0 seconds. And, of course, it would also be possible for David to take 3.031 seconds to respond, meaning that his RT would lie in between Cameron's and Alan's. And while in practice, it might be impossible to measure RT that precisely, it's certainly possible in principle. Because we can always find a new value for RT in between any two other ones, we say that RT is continuous.
+\protect\hypertarget{exm:excontinuous}{}\label{exm:excontinuous}Response time is continuous. If Alan takes 3.1 seconds and Ben takes 2.3 seconds to respond to a question, then Cameron's response time can lie in between by taking 3.0 seconds. And, of course, it would also be possible for David to take 3.031 seconds to respond, meaning that his RT would lie in between Cameron's and Alan's. And while in practice, it might be impossible to measure RT that precisely, it's certainly possible in principle. Because we can always find a new value for RT in between any two other ones, we say that RT is continuous.
 \end{example}
 
 \begin{example}[Discrete variable example]
-\protect\hypertarget{exm:exdiscrete}{}\label{exm:exdiscrete}Discrete variables occur when this rule is violated. For example, nominal scale variables are always discrete: there isn't a type of transportation that falls ``in-between'' trains and bicycles, not in the strict mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete. Similarly, ordinal scale variables are always discrete: although ``2nd place'' does fall between ``1st place'' and ``3rd place'', there's nothing that can logically fall in between ``1st place'' and ``2nd place''. Interval scale and ratio scale variables can go either way. Temperature in degrees Celsius (an interval scale variable) is also continuous; however, the year you went to school (an interval scale variable) is discrete. There's no year between 2002 and 2003. The number of questions you get right on a true-or-false test (a ratio scale variable) is also discrete: since a true-or-false question doesn't allow you to be ``partially correct'', there's nothing in between 5/10 and 6/10.
+\protect\hypertarget{exm:exdiscrete}{}\label{exm:exdiscrete}Nominal scale variables are always discrete: there isn't a type of transportation that falls ``in-between'' trains and bicycles, not in the strict mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete.
+
+Similarly, ordinal scale variables are always discrete: although ``2nd place'' does fall between ``1st place'' and ``3rd place'', there's nothing that can logically fall in between ``1st place'' and ``2nd place''.
+
+Interval scale and ratio scale variables can go either way. Temperature in degrees Celsius (an interval scale variable) is also continuous; however, the year you went to school (an interval scale variable) is discrete. There's no year between 2002 and 2003. The number of questions you get right on a true-or-false test (a ratio scale variable) is also discrete: since a true-or-false question doesn't allow you to be ``partially correct'', there's nothing in between 5/10 and 6/10.
 \end{example}
 
 Note that some people might say ``discrete variable'' when they mean ``nominal scale variable''. While all nominal scale variables are discrete, not all discrete variables are nominal.
@@ -1054,52 +1064,34 @@ Not all measurements need to possess all forms of reliability. Nevertheless, it 
 \hypertarget{validity}{%
 \section{Validity}\label{validity}}
 
-More than any other thing, a scientist wants their research to be ``valid''. The conceptual idea behind validity is simple: can you trust the results of your study? In practice, there aredifferent kinds of validity, each of which raises its own issues, and not all forms of validity are relevant to all studies. Let's talk about different kinds, in somewhat particular order\footnote{There are other ways to categorise validity, but this is the one we'll use in this book.}:
+More than any other thing, a scientist wants their research to be ``valid''. The conceptual idea behind validity is simple: can you trust the results of your study? In practice, there aredifferent kinds of validity, each of which raises its own issues, and not all forms of validity are relevant to all studies. Let's talk about different kinds, in somewhat particular order:
 
 \begin{itemize}
 \tightlist
 \item
-  Content validity:
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Face validity
-  \end{itemize}
+  Content validity
+\item
+  Face validity
 \item
   Construct validity
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Discriminant validity
-
-    \begin{itemize}
-    \tightlist
-    \item
-      Convergent validity
-    \item
-      Divergent validity
-    \end{itemize}
-  \end{itemize}
 \item
-  Criterion validity
-
-  \begin{itemize}
-  \tightlist
-  \item
-    Predictive validity
-  \item
-    Concurrent validity
-  \item
-    Postdictive validity
-  \end{itemize}
+  Discriminant validity
+\item
+  Convergent validity
 \item
   Internal validity
 \item
   External validity
 \item
   Ecological validity
+\item
+  Criterion validity
+\item
+  Concurrent validity
+\item
+  Predictive validity
+\item
+  Postdictive validity
 \end{itemize}
 
 \hypertarget{content-validity}{%
@@ -1156,7 +1148,11 @@ Typical questions you might consider:
 \begin{itemize}
 \tightlist
 \item
-  Does the construct have a ``precise conceptual and theoretical meaning''? (\protect\hyperlink{ref-marksResearchMethodsClinical2004}{Marks \& Yardley, 2004, p. 132})
+  Is the construct defined in a way that is clear and unambiguous?
+\item
+  Is the construct defined too broadly or too narrowly?
+\item
+  Is the sample and method appropriate for the construct?
 \item
   How does this instrument relate to other instruments designed to measure the same construct?
 \item
@@ -1166,24 +1162,24 @@ Typical questions you might consider:
 \end{itemize}
 
 \hypertarget{discriminant-validity}{%
-\subsubsection{Discriminant validity}\label{discriminant-validity}}
+\subsection{Discriminant validity}\label{discriminant-validity}}
 
-To test for construct validity, we can to test for discriminant validity through correlation and factor analysis.
+To test for construct validity, we can to test for discriminant validity\footnote{Sometimes referred to as \emph{divergent validity}. This, however, is not a universally accepted terminology (\protect\hyperlink{ref-hubleyDivergentValidity2014}{Hubley, 2014}).} through correlation and factor analysis.
 
 \begin{definition}[Discriminant validity]
-\protect\hypertarget{def:defdiscriminantvalidity}{}\label{def:defdiscriminantvalidity}The \textbf{discriminant validity}\footnote{Sometimes referred to as \emph{divergent validity}. This, however, is not a universally accepted terminology (\protect\hyperlink{ref-hubleyDivergentValidity2014}{Hubley, 2014}).} assesses the extent to which a measure is capable of accurately distinguishing the construct variable it is intended to measure from an unrelated construct variables. It is the opposite of convergent validity.
+\protect\hypertarget{def:defdiscriminantvalidity}{}\label{def:defdiscriminantvalidity}The \textbf{discriminant validity} assesses the extent to which a measure is capable of accurately distinguishing the construct variable it is intended to measure from an unrelated construct variables. It is the opposite of convergent validity.
 \end{definition}
 
-Types of questions you might consider:
+Question:
 
 \begin{itemize}
 \tightlist
 \item
-  What is the correlation between the variable we are measuring and other variables that should not be related to it? --\textgreater{} \emph{discriminant validity coefficient}
+  What is the correlation between the variable we are measuring and other variables that should not be related to it? \(\rightarrow\) \emph{discriminant validity coefficient}
 \end{itemize}
 
 \hypertarget{convergent-validity}{%
-\subsubsection{Convergent validity}\label{convergent-validity}}
+\subsection{Convergent validity}\label{convergent-validity}}
 
 \begin{definition}[Convergent validity]
 \protect\hypertarget{def:defconvergentvalidity}{}\label{def:defconvergentvalidity}The \textbf{convergent validity} is the extent to which the measurement of a variable is \emph{consistent with other variables} that should be theoretically related to it.
@@ -1194,10 +1190,10 @@ Types of questions you might consider:
 \begin{itemize}
 \tightlist
 \item
-  What is the correlation between the variable we are measuring and other variables that should be related to it? --\textgreater{} \emph{correlation coefficient}
+  What is the correlation between the variable we are measuring and other variables that should be related to it? \(\rightarrow\) \emph{correlation coefficient}
 \end{itemize}
 
-\begin{example}[Example: Construct validity, convergent validity, discriminant validity, and confounding variables]
+\begin{example}[Constructs and validity]
 \protect\hypertarget{exm:exconstructvalidity}{}\label{exm:exconstructvalidity}You are researching the relationship between socio-economic status and health outcomes. The health outcome is the construct of interest, it is the dependent variable. The socio-economic status is the independent variable. You are interested in the relationship between the two, and you want to know if socio-economic status is a good predictor of health outcomes.
 
 There are a number of related variables that you could use to measure socio-economic status, such as: personal income, household income, education, occupation, and so on. You could use any of these variables to measure socio-economic status, but you want to know which one is the best predictor of health outcomes. You could test for the relationship between each of these variables and health outcomes, and then choose the one that has the highest correlation coefficient. This is a form of convergent validity.
@@ -1235,28 +1231,20 @@ Typical questions would be:
 \protect\hypertarget{def:defexternalvalidity}{}\label{def:defexternalvalidity}The \textbf{external validity} of a study is the extent to which the results of the study can be generalised to other people, other situations, and other times.
 \end{definition}
 
-\textbf{External validity} relates to the \textbf{generalisability} of your findings. That is, to what extent do you expect to see the same pattern of results in ``real life'' as you saw in your study? To put it a bit more precisely, any study that you do in psychology will involve a fairly specific set of questions or tasks, will occur in a specific environment, and will involve participants that are drawn from a particular subgroup. So, if it turns out that the results don't actually generalise to people and situations beyond the ones that you studied, then what you've got is a lack of external validity.
-
-The classic example of this issue is the fact that a very large proportion of studies in psychology will use undergraduate psychology students as participants. However, the researchers don't care \emph{only} about psychology students; they care about people in general. Given that, a study that uses only psych students as participants always risks lacking external validity. That is, if there's something ``special'' about psychology students that makes them different to the general populace in some \emph{relevant} respect, then we may start worrying about a lack of external validity.
-
-That said, it is absolutely critical to realise that a study that uses only psychology students does not necessarily have a problem with external validity. The choice of population threatens the external validity: if (a) the population from which you sample your participants is very narrow (e.g.~psych students), and (b) the narrow population that you sampled from is systematically different from the general population, \emph{in some respect that is relevant to the psychological phenomenon that you intend to study}. The italicised part is the bit that many people forget: psychology undergraduates indeed differ from the general population in many ways, so a study that uses only psych students \emph{may} have problems with external validity. However, if those differences aren't very relevant to the phenomenon you're studying, there's nothing to worry about. To make this a bit more concrete, here are two extreme examples:
+Questions to consider:
 
 \begin{itemize}
 \tightlist
 \item
-  You want to measure ``attitudes of the general public towards psychotherapy'', but all of your participants are psychology students. This study would almost certainly have a problem with external validity.
+  To what extent can the results of the study be generalised to other people, other situations, and other times?
 \item
-  You want to measure the effectiveness of a visual illusion, and your participants are all psychology students. This study is very unlikely to have a problem with external validity
-\end{itemize}
-
-Having just spent the last couple of paragraphs focusing on the choice of participants (since that's the big issue that everyone tends to worry most about), it's worth remembering that external validity is a broader concept. The following are also examples of things that might pose a threat to external validity, depending on what kind of study you're doing:
-
-\begin{itemize}
-\tightlist
+  Is the sample representative of the population?
 \item
-  People might answer a ``psychology questionnaire'' in a manner that doesn't reflect what they would do in real life.
+  Is the sample too narrow? (e.g.~only psychology students)
 \item
-  Your lab experiment on (say) ``human learning'' has a different structure to the learning problems people face in real life.
+  Is this study replicable across different settings?
+\item
+  Are there any respondent biases that could affect the results? (Hawthorne effect, demand characteristics, etc.)
 \end{itemize}
 
 \hypertarget{ecological-validity}{%
@@ -1266,7 +1254,86 @@ Having just spent the last couple of paragraphs focusing on the choice of partic
 \protect\hypertarget{def:defecologicalvalidity}{}\label{def:defecologicalvalidity}The \textbf{ecological validity} of a study is the extent to which the entire study set-up closely approximates the real-world scenario being investigated.
 \end{definition}
 
-\textbf{Ecological validity} is a different notion of validity, similar to external validity but less important. The idea is that, to be ecologically valid, the entire study set-up should closely approximate the real-world scenario being investigated. In a sense, ecological validity is a kind of face validity -- it relates mostly to whether the study ``looks'' right, but with a bit more rigour to it. To be ecologically valid, the study has to look right in a fairly specific way. The idea behind it is the intuition that a study that is ecologically valid is more likely to be externally valid. It's no guarantee, of course. But the nice thing about ecological validity is that it's much easier to check whether a study is ecologically valid than it is to check whether a study is externally valid. A simple example would be eyewitness identification studies. Most of these studies tend to be done in a university setting, often with a fairly simple array of faces to look at rather than a lineup. The length of time between seeing the ``criminal'' and being asked to identify the suspect in the ``line up'' is usually shorter. The ``crime'' isn't real, so there's no chance that the witness is scared, and there are no police officers present, so there's not as much chance of feeling pressured. These things all mean that the study \emph{definitely} lacks ecological validity. They might (but might not) mean that it also lacks external validity.
+Some typical questions would be:
+
+\begin{itemize}
+\tightlist
+\item
+  Is the lab-based study set-up similar to the real-world scenario?
+\item
+  Would the study scenario occur naturally in the real world or in other non-controlled environment?
+\item
+  Are there any environmental or systemic factors that could affect the replicability of results in the real world?
+\end{itemize}
+
+\hypertarget{criterion-validity}{%
+\subsection{Criterion validity}\label{criterion-validity}}
+
+\begin{definition}[Criterion validity]
+\protect\hypertarget{def:defcriterionvalidity}{}\label{def:defcriterionvalidity}The \textbf{criterion validity} of an instrument is the extent to which the score results are consistent with other measures of the same construct.
+\end{definition}
+
+Typical questions would be:
+
+\begin{itemize}
+\tightlist
+\item
+  Does the instrument produce the same expected results as other instruments designed to measure the same construct?
+\item
+  Is the correlation between the instrument and other instruments designed to measure the same construct high enough?
+\end{itemize}
+
+\hypertarget{concurrent-validity}{%
+\subsection{Concurrent validity}\label{concurrent-validity}}
+
+\begin{definition}[Concurrent validity]
+\protect\hypertarget{def:defconcurrentvalidity}{}\label{def:defconcurrentvalidity}The \textbf{concurrent validity} of an instrument is the extent to which the score results are consistent with other criterion measures (where the criterion is measured at the same time as the instrument is administered).
+\end{definition}
+
+Question:
+
+\begin{itemize}
+\tightlist
+\item
+  What is the correlation between the instrument and other instruments designed to measure the same construct at the same time on the same sample? \(\rightarrow\) \emph{concurrent validity coefficient}
+\end{itemize}
+
+\hypertarget{predictive-validity}{%
+\subsection{Predictive validity}\label{predictive-validity}}
+
+\begin{definition}[Predictive validity]
+\protect\hypertarget{def:defpredictivevalidity}{}\label{def:defpredictivevalidity}The \textbf{predictive validity} of an instrument is the extent to which the results can be used to make inferences about future criterion outcomes (where the criterion is measured after the instrument is administered).
+\end{definition}
+
+\hypertarget{postdictive-validity}{%
+\subsection{Postdictive validity}\label{postdictive-validity}}
+
+\begin{definition}[Postdictive validity]
+\protect\hypertarget{def:defpostdictivevalidity}{}\label{def:defpostdictivevalidity}The \textbf{postdictive validity} or \textbf{retrospective validity} of an instrument is the extent to which the results can be used to make inferences about past criterion outcomes (where the criterion is measured before the instrument is administered).
+\end{definition}
+
+\hypertarget{calloutvalidityterminology}{}
+\begin{callout}[Modern Validity Theory Terminology]
+
+The American Educational Research Association (AERA), the American Psychological Association (APA), and the National Council on Measurement in Education (NCME) prepared their Standards for Educational and Psychological Testing (\protect\hyperlink{ref-americaneducationalresearchassociationStandardsEducationalPsychological2014}{2014}). This standard uses different terminology to describe the different types of validity.
+
+It does not apply validity to the research instrument but rather the interpretation of it; it is a continuum and not a dichotomy (``valid'' or ``not valid'') (\protect\hyperlink{ref-edwardsFitPurposeModern2018}{Edwards et al., 2018}). So in this mindset, we no longer have types of validity but rather \emph{types of validity evidence}:
+
+\begin{itemize}
+\tightlist
+\item
+  Evidence based on test content
+\item
+  Evidence based on response processes
+\item
+  Evidence based on internal structure
+\item
+  Evidence based on relations to other variables
+\end{itemize}
+
+However, still many statistics and research methodology textbooks used today, particularly the ones that are used to create this chapter, use the historical terminology.
+
+\end{callout}
 
 \hypertarget{summary}{%
 \section*{Summary}\label{summary}}
@@ -1287,50 +1354,8 @@ This chapter isn't really meant to provide a comprehensive discussion of psychol
   \protect\hyperlink{validity}{Validity}. Does your study measure what you want it to?
 \end{itemize}
 
-\hypertarget{references-1}{%
-\section*{References}\label{references-1}}
-
-\hypertarget{refs-2}{}
-\begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-bonczResearchMethodologyBasics2015}{}}%
-Boncz, I. (2015). \emph{{Research methodology basics}} {[}Kutatásmódszertani alapismeretek{]}. Pécsi Tudományegyetem.
-
-\leavevmode\vadjust pre{\hypertarget{ref-brodeyValidationNetSCIDAutomated2016}{}}%
-Brodey, B. B., First, M., Linthicum, J., Haman, K., Sasiela, J. W., \& Ayer, D. (2016). Validation of the {NetSCID}: An automated web-based adaptive version of the {SCID}. \emph{Comprehensive Psychiatry}, \emph{66}, 67--70. \url{https://doi.org/10.1016/j.comppsych.2015.10.005}
-
-\leavevmode\vadjust pre{\hypertarget{ref-cowanGeorgeMillerMagical2015}{}}%
-Cowan, N. (2015). George {Miller}'s magical number of immediate memory in retrospect: {Observations} on the faltering progression of science. \emph{Psychological Review}, \emph{122}(3), 536--541. \url{https://doi.org/10.1037/a0039035}
-
-\leavevmode\vadjust pre{\hypertarget{ref-garcia-romeuOptimalDosingPsilocybin2021}{}}%
-Garcia-Romeu, A., Barrett, F. S., Carbonaro, T. M., Johnson, M. W., \& Griffiths, R. R. (2021). Optimal dosing for psilocybin pharmacotherapy: {Considering} weight-adjusted and fixed dosing approaches. \emph{Journal of Psychopharmacology}, \emph{35}(4), 353--361. \url{https://doi.org/10.1177/0269881121991822}
-
-\leavevmode\vadjust pre{\hypertarget{ref-howittUnderstandingStatisticsPsychology2020}{}}%
-Howitt, D., \& Cramer, D. (2020). \emph{Understanding statistics in psychology with {SPSS}} (Eighth edition). {Pearson}.
-
-\leavevmode\vadjust pre{\hypertarget{ref-hubleyDivergentValidity2014}{}}%
-Hubley, A. M. (2014). Divergent {Validity}. In A. C. Michalos (Ed.), \emph{Encyclopedia of {Quality} of {Life} and {Well-Being Research}} (pp. 1675--1676). {Springer Netherlands}. \url{https://doi.org/10.1007/978-94-007-0753-5_766}
-
-\leavevmode\vadjust pre{\hypertarget{ref-marksResearchMethodsClinical2004}{}}%
-Marks, D., \& Yardley, L. (Eds.). (2004). \emph{Research methods for clinical and health psychology}. {SAGE}.
-
-\leavevmode\vadjust pre{\hypertarget{ref-michalosEncyclopediaQualityLife2014}{}}%
-Michalos, A. C. (Ed.). (2014). \emph{Encyclopedia of quality of life and well-being research}. {Springer}.
-
-\leavevmode\vadjust pre{\hypertarget{ref-millerMagicalNumberSeven1956}{}}%
-Miller, G. A. (1956). The magical number seven, plus or minus two: {Some} limits on our capacity for processing information. \emph{Psychological Review}, \emph{63}(2), 81--97. \url{https://doi.org/10.1037/h0043158}
-
-\leavevmode\vadjust pre{\hypertarget{ref-Stevens1946}{}}%
-Stevens, S. S. (1946). On the theory of scales of measurement. \emph{Science}, \emph{103}, 677--680.
-
-\leavevmode\vadjust pre{\hypertarget{ref-taylorHealthPsychology2021}{}}%
-Taylor, S. E., \& Stanton, A. L. (2021). \emph{Health {Psychology}} (Eleventh). {McGraw-Hill}.
-
-\end{CSLReferences}
-
 \hypertarget{autostat}{%
 \chapter{Introduction to automatic statistical analysis}\label{autostat}}
-
-In recent years, the reliability of psychological science has been questioned due to the overstated use of \(p\)-values and effect sizes, and their lower-than-expected replicability (\protect\hyperlink{ref-open_science_collaboration_estimating_2015}{Open Science Collaboration, 2015}). This may be a result of the high pressure on researchers to produce a large volume of work with statistically positive results (\protect\hyperlink{ref-krajcsi_advancing_2021}{Krajcsi, 2021}).
 
 To produce strong research results, it is important to have good data analysis, which can make or break a research project. In psychological research, this includes: identifying and selecting a good design from many alternative design options, sampling participants appropriately, observing ethical standards in data collection and documentation, controlling for confounding variables, selecting appropriate statistics and replications of analyses, analysing data with appropriate software, assessing the effect sizes of results based on their inferential characteristics, reporting findings accurately in papers -- just to name a few. Some of these tasks can be automated to ensure that the appropriate protocol is followed, which is why we have CogStat, and why you are reading this book.
 
@@ -1340,7 +1365,7 @@ There are several manual statistical programs, such as SPSS, SAS, and Stata, and
 
 In this book, you will learn what it means to do normality and heteroscedasticity checks, calculate effect sizes, and performing hypothesis tests etc. We focus on making sure you understand what they are, why they matter, and how to interpret them. We will indulge in presenting mathematical formulas as well, but you won't have to do any of the calculations. To be fair, you don't have to manually calculate the respective metrics in a manual statistical program either, but deciding which tool to pick up first, or which step to take next might be a challenge if statistics is not in your veins. Beyond the anxiety of how to even get started with manual statistical programs, applying a single tool can take up to tens of steps. In comparison, producing the full analysis with multiple tools with supporting charts and graphs may only take three steps in CogStat.
 
-Researchers often have too little time for rigorous data analysis and interpretation, and at the same time, journals set somewhat arbitrary standards (e.g.~specific \(p\)-values are demanded whether or not they avoid Type I errors -- this is one of the topics in this book), so some researchers might just use those as rules of thumb without going deeper into data analysis. By using an automatic procedure, the time spent on data analysis can be redirected towards understanding the implications of the test results for the research question.
+There is a high pressure on researchers to produce a large volume of work with statistically positive results (\protect\hyperlink{ref-krajcsi_advancing_2021}{Krajcsi, 2021}), and they often have too little time for rigorous data analysis and interpretation. At the same time, journals set somewhat arbitrary standards (e.g.~specific \(p\)-values are demanded whether or not they avoid Type I errors -- this is one of the topics in this book), so some researchers might just use those as rules of thumb without going deeper into data analysis. In recent years, the reliability of psychological science has been questioned (\protect\hyperlink{ref-open_science_collaboration_estimating_2015}{Open Science Collaboration, 2015}) due to the overstated use of certain statistical measures (e.g., \(p\)-values, effect sizes), and the overall lower-than-expected replicability. While automatic analysis cannot solve all of the systematic issues, it does enable researchers to shift their focus to the quality of content. Time spent on data analysis can be redirected towards understanding the implications of the test results for the research question.
 
 For more about the merits of automatic statistical analysis, here are some further reads from Attila Krajcsi, the creator of CogStat:
 
@@ -1351,19 +1376,6 @@ For more about the merits of automatic statistical analysis, here are some furth
 \item
   \href{https://docs.google.com/presentation/d/1HmSTPnTxDzW8hYZG7ujHaeHc0mRqqYeY95yKh56z61c}{Reducing the replication crisis}
 \end{itemize}
-
-\hypertarget{references-2}{%
-\section*{References}\label{references-2}}
-
-\hypertarget{refs-3}{}
-\begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-krajcsi_advancing_2021}{}}%
-Krajcsi, A. (2021). \emph{Advancing best practices in data analysis with automatic and optimized output data analysis software} {[}Preprint{]}. PsyArXiv. \url{https://doi.org/10.31234/osf.io/hnmsq}
-
-\leavevmode\vadjust pre{\hypertarget{ref-open_science_collaboration_estimating_2015}{}}%
-Open Science Collaboration. (2015). Estimating the reproducibility of psychological science. \emph{Science}, \emph{349}(6251), aac4716. \url{https://doi.org/10.1126/science.aac4716}
-
-\end{CSLReferences}
 
 \hypertarget{cogstatintro}{%
 \chapter{Introduction to CogStat}\label{cogstatintro}}
@@ -2465,15 +2477,15 @@ In this chapter, we discussed how to measure the strength of the relationship be
 
 You might have been tempted to look at the regression coefficient, the linear regression formula etc. when exploring the results from CogStat. Don't worry, you'll have a chance to learn about these in Chapter \ref{regression}.
 
-\hypertarget{refs-6}{}
-\begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-Anscombe1973}{}}%
-Anscombe, F. J. (1973). Graphs in statistical analysis. \emph{American Statistician}, \emph{27}, 17--21.
-
-\end{CSLReferences}
+\hypertarget{references}{%
+\chapter*{References}\label{references}}
+\addcontentsline{toc}{chapter}{References}
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-americaneducationalresearchassociationStandardsEducationalPsychological2014}{}}%
+American Educational Research Association, American Psychological Association, \& National Council on Measurement in Education. (2014). \emph{Standards for {Educational} and {Psychological Testing}}. {American Educational Research Association}.
+
 \leavevmode\vadjust pre{\hypertarget{ref-Anscombe1973}{}}%
 Anscombe, F. J. (1973). Graphs in statistical analysis. \emph{American Statistician}, \emph{27}, 17--21.
 
@@ -2488,6 +2500,9 @@ Brodey, B. B., First, M., Linthicum, J., Haman, K., Sasiela, J. W., \& Ayer, D. 
 
 \leavevmode\vadjust pre{\hypertarget{ref-cowanGeorgeMillerMagical2015}{}}%
 Cowan, N. (2015). George {Miller}'s magical number of immediate memory in retrospect: {Observations} on the faltering progression of science. \emph{Psychological Review}, \emph{122}(3), 536--541. \url{https://doi.org/10.1037/a0039035}
+
+\leavevmode\vadjust pre{\hypertarget{ref-edwardsFitPurposeModern2018}{}}%
+Edwards, M. C., Slagle, A., Rubright, J. D., \& Wirth, R. J. (2018). Fit for purpose and modern validity theory in clinical outcomes assessment. \emph{Quality of Life Research}, \emph{27}(7), 1711--1720. \url{https://doi.org/10.1007/s11136-017-1644-z}
 
 \leavevmode\vadjust pre{\hypertarget{ref-Evans1983}{}}%
 Evans, J. St. B. T., Barston, J. L., \& Pollard, P. (1983). On the conflict between logic and belief in syllogistic reasoning. \emph{Memory and Cognition}, \emph{11}, 295--306.

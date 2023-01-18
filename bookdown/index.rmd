@@ -72,10 +72,18 @@ To reference this book, please use the following citation (APA7 format):
 > Navarro, D., & Fodor, R. (2023). Learning Statistics with CogStat (Rev. ed.). \
 >        https://learningstatisticswithcogstat.com
 
+## Licensing{.unlisted .unnumbered}
 
-## Foreword for the *First Edition* {.unnumbered}
+```{r echo=FALSE, fig.pos="left"}
+knitr::include_graphics("resources/image/by-sa.png")
+```
 
-#### Author's note {.unnumbered .unlisted}
+This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+
+# Foreword{.unnumbered}
+
+## Foreword for the *First Edition* {.unnumbered .unlisted}
 
 This book is intended for psychology students and other beginners who are interested in learning statistics and want to use CogStat to perform their analyses. [CogStat](https://www.cogstat.org) is a statistics software written in Python by Attila Krajcsi^[Attila Krajcsi -- [Website](http://www.attilakrajcsi.hu) | [![](resources/image/orcid_16x16.png)](https://orcid.org/0000-0001-9792-9091) 0000-0001-9792-9091] and developed with the help of supporters. Its distinct advantage is automatic hypothesis test selection and chart creation with an APA-style output to suit the needs of psychology researchers and students.
 
@@ -87,9 +95,7 @@ This book will always be a living thing. As CogStat expands and evolves, so will
 
 --- Robert
 
-## Foreword for the *Second Edition* {.unnumbered}
-
-#### Author's note {.unnumbered .unlisted}
+## Foreword for the *Second Edition* {.unnumbered .unlisted}
 
 This edition brings in plenty of changes, well beyond 10% of the book, which should warrant, per publishing standards, for it to be called "second edition". While it sounds quite conceited to me, considering I've done some of the work that really should've gone into the original edition in the first place, I opted for this numbering in the aim that whenever a new CogStat version is released and some of the material needs to be updated, I can just call it "*revised* second edition". I also want to avoid any confusion where we'd have a textbook v1, v3.14 against a CogStat v2.4RC -- it's tedious. I really love this material, and maybe this is my grandiosity, but I hope this makes sense to you as well.
 
@@ -99,7 +105,7 @@ The main drive behind these edits was reflections on the material's usefulness a
 
 --- Robert
 
-#### Changelog {.unnumbered .unlisted}
+**Changelog:**
 
 - Chapters \@ref(autostat) and \@ref(cogstatintro) were amended and slightly expanded, and now they follow Chapter \@ref(researchdesign), so that the reader can better appreciate automatic statistical analysis.
 - Chapter \@ref(researchdesign) was largely rewritten -- particularly reliability and validity -- to make definitions more accurate, and examples are now related to health and psychology research. The rest of the chapter discussing bias and study design were scrapped due to their lack of relevance to the book's purpose.
@@ -109,12 +115,3 @@ The main drive behind these edits was reflections on the material's usefulness a
 - New: explanatory charts were added to the text.
 - New: health psychology examples were added to the text.
 - Typos and minor errors were fixed all throughout the book.
-
-
-## Licensing{.unlisted .unnumbered}
-
-```{r echo=FALSE, fig.pos="left"}
-knitr::include_graphics("resources/image/by-sa.png")
-```
-
-This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.

@@ -75,12 +75,14 @@
 
 % Titles and chapters
 \usepackage{sectsty}
-\chaptertitlefont{\Huge\bfseries\sourcesanspro\color{chap}}
-\chapternumberfont{\huge\bfseries\sourcesanspro\color{chap}}
-\sectionfont{\normalfont\Large\bfseries\sourcesanspro}
-\subsectionfont{\normalfont\large\bfseries\sourcesanspro}
+\allsectionsfont{\bfseries\sourcesanspro\color{chap}}
+\sectionfont{\bfseries\LARGE\sourcesanspro\color{chap}}
+\subsectionfont{\bfseries\Large\sourcesanspro\color{chap}}
+\subsubsectionfont{\bfseries\large\sourcesanspro\color{black}}
 \usepackage[nobottomtitles*]{titlesec}
-\titlespacing\subsection{0pt}{12pt plus 4pt minus 2pt}{12pt plus 4pt minus 2pt}
+\titlespacing\section{0pt}{12pt plus 4pt minus 2pt}{8pt plus 4pt minus 2pt}
+\titlespacing\subsection{0pt}{8pt plus 4pt minus 2pt}{6pt plus 4pt minus 2pt}
+\titlespacing\subsubsection{0pt}{6pt plus 4pt minus 2pt}{4pt plus 4pt minus 2pt}
 
   %% Chapter number and title in the same line
   \titleformat{\chapter}[display]
@@ -99,10 +101,11 @@
 
 % Adding a framed box around text
 \usepackage[most]{tcolorbox}
+\usepackage{thmtools}
 \newtcolorbox{callout}[1][]{%
   colback=calloutbackground,
   colframe=calloutborder,
-  parbox=true,
+  parbox=false,
   leftrule=0.6em,
   fontupper=\sourcesanspro\small,
   breakable = false,
@@ -117,10 +120,15 @@
 
 % Definitions and examples have left margin
 \newtcolorbox{exenv}{
+  %blanker,
   breakable = true,
   leftrule = 2em,
+  toprule = 0.1em,
+  bottomrule = 0.1em,
+  rightrule = 0.1em,
   colframe = exampleborder,
   colback = examplebackground,
+  parbox = false,
 }
 
 \newtcolorbox{defenv}{
@@ -128,6 +136,9 @@
   leftrule = 2em,
   colframe = definitionborder,
   colback = definitionbackground,
+  parbox = false,
+  toptitle=0em,
+  bottomtitle=0em,
 }
 
 % Definitions and examples have left margin (tcolorbox)
@@ -147,6 +158,18 @@
   parbox = true,
   blanker,
 }
+
+% Theorems
+\usepackage{amsthm}
+\newtheoremstyle{definition}
+                {0em} % Space above
+                {0.5em} % Space below
+                {} % Body font
+                {} % Indent of title
+                {\itshape\bfseries}  % Title font
+                {.} % Separator character
+                {\newline} % Space after separator
+                {} % Head template
 
 % Dependencies for merging with external cover page
 \usepackage{pdfpages}

@@ -76,3 +76,8 @@ td {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
 }
+
+.references {
+  padding-left: 2em;
+  text-indent: -2em;
+}
