@@ -261,11 +261,15 @@ A **discrete variable** can take on a limited number of distinct values; there i
 :::
 
 ::: {.example #excontinuous name="Continuous variable example"}
-These definitions probably seem a bit abstract, but they're pretty simple once you see some examples. For instance, response time is continuous. If Alan takes 3.1 seconds and Ben takes 2.3 seconds to respond to a question, then Cameron's response time can lie in between by taking 3.0 seconds. And, of course, it would also be possible for David to take 3.031 seconds to respond, meaning that his RT would lie in between Cameron's and Alan's. And while in practice, it might be impossible to measure RT that precisely, it's certainly possible in principle. Because we can always find a new value for RT in between any two other ones, we say that RT is continuous.
+Response time is continuous. If Alan takes 3.1 seconds and Ben takes 2.3 seconds to respond to a question, then Cameron's response time can lie in between by taking 3.0 seconds. And, of course, it would also be possible for David to take 3.031 seconds to respond, meaning that his RT would lie in between Cameron's and Alan's. And while in practice, it might be impossible to measure RT that precisely, it's certainly possible in principle. Because we can always find a new value for RT in between any two other ones, we say that RT is continuous.
 :::
 
 ::: {.example #exdiscrete name="Discrete variable example"}
-Discrete variables occur when this rule is violated. For example, nominal scale variables are always discrete: there isn't a type of transportation that falls "in-between" trains and bicycles, not in the strict mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete. Similarly, ordinal scale variables are always discrete: although "2nd place" does fall between "1st place" and "3rd place", there's nothing that can logically fall in between "1st place" and "2nd place". Interval scale and ratio scale variables can go either way. Temperature in degrees Celsius (an interval scale variable) is also continuous; however, the year you went to school (an interval scale variable) is discrete. There's no year between 2002 and 2003. The number of questions you get right on a true-or-false test (a ratio scale variable) is also discrete: since a true-or-false question doesn't allow you to be "partially correct", there's nothing in between 5/10 and 6/10. 
+Nominal scale variables are always discrete: there isn't a type of transportation that falls "in-between" trains and bicycles, not in the strict mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete. 
+
+Similarly, ordinal scale variables are always discrete: although "2nd place" does fall between "1st place" and "3rd place", there's nothing that can logically fall in between "1st place" and "2nd place". 
+
+Interval scale and ratio scale variables can go either way. Temperature in degrees Celsius (an interval scale variable) is also continuous; however, the year you went to school (an interval scale variable) is discrete. There's no year between 2002 and 2003. The number of questions you get right on a true-or-false test (a ratio scale variable) is also discrete: since a true-or-false question doesn't allow you to be "partially correct", there's nothing in between 5/10 and 6/10. 
 :::
 
 Note that some people might say "discrete variable" when they mean "nominal scale variable". While all nominal scale variables are discrete, not all discrete variables are nominal.
@@ -369,21 +373,20 @@ Not all measurements need to possess all forms of reliability. Nevertheless, it 
 
 ## Validity{#validity}
 
-More than any other thing, a scientist wants their research to be "valid". The conceptual idea behind validity is simple: can you trust the results of your study? In practice, there aredifferent kinds of validity, each of which raises its own issues, and not all forms of validity are relevant to all studies. Let's talk about different kinds, in somewhat particular order^[There are other ways to categorise validity, but this is the one we'll use in this book.]:
+More than any other thing, a scientist wants their research to be "valid". The conceptual idea behind validity is simple: can you trust the results of your study? In practice, there aredifferent kinds of validity, each of which raises its own issues, and not all forms of validity are relevant to all studies. Let's talk about different kinds, in somewhat particular order:
 
-- Content validity:
-    - Face validity
+- Content validity
+- Face validity
 - Construct validity
-    - Discriminant validity
-      - Convergent validity
-      - Divergent validity
-- Criterion validity
-    - Predictive validity
-    - Concurrent validity
-    - Postdictive validity
+- Discriminant validity
+- Convergent validity
 - Internal validity
 - External validity
 - Ecological validity
+- Criterion validity
+- Concurrent validity
+- Predictive validity
+- Postdictive validity
 
 ### Content validity
 
@@ -420,25 +423,27 @@ The **construct validity** is the extent to which the measurement of a variable 
 
 Typical questions you might consider:
 
-- Does the construct have a "precise conceptual and theoretical meaning"? [@marksResearchMethodsClinical2004, p. 132]
+- Is the construct defined in a way that is clear and unambiguous?
+- Is the construct defined too broadly or too narrowly?
+- Is the sample and method appropriate for the construct?
 - How does this instrument relate to other instruments designed to measure the same construct?
 - Does the instrument produce the same expected results as other instruments designed to measure the same construct?
 - Does the instrument predict other variables that are theoretically related to the construct?
 
 
-#### Discriminant validity
+### Discriminant validity
 
-To test for construct validity, we can to test for discriminant validity through correlation and factor analysis.
+To test for construct validity, we can to test for discriminant validity^[Sometimes referred to as *divergent validity*. This, however, is not a universally accepted terminology [@hubleyDivergentValidity2014].] through correlation and factor analysis.
 
 ::: {.definition #defdiscriminantvalidity name="Discriminant validity"}
-The **discriminant validity**^[Sometimes referred to as *divergent validity*. This, however, is not a universally accepted terminology [@hubleyDivergentValidity2014].] assesses the extent to which a measure is capable of accurately distinguishing the construct variable it is intended to measure from an unrelated construct variables. It is the opposite of convergent validity.
+The **discriminant validity** assesses the extent to which a measure is capable of accurately distinguishing the construct variable it is intended to measure from an unrelated construct variables. It is the opposite of convergent validity.
 :::
 
-Types of questions you might consider:
+Question:
 
-- What is the correlation between the variable we are measuring and other variables that should not be related to it? --> *discriminant validity coefficient*
+- What is the correlation between the variable we are measuring and other variables that should not be related to it? $\rightarrow$ *discriminant validity coefficient*
 
-#### Convergent validity
+### Convergent validity
 
 ::: {.definition #defconvergentvalidity name="Convergent validity"}
 The **convergent validity** is the extent to which the measurement of a variable is *consistent with other variables* that should be theoretically related to it.
@@ -446,9 +451,9 @@ The **convergent validity** is the extent to which the measurement of a variable
 
 Types of questions you might consider:
 
-- What is the correlation between the variable we are measuring and other variables that should be related to it? --> *correlation coefficient*
+- What is the correlation between the variable we are measuring and other variables that should be related to it? $\rightarrow$ *correlation coefficient*
 
-::: {.example #exconstructvalidity name="Example: Construct validity, convergent validity, discriminant validity, and confounding variables"}
+::: {.example #exconstructvalidity name="Constructs and validity"}
 You are researching the relationship between socio-economic status and health outcomes. The health outcome is the construct of interest, it is the dependent variable. The socio-economic status is the independent variable. You are interested in the relationship between the two, and you want to know if socio-economic status is a good predictor of health outcomes.
 
 There are a number of related variables that you could use to measure socio-economic status, such as: personal income, household income, education, occupation, and so on. You could use any of these variables to measure socio-economic status, but you want to know which one is the best predictor of health outcomes. You could test for the relationship between each of these variables and health outcomes, and then choose the one that has the highest correlation coefficient. This is a form of convergent validity.
@@ -457,7 +462,6 @@ There are unrelated variables that have an effect on health outcomes, such as: e
 
 You'll notice that in this particular example, gender^[E.g. research suggests that there are a number of reasons why women tend to live longer than men beyond socio-economic status (with which the relationship is negative), like biological protective factors and differences in risk aversion between men and women [@taylorHealthPsychology2021].], disability, and minority status as variables would likely have a stronger than weak correlation with socio-economic status. These are called **confounding variables**. They are variables that are related to both the independent and dependent variables, and they can affect the results of the study. You'll need to control for these variables in your study design.
 :::
-
 
 ### Internal validity
 
@@ -472,27 +476,19 @@ Typical questions would be:
 - Are there any confounding variables that could affect the results?
 - Was the design fit for establishing causality?
 
-
 ### External validity
 
 ::: {.definition #defexternalvalidity name="External validity"}
 The **external validity** of a study is the extent to which the results of the study can be generalised to other people, other situations, and other times.
 :::
 
-**External validity** relates to the **generalisability** of your findings. That is, to what extent do you expect to see the same pattern of results in "real life" as you saw in your study? To put it a bit more precisely, any study that you do in psychology will involve a fairly specific set of questions or tasks, will occur in a specific environment, and will involve participants that are drawn from a particular subgroup. So, if it turns out that the results don't actually generalise to people and situations beyond the ones that you studied, then what you've got is a lack of external validity.
+Questions to consider:
 
-The classic example of this issue is the fact that a very large proportion of studies in psychology will use undergraduate psychology students as participants. However, the researchers don't care *only* about psychology students; they care about people in general. Given that, a study that uses only psych students as participants always risks lacking external validity. That is, if there's something "special" about psychology students that makes them different to the general populace in some *relevant* respect, then we may start worrying about a lack of external validity.
-
-That said, it is absolutely critical to realise that a study that uses only psychology students does not necessarily have a problem with external validity. The choice of population threatens the external validity: if (a) the population from which you sample your participants is very narrow (e.g. psych students), and (b) the narrow population that you sampled from is systematically different from the general population, *in some respect that is relevant to the psychological phenomenon that you intend to study*. The italicised part is the bit that many people forget: psychology undergraduates indeed differ from the general population in many ways, so a study that uses only psych students *may* have problems with external validity. However, if those differences aren't very relevant to the phenomenon you're studying, there's nothing to worry about. To make this a bit more concrete, here are two extreme examples:
-
-- You want to measure "attitudes of the general public towards psychotherapy", but all of your participants are psychology students. This study would almost certainly have a problem with external validity.
-- You want to measure the effectiveness of a visual illusion, and your participants are all psychology students. This study is very unlikely to have a problem with external validity
-
-Having just spent the last couple of paragraphs focusing on the choice of participants (since that's the big issue that everyone tends to worry most about), it's worth remembering that external validity is a broader concept. The following are also examples of things that might pose a threat to external validity, depending on what kind of study you're doing:
-
-- People might answer a "psychology questionnaire" in a manner that doesn't reflect what they would do in real life.
-- Your lab experiment on (say) "human learning" has a different structure to the learning problems people face in real life.
-
+- To what extent can the results of the study be generalised to other people, other situations, and other times?
+- Is the sample representative of the population?
+- Is the sample too narrow? (e.g. only psychology students)
+- Is this study replicable across different settings?
+- Are there any respondent biases that could affect the results? (Hawthorne effect, demand characteristics, etc.)
 
 ### Ecological validity
 
@@ -500,8 +496,65 @@ Having just spent the last couple of paragraphs focusing on the choice of partic
 The **ecological validity** of a study is the extent to which the entire study set-up closely approximates the real-world scenario being investigated.
 :::
 
-**Ecological validity** is a different notion of validity, similar to external validity but less important. The idea is that, to be ecologically valid, the entire study set-up should closely approximate the real-world scenario being investigated. In a sense, ecological validity is a kind of face validity -- it relates mostly to whether the study "looks" right, but with a bit more rigour to it. To be ecologically valid, the study has to look right in a fairly specific way. The idea behind it is the intuition that a study that is ecologically valid is more likely to be externally valid. It's no guarantee, of course. But the nice thing about ecological validity is that it's much easier to check whether a study is ecologically valid than it is to check whether a study is externally valid. A simple example would be eyewitness identification studies. Most of these studies tend to be done in a university setting, often with a fairly simple array of faces to look at rather than a lineup. The length of time between seeing the "criminal" and being asked to identify the suspect in the "line up" is usually shorter. The "crime" isn't real, so there's no chance that the witness is scared, and there are no police officers present, so there's not as much chance of feeling pressured. These things all mean that the study *definitely* lacks ecological validity. They might (but might not) mean that it also lacks external validity.
+Some typical questions would be:
 
+- Is the lab-based study set-up similar to the real-world scenario?
+- Would the study scenario occur naturally in the real world or in other non-controlled environment?
+- Are there any environmental or systemic factors that could affect the replicability of results in the real world?
+
+### Criterion validity
+
+::: {.definition #defcriterionvalidity name="Criterion validity"}
+The **criterion validity** of an instrument is the extent to which the score results are consistent with other measures of the same construct.
+:::
+
+Typical questions would be:
+
+- Does the instrument produce the same expected results as other instruments designed to measure the same construct?
+- Is the correlation between the instrument and other instruments designed to measure the same construct high enough?
+
+### Concurrent validity
+
+::: {.definition #defconcurrentvalidity name="Concurrent validity"}
+The **concurrent validity** of an instrument is the extent to which the score results are consistent with other criterion measures (where the criterion is measured at the same time as the instrument is administered).
+:::
+
+Question:
+
+- What is the correlation between the instrument and other instruments designed to measure the same construct at the same time on the same sample? $\rightarrow$ *concurrent validity coefficient*
+
+### Predictive validity
+
+::: {.definition #defpredictivevalidity name="Predictive validity"}
+The **predictive validity** of an instrument is the extent to which the results can be used to make inferences about future criterion outcomes (where the criterion is measured after the instrument is administered).
+:::
+
+### Postdictive validity
+
+::: {.definition #defpostdictivevalidity name="Postdictive validity"}
+The **postdictive validity** or **retrospective validity** of an instrument is the extent to which the results can be used to make inferences about past criterion outcomes (where the criterion is measured before the instrument is administered).
+:::
+
+::: {.callout #calloutvalidityterminology data-latex="[Modern Validity Theory Terminology]"}
+
+```{=html}
+<div class="callout-title">
+Modern Validity Theory Terminology
+</div>
+```
+
+The American Educational Research Association (AERA), the American Psychological Association (APA),  and the National Council on Measurement in Education (NCME) prepared their Standards for Educational and Psychological Testing [-@americaneducationalresearchassociationStandardsEducationalPsychological2014]. This standard uses different terminology to describe the different types of validity.
+
+It does not apply validity to the research instrument but rather the interpretation of it; it is a continuum and not a dichotomy ("valid" or "not valid") [@edwardsFitPurposeModern2018]. So in this mindset, we no longer have types of validity but rather *types of validity evidence*:
+
+- Evidence based on test content
+- Evidence based on response processes
+- Evidence based on internal structure
+- Evidence based on relations to other variables
+
+However, still many statistics and research methodology textbooks used today, particularly the ones that are used to create this chapter, use the historical terminology.
+
+:::
 
 ## Summary {.unnumbered .unlisted}
 
@@ -513,4 +566,3 @@ This chapter isn't really meant to provide a comprehensive discussion of psychol
 - [Reliability](#reliability). Can you trust your results? How do you know that your measurements are consistent?
 - [Validity](#validity). Does your study measure what you want it to?
 
-## References {.unnumbered .unlisted}
