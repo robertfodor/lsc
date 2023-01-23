@@ -8,27 +8,34 @@ output:
   bookdown::gitbook:
     config:
       sharing: false
-site: bookdown::bookdown_site
-documentclass: book
+
 bibliography: book.bib
 subtitle: A tutorial for psychology students and other beginners
 biblio-style: apa
 csl: apa7.csl
+
+link-citations: true
+urlcolor: CSbluelight
+linkcolor: CSbluelight
+citecolor: CSbluelight
+toccolor: black
+
 github-repo: https://github.com/robertfodor/lsc
 url: https://learningstatisticswithcogstat.com
+
 cover-image: "resources/bookcover/LSC_small.png"
 description: '*Learning Statistics with CogStat* covers the contents of an introductory
   statistics class, as typically taught to undergraduate psychology students based
   on Danielle Navarro''s original *Learning Statistics with R* with a focus on automatic
   statistical analysis performed in CogStat.'
-always_allow_html: true
-urlcolor: CSbluelight
-linkcolor: CSbluelight
-citecolor: CSbluelight
-toccolor: black
-link-citations: true
-geometry: a4paper, margin=1in, bindingoffset=0.5in, footskip=0.5in
+
+documentclass: book
 fontsize: 11pt
+papersize: a4
+linestretch: 1.1
+links-as-notes: true
+always_allow_html: true
+geometry: margin=1in, bindingoffset=0.5in, footskip=0.3in
 ---
 
 ```{r setup, include=FALSE}
@@ -38,6 +45,11 @@ if (knitr::is_latex_output()) {
   knitr::opts_chunk$set(out.width = "66%")
 }
 
+options(bookdown.post.latex = function(x) {
+    from <- grep("usepackage\\{amsthm\\}", x)
+    to <- grep("newtheorem\\*\\{solution", x)
+    x <- x[-c(from:to)]
+  })
 
 library(metathis)
 meta() %>%
@@ -57,7 +69,7 @@ library(kableExtra)
 
 # About this book{.unnumbered}
 
-```{r, eval=knitr::is_html_output(), echo=FALSE, out.width="50%", out.extra="style='box-shadow: 0px 3px 12px 1px rgba(0,0,0,0.66);'"}
+```{r, eval=knitr::is_html_output(), echo=FALSE, out.width="67%", out.extra="style='box-shadow: 0px 3px 12px 1px rgba(0,0,0,0.66);'"}
 knitr::include_graphics("resources/bookcover/LSC_small.png")
 ```
 
@@ -74,7 +86,7 @@ To reference this book, please use the following citation (APA7 format):
 
 ## Licensing{.unlisted .unnumbered}
 
-```{r echo=FALSE, fig.pos="left"}
+```{r echo=FALSE, fig.pos="left", out.width="15%"}
 knitr::include_graphics("resources/image/by-sa.png")
 ```
 
