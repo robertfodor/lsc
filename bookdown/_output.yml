@@ -9,8 +9,8 @@ bookdown::gitbook:
       after: |
         <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
       collapse: section
-      number_sections: true
       fig_caption: yes
+      number_sections: yes
     toc_depth: 3
     tof: true
     tot: true
@@ -27,7 +27,7 @@ bookdown::pdf_book:
   #   - --lua-filter=section-refs.lua
   # section-refs-bibliography: book.bib
   # section-refs-level: 1
-  keep_tex: yes
+  keep_tex: no
   toc: true
   tof: true
   tot: true
