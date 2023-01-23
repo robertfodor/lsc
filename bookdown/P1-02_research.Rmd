@@ -143,19 +143,19 @@ Note that you can have a numeric code assigned to an ordinal variable. However, 
 Suppose we're interested in people's attitudes to climate change, and we ask them to pick one of these four statements that most closely matches their beliefs:
 
 :::{.keepTogether data-latex=""}
->(1) Temperatures are rising because of human activity
->(2) Temperatures are rising, but we don't know why
->(3) Temperatures are rising, but not because of humans
->(4) Temperatures are not rising
+>1 Temperatures are rising because of human activity \
+>2 Temperatures are rising, but we don't know why \
+>3 Temperatures are rising, but not because of humans \
+>4 Temperatures are not rising
 :::
 
 Notice that these four statements actually do have a natural ordering in terms of "the extent to which they agree with the current science". Statement 1 is a close match, statement 2 is a suitable match, statement 3 isn't a perfect match, and statement 4 strongly opposes science. So, in terms of the thing we're interested in (the extent to which people endorse the science), we can order the items as 1 > 2 > 3 > 4. Since this ordering exists, it would be peculiar to list the options like this:
 
 :::{.keepTogether data-latex=""}
->(3) Temperatures are rising, but not because of humans
->(1) Temperatures are rising because of human activity
->(4) Temperatures are not rising
->(2) Temperatures are rising, but we don't know why
+>3 Temperatures are rising, but not because of humans \
+>1 Temperatures are rising because of human activity \
+>4 Temperatures are not rising \
+>2 Temperatures are rising, but we don't know why
 :::
 
 -- because it seems to violate the natural "structure" of the question.
@@ -165,10 +165,10 @@ So, let's suppose I asked 100 people these questions and got the following answe
 ```{r echo=FALSE}
 knitr::kable(
   rbind(
-    c("$(1)$ Temperatures are rising because of human activity", 51),
-    c("$(2)$ Temperatures are rising, but we don't know why", 20),
-    c("$(3)$ Temperatures are rising, but not because of humans", 10),
-    c("$(4)$ Temperatures are not rising", 19)
+    c("1 Temperatures are rising because of human activity", 51),
+    c("2 Temperatures are rising, but we don't know why", 20),
+    c("3 Temperatures are rising, but not because of humans", 10),
+    c("4 Temperatures are not rising", 19)
   ),
    col.names = c("Response", "Number"),
    caption = NULL,
@@ -256,12 +256,12 @@ There's a second kind of distinction that you need to be aware of regarding what
 A **continuous variable** can take on any value on a spectrum, and it's logically possible to have a value in between.
 :::
 
-::: {.definition #defdiscrete name="Discrete variables"}
-A **discrete variable** can take on a limited number of distinct values; there is no possible value in between.
-:::
-
 ::: {.example #excontinuous name="Continuous variable example"}
 Response time is continuous. If Alan takes 3.1 seconds and Ben takes 2.3 seconds to respond to a question, then Cameron's response time can lie in between by taking 3.0 seconds. And, of course, it would also be possible for David to take 3.031 seconds to respond, meaning that his RT would lie in between Cameron's and Alan's. And while in practice, it might be impossible to measure RT that precisely, it's certainly possible in principle. Because we can always find a new value for RT in between any two other ones, we say that RT is continuous.
+:::
+
+::: {.definition #defdiscrete name="Discrete variables"}
+A **discrete variable** can take on a limited number of distinct values; there is no possible value in between.
 :::
 
 ::: {.example #exdiscrete name="Discrete variable example"}
@@ -373,8 +373,11 @@ Not all measurements need to possess all forms of reliability. Nevertheless, it 
 
 ## Validity{#validity}
 
-More than any other thing, a scientist wants their research to be "valid". The conceptual idea behind validity is simple: can you trust the results of your study? In practice, there aredifferent kinds of validity, each of which raises its own issues, and not all forms of validity are relevant to all studies. Let's talk about different kinds, in somewhat particular order:
+More than any other thing, a scientist wants their research to be "valid". The conceptual idea behind validity is simple: can you trust the results of your study? In practice, there aredifferent kinds of validity, each of which raises its own issues, and not all forms of validity are relevant to all studies. 
 
+While validity is a research methodology subject and not a statistical one, some forms of validity are measured using statistical methods. So let's talk about different kinds of validity briefly, in a somewhat particular order.
+
+<!--
 - Content validity
 - Face validity
 - Construct validity
@@ -387,8 +390,11 @@ More than any other thing, a scientist wants their research to be "valid". The c
 - Concurrent validity
 - Predictive validity
 - Postdictive validity
+-->
 
+<!--
 ### Content validity
+-->
 
 ::: {.definition #defcontentvalidity name="Content validity"}
 The **content validity** is the extent to which an instrument measures the desired concept or construct comprehensively (with no gaps or missing aspects) and accurately (with no irrelevant or misleading domains).
@@ -402,8 +408,9 @@ Some typical questions would be:
 - What biases might be present in the instrument?
 - Is the instrument culturally sensitive? Is the instrument reliable and consistent across different subgroups of the population?
 
+<!--
 ### Face validity
-
+-->
 A subjective judgement of content validity is called face validity.
 
 ::: {.definition #deffacevalidity name="Face validity"}
@@ -415,7 +422,9 @@ Types of questions that you might ask:
 - Does the instrument look like it's measuring the right thing?
 - Will the participant recognise the construct that we are trying to measure? (This might lead to cases where the participant fakes the response.)
 
+<!--
 ### Construct validity
+-->
 
 ::: {.definition #defconstructvalidity name="Construct validity"}
 The **construct validity** is the extent to which the measurement of a variable is consistent with the theoretical construct that it is supposed to measure.
@@ -430,8 +439,9 @@ Typical questions you might consider:
 - Does the instrument produce the same expected results as other instruments designed to measure the same construct?
 - Does the instrument predict other variables that are theoretically related to the construct?
 
-
+<!--
 ### Discriminant validity
+-->
 
 To test for construct validity, we can to test for discriminant validity^[Sometimes referred to as *divergent validity*. This, however, is not a universally accepted terminology [@hubleyDivergentValidity2014].] through correlation and factor analysis.
 
@@ -443,7 +453,9 @@ Question:
 
 - What is the correlation between the variable we are measuring and other variables that should not be related to it? $\rightarrow$ *discriminant validity coefficient*
 
+<!--
 ### Convergent validity
+-->
 
 ::: {.definition #defconvergentvalidity name="Convergent validity"}
 The **convergent validity** is the extent to which the measurement of a variable is *consistent with other variables* that should be theoretically related to it.
@@ -463,7 +475,9 @@ There are unrelated variables that have an effect on health outcomes, such as: e
 You'll notice that in this particular example, gender^[E.g. research suggests that there are a number of reasons why women tend to live longer than men beyond socio-economic status (with which the relationship is negative), like biological protective factors and differences in risk aversion between men and women [@taylorHealthPsychology2021].], disability, and minority status as variables would likely have a stronger than weak correlation with socio-economic status. These are called **confounding variables**. They are variables that are related to both the independent and dependent variables, and they can affect the results of the study. You'll need to control for these variables in your study design.
 :::
 
+<!--
 ### Internal validity
+-->
 
 ::: {.definition #definternalvalidity name="Internal validity"}
 The **internal validity** is the extent to which the results of the study can be attributed to the cause-and-effect relationships between the variables studied, rather than other factors. I.e., any change in the dependent variable (outcome) is a result of the manipulation of the independent variable (predictor), and not due to other factors.
@@ -476,7 +490,9 @@ Typical questions would be:
 - Are there any confounding variables that could affect the results?
 - Was the design fit for establishing causality?
 
+<!--
 ### External validity
+-->
 
 ::: {.definition #defexternalvalidity name="External validity"}
 The **external validity** of a study is the extent to which the results of the study can be generalised to other people, other situations, and other times.
@@ -490,7 +506,9 @@ Questions to consider:
 - Is this study replicable across different settings?
 - Are there any respondent biases that could affect the results? (Hawthorne effect, demand characteristics, etc.)
 
+<!--
 ### Ecological validity
+-->
 
 ::: {.definition #defecologicalvalidity name="Ecological validity"}
 The **ecological validity** of a study is the extent to which the entire study set-up closely approximates the real-world scenario being investigated.
@@ -502,7 +520,9 @@ Some typical questions would be:
 - Would the study scenario occur naturally in the real world or in other non-controlled environment?
 - Are there any environmental or systemic factors that could affect the replicability of results in the real world?
 
+<!--
 ### Criterion validity
+-->
 
 ::: {.definition #defcriterionvalidity name="Criterion validity"}
 The **criterion validity** of an instrument is the extent to which the score results are consistent with other measures of the same construct.
@@ -513,7 +533,9 @@ Typical questions would be:
 - Does the instrument produce the same expected results as other instruments designed to measure the same construct?
 - Is the correlation between the instrument and other instruments designed to measure the same construct high enough?
 
+<!--
 ### Concurrent validity
+-->
 
 ::: {.definition #defconcurrentvalidity name="Concurrent validity"}
 The **concurrent validity** of an instrument is the extent to which the score results are consistent with other criterion measures (where the criterion is measured at the same time as the instrument is administered).
@@ -523,13 +545,17 @@ Question:
 
 - What is the correlation between the instrument and other instruments designed to measure the same construct at the same time on the same sample? $\rightarrow$ *concurrent validity coefficient*
 
+<!--
 ### Predictive validity
+-->
 
 ::: {.definition #defpredictivevalidity name="Predictive validity"}
 The **predictive validity** of an instrument is the extent to which the results can be used to make inferences about future criterion outcomes (where the criterion is measured after the instrument is administered).
 :::
 
+<!--
 ### Postdictive validity
+-->
 
 ::: {.definition #defpostdictivevalidity name="Postdictive validity"}
 The **postdictive validity** or **retrospective validity** of an instrument is the extent to which the results can be used to make inferences about past criterion outcomes (where the criterion is measured before the instrument is administered).
