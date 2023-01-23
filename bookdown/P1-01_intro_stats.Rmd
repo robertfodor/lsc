@@ -1,3 +1,6 @@
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
 # (PART\*) INTRODUCTIONS {-}
 
 # Why do we learn statistics?{#whywhywhy}
@@ -157,14 +160,14 @@ simpson <- cbind(c("A", "B", "C", "D", "E", "F"),
 knitr::kable(
     simpson,
     col.names = c("Department", "Applicants",
-        "Percent Admitted", "Applicants",
-        "Percent Admitted"),
+        "Admitted", "Applicants",
+        "Admitted"),
    caption = NULL,
    label = "simpsontable",
    linesep = "",
    escape = TRUE,
    booktabs = TRUE,
-   align = "lcc"
+   align = "lcccc"
 ) %>%
   add_header_above(c(" " = 1, "Male" = 2, "Female" = 2)) %>% # Has to be here before kable_styling
   kable_styling(

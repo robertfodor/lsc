@@ -51,13 +51,14 @@ Let's take a moment to clear up our terminology and, in the process, introduce o
 - *Operationalisation*. This is the logical connection between the measure and the theoretical construct: a definition of how you assign value to the concept (calculation, range, level of measurement etc.).
 - ***A variable***. Finally, a new term. A variable is the outcome of the measurement process.
 
+::: {.example #exops name="Method"}
 Here's an example:
 
 - Construct: attitude towards Prince Harry the Duke of Sussex (the underlying concept)
 - Measure: 5-point Likert scale in a self-report survey (instrument)
-- Operationalisation: survey a sample of UK online newsreaders and ask them to rate their level of agreement on a 5-point Likert scale with the following statement: "I personally find Prince Harry the Duke of Sussex an agreeable person". (A statement operationalised the concept - whether it's the right sentence to use is a different question. Is this really the tangible representation of the concept you want to measure?)
+- Operationalisation: survey a sample of UK online newsreaders and ask them to rate their level of agreement on a 5-point Likert scale with the following statement: "I personally find Prince Harry the Duke of Sussex an agreeable person"^[Is this most relevant sentence that accurately represents the concept you want to measure?].
 - Variable: the numerical value of the response to the question, e.g., 5: "strongly agree"...
-
+:::
 
 ## Measurement levels{#scales}
 

@@ -2,14 +2,13 @@
 \frontmatter
 \pagenumbering{gobble} % This turns off page numbering
 \includepdf[pages={1}, scale=1]{LSC_cover.pdf}
-\newpage
-    % This now makes the LaTeX title page after the cover page
 \let\maketitle\oldmaketitle
 \maketitle
-\pagenumbering{roman} % This sets numbering to roman numerals
+\
+\newpage
 % Start numbering at 1
-\setcounter{page}{1}
+%\setcounter{page}{1}
 
 % This now sets numbering to arabic numerals
 \mainmatter
-\pagenumbering{arabic}
+\pagenumbering{roman}

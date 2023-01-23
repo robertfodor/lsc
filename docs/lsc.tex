@@ -5,9 +5,11 @@
 %
 \documentclass[
   11pt,
-]{book}
+  a4paper,
+  twoside,symmetric,openright]{book}
 \usepackage{amsmath,amssymb}
 \usepackage{lmodern}
+\usepackage{setspace}
 \usepackage{iftex}
 \ifPDFTeX
   \usepackage[T1]{fontenc}
@@ -35,7 +37,7 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\usepackage[a4paper, margin=1in, bindingoffset=0.5in, footskip=0.5in]{geometry}
+\usepackage[margin=1in, bindingoffset=0in, outer=1.5in]{geometry}
 \usepackage{longtable,booktabs,array}
 \usepackage{calc} % for calculating minipage widths
 % Correct order of tables after \paragraph or \subparagraph
@@ -89,27 +91,23 @@
 % Don't hyphenate
 \usepackage[none]{hyphenat}
 
-% Widow control
-\usepackage[defaultlines=3,all]{nowidow}
+% Widow control, orphan control
+\usepackage[defaultlines=4,all]{nowidow}
 
-% Footnotes
-\addtolength{\skip\footins}{1.5pc plus 5pt} % Footnote spacing from text
-\setlength{\footnotesep}{1.2pc} % Space between footnotes
+% Page style
+\pagestyle{plain}
+  % Footnotes
+  \addtolength{\skip\footins}{1.5pc plus 5pt} % Footnote spacing from text
+  \setlength{\footnotesep}{1.2pc} % Space between footnotes
 
 % CS colors
 \usepackage{xcolor}
 \definecolor{CSblue}{HTML}{3960A5}
 \definecolor{CSbluelight}{HTML}{4878CE}
 \definecolor{CSgreen}{HTML}{008000}
-\definecolor{capcol}{HTML}{087830}
-\definecolor{graycaption}{HTML}{595959}
 \definecolor{chap}{HTML}{E03616}
 \definecolor{calloutbackground}{HTML}{F2F3F4}
 \definecolor{calloutborder}{HTML}{0096C8}
-\definecolor{exampleborder}{HTML}{EBEDEF}
-\definecolor{examplebackground}{HTML}{FBFCFC}
-\definecolor{definitionborder}{HTML}{EBEDEF}
-\definecolor{definitionbackground}{HTML}{FBFCFC}
 
 % Font
   
@@ -132,17 +130,28 @@
     \usepackage[sfdefault]{sourcesanspro}
 
 
+% Reduce space before lists
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, topsep=0pt}
+
 % Captions and subfigures
 \usepackage{caption}
-\captionsetup[figure]{width=0.8\linewidth}
-\captionsetup[table]{width=0.8\linewidth}
-\usepackage[labelfont={color=graycaption,bf}]{caption}
-\usepackage[font={small,color=graycaption}]{caption}
-\captionsetup[table]{font=sf} % Sans serif caption font
-\captionsetup[figure]{font=sf} % Sans serif caption font
+\captionsetup[figure]{
+  width=0.8\linewidth,
+  skip=6pt,
+  labelfont={color=black,bf},
+  font={small,sf,color=black},
+  format=hang,
+  indention=-2em,}
+\captionsetup[table]{
+  width=0.8\linewidth,
+  labelfont={color=black,bf},
+  font={small,sf,color=black},
+  format=hang,
+  indention=-2em,
+}
 \usepackage{subfig}
 %\setlength\abovecaptionskip{-5pt}
-%\captionsetup[figure]{skip=0pt}
 
 \usepackage{array}
 
@@ -178,10 +187,31 @@
     {\chaptertitlename\ \thechapter}{0em}
     {\Huge\bfseries\sourcesanspro\color{chap}}
 
+  %% Section and subsection number on margin
+  \titleformat{\section}
+    {\normalfont\LARGE\bfseries\sourcesanspro\color{chap}}
+    {\llap{
+      \thesection\hskip 1em}}
+    {0em} 
+    {}
+
+  \titleformat{\subsection}
+    {\normalfont\Large\bfseries\sourcesanspro\color{chap}}
+    {\llap{
+      \thesubsection\hskip 1em}}
+    {0em} 
+    {} 
+
+  \titleformat{\subsubsection}
+    {\normalfont\large\bfseries\sourcesanspro\color{black}}
+    {\llap{
+      \thesubsubsection\hskip 1em}}
+    {0em} 
+    {}
 
 % Keep things together, page breaks
 \makeatletter       %% <- make @ usable in command sequences
-\@secpenalty=0      %% <- don't encourage breaks before section heading
+%\@secpenalty=0      %% <- don't encourage breaks before section heading
 \@beginparpenalty=0 %% <- don't encourage breaks at start of list environments
 \@endparpenalty=0   %% <- don't encourage breaks at end of list environments
 \@itempenalty=0     %% <- don't encourage breaks between items
@@ -189,14 +219,15 @@
 
 % Adding a framed box around text
 \usepackage[most]{tcolorbox}
-\usepackage{thmtools}
+
 \newtcolorbox{callout}[1][]{%
+  enhanced jigsaw, % so it doesn't draw bottom line if page breaks
   colback=calloutbackground,
   colframe=calloutborder,
   parbox=false,
-  leftrule=0.6em,
+  boxrule=1pt,
   fontupper=\sourcesanspro\small,
-  breakable = false,
+  breakable = true,
   title={#1},
   fonttitle=\bfseries\sourcesanspro\normalsize,
   sharp corners,
@@ -205,36 +236,6 @@
   toptitle=0.4em,
   bottomtitle=0.4em,
 }
-
-% Definitions and examples have left margin
-\newtcolorbox{exenv}{
-  %blanker,
-  breakable = true,
-  leftrule = 2em,
-  toprule = 0.1em,
-  bottomrule = 0.1em,
-  rightrule = 0.1em,
-  colframe = exampleborder,
-  colback = examplebackground,
-  parbox = false,
-}
-
-\newtcolorbox{defenv}{
-  breakable = true,
-  leftrule = 2em,
-  colframe = definitionborder,
-  colback = definitionbackground,
-  parbox = false,
-  toptitle=0em,
-  bottomtitle=0em,
-}
-
-% Definitions and examples have left margin (tcolorbox)
-\BeforeBeginEnvironment{example}{\begin{exenv}}
-  \AfterEndEnvironment{example}{\end{exenv}}
-
-\BeforeBeginEnvironment{definition}{\begin{defenv}}
-  \AfterEndEnvironment{definition}{\end{defenv}}
 
 % Shrink space between figure and rest
 \BeforeBeginEnvironment{figure}{\vskip-2ex}
@@ -247,23 +248,62 @@
   blanker,
 }
 
+% tcolorbox for theorems
+\newtcolorbox{theorems}{%
+  breakable = true,
+  parbox = false,
+  %colframe=definitionborder,
+  blanker,
+  leftrule=2em,
+}
+
 % Theorems
-\usepackage{amsthm}
-\newtheoremstyle{definition}
-                {0em} % Space above
-                {0.5em} % Space below
-                {} % Body font
-                {} % Indent of title
-                {\itshape\bfseries}  % Title font
-                {.} % Separator character
-                {\newline} % Space after separator
-                {} % Head template
+\usepackage{ntheorem}
+\usepackage{mdframed}
+
+  % Definition
+  %\theorembodyfont{\normalfont}
+  \theoremseparator{\smallskip}
+  \theoremstyle{break}
+
+  \newmdtheoremenv[
+    ntheorem = true,
+    topline = false,
+    bottomline = false,
+    rightline = true,
+    innerleftmargin = 10pt, % default 10pt
+    innerrightmargin = 10pt, % default 10pt
+    %innertopmargin = 0pt, % default 5pt
+    %innerbottommargin = 0pt, % default 5pt
+    linecolor = chap,
+    leftline = true,
+    linewidth = 3pt,
+    splittopskip = 12pt,
+  ]{definition}{Definition}[chapter]
+
+  % Example
+  \theoremstyle{break}
+  \theorembodyfont{\normalfont}
+  \newmdtheoremenv[
+    ntheorem = true,
+    topline = false,
+    bottomline = false,
+    rightline = false,
+    innerleftmargin = 10pt, % default 10pt
+    innerrightmargin = 10pt, % default 10pt
+    %innertopmargin = 0pt, % default 5pt
+    %innerbottommargin = 0pt, % default 5pt
+    linecolor = black,
+    leftline = true,
+    linewidth = 1pt,
+    splittopskip = 12pt,
+  ]{example}{Example}[chapter]
+
 
 % Dependencies for merging with external cover page
 \usepackage{pdfpages}
 \let\oldmaketitle\maketitle
 \AtBeginDocument{\let\maketitle\relax}
-\usepackage{subfig}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
@@ -284,6 +324,8 @@
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
+% Make links footnotes instead of hotlinks:
+\DeclareRobustCommand{\href}[2]{#2\footnote{\url{#1}}}
 \hypersetup{
   pdftitle={Learning Statistics with CogStat},
   pdfauthor={Danielle Navarro; Róbert Fodor},
@@ -305,23 +347,6 @@
 \author{Danielle Navarro\footnote{Danielle Navarro -- \href{https://github.com/djnavarro/}{Github} \textbar{} \href{https://orcid.org/0000-0001-7648-6578}{\includegraphics{resources/image/orcid_16x16.png}} 0000-0001-7648-6578} \and Róbert Fodor\footnote{Róbert Fodor -- \href{https://github.com/robertfodor/}{Github} \textbar{} \href{https://orcid.org/0000-0001-8470-335X}{\includegraphics{resources/image/orcid_16x16.png}} 0000-0001-8470-335X}}
 \date{5 Nov 2022}
 
-\usepackage{amsthm}
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{lemma}{Lemma}[chapter]
-\newtheorem{corollary}{Corollary}[chapter]
-\newtheorem{proposition}{Proposition}[chapter]
-\newtheorem{conjecture}{Conjecture}[chapter]
-\theoremstyle{definition}
-\newtheorem{definition}{Definition}[chapter]
-\theoremstyle{definition}
-\newtheorem{example}{Example}[chapter]
-\theoremstyle{definition}
-\newtheorem{exercise}{Exercise}[chapter]
-\theoremstyle{definition}
-\newtheorem{hypothesis}{Hypothesis}[chapter]
-\theoremstyle{remark}
-\newtheorem*{remark}{Remark}
-\newtheorem*{solution}{Solution}
 \begin{document}
 \maketitle
 
@@ -329,32 +354,31 @@
 \frontmatter
 \pagenumbering{gobble} % This turns off page numbering
 \includepdf[pages={1}, scale=1]{LSC_cover.pdf}
-\newpage
-    % This now makes the LaTeX title page after the cover page
 \let\maketitle\oldmaketitle
 \maketitle
-\pagenumbering{roman} % This sets numbering to roman numerals
+\
+\newpage
 % Start numbering at 1
-\setcounter{page}{1}
+%\setcounter{page}{1}
 
 % This now sets numbering to arabic numerals
 \mainmatter
-\pagenumbering{arabic}
+\pagenumbering{roman}
 
 {
 \hypersetup{linkcolor=black}
 \setcounter{tocdepth}{1}
 \tableofcontents
 }
+\setstretch{1.15}
 \hypertarget{about-this-book}{%
 \chapter*{About this book}\label{about-this-book}}
 \addcontentsline{toc}{chapter}{About this book}
 
-First published on 27 September 2022 (electronic).
-
-Critical fixes applied (typos and minor errors) on 5 November 2022.
-
-\textbf{Second edition} published on XX January \textbf{2023} (electronic). Aligns with \textbf{Cogstat v2.3}.
+\begin{quote}
+First published on 27 September 2022 (electronic). Aligns with Cogstat v2.3.\\
+\textbf{Second edition} published on XX February 2023 (electronic). Aligns with Cogstat v2.3.
+\end{quote}
 
 To reference this book, please use the following citation (APA7 format):
 
@@ -366,7 +390,7 @@ Navarro, D., \& Fodor, R. (2023). Learning Statistics with CogStat (Rev.~ed.).\\
 \hypertarget{licensing}{%
 \section*{Licensing}\label{licensing}}
 
-\includegraphics[width=0.66\linewidth]{resources/image/by-sa}
+\includegraphics[width=0.15\linewidth]{resources/image/by-sa}
 
 This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit \url{http://creativecommons.org/licenses/by-sa/4.0/} or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 
@@ -389,7 +413,6 @@ This book will always be a living thing. As CogStat expands and evolves, so will
 
 \hypertarget{foreword-for-the-second-edition}{%
 \section*{\texorpdfstring{Foreword for the \emph{Second Edition}}{Foreword for the Second Edition}}\label{foreword-for-the-second-edition}}
-\addcontentsline{toc}{section}{Foreword for the \emph{Second Edition}}
 
 This edition brings in plenty of changes, well beyond 10\% of the book, which should warrant, per publishing standards, for it to be called ``second edition''. While it sounds quite conceited to me, considering I've done some of the work that really should've gone into the original edition in the first place, I opted for this numbering in the aim that whenever a new CogStat version is released and some of the material needs to be updated, I can just call it ``\emph{revised} second edition''. I also want to avoid any confusion where we'd have a textbook v1, v3.14 against a CogStat v2.4RC -- it's tedious. I really love this material, and maybe this is my grandiosity, but I hope this makes sense to you as well.
 
@@ -420,6 +443,11 @@ The main drive behind these edits was reflections on the material's usefulness a
 \item
   Typos and minor errors were fixed all throughout the book.
 \end{itemize}
+
+\newpage
+
+\setcounter{page}{1}
+\pagenumbering{arabic}
 
 \hypertarget{part-introductions}{%
 \part*{INTRODUCTIONS}\label{part-introductions}}
@@ -540,11 +568,11 @@ Females & 4321 & 35\%\\
 
 When people started looking more carefully at the admissions data (\protect\hyperlink{ref-Bickel1975}{Bickel et al., 1975}) on a department by department basis, it turned out that most of the departments actually had a slightly \emph{higher} success rate for female applicants than for male applicants.
 
-\begin{tabu} to \linewidth {>{\raggedright}X>{\centering}X>{\centering}X>{\raggedright}X>{\centering}X}
+\begin{tabu} to \linewidth {>{\raggedright}X>{\centering}X>{\centering}X>{\centering}X>{\centering}X}
 \toprule
 \multicolumn{1}{c}{ } & \multicolumn{2}{c}{Male} & \multicolumn{2}{c}{Female} \\
 \cmidrule(l{3pt}r{3pt}){2-3} \cmidrule(l{3pt}r{3pt}){4-5}
-Department & Applicants & Percent Admitted & Applicants & Percent Admitted\\
+Department & Applicants & Admitted & Applicants & Admitted\\
 \midrule
 A & 825 & 62\% & 108 & 82\%\\
 B & 560 & 63\% & 25 & 68\%\\
@@ -565,7 +593,7 @@ In other words, what these data seem to be suggesting is that the female applica
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{resources/image/berkeley} 
+{\centering \includegraphics[width=0.6\linewidth]{resources/image/berkeley} 
 
 }
 
@@ -714,6 +742,9 @@ Let's take a moment to clear up our terminology and, in the process, introduce o
   \textbf{\emph{A variable}}. Finally, a new term. A variable is the outcome of the measurement process.
 \end{itemize}
 
+\begin{example}[Method]
+\protect\hypertarget{exm:exops}{}\label{exm:exops}
+
 Here's an example:
 
 \begin{itemize}
@@ -723,10 +754,12 @@ Here's an example:
 \item
   Measure: 5-point Likert scale in a self-report survey (instrument)
 \item
-  Operationalisation: survey a sample of UK online newsreaders and ask them to rate their level of agreement on a 5-point Likert scale with the following statement: ``I personally find Prince Harry the Duke of Sussex an agreeable person''. (A statement operationalised the concept - whether it's the right sentence to use is a different question. Is this really the tangible representation of the concept you want to measure?)
+  Operationalisation: survey a sample of UK online newsreaders and ask them to rate their level of agreement on a 5-point Likert scale with the following statement: ``I personally find Prince Harry the Duke of Sussex an agreeable person''\footnote{Is this most relevant sentence that accurately represents the concept you want to measure?}.
 \item
   Variable: the numerical value of the response to the question, e.g., 5: ``strongly agree''\ldots{}
 \end{itemize}
+
+\end{example}
 
 \hypertarget{scales}{%
 \section{Measurement levels}\label{scales}}
@@ -797,18 +830,10 @@ Note that you can have a numeric code assigned to an ordinal variable. However, 
 \begin{keepTogether}
 
 \begin{quote}
-\begin{enumerate}
-\def\labelenumi{(\arabic{enumi})}
-\tightlist
-\item
-  Temperatures are rising because of human activity
-\item
-  Temperatures are rising, but we don't know why
-\item
-  Temperatures are rising, but not because of humans
-\item
-  Temperatures are not rising
-\end{enumerate}
+1 Temperatures are rising because of human activity\\
+2 Temperatures are rising, but we don't know why\\
+3 Temperatures are rising, but not because of humans\\
+4 Temperatures are not rising
 \end{quote}
 
 \end{keepTogether}
@@ -818,19 +843,10 @@ Notice that these four statements actually do have a natural ordering in terms o
 \begin{keepTogether}
 
 \begin{quote}
-\begin{enumerate}
-\def\labelenumi{(\arabic{enumi})}
-\setcounter{enumi}{2}
-\tightlist
-\item
-  Temperatures are rising, but not because of humans
-\item
-  Temperatures are rising because of human activity
-\item
-  Temperatures are not rising
-\item
-  Temperatures are rising, but we don't know why
-\end{enumerate}
+3 Temperatures are rising, but not because of humans\\
+1 Temperatures are rising because of human activity\\
+4 Temperatures are not rising\\
+2 Temperatures are rising, but we don't know why
 \end{quote}
 
 \end{keepTogether}
@@ -845,10 +861,10 @@ So, let's suppose I asked 100 people these questions and got the following answe
 \toprule
 Response & Number\\
 \midrule
-$(1)$ Temperatures are rising because of human activity & 51\\
-$(2)$ Temperatures are rising, but we don't know why & 20\\
-$(3)$ Temperatures are rising, but not because of humans & 10\\
-$(4)$ Temperatures are not rising & 19\\
+1 Temperatures are rising because of human activity & 51\\
+2 Temperatures are rising, but we don't know why & 20\\
+3 Temperatures are rising, but not because of humans & 10\\
+4 Temperatures are not rising & 19\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -951,13 +967,13 @@ There's a second kind of distinction that you need to be aware of regarding what
 \protect\hypertarget{def:defcontinuous}{}\label{def:defcontinuous}A \textbf{continuous variable} can take on any value on a spectrum, and it's logically possible to have a value in between.
 \end{definition}
 
-\begin{definition}[Discrete variables]
-\protect\hypertarget{def:defdiscrete}{}\label{def:defdiscrete}A \textbf{discrete variable} can take on a limited number of distinct values; there is no possible value in between.
-\end{definition}
-
 \begin{example}[Continuous variable example]
 \protect\hypertarget{exm:excontinuous}{}\label{exm:excontinuous}Response time is continuous. If Alan takes 3.1 seconds and Ben takes 2.3 seconds to respond to a question, then Cameron's response time can lie in between by taking 3.0 seconds. And, of course, it would also be possible for David to take 3.031 seconds to respond, meaning that his RT would lie in between Cameron's and Alan's. And while in practice, it might be impossible to measure RT that precisely, it's certainly possible in principle. Because we can always find a new value for RT in between any two other ones, we say that RT is continuous.
 \end{example}
+
+\begin{definition}[Discrete variables]
+\protect\hypertarget{def:defdiscrete}{}\label{def:defdiscrete}A \textbf{discrete variable} can take on a limited number of distinct values; there is no possible value in between.
+\end{definition}
 
 \begin{example}[Discrete variable example]
 \protect\hypertarget{exm:exdiscrete}{}\label{exm:exdiscrete}Nominal scale variables are always discrete: there isn't a type of transportation that falls ``in-between'' trains and bicycles, not in the strict mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete.
@@ -1064,38 +1080,9 @@ Not all measurements need to possess all forms of reliability. Nevertheless, it 
 \hypertarget{validity}{%
 \section{Validity}\label{validity}}
 
-More than any other thing, a scientist wants their research to be ``valid''. The conceptual idea behind validity is simple: can you trust the results of your study? In practice, there aredifferent kinds of validity, each of which raises its own issues, and not all forms of validity are relevant to all studies. Let's talk about different kinds, in somewhat particular order:
+More than any other thing, a scientist wants their research to be ``valid''. The conceptual idea behind validity is simple: can you trust the results of your study? In practice, there aredifferent kinds of validity, each of which raises its own issues, and not all forms of validity are relevant to all studies.
 
-\begin{itemize}
-\tightlist
-\item
-  Content validity
-\item
-  Face validity
-\item
-  Construct validity
-\item
-  Discriminant validity
-\item
-  Convergent validity
-\item
-  Internal validity
-\item
-  External validity
-\item
-  Ecological validity
-\item
-  Criterion validity
-\item
-  Concurrent validity
-\item
-  Predictive validity
-\item
-  Postdictive validity
-\end{itemize}
-
-\hypertarget{content-validity}{%
-\subsection{Content validity}\label{content-validity}}
+While validity is a research methodology subject and not a statistical one, some forms of validity are measured using statistical methods. So let's talk about different kinds of validity briefly, in a somewhat particular order.
 
 \begin{definition}[Content validity]
 \protect\hypertarget{def:defcontentvalidity}{}\label{def:defcontentvalidity}The \textbf{content validity} is the extent to which an instrument measures the desired concept or construct comprehensively (with no gaps or missing aspects) and accurately (with no irrelevant or misleading domains).
@@ -1117,9 +1104,6 @@ Some typical questions would be:
   Is the instrument culturally sensitive? Is the instrument reliable and consistent across different subgroups of the population?
 \end{itemize}
 
-\hypertarget{face-validity}{%
-\subsection{Face validity}\label{face-validity}}
-
 A subjective judgement of content validity is called face validity.
 
 \begin{definition}[Face validity]
@@ -1135,9 +1119,6 @@ Types of questions that you might ask:
 \item
   Will the participant recognise the construct that we are trying to measure? (This might lead to cases where the participant fakes the response.)
 \end{itemize}
-
-\hypertarget{construct-validity}{%
-\subsection{Construct validity}\label{construct-validity}}
 
 \begin{definition}[Construct validity]
 \protect\hypertarget{def:defconstructvalidity}{}\label{def:defconstructvalidity}The \textbf{construct validity} is the extent to which the measurement of a variable is consistent with the theoretical construct that it is supposed to measure.
@@ -1161,9 +1142,6 @@ Typical questions you might consider:
   Does the instrument predict other variables that are theoretically related to the construct?
 \end{itemize}
 
-\hypertarget{discriminant-validity}{%
-\subsection{Discriminant validity}\label{discriminant-validity}}
-
 To test for construct validity, we can to test for discriminant validity\footnote{Sometimes referred to as \emph{divergent validity}. This, however, is not a universally accepted terminology (\protect\hyperlink{ref-hubleyDivergentValidity2014}{Hubley, 2014}).} through correlation and factor analysis.
 
 \begin{definition}[Discriminant validity]
@@ -1177,9 +1155,6 @@ Question:
 \item
   What is the correlation between the variable we are measuring and other variables that should not be related to it? \(\rightarrow\) \emph{discriminant validity coefficient}
 \end{itemize}
-
-\hypertarget{convergent-validity}{%
-\subsection{Convergent validity}\label{convergent-validity}}
 
 \begin{definition}[Convergent validity]
 \protect\hypertarget{def:defconvergentvalidity}{}\label{def:defconvergentvalidity}The \textbf{convergent validity} is the extent to which the measurement of a variable is \emph{consistent with other variables} that should be theoretically related to it.
@@ -1203,9 +1178,6 @@ There are unrelated variables that have an effect on health outcomes, such as: e
 You'll notice that in this particular example, gender\footnote{E.g. research suggests that there are a number of reasons why women tend to live longer than men beyond socio-economic status (with which the relationship is negative), like biological protective factors and differences in risk aversion between men and women (\protect\hyperlink{ref-taylorHealthPsychology2021}{Taylor \& Stanton, 2021}).}, disability, and minority status as variables would likely have a stronger than weak correlation with socio-economic status. These are called \textbf{confounding variables}. They are variables that are related to both the independent and dependent variables, and they can affect the results of the study. You'll need to control for these variables in your study design.
 \end{example}
 
-\hypertarget{internal-validity}{%
-\subsection{Internal validity}\label{internal-validity}}
-
 \begin{definition}[Internal validity]
 \protect\hypertarget{def:definternalvalidity}{}\label{def:definternalvalidity}The \textbf{internal validity} is the extent to which the results of the study can be attributed to the cause-and-effect relationships between the variables studied, rather than other factors. I.e., any change in the dependent variable (outcome) is a result of the manipulation of the independent variable (predictor), and not due to other factors.
 \end{definition}
@@ -1223,9 +1195,6 @@ Typical questions would be:
 \item
   Was the design fit for establishing causality?
 \end{itemize}
-
-\hypertarget{external-validity}{%
-\subsection{External validity}\label{external-validity}}
 
 \begin{definition}[External validity]
 \protect\hypertarget{def:defexternalvalidity}{}\label{def:defexternalvalidity}The \textbf{external validity} of a study is the extent to which the results of the study can be generalised to other people, other situations, and other times.
@@ -1247,9 +1216,6 @@ Questions to consider:
   Are there any respondent biases that could affect the results? (Hawthorne effect, demand characteristics, etc.)
 \end{itemize}
 
-\hypertarget{ecological-validity}{%
-\subsection{Ecological validity}\label{ecological-validity}}
-
 \begin{definition}[Ecological validity]
 \protect\hypertarget{def:defecologicalvalidity}{}\label{def:defecologicalvalidity}The \textbf{ecological validity} of a study is the extent to which the entire study set-up closely approximates the real-world scenario being investigated.
 \end{definition}
@@ -1266,9 +1232,6 @@ Some typical questions would be:
   Are there any environmental or systemic factors that could affect the replicability of results in the real world?
 \end{itemize}
 
-\hypertarget{criterion-validity}{%
-\subsection{Criterion validity}\label{criterion-validity}}
-
 \begin{definition}[Criterion validity]
 \protect\hypertarget{def:defcriterionvalidity}{}\label{def:defcriterionvalidity}The \textbf{criterion validity} of an instrument is the extent to which the score results are consistent with other measures of the same construct.
 \end{definition}
@@ -1283,9 +1246,6 @@ Typical questions would be:
   Is the correlation between the instrument and other instruments designed to measure the same construct high enough?
 \end{itemize}
 
-\hypertarget{concurrent-validity}{%
-\subsection{Concurrent validity}\label{concurrent-validity}}
-
 \begin{definition}[Concurrent validity]
 \protect\hypertarget{def:defconcurrentvalidity}{}\label{def:defconcurrentvalidity}The \textbf{concurrent validity} of an instrument is the extent to which the score results are consistent with other criterion measures (where the criterion is measured at the same time as the instrument is administered).
 \end{definition}
@@ -1298,15 +1258,9 @@ Question:
   What is the correlation between the instrument and other instruments designed to measure the same construct at the same time on the same sample? \(\rightarrow\) \emph{concurrent validity coefficient}
 \end{itemize}
 
-\hypertarget{predictive-validity}{%
-\subsection{Predictive validity}\label{predictive-validity}}
-
 \begin{definition}[Predictive validity]
 \protect\hypertarget{def:defpredictivevalidity}{}\label{def:defpredictivevalidity}The \textbf{predictive validity} of an instrument is the extent to which the results can be used to make inferences about future criterion outcomes (where the criterion is measured after the instrument is administered).
 \end{definition}
-
-\hypertarget{postdictive-validity}{%
-\subsection{Postdictive validity}\label{postdictive-validity}}
 
 \begin{definition}[Postdictive validity]
 \protect\hypertarget{def:defpostdictivevalidity}{}\label{def:defpostdictivevalidity}The \textbf{postdictive validity} or \textbf{retrospective validity} of an instrument is the extent to which the results can be used to make inferences about past criterion outcomes (where the criterion is measured before the instrument is administered).
@@ -1355,7 +1309,7 @@ This chapter isn't really meant to provide a comprehensive discussion of psychol
 \end{itemize}
 
 \hypertarget{autostat}{%
-\chapter{Introduction to automatic statistical analysis}\label{autostat}}
+\chapter{Automatic statistical analysis}\label{autostat}}
 
 To produce strong research results, it is important to have good data analysis, which can make or break a research project. In psychological research, this includes: identifying and selecting a good design from many alternative design options, sampling participants appropriately, observing ethical standards in data collection and documentation, controlling for confounding variables, selecting appropriate statistics and replications of analyses, analysing data with appropriate software, assessing the effect sizes of results based on their inferential characteristics, reporting findings accurately in papers -- just to name a few. Some of these tasks can be automated to ensure that the appropriate protocol is followed, which is why we have CogStat, and why you are reading this book.
 
@@ -1417,11 +1371,11 @@ The first dataset we'll be looking at is real data relating to the Australian Fo
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{resources/image/loadaflsmall} 
+{\centering \includegraphics[width=0.6\linewidth]{resources/image/loadaflsmall} 
 
 }
 
-\caption[Loading `aflsmall.csv`]{Loading `aflsmall.csv`. This is what you would see after loading the dataset.}\label{fig:loadaflsmall}
+\caption{Loading `aflsmall.csv`}\label{fig:loadaflsmall}
 \end{figure}
 
 CogStat will help you get familiar with some essential aspects of your variable, like:
@@ -1442,7 +1396,7 @@ To start understanding a variable in CogStat, select \texttt{Explore\ variable} 
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{resources/image/explorevariable} 
+{\centering \includegraphics[width=0.6\linewidth]{resources/image/explorevariable} 
 
 }
 
@@ -1451,7 +1405,7 @@ To start understanding a variable in CogStat, select \texttt{Explore\ variable} 
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{resources/image/cogstatrawaflsmall} 
+{\centering \includegraphics[width=0.6\linewidth]{resources/image/cogstatrawaflsmall} 
 
 }
 
@@ -1472,7 +1426,14 @@ In the rest of this chapter, we will explore what these measures mean and what t
 
 In most situations, the first thing that you'll want to calculate is a measure of \textbf{\emph{central tendency}}. That is, you'd like to know something about the ``average'' or ``middle'' of your data lies.
 
-\begin{center}\includegraphics[width=0.66\linewidth]{lsc_files/figure-latex/unnamed-chunk-14-1} \end{center}
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{lsc_files/figure-latex/unnamed-chunk-14-1} 
+
+}
+
+\caption{Density plot with mean.}\label{fig:unnamed-chunk-14}
+\end{figure}
 
 \hypertarget{mean}{%
 \subsection{The mean}\label{mean}}
@@ -1486,16 +1447,33 @@ The first measure of \emph{central tendency} is the mean, or arithmetic average.
 \]
 \end{definition}
 
+Of course, this definition of the mean isn't news to anyone: averages (i.e., means) are used so often in everyday life that this is quite familiar. By tradition, we use \(\bar{X}\) as the notation for the mean, \(\scriptstyle\sum\) for the idea of summation, \(X_i\) for the \(i\)th observation, and \(N\) for the total number of observations. We use subscripts to indicate which observation we're talking about. That is, we'll use \(X_1\) to refer to the first observation, \(X_2\) to refer to the second observation, and so on, all the way up to \(X_N\) for the last one.
+
+\hypertarget{summation}{}
+\begin{callout}[Summation symbol: $\scriptstyle\sum$ and Product symbol: $\scriptstyle\prod$ notations]
+
+The summation symbol \(\scriptstyle\sum\) is used to denote the operation of adding up a sequence of numbers. It is used to write out formulas in a concise way, and is used extensively in mathematics.
+
+\[
+\sum_{i=1}^n X_i = X_1 + X_2 + ... + X_{n-1} + X_n
+\]
+where \(i\) is the \emph{index of the observation}, which means that the index starts out at the given number, so in this case, at the first observation (\(X_\mathbf{1}\)). The index is incremented by 1 for each observation (even if \(i>1\)), so the next observation is \(X_\mathbf{2}\), and so on, until the last observation, which is \(X_\mathbf{n}\), as denoted above the symbol.
+
+The choice to use \(\Sigma\) to denote summation isn't arbitrary: it's the Greek upper case letter sigma, which is the analogue of the letter S in that alphabet.
+
+Similarly, there's an equivalent symbol used to denote the multiplication of lots of numbers: because multiplications are also called ``products'', we use the \(\Pi\) symbol for this; the Greek upper case pi, which is the analogue of the letter P.
+
+\end{callout}
+
 \begin{example}[Mean]
-\protect\hypertarget{exm:exmean}{}\label{exm:exmean}The first five AFL margins were 56, 31, 56, 8 and 32 (which CogStat will display when loading the data, see Figure \ref{fig:loadaflsmall}), so the mean of these observations is just:
+\protect\hypertarget{exm:exmean}{}\label{exm:exmean}
+
+The first five AFL margins were 56, 31, 56, 8 and 32 (which CogStat will display when loading the data, see Figure \ref{fig:loadaflsmall}), so the mean of these observations is just:
 \[
 \frac{56 + 31 + 56 + 8 + 32}{5} = \frac{183}{5} = 36.60
 \]
-\end{example}
 
-Of course, this definition of the mean isn't news to anyone: averages (i.e., means) are used so often in everyday life that this is quite familiar.
-
-We used \(N\) to denote the number of observations. Now let's attach a label to the observations themselves. It's traditional to use \(X\) for this, and to use subscripts to indicate which observation we're actually talking about. That is, we'll use \(X_1\) to refer to the first observation, \(X_2\) to refer to the second observation, and so on, all the way up to \(X_N\) for the last one. The following table lists the 5 observations in the \texttt{afl.margins} variable, along with the mathematical symbol used to refer to it, and the actual value that the observation corresponds to:
+The following table lists the 5 observations in the \texttt{afl.margins} variable, along with the mathematical symbol used to refer to it, and the actual value that the observation corresponds to:
 
 \begin{table}[H]
 \centering
@@ -1512,42 +1490,7 @@ winning margin, game 5 & $X_5$ & 32 points\\
 \end{tabular}
 \end{table}
 
-Okay, now let's try to write a formula for the mean. The goal here is to try to make sure that everyone reading this book is clear on the notation that we'll be using throughout the book. By tradition, we use \(\bar{X}\) as the notation for the mean, \(\scriptstyle\sum\) for the idea of summation, \(X_i\) for the \(i\)th observation, and \(N\) for the total number of observations. We're going to be re-using these symbols a fair bit, so you must understand them well enough to be able to ``read'' the equations and to be able to see what they're really saying.
-
-So the calculation for the mean could be expressed using the following formula:
-\[
-\bar{X} = \frac{X_1 + X_2 + ... + X_{N-1} + X_N}{N}
-\]
-
-This formula is entirely correct, but it's terribly long, so we make use of the summation symbol \(\scriptstyle\sum\) to shorten it:
-\[
-\sum_{i=1}^5 X_i
-\]
-
-Taken literally, this could be read as ``the sum, taken over all \(i\) values from 1 to 5, of the value \(X_i\)''. But basically, what it means is ``add up the first five observations''. In any case, we can use this notation to write out the formula for the mean, which looks like this:
-\[
-\bar{X} = \frac{1}{N} \sum_{i=1}^N X_i 
-\]
-
-In all honesty, all this mathematical notation is just a fancy way of laying out the same things said in words: \emph{add all the values up, and then divide by the total number of items}.
-
-\hypertarget{summation}{}
-\begin{callout}[Summation symbol: $\scriptstyle\sum$ and Product symbol: $\scriptstyle\prod$ notations]
-
-The summation symbol \(\scriptstyle\sum\) is used to denote the operation of adding up a sequence of numbers. It is used to write out formulas in a concise way, and is used extensively in mathematics.
-
-\[
-\sum_{i=1}^n X_i = X_1 + X_2 + ... + X_{n-1} + X_n
-\]
-where \(i\) is the \emph{index of the observation}, which means that the index starts out at the given number, so in this case, at the first observation (\(X_\mathbf{1}\)). The index is incremented by 1 for each observation (even if \(i>1\)), so the next observation is \(X_\mathbf{2}\), and so on, until the last observation, which is \(X_\mathbf{n}\), as denoted above the symbol.
-
-The choice to use \(\Sigma\) to denote summation isn't arbitrary: it's the Greek upper case letter sigma, which is the analogue of the letter S in that alphabet.
-
-Similarly, there's an equivalent symbol used to denote the multiplication of lots of numbers: because multiplications are also called ``products'', we use the \(\Pi\) symbol for this; the Greek upper case pi, which is the analogue of the letter P.
-
-Check out more examples of \href{https://en.wikipedia.org/wiki/Summation\#Capital-sigma_notation}{summation notation} and \href{https://en.wikipedia.org/wiki/Multiplication\#Product_of_a_sequence}{product notation} on Wikipedia.
-
-\end{callout}
+\end{example}
 
 CogStat calculates the mean automatically when exploring a variable using all valid data points, not just the first five. It will be part of the \texttt{Descriptives\ for\ the\ variable} section, as seen in Figure \ref{fig:histogramaflsmall}. The result for our variable is:
 
@@ -1558,7 +1501,7 @@ CogStat calculates the mean automatically when exploring a variable using all va
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{resources/image/cogstathistogramaflsmall} 
+{\centering \includegraphics[width=0.6\linewidth]{resources/image/cogstathistogramaflsmall} 
 
 }
 
@@ -1602,7 +1545,7 @@ In the data set we loaded to CogStat, there were 176 valid cases, so we ought to
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{./resources/image/meanmedian} 
+{\centering \includegraphics[width=0.6\linewidth]{./resources/image/meanmedian} 
 
 }
 
@@ -1705,7 +1648,7 @@ In CogStat, you will see a frequency table (Figure \ref{fig:freqaflsmall}) of th
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{resources/image/cogstatfrequencyaflsmall} 
+{\centering \includegraphics[width=0.6\linewidth]{resources/image/cogstatfrequencyaflsmall} 
 
 }
 
@@ -1725,7 +1668,7 @@ The statistics that we've discussed so far all relate to \emph{central tendency}
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{lsc_files/figure-latex/unnamed-chunk-16-1} 
+{\centering \includegraphics[width=0.6\linewidth]{lsc_files/figure-latex/unnamed-chunk-16-1} 
 
 }
 
@@ -1947,7 +1890,6 @@ Variances are \emph{additive}. Suppose we have two variables (\(X\) and \(Y\)), 
 
 \begin{table}[H]
 \centering
-\resizebox{\linewidth}{!}{
 \begin{tabular}{llcc}
 \toprule
 \multicolumn{1}{c}{Which game} & \multicolumn{1}{c}{Value} & \multicolumn{1}{c}{Deviation from mean} & \multicolumn{1}{c}{Absolute squared deviation} \\
@@ -1960,7 +1902,7 @@ $i$ & $X_i$ & $X_i - \bar{X}$ & $(X_i - \bar{X})^2$\\
 4 & 8 & -28.6 & 817.96\\
 5 & 32 & -4.6 & 21.16\\
 \bottomrule
-\end{tabular}}
+\end{tabular}
 \end{table}
 
 That last column contains all of our squared deviations, so all we have to do is average them.
@@ -2061,7 +2003,7 @@ There are two more descriptive statistics that you will likely see reported in t
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{lsc_files/figure-latex/skewness-1} 
+{\centering \includegraphics[width=0.6\linewidth]{lsc_files/figure-latex/skewness-1} 
 
 }
 
@@ -2096,7 +2038,7 @@ where \(N\) is the number of observations, \(\bar{X}\) is the sample mean, and \
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{lsc_files/figure-latex/kurtosis-1} 
+{\centering \includegraphics[width=0.6\linewidth]{lsc_files/figure-latex/kurtosis-1} 
 
 }
 
@@ -2187,7 +2129,7 @@ After watching the AFL data, let's turn to a topic close to every parent's heart
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{resources/image/cogstatparenthoodload} 
+{\centering \includegraphics[width=0.6\linewidth]{resources/image/cogstatparenthoodload} 
 
 }
 
@@ -2223,7 +2165,7 @@ Minimum & 41 & 4.84 & 3.25\\
 
 To start understanding the relationship between a pair of variables, select \texttt{Explore\ relation\ of\ variable\ pair} so a pop-up appears. Move the name of the two variables you wish to analyse from \texttt{Available\ variables} to \texttt{Selected\ variables}, then click \texttt{OK}. In CogStat, we can run analysis on multiple variables at once by selecting them in the variable list. This will display all analysis results after each other sequentially. We'll be looking at sections called \emph{Sample properties} from the result sets.
 
-\begin{center}\includegraphics[width=0.66\linewidth]{resources/image/cogstatexplorevariablepair} \end{center}
+\begin{center}\includegraphics[width=0.6\linewidth]{resources/image/cogstatexplorevariablepair} \end{center}
 
 \hypertarget{the-strength-and-direction-of-a-relationship}{%
 \section{The strength and direction of a relationship}\label{the-strength-and-direction-of-a-relationship}}
@@ -2263,7 +2205,7 @@ Scatterplots can only be used with \protect\hyperlink{continuousdiscrete}{\emph{
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{resources/image/parentsleepbabysleepplot} 
+{\centering \includegraphics[width=0.6\linewidth]{resources/image/parentsleepbabysleepplot} 
 
 }
 
@@ -2279,7 +2221,7 @@ We can make these ideas a bit more explicit by introducing the idea of a \textbf
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{lsc_files/figure-latex/corr-1} 
+{\centering \includegraphics[width=0.6\linewidth]{lsc_files/figure-latex/corr-1} 
 
 }
 
@@ -2331,7 +2273,7 @@ You'd think that these four data sets would look pretty similar to one another. 
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{lsc_files/figure-latex/anscombe-1} 
+{\centering \includegraphics[width=0.6\linewidth]{lsc_files/figure-latex/anscombe-1} 
 
 }
 
@@ -2345,7 +2287,7 @@ The lesson here, which so very many people seem to forget in real life, is ``\em
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{lsc_files/figure-latex/rankcorrpic-1} 
+{\centering \includegraphics[width=0.6\linewidth]{lsc_files/figure-latex/rankcorrpic-1} 
 
 }
 
@@ -2392,7 +2334,7 @@ CogStat will automatically calculate both Pearson's correlation and Spearman's r
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{resources/image/cogstatcorrelationresult} 
+{\centering \includegraphics[width=0.6\linewidth]{resources/image/cogstatcorrelationresult} 
 
 }
 
@@ -2406,7 +2348,7 @@ To illustrate the issues, let's open up a data set with missing values, \href{re
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{resources/image/cogstatparenthood_missing} 
+{\centering \includegraphics[width=0.6\linewidth]{resources/image/cogstatparenthood_missing} 
 
 }
 
@@ -2445,7 +2387,7 @@ Whichever pair you'd like to run (e.g., \texttt{parentsleep} vs.~\texttt{parentg
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{resources/image/cogstatparentsleepparentgrumpmissing} 
+{\centering \includegraphics[width=0.6\linewidth]{resources/image/cogstatparentsleepparentgrumpmissing} 
 
 }
 
@@ -2454,7 +2396,7 @@ Whichever pair you'd like to run (e.g., \texttt{parentsleep} vs.~\texttt{parentg
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{resources/image/cogstatbabysleepparentgrumpmissing} 
+{\centering \includegraphics[width=0.6\linewidth]{resources/image/cogstatbabysleepparentgrumpmissing} 
 
 }
 
@@ -2463,7 +2405,7 @@ Whichever pair you'd like to run (e.g., \texttt{parentsleep} vs.~\texttt{parentg
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.66\linewidth]{resources/image/cogstatparentsleepbabysleepmissing} 
+{\centering \includegraphics[width=0.6\linewidth]{resources/image/cogstatparentsleepbabysleepmissing} 
 
 }
 

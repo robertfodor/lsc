@@ -1,20 +1,20 @@
 % Don't hyphenate
 \usepackage[none]{hyphenat}
 
-% Widow control
-\usepackage[defaultlines=3,all]{nowidow}
+% Widow control, orphan control
+\usepackage[defaultlines=4,all]{nowidow}
 
-% Footnotes
-\addtolength{\skip\footins}{1.5pc plus 5pt} % Footnote spacing from text
-\setlength{\footnotesep}{1.2pc} % Space between footnotes
+% Page style
+\pagestyle{plain}
+  % Footnotes
+  \addtolength{\skip\footins}{1.5pc plus 5pt} % Footnote spacing from text
+  \setlength{\footnotesep}{1.2pc} % Space between footnotes
 
 % CS colors
 \usepackage{xcolor}
 \definecolor{CSblue}{HTML}{3960A5}
 \definecolor{CSbluelight}{HTML}{4878CE}
 \definecolor{CSgreen}{HTML}{008000}
-\definecolor{capcol}{HTML}{087830}
-\definecolor{graycaption}{HTML}{595959}
 \definecolor{chap}{HTML}{E03616}
 \definecolor{calloutbackground}{HTML}{F2F3F4}
 \definecolor{calloutborder}{HTML}{0096C8}
@@ -40,17 +40,28 @@
     \usepackage[sfdefault]{sourcesanspro}
 
 
+% Reduce space before lists
+\usepackage{enumitem}
+\setlist[itemize]{noitemsep, topsep=0pt}
+
 % Captions and subfigures
 \usepackage{caption}
-\captionsetup[figure]{width=0.8\linewidth}
-\captionsetup[table]{width=0.8\linewidth}
-\usepackage[labelfont={color=graycaption,bf}]{caption}
-\usepackage[font={small,color=graycaption}]{caption}
-\captionsetup[table]{font=sf} % Sans serif caption font
-\captionsetup[figure]{font=sf} % Sans serif caption font
+\captionsetup[figure]{
+  width=0.8\linewidth,
+  skip=6pt,
+  labelfont={color=black,bf},
+  font={small,sf,color=black},
+  format=hang,
+  indention=-2em,}
+\captionsetup[table]{
+  width=0.8\linewidth,
+  labelfont={color=black,bf},
+  font={small,sf,color=black},
+  format=hang,
+  indention=-2em,
+}
 \usepackage{subfig}
 %\setlength\abovecaptionskip{-5pt}
-%\captionsetup[figure]{skip=0pt}
 
 \usepackage{array}
 
@@ -110,7 +121,7 @@
 
 % Keep things together, page breaks
 \makeatletter       %% <- make @ usable in command sequences
-\@secpenalty=0      %% <- don't encourage breaks before section heading
+%\@secpenalty=0      %% <- don't encourage breaks before section heading
 \@beginparpenalty=0 %% <- don't encourage breaks at start of list environments
 \@endparpenalty=0   %% <- don't encourage breaks at end of list environments
 \@itempenalty=0     %% <- don't encourage breaks between items
@@ -157,9 +168,7 @@
 }
 
 % Theorems
-\usepackage{hyperref} % To process hyperlinks to theorems
-\usepackage{framed}
-\usepackage[thref, framed, thmmarks, amsmath, amsthm]{ntheorem}
+\usepackage{ntheorem}
 \usepackage{mdframed}
 
   % Definition

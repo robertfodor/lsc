@@ -30,19 +30,20 @@ description: '*Learning Statistics with CogStat* covers the contents of an intro
   statistical analysis performed in CogStat.'
 
 documentclass: book
+classoption: twoside,symmetric,openright
 fontsize: 11pt
 papersize: a4
-linestretch: 1.1
+linestretch: 1.15
 links-as-notes: true
 always_allow_html: true
-geometry: margin=1in, bindingoffset=0.5in, footskip=0.3in
+geometry: margin=1in, bindingoffset=0in, outer=1.5in
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 if (knitr::is_latex_output()) {
-  knitr::opts_chunk$set(out.width = "66%")
+  knitr::opts_chunk$set(out.width = "60%")
 }
 
 options(bookdown.post.latex = function(x) {
@@ -73,11 +74,8 @@ library(kableExtra)
 knitr::include_graphics("resources/bookcover/LSC_small.png")
 ```
 
-First published on 27 September 2022 (electronic). 
-
-Critical fixes applied (typos and minor errors) on 5 November 2022.
-
-**Second edition** published on XX January **2023** (electronic). Aligns with **Cogstat v2.3**.
+> First published on 27 September 2022 (electronic). Aligns with Cogstat v2.3. \
+> **Second edition** published on XX February 2023 (electronic). Aligns with Cogstat v2.3.
 
 To reference this book, please use the following citation (APA7 format):
 
@@ -127,3 +125,5 @@ The main drive behind these edits was reflections on the material's usefulness a
 - New: explanatory charts were added to the text.
 - New: health psychology examples were added to the text.
 - Typos and minor errors were fixed all throughout the book.
+
+\newpage

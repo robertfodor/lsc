@@ -10,7 +10,7 @@ Any time you get a new data set to look at, one of the first things you might wa
 
 The first dataset we'll be looking at is real data relating to the Australian Football League (AFL)^[Note for non-Australians: the AFL is an Australian rules football competition. You don't need to know anything about Australian rules in order to follow this section.]. To do this, let us load the [aflsmall.csv](resources/data/aflsmall.csv) file.
 
-```{r loadaflsmall, fig.align='center', echo=FALSE, fig.cap="Loading `aflsmall.csv`. This is what you would see after loading the dataset.", fig.scap="Loading `aflsmall.csv`"}
+```{r loadaflsmall, fig.align='center', echo=FALSE, fig.cap="Loading `aflsmall.csv`"}
 knitr::include_graphics("resources/image/loadaflsmall.png")
 ```
 
@@ -43,7 +43,7 @@ In the rest of this chapter, we will explore what these measures mean and what t
 
 In most situations, the first thing that you'll want to calculate is a measure of **_central tendency_**. That is, you'd like to know something about the "average" or "middle" of your data lies.
 
-```{r echo=FALSE, fig.align="center"}
+```{r echo=FALSE, fig.align="center", fig.cap = "Density plot with mean."}
 library(ggplot2)
 
 data_set_a <- rnorm(500, mean = 50, sd = 5)
@@ -52,8 +52,7 @@ data_set_b <- rnorm(500, mean = 50, sd = 30)
 data <- data.frame(data_set_a, data_set_b)
 
 ggplot(data, aes(x = data_set_a)) +
-  # geom_density(aes(y = ..density..), fill = "#e6f0f0", alpha = 0.5) +
-  geom_density(aes(x = data_set_b), fill = "#0096c8", alpha = 0.5) +
+  geom_density(aes(y = ..density..), fill = "#0096c8", alpha = 0.5) +
   geom_vline(xintercept = mean(data_set_a),
     linetype = "dashed", color = "black", size = 0.4) +
   ylab("Frequency") + xlab("") +
@@ -72,16 +71,37 @@ $$
 $$
 :::
 
+Of course, this definition of the mean isn't news to anyone: averages (i.e., means) are used so often in everyday life that this is quite familiar. By tradition, we use $\bar{X}$ as the notation for the mean, $\scriptstyle\sum$ for the idea of summation, $X_i$ for the $i$th observation, and $N$ for the total number of observations. We use subscripts to indicate which observation we're talking about. That is, we'll use $X_1$ to refer to the first observation, $X_2$ to refer to the second observation, and so on, all the way up to $X_N$ for the last one. 
+
+
+:::: {.callout #summation data-latex="[Summation symbol: $\scriptstyle\sum$ and Product symbol: $\scriptstyle\prod$ notations]"}
+
+```{=html}
+<div class="callout-title">
+Summation symbol: ∑ and Product symbol: ∏ notations
+</div>
+```
+
+The summation symbol $\scriptstyle\sum$ is used to denote the operation of adding up a sequence of numbers. It is used to write out formulas in a concise way, and is used extensively in mathematics.
+
+$$
+\sum_{i=1}^n X_i = X_1 + X_2 + ... + X_{n-1} + X_n
+$$
+where $i$ is the *index of the observation*, which means that the index starts out at the given number, so in this case, at the first observation ($X_\mathbf{1}$). The index is incremented by 1 for each observation (even if $i>1$), so the next observation is $X_\mathbf{2}$, and so on, until the last observation, which is $X_\mathbf{n}$, as denoted above the symbol.
+
+The choice to use $\Sigma$ to denote summation isn't arbitrary: it's the Greek upper case letter sigma, which is the analogue of the letter S in that alphabet.
+
+Similarly, there's an equivalent symbol used to denote the multiplication of lots of numbers: because multiplications are also called "products", we use the $\Pi$ symbol for this; the Greek upper case pi, which is the analogue of the letter P.
+
+::::
+
 :::{.example #exmean name="Mean"}
 The first five AFL margins were 56, 31, 56, 8 and 32 (which CogStat will display when loading the data, see Figure \@ref(fig:loadaflsmall)), so the mean of these observations is just:
 $$
 \frac{56 + 31 + 56 + 8 + 32}{5} = \frac{183}{5} = 36.60
 $$
-:::
 
-Of course, this definition of the mean isn't news to anyone: averages (i.e., means) are used so often in everyday life that this is quite familiar.
-
-We used $N$ to denote the number of observations. Now let's attach a label to the observations themselves. It's traditional to use $X$ for this, and to use subscripts to indicate which observation we're actually talking about. That is, we'll use $X_1$ to refer to the first observation, $X_2$ to refer to the second observation, and so on, all the way up to $X_N$ for the last one. The following table lists the 5 observations in the `afl.margins` variable, along with the mathematical symbol used to refer to it, and the actual value that the observation corresponds to:
+The following table lists the 5 observations in the `afl.margins` variable, along with the mathematical symbol used to refer to it, and the actual value that the observation corresponds to:
 
 ```{r echo=FALSE}
 knitr::kable(rbind(
@@ -105,46 +125,8 @@ knitr::kable(rbind(
   )
 ```
 
-Okay, now let's try to write a formula for the mean. The goal here is to try to make sure that everyone reading this book is clear on the notation that we'll be using throughout the book. By tradition, we use $\bar{X}$ as the notation for the mean, $\scriptstyle\sum$ for the idea of summation, $X_i$ for the $i$th observation, and $N$ for the total number of observations. We're going to be re-using these symbols a fair bit, so you must understand them well enough to be able to "read" the equations and to be able to see what they're really saying.
+:::
 
-So the calculation for the mean could be expressed using the following formula:
-$$
-\bar{X} = \frac{X_1 + X_2 + ... + X_{N-1} + X_N}{N}
-$$
-
-This formula is entirely correct, but it's terribly long, so we make use of the summation symbol $\scriptstyle\sum$ to shorten it:
-$$
-\sum_{i=1}^5 X_i
-$$
-
-Taken literally, this could be read as "the sum, taken over all $i$ values from 1 to 5, of the value $X_i$". But basically, what it means is "add up the first five observations". In any case, we can use this notation to write out the formula for the mean, which looks like this:
-$$
-\bar{X} = \frac{1}{N} \sum_{i=1}^N X_i 
-$$
-
-In all honesty, all this mathematical notation is just a fancy way of laying out the same things said in words: *add all the values up, and then divide by the total number of items*.
-
-:::: {.callout #summation data-latex="[Summation symbol: $\scriptstyle\sum$ and Product symbol: $\scriptstyle\prod$ notations]"}
-
-```{=html}
-<div class="callout-title">
-Summation symbol: ∑ and Product symbol: ∏ notations
-</div>
-```
-
-The summation symbol $\scriptstyle\sum$ is used to denote the operation of adding up a sequence of numbers. It is used to write out formulas in a concise way, and is used extensively in mathematics.
-
-$$
-\sum_{i=1}^n X_i = X_1 + X_2 + ... + X_{n-1} + X_n
-$$
-where $i$ is the *index of the observation*, which means that the index starts out at the given number, so in this case, at the first observation ($X_\mathbf{1}$). The index is incremented by 1 for each observation (even if $i>1$), so the next observation is $X_\mathbf{2}$, and so on, until the last observation, which is $X_\mathbf{n}$, as denoted above the symbol.
-
-The choice to use $\Sigma$ to denote summation isn't arbitrary: it's the Greek upper case letter sigma, which is the analogue of the letter S in that alphabet.
-
-Similarly, there's an equivalent symbol used to denote the multiplication of lots of numbers: because multiplications are also called "products", we use the $\Pi$ symbol for this; the Greek upper case pi, which is the analogue of the letter P.
-
-Check out more examples of [summation notation](https://en.wikipedia.org/wiki/Summation#Capital-sigma_notation) and [product notation](https://en.wikipedia.org/wiki/Multiplication#Product_of_a_sequence) on Wikipedia.
-::::
 
 CogStat calculates the mean automatically when exploring a variable using all valid data points, not just the first five. It will be part of the `Descriptives for the variable` section, as seen in Figure \@ref(fig:histogramaflsmall). The result for our variable is:
 

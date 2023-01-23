@@ -27,11 +27,6 @@ bookdown::pdf_book:
   #   - --lua-filter=section-refs.lua
   # section-refs-bibliography: book.bib
   # section-refs-level: 1
-  keep_tex: no
-  toc: true
-  tof: true
-  tot: true
-  fontsize: 12pt
-  extra_dependencies: "subfig"
+  keep_tex: yes
 
 bookdown::epub_book: default
