@@ -559,7 +559,7 @@ col.names = c(
                      "Deviation from mean" = 1, 
                      "Absolute squared deviation" = 1)) %>%
   kable_styling(position = "center",
-  latex_options = c("repeat_header", "HOLD_position", "scale_down"))
+  latex_options = c("repeat_header", "HOLD_position"))
 ```
 
 That last column contains all of our squared deviations, so all we have to do is average them.
