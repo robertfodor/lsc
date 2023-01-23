@@ -120,12 +120,13 @@
 \usepackage[most]{tcolorbox}
 
 \newtcolorbox{callout}[1][]{%
+  enhanced jigsaw, % so it doesn't draw bottom line if page breaks
   colback=calloutbackground,
   colframe=calloutborder,
   parbox=false,
-  leftrule=0.6em,
+  boxrule=1pt,
   fontupper=\sourcesanspro\small,
-  breakable = false,
+  breakable = true,
   title={#1},
   fonttitle=\bfseries\sourcesanspro\normalsize,
   sharp corners,
@@ -159,24 +160,46 @@
 \usepackage{hyperref} % To process hyperlinks to theorems
 \usepackage{framed}
 \usepackage[thref, framed, thmmarks, amsmath, amsthm]{ntheorem}
+\usepackage{mdframed}
 
   % Definition
-  \theoremprework{%
-    \def\FrameCommand{{\color{chap}{\hspace{-12pt}\vrule width 3pt \hspace{9pt}}}}
-  }
-  \theoremframepreskip{0em}
-  \theoremframepostskip{0em}
-  \theorembodyfont{\normalfont}
-  \theoremseparator{\smallskip} 
+  %\theorembodyfont{\normalfont}
+  \theoremseparator{\smallskip}
   \theoremstyle{break}
-  \newframedtheorem{definition}{Definition}[chapter]
+
+  \newmdtheoremenv[
+    ntheorem = true,
+    topline = false,
+    bottomline = false,
+    rightline = true,
+    innerleftmargin = 10pt, % default 10pt
+    innerrightmargin = 10pt, % default 10pt
+    %innertopmargin = 0pt, % default 5pt
+    %innerbottommargin = 0pt, % default 5pt
+    linecolor = chap,
+    leftline = true,
+    linewidth = 3pt,
+    splittopskip = 12pt,
+  ]{definition}{Definition}[chapter]
 
   % Example
-  \theoremprework{%
-    \def\FrameCommand{{\color{black}{\hspace{-11pt}\vrule width 1pt \hspace{10pt}}}}
-  }
   \theoremstyle{break}
-  \newframedtheorem{example}{Example}[chapter]
+  \theorembodyfont{\normalfont}
+  \newmdtheoremenv[
+    ntheorem = true,
+    topline = false,
+    bottomline = false,
+    rightline = false,
+    innerleftmargin = 10pt, % default 10pt
+    innerrightmargin = 10pt, % default 10pt
+    %innertopmargin = 0pt, % default 5pt
+    %innerbottommargin = 0pt, % default 5pt
+    linecolor = black,
+    leftline = true,
+    linewidth = 1pt,
+    splittopskip = 12pt,
+  ]{example}{Example}[chapter]
+
 
 % Dependencies for merging with external cover page
 \usepackage{pdfpages}
