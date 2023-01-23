@@ -18,10 +18,6 @@
 \definecolor{chap}{HTML}{E03616}
 \definecolor{calloutbackground}{HTML}{F2F3F4}
 \definecolor{calloutborder}{HTML}{0096C8}
-\definecolor{exampleborder}{HTML}{EBEDEF}
-\definecolor{examplebackground}{HTML}{FBFCFC}
-\definecolor{definitionborder}{HTML}{EBEDEF}
-\definecolor{definitionbackground}{HTML}{FBFCFC}
 
 % Font
   
@@ -90,6 +86,27 @@
     {\chaptertitlename\ \thechapter}{0em}
     {\Huge\bfseries\sourcesanspro\color{chap}}
 
+  %% Section and subsection number on margin
+  \titleformat{\section}
+    {\normalfont\LARGE\bfseries\sourcesanspro\color{chap}}
+    {\llap{
+      \thesection\hskip 1em}}
+    {0em} 
+    {}
+
+  \titleformat{\subsection}
+    {\normalfont\Large\bfseries\sourcesanspro\color{chap}}
+    {\llap{
+      \thesubsection\hskip 1em}}
+    {0em} 
+    {} 
+
+  \titleformat{\subsubsection}
+    {\normalfont\large\bfseries\sourcesanspro\color{black}}
+    {\llap{
+      \thesubsubsection\hskip 1em}}
+    {0em} 
+    {}
 
 % Keep things together, page breaks
 \makeatletter       %% <- make @ usable in command sequences
@@ -101,7 +118,7 @@
 
 % Adding a framed box around text
 \usepackage[most]{tcolorbox}
-\usepackage{thmtools}
+
 \newtcolorbox{callout}[1][]{%
   colback=calloutbackground,
   colframe=calloutborder,
@@ -118,36 +135,6 @@
   bottomtitle=0.4em,
 }
 
-% Definitions and examples have left margin
-\newtcolorbox{exenv}{
-  %blanker,
-  breakable = true,
-  leftrule = 2em,
-  toprule = 0.1em,
-  bottomrule = 0.1em,
-  rightrule = 0.1em,
-  colframe = exampleborder,
-  colback = examplebackground,
-  parbox = false,
-}
-
-\newtcolorbox{defenv}{
-  breakable = true,
-  leftrule = 2em,
-  colframe = definitionborder,
-  colback = definitionbackground,
-  parbox = false,
-  toptitle=0em,
-  bottomtitle=0em,
-}
-
-% Definitions and examples have left margin (tcolorbox)
-\BeforeBeginEnvironment{example}{\begin{exenv}}
-  \AfterEndEnvironment{example}{\end{exenv}}
-
-\BeforeBeginEnvironment{definition}{\begin{defenv}}
-  \AfterEndEnvironment{definition}{\end{defenv}}
-
 % Shrink space between figure and rest
 \BeforeBeginEnvironment{figure}{\vskip-2ex}
 \AfterEndEnvironment{figure}{\vskip-2ex}
@@ -159,17 +146,37 @@
   blanker,
 }
 
+% tcolorbox for theorems
+\newtcolorbox{theorems}{%
+  breakable = true,
+  parbox = false,
+  %colframe=definitionborder,
+  blanker,
+  leftrule=2em,
+}
+
 % Theorems
-\usepackage{amsthm}
-\newtheoremstyle{definition}
-                {0em} % Space above
-                {0.5em} % Space below
-                {} % Body font
-                {} % Indent of title
-                {\itshape\bfseries}  % Title font
-                {.} % Separator character
-                {\newline} % Space after separator
-                {} % Head template
+\usepackage{hyperref} % To process hyperlinks to theorems
+\usepackage{framed}
+\usepackage[thref, framed, thmmarks, amsmath, amsthm]{ntheorem}
+
+  % Definition
+  \theoremprework{%
+    \def\FrameCommand{{\color{chap}{\hspace{-12pt}\vrule width 3pt \hspace{9pt}}}}
+  }
+  \theoremframepreskip{0em}
+  \theoremframepostskip{0em}
+  \theorembodyfont{\normalfont}
+  \theoremseparator{\smallskip} 
+  \theoremstyle{break}
+  \newframedtheorem{definition}{Definition}[chapter]
+
+  % Example
+  \theoremprework{%
+    \def\FrameCommand{{\color{black}{\hspace{-11pt}\vrule width 1pt \hspace{10pt}}}}
+  }
+  \theoremstyle{break}
+  \newframedtheorem{example}{Example}[chapter]
 
 % Dependencies for merging with external cover page
 \usepackage{pdfpages}
