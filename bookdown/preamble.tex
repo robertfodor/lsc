@@ -122,11 +122,15 @@
 
 % Keep things together, page breaks
 \makeatletter       
-%\@secpenalty=0      %% <- high value prevents breaks before section heading
+\@secpenalty=1000      %% <- breaks before section heading
 \@beginparpenalty\@M %% <- high value prevents break before list environments
 \@endparpenalty=0   %% <- high value prevents breaks at end of list environments
 \@itempenalty=0     %% <- high value prevents breaks between items
 \makeatother        
+
+% Don't add too much whitespace, keep ragged bottom if needed
+\usepackage{ragged2e}
+\raggedbottom
 
 % Adding a framed box around text
 \usepackage[most]{tcolorbox}
@@ -138,7 +142,7 @@
   parbox=false,
   boxrule=1pt,
   fontupper=\sourcesanspro\small,
-  breakable = false,
+  breakable = true,
   title={#1},
   fonttitle=\bfseries\sourcesanspro\normalsize,
   sharp corners,
@@ -146,6 +150,7 @@
   arc=10pt,
   toptitle=0.4em,
   bottomtitle=0.4em,
+  %float=h, % allows tcolorbox to float
 }
 
 % Shrink space between figure and rest
@@ -157,15 +162,6 @@
   breakable = false,
   parbox = true,
   blanker,
-}
-
-% tcolorbox for theorems
-\newtcolorbox{theorems}{%
-  breakable = true,
-  parbox = false,
-  %colframe=definitionborder,
-  blanker,
-  leftrule=2em,
 }
 
 % Theorems
