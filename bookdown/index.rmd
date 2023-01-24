@@ -24,10 +24,7 @@ github-repo: https://github.com/robertfodor/lsc
 url: https://learningstatisticswithcogstat.com
 
 cover-image: "resources/bookcover/LSC_small.png"
-description: '*Learning Statistics with CogStat* covers the contents of an introductory
-  statistics class, as typically taught to undergraduate psychology students based
-  on Danielle Navarro''s original *Learning Statistics with R* with a focus on automatic
-  statistical analysis performed in CogStat.'
+description: '*Learning Statistics with CogStat* (Second Edition) covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro''s original *Learning Statistics with R* with a focus on automatic statistical analysis performed in CogStat.'
 
 documentclass: book
 classoption: twoside,symmetric,openright
@@ -59,7 +56,7 @@ meta() %>%
     og_author = c("Danielle Navarro", "Róbert Fodor")
   ) %>%
   meta_google_scholar(
-    title = "Learning Statistics with CogStat",
+    title = "Learning Statistics with CogStat (2nd Ed)",
     author = c("Danielle Navarro", "Róbert Fodor"),
     publication_date = "2022/09/27"
   )
@@ -79,7 +76,7 @@ knitr::include_graphics("resources/bookcover/LSC_small.png")
 
 To reference this book, please use the following citation (APA7 format):
 
-> Navarro, D., & Fodor, R. (2023). Learning Statistics with CogStat (Rev. ed.). \
+> Navarro, D., & Fodor, R. (2023). *Learning Statistics with CogStat* (2nd ed.). \
 >        https://learningstatisticswithcogstat.com
 
 ## Licensing{.unlisted .unnumbered}
