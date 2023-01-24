@@ -71,29 +71,7 @@ $$
 $$
 :::
 
-Of course, this definition of the mean isn't news to anyone: averages (i.e., means) are used so often in everyday life that this is quite familiar. By tradition, we use $\bar{X}$ as the notation for the mean, $\scriptstyle\sum$ for the idea of summation, $X_i$ for the $i$th observation, and $N$ for the total number of observations. We use subscripts to indicate which observation we're talking about. That is, we'll use $X_1$ to refer to the first observation, $X_2$ to refer to the second observation, and so on, all the way up to $X_N$ for the last one. 
-
-
-:::: {.callout #summation data-latex="[Summation symbol: $\scriptstyle\sum$ and Product symbol: $\scriptstyle\prod$ notations]"}
-
-```{=html}
-<div class="callout-title">
-Summation symbol: ∑ and Product symbol: ∏ notations
-</div>
-```
-
-The summation symbol $\scriptstyle\sum$ is used to denote the operation of adding up a sequence of numbers. It is used to write out formulas in a concise way, and is used extensively in mathematics.
-
-$$
-\sum_{i=1}^n X_i = X_1 + X_2 + ... + X_{n-1} + X_n
-$$
-where $i$ is the *index of the observation*, which means that the index starts out at the given number, so in this case, at the first observation ($X_\mathbf{1}$). The index is incremented by 1 for each observation (even if $i>1$), so the next observation is $X_\mathbf{2}$, and so on, until the last observation, which is $X_\mathbf{n}$, as denoted above the symbol.
-
-The choice to use $\Sigma$ to denote summation isn't arbitrary: it's the Greek upper case letter sigma, which is the analogue of the letter S in that alphabet.
-
-Similarly, there's an equivalent symbol used to denote the multiplication of lots of numbers: because multiplications are also called "products", we use the $\Pi$ symbol for this; the Greek upper case pi, which is the analogue of the letter P.
-
-::::
+Of course, this definition of the mean isn't news to anyone: averages (i.e., means) are used so often in everyday life that this is quite familiar. By tradition, we use $\bar{X}$ as the notation for the mean, $\scriptstyle\sum$ for the idea of summation (see [callout on notation](#summation)), $X_i$ for the $i$th observation, and $N$ for the total number of observations. We use subscripts to indicate which observation we're talking about. That is, we'll use $X_1$ to refer to the first observation, $X_2$ to refer to the second observation, and so on, all the way up to $X_N$ for the last one. 
 
 :::{.example #exmean name="Mean"}
 The first five AFL margins were 56, 31, 56, 8 and 32 (which CogStat will display when loading the data, see Figure \@ref(fig:loadaflsmall)), so the mean of these observations is just:
@@ -136,6 +114,28 @@ CogStat calculates the mean automatically when exploring a variable using all va
 ```{r histogramaflsmall, fig.align='center', echo=FALSE, fig.scap="Descriptive statistics and histogram for the `aflsmall.csv` data set.", fig.cap="Descriptive statistics and histogram for the `aflsmall.csv` data set. Scrolling down, you'll see CogStat reporting all the descriptive measures while showing you a histogram to understand the shape of your data better. Drawing pictures of the data is an excellent way to convey the gist of what the data is trying to tell you; it's often instrumental to try to condense the data into a few simple summary statistics."}
 knitr::include_graphics("resources/image/cogstathistogramaflsmall.png")
 ```
+
+:::: {.callout #summation data-latex="[Summation symbol: $\scriptstyle\sum$ and Product symbol: $\scriptstyle\prod$ notations]"}
+
+```{=html}
+<div class="callout-title">
+Summation symbol: ∑ and Product symbol: ∏ notations
+</div>
+```
+::: {.keepTogether data-latex=""}
+The summation symbol $\scriptstyle\sum$ is used to denote the operation of adding up a sequence of numbers. It is used to write out formulas in a concise way, and is used extensively in mathematics.
+
+$$
+\sum_{i=1}^n X_i = X_1 + X_2 + ... + X_{n-1} + X_n
+$$
+where $i$ is the *index of the observation*, which means that the index starts out at the given number, so in this case, at the first observation ($X_\mathbf{1}$). The index is incremented by 1 for each observation (even if $i>1$), so the next observation is $X_\mathbf{2}$, and so on, until the last observation, which is $X_\mathbf{n}$, as denoted above the symbol.
+:::
+
+The choice to use $\Sigma$ to denote summation isn't arbitrary: it's the Greek upper case letter sigma, which is the analogue of the letter S in that alphabet.
+
+Similarly, there's an equivalent symbol used to denote the multiplication of lots of numbers: because multiplications are also called "products", we use the $\Pi$ symbol for this; the Greek upper case pi, which is the analogue of the letter P.
+
+::::
 
 ### The median{#median}
 
@@ -342,7 +342,7 @@ This is called a ***quartile*** (i.e., 1/4). If we wanted to define in percentag
 
 (ref:quartilefigcap) The 25th, 50th and 75th percentiles of a cumulative distribution of a normal distribution. (StevenJYang on [Wikipedia: Quartile](https://en.wikipedia.org/wiki/Quartile))
 
-```{r echo=FALSE, fig.align="center", out.width="45%", fig.cap="(ref:quartilefigcap)"}
+```{r echo=FALSE, fig.align="center", out.width="45%", fig.cap="(ref:quartilefigcap)", fig.pos="H"}
 knitr::include_graphics("resources/image/1920px-NormalCDFQuartile3.png")
 ```
 
@@ -385,7 +385,7 @@ Boxplots (or “box and whiskers” plots) are a standardised method to display 
 - first quartile and third quartile (i.e., IQR),
 - and the median.
 
-```{r echo=FALSE, fig.align="center", fig.show="hold", out.width="75%"}
+```{r echo=FALSE, fig.align="center", fig.show="hold", out.width="75%", fig.pos="H"}
 set.seed(42)
 data1 <- rnorm(50, mean = 10, sd = 2)
 data2 <- rnorm(50, mean = 10, sd = 1.7)
@@ -561,13 +561,15 @@ CogStat will not attempt to interpret the variance nor will it give you the raw 
 Population variance versus variance estimate
 </div>
 ```
-
+::: {.keepTogether data-latex=""}
 If you are extremely lucky and have a data set that contains the entire population, then you can calculate the variance as given in Definition \@ref(def:defVar). This is called **population variance**. In this case the variance is denoted $\sigma^2$, the mean is denoted as $\mu$.
 
 $$
 \sigma^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \mu)^2
 $$
+:::
 
+::: {.keepTogether data-latex=""}
 In research, however, you are most likely to have gathered data for merely a *sample* of the population. There is an alternative formula for this case. This is called **variance estimate**, or *estimated variance*, or *sample variance*, or *estimated population variance*, and is denoted $s^2$. The formula for the variance estimate is:
 
 $$
@@ -575,6 +577,7 @@ s^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2
 $$
 
 where $n$ is the number of observations in the sample, $X_i$ is the $i$th observation, and $\bar{X}$ is the mean of the sample. You'll notice the difference is the denominator using $n-1$ instead of $n$.
+:::
 ::::
 
 ### Standard deviation{#sd}
@@ -602,12 +605,15 @@ Population SD versus estimated SD
 
 Similarly to variance, we can differentiate the formula for a population-based standard deviation and a sample-based standard deviation.
 
+::: {.keepTogether data-latex=""}
 The **population SD** is denoted $\sigma$, the mean is denoted as $\mu$.
 
 $$
 \sigma = \sqrt{ \frac{1}{n} \sum_{i=1}^n \left( X_i - \mu \right)^2 }
 $$
+:::
 
+::: {.keepTogether data-latex=""}
 For calculating a population *estimate* based on sample data, we use the **estimated standard deviation** ($s$) formula.
 
 $$
@@ -615,6 +621,7 @@ s = \sqrt{ \frac{1}{n-1} \sum_{i=1}^n \left( X_i - \bar{X} \right)^2 }
 $$
 
 where $n$ is the number of observations in the sample, $X_i$ is the $i$th observation, and $\bar{X}$ is the mean of the sample. The denominator is $n-1$ instead of $n$.
+:::
 ::::
 
 ### Which measure to use?
