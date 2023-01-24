@@ -42,7 +42,10 @@
 
 % Reduce space before lists
 \usepackage{enumitem}
-\setlist[itemize]{noitemsep, topsep=0pt}
+\setlist[itemize]{noitemsep, nolistsep, topsep=0pt}
+
+% Package to tweak width
+\usepackage{varwidth}
 
 % Captions and subfigures
 \usepackage{caption}
@@ -63,15 +66,13 @@
 \usepackage{subfig}
 %\setlength\abovecaptionskip{-5pt}
 
+% Package for math tables
 \usepackage{array}
-
-% Package to tweak width
-\usepackage{varwidth}
 
 % For positioning figures
 \usepackage{wrapfig}
 \usepackage{float}
-\floatplacement{figure}{H}
+\floatplacement{figure}{htb}
 \renewcommand{\topfraction}{.85}
 \renewcommand{\bottomfraction}{.7}
 \renewcommand{\textfraction}{.15}
@@ -120,12 +121,12 @@
     {}
 
 % Keep things together, page breaks
-\makeatletter       %% <- make @ usable in command sequences
-%\@secpenalty=0      %% <- don't encourage breaks before section heading
-\@beginparpenalty=0 %% <- don't encourage breaks at start of list environments
-\@endparpenalty=0   %% <- don't encourage breaks at end of list environments
-\@itempenalty=0     %% <- don't encourage breaks between items
-\makeatother        %% <- revert @
+\makeatletter       
+%\@secpenalty=0      %% <- high value prevents breaks before section heading
+\@beginparpenalty\@M %% <- high value prevents break before list environments
+\@endparpenalty=0   %% <- high value prevents breaks at end of list environments
+\@itempenalty=0     %% <- high value prevents breaks between items
+\makeatother        
 
 % Adding a framed box around text
 \usepackage[most]{tcolorbox}
@@ -137,7 +138,7 @@
   parbox=false,
   boxrule=1pt,
   fontupper=\sourcesanspro\small,
-  breakable = true,
+  breakable = false,
   title={#1},
   fonttitle=\bfseries\sourcesanspro\normalsize,
   sharp corners,
@@ -148,8 +149,8 @@
 }
 
 % Shrink space between figure and rest
-\BeforeBeginEnvironment{figure}{\vskip-2ex}
-\AfterEndEnvironment{figure}{\vskip-2ex}
+%\BeforeBeginEnvironment{figure}{\vskip-1em}
+%\AfterEndEnvironment{figure}{\vskip-1em}
 
 % tcolorbox to keep text together
 \newtcolorbox{keepTogether}{%
@@ -188,7 +189,8 @@
     linecolor = chap,
     leftline = true,
     linewidth = 3pt,
-    splittopskip = 12pt,
+    splittopskip = 0pt,
+    splitbottomskip = 0pt,
   ]{definition}{Definition}[chapter]
 
   % Example
@@ -206,7 +208,8 @@
     linecolor = black,
     leftline = true,
     linewidth = 1pt,
-    splittopskip = 12pt,
+    splittopskip = 0pt,
+    splitbottomskip = 0pt,
   ]{example}{Example}[chapter]
 
 
