@@ -43,21 +43,76 @@ In the rest of this chapter, we will explore what these measures mean and what t
 
 In most situations, the first thing that you'll want to calculate is a measure of **_central tendency_**. That is, you'd like to know something about the "average" or "middle" of your data lies.
 
-```{r echo=FALSE, fig.align="center", fig.cap = "Density plot with mean."}
-library(ggplot2)
+```{r echo=FALSE, fig.align="center", fig.cap = "Density plot with mean, median and mode."}
+library(tidyverse) # data manipulation
+library(ggplot2) # plotting
+library(multimode) # mode estimation
 
-data_set_a <- rnorm(500, mean = 50, sd = 5)
-data_set_b <- rnorm(500, mean = 50, sd = 30)
+scaling = 10
 
-data <- data.frame(data_set_a, data_set_b)
+data_bellcurve <- data.frame(x = seq(-3.5 * scaling, 3.5 * scaling, .01 * scaling)) %>%
+    mutate(y = dnorm(x, sd = scaling))
 
-ggplot(data, aes(x = data_set_a)) +
-  geom_density(aes(y = ..density..), fill = "#0096c8", alpha = 0.5) +
-  geom_vline(xintercept = mean(data_set_a),
-    linetype = "dashed", color = "black", size = 0.4) +
-  ylab("Frequency") + xlab("") +
-  theme_classic() +
-  theme(legend.position = "none")
+plotdata <- data_bellcurve
+
+mean_a <- round(mean(plotdata$x))
+median_a <- median(plotdata$x)
+modes <- locmodes(plotdata$x, mod0 = 1)
+mode_a <- round(modes$locations[1])
+
+# sigma x values
+sigma_l1 <- -1 * scaling
+sigma_u1 <- 1 * scaling
+sigma_l2 <- -2 * scaling
+sigma_u2 <- 2 * scaling
+sigma_l3 <- -3 * scaling
+sigma_u3 <- 3 * scaling
+
+# y value when x
+y_l1 <- dnorm(sigma_l1, sd = scaling)
+y_u1 <- dnorm(sigma_u1, sd = scaling)
+y_l2 <- dnorm(sigma_l2, sd = scaling)
+y_u2 <- dnorm(sigma_u2, sd = scaling)
+y_l3 <- dnorm(sigma_l3, sd = scaling)
+y_u3 <- dnorm(sigma_u3, sd = scaling)
+
+plotmax <- max(plotdata$y)
+
+plot <- ggplot(plotdata, aes(x, y)) +
+    geom_line(color = "#0096c8", alpha = 1) +
+    geom_area(fill = "#0096c8", alpha = 0.5) +
+    theme(
+        legend.position = "none",
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        plot.background = element_blank(),
+        panel.background = element_blank(),
+        axis.line.x = element_line(color = "black"),
+    )
+
+plot_w_mean <- plot +
+    # Add labels "Mean"
+    annotate("text", x = mean_a, y = plotmax *1.25, 
+        label = "Mean", color = "black",
+        hjust = "center", size = 5) +
+    annotate("segment", 
+        x = mean_a, xend = mean_a, y = 0, yend = plotmax * 1.20, 
+        color = "black", alpha = 0.7, linetype = "solid", size = 1)
+
+# Add Median and Mode
+plot_w_mmm <- plot_w_mean +
+    annotate("text", x = median_a - scaling/2, y = plotmax * 1.15, label = "Median ", color = "black", hjust = "right", size = 5) +
+    annotate("text", x = mode_a + scaling/2, y = plotmax * 1.1, label = " Mode", color = "black", hjust = "left", size = 5) +
+    annotate("segment", x = median_a, xend = median_a, y = 0, yend = plotmax * 1.15, color = "black", linetype = "dashed") +
+    annotate("segment", x = mode_a, xend = mode_a - scaling/2, y = plotmax * 1.15, yend = plotmax * 1.15, color = "black", linetype = "dashed") +
+    annotate("segment", x = mode_a, xend = mode_a, y = 0, yend = plotmax * 1.1, color = "black", linetype = "dotted") +
+    annotate("segment", x = mode_a, xend = mode_a + scaling/2, y = plotmax * 1.1, yend = plotmax * 1.1, color = "black", linetype = "dotted")
+
+plot_w_mmm
+
 ```
 
 ### The mean{#mean}
@@ -258,20 +313,88 @@ While it's generally true that the mode is most often calculated when you have [
 Let's look at our `afl.margins` variable we loaded into CogStat. This variable is clearly ratio scale, and so in most situations the mean or the median is the measure of central tendency that you want. But consider that a friend of yours is offering a bet. They pick a football game at random, and without knowing who is playing you have to guess the *exact* margin. If you guess correctly, you win \$50. If you don't, you lose \$1. There are no consolation prizes for "almost" getting the right answer. You have to guess exactly the right margin^[This is called a "0-1 loss function", meaning that you either win (1) or you lose (0), with no middle ground.] For this bet, the mean and the median are completely useless to you. It is the mode that you should bet on. So, we look at the frequency table offered by the result set: the data suggest you should bet on a $3.0$ point margin, and since this was observed in 8 of the 176 games (4.5% of games -- the *relative frequency*), the odds are firmly in your favour.
 :::
 
+
+:::: {.callout #calloutmultimodal data-latex="[Bimodal distributions]"}
+```{=html}
+<div class="callout-title">
+Bimodal distributions
+</div>
+```
+A data set which has only one mode (or in other terms, a density distribution with only one local maximum) is called *unimodal*, regardless if the peak is in the middle or at either end. A perfect example of a unimodal distribution is the normal distribution (the *bell-curve*). This is the one that we use when explaining the theory in this book. However, a distribution can have more than one modes or more than one local maxima, and some simplistic rules of thumb don't necessarily work. Distributions with more than one modes are called *bimodal* (i.e., two peaks) or *multimodal* (i.e., multiple peaks) distributions.
+
+```{r echo=FALSE, fig.align="center", fig.pos="H", fig.height=3, fig.fig.width=8}
+
+library(extraDistr)
+
+x = seq.int(-100, 100, 1)
+y = dtnorm(x, a = -100, b = 100, mean = -50, sd = 14) + dtnorm(x, a = -100, b = 100, mean = 10, sd = 20)
+
+bimodal <- data.frame(x=x, y=y)
+
+max_bimodal <- max(bimodal$y)
+locmax_bimodal <- max(bimodal$y[bimodal$x > 0])
+
+plot_bimodal <- ggplot(bimodal, aes(x, y)) +
+    geom_area(fill = "#0096c8", alpha = 0.25) +
+    geom_line(color = "#0096c8", alpha = 0.5) +
+    theme(
+        legend.position = "none",
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        plot.background = element_blank(),
+        panel.background = element_blank(),
+        axis.line.x = element_line(color = "black"),
+        panel.grid = element_blank()
+    ) +
+    annotate("text", x = -50, y = max_bimodal * 1.05, label = "Global maximum ", color = "black", hjust = "right", size = 5) +
+    annotate("text", x = 10, y = locmax_bimodal * 1.05, label = " Local maximum", color = "black", hjust = "left", size = 5) +
+    annotate("segment", x = -50, xend = -50, y = 0, yend = max_bimodal, color = "black", linetype = "dashed") +
+    annotate("segment", x = 10, xend = 10, y = 0, yend = locmax_bimodal, color = "black", linetype = "dashed")
+
+plot_bimodal
+
+```
+
+The graph shows a bimodal distribution with two local maximums (the peak at the left and the right), of which there is a global maximum (the peak at the left). This distribution plot's $y$ values infer the frequency of each observation $x$, so the higher the $y$ value, the more observations there are of that $x$ value. The mode is the $x$ value with the highest frequency ($y$ value). In this specific case there is only one mode, because there is only one global maximum (absolute highest frequency), but since there are two local maximums with identifiable, distinct clusters of data, the distribution is considered bimodal.
+
+You will likely encounter bimodal distributions in your data when you have multiple groups in one dataset. For example, when you measure an attitude towards a politically divisive subject with a Likert scale. When you graph the response on that item, you'll likely see a bimodal distribution, but if you split the data by group (based on a binary demographic item measuring political affilition, for example), you'll likely see two unimodal distributions with different [skewness](#skewnesskurtosis).
+
+::::
+
 ## Measures of variability{#var}
 
 The statistics that we've discussed so far all relate to *central tendency*. They all talk about which values are "in the middle" or "popular" in the data. However, central tendency is not the only type of summary statistic that we want to calculate. The second thing that we really want is a measure of the **variability** (or, *dispersion*) of the data. That is, how "spread out" are the data? How "far" away from the mean or median do the observed values tend to be? 
 
-```{r echo=FALSE, fig.cap="Data sets with the same mean but different dispersion.", fig.align="center"}
+```{r echo=FALSE, fig.cap="Data sets with equal measures of central tendency but different variability.", fig.align="center"}
 library(ggplot2)
-ggplot(data, aes(x = data_set_a)) +
-  geom_density(aes(y = ..density..), fill = "#e6f0f0", alpha = 0.5) +
-  geom_density(aes(x = data_set_b), fill = "#0096c8", alpha = 0.5) +
-  geom_vline(xintercept = mean(data_set_a),
-    linetype = "dashed", color = "black", size = 0.4) +
-  ylab("Frequency") + xlab("") +
-  theme_classic() +
-  theme(legend.position = "none")
+
+# Add second bellcurve that is flatter
+data_flatbellcurve <- data.frame(x = seq(-3.5 * scaling, 3.5 * scaling, .01 * scaling)) %>%
+    mutate(y = dnorm(x, sd = scaling/2))
+
+plotmax <- max(data_flatbellcurve$y)
+
+plot_w_mmm_dual <- plot +
+    geom_area(data = data_flatbellcurve, aes(x, y), fill = "#0096c8", alpha = 0.2) +
+    geom_line(data = data_flatbellcurve, aes(x, y), color = "#0096c8", alpha = 0.5) +
+    annotate("text", x = median_a - scaling/2, y = plotmax * 1.15, label = "Median ", color = "black", hjust = "right", size = 5) +
+    annotate("text", x = mode_a + scaling/2, y = plotmax * 1.1, label = " Mode", color = "black", hjust = "left", size = 5) +
+    annotate("segment", x = median_a, xend = median_a, y = 0, yend = plotmax * 1.15, color = "black", linetype = "dashed") +
+    annotate("segment", x = mode_a, xend = mode_a - scaling/2, y = plotmax * 1.15, yend = plotmax * 1.15, color = "black", linetype = "dashed") +
+    annotate("segment", x = mode_a, xend = mode_a, y = 0, yend = plotmax * 1.1, color = "black", linetype = "dotted") +
+    annotate("segment", x = mode_a, xend = mode_a + scaling/2, y = plotmax * 1.1, yend = plotmax * 1.1, color = "black", linetype = "dotted") + 
+    annotate("text", x = mean_a, y = plotmax *1.25, 
+        label = "Mean", color = "black",
+        hjust = "center", size = 5) +
+    annotate("segment", 
+        x = mean_a, xend = mean_a, y = 0, yend = plotmax * 1.20, 
+        color = "black", alpha = 0.7, linetype = "solid", size = 1)
+    
+
+plot_w_mmm_dual
 ```
 
 For now, let's assume that the data are interval or ratio scale, so we'll continue to use the `afl.margins` data. We'll use this data to discuss several different measures of spread, each with different strengths and weaknesses. 
@@ -309,10 +432,9 @@ It is clear that the range is not robust since this has a range of $110$, but if
 Quantiles
 </div>
 ```
-Quantiles are cut points that divide an ordered data set (or a distribution) into equal-sized groups of observations when the data is continuous. Or more generally, they cut a [probability distribution](#probability) to equally probable intervals (see Chapter \@ref(probability)).
+Quantiles are cut points that divide an ordered data set into equal-sized groups of observations when the data is continuous. Or more generally, they cut a [probability distribution](#probability) to equally probable intervals.
 
-For example, a data set of 40 observations can be divided into 4 equal-sized groups of 10 observations each.
-
+<!--
 ```{r echo=FALSE}
 library(kableExtra)
 knitr::kable(
@@ -322,7 +444,7 @@ knitr::kable(
     "Lower bound" = c(1,11,21,31),
     "Upper bound" = c(10,20,30,40)
   ),
-  col.names = c("Quantile", "Number of observations",
+  col.names = c("Section", "Number of observations",
     "Lower bound", "Upper bound"),
   caption = NULL,
   booktabs = TRUE,
@@ -337,14 +459,72 @@ knitr::kable(
     latex_options = c("HOLD_position")
   )
 ```
+-->
 
-This is called a ***quartile*** (i.e., 1/4). If we wanted to define in percentages, this would be able to define 25th, 50th and 75th ***percentiles*** of a data set. The *25th percentile* (*1st quartile* or *lower quartile*) holds the value in a distribution that is greater than 25% of the values and less than 75% of the values. The *50th percentile* (*2nd quartile*) is the *median*, and the *75th percentile* (*3rd quartile* or *upper quartile*) is the value that is greater than 75% of the values and less than 25% of the values.
+For example, a data set of 40 observations can be divided into 4 equal-sized groups of 10 observations each. This is called a ***quartile*** (i.e., 1/4). If we wanted to define in percentages, this would be able to define 25th, 50th and 75th ***percentiles*** of a data set. The *25th percentile* (*1st quartile* or *lower quartile*) holds the value in a distribution that is greater than 25% of the values and less than 75% of the values. The *50th percentile* (*2nd quartile*) is the *median*, and the *75th percentile* (*3rd quartile* or *upper quartile*) is the value that is greater than 75% of the values and less than 25% of the values.
 
+<!--
 (ref:quartilefigcap) The 25th, 50th and 75th percentiles of a cumulative distribution of a normal distribution. (StevenJYang on [Wikipedia: Quartile](https://en.wikipedia.org/wiki/Quartile))
 
 ```{r echo=FALSE, fig.align="center", out.width="45%", fig.cap="(ref:quartilefigcap)", fig.pos="H"}
 knitr::include_graphics("resources/image/1920px-NormalCDFQuartile3.png")
 ```
+-->
+
+```{r echo=FALSE, fig.align="center", fig.pos="H", fig.width=8, fig.height=5}
+  # q2 is median
+  xq2 = median(data_bellcurve$x)
+  yq2 = max(data_bellcurve$y)
+  data_bellcurve_q2 <- data_bellcurve[data_bellcurve$x <= xq2,]
+  
+  # q1 is where
+  xq1 = -6.7
+  data_bellcurve_q1 <- data_bellcurve_q2[data_bellcurve_q2$x <= xq1,]
+  yq1 = max(data_bellcurve_q1$y)
+  
+  # q3
+  xq3 = -xq1
+  data_bellcurve_q3 <- data_bellcurve[data_bellcurve$x <= xq3,]
+  yq3 = yq1
+
+  plotq <- ggplot(plotdata, aes(x, y)) +
+    geom_line(color = "#0096c8", alpha = 1) +
+    theme(
+        legend.position = "none",
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        plot.background = element_blank(),
+        panel.background = element_blank(),
+        axis.line.x = element_line(color = "black"),
+        panel.grid = element_blank(),
+    )
+
+  plotq +
+    geom_area(data = data_bellcurve_q1, aes(x, y), fill = "#0096c8", alpha = 0.2) + # area under the curve
+    annotate("text", x = xq1-2, y = yq1, label = "Q1", color = "black", hjust = "right", size = 5) + # Q label
+    annotate("segment", x = xq1, xend = xq1, y = yq2 * -0.1, yend = yq1, color = "#0096c8", linetype = "dotted", linewidth = 1) + # vertical line
+    annotate("segment", x = min(data_bellcurve_q1$x), xend = xq1, y = yq2 * -0.1, yend = yq2 * -0.1, color = "#0096c8", linetype = "solid", linewidth = 0.5, arrow = arrow(angle = 45, ends = "both", length = unit(0.3, "cm"))) + # horizontal line
+    annotate("text", x = (xq1 - abs(min(data_bellcurve$x)))/2, y = yq2 * -0.05, label = "25%", color = "black", hjust = "center", size = 5) + # % label
+
+    geom_area(data = data_bellcurve_q2, aes(x, y), fill = "#0096c8", alpha = 0.2) + # area under the curve
+    annotate("text", x = xq2, y = yq2 * 1.05, label = "Q2", color = "black", hjust = "center", size = 5) + # Q label
+    annotate("segment", x = xq2, xend = xq2, y = yq2 * -0.2, yend = yq2, color = "#0096c8", linetype = "dotted", linewidth = 1) + # vertical line
+    annotate("segment", x = min(data_bellcurve_q2$x), xend = xq2, y = yq2 * -0.2, yend = yq2 * -0.2, color = "#0096c8", linetype = "solid", linewidth = 0.5, arrow = arrow(angle = 45, ends = "both", length = unit(0.3, "cm"))) + # horizontal line
+    annotate("text", x = (xq2 - abs(min(data_bellcurve_q2)))/2, y = yq2 * -0.15, label = "50%", color = "black", hjust = "center", size = 5) + # % label
+
+    geom_area(data = data_bellcurve_q3, aes(x, y), fill = "#0096c8", alpha = 0.2) + # area under the curve
+    annotate("text", x = xq3+2, y = yq3, label = "Q3", color = "black", hjust = "left", size = 5) + # Q label
+    annotate("segment", x = xq3, xend = xq3, y = yq2 * -0.3, yend = yq3, color = "#0096c8", linetype = "dotted", linewidth = 1) + # vertical line
+    annotate("segment", x = min(data_bellcurve$x), xend = max(data_bellcurve_q3$x), y = yq2 * -0.3, yend = yq2 * -0.3, color = "#0096c8", linetype = "solid", linewidth = 0.5, arrow = arrow(angle = 45, ends = "both", length = unit(0.3, "cm"))) + # horizontal line
+    annotate("text", x = (xq3 - abs(min(data_bellcurve_q3)))/2, y = yq2 * -0.25, label = "75%", color = "black", hjust = "center", size = 5) + # % label
+
+    geom_area(data = data_bellcurve, aes(x, y), fill = "#0096c8", alpha = 0.2) # area under the curve
+
+```
+
 
 The data can be divided into other quantiles as well: e.g. a distribution cut in 5 equal-sized groups are called ***quintiles***, and a distribution cut in 10 equal-sized groups are called ***deciles***, and so on.
 
@@ -603,7 +783,7 @@ Population SD versus estimated SD
 </div>
 ```
 
-Similarly to variance, we can differentiate the formula for a population-based standard deviation and a sample-based standard deviation.
+Similarly to variance, we can differentiate between a population-based standard deviation and a sample-based standard deviation.
 
 ::: {.keepTogether data-latex=""}
 The **population SD** is denoted $\sigma$, the mean is denoted as $\mu$.
@@ -641,45 +821,116 @@ In short, the IQR and the standard deviation are easily the two most common meas
 ## Skewness and kurtosis{#skewnesskurtosis}
 
 There are two more descriptive statistics that you will likely see reported in the psychological literature, known as **skewness** and **kurtosis**. These are measures of the shape of the distribution of the data.
-```{r skewness, fig.scap="An illustration of skewness.", fig.cap="An illustration of skewness. On the left we have a negatively skewed data set (skewness $= -.93$), in the middle we have a data set with no skew (technically, skewness $= -.006$), and on the right we have a positively skewed data set (skewness $= .93$).", echo=FALSE, fig.align="center"}
-library(psych)
+```{r skewness, fig.cap="An illustration of skewness.", echo=FALSE, fig.align="center", fig.pos="H", fig.width = 14, out.width="90%"}
+  x <- seq(0, 1, 0.001)
 
- x1 <- rbeta(n = 100000, shape1= 10, shape2 = 2)
- x2 <- rbeta(n = 100000, shape1= 10, shape2 = 10)
- x3 <- rbeta(n = 100000, shape1= 2, shape2 = 10)
- X <- list(x1,x2,x3)
+# Create raw data
+negskewraw <- rep(x, dbeta(x, shape1 = 8, shape2 = 2, ncp = 0, log = FALSE) * 1000)
+posskewraw <- rep(x, dbeta(x, shape1 = 2, shape2 = 8, ncp = 0, log = FALSE) * 1000)
 
- plot.new()
- old <- par(no.readonly = TRUE)
- par(mfrow=c(1,3))
+mean_negskew <- mean(negskewraw)
+mean_posskew <- mean(posskewraw)
 
- ttl = c("Negative Skew", "No Skew", "Positive Skew")
+median_negskew <- median(negskewraw)
+median_posskew <- median(posskewraw)
 
- for (i in 1:3) {
+mode_negskew <- as.numeric(names(sort(table(negskewraw), decreasing = TRUE)[1]))
+mode_posskew <- 1-mode_negskew
 
- hist(x = X[[i]],
- breaks = seq(0,1,.05),
- xlab = "",
- ylab = "",
- main = ttl[i],
- axes = FALSE,
- col = "cornflowerblue",
- border = "white",
- font.main = 1
- )
+# Create data frame
+negskew <- data.frame(x = x, y = dbeta(x, shape1 = 8, shape2 = 2, ncp = 0, log = FALSE))
+posskew <- data.frame(x = x, y = dbeta(x, shape1 = 2, shape2 = 8, ncp = 0, log = FALSE))
+noskew <- data.frame(x = x, y = dbeta(x, shape1 = 5, shape2 = 5, ncp = 0, log = FALSE))
 
- }
- par( old )
+meany_skew <- negskew$y[negskew$x == round(mean_negskew,3)]
+
+negskewplot <- ggplot(data = negskew) +
+    geom_area(aes(x, y), fill = "#0096c8", alpha = 0.2) +
+    geom_line(aes(x, y), color = "#0096c8", alpha = 0.5) +
+    theme(
+        legend.position = "none",
+        axis.title.x = element_text(size = 16, color = "black", face = "bold", margin = margin(12, 0, 0, 0, unit = "pt")),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        plot.background = element_blank(),
+        panel.background = element_blank(),
+        axis.line.x = element_line(color = "black"),
+    ) + xlab("Negative skew") +
+
+    annotate("text", x = mean_negskew - 0.16, y = meany_skew, label = "Mean", color = "black", hjust = "right", size = 6) +
+    annotate("text", x = median_negskew - 0.11, y = (max(negskew$y) - meany_skew)/2 + meany_skew, label = "Median", color = "black", hjust = "right", size = 6) +
+    annotate("text", x = mode_negskew, y = max(negskew$y)*1.05, label = "Mode", color = "black", hjust = "center", size = 6) +
+
+    annotate("segment", x = mean_negskew, xend = mean_negskew, y = 0, yend = meany_skew, color = "black", alpha = 0.7, linetype = "solid", linewidth = 1) +
+    annotate("segment", x = mean_negskew - 0.15, xend = mean_negskew, y = meany_skew, yend = meany_skew, color = "black", alpha = 0.7, linetype = "solid", linewidth = 1) +
+    annotate("segment", x = median_negskew, xend = median_negskew, y = 0, yend = (max(negskew$y) - meany_skew)/2 + meany_skew, color = "black", linetype =  "dotted", linewidth = 1) +
+    annotate("segment", x = median_negskew - 0.1, xend = median_negskew, y = (max(negskew$y) - meany_skew)/2 + meany_skew, yend = (max(negskew$y) - meany_skew)/2 + meany_skew, color = "black", alpha = 0.7, linetype = "dotted", linewidth = 1) +
+    annotate("segment", x = mode_negskew, xend = mode_negskew, y = 0, yend = max(negskew$y), color = "black", alpha = 0.7, linetype = "dashed", linewidth = 1) 
+
+posskewplot <- ggplot(data = posskew) +
+    geom_area(aes(x, y), fill = "#0096c8", alpha = 0.2) +
+    geom_line(aes(x, y), color = "#0096c8", alpha = 0.5) +
+    theme(
+        legend.position = "none",
+        axis.title.x = element_text(size = 16, color = "black", face = "bold", margin = margin(12, 0, 0, 0, unit = "pt")),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        plot.background = element_blank(),
+        panel.background = element_blank(),
+        axis.line.x = element_line(color = "black"),
+    ) + xlab("Positive skew") +
+
+    annotate("text", x = mean_posskew + 0.16, y = meany_skew, label = "Mean", color = "black", hjust = "left", size = 6) +
+    annotate("text", x = median_posskew + 0.11, y = (max(negskew$y) - meany_skew)/2 + meany_skew, label = "Median", color = "black", hjust = "left", size = 6) +
+    annotate("text", x = mode_posskew, y = max(negskew$y)*1.05, label = "Mode", color = "black", hjust = "center", size = 6) +
+
+    annotate("segment", x = mean_posskew, xend = mean_posskew, y = 0, yend = meany_skew, color = "black", alpha = 0.7, linetype = "solid", linewidth = 1) +
+    annotate("segment", x = mean_posskew, xend = mean_posskew + 0.15, y = meany_skew, yend = meany_skew, color = "black", alpha = 0.7, linetype = "solid", linewidth = 1) +
+    annotate("segment", x = median_posskew, xend = median_posskew, y = 0, yend = (max(negskew$y) - meany_skew)/2 + meany_skew, color = "black", linetype =  "dotted", linewidth = 1) +
+    annotate("segment", x = median_posskew, xend = median_posskew + 0.1, y = (max(negskew$y) - meany_skew)/2 + meany_skew, yend = (max(negskew$y) - meany_skew)/2 + meany_skew, color = "black", alpha = 0.7, linetype = "dotted", linewidth = 1) +
+    annotate("segment", x = mode_posskew, xend = mode_posskew, y = 0, yend = max(negskew$y), color = "black", alpha = 0.7, linetype = "dashed", linewidth = 1) 
+
+noskewplot <- ggplot(noskew) +
+    geom_area(aes(x, y), fill = "#0096c8", alpha = 0.2) +
+    geom_line(aes(x, y), color = "#0096c8", alpha = 0.5) +
+    theme(
+        legend.position = "none",
+        axis.title.x = element_text(size = 16, color = "black", face = "bold", margin = margin(12, 0, 0, 0, unit = "pt")),
+        axis.title.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_blank(),
+        axis.ticks = element_blank(),
+        plot.background = element_blank(),
+        panel.background = element_blank(),
+        axis.line.x = element_line(color = "black"),
+    ) + xlab("Positive skew") +
+    scale_y_continuous(limits = c(0, max(noskew$y) * 1.3)) +
+    annotate("text", x = 0.5, y = max(noskew$y) * 1.2, label = "Mean\n Median\n Mode", color = "black", hjust = "centre", size = 6) +
+
+    annotate("segment", x = 0.5, xend = 0.5, y = 0, yend = max(noskew$y), color = "black", alpha = 0.7, linetype = "solid", linewidth = 1)
+
+library(patchwork)
+
+negskewplot + noskewplot + posskewplot + plot_layout(ncol = 3)
+
 ```
 
 ::: {.definition #defskewness name="Skewness"}
-**Skewness** is a measure of assymetry of a distribution that compares the median and mean to the mode. A negative skew means the median and mean are smaller than the mode, resulting in a long tail on the left. A positive skew means the median and mean are larger than the mode, resulting in a long tail on the right. A skewness of 0 means the median and mean are equal to the mode, resulting in a symmetrical distribution.
+**Skewness** is a measure of assymetry of a distribution. 
+
+In case of [unimodal distributions](#calloutmultimodal), a negative skew means the median and mean are smaller than the mode, resulting in a long tail on the left; and a positive skew means the median and mean are larger than the mode, resulting in a long tail on the right. A skewness of 0 means the median and mean are equal to the mode, resulting in a symmetrical distribution.
+
+The formula for sample skewness is:
 
 $$
-\mbox{skewness}(X) = \frac{1}{N \hat{\sigma}^3} \sum_{i=1}^N (X_i - \bar{X})^3
+\mbox{skewness}(X) = \frac{1}{N \hat\sigma^3} \sum_{i=1}^N \left( X_i - \bar{X} \right)^3
 $$
 
-where $N$ is the number of observations, $\bar{X}$ is the sample mean, and $\hat{\sigma}$ is the standard deviation (the "divide by $N-1$" version, that is).
+where $N$ is the number of observations in the sample, $X_i$ is the $i$th observation, $\bar{X}$ is the mean of the sample, and $\hat\sigma$ is the sample standard deviation.
 
 :::
 
@@ -688,7 +939,9 @@ As Figure \@ref(fig:skewness) illustrates, if the data tend to have a lot of ext
 Not surprisingly, it turns out that the AFL winning margins data is fairly skewed: $0.8$ (see Figure \@ref(fig:histogramaflsmall) depicting the analysis results from CogStat).
 
 ::: {.definition #defkurtosis name="Kurtosis"}
-**Kurtosis** describes the degree of steepness of a distribution. A steep distribution is *leptokurtic* (positive kurtosis) distribution, a flat distribution is *platykurtic* (negative kurtosis), and the normal distribution is *mesokurtic* (kurtosis is 0).
+**Kurtosis** describes the degree of steepness of a distribution. 
+
+A steep distribution is *leptokurtic* (positive kurtosis) distribution, a flat distribution is *platykurtic* (negative kurtosis), and the normal distribution is *mesokurtic* (kurtosis is 0).
 
 $$
 \mbox{kurtosis}(X) = \frac{1}{N \hat\sigma^4} \sum_{i=1}^N \left( X_i - \bar{X} \right)^4 - 3
@@ -697,9 +950,9 @@ $$
 where $N$ is the number of observations, $\bar{X}$ is the sample mean, and $\hat{\sigma}$ is the standard deviation (the "divide by $N-1$" version, that is).
 :::
 
-**Kurtosis**, put simply, is a measure of the "pointiness" of a data set, as illustrated in Figure \@ref(fig:kurtosis).
+Kurtosis, put simply, is a measure of the "pointiness" of a data set, as illustrated in Figure \@ref(fig:kurtosis).
 
-```{r kurtosis, fig.cap="An illustration of kurtosis. On the left, we have a \"platykurtic\" data set (kurtosis = $-.95$), meaning that the data set is \"too flat\". In the middle we have a \"mesokurtic\" data set (kurtosis is almost exactly 0), which means that the pointiness of the data is just about right. Finally, on the right, we have a \"leptokurtic\" data set (kurtosis $= 2.12$) indicating that the data set is \"too pointy\". Note that kurtosis is measured with respect to a normal curve (black line)", echo=FALSE, fig.align="center"}
+```{r kurtosis, fig.cap="An illustration of kurtosis.", echo=FALSE, fig.align="center", fig.pos="H", fig.width = 14, out.width="90%"}
 
 x3 <- c(rnorm(n = 50000, mean =0, sd = 1), (runif(n = 50000)-.5)+rnorm(50000,0,.1) )*1.6
 x2 <- rnorm(n = 100000, mean = 0, sd = 1)*1.2
@@ -708,9 +961,9 @@ X <- list(x1,x2,x3)
 
 plot.new()
 old <- par(no.readonly = TRUE)
-par(mfrow=c(1,3))
+par(mfrow = c(1,3))
 
-ttl = c( 'Platykurtic\n("too flat")','Mesokurtic', 'Leptokurtic\n("too pointy")')
+ttl = c("Platykurtic", "Mesokurtic", "Leptokurtic")
 
 for (i in 1:3) {
 
@@ -718,21 +971,23 @@ for (i in 1:3) {
  breaks = seq(-20.5,20.5,.5),
  ylim =c(0,.45),
  xlim = c(-5,5),
- xlab = "",
+ xlab = ttl[i],
  ylab = "",
- main = ttl[i],
+ main = "",
  axes = FALSE,
  freq = FALSE,
- col = "cornflowerblue",
- font.main=1,
- border = "white"
+ col = "#d7ebf5",
+ font.lab=2,
+ border = "white",
+ cex.lab=2.5
  )
 
  lines(x <- seq(-4,4,.01), y = dnorm(x, mean(X[[i]]), sd(X[[i]])), 
- lwd = 2, lty = 1, col = "black")
+ lwd = 2, lty = 1, col = "#0096c8")
 
  }
- par( old )
+
+ par(old)
 
 ```
 

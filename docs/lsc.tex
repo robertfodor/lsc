@@ -132,7 +132,10 @@
 
 % Reduce space before lists
 \usepackage{enumitem}
-\setlist[itemize]{noitemsep, topsep=0pt}
+\setlist[itemize]{noitemsep, nolistsep, topsep=0pt}
+
+% Package to tweak width
+\usepackage{varwidth}
 
 % Captions and subfigures
 \usepackage{caption}
@@ -153,15 +156,17 @@
 \usepackage{subfig}
 %\setlength\abovecaptionskip{-5pt}
 
+% Package for math tables
 \usepackage{array}
 
-% Package to tweak width
-\usepackage{varwidth}
+% Table fonts
+\AtBeginEnvironment{tabular}{\small\sffamily}
+\AtBeginEnvironment{tabu}{\small\sffamily}
 
 % For positioning figures
 \usepackage{wrapfig}
 \usepackage{float}
-\floatplacement{figure}{H}
+\floatplacement{figure}{htb}
 \renewcommand{\topfraction}{.85}
 \renewcommand{\bottomfraction}{.7}
 \renewcommand{\textfraction}{.15}
@@ -210,12 +215,16 @@
     {}
 
 % Keep things together, page breaks
-\makeatletter       %% <- make @ usable in command sequences
-%\@secpenalty=0      %% <- don't encourage breaks before section heading
-\@beginparpenalty=0 %% <- don't encourage breaks at start of list environments
-\@endparpenalty=0   %% <- don't encourage breaks at end of list environments
-\@itempenalty=0     %% <- don't encourage breaks between items
-\makeatother        %% <- revert @
+\makeatletter       
+\@secpenalty=1000      %% <- breaks before section heading
+\@beginparpenalty\@M %% <- high value prevents break before list environments
+\@endparpenalty=0   %% <- high value prevents breaks at end of list environments
+\@itempenalty=0     %% <- high value prevents breaks between items
+\makeatother        
+
+% Don't add too much whitespace, keep ragged bottom if needed
+\usepackage{ragged2e}
+\raggedbottom
 
 % Adding a framed box around text
 \usepackage[most]{tcolorbox}
@@ -235,26 +244,18 @@
   arc=10pt,
   toptitle=0.4em,
   bottomtitle=0.4em,
+  %float=h, % allows tcolorbox to float
 }
 
 % Shrink space between figure and rest
-\BeforeBeginEnvironment{figure}{\vskip-2ex}
-\AfterEndEnvironment{figure}{\vskip-2ex}
+%\BeforeBeginEnvironment{figure}{\vskip-1em}
+%\AfterEndEnvironment{figure}{\vskip-1em}
 
 % tcolorbox to keep text together
 \newtcolorbox{keepTogether}{%
   breakable = false,
   parbox = true,
   blanker,
-}
-
-% tcolorbox for theorems
-\newtcolorbox{theorems}{%
-  breakable = true,
-  parbox = false,
-  %colframe=definitionborder,
-  blanker,
-  leftrule=2em,
 }
 
 % Theorems
@@ -278,7 +279,8 @@
     linecolor = chap,
     leftline = true,
     linewidth = 3pt,
-    splittopskip = 12pt,
+    splittopskip = 0pt,
+    splitbottomskip = 0pt,
   ]{definition}{Definition}[chapter]
 
   % Example
@@ -296,7 +298,8 @@
     linecolor = black,
     leftline = true,
     linewidth = 1pt,
-    splittopskip = 12pt,
+    splittopskip = 0pt,
+    splitbottomskip = 0pt,
   ]{example}{Example}[chapter]
 
 
@@ -383,7 +386,7 @@ First published on 27 September 2022 (electronic). Aligns with Cogstat v2.3.\\
 To reference this book, please use the following citation (APA7 format):
 
 \begin{quote}
-Navarro, D., \& Fodor, R. (2023). Learning Statistics with CogStat (Rev.~ed.).\\
+Navarro, D., \& Fodor, R. (2023). \emph{Learning Statistics with CogStat} (2nd ed.).\\
 \url{https://learningstatisticswithcogstat.com}
 \end{quote}
 
@@ -509,8 +512,8 @@ Now, suppose that people really are perfectly able to set aside their pre-existi
 \toprule
   & conclusion feels true & conclusion feels false\\
 \midrule
-argument is valid & 100\% say "valid" & 100\% say "valid"\\
-argument is invalid & 0\% say "valid" & 0\% say "valid"\\
+argument is valid & 100\% say valid & 100\% say valid\\
+argument is invalid & 0\% say valid & 0\% say valid\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -525,23 +528,25 @@ In a classic study, Evans et al. (\protect\hyperlink{ref-Evans1983}{1983}) ran a
 \toprule
   & conclusion feels true & conclusion feels false\\
 \midrule
-argument is valid & 92\% say "valid" & \\
-argument is invalid &  & 8\% say "valid"\\
+argument is valid & 92\% say valid & \\
+argument is invalid &  & 8\% say valid\\
 \bottomrule
 \end{tabular}
 \end{table}
 
 Not perfect, but that's pretty good. But look what happens when our intuitive feelings about the truth of the conclusion run against the logical structure of the argument:
 
-\begin{longtable}[]{@{}lcc@{}}
-\toprule()
-& conclusion feels true & conclusion feels false \\
-\midrule()
-\endhead
-argument is valid & 92\% say ``valid'' & \textbf{46\% say ``valid''} \\
-argument is invalid & \textbf{92\% say ``valid''} & 8\% say ``valid'' \\
-\bottomrule()
-\end{longtable}
+\begin{table}[H]
+\centering
+\begin{tabular}{lcc}
+\toprule
+  & conclusion feels true & conclusion feels false\\
+\midrule
+argument is valid & 92\% say valid & **46\% say valid**\\
+argument is invalid & **92\% say valid** & 8\% say valid\\
+\bottomrule
+\end{tabular}
+\end{table}
 
 Apparently, when people are presented with a strong argument that contradicts our pre-existing beliefs, we find it pretty hard to even perceive it to be a strong argument (people only did so 46\% of the time). Even worse, when people are presented with a weak argument that agrees with our pre-existing biases, almost no-one can see that the argument is weak.
 
@@ -568,7 +573,9 @@ Females & 4321 & 35\%\\
 
 When people started looking more carefully at the admissions data (\protect\hyperlink{ref-Bickel1975}{Bickel et al., 1975}) on a department by department basis, it turned out that most of the departments actually had a slightly \emph{higher} success rate for female applicants than for male applicants.
 
-\begin{tabu} to \linewidth {>{\raggedright}X>{\centering}X>{\centering}X>{\centering}X>{\centering}X}
+\begin{table}[H]
+\centering
+\begin{tabular}{lcccc}
 \toprule
 \multicolumn{1}{c}{ } & \multicolumn{2}{c}{Male} & \multicolumn{2}{c}{Female} \\
 \cmidrule(l{3pt}r{3pt}){2-3} \cmidrule(l{3pt}r{3pt}){4-5}
@@ -581,13 +588,12 @@ D & 417 & 33\% & 375 & 35\%\\
 E & 191 & 28\% & 393 & 24\%\\
 F & 272 & 6\% & 341 & 7\%\\
 \bottomrule
-\end{tabu}
+\end{tabular}
+\end{table}
 
 Yet the overall rate of admission across the university for females was \emph{lower} than for males. How can both of these statements be true at the same time?
 
 Firstly, notice that the departments are \emph{not} equal to one another in terms of their admission percentages: some departments (e.g., engineering, chemistry) tended to admit a high percentage of the qualified applicants, whereas others (e.g., English) tended to reject most of the candidates, even if they were high quality. So, among the six departments shown above, notice that department A is the most generous, followed by B, C, D, E and F in that order. Next, notice that males and females tended to apply to different departments. If we rank the departments in terms of the total number of male applicants, we get \textbf{A}\textgreater{}\textbf{B}\textgreater D\textgreater C\textgreater F\textgreater E (the ``easy'' departments are in bold). On the whole, males tended to apply to the departments that had high admission rates. Now compare this to how the female applicants distributed themselves. Ranking the departments in terms of the total number of female applicants produces a quite different ordering C\textgreater E\textgreater D\textgreater F\textgreater{}\textbf{A}\textgreater{}\textbf{B}.
-
-
 
 In other words, what these data seem to be suggesting is that the female applicants tended to apply to ``harder'' departments. And in fact, if we look at Figure \ref{fig:berkeley}, we see that this trend is systematic, and quite striking. This effect is known as Simpson's paradox. It's not common, but it does happen in real life, and most people are very surprised by it when they first encounter it, and many people refuse to even believe that it's real. It is very real.
 
@@ -599,6 +605,8 @@ In other words, what these data seem to be suggesting is that the female applica
 
 \caption[The Berkeley 1973 college admissions data.]{The Berkeley 1973 college admission rate for the 85 departments that had at least one female applicant based on Bickel et al. (\protect\hyperlink{ref-Bickel1975}{1975}). Circles plot departments with more than 40 applicants; the area of the circle is proportional to the total number of applicants. The crosses plot department with fewer than 40 applicants.}\label{fig:berkeley}
 \end{figure}
+
+
 
 When doing research, there are \emph{lots} of subtle, counterintuitive traps lying in wait for the unwary. Truth is sometimes cunningly hidden in the nooks and crannies of complicated data. Statistics only solves \emph{part} of the problem.
 
@@ -617,7 +625,7 @@ We hope that the discussion above helped explain why science in general is so fo
 
 The most important reason is that psychology is a statistical science. There's a saying used sometimes in physics, to the effect that ``if your experiment needs statistics, you should have done a better experiment''.
 
-The ``things'' that we study are \emph{people}. Real, complicated, gloriously messy people. The ``things'' of physics include object like electrons, and while there are all sorts of complexities that arise in physics, electrons don't have minds of their own. They don't have opinions, they don't differ from each other in weird and arbitrary ways, they don't get bored in the middle of an experiment, and they don't get angry at the experimenter and then deliberately try to sabotage the data set.\footnote{Some may argue that natural science experiments still struggle with data quality, noise etc. But to the best of my knowledge, there's no evidence of electron producing response bias in the lab due to over- or undercompliance. -- Robert}
+The ``things'' that we study are \emph{people}. Real, complicated, gloriously messy people. The ``things'' of physics include object like electrons, and while there are all sorts of complexities that arise in physics, electrons don't have minds of their own. They don't have opinions, they don't differ from each other in weird and arbitrary ways, they don't get bored in the middle of an experiment, and they don't get angry at the experimenter and then deliberately try to sabotage the data set.\footnote{Some may argue that natural science experiments still struggle with data quality, noise etc. But there's no evidence of an electron producing response bias in the lab due to over- or undercompliance, which is our point.}
 
 We teach statistics to you as psychologists because you need to be better at stats than physicists. They have the luxury of being able to say that because their objects of study are simple in comparison to the vast mess that confronts social scientists.
 
@@ -1432,7 +1440,7 @@ In most situations, the first thing that you'll want to calculate is a measure o
 
 }
 
-\caption{Density plot with mean.}\label{fig:unnamed-chunk-14}
+\caption{Density plot with mean, median and mode.}\label{fig:unnamed-chunk-14}
 \end{figure}
 
 \hypertarget{mean}{%
@@ -1447,23 +1455,7 @@ The first measure of \emph{central tendency} is the mean, or arithmetic average.
 \]
 \end{definition}
 
-Of course, this definition of the mean isn't news to anyone: averages (i.e., means) are used so often in everyday life that this is quite familiar. By tradition, we use \(\bar{X}\) as the notation for the mean, \(\scriptstyle\sum\) for the idea of summation, \(X_i\) for the \(i\)th observation, and \(N\) for the total number of observations. We use subscripts to indicate which observation we're talking about. That is, we'll use \(X_1\) to refer to the first observation, \(X_2\) to refer to the second observation, and so on, all the way up to \(X_N\) for the last one.
-
-\hypertarget{summation}{}
-\begin{callout}[Summation symbol: $\scriptstyle\sum$ and Product symbol: $\scriptstyle\prod$ notations]
-
-The summation symbol \(\scriptstyle\sum\) is used to denote the operation of adding up a sequence of numbers. It is used to write out formulas in a concise way, and is used extensively in mathematics.
-
-\[
-\sum_{i=1}^n X_i = X_1 + X_2 + ... + X_{n-1} + X_n
-\]
-where \(i\) is the \emph{index of the observation}, which means that the index starts out at the given number, so in this case, at the first observation (\(X_\mathbf{1}\)). The index is incremented by 1 for each observation (even if \(i>1\)), so the next observation is \(X_\mathbf{2}\), and so on, until the last observation, which is \(X_\mathbf{n}\), as denoted above the symbol.
-
-The choice to use \(\Sigma\) to denote summation isn't arbitrary: it's the Greek upper case letter sigma, which is the analogue of the letter S in that alphabet.
-
-Similarly, there's an equivalent symbol used to denote the multiplication of lots of numbers: because multiplications are also called ``products'', we use the \(\Pi\) symbol for this; the Greek upper case pi, which is the analogue of the letter P.
-
-\end{callout}
+Of course, this definition of the mean isn't news to anyone: averages (i.e., means) are used so often in everyday life that this is quite familiar. By tradition, we use \(\bar{X}\) as the notation for the mean, \(\scriptstyle\sum\) for the idea of summation (see \protect\hyperlink{summation}{callout on notation}), \(X_i\) for the \(i\)th observation, and \(N\) for the total number of observations. We use subscripts to indicate which observation we're talking about. That is, we'll use \(X_1\) to refer to the first observation, \(X_2\) to refer to the second observation, and so on, all the way up to \(X_N\) for the last one.
 
 \begin{example}[Mean]
 \protect\hypertarget{exm:exmean}{}\label{exm:exmean}
@@ -1507,6 +1499,25 @@ CogStat calculates the mean automatically when exploring a variable using all va
 
 \caption[Descriptive statistics and histogram for the `aflsmall.csv` data set.]{Descriptive statistics and histogram for the `aflsmall.csv` data set. Scrolling down, you'll see CogStat reporting all the descriptive measures while showing you a histogram to understand the shape of your data better. Drawing pictures of the data is an excellent way to convey the gist of what the data is trying to tell you; it's often instrumental to try to condense the data into a few simple summary statistics.}\label{fig:histogramaflsmall}
 \end{figure}
+
+\hypertarget{summation}{}
+\begin{callout}[Summation symbol: $\scriptstyle\sum$ and Product symbol: $\scriptstyle\prod$ notations]
+
+\begin{keepTogether}
+The summation symbol \(\scriptstyle\sum\) is used to denote the operation of adding up a sequence of numbers. It is used to write out formulas in a concise way, and is used extensively in mathematics.
+
+\[
+\sum_{i=1}^n X_i = X_1 + X_2 + ... + X_{n-1} + X_n
+\]
+where \(i\) is the \emph{index of the observation}, which means that the index starts out at the given number, so in this case, at the first observation (\(X_\mathbf{1}\)). The index is incremented by 1 for each observation (even if \(i>1\)), so the next observation is \(X_\mathbf{2}\), and so on, until the last observation, which is \(X_\mathbf{n}\), as denoted above the symbol.
+
+\end{keepTogether}
+
+The choice to use \(\Sigma\) to denote summation isn't arbitrary: it's the Greek upper case letter sigma, which is the analogue of the letter S in that alphabet.
+
+Similarly, there's an equivalent symbol used to denote the multiplication of lots of numbers: because multiplications are also called ``products'', we use the \(\Pi\) symbol for this; the Greek upper case pi, which is the analogue of the letter P.
+
+\end{callout}
 
 \hypertarget{median}{%
 \subsection{The median}\label{median}}
@@ -1661,6 +1672,19 @@ While it's generally true that the mode is most often calculated when you have \
 \protect\hypertarget{exm:exmode2}{}\label{exm:exmode2}Let's look at our \texttt{afl.margins} variable we loaded into CogStat. This variable is clearly ratio scale, and so in most situations the mean or the median is the measure of central tendency that you want. But consider that a friend of yours is offering a bet. They pick a football game at random, and without knowing who is playing you have to guess the \emph{exact} margin. If you guess correctly, you win \$50. If you don't, you lose \$1. There are no consolation prizes for ``almost'' getting the right answer. You have to guess exactly the right margin\footnote{This is called a ``0-1 loss function'', meaning that you either win (1) or you lose (0), with no middle ground.} For this bet, the mean and the median are completely useless to you. It is the mode that you should bet on. So, we look at the frequency table offered by the result set: the data suggest you should bet on a \(3.0\) point margin, and since this was observed in 8 of the 176 games (4.5\% of games -- the \emph{relative frequency}), the odds are firmly in your favour.
 \end{example}
 
+\hypertarget{calloutmultimodal}{}
+\begin{callout}[Bimodal distributions]
+
+A data set which has only one mode (or in other terms, a density distribution with only one local maximum) is called \emph{unimodal}, regardless if the peak is in the middle or at either end. A perfect example of a unimodal distribution is the normal distribution (the \emph{bell-curve}). This is the one that we use when explaining the theory in this book. However, a distribution can have more than one modes or more than one local maxima, and some simplistic rules of thumb don't necessarily work. Distributions with more than one modes are called \emph{bimodal} (i.e., two peaks) or \emph{multimodal} (i.e., multiple peaks) distributions.
+
+\begin{center}\includegraphics[width=0.6\linewidth]{lsc_files/figure-latex/unnamed-chunk-16-1} \end{center}
+
+The graph shows a bimodal distribution with two local maximums (the peak at the left and the right), of which there is a global maximum (the peak at the left). This distribution plot's \(y\) values infer the frequency of each observation \(x\), so the higher the \(y\) value, the more observations there are of that \(x\) value. The mode is the \(x\) value with the highest frequency (\(y\) value). In this specific case there is only one mode, because there is only one global maximum (absolute highest frequency), but since there are two local maximums with identifiable, distinct clusters of data, the distribution is considered bimodal.
+
+You will likely encounter bimodal distributions in your data when you have multiple groups in one dataset. For example, when you measure an attitude towards a politically divisive subject with a Likert scale. When you graph the response on that item, you'll likely see a bimodal distribution, but if you split the data by group (based on a binary demographic item measuring political affilition, for example), you'll likely see two unimodal distributions with different \protect\hyperlink{skewnesskurtosis}{skewness}.
+
+\end{callout}
+
 \hypertarget{var}{%
 \section{Measures of variability}\label{var}}
 
@@ -1668,11 +1692,11 @@ The statistics that we've discussed so far all relate to \emph{central tendency}
 
 \begin{figure}
 
-{\centering \includegraphics[width=0.6\linewidth]{lsc_files/figure-latex/unnamed-chunk-16-1} 
+{\centering \includegraphics[width=0.6\linewidth]{lsc_files/figure-latex/unnamed-chunk-17-1} 
 
 }
 
-\caption{Data sets with the same mean but different dispersion.}\label{fig:unnamed-chunk-16}
+\caption{Data sets with equal measures of central tendency but different variability.}\label{fig:unnamed-chunk-17}
 \end{figure}
 
 For now, let's assume that the data are interval or ratio scale, so we'll continue to use the \texttt{afl.margins} data. We'll use this data to discuss several different measures of spread, each with different strengths and weaknesses.
@@ -1708,36 +1732,11 @@ It is clear that the range is not robust since this has a range of \(110\), but 
 \hypertarget{calloutquantile}{}
 \begin{callout}[Quantiles]
 
-Quantiles are cut points that divide an ordered data set (or a distribution) into equal-sized groups of observations when the data is continuous. Or more generally, they cut a \protect\hyperlink{probability}{probability distribution} to equally probable intervals (see Chapter \ref{probability}).
+Quantiles are cut points that divide an ordered data set into equal-sized groups of observations when the data is continuous. Or more generally, they cut a \protect\hyperlink{probability}{probability distribution} to equally probable intervals.
 
-For example, a data set of 40 observations can be divided into 4 equal-sized groups of 10 observations each.
+For example, a data set of 40 observations can be divided into 4 equal-sized groups of 10 observations each. This is called a \textbf{\emph{quartile}} (i.e., 1/4). If we wanted to define in percentages, this would be able to define 25th, 50th and 75th \textbf{\emph{percentiles}} of a data set. The \emph{25th percentile} (\emph{1st quartile} or \emph{lower quartile}) holds the value in a distribution that is greater than 25\% of the values and less than 75\% of the values. The \emph{50th percentile} (\emph{2nd quartile}) is the \emph{median}, and the \emph{75th percentile} (\emph{3rd quartile} or \emph{upper quartile}) is the value that is greater than 75\% of the values and less than 25\% of the values.
 
-\begin{table}[H]
-\centering
-\begin{tabular}{cccc}
-\toprule
-Quantile & Number of observations & Lower bound & Upper bound\\
-\midrule
-1 & 10 & 1 & 10\\
-2 & 10 & 11 & 20\\
-3 & 10 & 21 & 30\\
-4 & 10 & 31 & 40\\
-\bottomrule
-\end{tabular}
-\end{table}
-
-This is called a \textbf{\emph{quartile}} (i.e., 1/4). If we wanted to define in percentages, this would be able to define 25th, 50th and 75th \textbf{\emph{percentiles}} of a data set. The \emph{25th percentile} (\emph{1st quartile} or \emph{lower quartile}) holds the value in a distribution that is greater than 25\% of the values and less than 75\% of the values. The \emph{50th percentile} (\emph{2nd quartile}) is the \emph{median}, and the \emph{75th percentile} (\emph{3rd quartile} or \emph{upper quartile}) is the value that is greater than 75\% of the values and less than 25\% of the values.
-
-
-
-\begin{figure}
-
-{\centering \includegraphics[width=0.45\linewidth]{resources/image/1920px-NormalCDFQuartile3} 
-
-}
-
-\caption{The 25th, 50th and 75th percentiles of a cumulative distribution of a normal distribution. (StevenJYang on \href{https://en.wikipedia.org/wiki/Quartile}{Wikipedia: Quartile})}\label{fig:unnamed-chunk-18}
-\end{figure}
+\begin{center}\includegraphics[width=0.6\linewidth]{lsc_files/figure-latex/unnamed-chunk-20-1} \end{center}
 
 The data can be divided into other quantiles as well: e.g.~a distribution cut in 5 equal-sized groups are called \textbf{\emph{quintiles}}, and a distribution cut in 10 equal-sized groups are called \textbf{\emph{deciles}}, and so on.
 
@@ -1785,7 +1784,7 @@ Boxplots (or ``box and whiskers'' plots) are a standardised method to display th
   and the median.
 \end{itemize}
 
-\begin{center}\includegraphics[width=0.75\linewidth]{lsc_files/figure-latex/unnamed-chunk-19-1} \end{center}
+\begin{center}\includegraphics[width=0.75\linewidth]{lsc_files/figure-latex/unnamed-chunk-21-1} \end{center}
 
 Like histograms, they're most suited for interval or ratio scale data. Some boxplots separate out those observations that are ``suspiciously'' distant from the rest of the data, i.e., the outliers. These are usually displayed with a circle or a dot.
 
@@ -1919,12 +1918,16 @@ CogStat will not attempt to interpret the variance nor will it give you the raw 
 \hypertarget{calloutVar}{}
 \begin{callout}[Population variance versus variance estimate]
 
+\begin{keepTogether}
 If you are extremely lucky and have a data set that contains the entire population, then you can calculate the variance as given in Definition \ref{def:defVar}. This is called \textbf{population variance}. In this case the variance is denoted \(\sigma^2\), the mean is denoted as \(\mu\).
 
 \[
 \sigma^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \mu)^2
 \]
 
+\end{keepTogether}
+
+\begin{keepTogether}
 In research, however, you are most likely to have gathered data for merely a \emph{sample} of the population. There is an alternative formula for this case. This is called \textbf{variance estimate}, or \emph{estimated variance}, or \emph{sample variance}, or \emph{estimated population variance}, and is denoted \(s^2\). The formula for the variance estimate is:
 
 \[
@@ -1932,6 +1935,8 @@ s^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2
 \]
 
 where \(n\) is the number of observations in the sample, \(X_i\) is the \(i\)th observation, and \(\bar{X}\) is the mean of the sample. You'll notice the difference is the denominator using \(n-1\) instead of \(n\).
+
+\end{keepTogether}
 
 \end{callout}
 
@@ -1955,14 +1960,18 @@ There are different ways to standardise the SD. One way is to divide the SD by t
 \hypertarget{calloutSD}{}
 \begin{callout}[Population SD versus estimated SD]
 
-Similarly to variance, we can differentiate the formula for a population-based standard deviation and a sample-based standard deviation.
+Similarly to variance, we can differentiate between a population-based standard deviation and a sample-based standard deviation.
 
+\begin{keepTogether}
 The \textbf{population SD} is denoted \(\sigma\), the mean is denoted as \(\mu\).
 
 \[
 \sigma = \sqrt{ \frac{1}{n} \sum_{i=1}^n \left( X_i - \mu \right)^2 }
 \]
 
+\end{keepTogether}
+
+\begin{keepTogether}
 For calculating a population \emph{estimate} based on sample data, we use the \textbf{estimated standard deviation} (\(s\)) formula.
 
 \[
@@ -1970,6 +1979,8 @@ s = \sqrt{ \frac{1}{n-1} \sum_{i=1}^n \left( X_i - \bar{X} \right)^2 }
 \]
 
 where \(n\) is the number of observations in the sample, \(X_i\) is the \(i\)th observation, and \(\bar{X}\) is the mean of the sample. The denominator is \(n-1\) instead of \(n\).
+
+\end{keepTogether}
 
 \end{callout}
 
@@ -2001,23 +2012,27 @@ In short, the IQR and the standard deviation are easily the two most common meas
 
 There are two more descriptive statistics that you will likely see reported in the psychological literature, known as \textbf{skewness} and \textbf{kurtosis}. These are measures of the shape of the distribution of the data.
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=0.6\linewidth]{lsc_files/figure-latex/skewness-1} 
+{\centering \includegraphics[width=0.9\linewidth]{lsc_files/figure-latex/skewness-1} 
 
 }
 
-\caption[An illustration of skewness.]{An illustration of skewness. On the left we have a negatively skewed data set (skewness $= -.93$), in the middle we have a data set with no skew (technically, skewness $= -.006$), and on the right we have a positively skewed data set (skewness $= .93$).}\label{fig:skewness}
+\caption{An illustration of skewness.}\label{fig:skewness}
 \end{figure}
 
 \begin{definition}[Skewness]
-\protect\hypertarget{def:defskewness}{}\label{def:defskewness}\textbf{Skewness} is a measure of assymetry of a distribution that compares the median and mean to the mode. A negative skew means the median and mean are smaller than the mode, resulting in a long tail on the left. A positive skew means the median and mean are larger than the mode, resulting in a long tail on the right. A skewness of 0 means the median and mean are equal to the mode, resulting in a symmetrical distribution.
+\protect\hypertarget{def:defskewness}{}\label{def:defskewness}\textbf{Skewness} is a measure of assymetry of a distribution.
+
+In case of \protect\hyperlink{calloutmultimodal}{unimodal distributions}, a negative skew means the median and mean are smaller than the mode, resulting in a long tail on the left; and a positive skew means the median and mean are larger than the mode, resulting in a long tail on the right. A skewness of 0 means the median and mean are equal to the mode, resulting in a symmetrical distribution.
+
+The formula for sample skewness is:
 
 \[
-\mbox{skewness}(X) = \frac{1}{N \hat{\sigma}^3} \sum_{i=1}^N (X_i - \bar{X})^3
+\mbox{skewness}(X) = \frac{1}{N \hat\sigma^3} \sum_{i=1}^N \left( X_i - \bar{X} \right)^3
 \]
 
-where \(N\) is the number of observations, \(\bar{X}\) is the sample mean, and \(\hat{\sigma}\) is the standard deviation (the ``divide by \(N-1\)'' version, that is).
+where \(N\) is the number of observations in the sample, \(X_i\) is the \(i\)th observation, \(\bar{X}\) is the mean of the sample, and \(\hat\sigma\) is the sample standard deviation.
 \end{definition}
 
 As Figure \ref{fig:skewness} illustrates, if the data tend to have a lot of extreme small values (i.e., the lower tail is ``longer'' than the upper tail) and not so many extremely large values (left panel), then we say that the data are \emph{negatively skewed}. On the other hand, if there are more extremely large values than extremely small ones (right panel) we say that the data are \emph{positively skewed}.
@@ -2025,7 +2040,9 @@ As Figure \ref{fig:skewness} illustrates, if the data tend to have a lot of extr
 Not surprisingly, it turns out that the AFL winning margins data is fairly skewed: \(0.8\) (see Figure \ref{fig:histogramaflsmall} depicting the analysis results from CogStat).
 
 \begin{definition}[Kurtosis]
-\protect\hypertarget{def:defkurtosis}{}\label{def:defkurtosis}\textbf{Kurtosis} describes the degree of steepness of a distribution. A steep distribution is \emph{leptokurtic} (positive kurtosis) distribution, a flat distribution is \emph{platykurtic} (negative kurtosis), and the normal distribution is \emph{mesokurtic} (kurtosis is 0).
+\protect\hypertarget{def:defkurtosis}{}\label{def:defkurtosis}\textbf{Kurtosis} describes the degree of steepness of a distribution.
+
+A steep distribution is \emph{leptokurtic} (positive kurtosis) distribution, a flat distribution is \emph{platykurtic} (negative kurtosis), and the normal distribution is \emph{mesokurtic} (kurtosis is 0).
 
 \[
 \mbox{kurtosis}(X) = \frac{1}{N \hat\sigma^4} \sum_{i=1}^N \left( X_i - \bar{X} \right)^4 - 3
@@ -2034,15 +2051,15 @@ Not surprisingly, it turns out that the AFL winning margins data is fairly skewe
 where \(N\) is the number of observations, \(\bar{X}\) is the sample mean, and \(\hat{\sigma}\) is the standard deviation (the ``divide by \(N-1\)'' version, that is).
 \end{definition}
 
-\textbf{Kurtosis}, put simply, is a measure of the ``pointiness'' of a data set, as illustrated in Figure \ref{fig:kurtosis}.
+Kurtosis, put simply, is a measure of the ``pointiness'' of a data set, as illustrated in Figure \ref{fig:kurtosis}.
 
-\begin{figure}
+\begin{figure}[H]
 
-{\centering \includegraphics[width=0.6\linewidth]{lsc_files/figure-latex/kurtosis-1} 
+{\centering \includegraphics[width=0.9\linewidth]{lsc_files/figure-latex/kurtosis-1} 
 
 }
 
-\caption{An illustration of kurtosis. On the left, we have a "platykurtic" data set (kurtosis = $-.95$), meaning that the data set is "too flat". In the middle we have a "mesokurtic" data set (kurtosis is almost exactly 0), which means that the pointiness of the data is just about right. Finally, on the right, we have a "leptokurtic" data set (kurtosis $= 2.12$) indicating that the data set is "too pointy". Note that kurtosis is measured with respect to a normal curve (black line)}\label{fig:kurtosis}
+\caption{An illustration of kurtosis.}\label{fig:kurtosis}
 \end{figure}
 
 When reading the automatically calculated kurtosis value from our CogStat result set, we discover that the AFL winning margins data is just pointy enough: \(0.1\).
@@ -2084,7 +2101,7 @@ We have covered some key aspects of how to summarise what we have learned about 
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1319}}
   >{\raggedleft\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1722}}
   >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.6960}}@{}}
-\caption{\label{tab:unnamed-chunk-22}Descriptives for the variable}\tabularnewline
+\caption{\label{tab:unnamed-chunk-24}Descriptives for the variable}\tabularnewline
 \toprule()
 \begin{minipage}[b]{\linewidth}\raggedright
 {}
