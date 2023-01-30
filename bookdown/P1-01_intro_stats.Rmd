@@ -45,14 +45,14 @@ Now, suppose that people really are perfectly able to set aside their pre-existi
 library(kableExtra)
 knitr::kable(
   rbind(
-    c("argument is valid", "100\\% say \"valid\"", "100\\% say \"valid\""),
-    c("argument is invalid", "0\\% say \"valid\"", "0\\% say \"valid\"")
+    c("argument is valid", "100% say valid", "100% say valid"),
+    c("argument is invalid", "0% say valid", "0% say valid")
   ),
    col.names = c(" ", "conclusion feels true", "conclusion feels false"),
    caption = NULL,
    label = "conclusion1",
    linesep = "",
-   escape = FALSE,
+   escape = TRUE,
    booktabs = TRUE,
    align = "lcc"
 ) %>%
@@ -72,14 +72,14 @@ In a classic study, @Evans1983 ran an experiment looking at exactly this. What t
 ```{r echo=FALSE}
 knitr::kable(
   rbind(
-    c("argument is valid", "92\\% say \"valid\"", ""),
-    c("argument is invalid", " ", "8\\% say \"valid\"")
+    c("argument is valid", "92% say valid", ""),
+    c("argument is invalid", " ", "8% say valid")
   ),
    col.names = c(" ", "conclusion feels true", "conclusion feels false"),
    caption = NULL,
    label = "conclusion2",
    linesep = "",
-   escape = FALSE,
+   escape = TRUE,
    booktabs = TRUE,
    align = "lcc"
 ) %>%
@@ -96,17 +96,16 @@ Not perfect, but that's pretty good. But look what happens when our intuitive fe
 ```{r echo=FALSE}
 knitr::kable(
   rbind(
-    c("argument is valid", "92\\% say \"valid\"", "**46\\% say \"valid\"**"),
-    c("argument is invalid", "**92\\% say \"valid\"**", "8\\% say \"valid\"")
+    c("argument is valid", "92% say valid", "**46% say valid**"),
+    c("argument is invalid", "**92% say valid**", "8% say valid")
   ),
    col.names = c(" ", "conclusion feels true", "conclusion feels false"),
    caption = NULL,
    label = "conclusion3",
    linesep = "",
-   escape = FALSE,
+   escape = TRUE,
    booktabs = TRUE,
    align = "lcc",
-    format = "pandoc"
 ) %>%
   kable_styling(
    bootstrap_options = c("hover"),
@@ -172,10 +171,10 @@ knitr::kable(
   add_header_above(c(" " = 1, "Male" = 2, "Female" = 2)) %>% # Has to be here before kable_styling
   kable_styling(
    bootstrap_options = c("hover"),
-   full_width = TRUE,
+   full_width = FALSE,
    position = "center",
    latex_options = c("HOLD_position", "repeat_header")
-  ) 
+  )
 ```
 
 Yet the overall rate of admission across the university for females was *lower* than for males. How can both of these statements be true at the same time?
