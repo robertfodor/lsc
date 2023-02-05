@@ -117,6 +117,7 @@ The main drive behind these edits was reflections on the material's usefulness a
 - Chapters \@ref(autostat) and \@ref(cogstatintro) were amended and slightly expanded, and now they follow Chapter \@ref(researchdesign), so that the reader can better appreciate automatic statistical analysis.
 - Chapter \@ref(researchdesign) was largely rewritten -- particularly reliability and validity -- to make definitions more accurate, and examples are now related to health and psychology research. The rest of the chapter discussing bias and study design were scrapped due to their lack of relevance to the book's purpose.
 - Chapter \@ref(exploringavariable) was largely revised to tie to other statistics textbooks, also focusing on differentiating between population and sample measures.
+- Chapter \@ref(correl) now includes CogStat tutorial on interrater and internal consistency measures.
 - New: callout boxes added throughout the chapters to explain chart types and other concepts.
 - New: definitions and examples are now presented markedly in the text.
 - New: explanatory charts were added to the text.
