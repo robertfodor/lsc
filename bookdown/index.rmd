@@ -3,34 +3,53 @@ title: "Learning Statistics with CogStat"
 author:
 - Danielle Navarro^[Danielle Navarro -- [Github](https://github.com/djnavarro/) | [![](resources/image/orcid_16x16.png)](https://orcid.org/0000-0001-7648-6578) 0000-0001-7648-6578]
 - Róbert Fodor^[Róbert Fodor -- [Github](https://github.com/robertfodor/) | [![](resources/image/orcid_16x16.png)](https://orcid.org/0000-0001-8470-335X) 0000-0001-8470-335X]
-date: "5 Nov 2022"
+date: "22 Sep 2023"
 output:
   bookdown::gitbook:
+    mathjax: NULL
+    pandoc_args: --mathml
     config:
       sharing: false
-site: bookdown::bookdown_site
-documentclass: book
+
 bibliography: book.bib
 subtitle: A tutorial for psychology students and other beginners
 biblio-style: apa
 csl: apa7.csl
+
+link-citations: true
+urlcolor: CSbluelight
+linkcolor: CSbluelight
+citecolor: CSbluelight
+toccolor: black
+
 github-repo: https://github.com/robertfodor/lsc
 url: https://learningstatisticswithcogstat.com
+
 cover-image: "resources/bookcover/LSC_small.png"
-description: '*Learning Statistics with CogStat* covers the contents of an introductory
-  statistics class, as typically taught to undergraduate psychology students based
-  on Danielle Navarro''s original *Learning Statistics with R* with a focus on automatic
-  statistical analysis performed in CogStat.'
+description: '*Learning Statistics with CogStat* (Second Edition) covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro''s original *Learning Statistics with R* with a focus on automatic statistical analysis performed in CogStat.'
+
+documentclass: book
+classoption: twoside,symmetric,openright
+fontsize: 11pt
+papersize: a4
+linestretch: 1.15
+links-as-notes: true
 always_allow_html: true
+geometry: margin=1in, bindingoffset=0in, outer=1.5in
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 
 if (knitr::is_latex_output()) {
-  knitr::opts_chunk$set(out.width = "66%")
+  knitr::opts_chunk$set(out.width = "60%")
 }
 
+options(bookdown.post.latex = function(x) {
+    from <- grep("usepackage\\{amsthm\\}", x)
+    to <- grep("newtheorem\\*\\{solution", x)
+    x <- x[-c(from:to)]
+  })
 
 library(metathis)
 meta() %>%
@@ -39,43 +58,68 @@ meta() %>%
     og_author = c("Danielle Navarro", "Róbert Fodor")
   ) %>%
   meta_google_scholar(
-    title = "Learning Statistics with CogStat",
+    title = "Learning Statistics with CogStat (2nd Ed)",
     author = c("Danielle Navarro", "Róbert Fodor"),
-    publication_date = "2022/09/27"
+    publication_date = "2023/09/22"
   )
+
+library(kableExtra)
 ```
 
 
 # About this book{.unnumbered}
 
-```{r, eval=knitr::is_html_output(), echo=FALSE, out.width="50%", out.extra="style='box-shadow: 0px 3px 12px 1px rgba(0,0,0,0.66);'"}
+```{r, eval=knitr::is_html_output(), echo=FALSE, out.width="67%", out.extra="style='box-shadow: 0px 3px 12px 1px rgba(0,0,0,0.66);'"}
 knitr::include_graphics("resources/bookcover/LSC_small.png")
 ```
 
-## Versions{.unnumbered}
+> First published on 27 September 2022 (electronic). Aligns with Cogstat v2.3. \
+> **Second edition** published on 23 September 2023 (electronic). Aligns with Cogstat v2.4.
 
-First edition published on 27 September 2022. Critical fixes applied on 5 November 2022.
+To reference this book, please use the following citation (APA7 format):
 
-The online version of the book is updated regularly. The date of the last update is shown on the title page. The book features screenshots and result sets based on **CogStat version 2.3**.
-
-
-To reference the book, please use the following citation (APA7 format):
-
-> Navarro, D., & Fodor, R. (2022). Learning Statistics with CogStat. https://learningstatisticswithcogstat.com
-
-
-## Author's note{.unnumbered}
-
-This book is intended for psychology students and other beginners who are interested in learning statistics and want to use CogStat to perform their analyses. [CogStat](https://www.cogstat.org) is a statistics software written in Python by Attila Krajcsi^[Attila Krajcsi -- [Website](http://www.attilakrajcsi.hu) | [![](resources/image/orcid_16x16.png)](https://orcid.org/0000-0001-9792-9091) 0000-0001-9792-9091] and developed with the help of supporters. Its distinct advantage is automatic hypothesis test selection and chart creation with an APA-style output to suit the needs of psychology researchers and students.
-
-*Learning Statistics with CogStat* is a book which covers the contents of an introductory statistics class. It is an adaptation made by Róbert Fodor based on Danielle Navarro's original *(Learning Statistics with R)^[https://learningstatisticswithr.com]* (Version 0.6^[This book is compiled from scratch in bookdown but some code snippets rely on [Emily Kothe](https://twitter.com/emilyandthelime)'s bookdown adaptation of the original material (e.g. some knitr plots and tables appear in the source code without alteration), numbered as version [0.6.1](https://learningstatisticswithr.com/book/)]). While the theory laid out in the original book is still valid, this book focuses on the practical application of statistical methods in CogStat. The book is not intended to be a comprehensive guide to either CogStat or statistical theory, though. One of the key challenges of the adaptation was to balance between a fully applied approach (like how CogStat handles analysis) and a theoretical one (like the fantastic textbook it is based on). Danielle's original content, while making up a massive chunk of the material, has been revised, reorganised, redacted, expanded on and rewritten to fit the new purpose.
-
-This book will always be a living thing. As CogStat expands and evolves, so will this book. If you have any suggestions, comments or questions, please feel free to reach out to me on [GitHub](https://github.com/robertfodor/lsc/issues).
-
--- Robert
+> Navarro, D., & Fodor, R. (2023). *Learning Statistics with CogStat* (2nd ed.). \
+>        https://learningstatisticswithcogstat.com
 
 ## Licensing{.unlisted .unnumbered}
 
-This book is published under a Creative Commons BY-SA license (CC BY-SA) version 4.0. This means that this book can be reused, remixed, retained, revised and redistributed (including commercially) as long as appropriate credit is given to the authors. If you remix, or modify the original version of this open textbook, you must redistribute all versions of this open textbook under the same license - CC BY-SA. 
+```{r echo=FALSE, fig.pos="left", out.width="15%"}
+knitr::include_graphics("resources/image/by-sa.png")
+```
 
-https://creativecommons.org/licenses/by-sa/4.0/
+This work is licensed under the Creative Commons Attribution-ShareAlike 4.0 International License. To view a copy of this license, visit http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
+
+
+# Foreword{.unnumbered}
+
+## Foreword for the *First Edition* {.unnumbered .unlisted}
+
+This book is intended for psychology students and other beginners who are interested in learning statistics and want to use CogStat to perform their analyses. [CogStat](https://www.cogstat.org) is a statistics software written in Python by Attila Krajcsi^[Attila Krajcsi -- [Website](http://www.attilakrajcsi.hu) | [![](resources/image/orcid_16x16.png)](https://orcid.org/0000-0001-9792-9091) 0000-0001-9792-9091] and developed with the help of supporters. Its distinct advantage is automatic hypothesis test selection and chart creation with an APA-style output to suit the needs of psychology researchers and students.
+
+*Learning Statistics with CogStat* is a book which covers the contents of an introductory statistics class. It is an adaptation made by Róbert Fodor based on Danielle Navarro's original, [Learning Statistics with R](https://learningstatisticswithr.com), version 0.6^[This book is compiled from scratch in bookdown but some code snippets rely on [Emily Kothe](https://twitter.com/emilyandthelime)'s bookdown adaptation of the originasl material (e.g. some knitr plots and tables appear in the source code without alteration), numbered as version [0.6.1](https://learningstatisticswithr.com/book/)]. While the theory laid out in the original book is still valid, this book focuses on the practical application of statistical methods in CogStat. The book is not intended to be a comprehensive guide to either CogStat or statistical theory, though. One of the key challenges of the adaptation was to balance between a fully applied approach (like how CogStat handles analysis) and a theoretical one (like the fantastic textbook it is based on). Danielle's original content, while making up a massive chunk of the material, has been revised, reorganised, redacted, expanded on and rewritten to fit the new purpose.
+
+This book will always be a living thing. As CogStat expands and evolves, so will this book. If you have any suggestions, comments or questions, please feel free to reach out to me on [GitHub](https://github.com/robertfodor/lsc/issues).
+
+\nopagebreak[4]
+
+--- Robert
+
+## Foreword for the *Second Edition* {.unnumbered .unlisted}
+
+This edition brings in plenty of changes, well beyond 10% of the book, which should warrant, per publishing standards, for it to be called "second edition". The main drive behind these edits was reflections on the material's usefulness and *accuracy*, since some explanations and wordings needed to be more robust to withstand scientific scrutiny, which Attila Krajcsi provided. I must thank him for his helpful notes as consulting editor for this version, not due to sheer obligation but on account of genuine appreciation. His feedback was essential, and while I spent quite some time defending most of my earlier decisions (some of which I still do), I had to accept that I simply couldn't have got it quite right the first time, and I shouldn't be too attached to the source material. I loved that the original was accessible and the opposite of stuffy, but I decided to cut down plenty (mostly the chattiness) and replace it with, hopefully still accessible but scientifically more accurate parts. I consulted some other textbooks comparing the way they present the material for it not to be stuffy. I firmly believe scientific communication in all its forms needs to be in everyday language while using precise terminology, appropriate analogies, and accurate examples. I hope that this edition is something you, dear reader, will love to read. I hope this edition is a step in the right direction.
+
+\nopagebreak[4]
+
+--- Robert
+
+**Changelog:**
+
+- Chapters \@ref(autostat) and \@ref(cogstatintro) were amended and slightly expanded, and now they follow Chapter \@ref(researchdesign), so that the reader can better appreciate automatic statistical analysis.
+- Chapter \@ref(researchdesign) was largely rewritten -- particularly reliability and validity -- to make definitions more accurate, and examples are now related to health and psychology research. The rest of the chapter discussing bias and study design were scrapped due to their lack of relevance to the book's purpose.
+- Chapter \@ref(exploringavariable) was largely revised to tie to other statistics textbooks, also focusing on differentiating between population and sample measures.
+- New: callout boxes added throughout some chapters to explain chart types and other concepts.
+- New: definitions and examples are now presented markedly in the text.
+- New: explanatory charts were added to the text.
+- Typos and minor errors were fixed all throughout the book.
+
+\newpage

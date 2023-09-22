@@ -4,7 +4,7 @@ set -ev
 
 # Define variables
 type=$1
-optnsprompt=("[1] bookdown::gitbook" "[2] bookdown::pdf_book")
+optnsprompt=("[0] bookdown::gitbook" "[1] bookdown::pdf_book" "[2] Both")
 savlocinput=$2
 savlocprompt=("[0] Project home: output_dir='../docs'" "[d] output_dir='~/Desktop'")
 
@@ -22,18 +22,26 @@ then
 fi
 
 
-# If user input 1, build gitbook, if 2 then build pdf. If savloc is 0 save to , if d then 
-if [ $type -eq 1 ]
+# If user input 0, build gitbook, if 2 then build pdf. If savloc is 0 save to , if d then 
+if [ $type -eq 0 ]
 then
   echo "Building gitbook"
   Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook', output_dir='$savloc')"
-  # Create CNAME
   echo 'learningstatisticswithcogstat.com' > ../docs/CNAME
   echo "Gitbook built at $savloc"
-elif [ $type -eq 2 ]
+elif [ $type -eq 1 ]
 then
   echo "Building pdf"
   Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::pdf_book', output_dir='$savloc')"
+  echo "PDF built at $savloc"
+elif [ $type -eq 2 ]
+then
+  echo "Building both gitbook and pdf"
+  Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::gitbook', output_dir='$savloc')"
+  # Create CNAME
+  echo 'learningstatisticswithcogstat.com' > ../docs/CNAME
+  Rscript -e "bookdown::render_book('index.Rmd', 'bookdown::pdf_book', output_dir='$savloc')"
+  echo "Gitbook built at $savloc"
   echo "PDF built at $savloc"
 else
   echo "Invalid input"

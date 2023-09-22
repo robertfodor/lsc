@@ -2,4 +2,22 @@ book_filename: "lsc"
 language:
   ui:
     chapter_name: "Chapter "
+    appendix_name: "Appendix "
+  label:
+    fig: "Figure "
+    tab: "Table "
+    eq: "Equation "
+    thm: "Theorem "
+    lem: "Lemma "
+    cor: "Corollary "
+    prp: "Proposition "
+    cnj: "Conjecture "
+    def: "Definition "
+    exm: "Example "
+    exr: "Exercise "
+    hyp: "Hypothesis "
+    proof: "Proof. "
+    remark: "Remark. "
+    solution: "Solution. "
+
 delete_merged_file: true

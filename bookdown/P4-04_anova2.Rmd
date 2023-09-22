@@ -399,10 +399,11 @@ estgroup <- as.data.frame(
 
 estcap <- "Estimated group means and confidence intervals"
 
-library(kableExtra)
+
 ```
 
 ```{r, eval=knitr::is_html_output(), echo=FALSE}
+library(kableExtra)
     knitr::kable(estgroup[-1],
         col.names = c(" ", " ", " ", 
         "Lower Bound", "Upper Bound"),
@@ -412,9 +413,9 @@ library(kableExtra)
     ) %>%
     add_header_above(c(" " = 1, "Mean" = 1,
                 "Std. Error" = 1, "95% Confidence Interval" = 2)) %>%
-    group_rows(group_label = "Placebo", start_row = 1, end_row = 2) %>%
-    group_rows(group_label = "Anxifree", start_row = 3, end_row = 4) %>%
-    group_rows(group_label = "Joyzepam", start_row = 5, end_row = 6)
+    kableExtra::group_rows(group_label = "Placebo", start_row = 1, end_row = 2) %>%
+    kableExtra::group_rows(group_label = "Anxifree", start_row = 3, end_row = 4) %>%
+    kableExtra::group_rows(group_label = "Joyzepam", start_row = 5, end_row = 6)
 ```
 
 ```{r, echo=FALSE}
@@ -485,11 +486,11 @@ knitr::kable(
     booktabs = TRUE, escape = FALSE,
     align = "lcccc"
 ) %>%
-    group_rows("... - placebo-no_therapy", 1, 5) %>%
-    group_rows("... - anxifree-no_therapy", 6, 9) %>%
-    group_rows("... - joyzepam-no_therapy", 10, 12) %>%
-    group_rows("... - placebo-CBT", 13, 14) %>%
-    group_rows("... - anxifree-CBT", 15, 15)
+    kableExtra::group_rows("... - placebo-no_therapy", 1, 5) %>%
+    kableExtra::group_rows("... - anxifree-no_therapy", 6, 9) %>%
+    kableExtra::group_rows("... - joyzepam-no_therapy", 10, 12) %>%
+    kableExtra::group_rows("... - placebo-CBT", 13, 14) %>%
+    kableExtra::group_rows("... - anxifree-CBT", 15, 15)
 ```
 
 ## Unbalanced designs and types of sums of squares{#unbalancedanova}

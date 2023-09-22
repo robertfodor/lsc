@@ -5,25 +5,26 @@
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 17 Why be a Bayesian? | Learning Statistics with CogStat</title>
-  <meta name="description" content="Chapter 17 Why be a Bayesian? | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
-  <meta name="generator" content="bookdown 0.29 and GitBook 2.6.7" />
+  <meta name="description" content="Chapter 17 Why be a Bayesian? | Learning Statistics with CogStat (Second Edition) covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 17 Why be a Bayesian? | Learning Statistics with CogStat" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
-  <meta property="og:description" content="Chapter 17 Why be a Bayesian? | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
+  <meta property="og:description" content="Chapter 17 Why be a Bayesian? | Learning Statistics with CogStat (Second Edition) covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 17 Why be a Bayesian? | Learning Statistics with CogStat" />
   
-  <meta name="twitter:description" content="Chapter 17 Why be a Bayesian? | Learning Statistics with CogStat covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
+  <meta name="twitter:description" content="Chapter 17 Why be a Bayesian? | Learning Statistics with CogStat (Second Edition) covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
   <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
 
 <meta name="author" content="Danielle Navarro" />
 <meta name="author" content="Róbert Fodor" />
 
 
+<meta name="date" content="2023-09-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -35,7 +36,6 @@
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
-<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -57,15 +57,19 @@
 <meta property="og:locale" content="en_US"/>
 <meta property="article:author" content="Danielle Navarro"/>
 <meta property="article:author" content="Róbert Fodor"/>
-<meta name="citation_title" content="Chapter 17 Why be a Bayesian? | Learning Statistics with CogStat"/>
+<meta name="citation_title" content="Chapter 17 Why be a Bayesian? | Learning Statistics with CogStat (2nd Ed)"/>
 <meta name="citation_author" content="Danielle Navarro"/>
 <meta name="citation_author" content="Róbert Fodor"/>
-<meta name="citation_publication_date" content="2022/09/27"/>
+<meta name="citation_publication_date" content="2023/09/22"/>
 <script src="libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 <style type="text/css">
 /* Used with Pandoc 2.11+ new --citeproc when CSL is used */
 div.csl-bib-body { }
@@ -89,7 +93,7 @@ div.csl-indent {
 }
 </style>
 
-<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="stylesheet" href="styles.css" type="text/css" />
 </head>
 
 <body>
@@ -105,11 +109,8 @@ div.csl-indent {
 <li><a href="./">Learning Statistics with CogStat</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this book</a>
-<ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#versions"><i class="fa fa-check"></i>Versions</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#authors-note"><i class="fa fa-check"></i>Author’s note</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this book</a></li>
+<li class="chapter" data-level="" data-path="foreword.html"><a href="foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
 <li class="part"><span><b>INTRODUCTIONS</b></span></li>
 <li class="chapter" data-level="1" data-path="whywhywhy.html"><a href="whywhywhy.html"><i class="fa fa-check"></i><b>1</b> Why do we learn statistics?</a>
 <ul>
@@ -118,56 +119,25 @@ div.csl-indent {
 <li class="chapter" data-level="1.3" data-path="whywhywhy.html"><a href="whywhywhy.html#statistics-in-psychology"><i class="fa fa-check"></i><b>1.3</b> Statistics in psychology</a></li>
 <li class="chapter" data-level="1.4" data-path="whywhywhy.html"><a href="whywhywhy.html#theres-more-to-research-methods-than-statistics"><i class="fa fa-check"></i><b>1.4</b> There’s more to research methods than statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="autostat.html"><a href="autostat.html"><i class="fa fa-check"></i><b>2</b> An introduction to automatic statistical analysis</a></li>
-<li class="chapter" data-level="3" data-path="cogstat_intro.html"><a href="cogstat_intro.html"><i class="fa fa-check"></i><b>3</b> An Introduction to CogStat</a></li>
-<li class="chapter" data-level="4" data-path="researchdesign.html"><a href="researchdesign.html"><i class="fa fa-check"></i><b>4</b> A brief introduction to research design</a>
+<li class="chapter" data-level="2" data-path="researchdesign.html"><a href="researchdesign.html"><i class="fa fa-check"></i><b>2</b> Basic concepts</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="researchdesign.html"><a href="researchdesign.html#measurement"><i class="fa fa-check"></i><b>4.1</b> Introduction to psychological measurement</a>
+<li class="chapter" data-level="2.1" data-path="researchdesign.html"><a href="researchdesign.html#measurement"><i class="fa fa-check"></i><b>2.1</b> Introduction to psychological measurement</a></li>
+<li class="chapter" data-level="2.2" data-path="researchdesign.html"><a href="researchdesign.html#scales"><i class="fa fa-check"></i><b>2.2</b> Measurement levels</a>
 <ul>
-<li class="chapter" data-level="4.1.1" data-path="researchdesign.html"><a href="researchdesign.html#some-thoughts-about-psychological-measurement"><i class="fa fa-check"></i><b>4.1.1</b> Some thoughts about psychological measurement</a></li>
-<li class="chapter" data-level="4.1.2" data-path="researchdesign.html"><a href="researchdesign.html#operationalisation-defining-your-measurement"><i class="fa fa-check"></i><b>4.1.2</b> Operationalisation: defining your measurement</a></li>
+<li class="chapter" data-level="2.2.1" data-path="researchdesign.html"><a href="researchdesign.html#nominalscale"><i class="fa fa-check"></i><b>2.2.1</b> Nominal categories</a></li>
+<li class="chapter" data-level="2.2.2" data-path="researchdesign.html"><a href="researchdesign.html#ordinalscale"><i class="fa fa-check"></i><b>2.2.2</b> Ordinal scale and rank</a></li>
+<li class="chapter" data-level="2.2.3" data-path="researchdesign.html"><a href="researchdesign.html#intervalscale"><i class="fa fa-check"></i><b>2.2.3</b> Interval scale</a></li>
+<li class="chapter" data-level="2.2.4" data-path="researchdesign.html"><a href="researchdesign.html#ratioscale"><i class="fa fa-check"></i><b>2.2.4</b> Ratio scale</a></li>
+<li class="chapter" data-level="2.2.5" data-path="researchdesign.html"><a href="researchdesign.html#likertscale"><i class="fa fa-check"></i><b>2.2.5</b> The special case of the Likert scale</a></li>
+<li class="chapter" data-level="2.2.6" data-path="researchdesign.html"><a href="researchdesign.html#continuousdiscrete"><i class="fa fa-check"></i><b>2.2.6</b> Continuous versus discrete variables</a></li>
+<li class="chapter" data-level="2.2.7" data-path="researchdesign.html"><a href="researchdesign.html#summaryguidelevels"><i class="fa fa-check"></i><b>2.2.7</b> A summary guide for levels of measurement</a></li>
 </ul></li>
-<li class="chapter" data-level="4.2" data-path="researchdesign.html"><a href="researchdesign.html#scales"><i class="fa fa-check"></i><b>4.2</b> Scales of measurement (measurement levels)</a>
-<ul>
-<li class="chapter" data-level="4.2.1" data-path="researchdesign.html"><a href="researchdesign.html#nominalscale"><i class="fa fa-check"></i><b>4.2.1</b> Nominal scale</a></li>
-<li class="chapter" data-level="4.2.2" data-path="researchdesign.html"><a href="researchdesign.html#ordinalscale"><i class="fa fa-check"></i><b>4.2.2</b> Ordinal scale</a></li>
-<li class="chapter" data-level="4.2.3" data-path="researchdesign.html"><a href="researchdesign.html#intervalscale"><i class="fa fa-check"></i><b>4.2.3</b> Interval scale</a></li>
-<li class="chapter" data-level="4.2.4" data-path="researchdesign.html"><a href="researchdesign.html#ratioscale"><i class="fa fa-check"></i><b>4.2.4</b> Ratio scale</a></li>
-<li class="chapter" data-level="4.2.5" data-path="researchdesign.html"><a href="researchdesign.html#continuousdiscrete"><i class="fa fa-check"></i><b>4.2.5</b> Continuous versus discrete variables</a></li>
-<li class="chapter" data-level="4.2.6" data-path="researchdesign.html"><a href="researchdesign.html#likertscale"><i class="fa fa-check"></i><b>4.2.6</b> Some complexities: the Likert scale</a></li>
+<li class="chapter" data-level="2.3" data-path="researchdesign.html"><a href="researchdesign.html#ivdv"><i class="fa fa-check"></i><b>2.3</b> Independent and dependent variables</a></li>
+<li class="chapter" data-level="2.4" data-path="researchdesign.html"><a href="researchdesign.html#reliability"><i class="fa fa-check"></i><b>2.4</b> Reliability</a></li>
+<li class="chapter" data-level="2.5" data-path="researchdesign.html"><a href="researchdesign.html#validity"><i class="fa fa-check"></i><b>2.5</b> Validity</a></li>
 </ul></li>
-<li class="chapter" data-level="4.3" data-path="researchdesign.html"><a href="researchdesign.html#reliability"><i class="fa fa-check"></i><b>4.3</b> Assessing the reliability of a measurement</a></li>
-<li class="chapter" data-level="4.4" data-path="researchdesign.html"><a href="researchdesign.html#ivdv"><i class="fa fa-check"></i><b>4.4</b> The “role” of variables: predictors and outcomes</a></li>
-<li class="chapter" data-level="4.5" data-path="researchdesign.html"><a href="researchdesign.html#researchdesigns"><i class="fa fa-check"></i><b>4.5</b> Experimental and non-experimental research</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="researchdesign.html"><a href="researchdesign.html#experimental-research"><i class="fa fa-check"></i><b>4.5.1</b> Experimental research</a></li>
-<li class="chapter" data-level="4.5.2" data-path="researchdesign.html"><a href="researchdesign.html#non-experimental-research"><i class="fa fa-check"></i><b>4.5.2</b> Non-experimental research</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6" data-path="researchdesign.html"><a href="researchdesign.html#validity"><i class="fa fa-check"></i><b>4.6</b> Validity</a>
-<ul>
-<li class="chapter" data-level="4.6.1" data-path="researchdesign.html"><a href="researchdesign.html#internal-validity"><i class="fa fa-check"></i><b>4.6.1</b> Internal validity</a></li>
-<li class="chapter" data-level="4.6.2" data-path="researchdesign.html"><a href="researchdesign.html#external-validity"><i class="fa fa-check"></i><b>4.6.2</b> External validity</a></li>
-<li class="chapter" data-level="4.6.3" data-path="researchdesign.html"><a href="researchdesign.html#construct-validity"><i class="fa fa-check"></i><b>4.6.3</b> Construct validity</a></li>
-<li class="chapter" data-level="4.6.4" data-path="researchdesign.html"><a href="researchdesign.html#face-validity"><i class="fa fa-check"></i><b>4.6.4</b> Face validity</a></li>
-<li class="chapter" data-level="4.6.5" data-path="researchdesign.html"><a href="researchdesign.html#ecological-validity"><i class="fa fa-check"></i><b>4.6.5</b> Ecological validity</a></li>
-</ul></li>
-<li class="chapter" data-level="4.7" data-path="researchdesign.html"><a href="researchdesign.html#confounds-artefacts-and-other-threats-to-validity"><i class="fa fa-check"></i><b>4.7</b> Confounds, artefacts and other threats to validity</a>
-<ul>
-<li class="chapter" data-level="4.7.1" data-path="researchdesign.html"><a href="researchdesign.html#history-effects"><i class="fa fa-check"></i><b>4.7.1</b> History effects</a></li>
-<li class="chapter" data-level="4.7.2" data-path="researchdesign.html"><a href="researchdesign.html#maturation-effects"><i class="fa fa-check"></i><b>4.7.2</b> Maturation effects</a></li>
-<li class="chapter" data-level="4.7.3" data-path="researchdesign.html"><a href="researchdesign.html#repeated-testing-effects"><i class="fa fa-check"></i><b>4.7.3</b> Repeated testing effects</a></li>
-<li class="chapter" data-level="4.7.4" data-path="researchdesign.html"><a href="researchdesign.html#selection-bias"><i class="fa fa-check"></i><b>4.7.4</b> Selection bias</a></li>
-<li class="chapter" data-level="4.7.5" data-path="researchdesign.html"><a href="researchdesign.html#differentialattrition"><i class="fa fa-check"></i><b>4.7.5</b> Differential attrition</a></li>
-<li class="chapter" data-level="4.7.6" data-path="researchdesign.html"><a href="researchdesign.html#non-response-bias"><i class="fa fa-check"></i><b>4.7.6</b> Non-response bias</a></li>
-<li class="chapter" data-level="4.7.7" data-path="researchdesign.html"><a href="researchdesign.html#regression-to-the-mean"><i class="fa fa-check"></i><b>4.7.7</b> Regression to the mean</a></li>
-<li class="chapter" data-level="4.7.8" data-path="researchdesign.html"><a href="researchdesign.html#experimenter-bias"><i class="fa fa-check"></i><b>4.7.8</b> Experimenter bias</a></li>
-<li class="chapter" data-level="4.7.9" data-path="researchdesign.html"><a href="researchdesign.html#demand-effects-and-reactivity"><i class="fa fa-check"></i><b>4.7.9</b> Demand effects and reactivity</a></li>
-<li class="chapter" data-level="4.7.10" data-path="researchdesign.html"><a href="researchdesign.html#placebo-effects"><i class="fa fa-check"></i><b>4.7.10</b> Placebo effects</a></li>
-<li class="chapter" data-level="4.7.11" data-path="researchdesign.html"><a href="researchdesign.html#situation-measurement-and-subpopulation-effects"><i class="fa fa-check"></i><b>4.7.11</b> Situation, measurement and subpopulation effects</a></li>
-<li class="chapter" data-level="4.7.12" data-path="researchdesign.html"><a href="researchdesign.html#fraud-deception-and-self-deception"><i class="fa fa-check"></i><b>4.7.12</b> Fraud, deception and self-deception</a></li>
-</ul></li>
-<li class="chapter" data-level="4.8" data-path="researchdesign.html"><a href="researchdesign.html#summary"><i class="fa fa-check"></i><b>4.8</b> Summary</a></li>
-</ul></li>
+<li class="chapter" data-level="3" data-path="autostat.html"><a href="autostat.html"><i class="fa fa-check"></i><b>3</b> Automatic statistical analysis</a></li>
+<li class="chapter" data-level="4" data-path="cogstatintro.html"><a href="cogstatintro.html"><i class="fa fa-check"></i><b>4</b> Introduction to CogStat</a></li>
 <li class="part"><span><b>DESCRIPTIVE STATISTICS</b></span></li>
 <li class="chapter" data-level="5" data-path="exploringavariable.html"><a href="exploringavariable.html"><i class="fa fa-check"></i><b>5</b> Exploring a single variable</a>
 <ul>
@@ -176,7 +146,7 @@ div.csl-indent {
 <li class="chapter" data-level="5.1.1" data-path="exploringavariable.html"><a href="exploringavariable.html#mean"><i class="fa fa-check"></i><b>5.1.1</b> The mean</a></li>
 <li class="chapter" data-level="5.1.2" data-path="exploringavariable.html"><a href="exploringavariable.html#median"><i class="fa fa-check"></i><b>5.1.2</b> The median</a></li>
 <li class="chapter" data-level="5.1.3" data-path="exploringavariable.html"><a href="exploringavariable.html#mean-or-median-whats-the-difference"><i class="fa fa-check"></i><b>5.1.3</b> Mean or median? What’s the difference?</a></li>
-<li class="chapter" data-level="5.1.4" data-path="exploringavariable.html"><a href="exploringavariable.html#trimmedmean"><i class="fa fa-check"></i><b>5.1.4</b> Outliers and trimmed mean</a></li>
+<li class="chapter" data-level="5.1.4" data-path="exploringavariable.html"><a href="exploringavariable.html#trimmedmean"><i class="fa fa-check"></i><b>5.1.4</b> Trimmed mean</a></li>
 <li class="chapter" data-level="5.1.5" data-path="exploringavariable.html"><a href="exploringavariable.html#mode"><i class="fa fa-check"></i><b>5.1.5</b> Mode</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="exploringavariable.html"><a href="exploringavariable.html#var"><i class="fa fa-check"></i><b>5.2</b> Measures of variability</a>
@@ -184,14 +154,13 @@ div.csl-indent {
 <li class="chapter" data-level="5.2.1" data-path="exploringavariable.html"><a href="exploringavariable.html#range"><i class="fa fa-check"></i><b>5.2.1</b> Range</a></li>
 <li class="chapter" data-level="5.2.2" data-path="exploringavariable.html"><a href="exploringavariable.html#IQR"><i class="fa fa-check"></i><b>5.2.2</b> Interquartile range</a></li>
 <li class="chapter" data-level="5.2.3" data-path="exploringavariable.html"><a href="exploringavariable.html#aad"><i class="fa fa-check"></i><b>5.2.3</b> Mean absolute deviation (average absolute deviation)</a></li>
-<li class="chapter" data-level="5.2.4" data-path="exploringavariable.html"><a href="exploringavariable.html#variance"><i class="fa fa-check"></i><b>5.2.4</b> Variance</a></li>
-<li class="chapter" data-level="5.2.5" data-path="exploringavariable.html"><a href="exploringavariable.html#sd"><i class="fa fa-check"></i><b>5.2.5</b> Standard deviation</a></li>
-<li class="chapter" data-level="5.2.6" data-path="exploringavariable.html"><a href="exploringavariable.html#mad"><i class="fa fa-check"></i><b>5.2.6</b> Median absolute deviation</a></li>
+<li class="chapter" data-level="5.2.4" data-path="exploringavariable.html"><a href="exploringavariable.html#mad"><i class="fa fa-check"></i><b>5.2.4</b> Median absolute deviation</a></li>
+<li class="chapter" data-level="5.2.5" data-path="exploringavariable.html"><a href="exploringavariable.html#variance"><i class="fa fa-check"></i><b>5.2.5</b> Variance</a></li>
+<li class="chapter" data-level="5.2.6" data-path="exploringavariable.html"><a href="exploringavariable.html#sd"><i class="fa fa-check"></i><b>5.2.6</b> Standard deviation</a></li>
 <li class="chapter" data-level="5.2.7" data-path="exploringavariable.html"><a href="exploringavariable.html#which-measure-to-use"><i class="fa fa-check"></i><b>5.2.7</b> Which measure to use?</a></li>
 </ul></li>
 <li class="chapter" data-level="5.3" data-path="exploringavariable.html"><a href="exploringavariable.html#skewnesskurtosis"><i class="fa fa-check"></i><b>5.3</b> Skewness and kurtosis</a></li>
-<li class="chapter" data-level="5.4" data-path="exploringavariable.html"><a href="exploringavariable.html#zscore"><i class="fa fa-check"></i><b>5.4</b> Standard scores (<span class="math inline">\(z\)</span>-score)</a></li>
-<li class="chapter" data-level="5.5" data-path="exploringavariable.html"><a href="exploringavariable.html#summary-descriptives"><i class="fa fa-check"></i><b>5.5</b> Summary: descriptives</a></li>
+<li class="chapter" data-level="5.4" data-path="exploringavariable.html"><a href="exploringavariable.html#zscore"><i class="fa fa-check"></i><b>5.4</b> Standard scores (<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>-score)</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="correl.html"><a href="correl.html"><i class="fa fa-check"></i><b>6</b> Exploring a variable pair</a>
 <ul>
@@ -200,7 +169,6 @@ div.csl-indent {
 <li class="chapter" data-level="6.3" data-path="correl.html"><a href="correl.html#interpretingcorrelations"><i class="fa fa-check"></i><b>6.3</b> Interpreting a correlation</a></li>
 <li class="chapter" data-level="6.4" data-path="correl.html"><a href="correl.html#spearman"><i class="fa fa-check"></i><b>6.4</b> Spearman’s rank correlations</a></li>
 <li class="chapter" data-level="6.5" data-path="correl.html"><a href="correl.html#missingvaluespair"><i class="fa fa-check"></i><b>6.5</b> Missing values in pairwise calculations</a></li>
-<li class="chapter" data-level="6.6" data-path="correl.html"><a href="correl.html#summary-1"><i class="fa fa-check"></i><b>6.6</b> Summary</a></li>
 </ul></li>
 <li class="part"><span><b>INFERENTIAL STATISTICS</b></span></li>
 <li class="chapter" data-level="7" data-path="probability.html"><a href="probability.html"><i class="fa fa-check"></i><b>7</b> Probability and distributions</a>
@@ -220,7 +188,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.4.3" data-path="probability.html"><a href="probability.html#density"><i class="fa fa-check"></i><b>7.4.3</b> Probability density</a></li>
 <li class="chapter" data-level="7.4.4" data-path="probability.html"><a href="probability.html#otherdists"><i class="fa fa-check"></i><b>7.4.4</b> Other useful distributions</a></li>
 </ul></li>
-<li class="chapter" data-level="7.5" data-path="probability.html"><a href="probability.html#summary-2"><i class="fa fa-check"></i><b>7.5</b> Summary</a></li>
+<li class="chapter" data-level="7.5" data-path="probability.html"><a href="probability.html#summary-3"><i class="fa fa-check"></i><b>7.5</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="estimation.html"><a href="estimation.html"><i class="fa fa-check"></i><b>8</b> Population, sampling, estimation</a>
 <ul>
@@ -250,7 +218,7 @@ div.csl-indent {
 <li class="chapter" data-level="8.5.2" data-path="estimation.html"><a href="estimation.html#interpreting-a-confidence-interval"><i class="fa fa-check"></i><b>8.5.2</b> Interpreting a confidence interval</a></li>
 </ul></li>
 <li class="chapter" data-level="8.6" data-path="estimation.html"><a href="estimation.html#population-parameter-estimations-in-cogstat"><i class="fa fa-check"></i><b>8.6</b> Population parameter estimations in CogStat</a></li>
-<li class="chapter" data-level="8.7" data-path="estimation.html"><a href="estimation.html#summary-3"><i class="fa fa-check"></i><b>8.7</b> Summary</a></li>
+<li class="chapter" data-level="8.7" data-path="estimation.html"><a href="estimation.html#summary-4"><i class="fa fa-check"></i><b>8.7</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="hypothesistesting.html"><a href="hypothesistesting.html"><i class="fa fa-check"></i><b>9</b> Hypothesis testing</a>
 <ul>
@@ -267,7 +235,7 @@ div.csl-indent {
 <li class="chapter" data-level="9.4.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#a-note-on-statistical-significance"><i class="fa fa-check"></i><b>9.4.2</b> A note on statistical “significance”</a></li>
 <li class="chapter" data-level="9.4.3" data-path="hypothesistesting.html"><a href="hypothesistesting.html#onesidedtests"><i class="fa fa-check"></i><b>9.4.3</b> The difference between one sided and two sided tests</a></li>
 </ul></li>
-<li class="chapter" data-level="9.5" data-path="hypothesistesting.html"><a href="hypothesistesting.html#pvalue"><i class="fa fa-check"></i><b>9.5</b> The <span class="math inline">\(p\)</span> value of a test</a>
+<li class="chapter" data-level="9.5" data-path="hypothesistesting.html"><a href="hypothesistesting.html#pvalue"><i class="fa fa-check"></i><b>9.5</b> The <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> value of a test</a>
 <ul>
 <li class="chapter" data-level="9.5.1" data-path="hypothesistesting.html"><a href="hypothesistesting.html#a-softer-view-of-decision-making"><i class="fa fa-check"></i><b>9.5.1</b> A softer view of decision making</a></li>
 <li class="chapter" data-level="9.5.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#the-probability-of-extreme-data"><i class="fa fa-check"></i><b>9.5.2</b> The probability of extreme data</a></li>
@@ -290,12 +258,12 @@ div.csl-indent {
 <li class="chapter" data-level="9.8.2" data-path="hypothesistesting.html"><a href="hypothesistesting.html#bayesians-versus-frequentists"><i class="fa fa-check"></i><b>9.8.2</b> Bayesians versus frequentists</a></li>
 <li class="chapter" data-level="9.8.3" data-path="hypothesistesting.html"><a href="hypothesistesting.html#traps"><i class="fa fa-check"></i><b>9.8.3</b> Traps</a></li>
 </ul></li>
-<li class="chapter" data-level="9.9" data-path="hypothesistesting.html"><a href="hypothesistesting.html#summary-4"><i class="fa fa-check"></i><b>9.9</b> Summary</a></li>
+<li class="chapter" data-level="9.9" data-path="hypothesistesting.html"><a href="hypothesistesting.html#summary-5"><i class="fa fa-check"></i><b>9.9</b> Summary</a></li>
 </ul></li>
 <li class="part"><span><b>STATISTICAL TOOLS</b></span></li>
 <li class="chapter" data-level="10" data-path="chisquare.html"><a href="chisquare.html"><i class="fa fa-check"></i><b>10</b> Categorical data analysis</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="chisquare.html"><a href="chisquare.html#goftest"><i class="fa fa-check"></i><b>10.1</b> The <span class="math inline">\(\chi^2\)</span> goodness-of-fit test</a>
+<li class="chapter" data-level="10.1" data-path="chisquare.html"><a href="chisquare.html#goftest"><i class="fa fa-check"></i><b>10.1</b> The <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>χ</mi><mn>2</mn></msup><annotation encoding="application/x-tex">\chi^2</annotation></semantics></math> goodness-of-fit test</a>
 <ul>
 <li class="chapter" data-level="10.1.1" data-path="chisquare.html"><a href="chisquare.html#the-null-hypothesis-and-the-alternative-hypothesis"><i class="fa fa-check"></i><b>10.1.1</b> The null hypothesis and the alternative hypothesis</a></li>
 <li class="chapter" data-level="10.1.2" data-path="chisquare.html"><a href="chisquare.html#the-goodness-of-fit-test-statistic"><i class="fa fa-check"></i><b>10.1.2</b> The “goodness of fit” test statistic</a></li>
@@ -305,34 +273,34 @@ div.csl-indent {
 <li class="chapter" data-level="10.1.6" data-path="chisquare.html"><a href="chisquare.html#chisqreport"><i class="fa fa-check"></i><b>10.1.6</b> How to report the results of the test</a></li>
 <li class="chapter" data-level="10.1.7" data-path="chisquare.html"><a href="chisquare.html#a-comment-on-statistical-notation-advanced"><i class="fa fa-check"></i><b>10.1.7</b> A comment on statistical notation (advanced)</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="chisquare.html"><a href="chisquare.html#chisqindependence"><i class="fa fa-check"></i><b>10.2</b> The <span class="math inline">\(\chi^2\)</span> test of independence (or association)</a>
+<li class="chapter" data-level="10.2" data-path="chisquare.html"><a href="chisquare.html#chisqindependence"><i class="fa fa-check"></i><b>10.2</b> The <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>χ</mi><mn>2</mn></msup><annotation encoding="application/x-tex">\chi^2</annotation></semantics></math> test of independence (or association)</a>
 <ul>
 <li class="chapter" data-level="10.2.1" data-path="chisquare.html"><a href="chisquare.html#constructing-our-hypothesis-test"><i class="fa fa-check"></i><b>10.2.1</b> Constructing our hypothesis test</a></li>
 <li class="chapter" data-level="10.2.2" data-path="chisquare.html"><a href="chisquare.html#AssocTestInCogStat"><i class="fa fa-check"></i><b>10.2.2</b> The test results in CogStat</a></li>
 </ul></li>
 <li class="chapter" data-level="10.3" data-path="chisquare.html"><a href="chisquare.html#yates"><i class="fa fa-check"></i><b>10.3</b> Yates correction for 1 degree of freedom</a></li>
-<li class="chapter" data-level="10.4" data-path="chisquare.html"><a href="chisquare.html#chisqeffectsize"><i class="fa fa-check"></i><b>10.4</b> Effect size (Cramér’s <span class="math inline">\(V\)</span>)</a></li>
+<li class="chapter" data-level="10.4" data-path="chisquare.html"><a href="chisquare.html#chisqeffectsize"><i class="fa fa-check"></i><b>10.4</b> Effect size (Cramér’s <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>V</mi><annotation encoding="application/x-tex">V</annotation></semantics></math>)</a></li>
 <li class="chapter" data-level="10.5" data-path="chisquare.html"><a href="chisquare.html#chisqassumptions"><i class="fa fa-check"></i><b>10.5</b> Assumptions of the test(s)</a></li>
 <li class="chapter" data-level="10.6" data-path="chisquare.html"><a href="chisquare.html#fisherexacttest"><i class="fa fa-check"></i><b>10.6</b> The Fisher exact test</a></li>
 <li class="chapter" data-level="10.7" data-path="chisquare.html"><a href="chisquare.html#mcnemar"><i class="fa fa-check"></i><b>10.7</b> The McNemar test</a></li>
 <li class="chapter" data-level="10.8" data-path="chisquare.html"><a href="chisquare.html#whats-the-difference-between-mcnemar-and-independence"><i class="fa fa-check"></i><b>10.8</b> What’s the difference between McNemar and independence?</a></li>
-<li class="chapter" data-level="10.9" data-path="chisquare.html"><a href="chisquare.html#summary-5"><i class="fa fa-check"></i><b>10.9</b> Summary</a></li>
+<li class="chapter" data-level="10.9" data-path="chisquare.html"><a href="chisquare.html#summary-6"><i class="fa fa-check"></i><b>10.9</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="ttest.html"><a href="ttest.html"><i class="fa fa-check"></i><b>11</b> Comparing two means</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="ttest.html"><a href="ttest.html#ztest"><i class="fa fa-check"></i><b>11.1</b> The one-sample <span class="math inline">\(z\)</span>-test</a></li>
-<li class="chapter" data-level="11.2" data-path="ttest.html"><a href="ttest.html#onesamplettest"><i class="fa fa-check"></i><b>11.2</b> The one-sample <span class="math inline">\(t\)</span>-test</a></li>
-<li class="chapter" data-level="11.3" data-path="ttest.html"><a href="ttest.html#studentttest"><i class="fa fa-check"></i><b>11.3</b> The independent samples <span class="math inline">\(t\)</span>-test (Student test)</a></li>
-<li class="chapter" data-level="11.4" data-path="ttest.html"><a href="ttest.html#welchttest"><i class="fa fa-check"></i><b>11.4</b> The independent samples <span class="math inline">\(t\)</span>-test (Welch test)</a></li>
-<li class="chapter" data-level="11.5" data-path="ttest.html"><a href="ttest.html#pairedsamplesttest"><i class="fa fa-check"></i><b>11.5</b> The paired-samples <span class="math inline">\(t\)</span>-test</a></li>
-<li class="chapter" data-level="11.6" data-path="ttest.html"><a href="ttest.html#cohensd"><i class="fa fa-check"></i><b>11.6</b> Effect size (Cohen’s <span class="math inline">\(d\)</span>)</a></li>
+<li class="chapter" data-level="11.1" data-path="ttest.html"><a href="ttest.html#ztest"><i class="fa fa-check"></i><b>11.1</b> The one-sample <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>z</mi><annotation encoding="application/x-tex">z</annotation></semantics></math>-test</a></li>
+<li class="chapter" data-level="11.2" data-path="ttest.html"><a href="ttest.html#onesamplettest"><i class="fa fa-check"></i><b>11.2</b> The one-sample <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>-test</a></li>
+<li class="chapter" data-level="11.3" data-path="ttest.html"><a href="ttest.html#studentttest"><i class="fa fa-check"></i><b>11.3</b> The independent samples <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>-test (Student test)</a></li>
+<li class="chapter" data-level="11.4" data-path="ttest.html"><a href="ttest.html#welchttest"><i class="fa fa-check"></i><b>11.4</b> The independent samples <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>-test (Welch test)</a></li>
+<li class="chapter" data-level="11.5" data-path="ttest.html"><a href="ttest.html#pairedsamplesttest"><i class="fa fa-check"></i><b>11.5</b> The paired-samples <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>-test</a></li>
+<li class="chapter" data-level="11.6" data-path="ttest.html"><a href="ttest.html#cohensd"><i class="fa fa-check"></i><b>11.6</b> Effect size (Cohen’s <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>d</mi><annotation encoding="application/x-tex">d</annotation></semantics></math>)</a></li>
 <li class="chapter" data-level="11.7" data-path="ttest.html"><a href="ttest.html#shapiro"><i class="fa fa-check"></i><b>11.7</b> Normality of a sample</a></li>
 <li class="chapter" data-level="11.8" data-path="ttest.html"><a href="ttest.html#wilcox"><i class="fa fa-check"></i><b>11.8</b> Testing non-normal data with Wilcoxon tests</a>
 <ul>
 <li class="chapter" data-level="11.8.1" data-path="ttest.html"><a href="ttest.html#mannwhitney"><i class="fa fa-check"></i><b>11.8.1</b> Two-sample Wilcoxon test (Mann-Whitney test)</a></li>
 <li class="chapter" data-level="11.8.2" data-path="ttest.html"><a href="ttest.html#wilcoxon"><i class="fa fa-check"></i><b>11.8.2</b> One-sample and paired samples Wilcoxon tests</a></li>
 </ul></li>
-<li class="chapter" data-level="11.9" data-path="ttest.html"><a href="ttest.html#summary-6"><i class="fa fa-check"></i><b>11.9</b> Summary</a></li>
+<li class="chapter" data-level="11.9" data-path="ttest.html"><a href="ttest.html#summary-7"><i class="fa fa-check"></i><b>11.9</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="12" data-path="anova.html"><a href="anova.html"><i class="fa fa-check"></i><b>12</b> Comparing several means (one-way ANOVA)</a>
 <ul>
@@ -341,8 +309,8 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="12.2.1" data-path="anova.html"><a href="anova.html#from-variance"><i class="fa fa-check"></i><b>12.2.1</b> From variance…</a></li>
 <li class="chapter" data-level="12.2.2" data-path="anova.html"><a href="anova.html#to-total-sum-of-squares"><i class="fa fa-check"></i><b>12.2.2</b> … to total sum of squares</a></li>
-<li class="chapter" data-level="12.2.3" data-path="anova.html"><a href="anova.html#from-sums-of-squares-to-the-f-test"><i class="fa fa-check"></i><b>12.2.3</b> From sums of squares to the <span class="math inline">\(F\)</span>-test</a></li>
-<li class="chapter" data-level="12.2.4" data-path="anova.html"><a href="anova.html#anovamodel"><i class="fa fa-check"></i><b>12.2.4</b> Further reading: the meaning of <span class="math inline">\(F\)</span> (advanced)</a></li>
+<li class="chapter" data-level="12.2.3" data-path="anova.html"><a href="anova.html#from-sums-of-squares-to-the-f-test"><i class="fa fa-check"></i><b>12.2.3</b> From sums of squares to the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math>-test</a></li>
+<li class="chapter" data-level="12.2.4" data-path="anova.html"><a href="anova.html#anovamodel"><i class="fa fa-check"></i><b>12.2.4</b> Further reading: the meaning of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>F</mi><annotation encoding="application/x-tex">F</annotation></semantics></math> (advanced)</a></li>
 </ul></li>
 <li class="chapter" data-level="12.3" data-path="anova.html"><a href="anova.html#introduceaov"><i class="fa fa-check"></i><b>12.3</b> Interpreting our results in CogStat</a></li>
 <li class="chapter" data-level="12.4" data-path="anova.html"><a href="anova.html#anovaeffect"><i class="fa fa-check"></i><b>12.4</b> Effect size</a>
@@ -353,8 +321,8 @@ div.csl-indent {
 <li class="chapter" data-level="12.5" data-path="anova.html"><a href="anova.html#posthoc"><i class="fa fa-check"></i><b>12.5</b> Post hoc tests</a></li>
 <li class="chapter" data-level="12.6" data-path="anova.html"><a href="anova.html#levene"><i class="fa fa-check"></i><b>12.6</b> Checking the homogeneity of variance assumption</a></li>
 <li class="chapter" data-level="12.7" data-path="anova.html"><a href="anova.html#kruskalwallis"><i class="fa fa-check"></i><b>12.7</b> Testing for non-normal data with Kruskal-Wallis test</a></li>
-<li class="chapter" data-level="12.8" data-path="anova.html"><a href="anova.html#anovaandt"><i class="fa fa-check"></i><b>12.8</b> On the relationship between ANOVA and the Student <span class="math inline">\(t\)</span>-test</a></li>
-<li class="chapter" data-level="12.9" data-path="anova.html"><a href="anova.html#summary-7"><i class="fa fa-check"></i><b>12.9</b> Summary</a></li>
+<li class="chapter" data-level="12.8" data-path="anova.html"><a href="anova.html#anovaandt"><i class="fa fa-check"></i><b>12.8</b> On the relationship between ANOVA and the Student <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>-test</a></li>
+<li class="chapter" data-level="12.9" data-path="anova.html"><a href="anova.html#summary-8"><i class="fa fa-check"></i><b>12.9</b> Summary</a></li>
 </ul></li>
 <li class="chapter" data-level="13" data-path="anova2.html"><a href="anova2.html"><i class="fa fa-check"></i><b>13</b> Comparing several groups (factorial ANOVA)</a>
 <ul>
@@ -385,7 +353,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="14.4" data-path="regression.html"><a href="regression.html#r2"><i class="fa fa-check"></i><b>14.4</b> Quantifying the fit of the regression model</a>
 <ul>
-<li class="chapter" data-level="14.4.1" data-path="regression.html"><a href="regression.html#the-adjusted-r2-value"><i class="fa fa-check"></i><b>14.4.1</b> The adjusted <span class="math inline">\(R^2\)</span> value</a></li>
+<li class="chapter" data-level="14.4.1" data-path="regression.html"><a href="regression.html#the-adjusted-r2-value"><i class="fa fa-check"></i><b>14.4.1</b> The adjusted <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msup><mi>R</mi><mn>2</mn></msup><annotation encoding="application/x-tex">R^2</annotation></semantics></math> value</a></li>
 </ul></li>
 <li class="chapter" data-level="14.5" data-path="regression.html"><a href="regression.html#regressiontests"><i class="fa fa-check"></i><b>14.5</b> Hypothesis tests for regression models</a>
 <ul>
@@ -416,8 +384,8 @@ div.csl-indent {
 <li class="chapter" data-level="16.2" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#interpreting-bayes-factors"><i class="fa fa-check"></i><b>16.2</b> Interpreting Bayes factors</a></li>
 <li class="chapter" data-level="16.3" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#bayesian-statistics-in-cogstat"><i class="fa fa-check"></i><b>16.3</b> Bayesian statistics in CogStat</a>
 <ul>
-<li class="chapter" data-level="16.3.1" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#one-sample-t-test"><i class="fa fa-check"></i><b>16.3.1</b> One-sample <span class="math inline">\(t\)</span>-test</a></li>
-<li class="chapter" data-level="16.3.2" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#independent-samples-t-test"><i class="fa fa-check"></i><b>16.3.2</b> Independent samples <span class="math inline">\(t\)</span>-test</a></li>
+<li class="chapter" data-level="16.3.1" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#one-sample-t-test"><i class="fa fa-check"></i><b>16.3.1</b> One-sample <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>-test</a></li>
+<li class="chapter" data-level="16.3.2" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#independent-samples-t-test"><i class="fa fa-check"></i><b>16.3.2</b> Independent samples <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>-test</a></li>
 <li class="chapter" data-level="16.3.3" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#anova-1"><i class="fa fa-check"></i><b>16.3.3</b> ANOVA</a></li>
 <li class="chapter" data-level="16.3.4" data-path="bayesianhypothesistests.html"><a href="bayesianhypothesistests.html#linear-regression"><i class="fa fa-check"></i><b>16.3.4</b> Linear regression</a></li>
 </ul></li>
@@ -425,7 +393,7 @@ div.csl-indent {
 <li class="chapter" data-level="17" data-path="whybayes.html"><a href="whybayes.html"><i class="fa fa-check"></i><b>17</b> Why be a Bayesian?</a>
 <ul>
 <li class="chapter" data-level="17.1" data-path="whybayes.html"><a href="whybayes.html#evidentiary-standards-you-can-believe"><i class="fa fa-check"></i><b>17.1</b> Evidentiary standards you can believe</a></li>
-<li class="chapter" data-level="17.2" data-path="whybayes.html"><a href="whybayes.html#the-p-value-is-a-lie."><i class="fa fa-check"></i><b>17.2</b> The <span class="math inline">\(p\)</span>-value is a lie.</a></li>
+<li class="chapter" data-level="17.2" data-path="whybayes.html"><a href="whybayes.html#the-p-value-is-a-lie."><i class="fa fa-check"></i><b>17.2</b> The <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value is a lie.</a></li>
 <li class="chapter" data-level="17.3" data-path="whybayes.html"><a href="whybayes.html#is-it-really-this-bad"><i class="fa fa-check"></i><b>17.3</b> Is it really this bad?</a></li>
 </ul></li>
 <li class="part"><span><b>APPENDICES</b></span></li>
@@ -435,7 +403,7 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="summaryguide.html"><a href="summaryguide.html#analysing-differences-with-hyptothesis-testing"><i class="fa fa-check"></i>Analysing differences with hyptothesis testing</a></li>
 <li class="chapter" data-level="" data-path="summaryguide.html"><a href="summaryguide.html#analysing-relationship-with-hyptothesis-testing"><i class="fa fa-check"></i>Analysing relationship with hyptothesis testing</a></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i><b>19</b> Epilogue</a>
+<li class="chapter" data-level="" data-path="epilogue.html"><a href="epilogue.html"><i class="fa fa-check"></i>Epilogue</a>
 <ul>
 <li class="chapter" data-level="" data-path="epilogue.html"><a href="epilogue.html#the-undiscovered-statistics"><i class="fa fa-check"></i>The undiscovered statistics</a>
 <ul>
@@ -468,105 +436,105 @@ div.csl-indent {
 <div id="whybayes" class="section level1 hasAnchor" number="17">
 <h1><span class="header-section-number">Chapter 17</span> Why be a Bayesian?<a href="whybayes.html#whybayes" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>One of the most significant advantages of the Bayesian approach is that it answers the right questions. Within the Bayesian framework, it is sensible and allowable to refer to “the probability that a hypothesis is true”. You can even try to calculate this probability. Ultimately, isn’t that what you <em>want</em> your statistical tests to tell you? To an actual human being, this would seem to be the whole <em>point</em> of doing statistics: determining what is true and what isn’t. Any time you aren’t exactly sure about the truth, you should use the language of probability theory to say things like “there is an 80% chance that Theory A is true, but a 20% chance that Theory B is true instead”.</p>
-<p>This seems so obvious to a human, yet it is explicitly forbidden within the orthodox framework. To a frequentist, such statements are nonsense because “the theory is true” is not a repeatable event. A theory is true, or it is not, and no probabilistic statements are allowed, no matter how much you might want to make them. There’s a reason why you <em>must not</em> interpret the <span class="math inline">\(p\)</span>-value as the probability that the null hypothesis is true. There’s a reason why almost every textbook on statistics is forced to repeat that warning. It’s because people desperately <em>want</em> that to be the correct interpretation. However, it’s such an appealing idea that even trained statisticians fall prey to the mistake of trying to interpret a <span class="math inline">\(p\)</span>-value this way. For example, here is a quote from an official Newspoll report in 2013 explaining how to interpret their (frequentist) data analysis:<a href="#fn84" class="footnote-ref" id="fnref84"><sup>84</sup></a></p>
+<p>This seems so obvious to a human, yet it is explicitly forbidden within the orthodox framework. To a frequentist, such statements are nonsense because “the theory is true” is not a repeatable event. A theory is true, or it is not, and no probabilistic statements are allowed, no matter how much you might want to make them. There’s a reason why you <em>must not</em> interpret the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value as the probability that the null hypothesis is true. There’s a reason why almost every textbook on statistics is forced to repeat that warning. It’s because people desperately <em>want</em> that to be the correct interpretation. However, it’s such an appealing idea that even trained statisticians fall prey to the mistake of trying to interpret a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value this way. For example, here is a quote from an official Newspoll report in 2013 explaining how to interpret their (frequentist) data analysis:<a href="#fn85" class="footnote-ref" id="fnref85"><sup>85</sup></a></p>
 <blockquote>
 <p>Throughout the report, where relevant, statistically significant changes have been noted. All significance tests have been based on the 95 percent level of confidence. <strong>This means that if a change is noted as being statistically significant, there is a 95 percent probability that a real change has occurred</strong>, and is not simply due to chance variation. (emphasis added)</p>
 </blockquote>
-<p>Nope! That’s <em>not</em> what <span class="math inline">\(p&lt;.05\)</span> means. That’s <em>not</em> what 95% confidence means to a frequentist statistician. The bolded section is just plain wrong. Orthodox methods cannot tell you that “there is a 95% chance that a real change has occurred” because this is not the kind of event to which frequentist probabilities may be assigned. To an ideological frequentist, this sentence should be meaningless. Even if you’re a more pragmatic frequentist, it’s still the wrong definition of a <span class="math inline">\(p\)</span>-value. It is simply not an allowed or correct thing to say if you want to rely on orthodox statistical tools.</p>
-<p>On the other hand, let’s suppose you are a Bayesian. Although the bolded passage is the wrong definition of a <span class="math inline">\(p\)</span>-value, it’s pretty much exactly what a Bayesian means when they say that the posterior probability of the alternative hypothesis is greater than 95%. And here’s the thing. If the Bayesian posterior is the thing you <em>want</em> to report, why are you even trying to use orthodox methods? If you wish to make Bayesian claims, all you have to do is be a Bayesian and use Bayesian tools.</p>
-<p>Once you’ve made the jump, you no longer have to wrap your head around counterintuitive definitions of <span class="math inline">\(p\)</span>-values. You don’t have to bother remembering why you can’t say that you’re 95% confident that the true mean lies within some interval. You have to be honest about what you believed before running the study and then report what you learned from doing it. Sounds nice, doesn’t it? To me, this is the big promise of the Bayesian approach: you do the analysis you want to do and express what you believe the data are telling you.</p>
+<p>Nope! That’s <em>not</em> what <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math> means. That’s <em>not</em> what 95% confidence means to a frequentist statistician. The bolded section is just plain wrong. Orthodox methods cannot tell you that “there is a 95% chance that a real change has occurred” because this is not the kind of event to which frequentist probabilities may be assigned. To an ideological frequentist, this sentence should be meaningless. Even if you’re a more pragmatic frequentist, it’s still the wrong definition of a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value. It is simply not an allowed or correct thing to say if you want to rely on orthodox statistical tools.</p>
+<p>On the other hand, let’s suppose you are a Bayesian. Although the bolded passage is the wrong definition of a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value, it’s pretty much exactly what a Bayesian means when they say that the posterior probability of the alternative hypothesis is greater than 95%. And here’s the thing. If the Bayesian posterior is the thing you <em>want</em> to report, why are you even trying to use orthodox methods? If you wish to make Bayesian claims, all you have to do is be a Bayesian and use Bayesian tools.</p>
+<p>Once you’ve made the jump, you no longer have to wrap your head around counterintuitive definitions of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-values. You don’t have to bother remembering why you can’t say that you’re 95% confident that the true mean lies within some interval. You have to be honest about what you believed before running the study and then report what you learned from doing it. Sounds nice, doesn’t it? To me, this is the big promise of the Bayesian approach: you do the analysis you want to do and express what you believe the data are telling you.</p>
 <div id="evidentiary-standards-you-can-believe" class="section level2 hasAnchor" number="17.1">
 <h2><span class="header-section-number">17.1</span> Evidentiary standards you can believe<a href="whybayes.html#evidentiary-standards-you-can-believe" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <blockquote>
-<p><em>If <span class="math inline">\(p\)</span> is below .02 it is strongly indicated that the null hypothesis fails to account for the whole of the facts. We shall not often be astray if we draw a conventional line at .05 and consider that smaller values of <span class="math inline">\(p\)</span> indicate a real discrepancy.</em><br />
-– Sir Ronald <span class="citation">Fisher (1925)</span></p>
+<p><em>If <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> is below .02 it is strongly indicated that the null hypothesis fails to account for the whole of the facts. We shall not often be astray if we draw a conventional line at .05 and consider that smaller values of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> indicate a real discrepancy.</em><br />
+– Sir Ronald <span class="citation">Fisher (<a href="#ref-Fisher1925">1925</a>)</span></p>
 </blockquote>
-<p>Consider the quote above by Sir Ronald Fisher, one of the founders of what has become the orthodox approach to statistics. If anyone has ever been entitled to express an opinion about the intended function of <span class="math inline">\(p\)</span>-values, it’s Fisher. In this passage, taken from his classic guide <em>Statistical Methods for Research Workers</em>, he’s pretty clear about what it means to reject a null hypothesis at <span class="math inline">\(p&lt;.05\)</span>. In his opinion, if we take <span class="math inline">\(p&lt;.05\)</span> to mean there is “a real effect”, then “we shall not often be astray”. This view is hardly unusual: most practitioners express views very similar to Fisher’s. In essence, the <span class="math inline">\(p&lt;.05\)</span> convention is assumed to represent a fairly stringent evidentiary standard.</p>
-<p>Well, how true is that? One way to approach this question is to try to convert <span class="math inline">\(p\)</span>-values to Bayes factors and see how the two compare. It’s not an easy thing to do because a <span class="math inline">\(p\)</span>-value is a fundamentally different kind of calculation to a Bayes factor, and they don’t measure the same thing. However, there have been some attempts to work out the relationship between the two, and it’s somewhat surprising. For example, <span class="citation">Johnson (2013)</span> presents a pretty compelling case that (for <span class="math inline">\(t\)</span>-tests at least) the <span class="math inline">\(p&lt;.05\)</span> threshold corresponds roughly to a Bayes factor of somewhere between 3:1 and 5:1 in favour of the alternative. If that’s right, then Fisher’s claim is a bit of a stretch. Let’s suppose that the null hypothesis is true about half the time (i.e., the prior probability of <span class="math inline">\(H_0\)</span> is 0.5), and we use those numbers to work out the posterior probability of the null hypothesis, given that it has been rejected at <span class="math inline">\(p&lt;.05\)</span>. Using the data from <span class="citation">Johnson (2013)</span>, we see that if you reject the null at <span class="math inline">\(p&lt;.05\)</span>, you’ll be correct about 80% of the time. An evidentiary standard that ensures you’ll be wrong on 20% of your decisions isn’t good enough. The fact remains that, quite contrary to Fisher’s claim, if you reject at <span class="math inline">\(p&lt;.05\)</span> you shall quite often go astray. It’s not a very stringent evidentiary threshold at all.</p>
+<p>Consider the quote above by Sir Ronald Fisher, one of the founders of what has become the orthodox approach to statistics. If anyone has ever been entitled to express an opinion about the intended function of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-values, it’s Fisher. In this passage, taken from his classic guide <em>Statistical Methods for Research Workers</em>, he’s pretty clear about what it means to reject a null hypothesis at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math>. In his opinion, if we take <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math> to mean there is “a real effect”, then “we shall not often be astray”. This view is hardly unusual: most practitioners express views very similar to Fisher’s. In essence, the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math> convention is assumed to represent a fairly stringent evidentiary standard.</p>
+<p>Well, how true is that? One way to approach this question is to try to convert <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-values to Bayes factors and see how the two compare. It’s not an easy thing to do because a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value is a fundamentally different kind of calculation to a Bayes factor, and they don’t measure the same thing. However, there have been some attempts to work out the relationship between the two, and it’s somewhat surprising. For example, <span class="citation">Johnson (<a href="#ref-Johnson2013">2013</a>)</span> presents a pretty compelling case that (for <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>-tests at least) the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math> threshold corresponds roughly to a Bayes factor of somewhere between 3:1 and 5:1 in favour of the alternative. If that’s right, then Fisher’s claim is a bit of a stretch. Let’s suppose that the null hypothesis is true about half the time (i.e., the prior probability of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>0</mn></msub><annotation encoding="application/x-tex">H_0</annotation></semantics></math> is 0.5), and we use those numbers to work out the posterior probability of the null hypothesis, given that it has been rejected at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math>. Using the data from <span class="citation">Johnson (<a href="#ref-Johnson2013">2013</a>)</span>, we see that if you reject the null at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math>, you’ll be correct about 80% of the time. An evidentiary standard that ensures you’ll be wrong on 20% of your decisions isn’t good enough. The fact remains that, quite contrary to Fisher’s claim, if you reject at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math> you shall quite often go astray. It’s not a very stringent evidentiary threshold at all.</p>
 </div>
 <div id="the-p-value-is-a-lie." class="section level2 hasAnchor" number="17.2">
-<h2><span class="header-section-number">17.2</span> The <span class="math inline">\(p\)</span>-value is a lie.<a href="whybayes.html#the-p-value-is-a-lie." class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Okay, at this point, you might be thinking that the real problem is not with orthodox statistics, just the <span class="math inline">\(p&lt;.05\)</span> standard. In one sense, that’s true. The recommendation that <span class="citation">Johnson (2013)</span> gives is not that “everyone must be a Bayesian now”. Instead, the suggestion is that it would be wiser to shift the conventional standard to something like a <span class="math inline">\(p&lt;.01\)</span> level. That’s not an unreasonable view to take. Nonetheless, there’s a fairly big problem built into the way most (but not all) orthodox hypothesis tests are constructed. They are grossly naive about how humans actually do research, and because of this, most <span class="math inline">\(p\)</span>-values are wrong.</p>
-<p>That sounds like an absurd claim, right? Well, consider the following scenario. You’ve come up with a really exciting research hypothesis, and you design a study to test it. You’re very diligent, so you run a power analysis to work out what your sample size should be, and you run the study. You run your hypothesis test, and out pops a <span class="math inline">\(p\)</span>-value of 0.072. Really bloody annoying, right?</p>
+<h2><span class="header-section-number">17.2</span> The <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value is a lie.<a href="whybayes.html#the-p-value-is-a-lie." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Okay, at this point, you might be thinking that the real problem is not with orthodox statistics, just the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math> standard. In one sense, that’s true. The recommendation that <span class="citation">Johnson (<a href="#ref-Johnson2013">2013</a>)</span> gives is not that “everyone must be a Bayesian now”. Instead, the suggestion is that it would be wiser to shift the conventional standard to something like a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.01</mn></mrow><annotation encoding="application/x-tex">p&lt;.01</annotation></semantics></math> level. That’s not an unreasonable view to take. Nonetheless, there’s a fairly big problem built into the way most (but not all) orthodox hypothesis tests are constructed. They are grossly naive about how humans actually do research, and because of this, most <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-values are wrong.</p>
+<p>That sounds like an absurd claim, right? Well, consider the following scenario. You’ve come up with a really exciting research hypothesis, and you design a study to test it. You’re very diligent, so you run a power analysis to work out what your sample size should be, and you run the study. You run your hypothesis test, and out pops a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value of 0.072. Really bloody annoying, right?</p>
 <p>What should you do? Here are some possibilities:</p>
 <ol style="list-style-type: decimal">
 <li>You conclude that there is no effect and try to publish it as a null result</li>
 <li>You guess that there might be an effect and try to publish it as a “borderline significant” result</li>
 <li>You give up and try a new study</li>
-<li>You collect some more data to see if the <span class="math inline">\(p\)</span> value goes up or (preferably!) drops below the “magic” criterion of <span class="math inline">\(p&lt;.05\)</span></li>
+<li>You collect some more data to see if the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math> value goes up or (preferably!) drops below the “magic” criterion of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math></li>
 </ol>
 <p>Which would <em>you</em> choose? Before reading any further, take some time to think about it. Be honest with yourself. But don’t stress about it too much because it actually doesn’t matter what you choose. Danielle has some insights to share based on her own experiences as an author, reviewer and editor. Here’s what might easily happen in each case:</p>
 <ul>
-<li><p>Let’s start with option 1. If you try to publish it as a null result, the paper will struggle to be published. Some reviewers will think that <span class="math inline">\(p=.072\)</span> is not a null result. They’ll argue it’s borderline significant. Other reviewers will agree it’s a null result but will claim that even though some null results <em>are</em> publishable, yours isn’t. One or two reviewers might even be on your side, but you’ll be fighting an uphill battle to get it through.</p></li>
+<li><p>Let’s start with option 1. If you try to publish it as a null result, the paper will struggle to be published. Some reviewers will think that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>.072</mn></mrow><annotation encoding="application/x-tex">p=.072</annotation></semantics></math> is not a null result. They’ll argue it’s borderline significant. Other reviewers will agree it’s a null result but will claim that even though some null results <em>are</em> publishable, yours isn’t. One or two reviewers might even be on your side, but you’ll be fighting an uphill battle to get it through.</p></li>
 <li><p>Okay, let’s think about option number 2. Suppose you try to publish it as a borderline significant result. Some reviewers will claim that it’s a null result and should not be published. Others will claim that the evidence is ambiguous and that you should collect more data until you get a clear significant result. Again, the publication process does not favour you.</p></li>
-<li><p>Given the difficulties in publishing an “ambiguous” result like <span class="math inline">\(p=.072\)</span>, option number 3 might seem tempting: give up and do something else. But that’s a recipe for career suicide. If you give up and try a new project every time you face ambiguity, your work will never be published. And if you’re in academia without a publication record, you can lose your job. So that option is out.</p></li>
-<li><p>It looks like you’re stuck with option 4. You don’t have conclusive results, so you decide to collect some more data and re-run the analysis. It seems sensible, but unfortunately for you, if you do this, all of your <span class="math inline">\(p\)</span>-values are now incorrect. <em>All</em> of them. Not just the <span class="math inline">\(p\)</span>-values that you calculated for <em>this</em> study. All of them. All the <span class="math inline">\(p\)</span>-values you calculated in the past and all the <span class="math inline">\(p\)</span>-values you will calculate in the future. Fortunately, no one will notice. You’ll get published, and you’ll have lied.</p></li>
+<li><p>Given the difficulties in publishing an “ambiguous” result like <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>.072</mn></mrow><annotation encoding="application/x-tex">p=.072</annotation></semantics></math>, option number 3 might seem tempting: give up and do something else. But that’s a recipe for career suicide. If you give up and try a new project every time you face ambiguity, your work will never be published. And if you’re in academia without a publication record, you can lose your job. So that option is out.</p></li>
+<li><p>It looks like you’re stuck with option 4. You don’t have conclusive results, so you decide to collect some more data and re-run the analysis. It seems sensible, but unfortunately for you, if you do this, all of your <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-values are now incorrect. <em>All</em> of them. Not just the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-values that you calculated for <em>this</em> study. All of them. All the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-values you calculated in the past and all the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-values you will calculate in the future. Fortunately, no one will notice. You’ll get published, and you’ll have lied.</p></li>
 </ul>
 <p>What does that mean? It sounded like a perfectly reasonable strategy, didn’t it? You collected some data, but the results weren’t conclusive, so now what you want to do is collect more data until the results <em>are</em> conclusive. What’s wrong with that?</p>
-<p>In real life, this is exactly what every researcher does. Unfortunately, the theory of null hypothesis testing, as described in Chapter <a href="hypothesistesting.html#hypothesistesting">9</a>, <em>forbids</em> you from doing this.<a href="#fn85" class="footnote-ref" id="fnref85"><sup>85</sup></a> The reason is that the theory assumes that the experiment is finished and all the data are in. And because it assumes the experiment is over, it only considers <em>two</em> possible decisions. If you’re using the conventional <span class="math inline">\(p&lt;.05\)</span> threshold, those decisions are:</p>
+<p>In real life, this is exactly what every researcher does. Unfortunately, the theory of null hypothesis testing, as described in Chapter <a href="hypothesistesting.html#hypothesistesting">9</a>, <em>forbids</em> you from doing this.<a href="#fn86" class="footnote-ref" id="fnref86"><sup>86</sup></a> The reason is that the theory assumes that the experiment is finished and all the data are in. And because it assumes the experiment is over, it only considers <em>two</em> possible decisions. If you’re using the conventional <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math> threshold, those decisions are:</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left"><span class="math inline">\(p\)</span>-value</th>
+<th align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value</th>
 <th align="left">Decision</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><span class="math inline">\(p &lt; .05\)</span></td>
-<td align="left">Reject <span class="math inline">\(H_0\)</span></td>
+<td align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p &lt; .05</annotation></semantics></math></td>
+<td align="left">Reject <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>0</mn></msub><annotation encoding="application/x-tex">H_0</annotation></semantics></math></td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(p &gt; .05\)</span></td>
-<td align="left">Retain <span class="math inline">\(H_0\)</span></td>
+<td align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&gt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p &gt; .05</annotation></semantics></math></td>
+<td align="left">Retain <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>H</mi><mn>0</mn></msub><annotation encoding="application/x-tex">H_0</annotation></semantics></math></td>
 </tr>
 </tbody>
 </table>
-<p>What <em>you’re</em> doing is adding a third possible action to the decision-making problem. Specifically, what you’re doing is using the <span class="math inline">\(p\)</span>-value itself as a reason to justify continuing the experiment. And as a consequence, you’ve transformed the decision-making procedure into one that looks more like this:</p>
+<p>What <em>you’re</em> doing is adding a third possible action to the decision-making problem. Specifically, what you’re doing is using the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value itself as a reason to justify continuing the experiment. And as a consequence, you’ve transformed the decision-making procedure into one that looks more like this:</p>
 <table>
 <thead>
 <tr class="header">
-<th align="left"><span class="math inline">\(p\)</span>-value</th>
+<th align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value</th>
 <th align="left">Decision</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><span class="math inline">\(p &lt; .05\)</span></td>
+<td align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p &lt; .05</annotation></semantics></math></td>
 <td align="left">Stop the experiment and reject the null</td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(0.10 &gt; p &gt; .05\)</span></td>
+<td align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0.10</mn><mo>&gt;</mo><mi>p</mi><mo>&gt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">0.10 &gt; p &gt; .05</annotation></semantics></math></td>
 <td align="left">Continue the experiment and retain the null</td>
 </tr>
 <tr class="odd">
-<td align="left"><span class="math inline">\(p &gt; .10\)</span></td>
+<td align="left"><math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&gt;</mo><mn>.10</mn></mrow><annotation encoding="application/x-tex">p &gt; .10</annotation></semantics></math></td>
 <td align="left">Stop the experiment and retain the null</td>
 </tr>
 </tbody>
 </table>
-<p>The “basic” theory of null hypothesis testing isn’t built to handle this sort of thing, not in the form described in Chapter <a href="hypothesistesting.html#hypothesistesting">9</a>. If you’re the kind of person who would choose to “collect more data” in real life, it implies that you are <em>not</em> making decisions in accordance with the rules of null hypothesis testing. Even if you arrive at the same decision as the hypothesis test, you aren’t following the decision <em>process</em> it implies, and it’s this failure to follow the process causing the problem.<a href="#fn86" class="footnote-ref" id="fnref86"><sup>86</sup></a> Your <span class="math inline">\(p\)</span>-values are a lie. Worse yet, they’re a lie in a dangerous way because they’re all <em>too small</em>. To give you a sense of just how bad it can be, consider the following (worst case) scenario.</p>
-<p>Imagine you’re a really super-enthusiastic researcher on a tight budget who didn’t pay any attention to the warnings above. You design a study comparing two groups. You desperately want to see a significant result at the <span class="math inline">\(p&lt;.05\)</span> level, but you really don’t want to collect any more data than you have to (because it’s expensive). In order to cut costs, you start collecting data, but every time a new observation arrives, you run a <span class="math inline">\(t\)</span>-test on your data. If the <span class="math inline">\(t\)</span>-tests says <span class="math inline">\(p&lt;.05\)</span> then you stop the experiment and report a significant result. If not, you keep collecting data. You keep doing this until you reach your pre-defined spending limit for this experiment. Let’s say that limit kicks in at <span class="math inline">\(N=1000\)</span> observations. As it turns out, the truth of the matter is that there is no real effect to be found: the null hypothesis is true. So, what’s the chance that you’ll make it to the end of the experiment and (correctly) conclude that there is no effect? In an ideal world, the answer here should be 95%. After all, the whole <em>point</em> of the <span class="math inline">\(p&lt;.05\)</span> criterion is to control the Type I error rate at 5%, so what we’d hope is that there’s only a 5% chance of falsely rejecting the null hypothesis in this situation. However, there’s no guarantee that will be true. You’re breaking the rules: you’re running tests repeatedly, “peeking” at your data to see if you’ve gotten a significant result, and all bets are off.</p>
+<p>The “basic” theory of null hypothesis testing isn’t built to handle this sort of thing, not in the form described in Chapter <a href="hypothesistesting.html#hypothesistesting">9</a>. If you’re the kind of person who would choose to “collect more data” in real life, it implies that you are <em>not</em> making decisions in accordance with the rules of null hypothesis testing. Even if you arrive at the same decision as the hypothesis test, you aren’t following the decision <em>process</em> it implies, and it’s this failure to follow the process causing the problem.<a href="#fn87" class="footnote-ref" id="fnref87"><sup>87</sup></a> Your <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-values are a lie. Worse yet, they’re a lie in a dangerous way because they’re all <em>too small</em>. To give you a sense of just how bad it can be, consider the following (worst case) scenario.</p>
+<p>Imagine you’re a really super-enthusiastic researcher on a tight budget who didn’t pay any attention to the warnings above. You design a study comparing two groups. You desperately want to see a significant result at the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math> level, but you really don’t want to collect any more data than you have to (because it’s expensive). In order to cut costs, you start collecting data, but every time a new observation arrives, you run a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>-test on your data. If the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>-tests says <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math> then you stop the experiment and report a significant result. If not, you keep collecting data. You keep doing this until you reach your pre-defined spending limit for this experiment. Let’s say that limit kicks in at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">N=1000</annotation></semantics></math> observations. As it turns out, the truth of the matter is that there is no real effect to be found: the null hypothesis is true. So, what’s the chance that you’ll make it to the end of the experiment and (correctly) conclude that there is no effect? In an ideal world, the answer here should be 95%. After all, the whole <em>point</em> of the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math> criterion is to control the Type I error rate at 5%, so what we’d hope is that there’s only a 5% chance of falsely rejecting the null hypothesis in this situation. However, there’s no guarantee that will be true. You’re breaking the rules: you’re running tests repeatedly, “peeking” at your data to see if you’ve gotten a significant result, and all bets are off.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:type1"></span>
-<img src="resources/image/adapt.png" alt="How badly can things go wrong if you re-run your tests every time new data arrive? If you are a frequentist, the answer is &quot;very wrong&quot;."  />
+<img src="resources/image/adapt.png" alt="How badly can things go wrong if you re-run your tests every time new data arrive? If you are a frequentist, the answer is &quot;very wrong&quot;." width="1050" />
 <p class="caption">
 Figure 17.1: How badly can things go wrong if you re-run your tests every time new data arrive? If you are a frequentist, the answer is “very wrong”.
 </p>
 </div>
 <p>So, how bad is it? The answer is shown as the solid black line in Figure <a href="whybayes.html#fig:type1">17.1</a>, and it’s <em>astoundingly</em> bad. If you peek at your data after every single observation, there is a 49% chance that you will make a Type I error. That’s, um, quite a bit bigger than the 5% that it’s supposed to be.</p>
-<p>By way of comparison, imagine that you had used the following strategy. Start collecting data. Every single time an observation arrives, run a <em>Bayesian</em> <span class="math inline">\(t\)</span>-test and look at the Bayes factor. Assume that <span class="citation">Johnson (2013)</span> is right, and let’s treat a Bayes factor of 3:1 as roughly equivalent to a <span class="math inline">\(p\)</span>-value of .05.<a href="#fn87" class="footnote-ref" id="fnref87"><sup>87</sup></a> This time around, our trigger-happy researcher uses the following procedure: if the Bayes factor is 3:1 or more in favour of the null, stop the experiment and retain the null. If it is 3:1 or more in favour of the alternative, stop the experiment and reject the null. Otherwise, continue testing. Now, just like last time, let’s assume that the null hypothesis is true. What happens? The simulation results for this scenario are shown as the dashed line in Figure <a href="whybayes.html#fig:type1">17.1</a>. It turns out that the Type I error rate is much much lower than the 49% rate that we were getting by using the orthodox <span class="math inline">\(t\)</span>-test.</p>
-<p>In some ways, this is remarkable. The entire <em>point</em> of orthodox null hypothesis testing is to control the Type I error rate. Bayesian methods aren’t actually designed to do this at all. Yet, the Bayesian approach is much more effective when faced with a “trigger-happy” researcher who keeps running hypothesis tests as the data come in. Even the 3:1 standard, which most Bayesians would consider unacceptably lax, is much safer than the <span class="math inline">\(p&lt;.05\)</span> rule.</p>
+<p>By way of comparison, imagine that you had used the following strategy. Start collecting data. Every single time an observation arrives, run a <em>Bayesian</em> <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>-test and look at the Bayes factor. Assume that <span class="citation">Johnson (<a href="#ref-Johnson2013">2013</a>)</span> is right, and let’s treat a Bayes factor of 3:1 as roughly equivalent to a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value of .05.<a href="#fn88" class="footnote-ref" id="fnref88"><sup>88</sup></a> This time around, our trigger-happy researcher uses the following procedure: if the Bayes factor is 3:1 or more in favour of the null, stop the experiment and retain the null. If it is 3:1 or more in favour of the alternative, stop the experiment and reject the null. Otherwise, continue testing. Now, just like last time, let’s assume that the null hypothesis is true. What happens? The simulation results for this scenario are shown as the dashed line in Figure <a href="whybayes.html#fig:type1">17.1</a>. It turns out that the Type I error rate is much much lower than the 49% rate that we were getting by using the orthodox <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>-test.</p>
+<p>In some ways, this is remarkable. The entire <em>point</em> of orthodox null hypothesis testing is to control the Type I error rate. Bayesian methods aren’t actually designed to do this at all. Yet, the Bayesian approach is much more effective when faced with a “trigger-happy” researcher who keeps running hypothesis tests as the data come in. Even the 3:1 standard, which most Bayesians would consider unacceptably lax, is much safer than the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math> rule.</p>
 </div>
 <div id="is-it-really-this-bad" class="section level2 hasAnchor" number="17.3">
 <h2><span class="header-section-number">17.3</span> Is it really this bad?<a href="whybayes.html#is-it-really-this-bad" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>The example in the previous section is a pretty extreme situation. In real life, people don’t run hypothesis tests every time a new observation arrives. So it’s not fair to say that the <span class="math inline">\(p&lt;.05\)</span> threshold “really” corresponds to a 49% Type I error rate (i.e., <span class="math inline">\(p=.49\)</span>). But the fact remains that if you want your <span class="math inline">\(p\)</span>-values to be honest, then you either have to switch to a completely different way of doing hypothesis tests, or you must enforce a strict rule: <em>no peeking</em>.</p>
-<p>You are <em>not</em> allowed to use the data to decide when to terminate the experiment. You are <em>not</em> allowed to look at a “borderline” <span class="math inline">\(p\)</span>-value and decide to collect more data. You aren’t even allowed to change your data analysis strategy after looking at the data. You are strictly required to follow these rules. Otherwise, the <span class="math inline">\(p\)</span>-values you calculate will be nonsense. And yes, these rules are surprisingly strict.</p>
-<p>Suppose you started running your study with the intention of collecting <span class="math inline">\(N=80\)</span> people. When the study starts out, you follow the rules, refusing to look at the data or run any tests. But when you reach <span class="math inline">\(N=50\)</span>, your willpower gives in, and you take a peek. Guess what? You’ve got a significant result! Now, sure, you know you <em>said</em> that you’d keep running the study out to a sample size of <span class="math inline">\(N=80\)</span>, but it seems pointless now, right? The result is significant with a sample size of <span class="math inline">\(N=50\)</span>, so wouldn’t it be wasteful and inefficient to keep collecting data? Aren’t you tempted to stop? Just a little? Well, keep in mind that if you do, your Type I error rate at <span class="math inline">\(p&lt;.05\)</span> just ballooned out to 8%. When you report <span class="math inline">\(p&lt;.05\)</span> in your paper, what you’re <em>really</em> saying is <span class="math inline">\(p&lt;.08\)</span>. That’s how bad the consequences of “just one peek” can be.</p>
-<p>Now consider this: the scientific literature is filled with <span class="math inline">\(t\)</span>-tests, ANOVAs, regressions and chi-square tests. The tests in this book and the ones baked into CogStat aren’t picked arbitrarily. The reason why these four tools appear in most introductory statistics texts is that these are the bread and butter tools of science. None of these tools includes a correction to deal with “data peeking”: they all assume that you’re not doing it. But how realistic is that assumption? In real life, how many people do you think have “peeked” at their data before the experiment was finished and adapted their subsequent behaviour after seeing what the data looked like? Except when an external constraint fixes the sampling procedure, the answer probably is: “most people have done it”. If that has happened, you can infer that the reported <span class="math inline">\(p\)</span>-values are wrong. Worse yet, because we don’t know what decision process they actually followed, we have no way to know what the <span class="math inline">\(p\)</span>-values <em>should</em> have been. You can’t compute a <span class="math inline">\(p\)</span>-value when you don’t know the decision-making procedure that the researcher used. And so the reported <span class="math inline">\(p\)</span>-value remains a lie.</p>
-<p>Given all of the above, what is the take-home message? It’s not that Bayesian methods are foolproof. If a researcher is determined to cheat, they can always do so. Bayes’ rule cannot stop people from lying, nor can it stop them from rigging an experiment. The reason why we run statistical tests is to protect us from ourselves. And the reason why “data peeking” is such a concern is that it’s so tempting, <em>even for honest researchers</em>. A theory for statistical inference has to acknowledge this. Yes, you might try to defend <span class="math inline">\(p\)</span>-values by saying that it’s the researcher’s fault for not using them correctly. A theory of statistical inference that is so utterly naive about humans that it doesn’t even consider the possibility that the researcher might <em>look at their data</em> isn’t a theory worth having. The point here is:</p>
+<p>The example in the previous section is a pretty extreme situation. In real life, people don’t run hypothesis tests every time a new observation arrives. So it’s not fair to say that the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math> threshold “really” corresponds to a 49% Type I error rate (i.e., <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>.49</mn></mrow><annotation encoding="application/x-tex">p=.49</annotation></semantics></math>). But the fact remains that if you want your <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-values to be honest, then you either have to switch to a completely different way of doing hypothesis tests, or you must enforce a strict rule: <em>no peeking</em>.</p>
+<p>You are <em>not</em> allowed to use the data to decide when to terminate the experiment. You are <em>not</em> allowed to look at a “borderline” <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value and decide to collect more data. You aren’t even allowed to change your data analysis strategy after looking at the data. You are strictly required to follow these rules. Otherwise, the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-values you calculate will be nonsense. And yes, these rules are surprisingly strict.</p>
+<p>Suppose you started running your study with the intention of collecting <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>80</mn></mrow><annotation encoding="application/x-tex">N=80</annotation></semantics></math> people. When the study starts out, you follow the rules, refusing to look at the data or run any tests. But when you reach <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>50</mn></mrow><annotation encoding="application/x-tex">N=50</annotation></semantics></math>, your willpower gives in, and you take a peek. Guess what? You’ve got a significant result! Now, sure, you know you <em>said</em> that you’d keep running the study out to a sample size of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>80</mn></mrow><annotation encoding="application/x-tex">N=80</annotation></semantics></math>, but it seems pointless now, right? The result is significant with a sample size of <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi><mo>=</mo><mn>50</mn></mrow><annotation encoding="application/x-tex">N=50</annotation></semantics></math>, so wouldn’t it be wasteful and inefficient to keep collecting data? Aren’t you tempted to stop? Just a little? Well, keep in mind that if you do, your Type I error rate at <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math> just ballooned out to 8%. When you report <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p&lt;.05</annotation></semantics></math> in your paper, what you’re <em>really</em> saying is <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>&lt;</mo><mn>.08</mn></mrow><annotation encoding="application/x-tex">p&lt;.08</annotation></semantics></math>. That’s how bad the consequences of “just one peek” can be.</p>
+<p>Now consider this: the scientific literature is filled with <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>t</mi><annotation encoding="application/x-tex">t</annotation></semantics></math>-tests, ANOVAs, regressions and chi-square tests. The tests in this book and the ones baked into CogStat aren’t picked arbitrarily. The reason why these four tools appear in most introductory statistics texts is that these are the bread and butter tools of science. None of these tools includes a correction to deal with “data peeking”: they all assume that you’re not doing it. But how realistic is that assumption? In real life, how many people do you think have “peeked” at their data before the experiment was finished and adapted their subsequent behaviour after seeing what the data looked like? Except when an external constraint fixes the sampling procedure, the answer probably is: “most people have done it”. If that has happened, you can infer that the reported <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-values are wrong. Worse yet, because we don’t know what decision process they actually followed, we have no way to know what the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-values <em>should</em> have been. You can’t compute a <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value when you don’t know the decision-making procedure that the researcher used. And so the reported <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value remains a lie.</p>
+<p>Given all of the above, what is the take-home message? It’s not that Bayesian methods are foolproof. If a researcher is determined to cheat, they can always do so. Bayes’ rule cannot stop people from lying, nor can it stop them from rigging an experiment. The reason why we run statistical tests is to protect us from ourselves. And the reason why “data peeking” is such a concern is that it’s so tempting, <em>even for honest researchers</em>. A theory for statistical inference has to acknowledge this. Yes, you might try to defend <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-values by saying that it’s the researcher’s fault for not using them correctly. A theory of statistical inference that is so utterly naive about humans that it doesn’t even consider the possibility that the researcher might <em>look at their data</em> isn’t a theory worth having. The point here is:</p>
 <blockquote>
 <p><em>Good laws have their origins in bad morals.</em>
-– Ambrosius Macrobius<a href="#fn88" class="footnote-ref" id="fnref88"><sup>88</sup></a></p>
+– Ambrosius Macrobius<a href="#fn89" class="footnote-ref" id="fnref89"><sup>89</sup></a></p>
 </blockquote>
 <p>Good rules for statistical testing have to acknowledge human frailty. None of us is without sin. None of us is beyond temptation. A good system for statistical inference should still work even when it is used by actual humans. Orthodox null hypothesis testing does not.</p>
 <p>Let us be fair: by adopting a sequential analysis perspective, you can avoid these errors within the orthodox framework as well. You can explicitly design studies with interim analyses in mind. However, that is not the current practice amongst psychology researchers.</p>
@@ -577,14 +545,23 @@ Figure 17.1: How badly can things go wrong if you re-run your tests every time n
 
 
 
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-Fisher1925" class="csl-entry">
+Fisher, R. A. (1925). <em>Statistical methods for research workers</em>. Oliver; Boyd.
+</div>
+<div id="ref-Johnson2013" class="csl-entry">
+Johnson, V. E. (2013). Revised standards for statistical evidence. <em>Proceedings of the National Academy of Sciences</em>, <em>48</em>, 19313–19317.
+</div>
+</div>
 <div class="footnotes">
 <hr />
-<ol start="84">
-<li id="fn84"><p><a href="http://about.abc.net.au/reports-publications/appreciation-survey-summary-report-2013/" class="uri">http://about.abc.net.au/reports-publications/appreciation-survey-summary-report-2013/</a><a href="whybayes.html#fnref84" class="footnote-back">↩︎</a></p></li>
-<li id="fn85"><p>In the interests of being completely honest, not all orthodox statistical tests that rely on this silly assumption. There are several <em>sequential analysis</em> tools that are sometimes used in clinical trials and the like. These methods are built on the premise that data are analysed as they arrive, and these tests aren’t horribly broken. However, sequential analysis methods are constructed in a very different fashion from the “standard” version of null hypothesis testing. They don’t make it into any introductory textbooks, and they’re not very widely used in psychological literature. The concern raised here is valid for every single orthodox test presented so far.<a href="whybayes.html#fnref85" class="footnote-back">↩︎</a></p></li>
-<li id="fn86"><p>A related problem: <a href="http://xkcd.com/1478/" class="uri">http://xkcd.com/1478/</a><a href="whybayes.html#fnref86" class="footnote-back">↩︎</a></p></li>
-<li id="fn87"><p>Some readers might wonder why 3:1 rather than 5:1, given that <span class="citation">Johnson (2013)</span> suggests that <span class="math inline">\(p=.05\)</span> lies somewhere in that range. Let’s be charitable to the <span class="math inline">\(p\)</span>-value. Should we choose a 5:1 Bayes factor instead, the results would look even better for the Bayesian approach.<a href="whybayes.html#fnref87" class="footnote-back">↩︎</a></p></li>
-<li id="fn88"><p><a href="http://www.quotationspage.com/quotes/Ambrosius_Macrobius/" class="uri">http://www.quotationspage.com/quotes/Ambrosius_Macrobius/</a><a href="whybayes.html#fnref88" class="footnote-back">↩︎</a></p></li>
+<ol start="85">
+<li id="fn85"><p><a href="http://about.abc.net.au/reports-publications/appreciation-survey-summary-report-2013/" class="uri">http://about.abc.net.au/reports-publications/appreciation-survey-summary-report-2013/</a><a href="whybayes.html#fnref85" class="footnote-back">↩︎</a></p></li>
+<li id="fn86"><p>In the interests of being completely honest, not all orthodox statistical tests that rely on this silly assumption. There are several <em>sequential analysis</em> tools that are sometimes used in clinical trials and the like. These methods are built on the premise that data are analysed as they arrive, and these tests aren’t horribly broken. However, sequential analysis methods are constructed in a very different fashion from the “standard” version of null hypothesis testing. They don’t make it into any introductory textbooks, and they’re not very widely used in psychological literature. The concern raised here is valid for every single orthodox test presented so far.<a href="whybayes.html#fnref86" class="footnote-back">↩︎</a></p></li>
+<li id="fn87"><p>A related problem: <a href="http://xkcd.com/1478/" class="uri">http://xkcd.com/1478/</a><a href="whybayes.html#fnref87" class="footnote-back">↩︎</a></p></li>
+<li id="fn88"><p>Some readers might wonder why 3:1 rather than 5:1, given that <span class="citation">Johnson (<a href="#ref-Johnson2013">2013</a>)</span> suggests that <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi><mo>=</mo><mn>.05</mn></mrow><annotation encoding="application/x-tex">p=.05</annotation></semantics></math> lies somewhere in that range. Let’s be charitable to the <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>p</mi><annotation encoding="application/x-tex">p</annotation></semantics></math>-value. Should we choose a 5:1 Bayes factor instead, the results would look even better for the Bayesian approach.<a href="whybayes.html#fnref88" class="footnote-back">↩︎</a></p></li>
+<li id="fn89"><p><a href="http://www.quotationspage.com/quotes/Ambrosius_Macrobius/" class="uri">http://www.quotationspage.com/quotes/Ambrosius_Macrobius/</a><a href="whybayes.html#fnref89" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -632,10 +609,12 @@ gitbook.start({
 },
 "toc": {
 "collapse": "section",
-"number_sections": true,
-"fig_caption": true
+"fig_caption": true,
+"number_sections": true
 },
-"toc_depth": 2,
+"toc_depth": 3,
+"tof": true,
+"tot": true,
 "toolbar": {
 "position": "static"
 }
@@ -643,20 +622,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

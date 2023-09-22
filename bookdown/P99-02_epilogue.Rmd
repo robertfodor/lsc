@@ -1,4 +1,4 @@
-# Epilogue
+# Epilogue{-}
 
 An epilogue is what you write when a book is finished, and this book really isn't finished. The content will change along with feedback from students and other readers, and it must be revised anyway once more and more features are added to CogStat. This book is primarily online for students to use.
 

@@ -279,6 +279,7 @@ $$
 $$
 
 What we do next is convert our summed squares value into a "mean squares" value, which we do by dividing by the degrees of freedom:
+
 $$
 \begin{array}{lcl}
 \mbox{MS}_b &=& \displaystyle\frac{\mbox{SS}_b }{ \mbox{df}_b} \\
@@ -287,6 +288,7 @@ $$
 $$
 
 Finally, we calculate the $F$-ratio by dividing the between-groups MS by the within-groups MS:
+
 $$
 F = \frac{\mbox{MS}_b }{ \mbox{MS}_w } 
 $$
@@ -352,12 +354,16 @@ $$
 
 Finally, we can calculate the $F$-ratio.
 
+
+
 $$
-F = \frac{\mbox{MS}_b }{ \mbox{MS}_w } 
+\begin{array}{lcl}
+F &=& \frac{\mbox{MS}_b }{ \mbox{MS}_w } 
     \\
-    = \frac{1.7267}{0.0928}
+    &=& \frac{1.7267}{0.0928} 
     \\
-    = 18.6067
+    &=& 18.6067
+\end{array}
 $$
 
 

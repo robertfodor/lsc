@@ -22,7 +22,13 @@ knitr::kable(cbind(
  booktabs = TRUE, linesep = "",
  align = "lccc",
  escape = FALSE) %>%
-  add_header_above(c("", "Parent grumpiness", "Parent's hours slept", "Baby's hours slept"))
+  add_header_above(c("", "Parent grumpiness", "Parent's hours slept", "Baby's hours slept")) %>%
+  kable_styling(
+   bootstrap_options = c("hover", "condensed", "responsive"),
+   full_width = TRUE,
+   position = "center",
+   latex_options = c("HOLD_position", "repeat_header", "scale_down")
+    )
 ```
 
 To start understanding the relationship between a pair of variables, select `Explore relation of variable pair` so a pop-up appears. Move the name of the two variables you wish to analyse from `Available variables` to `Selected variables`, then click `OK`. In CogStat, we can run analysis on multiple variables at once by selecting them in the variable list. This will display all analysis results after each other sequentially. We'll be looking at sections called *Sample properties* from the result sets.
@@ -33,21 +39,41 @@ knitr::include_graphics("resources/image/cogstatexplorevariablepair.png")
 
 ## The strength and direction of a relationship
 
-```{r scatterparent1a, fig.align='center',echo=FALSE, fig.cap="Scatterplot drawn by CogStat showing the relationship between `parentsleep` and `parentgrump`"}
-knitr::include_graphics("resources/image/parentsleepgrumpplot.png")
+We can draw scatterplots to give us a general sense of how closely related two variables are. Ideally, though, we might want to say a bit more about it than that. For instance, let's compare the relationship between `parentsleep` and `parentgrump` with that between `babysleep` and `parentgrump` (Figure \@ref(fig:scatterparent1)).
+
+```{r scatterparent1, fig.align='center',echo=FALSE, fig.cap="Scatterplot drawn by CogStat showing the relationship between `parentsleep` and `parentgrump` and between `babysleep` and `parentgrump`", out.width="45%",  fig.show="hold"}
+knitr::include_graphics(
+    c("resources/image/parentsleepgrumpplot.png",
+      "resources/image/babysleepgrumpplot.png")
+    )
 ```
 
-```{r scatterparent1b, fig.align='center',echo=FALSE, fig.cap="Scatterplot drawn by CogStat showing the relationship between `babysleep` and `parentgrump`"}
-knitr::include_graphics("resources/image/babysleepgrumpplot.png")
+When looking at these two plots side by side, it's clear that the relationship is *qualitatively* the same in both cases: more sleep equals less grump! However, it's also obvious that the relationship between `parentsleep` and `parentgrump` is *stronger* than between `babysleep` and `parentgrump`. The plot on the left is "neater" than on the right. It feels like if you want to predict the parent's mood, it will help you a little bit to know how many hours the baby slept, but it'd be *more* helpful to know how many hours the parent slept.
+
+:::: {.callout data-latex="[Scatterplots]"}
+```{=html}
+<div class="callout-title">
+Scatterplots
+</div>
 ```
 
-We can draw scatterplots to give us a general sense of how closely related two variables are. Ideally, though, we might want to say a bit more about it than that. For instance, let's compare the relationship between `parentsleep` and `parentgrump` (Figure \@ref(fig:scatterparent1a)) with that between `babysleep` and `parentgrump` (Figure \@ref(fig:scatterparent1b)). When looking at these two plots side by side, it's clear that the relationship is *qualitatively* the same in both cases: more sleep equals less grump! However, it's also obvious that the relationship between `parentsleep` and `parentgrump` is *stronger* than between `babysleep` and `parentgrump`. The plot on the left is "neater" than on the right. It feels like if you want to predict the parent's mood, it will help you a little bit to know how many hours the baby slept, but it'd be *more* helpful to know how many hours the parent slept. 
+On a scatterplot graph, each observation is represented by one dot in a coordinate system. The horizontal location of the dot plots the value of the observation on one variable, and the vertical location displays its value on the other variable.
 
-In contrast, let's consider Figure \@ref(fig:scatterparent1b) vs. Figure \@ref(fig:scatterparent2). If we compare the scatterplot of "`babysleep` v `parentgrump`" to the scatterplot of "``babysleep` v `parentsleep`", the overall strength of the relationship is the same, but the direction is different. If the baby sleeps more, the parent gets *more* sleep (positive relationship, but if the baby sleeps more, then the parent gets *less* grumpy (negative relationship).
- 
+Scatterplots are used often:
+
+- to visualise the relationship between two variables,
+- to identify trends, which can be further explored with regression analysis (see Chapter \@ref(regression)),
+- and to detect outliers.
+
+Scatterplots can only be used with [*continuous variables*](#continuousdiscrete). If you have a [*discrete variable*](#continuousdiscrete), you can use a [boxplot](#boxplots) instead.
+::::
+
 ```{r scatterparent2, fig.align='center',echo=FALSE, fig.cap="Scatterplot drawn by CogStat showing the relationship between `babysleep` and `parentsleep`"}
 knitr::include_graphics("resources/image/parentsleepbabysleepplot.png")
 ```
+
+In contrast, let's consider Figure \@ref(fig:scatterparent1) vs. Figure \@ref(fig:scatterparent2). If we compare the scatterplot of "`babysleep` v `parentgrump`" to the scatterplot of "``babysleep` v `parentsleep`", the overall strength of the relationship is the same, but the direction is different. If the baby sleeps more, the parent gets *more* sleep (positive relationship, but if the baby sleeps more, then the parent gets *less* grumpy (negative relationship).
+
 
 ## The correlation coefficient{#pearson}
 
@@ -281,7 +307,7 @@ knitr::include_graphics("resources/image/cogstatbabysleepparentgrumpmissing.png"
 knitr::include_graphics("resources/image/cogstatparentsleepbabysleepmissing.png")
 ```
 
-## Summary
+## Summary {.unnumbered .unlisted}
 
 In this chapter, we discussed how to measure the strength of the relationship between two variables. We introduced the concept of correlation and how to calculate it using CogStat. We also discussed the difference between **Pearson's correlation** (Chapter \@ref(pearson)) and **Spearman's rank order correlation** (Chapter \@ref(spearman)), and how CogStat will calculate it for you. Finally, we discussed how CogStat handles missing values (Chapter \@ref(missingvaluespair)) in pairwise calculations.
 

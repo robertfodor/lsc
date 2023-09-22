@@ -333,7 +333,7 @@ In previous sections, we emphasised the fact that the major design principle beh
 
 ### The power function
 
-(ref:crit3cap) Sampling distribution under the *alternative* hypothesis, for a population parameter value of $\\theta = 0.55$. A reasonable proportion of the distribution lies in the rejection region.
+(ref:crit3cap) Sampling distribution under the *alternative* hypothesis, for a population parameter value of $θ = 0.55$. A reasonable proportion of the distribution lies in the rejection region.
 
 ```{r crit3, fig.cap=paste("(ref:crit3cap)"), echo=FALSE, fig.align="center"}
 setUpPlot()
