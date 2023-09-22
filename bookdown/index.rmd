@@ -3,7 +3,7 @@ title: "Learning Statistics with CogStat"
 author:
 - Danielle Navarro^[Danielle Navarro -- [Github](https://github.com/djnavarro/) | [![](resources/image/orcid_16x16.png)](https://orcid.org/0000-0001-7648-6578) 0000-0001-7648-6578]
 - Róbert Fodor^[Róbert Fodor -- [Github](https://github.com/robertfodor/) | [![](resources/image/orcid_16x16.png)](https://orcid.org/0000-0001-8470-335X) 0000-0001-8470-335X]
-date: "5 Nov 2022"
+date: "22 Sep 2023"
 output:
   bookdown::gitbook:
     mathjax: NULL
