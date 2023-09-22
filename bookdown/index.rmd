@@ -58,7 +58,7 @@ meta() %>%
   meta_google_scholar(
     title = "Learning Statistics with CogStat (2nd Ed)",
     author = c("Danielle Navarro", "Róbert Fodor"),
-    publication_date = "2022/09/27"
+    publication_date = "2023/09/22"
   )
 
 library(kableExtra)
@@ -72,7 +72,7 @@ knitr::include_graphics("resources/bookcover/LSC_small.png")
 ```
 
 > First published on 27 September 2022 (electronic). Aligns with Cogstat v2.3. \
-> **Second edition** published on XX February 2023 (electronic). Aligns with Cogstat v2.3.
+> **Second edition** published on 23 September 2023 (electronic). Aligns with Cogstat v2.4.
 
 To reference this book, please use the following citation (APA7 format):
 
@@ -104,9 +104,7 @@ This book will always be a living thing. As CogStat expands and evolves, so will
 
 ## Foreword for the *Second Edition* {.unnumbered .unlisted}
 
-This edition brings in plenty of changes, well beyond 10% of the book, which should warrant, per publishing standards, for it to be called "second edition". While it sounds quite conceited to me, considering I've done some of the work that really should've gone into the original edition in the first place, I opted for this numbering in the aim that whenever a new CogStat version is released and some of the material needs to be updated, I can just call it "*revised* second edition". I also want to avoid any confusion where we'd have a textbook v1, v3.14 against a CogStat v2.4RC -- it's tedious. I really love this material, and maybe this is my grandiosity, but I hope this makes sense to you as well.
-
-The main drive behind these edits was reflections on the material's usefulness and *accuracy*, since some explanations and wordings needed to be more robust to withstand scientific scrutiny, which Attila Krajcsi provided. I must thank him for his helpful notes as consulting editor for this version, not due to sheer obligation but on account of genuine appreciation. His feedback was essential, and while I spent quite some time defending most of my earlier decisions (some of which I still do), I had to accept that I simply couldn't have got it quite right the first time, and I shouldn't be too attached to the source material. I loved that the original was accessible and the opposite of stuffy, but I decided to cut down plenty (mostly the chattiness) and replace it with, hopefully still accessible but scientifically more accurate parts. I consulted some other textbooks comparing the way they present the material for it not to be stuffy. I firmly believe scientific communication in all its forms needs to be in everyday language while using precise terminology, appropriate analogies, and accurate examples. I hope that this edition is something you, dear reader, will love to read. I hope this edition is a step in the right direction.
+This edition brings in plenty of changes, well beyond 10% of the book, which should warrant, per publishing standards, for it to be called "second edition". The main drive behind these edits was reflections on the material's usefulness and *accuracy*, since some explanations and wordings needed to be more robust to withstand scientific scrutiny, which Attila Krajcsi provided. I must thank him for his helpful notes as consulting editor for this version, not due to sheer obligation but on account of genuine appreciation. His feedback was essential, and while I spent quite some time defending most of my earlier decisions (some of which I still do), I had to accept that I simply couldn't have got it quite right the first time, and I shouldn't be too attached to the source material. I loved that the original was accessible and the opposite of stuffy, but I decided to cut down plenty (mostly the chattiness) and replace it with, hopefully still accessible but scientifically more accurate parts. I consulted some other textbooks comparing the way they present the material for it not to be stuffy. I firmly believe scientific communication in all its forms needs to be in everyday language while using precise terminology, appropriate analogies, and accurate examples. I hope that this edition is something you, dear reader, will love to read. I hope this edition is a step in the right direction.
 
 \nopagebreak[4]
 
@@ -118,10 +116,9 @@ The main drive behind these edits was reflections on the material's usefulness a
 - Chapter \@ref(researchdesign) was largely rewritten -- particularly reliability and validity -- to make definitions more accurate, and examples are now related to health and psychology research. The rest of the chapter discussing bias and study design were scrapped due to their lack of relevance to the book's purpose.
 - Chapter \@ref(exploringavariable) was largely revised to tie to other statistics textbooks, also focusing on differentiating between population and sample measures.
 - Chapter \@ref(correl) now includes CogStat tutorial on interrater and internal consistency measures.
-- New: callout boxes added throughout the chapters to explain chart types and other concepts.
+- New: callout boxes added throughout some chapters to explain chart types and other concepts.
 - New: definitions and examples are now presented markedly in the text.
 - New: explanatory charts were added to the text.
-- New: health psychology examples were added to the text.
 - Typos and minor errors were fixed all throughout the book.
 
 \newpage

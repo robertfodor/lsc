@@ -277,6 +277,7 @@ Note that some people might say "discrete variable" when they mean "nominal scal
 
 ### A summary guide for levels of measurement{#summaryguidelevels}
 ```{r echo=FALSE}
+library(kableExtra)
 knitr::kable(
   rbind(
     c("Discrete", "$\\checkmark$", "$\\checkmark$", "$\\checkmark$", "$\\checkmark$"),

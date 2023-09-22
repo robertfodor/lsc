@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Exploring a single variable | Learning Statistics with CogStat</title>
+  <meta name="description" content="Chapter 5 Exploring a single variable | Learning Statistics with CogStat (Second Edition) covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Exploring a single variable | Learning Statistics with CogStat" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
+  <meta property="og:description" content="Chapter 5 Exploring a single variable | Learning Statistics with CogStat (Second Edition) covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
+  <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Exploring a single variable | Learning Statistics with CogStat" />
+  
+  <meta name="twitter:description" content="Chapter 5 Exploring a single variable | Learning Statistics with CogStat (Second Edition) covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
+  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
+
+<meta name="author" content="Danielle Navarro" />
+<meta name="author" content="Róbert Fodor" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="cogstatintro.html"/>
+<link rel="next" href="correl.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<meta name="twitter:card" content="summary"/>
+<meta property="og:type" content="book"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="article:author" content="Danielle Navarro"/>
+<meta property="article:author" content="Róbert Fodor"/>
+<meta name="citation_title" content="Chapter 5 Exploring a single variable | Learning Statistics with CogStat (2nd Ed)"/>
+<meta name="citation_author" content="Danielle Navarro"/>
+<meta name="citation_author" content="Róbert Fodor"/>
+<meta name="citation_publication_date" content="2023/09/22"/>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Learning Statistics with CogStat</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this book</a></li>
+<li class="chapter" data-level="" data-path="foreword.html"><a href="foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
+<li class="part"><span><b>INTRODUCTIONS</b></span></li>
+<li class="chapter" data-level="1" data-path="whywhywhy.html"><a href="whywhywhy.html"><i class="fa fa-check"></i><b>1</b> Why do we learn statistics?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="whywhywhy.html"><a href="whywhywhy.html#the-curse-of-belief-bias"><i class="fa fa-check"></i><b>1.1</b> The curse of belief bias</a></li>
+<li class="chapter" data-level="1.2" data-path="whywhywhy.html"><a href="whywhywhy.html#the-simpsons-paradox"><i class="fa fa-check"></i><b>1.2</b> The Simpson’s paradox</a></li>
+<li class="chapter" data-level="1.3" data-path="whywhywhy.html"><a href="whywhywhy.html#statistics-in-psychology"><i class="fa fa-check"></i><b>1.3</b> Statistics in psychology</a></li>
+<li class="chapter" data-level="1.4" data-path="whywhywhy.html"><a href="whywhywhy.html#theres-more-to-research-methods-than-statistics"><i class="fa fa-check"></i><b>1.4</b> There’s more to research methods than statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="researchdesign.html"><a href="researchdesign.html"><i class="fa fa-check"></i><b>2</b> Basic concepts</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="researchdesign.html"><a href="researchdesign.html#measurement"><i class="fa fa-check"></i><b>2.1</b> Introduction to psychological measurement</a></li>
+<li class="chapter" data-level="2.2" data-path="researchdesign.html"><a href="researchdesign.html#scales"><i class="fa fa-check"></i><b>2.2</b> Measurement levels</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="researchdesign.html"><a href="researchdesign.html#nominalscale"><i class="fa fa-check"></i><b>2.2.1</b> Nominal categories</a></li>
+<li class="chapter" data-level="2.2.2" data-path="researchdesign.html"><a href="researchdesign.html#ordinalscale"><i class="fa fa-check"></i><b>2.2.2</b> Ordinal scale and rank</a></li>
+<li class="chapter" data-level="2.2.3" data-path="researchdesign.html"><a href="researchdesign.html#intervalscale"><i class="fa fa-check"></i><b>2.2.3</b> Interval scale</a></li>
+<li class="chapter" data-level="2.2.4" data-path="researchdesign.html"><a href="researchdesign.html#ratioscale"><i class="fa fa-check"></i><b>2.2.4</b> Ratio scale</a></li>
+<li class="chapter" data-level="2.2.5" data-path="researchdesign.html"><a href="researchdesign.html#likertscale"><i class="fa fa-check"></i><b>2.2.5</b> The special case of the Likert scale</a></li>
+<li class="chapter" data-level="2.2.6" data-path="researchdesign.html"><a href="researchdesign.html#continuousdiscrete"><i class="fa fa-check"></i><b>2.2.6</b> Continuous versus discrete variables</a></li>
+<li class="chapter" data-level="2.2.7" data-path="researchdesign.html"><a href="researchdesign.html#summaryguidelevels"><i class="fa fa-check"></i><b>2.2.7</b> A summary guide for levels of measurement</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="researchdesign.html"><a href="researchdesign.html#ivdv"><i class="fa fa-check"></i><b>2.3</b> Independent and dependent variables</a></li>
+<li class="chapter" data-level="2.4" data-path="researchdesign.html"><a href="researchdesign.html#reliability"><i class="fa fa-check"></i><b>2.4</b> Reliability</a></li>
+<li class="chapter" data-level="2.5" data-path="researchdesign.html"><a href="researchdesign.html#validity"><i class="fa fa-check"></i><b>2.5</b> Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="autostat.html"><a href="autostat.html"><i class="fa fa-check"></i><b>3</b> Automatic statistical analysis</a></li>
+<li class="chapter" data-level="4" data-path="cogstatintro.html"><a href="cogstatintro.html"><i class="fa fa-check"></i><b>4</b> Introduction to CogStat</a></li>
+<li class="part"><span><b>DESCRIPTIVE STATISTICS</b></span></li>
+<li class="chapter" data-level="5" data-path="exploringavariable.html"><a href="exploringavariable.html"><i class="fa fa-check"></i><b>5</b> Exploring a single variable</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="exploringavariable.html"><a href="exploringavariable.html#centraltendency"><i class="fa fa-check"></i><b>5.1</b> Measures of central tendency</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="exploringavariable.html"><a href="exploringavariable.html#mean"><i class="fa fa-check"></i><b>5.1.1</b> The mean</a></li>
+<li class="chapter" data-level="5.1.2" data-path="exploringavariable.html"><a href="exploringavariable.html#median"><i class="fa fa-check"></i><b>5.1.2</b> The median</a></li>
+<li class="chapter" data-level="5.1.3" data-path="exploringavariable.html"><a href="exploringavariable.html#mean-or-median-whats-the-difference"><i class="fa fa-check"></i><b>5.1.3</b> Mean or median? What’s the difference?</a></li>
+<li class="chapter" data-level="5.1.4" data-path="exploringavariable.html"><a href="exploringavariable.html#trimmedmean"><i class="fa fa-check"></i><b>5.1.4</b> Trimmed mean</a></li>
+<li class="chapter" data-level="5.1.5" data-path="exploringavariable.html"><a href="exploringavariable.html#mode"><i class="fa fa-check"></i><b>5.1.5</b> Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="exploringavariable.html"><a href="exploringavariable.html#var"><i class="fa fa-check"></i><b>5.2</b> Measures of variability</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="exploringavariable.html"><a href="exploringavariable.html#range"><i class="fa fa-check"></i><b>5.2.1</b> Range</a></li>
+<li class="chapter" data-level="5.2.2" data-path="exploringavariable.html"><a href="exploringavariable.html#IQR"><i class="fa fa-check"></i><b>5.2.2</b> Interquartile range</a></li>
+<li class="chapter" data-level="5.2.3" data-path="exploringavariable.html"><a href="exploringavariable.html#aad"><i class="fa fa-check"></i><b>5.2.3</b> Mean absolute deviation (average absolute deviation)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="exploringavariable.html"><a href="exploringavariable.html#mad"><i class="fa fa-check"></i><b>5.2.4</b> Median absolute deviation</a></li>
+<li class="chapter" data-level="5.2.5" data-path="exploringavariable.html"><a href="exploringavariable.html#variance"><i class="fa fa-check"></i><b>5.2.5</b> Variance</a></li>
+<li class="chapter" data-level="5.2.6" data-path="exploringavariable.html"><a href="exploringavariable.html#sd"><i class="fa fa-check"></i><b>5.2.6</b> Standard deviation</a></li>
+<li class="chapter" data-level="5.2.7" data-path="exploringavariable.html"><a href="exploringavariable.html#which-measure-to-use"><i class="fa fa-check"></i><b>5.2.7</b> Which measure to use?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="exploringavariable.html"><a href="exploringavariable.html#skewnesskurtosis"><i class="fa fa-check"></i><b>5.3</b> Skewness and kurtosis</a></li>
+<li class="chapter" data-level="5.4" data-path="exploringavariable.html"><a href="exploringavariable.html#zscore"><i class="fa fa-check"></i><b>5.4</b> Standard scores (<span class="math inline">\(z\)</span>-score)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="correl.html"><a href="correl.html"><i class="fa fa-check"></i><b>6</b> Exploring a variable pair</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="correl.html"><a href="correl.html#the-strength-and-direction-of-a-relationship"><i class="fa fa-check"></i><b>6.1</b> The strength and direction of a relationship</a></li>
+<li class="chapter" data-level="6.2" data-path="correl.html"><a href="correl.html#pearson"><i class="fa fa-check"></i><b>6.2</b> The correlation coefficient</a></li>
+<li class="chapter" data-level="6.3" data-path="correl.html"><a href="correl.html#interpretingcorrelations"><i class="fa fa-check"></i><b>6.3</b> Interpreting a correlation</a></li>
+<li class="chapter" data-level="6.4" data-path="correl.html"><a href="correl.html#spearman"><i class="fa fa-check"></i><b>6.4</b> Spearman’s rank correlations</a></li>
+<li class="chapter" data-level="6.5" data-path="correl.html"><a href="correl.html#missingvaluespair"><i class="fa fa-check"></i><b>6.5</b> Missing values in pairwise calculations</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Learning Statistics with CogStat</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="exploringavariable" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Exploring a single variable<a href="exploringavariable.html#exploringavariable" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Any time you get a new data set to look at, one of the first things you might want to do is find ways of summarising the data in a compact, easily understood fashion. This is what <strong>descriptive statistics</strong> (as opposed to <em>inferential statistics</em>) is all about. In fact, to many people, the term “statistics” is synonymous with descriptive statistics.</p>
+<p>The first dataset we’ll be looking at is real data relating to the Australian Football League (AFL)<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a>. To do this, let us load the <a href="resources/data/aflsmall.csv">aflsmall.csv</a> file.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:loadaflsmall"></span>
+<img src="resources/image/loadaflsmall.png" alt="Loading `aflsmall.csv`" width="1017" />
+<p class="caption">
+Figure 5.1: Loading <code>aflsmall.csv</code>
+</p>
+</div>
+<p>CogStat will help you get familiar with some essential aspects of your variable, like:</p>
+<ul>
+<li>measures of central tendency (mean, median)</li>
+<li>measures of variability (range, minimum, maximum, standard deviation, quartiles)</li>
+<li>measures of “distortion” (skewness, kurtosis).</li>
+</ul>
+<p>These measures will help you contextualise the results so the conclusions drawn from the variable will be valid.</p>
+<p>To start understanding a variable in CogStat, select <code>Explore variable</code> so a pop-up appears. Move the name of the data you wish to analyse (in this case: <code>aflmargins</code>) from <code>Available variables</code> to <code>Selected variables</code>, then click <code>OK</code> (Figure <a href="exploringavariable.html#fig:explorevariabledialog">5.2</a>).</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:explorevariabledialog"></span>
+<img src="resources/image/explorevariable.png" alt="`Explore variable` dialogue." width="700" />
+<p class="caption">
+Figure 5.2: <code>Explore variable</code> dialogue.
+</p>
+</div>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:rawaflsmall"></span>
+<img src="resources/image/cogstatrawaflsmall.png" alt="`Explore variable results` for the `aflsmall.csv` data set. This is the first chart you will see exploring the raw shape of the data." width="974" />
+<p class="caption">
+Figure 5.3: <code>Explore variable results</code> for the <code>aflsmall.csv</code> data set. This is the first chart you will see exploring the raw shape of the data.
+</p>
+</div>
+<p>The first piece of information here is <span class="math inline">\(N\)</span>, which we will use to refer to the number of observations we’re analysing. CogStat (or any other software for that matter) will only use valid data for calculations. Sometimes, when working with survey data, you will have missing data points, the number of which you might have to mention in your report. CogStat will quote these for you:</p>
+<blockquote>
+<p><code>N of valid cases: 176</code><br />
+<code>N of missing cases: 0</code></p>
+</blockquote>
+<p>In the rest of this chapter, we will explore what these measures mean and what they indicate.</p>
+<div id="centraltendency" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Measures of central tendency<a href="exploringavariable.html#centraltendency" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In most situations, the first thing that you’ll want to calculate is a measure of <strong><em>central tendency</em></strong>. That is, you’d like to know something about the “average” or “middle” of your data lies.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-14"></span>
+<img src="lsc_files/figure-html/unnamed-chunk-14-1.svg" alt="Density plot with mean, median and mode." width="672" />
+<p class="caption">
+Figure 5.4: Density plot with mean, median and mode.
+</p>
+</div>
+<div id="mean" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> The mean<a href="exploringavariable.html#mean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The first measure of <em>central tendency</em> is the mean, or arithmetic average. It is calculated by adding up all of the values in the data set and then divide the sum by the total number (count) of values.</p>
+<div class="definition">
+<p><span id="def:defmean" class="definition"><strong>Definition 5.1  (Mean) </strong></span>The <strong>mean</strong> of a set of observations is the sum of the observations divided by the number of observations.
+<span class="math display">\[
+\bar{X} = \frac{\sum_{i=1}^N X_i}{N}
+\]</span></p>
+</div>
+<p>Of course, this definition of the mean isn’t news to anyone: averages (i.e., means) are used so often in everyday life that this is quite familiar. By tradition, we use <span class="math inline">\(\bar{X}\)</span> as the notation for the mean, <span class="math inline">\(\scriptstyle\sum\)</span> for the idea of summation (see <a href="exploringavariable.html#summation">callout on notation</a>), <span class="math inline">\(X_i\)</span> for the <span class="math inline">\(i\)</span>th observation, and <span class="math inline">\(N\)</span> for the total number of observations. We use subscripts to indicate which observation we’re talking about. That is, we’ll use <span class="math inline">\(X_1\)</span> to refer to the first observation, <span class="math inline">\(X_2\)</span> to refer to the second observation, and so on, all the way up to <span class="math inline">\(X_N\)</span> for the last one.</p>
+<div class="example">
+<p><span id="exm:exmean" class="example"><strong>Example 5.1  (Mean) </strong></span>The first five AFL margins were 56, 31, 56, 8 and 32 (which CogStat will display when loading the data, see Figure <a href="exploringavariable.html#fig:loadaflsmall">5.1</a>), so the mean of these observations is just:
+<span class="math display">\[
+\frac{56 + 31 + 56 + 8 + 32}{5} = \frac{183}{5} = 36.60
+\]</span></p>
+<p>The following table lists the 5 observations in the <code>afl.margins</code> variable, along with the mathematical symbol used to refer to it, and the actual value that the observation corresponds to:</p>
+<table class="table table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Observation
+</th>
+<th style="text-align:center;">
+Symbol
+</th>
+<th style="text-align:center;">
+Observed value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+winning margin, game 1
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(X_1\)</span>
+</td>
+<td style="text-align:center;">
+56 points
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+winning margin, game 2
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(X_2\)</span>
+</td>
+<td style="text-align:center;">
+31 points
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+winning margin, game 3
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(X_3\)</span>
+</td>
+<td style="text-align:center;">
+56 points
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+winning margin, game 4
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(X_4\)</span>
+</td>
+<td style="text-align:center;">
+8 points
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+winning margin, game 5
+</td>
+<td style="text-align:center;">
+<span class="math inline">\(X_5\)</span>
+</td>
+<td style="text-align:center;">
+32 points
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>CogStat calculates the mean automatically when exploring a variable using all valid data points, not just the first five. It will be part of the <code>Descriptives for the variable</code> section, as seen in Figure <a href="exploringavariable.html#fig:histogramaflsmall">5.5</a>. The result for our variable is:</p>
+<blockquote>
+<p><code>afl.margins</code><br />
+<code>Mean 35.3</code></p>
+</blockquote>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:histogramaflsmall"></span>
+<img src="resources/image/cogstathistogramaflsmall.png" alt="Descriptive statistics and histogram for the `aflsmall.csv` data set. Scrolling down, you'll see CogStat reporting all the descriptive measures while showing you a histogram to understand the shape of your data better. Drawing pictures of the data is an excellent way to convey the gist of what the data is trying to tell you; it's often instrumental to try to condense the data into a few simple summary statistics." width="942" />
+<p class="caption">
+Figure 5.5: Descriptive statistics and histogram for the <code>aflsmall.csv</code> data set. Scrolling down, you’ll see CogStat reporting all the descriptive measures while showing you a histogram to understand the shape of your data better. Drawing pictures of the data is an excellent way to convey the gist of what the data is trying to tell you; it’s often instrumental to try to condense the data into a few simple summary statistics.
+</p>
+</div>
+<div id="summation" class="callout">
+<div class="callout-title">
+Summation symbol: ∑ and Product symbol: ∏ notations
+</div>
+<div class="keepTogether">
+<p>The summation symbol <span class="math inline">\(\scriptstyle\sum\)</span> is used to denote the operation of adding up a sequence of numbers. It is used to write out formulas in a concise way, and is used extensively in mathematics.</p>
+<p><span class="math display">\[
+\sum_{i=1}^n X_i = X_1 + X_2 + ... + X_{n-1} + X_n
+\]</span>
+where <span class="math inline">\(i\)</span> is the <em>index of the observation</em>, which means that the index starts out at the given number, so in this case, at the first observation (<span class="math inline">\(X_\mathbf{1}\)</span>). The index is incremented by 1 for each observation (even if <span class="math inline">\(i&gt;1\)</span>), so the next observation is <span class="math inline">\(X_\mathbf{2}\)</span>, and so on, until the last observation, which is <span class="math inline">\(X_\mathbf{n}\)</span>, as denoted above the symbol.</p>
+</div>
+<p>The choice to use <span class="math inline">\(\Sigma\)</span> to denote summation isn’t arbitrary: it’s the Greek upper case letter sigma, which is the analogue of the letter S in that alphabet.</p>
+<p>Similarly, there’s an equivalent symbol used to denote the multiplication of lots of numbers: because multiplications are also called “products”, we use the <span class="math inline">\(\Pi\)</span> symbol for this; the Greek upper case pi, which is the analogue of the letter P.</p>
+</div>
+</div>
+<div id="median" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> The median<a href="exploringavariable.html#median" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The second measure of <em>central tendency</em> people use a lot is the median<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a>, and it’s even easier to describe than the mean.</p>
+<div class="definition">
+<p><span id="def:defmedian" class="definition"><strong>Definition 5.2  (Median) </strong></span>The <strong>median</strong> is the middle value in a set of observations that has been arranged in ascending or descending order.</p>
+</div>
+<div class="example">
+<p><span id="exm:exmedian" class="example"><strong>Example 5.2  (Median) </strong></span>As before, let’s imagine we were interested only in the first 5 AFL winning margins: 56, 31, 56, 8 and 32. To figure out the median, we sort these numbers into ascending order. From inspection, it’s evident that the median value of these five observations is 32 since that’s the middle one in the sorted list.</p>
+<p><span class="math display">\[
+8, 31, \mathbf{32}, 56, 56
+\]</span></p>
+<p>But what should we do if we were interested in the first six games rather than the first 5? Since the sixth game in the season had a winning margin of 14 points, our sorted list is now:</p>
+<p><span class="math display">\[
+8, 14, \mathbf{31}, \mathbf{32}, 56, 56
+\]</span></p>
+<p>and there are <em>two</em> middle numbers, <span class="math inline">\(31\)</span> and <span class="math inline">\(32\)</span>. The median is defined as the average of those two numbers, which is <span class="math inline">\(31.5\)</span>.</p>
+</div>
+<p>In the data set we loaded to CogStat, there were 176 valid cases, so we ought to have two middle numbers. The result in this case is (as seen in Figure <a href="exploringavariable.html#fig:histogramaflsmall">5.5</a>):</p>
+<blockquote>
+<p><code>afl.margins</code><br />
+<code>Median 30.5</code></p>
+</blockquote>
+</div>
+<div id="mean-or-median-whats-the-difference" class="section level3 hasAnchor" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Mean or median? What’s the difference?<a href="exploringavariable.html#mean-or-median-whats-the-difference" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:meanmedian"></span>
+<img src="resources/image/meanmedian.png" alt="An illustration of the difference between how the mean and the median should be interpreted. The mean is basically the &quot;centre of gravity&quot; of the data set: if you imagine that the histogram of the data is a solid object, then the point on which you could balance it (as if on a see-saw) is the mean. In contrast, the median is the middle observation. Half of the observations are smaller, and half of the observations are larger." width="463" />
+<p class="caption">
+Figure 5.6: An illustration of the difference between how the mean and the median should be interpreted. The mean is basically the “centre of gravity” of the data set: if you imagine that the histogram of the data is a solid object, then the point on which you could balance it (as if on a see-saw) is the mean. In contrast, the median is the middle observation. Half of the observations are smaller, and half of the observations are larger.
+</p>
+</div>
+<p>Knowing how to calculate means and medians is only a part of the story. You also need to understand what each one is saying about the data, what that implies, and which one to choose. This is illustrated in Figure <a href="exploringavariable.html#fig:meanmedian">5.6</a>; the mean is kind of like the “centre of gravity” of the data set, whereas the median is where you’d cut it in half. What this implies about which one you should use depends a little on what type of data you’ve got and what you’re trying to achieve. As a rough guide:</p>
+<ul>
+<li>If your data are <em><a href="researchdesign.html#nominalscale">nominal scale</a></em>, you shouldn’t be using either the mean or the median. Both the mean and the median rely on the idea that the numbers assigned to values are meaningful (i.e., 1 means 1 of a unit of measure, and not simply a technical coding for “1: men, 2: women, 3: nonbinary …”). If the numbering scheme is arbitrary, then use the mode (Section <a href="exploringavariable.html#mode">5.1.5</a>) instead.</li>
+<li>If your data are <em><a href="researchdesign.html#ordinalscale">ordinal scale</a></em>, you can to use the median but not the mean. The median only uses the order information in your data (i.e., which numbers are larger) which is the purpose of an ordinal scale. The mean makes use of the precise numeric values assigned to the observations beyond their order info, so it’s not appropriate for ordinal data.</li>
+<li>For <em><a href="researchdesign.html#intervalscale">interval</a></em> and <em><a href="researchdesign.html#ratioscale">ratio scale</a></em> data, either one is generally acceptable. Which one you pick depends a bit on what you’re trying to achieve. The mean has the advantage of using all the information in the data (which is useful when you don’t have a lot of data), but it’s very susceptible to extreme values, as we’ll see in Chapter <a href="exploringavariable.html#trimmedmean">5.1.4</a>.</li>
+</ul>
+<p>Let’s expand on that last part a little. One consequence is that there are systematic differences between the mean and the median when the histogram is asymmetric (skewed; see Chapter <a href="exploringavariable.html#skewnesskurtosis">5.3</a>). This is illustrated in Figure <a href="exploringavariable.html#fig:meanmedian">5.6</a> notice that the median (right hand side) is located closer to the “body” of the histogram, whereas the mean (left hand side) gets dragged towards the “tail” (where the extreme values are).</p>
+<div class="example">
+<p><span id="exm:exmeanmedian" class="example"><strong>Example 5.3  (Mean or median) </strong></span>Suppose Bob (income $50,000), Kate (income $60,000) and Jane (income $65,000) are sitting at a table: the average income at the table is $58,333 and the median income is $60,000. Then Bill sits down with them (income $100,000,000). The average income has now jumped to $25,043,750 but the median rises only to $62,500. If you’re interested in looking at the overall income at the table, the mean might be the right answer; but if you’re interested in what counts as a typical income at the table, the median would be a better choice here.</p>
+</div>
+</div>
+<div id="trimmedmean" class="section level3 hasAnchor" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> Trimmed mean<a href="exploringavariable.html#trimmedmean" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="example">
+<p><span id="exm:exoutliers" class="example"><strong>Example 5.4  (Outliers) </strong></span>Consider this rather strange-looking data set:
+<span class="math display">\[
+-100,2,3,4,5,6,7,8,9,10
+\]</span>
+If you were to observe this in a real-life data set, you’d probably suspect that there is something odd about the <span class="math inline">\(-100\)</span> value. It’s probably an <strong>outlier</strong>, a value that doesn’t belong with the others. You might consider removing it from the data set entirely. In this particular case, it might be the right call. However, you don’t always get such cut-and-dried examples. For instance, you might get this instead:
+<span class="math display">\[
+-15,2,3,4,5,6,7,8,9,12
+\]</span>
+The <span class="math inline">\(-15\)</span> looks suspicious, but not as much as that <span class="math inline">\(-100\)</span> did. In this case, it’s a little trickier. It <em>might</em> be a legitimate observation; it might not.</p>
+</div>
+<p>When faced with a situation where some of the most extreme-valued observations might not be quite trustworthy, the mean is not necessarily a good measure of central tendency. It is highly sensitive to one or two extreme values and might not be a <em>robust</em> measure in all cases. One remedy is to use the median. An alternative solution is to use a <strong>trimmed mean</strong>.</p>
+<div class="definition">
+<p><span id="def:deftrimmedmean" class="definition"><strong>Definition 5.3  (Trimmed mean) </strong></span>A <strong>trimmed mean</strong> is a measure of central tendency, a type of average, that is calculated by discarding a certain percentage of the largest and smallest observations from the data, and then calculating the arithmetic average of the remaining observations.</p>
+</div>
+<p>The goal is to preserve the best characteristics of the mean and the median: just like a median, you aren’t highly influenced by extreme outliers. Generally, we describe a trimmed mean in terms of the percentage of observations on either side that are discarded. So, for instance, a 10% trimmed mean discards the largest 10% of the observations <em>and</em> the smallest 10% of the observations and then takes the mean of the remaining 80% of the observations. Not surprisingly, the 0% trimmed mean is just the regular mean, and the 50% trimmed mean is the median. In that sense, trimmed means provide a whole family of central tendency measures that span the range from the mean to the median.</p>
+<div class="example">
+<p><span id="exm:extrimmedmean" class="example"><strong>Example 5.5  </strong></span>For our toy example above, we have 10 observations. So a 10% trimmed mean is calculated by ignoring the largest value (i.e. <span class="math inline">\(12\)</span>) and the smallest value (i.e. <span class="math inline">\(-15\)</span>) and taking the mean of the remaining values.</p>
+<blockquote>
+<p><code>Mean: 4.1</code><br />
+<code>Median: 5.5</code></p>
+</blockquote>
+<p>That’s a fairly substantial difference. But the mean is being influenced too much by the extreme values at either end of the data set, especially the <span class="math inline">\(-15\)</span> one. If we take a 10% trimmed mean, we’ll drop the extreme values on either side and take the mean of the rest:</p>
+<blockquote>
+<p><code>Mean: 5.5</code></p>
+</blockquote>
+<p>Which, in this case, gives exactly the same answer as the median.</p>
+</div>
+<p>Currently, there is no direct way for you to do that in CogStat, but you can certainly trim those outlying data points in your source file and re-load the data.</p>
+</div>
+<div id="mode" class="section level3 hasAnchor" number="5.1.5">
+<h3><span class="header-section-number">5.1.5</span> Mode<a href="exploringavariable.html#mode" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:defmode" class="definition"><strong>Definition 5.4  (Mode) </strong></span>The <strong>mode</strong> is a measure of central tendency that indicates the value that occurs most frequently in the data set.</p>
+</div>
+<div class="example">
+<p><span id="exm:exmode" class="example"><strong>Example 5.6  (Mode) </strong></span>Consider the following data set:</p>
+<blockquote>
+<p>0, 1, 1, 2, 3, 5, 8, 13, 21</p>
+</blockquote>
+<p>The mode would be 1, as it’s the value the occurs most frequently. A <strong>frequency table</strong> helps you identify the mode in more complex datasets even if it’s not calculated automatically.</p>
+<blockquote>
+<p>Value: Frequency (Relative frequency)<br />
+0: 1 (11.1%)<br />
+1: 2 (22.2%)<br />
+2: 1 (11.1%)<br />
+3: 1 (11.1%)<br />
+5: 1 (11.1%)<br />
+8: 1 (11.1%)<br />
+13: 1 (11.1%)<br />
+21: 1 (11.1%)<br />
+</p>
+</blockquote>
+</div>
+<p>In CogStat, you will see a frequency table (Figure <a href="exploringavariable.html#fig:freqaflsmall">5.7</a>) of the values in your data if you have <code>Frequencies</code> ticked in the <code>Explore variable</code> dialogue.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:freqaflsmall"></span>
+<img src="resources/image/cogstatfrequencyaflsmall.png" alt="The frequency table sorts non-nominal values from lowest to highest." width="959" />
+<p class="caption">
+Figure 5.7: The frequency table sorts non-nominal values from lowest to highest.
+</p>
+</div>
+<p>While it’s generally true that the mode is most often calculated when you have <a href="researchdesign.html#nominalscale">nominal scale</a> data – because means and medians are useless for those sorts of variables –, there are some situations in which you do want to know the mode of an <a href="researchdesign.html#ordinalscale">ordinal</a>, <a href="researchdesign.html#intervalscale">interval</a> or <a href="researchdesign.html#ratioscale">ratio scale</a> variable.</p>
+<div class="example">
+<p><span id="exm:exmode2" class="example"><strong>Example 5.7  (Mode for ordinal, interval and ratio scale) </strong></span>Let’s look at our <code>afl.margins</code> variable we loaded into CogStat. This variable is clearly ratio scale, and so in most situations the mean or the median is the measure of central tendency that you want. But consider that a friend of yours is offering a bet. They pick a football game at random, and without knowing who is playing you have to guess the <em>exact</em> margin. If you guess correctly, you win $50. If you don’t, you lose $1. There are no consolation prizes for “almost” getting the right answer. You have to guess exactly the right margin<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a> For this bet, the mean and the median are completely useless to you. It is the mode that you should bet on. So, we look at the frequency table offered by the result set: the data suggest you should bet on a <span class="math inline">\(3.0\)</span> point margin, and since this was observed in 8 of the 176 games (4.5% of games – the <em>relative frequency</em>), the odds are firmly in your favour.</p>
+</div>
+<div id="calloutmultimodal" class="callout">
+<div class="callout-title">
+Bimodal distributions
+</div>
+<p>A data set which has only one mode (or in other terms, a density distribution with only one local maximum) is called <em>unimodal</em>, regardless if the peak is in the middle or at either end. A perfect example of a unimodal distribution is the normal distribution (the <em>bell-curve</em>). This is the one that we use when explaining the theory in this book. However, a distribution can have more than one modes or more than one local maxima, and some simplistic rules of thumb don’t necessarily work. Distributions with more than one modes are called <em>bimodal</em> (i.e., two peaks) or <em>multimodal</em> (i.e., multiple peaks) distributions.</p>
+<p><img src="lsc_files/figure-html/unnamed-chunk-16-1.svg" width="672" style="display: block; margin: auto;" /></p>
+<p>The graph shows a bimodal distribution with two local maximums (the peak at the left and the right), of which there is a global maximum (the peak at the left). This distribution plot’s <span class="math inline">\(y\)</span> values infer the frequency of each observation <span class="math inline">\(x\)</span>, so the higher the <span class="math inline">\(y\)</span> value, the more observations there are of that <span class="math inline">\(x\)</span> value. The mode is the <span class="math inline">\(x\)</span> value with the highest frequency (<span class="math inline">\(y\)</span> value). In this specific case there is only one mode, because there is only one global maximum (absolute highest frequency), but since there are two local maximums with identifiable, distinct clusters of data, the distribution is considered bimodal.</p>
+<p>You will likely encounter bimodal distributions in your data when you have multiple groups in one dataset. For example, when you measure an attitude towards a politically divisive subject with a Likert scale. When you graph the response on that item, you’ll likely see a bimodal distribution, but if you split the data by group (based on a binary demographic item measuring political affilition, for example), you’ll likely see two unimodal distributions with different <a href="exploringavariable.html#skewnesskurtosis">skewness</a>.</p>
+</div>
+</div>
+</div>
+<div id="var" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Measures of variability<a href="exploringavariable.html#var" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The statistics that we’ve discussed so far all relate to <em>central tendency</em>. They all talk about which values are “in the middle” or “popular” in the data. However, central tendency is not the only type of summary statistic that we want to calculate. The second thing that we really want is a measure of the <strong>variability</strong> (or, <em>dispersion</em>) of the data. That is, how “spread out” are the data? How “far” away from the mean or median do the observed values tend to be?</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:unnamed-chunk-17"></span>
+<img src="lsc_files/figure-html/unnamed-chunk-17-1.svg" alt="Data sets with equal measures of central tendency but different variability." width="672" />
+<p class="caption">
+Figure 5.8: Data sets with equal measures of central tendency but different variability.
+</p>
+</div>
+<p>For now, let’s assume that the data are interval or ratio scale, so we’ll continue to use the <code>afl.margins</code> data. We’ll use this data to discuss several different measures of spread, each with different strengths and weaknesses.</p>
+<div id="range" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Range<a href="exploringavariable.html#range" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:defrange" class="definition"><strong>Definition 5.5  (Range) </strong></span>As a measure of variability, the <strong>range</strong> of a variable is the difference between the largest and smallest observation in the data set.
+<span class="math display">\[
+\text{Range}=\max(x)-\min(x)
+\]</span></p>
+</div>
+<div class="example">
+<p><span id="exm:exrange" class="example"><strong>Example 5.8  (Range) </strong></span>For the AFL winning margins data, the maximum value is <span class="math inline">\(116\)</span>, and the minimum is <span class="math inline">\(0\)</span>, so the range is:
+<span class="math display">\[116-0=\mathbf{116}\]</span></p>
+</div>
+<p>CogStat automatically calculates all these values (see Figure <a href="exploringavariable.html#fig:histogramaflsmall">5.5</a>), so there is nothing we need to do about this, only to understand what it implies.</p>
+<p>Although the range is the simplest way to quantify the notion of variability, it’s not a fit-for-all tool. Recall from our discussion of the mean that we want our summary measure to be robust. If the data set has one or two extremely “bad” values in it (i.e., <em>outliers</em>), we’d like our statistics not to be unduly influenced by these cases.</p>
+<div class="example">
+<p><span id="exm:exrange2" class="example"><strong>Example 5.9  (Range with outliers present) </strong></span>Let us look once again at our toy example of a data set containing very extreme outliers:
+<span class="math display">\[
+-100,2,3,4,5,6,7,8,9,10
+\]</span></p>
+<p>It is clear that the range is not robust since this has a range of <span class="math inline">\(110\)</span>, but if the outlier was removed, we would have a range of only <span class="math inline">\(8\)</span>.</p>
+</div>
+<div id="calloutquantile" class="callout">
+<div class="callout-title">
+Quantiles
+</div>
+<p>Quantiles are cut points that divide an ordered data set into equal-sized groups of observations when the data is continuous. Or more generally, they cut a <a href="#probability">probability distribution</a> to equally probable intervals.</p>
+<!--
+<table class="table table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:center;"> Section </th>
+   <th style="text-align:center;"> Number of observations </th>
+   <th style="text-align:center;"> Lower bound </th>
+   <th style="text-align:center;"> Upper bound </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 1 </td>
+   <td style="text-align:center;"> 10 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 2 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 11 </td>
+   <td style="text-align:center;"> 20 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 3 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 21 </td>
+   <td style="text-align:center;"> 30 </td>
+  </tr>
+  <tr>
+   <td style="text-align:center;"> 4 </td>
+   <td style="text-align:center;"> 10 </td>
+   <td style="text-align:center;"> 31 </td>
+   <td style="text-align:center;"> 40 </td>
+  </tr>
+</tbody>
+</table>
+-->
+<p>For example, a data set of 40 observations can be divided into 4 equal-sized groups of 10 observations each. This is called a <strong><em>quartile</em></strong> (i.e., 1/4). If we wanted to define in percentages, this would be able to define 25th, 50th and 75th <strong><em>percentiles</em></strong> of a data set. The <em>25th percentile</em> (<em>1st quartile</em> or <em>lower quartile</em>) holds the value in a distribution that is greater than 25% of the values and less than 75% of the values. The <em>50th percentile</em> (<em>2nd quartile</em>) is the <em>median</em>, and the <em>75th percentile</em> (<em>3rd quartile</em> or <em>upper quartile</em>) is the value that is greater than 75% of the values and less than 25% of the values.</p>
+<!--
+(ref:quartilefigcap) The 25th, 50th and 75th percentiles of a cumulative distribution of a normal distribution. (StevenJYang on [Wikipedia: Quartile](https://en.wikipedia.org/wiki/Quartile))
+
+<div class="figure" style="text-align: center">
+<img src="resources/image/1920px-NormalCDFQuartile3.png" alt="(ref:quartilefigcap)" width="45%" />
+<p class="caption">(\#fig:unnamed-chunk-19)(ref:quartilefigcap)</p>
+</div>
+-->
+<p><img src="lsc_files/figure-html/unnamed-chunk-20-1.svg" width="768" style="display: block; margin: auto;" /></p>
+<p>The data can be divided into other quantiles as well: e.g. a distribution cut in 5 equal-sized groups are called <strong><em>quintiles</em></strong>, and a distribution cut in 10 equal-sized groups are called <strong><em>deciles</em></strong>, and so on.</p>
+<p>There are different methods to cutting discrete data into quantiles, but we’re not going to discuss them here.</p>
+</div>
+</div>
+<div id="IQR" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Interquartile range<a href="exploringavariable.html#IQR" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The <strong>interquartile range</strong> (IQR) is similar to the range in terms of measuring variability, but instead of calculating the difference between the largest and smallest value, it calculates the difference between the 25th and 75th quantile, hence, somewhat minimising the effect of a few outliers.</p>
+<div class="definition">
+<p><span id="def:defIQR" class="definition"><strong>Definition 5.6  (Interquartile range) </strong></span>The <strong>interquartile range</strong> (IQR) is the difference between the 25th and 75th quantile of a data set. It is a measure of variability that is less sensitive to outliers than the range.</p>
+</div>
+<p>CogStat provides you with both the 25th (<code>Lower quartile</code>) and 75th quantiles (<code>Upper quartile</code>) automatically:</p>
+<blockquote>
+<p><code>Upper quartile: 50.5</code><br />
+<code>Lower quartile: 12.8</code></p>
+</blockquote>
+<div class="example">
+<p><span id="exm:exIQR" class="example"><strong>Example 5.10  (Interquartile range) </strong></span>We can see that the interquartile range for the 2010 AFL winning margins data is:
+<span class="math display">\[
+50.5 - 12.8 = \mathbf{37.7}
+\]</span></p>
+</div>
+<p>While it’s obvious how to interpret the range, it’s a little less obvious how to interpret the IQR. The simplest way to think about it is like this: the interquartile range is the range spanned by the “middle half” of the data, ignoring any data between <span class="math inline">\(-\infty\)</span> and <span class="math inline">\(Q_1\)</span>, and between <span class="math inline">\(Q_3\)</span> and <span class="math inline">\(+\infty\)</span>. That is, one quarter of the data falls below the 25th percentile, one quarter of the data is above the 75th percentile, leaving the “middle half” of the data lying in between the two. And the IQR is the range covered by this middle half.</p>
+<div id="boxplot" class="callout">
+<div class="callout-title">
+Boxplots
+</div>
+<p>Boxplots (or “box and whiskers” plots) are a standardised method to display the distribution of a data set based on a five-number summary:</p>
+<ul>
+<li>the minimum and maximum (i.e., range),</li>
+<li>first quartile and third quartile (i.e., IQR),</li>
+<li>and the median.</li>
+</ul>
+<p><img src="lsc_files/figure-html/unnamed-chunk-21-1.svg" width="75%" style="display: block; margin: auto;" /></p>
+<p>Like histograms, they’re most suited for interval or ratio scale data. Some boxplots separate out those observations that are “suspiciously” distant from the rest of the data, i.e., the outliers. These are usually displayed with a circle or a dot.</p>
+</div>
+</div>
+<div id="aad" class="section level3 hasAnchor" number="5.2.3">
+<h3><span class="header-section-number">5.2.3</span> Mean absolute deviation (average absolute deviation)<a href="exploringavariable.html#aad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The two measures we’ve looked at so far, the range and the interquartile range, both rely on the idea that we can measure the spread of the data by looking at quantiles. However, this isn’t the only way to think about the problem. A different approach is to select some meaningful reference point (usually the mean or the median) and then report the “typical” deviations from that. In practice, this leads to two different measures, the “mean absolute deviation” (from the mean) and the “median absolute deviation” (from the median). Irritatingly, “mean absolute deviation” and “median absolute deviation” have the same acronym (i.e., MAD), which leads to a certain amount of ambiguity. What we’ll do is use <em>AAD</em> (<em>average absolute deviation</em>) for <em>mean absolute deviation</em>, while <em>MAD</em> will stand for <em>median absolute deviation</em>.</p>
+<div class="definition">
+<p><span id="def:defAAD" class="definition"><strong>Definition 5.7  (Average absolute deviation) </strong></span>The <strong>average absolute deviation</strong> (AAD) is a measure of variability calculated as the average of the absolute difference between each observation and the <em>mean</em> of the data set.
+<span class="math display">\[
+\text{AAD} = \frac{1}{n} \sum_{i=1}^n |X_i - \bar{X}|
+\]</span>
+where <span class="math inline">\(n\)</span> is the number of observations, <span class="math inline">\(X_i\)</span> is the <span class="math inline">\(i\)</span>th observation, and <span class="math inline">\(\bar{X}\)</span> is the mean of the data set.</p>
+</div>
+<div class="example">
+<p><span id="exm:exAAD" class="example"><strong>Example 5.11  (Average absolute deviation) </strong></span>Let’s think about our AFL winning margins data, and once again we’ll start by pretending that there’s only 5 games in total, with winning margins of 56, 31, 56, 8 and 32. Our calculations rely on an examination of the deviation from some reference point, in this case, the mean.</p>
+<ol style="list-style-type: decimal">
+<li>The first thing we need to look up is the mean, <span class="math inline">\(\bar{X}\)</span>. For these five observations, our mean is <span class="math inline">\(\bar{X} = 36.6\)</span>.</li>
+<li>The next step is to convert each of our observations <span class="math inline">\(X_i\)</span> into a deviation score. We do this by calculating the difference between the observation <span class="math inline">\(X_i\)</span> and the mean <span class="math inline">\(\bar{X}\)</span> (i.e., the deviation score: <span class="math inline">\(X_i - \bar{X}\)</span>).</li>
+<li>Then we convert these deviations to absolute deviations. Mathematically, we would denote the absolute value of <span class="math inline">\(-3\)</span> as <span class="math inline">\(|-3|\)</span>, and so we say that <span class="math inline">\(|-3| = 3\)</span>. We use the absolute value function here because we don’t care whether the value is higher than the mean or lower than the mean; we’re just interested in how <em>close</em> it is to the mean.</li>
+</ol>
+<p>To help make this process as obvious as possible, the table below shows these calculations for all five observations:</p>
+<table class="table table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Observation
+</th>
+<th style="text-align:left;">
+Symbol
+</th>
+<th style="text-align:left;">
+Observed value
+</th>
+<th style="text-align:left;">
+Deviation score <span class="math inline">\(X_i - \bar{X}\)</span>
+</th>
+<th style="text-align:left;">
+Absolute d.s. <span class="math inline">\(|X_i - \bar{X}|\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+winning margin, game 1
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(X_1\)</span>
+</td>
+<td style="text-align:left;">
+56 points
+</td>
+<td style="text-align:left;">
+56 - 36.6 = 19.4
+</td>
+<td style="text-align:left;">
+19.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+winning margin, game 2
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(X_2\)</span>
+</td>
+<td style="text-align:left;">
+31 points
+</td>
+<td style="text-align:left;">
+31 - 36.6 = -5.6
+</td>
+<td style="text-align:left;">
+5.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+winning margin, game 3
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(X_3\)</span>
+</td>
+<td style="text-align:left;">
+56 points
+</td>
+<td style="text-align:left;">
+56 - 36.6 = 19.4
+</td>
+<td style="text-align:left;">
+19.4
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+winning margin, game 4
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(X_4\)</span>
+</td>
+<td style="text-align:left;">
+8 points
+</td>
+<td style="text-align:left;">
+8 - 36.6 = -28.6
+</td>
+<td style="text-align:left;">
+28.6
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+winning margin, game 5
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(X_5\)</span>
+</td>
+<td style="text-align:left;">
+32 points
+</td>
+<td style="text-align:left;">
+32 - 36.6 = -4.6
+</td>
+<td style="text-align:left;">
+4.6
+</td>
+</tr>
+</tbody>
+</table>
+<p>Now that we have calculated the absolute deviation score for every observation in the data set, we only have to calculate the mean of these scores. Let’s do that:
+<span class="math display">\[
+\frac{19.4 + 5.6 + 19.4 + 28.6 + 4.6}{5} = 15.52
+\]</span>
+And we’re done. The mean absolute deviation for these five scores is 15.52.</p>
+</div>
+<p>Currently, AAD is not calculated in CogStat, but you can calculate this with other statistics software. When this is added, we’ll update this section.</p>
+</div>
+<div id="mad" class="section level3 hasAnchor" number="5.2.4">
+<h3><span class="header-section-number">5.2.4</span> Median absolute deviation<a href="exploringavariable.html#mad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The basic idea behind <em>median absolute deviation</em> (MAD) is identical to the one behind the mean absolute deviation (Section <a href="exploringavariable.html#aad">5.2.3</a>). The difference is that you use the median. This has a straightforward interpretation: every observation in the data set lies some distance away from the typical value (the median). So the MAD is an attempt to describe a <em>typical deviation from a typical value</em> in the data set.</p>
+<div class="definition">
+<p><span id="def:defMAD" class="definition"><strong>Definition 5.8  (Median absolute deviation) </strong></span>The <strong>median absolute deviation</strong> (MAD) is a measure of variability calculated as the average of the absolute difference between each observation and the <em>median</em> of the data set.</p>
+<p><span class="math display">\[
+\text{MAD} = \frac{1}{n} \sum_{i=1}^n |X_i - \text{median}(X)|
+\]</span></p>
+<p>where <span class="math inline">\(n\)</span> is the number of observations, <span class="math inline">\(X_i\)</span> is the <span class="math inline">\(i\)</span>th observation, and <span class="math inline">\(\text{median}(X)\)</span> is the median of the data set.</p>
+</div>
+<div class="example">
+<p><span id="exm:exMAD" class="example"><strong>Example 5.12  (Median absolute deviation) </strong></span>Let’s think about our AFL winning margins data, and once again we’ll start by pretending that there’s only 5 games in total, with winning margins of 56, 31, 56, 8 and 32. Our calculations rely on an examination of the deviation from some reference point, in this case, the median. The median for these five observations is <span class="math inline">\(\text{median}(X) = 32\)</span>. We’ll repeat the same steps as before with the <a href="#exAAD">mean absolute deviation</a>, and we’ll have the following result:</p>
+<p><span class="math display">\[
+\text{MAD} = \frac{1}{5} \left( |56 - 32| + |31 - 32| + |56 - 32| + |8 - 32| + |32 - 32| \right) = 19.5
+\]</span></p>
+</div>
+</div>
+<div id="variance" class="section level3 hasAnchor" number="5.2.5">
+<h3><span class="header-section-number">5.2.5</span> Variance<a href="exploringavariable.html#variance" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Variance isn’t all too different from the <a href="exploringavariable.html#aad">mean absolute deviation</a>. The main difference is that we use squared deviations instead of absolute deviations. With squared deviations, we obtain a measure called <strong>variance</strong>.</p>
+<div class="definition">
+<p><span id="def:defVar" class="definition"><strong>Definition 5.9  (Variance) </strong></span><strong>Variance</strong> is a measure of variability calculated as the average of the <em>squared difference</em> between each observation and the <em>mean</em> of the data set.</p>
+<p><span class="math display">\[
+\mbox{Var}(X) = \frac{1}{n} \sum_{i=1}^n (X_i - \bar{X})^2
+\]</span></p>
+<p>where <span class="math inline">\(n\)</span> is the number of observations, <span class="math inline">\(X_i\)</span> is the <span class="math inline">\(i\)</span>th observation, and <span class="math inline">\(\bar{X}\)</span> is the mean of the data set.</p>
+</div>
+<p>Variances are <em>additive</em>. Suppose we have two variables (<span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>), whose variances are <span class="math inline">\(\mbox{Var}(X)\)</span> and <span class="math inline">\(\mbox{Var}(Y)\)</span> respectively. Now imagine we want to define a new variable <span class="math inline">\(Z\)</span> that is the sum of the two, <span class="math inline">\(Z = X+Y\)</span>. As it turns out, the variance of <span class="math inline">\(Z\)</span> is equal to <span class="math inline">\(\mbox{Var}(X) + \mbox{Var}(Y)\)</span>.</p>
+<div class="example">
+<p><span id="exm:exVarAddit" class="example"><strong>Example 5.13  (Additive property of the variance) </strong></span>Let’s use the first five AFL games as our data. If we follow the same approach that we took last time, we end up with the following table:</p>
+<table class="table" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Which game
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Value
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Deviation from mean
+</div>
+</th>
+<th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="1">
+<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
+Absolute squared deviation
+</div>
+</th>
+</tr>
+<tr>
+<th style="text-align:left;">
+<span class="math inline">\(i\)</span>
+</th>
+<th style="text-align:left;">
+<span class="math inline">\(X_i\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(X_i - \bar{X}\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\((X_i - \bar{X})^2\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1
+</td>
+<td style="text-align:left;">
+56
+</td>
+<td style="text-align:center;">
+19.4
+</td>
+<td style="text-align:center;">
+376.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2
+</td>
+<td style="text-align:left;">
+31
+</td>
+<td style="text-align:center;">
+-5.6
+</td>
+<td style="text-align:center;">
+31.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3
+</td>
+<td style="text-align:left;">
+56
+</td>
+<td style="text-align:center;">
+19.4
+</td>
+<td style="text-align:center;">
+376.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4
+</td>
+<td style="text-align:left;">
+8
+</td>
+<td style="text-align:center;">
+-28.6
+</td>
+<td style="text-align:center;">
+817.96
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+5
+</td>
+<td style="text-align:left;">
+32
+</td>
+<td style="text-align:center;">
+-4.6
+</td>
+<td style="text-align:center;">
+21.16
+</td>
+</tr>
+</tbody>
+</table>
+<p>That last column contains all of our squared deviations, so all we have to do is average them.</p>
+<p><span class="math display">\[
+\frac{( 376.36 + 31.36 + 376.36 + 817.96 + 21.16 )}{5} = 324.64
+\]</span></p>
+</div>
+<p>Let’s tackle the burning question you’re probably thinking: how do you <em>interpret</em> the variance? Unfortunately, the reason why we haven’t given you the human-friendly interpretation of the variance is that there really isn’t one. It does have some elegant mathematical properties that suggest that it really is a fundamental quantity for expressing variation and spread. The reason for the difficulty is that all the numbers have been squared, and they don’t necessarily mean anything in the original units. For example, if you’re running an analysis on vitamin D levels in a study about mood disorders, you’ll have a base unit of measure of nmol/L or ng/mL. If you square these numbers, you’ll end up with a variance in nmol/L-squared or ng/mL-squared. This is a meaningless unit of measure on its own. However, variance is still a good measure to indicate a spread of data, and it’s a good measure to use when comparing variances between different groups.</p>
+<p>CogStat will not attempt to interpret the variance nor will it give you the raw value.</p>
+<div id="calloutVar" class="callout">
+<div class="callout-title">
+Population variance versus variance estimate
+</div>
+<div class="keepTogether">
+<p>If you are extremely lucky and have a data set that contains the entire population, then you can calculate the variance as given in Definition <a href="exploringavariable.html#def:defVar">5.9</a>. This is called <strong>population variance</strong>. In this case the variance is denoted <span class="math inline">\(\sigma^2\)</span>, the mean is denoted as <span class="math inline">\(\mu\)</span>.</p>
+<p><span class="math display">\[
+\sigma^2 = \frac{1}{n} \sum_{i=1}^n (X_i - \mu)^2
+\]</span></p>
+</div>
+<div class="keepTogether">
+<p>In research, however, you are most likely to have gathered data for merely a <em>sample</em> of the population. There is an alternative formula for this case. This is called <strong>variance estimate</strong>, or <em>estimated variance</em>, or <em>sample variance</em>, or <em>estimated population variance</em>, and is denoted <span class="math inline">\(s^2\)</span>. The formula for the variance estimate is:</p>
+<p><span class="math display">\[
+s^2 = \frac{1}{n-1} \sum_{i=1}^n (X_i - \bar{X})^2
+\]</span></p>
+<p>where <span class="math inline">\(n\)</span> is the number of observations in the sample, <span class="math inline">\(X_i\)</span> is the <span class="math inline">\(i\)</span>th observation, and <span class="math inline">\(\bar{X}\)</span> is the mean of the sample. You’ll notice the difference is the denominator using <span class="math inline">\(n-1\)</span> instead of <span class="math inline">\(n\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="sd" class="section level3 hasAnchor" number="5.2.6">
+<h3><span class="header-section-number">5.2.6</span> Standard deviation<a href="exploringavariable.html#sd" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Suppose you would like to have a measure expressed in the same units as the data itself (i.e. nmol/L, not nmol/L-squared). What should you do? The solution to the problem is obvious: take the square root of the variance, known as the <strong>standard deviation</strong> (usually shortened as <em>SD</em> or <em>Std dev.</em>), also called the <em>root mean squared deviation</em>, or RMSD. This solves our problem with variance fairly neatly: it’s much easier to understand “a standard deviation of 18.01 nmol/L” since it’s expressed in the original units.</p>
+<div class="definition">
+<p><span id="def:defSD" class="definition"><strong>Definition 5.10  (Standard deviation) </strong></span><strong>Standard deviation</strong> is the <em>square root</em> of the average of the <em>squared difference</em> between each observation and the <em>mean</em> of the data set.</p>
+<p><span class="math display">\[
+\mbox{SD} = \sqrt{ \frac{1}{n} \sum_{i=1}^n \left( X_i - \bar{X} \right)^2 }
+\]</span></p>
+</div>
+<p>So how do we interpret standard deviation? Standard deviation has the same unit of measure as the observations, e.g., nmol/L, but just like variance, it doesn’t have a simple interpretation either. The interpretation is based on the scale of the measurement. E.g. 3.5 can be big or small depending on the scale of measurement. For example, a 3.5 nmol/L SD value for vitamin D level suggests a fairly consistent measurement, considering 50-75 nmol/L is adequate, &gt;75 is optimum, and &lt;25 is deficient according to NHS UK guidelines<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a> in 2023. But an SD of 3.5 for a 5-level Likert scale is massive, indicating a less consistent data point and high variability.</p>
+<p>There are different ways to standardise the SD. One way is to divide the SD by the mean, which gives you the <strong>coefficient of variation</strong> (CV). Another way is by utilizing <span class="math inline">\(z\)</span>-scores which assumes the data are <em>normally</em> distributed, which is an important concept discussed in Chapter <a href="#probability"><strong>??</strong></a>. We’ll discuss z-scores shortly in Chapter <a href="exploringavariable.html#zscore">5.4</a>.</p>
+<div id="calloutSD" class="callout">
+<div class="callout-title">
+Population SD versus estimated SD
+</div>
+<p>Similarly to variance, we can differentiate between a population-based standard deviation and a sample-based standard deviation.</p>
+<div class="keepTogether">
+<p>The <strong>population SD</strong> is denoted <span class="math inline">\(\sigma\)</span>, the mean is denoted as <span class="math inline">\(\mu\)</span>.</p>
+<p><span class="math display">\[
+\sigma = \sqrt{ \frac{1}{n} \sum_{i=1}^n \left( X_i - \mu \right)^2 }
+\]</span></p>
+</div>
+<div class="keepTogether">
+<p>For calculating a population <em>estimate</em> based on sample data, we use the <strong>estimated standard deviation</strong> (<span class="math inline">\(s\)</span>) formula.</p>
+<p><span class="math display">\[
+s = \sqrt{ \frac{1}{n-1} \sum_{i=1}^n \left( X_i - \bar{X} \right)^2 }
+\]</span></p>
+<p>where <span class="math inline">\(n\)</span> is the number of observations in the sample, <span class="math inline">\(X_i\)</span> is the <span class="math inline">\(i\)</span>th observation, and <span class="math inline">\(\bar{X}\)</span> is the mean of the sample. The denominator is <span class="math inline">\(n-1\)</span> instead of <span class="math inline">\(n\)</span>.</p>
+</div>
+</div>
+</div>
+<div id="which-measure-to-use" class="section level3 hasAnchor" number="5.2.7">
+<h3><span class="header-section-number">5.2.7</span> Which measure to use?<a href="exploringavariable.html#which-measure-to-use" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We’ve discussed quite a few measures of spread and hinted at their strengths and weaknesses. Here’s a quick summary:</p>
+<ul>
+<li><a href="exploringavariable.html#range"><em>Range</em></a>. Gives you the full spread of the data. It’s very vulnerable to outliers, and as a consequence, it isn’t often used unless you have good reasons to care about the extremes in the data.</li>
+<li><a href="exploringavariable.html#IQR"><em>Interquartile range</em></a>. Tells you where the “middle half” of the data sits. It’s pretty robust and complements the median nicely. This is used a lot.</li>
+<li><a href="#AAD"><em>Average absolute deviation</em></a>. Tells you how far “on average” the observations are from the mean. It’s very interpretable but has a few minor issues that make it less attractive to statisticians than the standard deviation. Used sometimes, but not often.</li>
+<li><a href="#MAD"><em>Median absolute deviation</em></a>. The typical deviation from the median value.</li>
+<li><a href="exploringavariable.html#variance"><em>Variance</em></a>. Tells you the average squared deviation from the mean. It’s mathematically elegant and is probably the “right” way to describe variation around the mean, but it’s completely uninterpretable because it doesn’t use the same units as the data. Almost never used except as a mathematical tool, but it’s buried “under the hood” of a very large number of statistical tools.</li>
+<li><a href="exploringavariable.html#sd"><em>Standard deviation</em></a>. This is the square root of the variance. It’s fairly elegant mathematically, and it’s expressed in the same units as the data, so it can be interpreted pretty well. In situations where the mean is the measure of central tendency, this is the default. This is by far the most popular measure of variation.</li>
+</ul>
+<p>In short, the IQR and the standard deviation are easily the two most common measures used to report the variability of the data. Still, there are situations in which range or other measures are used.</p>
+</div>
+</div>
+<div id="skewnesskurtosis" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Skewness and kurtosis<a href="exploringavariable.html#skewnesskurtosis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+There are two more descriptive statistics that you will likely see reported in the psychological literature, known as <strong>skewness</strong> and <strong>kurtosis</strong>. These are measures of the shape of the distribution of the data.
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:skewness"></span>
+<img src="lsc_files/figure-html/skewness-1.svg" alt="An illustration of skewness." width="90%" />
+<p class="caption">
+Figure 5.9: An illustration of skewness.
+</p>
+</div>
+<div class="definition">
+<p><span id="def:defskewness" class="definition"><strong>Definition 5.11  (Skewness) </strong></span><strong>Skewness</strong> is a measure of assymetry of a distribution.</p>
+<p>In case of <a href="exploringavariable.html#calloutmultimodal">unimodal distributions</a>, a negative skew means the median and mean are smaller than the mode, resulting in a long tail on the left; and a positive skew means the median and mean are larger than the mode, resulting in a long tail on the right. A skewness of 0 means the median and mean are equal to the mode, resulting in a symmetrical distribution.</p>
+<p>The formula for sample skewness is:</p>
+<p><span class="math display">\[
+\mbox{skewness}(X) = \frac{1}{N \hat\sigma^3} \sum_{i=1}^N \left( X_i - \bar{X} \right)^3
+\]</span></p>
+<p>where <span class="math inline">\(N\)</span> is the number of observations in the sample, <span class="math inline">\(X_i\)</span> is the <span class="math inline">\(i\)</span>th observation, <span class="math inline">\(\bar{X}\)</span> is the mean of the sample, and <span class="math inline">\(\hat\sigma\)</span> is the sample standard deviation.</p>
+</div>
+<p>As Figure <a href="exploringavariable.html#fig:skewness">5.9</a> illustrates, if the data tend to have a lot of extreme small values (i.e., the lower tail is “longer” than the upper tail) and not so many extremely large values (left panel), then we say that the data are <em>negatively skewed</em>. On the other hand, if there are more extremely large values than extremely small ones (right panel) we say that the data are <em>positively skewed</em>.</p>
+<p>Not surprisingly, it turns out that the AFL winning margins data is fairly skewed: <span class="math inline">\(0.8\)</span> (see Figure <a href="exploringavariable.html#fig:histogramaflsmall">5.5</a> depicting the analysis results from CogStat).</p>
+<div class="definition">
+<p><span id="def:defkurtosis" class="definition"><strong>Definition 5.12  (Kurtosis) </strong></span><strong>Kurtosis</strong> describes the degree of steepness of a distribution.</p>
+<p>A steep distribution is <em>leptokurtic</em> (positive kurtosis) distribution, a flat distribution is <em>platykurtic</em> (negative kurtosis), and the normal distribution is <em>mesokurtic</em> (kurtosis is 0).</p>
+<p><span class="math display">\[
+\mbox{kurtosis}(X) = \frac{1}{N \hat\sigma^4} \sum_{i=1}^N \left( X_i - \bar{X} \right)^4 - 3
+\]</span></p>
+<p>where <span class="math inline">\(N\)</span> is the number of observations, <span class="math inline">\(\bar{X}\)</span> is the sample mean, and <span class="math inline">\(\hat{\sigma}\)</span> is the standard deviation (the “divide by <span class="math inline">\(N-1\)</span>” version, that is).</p>
+</div>
+<p>Kurtosis, put simply, is a measure of the “pointiness” of a data set, as illustrated in Figure <a href="exploringavariable.html#fig:kurtosis">5.10</a>.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:kurtosis"></span>
+<img src="lsc_files/figure-html/kurtosis-1.svg" alt="An illustration of kurtosis." width="90%" />
+<p class="caption">
+Figure 5.10: An illustration of kurtosis.
+</p>
+</div>
+<p>When reading the automatically calculated kurtosis value from our CogStat result set, we discover that the AFL winning margins data is just pointy enough: <span class="math inline">\(0.1\)</span>.</p>
+</div>
+<div id="zscore" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Standard scores (<span class="math inline">\(z\)</span>-score)<a href="exploringavariable.html#zscore" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Suppose a friend is creating a new questionnaire to measure “grumpiness”. The survey has 50 questions, which you can answer in a grumpy way or not. Across a big sample (hypothetically, let’s imagine a million people or so!), the data are fairly normally distributed, with the mean grumpiness score being 17 out of 50 questions answered in a grumpy way and the standard deviation is 5. In contrast, when we take the questionnaire, we answer 35 out of 50 questions in a grumpy way. So, how grumpy are we? One way to think about it would be to say that we have a grumpiness of 35/50, so you might say that we’re 70% grumpy. But that’s a bit weird when you think about it. Suppose our friend had phrased her questions a bit differently. In that case, people might have answered them differently, so the overall distribution of answers could easily move up or down depending on the precise way the questions were asked. So, we’re only 70% grumpy <em>with respect to this set of survey questions</em>. Even if it’s an excellent questionnaire, this isn’t a very informative statement.</p>
+<p>A simpler way around this is to describe our grumpiness by comparing us to other people. Shockingly, out of a sample of 1,000,000 people, only 159 people were as grumpy as us, suggesting that we’re in the top 0.016% of people for grumpiness. This makes much more sense than trying to interpret the raw data. This idea – that we should describe our grumpiness in terms of the overall distribution of the grumpiness of humans – is the qualitative idea that standardisation attempts to get at. One way to do this is to describe everything in terms of percentiles. However, the problem with doing this is that “it’s lonely at the top”.</p>
+<p>Suppose that our friend had only collected a sample of 1000 people, and this time got a mean of 16 out of 50 with a standard deviation of 5. The problem is that, almost certainly, not a single person in that sample would be as grumpy as us.</p>
+<p>However, all is not lost. A different approach is to convert our grumpiness score into a <strong>standard score</strong>, also referred to as a <span class="math inline">\(z\)</span>-score. The standard score is defined as the number of standard deviations above the mean that my grumpiness score lies. To phrase it in “pseudo-maths”, the standard score is calculated like this:
+<span class="math display">\[
+\mbox{standard score} = \frac{\mbox{raw score} - \mbox{mean}}{\mbox{standard deviation}}
+\]</span>
+In actual maths, the equation for the <span class="math inline">\(z\)</span>-score is
+<span class="math display">\[
+z_i = \frac{X_i - \bar{X}}{\hat\sigma}
+\]</span>
+So, going back to the grumpiness data, we can now transform our raw grumpiness into a standardised grumpiness score. If the mean is 17 and the standard deviation is 5 then my standardised grumpiness score would be (in a bit simplistic way, since we haven’t discussed estimations yet):
+<span class="math display">\[
+z = \frac{35 - 17}{5} = 3.6
+\]</span></p>
+<p>To interpret this value, recall the rough heuristic from Chapter <a href="exploringavariable.html#sd">5.2.6</a>: 99.7% of values are expected to lie within 3 standard deviations of the mean. So the fact that our grumpiness corresponds to a <span class="math inline">\(z\)</span> score of 3.6 indicates that we’re very grumpy indeed. A theoretical percentile rank for grumpiness, would be <span class="math inline">\(0.9998409\)</span>.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a></p>
+<p>In addition to allowing you to interpret a raw score in relation to a larger population (and thereby allowing you to make sense of variables that lie on arbitrary scales), standard scores serve a second useful function. Standard scores can be compared to one another in situations where the raw scores can’t. Suppose our friend also had another questionnaire that measured extraversion using a 24 items questionnaire. The overall mean for this measure turns out to be 13 with a standard deviation 4; and we scored a 2. As you can imagine, it doesn’t make a lot of sense to compare this raw score of 2 on the extraversion questionnaire to our raw score of 35 on the grumpiness questionnaire. The raw scores for the two variables are “about” fundamentally different things, so this would be like comparing apples to oranges.</p>
+<p>What about the standard scores? Well, this is a little different. If we calculate the standard scores, we get <span class="math inline">\(z = (35-17)/5 = 3.6\)</span> for grumpiness and <span class="math inline">\(z = (2-13)/4 = -2.75\)</span> for extraversion. These two numbers <em>can</em> be compared to each other.<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a> We’d be much less extraverted than most people (<span class="math inline">\(z = -2.75\)</span>) and much grumpier than most people (<span class="math inline">\(z = 3.6\)</span>): but the extent of our unusualness is much more extreme for grumpiness (since 3.6 is a bigger number than 2.75). Because each standardised score is a statement about where an observation falls <em>relative to its own population</em>, it <em>is</em> possible to compare standardised scores across completely different variables.</p>
+</div>
+<div id="summary-1" class="section level2 unnumbered unlisted hasAnchor">
+<h2>Summary<a href="exploringavariable.html#summary-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We have covered some key aspects of how to summarise what we have learned about the data. As a summary, the following table lists the measures that CogStat will calculate for you, with a brief explanation of what they are and how they are used.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-24">Table 5.1: </span>Descriptives for the variable</caption>
+<colgroup>
+<col width="13%" />
+<col width="17%" />
+<col width="69%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><span style="min-width:1em"></span></th>
+<th align="right"><span style="min-width:1em">afl.margins</span></th>
+<th align="left">Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><a href="exploringavariable.html#mean">Mean</a></td>
+<td align="right">35.3</td>
+<td align="left">Average – the “centre of gravity” of the data</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="exploringavariable.html#sd">Standard deviation</a></td>
+<td align="right">26.0</td>
+<td align="left">How clustered is the data around the mean (smaller figure means more clustered, larger figure closer to interquartile range means more spread out)</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="exploringavariable.html#skewnesskurtosis">Skewness</a></td>
+<td align="right">0.8</td>
+<td align="left">The assymetry of the data compared to a normal distribution (bell curve)</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="exploringavariable.html#skewnesskurtosis">Kurtosis</a></td>
+<td align="right">0.1</td>
+<td align="left">Pointiness of the data. Smaller figure means more pointy, larger figure means less pointy</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="exploringavariable.html#range">Range</a></td>
+<td align="right">116.0</td>
+<td align="left">The spread of the data set between the maximum and minimum values</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="exploringavariable.html#range">Maximum</a></td>
+<td align="right">116.0</td>
+<td align="left">The highest value in the data set</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="exploringavariable.html#IQR">Upper quartile</a></td>
+<td align="right">50.5</td>
+<td align="left">25% of the data points reside at and above this value</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="exploringavariable.html#median">Median</a></td>
+<td align="right">30.5</td>
+<td align="left">This is the value of the data point in the middle (or the average of the two middle points in case of even number of data points). 50-50% of data points reside at above and below this value</td>
+</tr>
+<tr class="odd">
+<td align="left"><a href="exploringavariable.html#IQR">Lower quartile</a></td>
+<td align="right">12.8</td>
+<td align="left">25% of the data points reside at and below this value</td>
+</tr>
+<tr class="even">
+<td align="left"><a href="exploringavariable.html#range">Minimum</a></td>
+<td align="right">0.0</td>
+<td align="left">The lowest value in the data set</td>
+</tr>
+</tbody>
+</table>
+<p>We also discussed <span class="math inline">\(z\)</span>-scores as very specific alternatives to percentiles in some cases, which will come in handy later on.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="15">
+<li id="fn15"><p>Note for non-Australians: the AFL is an Australian rules football competition. You don’t need to know anything about Australian rules in order to follow this section.<a href="exploringavariable.html#fnref15" class="footnote-back">↩︎</a></p></li>
+<li id="fn16"><p><em>medianus</em> is Latin for “the one in the middle”, originating from the word <em>medius</em>, meaning “the middle”.<a href="exploringavariable.html#fnref16" class="footnote-back">↩︎</a></p></li>
+<li id="fn17"><p>This is called a “0-1 loss function”, meaning that you either win (1) or you lose (0), with no middle ground.<a href="exploringavariable.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<li id="fn18"><p><a href="https://www.southtees.nhs.uk/services/pathology/tests/vitamin-d/" class="uri">https://www.southtees.nhs.uk/services/pathology/tests/vitamin-d/</a><a href="exploringavariable.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p>Note that this is true given a normal distribution. More on that later.<a href="exploringavariable.html#fnref19" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p>Though some caution is usually warranted. It’s not always the case that one standard deviation on variable A corresponds to the same “kind” of thing as one standard deviation on variable B. Use common sense when trying to determine whether or not the <span class="math inline">\(z\)</span> scores of two variables can be meaningfully compared.<a href="exploringavariable.html#fnref20" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="cogstatintro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="correl.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "section",
+"fig_caption": true,
+"number_sections": true
+},
+"toc_depth": 3,
+"tof": true,
+"tot": true,
+"toolbar": {
+"position": "static"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

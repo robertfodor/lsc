@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 2 Basic concepts | Learning Statistics with CogStat</title>
+  <meta name="description" content="Chapter 2 Basic concepts | Learning Statistics with CogStat (Second Edition) covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 2 Basic concepts | Learning Statistics with CogStat" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
+  <meta property="og:description" content="Chapter 2 Basic concepts | Learning Statistics with CogStat (Second Edition) covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
+  <meta name="github-repo" content="https://github.com/robertfodor/lsc" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 2 Basic concepts | Learning Statistics with CogStat" />
+  
+  <meta name="twitter:description" content="Chapter 2 Basic concepts | Learning Statistics with CogStat (Second Edition) covers the contents of an introductory statistics class, as typically taught to undergraduate psychology students based on Danielle Navarro’s original Learning Statistics with R with a focus on automatic statistical analysis performed in CogStat." />
+  <meta name="twitter:image" content="https://learningstatisticswithcogstat.com/resources/bookcover/LSC_small.png" />
+
+<meta name="author" content="Danielle Navarro" />
+<meta name="author" content="Róbert Fodor" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="whywhywhy.html"/>
+<link rel="next" href="autostat.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<meta name="twitter:card" content="summary"/>
+<meta property="og:type" content="book"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="article:author" content="Danielle Navarro"/>
+<meta property="article:author" content="Róbert Fodor"/>
+<meta name="citation_title" content="Chapter 2 Basic concepts | Learning Statistics with CogStat (2nd Ed)"/>
+<meta name="citation_author" content="Danielle Navarro"/>
+<meta name="citation_author" content="Róbert Fodor"/>
+<meta name="citation_publication_date" content="2023/09/22"/>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Learning Statistics with CogStat</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>About this book</a></li>
+<li class="chapter" data-level="" data-path="foreword.html"><a href="foreword.html"><i class="fa fa-check"></i>Foreword</a></li>
+<li class="part"><span><b>INTRODUCTIONS</b></span></li>
+<li class="chapter" data-level="1" data-path="whywhywhy.html"><a href="whywhywhy.html"><i class="fa fa-check"></i><b>1</b> Why do we learn statistics?</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="whywhywhy.html"><a href="whywhywhy.html#the-curse-of-belief-bias"><i class="fa fa-check"></i><b>1.1</b> The curse of belief bias</a></li>
+<li class="chapter" data-level="1.2" data-path="whywhywhy.html"><a href="whywhywhy.html#the-simpsons-paradox"><i class="fa fa-check"></i><b>1.2</b> The Simpson’s paradox</a></li>
+<li class="chapter" data-level="1.3" data-path="whywhywhy.html"><a href="whywhywhy.html#statistics-in-psychology"><i class="fa fa-check"></i><b>1.3</b> Statistics in psychology</a></li>
+<li class="chapter" data-level="1.4" data-path="whywhywhy.html"><a href="whywhywhy.html#theres-more-to-research-methods-than-statistics"><i class="fa fa-check"></i><b>1.4</b> There’s more to research methods than statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="researchdesign.html"><a href="researchdesign.html"><i class="fa fa-check"></i><b>2</b> Basic concepts</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="researchdesign.html"><a href="researchdesign.html#measurement"><i class="fa fa-check"></i><b>2.1</b> Introduction to psychological measurement</a></li>
+<li class="chapter" data-level="2.2" data-path="researchdesign.html"><a href="researchdesign.html#scales"><i class="fa fa-check"></i><b>2.2</b> Measurement levels</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="researchdesign.html"><a href="researchdesign.html#nominalscale"><i class="fa fa-check"></i><b>2.2.1</b> Nominal categories</a></li>
+<li class="chapter" data-level="2.2.2" data-path="researchdesign.html"><a href="researchdesign.html#ordinalscale"><i class="fa fa-check"></i><b>2.2.2</b> Ordinal scale and rank</a></li>
+<li class="chapter" data-level="2.2.3" data-path="researchdesign.html"><a href="researchdesign.html#intervalscale"><i class="fa fa-check"></i><b>2.2.3</b> Interval scale</a></li>
+<li class="chapter" data-level="2.2.4" data-path="researchdesign.html"><a href="researchdesign.html#ratioscale"><i class="fa fa-check"></i><b>2.2.4</b> Ratio scale</a></li>
+<li class="chapter" data-level="2.2.5" data-path="researchdesign.html"><a href="researchdesign.html#likertscale"><i class="fa fa-check"></i><b>2.2.5</b> The special case of the Likert scale</a></li>
+<li class="chapter" data-level="2.2.6" data-path="researchdesign.html"><a href="researchdesign.html#continuousdiscrete"><i class="fa fa-check"></i><b>2.2.6</b> Continuous versus discrete variables</a></li>
+<li class="chapter" data-level="2.2.7" data-path="researchdesign.html"><a href="researchdesign.html#summaryguidelevels"><i class="fa fa-check"></i><b>2.2.7</b> A summary guide for levels of measurement</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="researchdesign.html"><a href="researchdesign.html#ivdv"><i class="fa fa-check"></i><b>2.3</b> Independent and dependent variables</a></li>
+<li class="chapter" data-level="2.4" data-path="researchdesign.html"><a href="researchdesign.html#reliability"><i class="fa fa-check"></i><b>2.4</b> Reliability</a></li>
+<li class="chapter" data-level="2.5" data-path="researchdesign.html"><a href="researchdesign.html#validity"><i class="fa fa-check"></i><b>2.5</b> Validity</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="autostat.html"><a href="autostat.html"><i class="fa fa-check"></i><b>3</b> Automatic statistical analysis</a></li>
+<li class="chapter" data-level="4" data-path="cogstatintro.html"><a href="cogstatintro.html"><i class="fa fa-check"></i><b>4</b> Introduction to CogStat</a></li>
+<li class="part"><span><b>DESCRIPTIVE STATISTICS</b></span></li>
+<li class="chapter" data-level="5" data-path="exploringavariable.html"><a href="exploringavariable.html"><i class="fa fa-check"></i><b>5</b> Exploring a single variable</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="exploringavariable.html"><a href="exploringavariable.html#centraltendency"><i class="fa fa-check"></i><b>5.1</b> Measures of central tendency</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="exploringavariable.html"><a href="exploringavariable.html#mean"><i class="fa fa-check"></i><b>5.1.1</b> The mean</a></li>
+<li class="chapter" data-level="5.1.2" data-path="exploringavariable.html"><a href="exploringavariable.html#median"><i class="fa fa-check"></i><b>5.1.2</b> The median</a></li>
+<li class="chapter" data-level="5.1.3" data-path="exploringavariable.html"><a href="exploringavariable.html#mean-or-median-whats-the-difference"><i class="fa fa-check"></i><b>5.1.3</b> Mean or median? What’s the difference?</a></li>
+<li class="chapter" data-level="5.1.4" data-path="exploringavariable.html"><a href="exploringavariable.html#trimmedmean"><i class="fa fa-check"></i><b>5.1.4</b> Trimmed mean</a></li>
+<li class="chapter" data-level="5.1.5" data-path="exploringavariable.html"><a href="exploringavariable.html#mode"><i class="fa fa-check"></i><b>5.1.5</b> Mode</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="exploringavariable.html"><a href="exploringavariable.html#var"><i class="fa fa-check"></i><b>5.2</b> Measures of variability</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="exploringavariable.html"><a href="exploringavariable.html#range"><i class="fa fa-check"></i><b>5.2.1</b> Range</a></li>
+<li class="chapter" data-level="5.2.2" data-path="exploringavariable.html"><a href="exploringavariable.html#IQR"><i class="fa fa-check"></i><b>5.2.2</b> Interquartile range</a></li>
+<li class="chapter" data-level="5.2.3" data-path="exploringavariable.html"><a href="exploringavariable.html#aad"><i class="fa fa-check"></i><b>5.2.3</b> Mean absolute deviation (average absolute deviation)</a></li>
+<li class="chapter" data-level="5.2.4" data-path="exploringavariable.html"><a href="exploringavariable.html#mad"><i class="fa fa-check"></i><b>5.2.4</b> Median absolute deviation</a></li>
+<li class="chapter" data-level="5.2.5" data-path="exploringavariable.html"><a href="exploringavariable.html#variance"><i class="fa fa-check"></i><b>5.2.5</b> Variance</a></li>
+<li class="chapter" data-level="5.2.6" data-path="exploringavariable.html"><a href="exploringavariable.html#sd"><i class="fa fa-check"></i><b>5.2.6</b> Standard deviation</a></li>
+<li class="chapter" data-level="5.2.7" data-path="exploringavariable.html"><a href="exploringavariable.html#which-measure-to-use"><i class="fa fa-check"></i><b>5.2.7</b> Which measure to use?</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="exploringavariable.html"><a href="exploringavariable.html#skewnesskurtosis"><i class="fa fa-check"></i><b>5.3</b> Skewness and kurtosis</a></li>
+<li class="chapter" data-level="5.4" data-path="exploringavariable.html"><a href="exploringavariable.html#zscore"><i class="fa fa-check"></i><b>5.4</b> Standard scores (<span class="math inline">\(z\)</span>-score)</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="correl.html"><a href="correl.html"><i class="fa fa-check"></i><b>6</b> Exploring a variable pair</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="correl.html"><a href="correl.html#the-strength-and-direction-of-a-relationship"><i class="fa fa-check"></i><b>6.1</b> The strength and direction of a relationship</a></li>
+<li class="chapter" data-level="6.2" data-path="correl.html"><a href="correl.html#pearson"><i class="fa fa-check"></i><b>6.2</b> The correlation coefficient</a></li>
+<li class="chapter" data-level="6.3" data-path="correl.html"><a href="correl.html#interpretingcorrelations"><i class="fa fa-check"></i><b>6.3</b> Interpreting a correlation</a></li>
+<li class="chapter" data-level="6.4" data-path="correl.html"><a href="correl.html#spearman"><i class="fa fa-check"></i><b>6.4</b> Spearman’s rank correlations</a></li>
+<li class="chapter" data-level="6.5" data-path="correl.html"><a href="correl.html#missingvaluespair"><i class="fa fa-check"></i><b>6.5</b> Missing values in pairwise calculations</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Learning Statistics with CogStat</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="researchdesign" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Chapter 2</span> Basic concepts<a href="researchdesign.html#researchdesign" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>In this chapter, we’ll discuss basic concepts and terminology related to measurement and study design. Since this book focuses on data analysis, it won’t give you enough information to design studies of your own. To do that, you’ll need to take a course in research design and methods. There are a couple of good books on the topic.</p>
+<p>This chapter relies on <span class="citation">Howitt &amp; Cramer (<a href="#ref-howittUnderstandingStatisticsPsychology2020">2020</a>)</span> and <span class="citation">Stevens (<a href="#ref-Stevens1946">1946</a>)</span> for discussing scales of measurement, and on <span class="citation">Boncz (<a href="#ref-bonczResearchMethodologyBasics2015">2015</a>)</span>, <span class="citation">Michalos (<a href="#ref-michalosEncyclopediaQualityLife2014">2014</a>)</span>, and <span class="citation">Marks &amp; Yardley (<a href="#ref-marksResearchMethodsClinical2004">2004</a>)</span> for discussing reliability and validity.</p>
+<div id="measurement" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Introduction to psychological measurement<a href="researchdesign.html#measurement" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>First, data collection can be thought of as a kind of <strong>measurement</strong>. That is, what we’re trying to do here is measure something about human behaviour or the human mind. What do we mean by “measurement”?</p>
+<p>Measurement as a concept comes down to finding some way of assigning numbers, labels, or other well-defined descriptions to phenomena. So, any of the following would count as a psychological measurement:</p>
+<ul>
+<li>Danielle’s <strong>age</strong> is <em>33 years</em>.</li>
+<li>She <em>does not</em> <strong>like anchovies</strong>.</li>
+<li>Her <strong>chromosomal gender</strong> is <em>male</em>.</li>
+<li>Her <strong>self-identified gender</strong> is <em>female</em>.</li>
+</ul>
+<p>In the short list above, the <strong>bolded part</strong> is “the thing to be measured”, and the <em>italicised part</em> is “the measurement itself”. We can expand on this a little bit by thinking about the set of possible measurements that could have arisen in each case:</p>
+<ul>
+<li><strong>Age</strong> (in years) could have been <em>1, 2, 3 … years</em>, etc. The upper bound on what the age could be is a bit fuzzy, but in practice, you’d be safe in saying that the largest possible age is <em>150</em> since no human has ever lived that long. And age doesn’t really have a true zero, but that is not important just yet.</li>
+<li>When asked if someone <strong>likes anchovies</strong>, they might say <em>I do</em>, <em>I do not</em>, <em>I have no opinion</em>, or <em>I sometimes do</em>.</li>
+<li><strong>Chromosomal gender</strong> is almost certainly going to be <em>male (XY)</em> or <em>female (XX)</em>, but there are a few other possibilities: with <em>Klinefelter’s syndrome (XXY)</em>, it is more similar to male than to female. And there are other possibilities, too.</li>
+<li><strong>Self-identified gender</strong> is also very likely to be <em>male</em> or <em>female</em>, <em>transgender</em>, <em>nonbinary</em>, <em>queer</em> etc.</li>
+</ul>
+<p>As you can see, for some things, like age, it seems pretty apparent what the set of possible measurements should be, whereas, for other things, it gets a bit tricky. But even regarding someone’s age, it’s a bit more subtle. For instance, if you’re a developmental psychologist, measuring in <em>years</em> is way too crude, and so you often measure age in <em>years and months</em> (if a child is 2 years and 11 months, this is usually written as “2;11”). If you’re interested in newborns, you might want to measure age in <em>days since birth</em>, or maybe even <em>hours since birth</em>.</p>
+<p>Looking at this a bit more closely, you might also realise that the concept of “age” isn’t all that precise. Generally, when we say “age”, we implicitly mean “the length of time since birth”. But that’s not always the right way to do it.</p>
+<p>Suppose you’re interested in how newborn babies control their eye movements. If Baby Alice is born 3 weeks premature and Baby Bianca is born 1 week late, would it really make sense to say that they are the “same age” if we encountered them “2 hours after birth”? In a sense, yes. By social convention, we use birth as our reference point for talking about age in everyday life since it defines the amount of time the person has been operating as an independent entity in the world. But from a scientific perspective, that’s not the only thing we care about. You might want to measure age from conception, and voilà, you’re already thinking about all the potential problems with analysis and comparisons. When we think about the biology of human beings, it’s often helpful to think of ourselves as organisms that have been growing and maturing since conception. From that perspective, Alice and Bianca aren’t the same age at all. So you might want to define the concept of “age” in two different ways: the length of time since conception and the length of time since birth. It won’t make much difference when dealing with adults, but when dealing with newborns, it might. In other words, how you specify the allowable measurement values is important.</p>
+<p>Still, there’s the question of methodology. What specific measurement <strong>method</strong> will you use to find out someone’s age? There are several options:</p>
+<ul>
+<li>You could just ask people, “how old are you?” The method of <em>self-report</em> is fast, cheap and easy, but it only works with people old enough to understand the question, and some people lie about their age.</li>
+<li>You could ask an authority (e.g. a parent), “how old is your child?” This method is fast, and it’s not all that hard when dealing with kids since the parent is almost always around. It doesn’t work as well if you want to know “age since conception” since a lot of parents can’t say for sure when conception took place. You might need a different authority (e.g. an obstetrician).</li>
+<li>You could look up official records, like birth certificates. This is time-consuming and annoying, but it has its uses (e.g. if the person is now dead).</li>
+</ul>
+<p>All of the ideas discussed in the previous section relate to the concept of <strong>operationalisation</strong>. To be a bit more precise about the idea, operationalisation is the process by which we take a meaningful but somewhat vague concept and turn it into an accurate measurement. The method of operationalisation can involve several different things:</p>
+<ul>
+<li>For instance, does “age” mean “time since birth” or “time since conception” in the context of your research?</li>
+<li>Will you use self-report to measure age, ask a parent, or look up an official record? If you’re using self-report, how will you phrase the question?</li>
+<li>Defining the set of allowable values that the measurement can take. Note that these values don’t always have to be numerical, though they often are. When measuring age, the values are numerical, but we still need to think carefully about what numbers are allowed. Do we want age in years, years and months, days, or hours? The values aren’t numerical for other types of measurements (e.g. gender). But, as before, we need to consider what values are allowed. If we’re asking people to self-report their gender, what options do we allow them to choose from? Is it enough to allow only “male” or “female”? Do you need an “other” option? Or should we not give people any specific options and let them answer in their own words? And if you open up the set of possible values to include all verbal responses, how will you interpret their answers?</li>
+</ul>
+<p>Operationalisation is tricky, and there’s no “one, true way” to do it. How you operationalise the informal concept of “age” or “gender” into a formal measurement depends on what you need to use the measurement for. You’ll often find that the community of scientists who work in your area have some well-established ideas for how to go about it. Tip: when working on your dissertation, consult your supervisor and the literature to see what the community has settled on.</p>
+<p>In other words, operationalisation needs to be thought through case-by-case. Nevertheless, while there are a lot of issues that are specific to each individual research project, there are some aspects to it that are pretty general.</p>
+<p>Let’s take a moment to clear up our terminology and, in the process, introduce one more term. Here are four different things that are closely related to each other:</p>
+<ul>
+<li><em>A clear construct</em>. This is the concept that you’re trying to measure, like “age”, “gender”, or an “opinion”.</li>
+<li><em>A measure</em>. The measure refers to the method or instrument used to make your observations. A question in a survey, a behavioural observation or a brain scan could all count as a measure.</li>
+<li><em>Operationalisation</em>. This is the logical connection between the measure and the theoretical construct: a definition of how you assign value to the concept (calculation, range, level of measurement etc.).</li>
+<li><strong><em>A variable</em></strong>. Finally, a new term. A variable is the outcome of the measurement process.</li>
+</ul>
+<div class="example">
+<p><span id="exm:exops" class="example"><strong>Example 2.1  (Method) </strong></span>Here’s an example:</p>
+<ul>
+<li>Construct: attitude towards Prince Harry the Duke of Sussex (the underlying concept)</li>
+<li>Measure: 5-point Likert scale in a self-report survey (instrument)</li>
+<li>Operationalisation: survey a sample of UK online newsreaders and ask them to rate their level of agreement on a 5-point Likert scale with the following statement: “I personally find Prince Harry the Duke of Sussex an agreeable person”<a href="#fn6" class="footnote-ref" id="fnref6"><sup>6</sup></a>.</li>
+<li>Variable: the numerical value of the response to the question, e.g., 5: “strongly agree”…</li>
+</ul>
+</div>
+</div>
+<div id="scales" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Measurement levels<a href="researchdesign.html#scales" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>As the previous section indicates, the outcome of a psychological measurement is called a variable. But not all variables are of the same qualitative type, and it’s handy to understand what types there are. A very useful concept for distinguishing between different types of variables is what’s known as <strong>scales of measurement</strong>, or in CogStat terminology, <strong>measurement levels</strong>.</p>
+<div id="nominalscale" class="section level3 hasAnchor" number="2.2.1">
+<h3><span class="header-section-number">2.2.1</span> Nominal categories<a href="researchdesign.html#nominalscale" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:defnominal" class="definition"><strong>Definition 2.1  (Nominal scale variable) </strong></span>A <strong>nominal scale variable</strong> (also referred to as a <strong>categorical variable</strong>) is the results of a <em>qualitative</em> measurement, where the number of possible values are limited and fixed; they represent a name, a label, a classification, or non-overlapping categories; and there is no order, hierarchy or ranking between the categories. E.g. eye colour, place of residence, gender.</p>
+</div>
+<p>For these kinds of variables, it doesn’t make any sense to say that one of them is “bigger’ or”better” than any other one, and it doesn’t make any sense to average them. The classic example for this is “eye colour”. Eyes can be blue, green and brown, among other possibilities, but none of them is any “better” than any other one. As a result, it would feel bizarre to talk about an “average eye colour”. Similarly, gender is nominal too: <em>male</em> isn’t better or worse than <em>female</em>, neither does it make sense to try to talk about an “average gender”. In short, nominal scale variables are those for which the only thing you can say about the different possibilities is that they are different. That’s it.</p>
+<p>Note that sometimes nominal variables will have numbers coded to them usually for technical reasons (e.g., in survey data outputs). E.g., 1: male, 2: female, 3: nonbinary… This is a common practice, but the variable is still nominal: the numbers are just a way of representing the categories, and you should never, ever, ever (!) analyse them as if they were numerical/score measurements.</p>
+<div class="example">
+<p><span id="exm:exnominal" class="example"><strong>Example 2.2  (Nominal scale variable example) </strong></span>Suppose we were researching how people commute to and from work. One variable we would have to measure would be what kind of transportation people use to get to work. This “transport type” variable could have quite a few possible values, including: “train”, “bus”, “car”, “bicycle”, etc. For now, let’s suppose that these four are the only possibilities, and suppose that when we ask 100 people how they got to work today, we get this:</p>
+<table class="table table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Transportation
+</th>
+<th style="text-align:center;">
+Number of people
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Train
+</td>
+<td style="text-align:center;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bus
+</td>
+<td style="text-align:center;">
+30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Car
+</td>
+<td style="text-align:center;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bicycle
+</td>
+<td style="text-align:center;">
+10
+</td>
+</tr>
+</tbody>
+</table>
+<p>So, what’s the <em>average transportation type</em>? Obviously, the answer here is that there isn’t one. You can say that travel by car is the <em>most popular method</em>, and travel by train is the <em>least popular method</em>, but that’s about all. That is based on the <em>frequency</em> of the occurence (i.e., count). Similarly, notice that the order in which the options are listed isn’t very exciting. We could have chosen to display the data like this:</p>
+<table class="table table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Transportation
+</th>
+<th style="text-align:center;">
+Number of people
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Car
+</td>
+<td style="text-align:center;">
+48
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Train
+</td>
+<td style="text-align:center;">
+12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bicycle
+</td>
+<td style="text-align:center;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Bus
+</td>
+<td style="text-align:center;">
+30
+</td>
+</tr>
+</tbody>
+</table>
+<p>– and nothing really changes.</p>
+</div>
+</div>
+<div id="ordinalscale" class="section level3 hasAnchor" number="2.2.2">
+<h3><span class="header-section-number">2.2.2</span> Ordinal scale and rank<a href="researchdesign.html#ordinalscale" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:defordinal" class="definition"><strong>Definition 2.2  (Ordinal scale variable) </strong></span>An <strong>ordinal scale variable</strong> or <strong>rank</strong> is the results of a measurement, where there is a natural, meaningful way to order or rank the different outcome possibilities. E.g. finishing position in a race, education status.</p>
+</div>
+<p>The <em>quantitative</em> difference between the outcomes might be unknown or uneven. E.g. education status: finishing elementary school takes 8 years in Europe, while an undergraduate degree is usually 3 years long; or you <em>can</em> say that the person who finished first was faster than the person who finished second, but you don’t know the exact difference (unless you had a “finished at” timestamp data, which in turn is no longer an ordinal variable anymore). The important thing is that there is a natural, meaningful way to <em>order the outcomes</em>, but we don’t <em>quantify</em> the difference between them.</p>
+<p>Note that you can have a numeric code assigned to an ordinal variable. However, do not process these numbers as if they were meaningful beyond them representing an order. E.g., if you have a variable that measures the level of education, and you code it as 1: elementary school, 2: high school, 3: undergraduate degree, 4: graduate degree, but the variable still represents an order (i.e., level): you cannot add, subtract, divide or multiply these numbers.</p>
+<div class="example">
+<p><span id="exm:exordinal" class="example"><strong>Example 2.3  (Ordinal scale variable example) </strong></span>Suppose we’re interested in people’s attitudes to climate change, and we ask them to pick one of these four statements that most closely matches their beliefs:</p>
+<div class="keepTogether">
+<blockquote>
+<p>1 Temperatures are rising because of human activity<br />
+2 Temperatures are rising, but we don’t know why<br />
+3 Temperatures are rising, but not because of humans<br />
+4 Temperatures are not rising</p>
+</blockquote>
+</div>
+<p>Notice that these four statements actually do have a natural ordering in terms of “the extent to which they agree with the current science”. Statement 1 is a close match, statement 2 is a suitable match, statement 3 isn’t a perfect match, and statement 4 strongly opposes science. So, in terms of the thing we’re interested in (the extent to which people endorse the science), we can order the items as 1 &gt; 2 &gt; 3 &gt; 4. Since this ordering exists, it would be peculiar to list the options like this:</p>
+<div class="keepTogether">
+<blockquote>
+<p>3 Temperatures are rising, but not because of humans<br />
+1 Temperatures are rising because of human activity<br />
+4 Temperatures are not rising<br />
+2 Temperatures are rising, but we don’t know why</p>
+</blockquote>
+</div>
+<p>– because it seems to violate the natural “structure” of the question.</p>
+<p>So, let’s suppose I asked 100 people these questions and got the following answers:</p>
+<table class="table table-hover table-condensed table-responsive" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Response
+</th>
+<th style="text-align:center;">
+Number
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+1 Temperatures are rising because of human activity
+</td>
+<td style="text-align:center;">
+51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+2 Temperatures are rising, but we don’t know why
+</td>
+<td style="text-align:center;">
+20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+3 Temperatures are rising, but not because of humans
+</td>
+<td style="text-align:center;">
+10
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+4 Temperatures are not rising
+</td>
+<td style="text-align:center;">
+19
+</td>
+</tr>
+</tbody>
+</table>
+<p>When analysing these data, it seems quite reasonable to try to group (1), (2) and (3) together and say that 81 of 100 people were willing to <em>at least partially</em> endorse the science. And it’s <em>also</em> quite reasonable to group (2), (3) and (4) together and say that 49 of 100 people registered <em>at least some disagreement</em> with the dominant scientific view. However, it would be entirely bizarre to try to group (1), (2) and (4) together and say that 90 of 100 people said what? There’s nothing sensible that allows you to group those responses together at all.</p>
+<p>That said, notice that while we <em>can</em> use the natural ordering of these items to construct sensible groupings, what we <em>can’t</em> do is average them. For instance, in our simple example here, the “average” response to the question is 1.97. We would love to know if someone can tell us what that means.</p>
+</div>
+</div>
+<div id="intervalscale" class="section level3 hasAnchor" number="2.2.3">
+<h3><span class="header-section-number">2.2.3</span> Interval scale<a href="researchdesign.html#intervalscale" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:definterval" class="definition"><strong>Definition 2.3  (Interval scale variable) </strong></span>An (equal-)<strong>interval scale variable</strong> is the results of a <em>quantitative</em> measurement, where the difference between the outcomes is meaningful, but <em>no true zero</em> value can be assigned to our variable. E.g. temperature in Celsius or Fahrenheit etc.</p>
+</div>
+<p>In contrast to nominal and ordinal scale variables, the <em>differences</em> between the numbers are interpretable: <em>addition</em> and <em>subtraction</em> make sense for interval scale variables. The intervals are same-sized, but a measurement value of 0 does not mean “nothing”/“none at all” on the Celsius scale: <span class="math inline">\(0^\circ\)</span> means “the temperature at which water freezes”, it’s a, useful, but arbitrary label, not a true zero. As a consequence, it becomes pointless to try to multiply and divide temperatures. It is wrong to claim that <span class="math inline">\(20^\circ\)</span> is <em>negative two times as hot as</em> <span class="math inline">\(-10^\circ\)</span>.</p>
+<div class="example">
+<p><span id="exm:exinterval" class="example"><strong>Example 2.4  (Interval scale variable example) </strong></span>Suppose we’re interested in looking at how the attitudes of first-year university students have changed over time, and we need to capture the <em>year they started</em>. This is an interval scale variable. A student who started in 2003 did arrive 5 years before a student who started in 2008. However, it would be completely insane to divide 2008 by 2003 and say that the second student started “1.0024 times later” than the first one.</p>
+</div>
+</div>
+<div id="ratioscale" class="section level3 hasAnchor" number="2.2.4">
+<h3><span class="header-section-number">2.2.4</span> Ratio scale<a href="researchdesign.html#ratioscale" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="definition">
+<p><span id="def:defratio" class="definition"><strong>Definition 2.4  (Ratio scale variable) </strong></span>A <strong>ratio scale variable</strong> is the results of a <em>quantitative</em> measurement, where both the difference between the outcomes and the ratio of the outcomes are meaningful, and the variable has a true zero value. E.g. distance in meters, heart rate, mass, temperature on the Kelvin scale etc.</p>
+</div>
+<p>The fourth and final type of variable to consider is a ratio scale variable, in which zero really means zero, and it’s okay to multiply and divide on top of addition and subtraction. You can have a heart rate of zero, or in other words, “no heart rate at all” (an absolute zero), but that sadly means that you are likely dead. Kelvin is a ratio scale variable, because it has a true zero (absolute zero), and 100 K means truly twice as much energy as 50 K.</p>
+<div class="example">
+<p><span id="exm:exratio" class="example"><strong>Example 2.5  (Ratio scale variable example) </strong></span>A psychological example would be the result of a short-term working memory capacity test<a href="#fn7" class="footnote-ref" id="fnref7"><sup>7</sup></a>, where we ask respondents to remember a set of 5-letter words and recall them. Let’s make our variable the number of words that they successfully recall. Person A is able to recall 12 words, and Person B can recall 6 words, Person C cannot recall a single word (i.e., 0 words), and Person D can recall 7 words. We can set an <em>order</em> between them: Person A &gt; Person D &gt; Person B &gt; Person C; there is equal distance between the possible units, so subtraction is meaningful (<em>interval</em>); furthermore, there is a true zero (Person C). It also makes sense to say Person B made twice as many errors as Person A.</p>
+</div>
+</div>
+<div id="likertscale" class="section level3 hasAnchor" number="2.2.5">
+<h3><span class="header-section-number">2.2.5</span> The special case of the Likert scale<a href="researchdesign.html#likertscale" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The humble Likert scale is all survey designs’ bread and butter tool. You have filled out hundreds, maybe thousands of them, and odds are you’ve even used one yourself. Suppose we have a survey question that looks like this:</p>
+<blockquote>
+<p>Which of the following best describes your opinion of the statement that “all pirates are awesome” …</p>
+</blockquote>
+<p>and then, the options presented to the participant are these:</p>
+<div class="keepTogether">
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Strongly disagree</li>
+<li>Disagree</li>
+<li>Neither agree nor disagree</li>
+<li>Agree</li>
+<li>Strongly agree</li>
+</ol>
+</blockquote>
+</div>
+<p>This set of items is an example of a 5-point Likert scale: people are asked to choose among one of several (in this case, 5) clearly ordered possibilities, generally with a verbal descriptor given in each case. However, it’s not necessary that all items be explicitly described. This is a perfect example of a 5-point Likert scale too:</p>
+<div class="keepTogether">
+<blockquote>
+<ol style="list-style-type: decimal">
+<li>Strongly disagree</li>
+<li></li>
+<li></li>
+<li></li>
+<li>Strongly agree</li>
+</ol>
+</blockquote>
+</div>
+<p>Likert scales are convenient, if somewhat limited, tools. The question is, what kind of variable are they? They’re obviously discrete since you can’t give a response of 2.5. They’re obviously not nominal scale since the items are ordered, and they’re not ratio scale either since there’s no natural zero<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a>.</p>
+<p>But are they ordinal scale or interval scale? One argument says that we can’t prove that the difference between “strongly agree” and “agree” is of the same size as the difference between “agree” and “neither agree nor disagree”. In fact, in everyday life, it’s pretty apparent they’re not the same. So this suggests that we ought to treat Likert scales as ordinal variables. On the other hand, we can argue that some participants will take the whole “on a scale from 1 to 5” part seriously, and they tend to act as if the differences between the five response options were equidistant. While theoretically it is not an interval scale, researchers treat it as a <strong>quasi-interval scale</strong>.</p>
+</div>
+<div id="continuousdiscrete" class="section level3 hasAnchor" number="2.2.6">
+<h3><span class="header-section-number">2.2.6</span> Continuous versus discrete variables<a href="researchdesign.html#continuousdiscrete" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>There’s a second kind of distinction that you need to be aware of regarding what types of variables you can run into. This is the distinction between <em>continuous</em> and <em>discrete</em> data types.</p>
+<div class="definition">
+<p><span id="def:defcontinuous" class="definition"><strong>Definition 2.5  (Continuous variables) </strong></span>A <strong>continuous variable</strong> can take on any value on a spectrum, and it’s logically possible to have a value in between.</p>
+</div>
+<div class="example">
+<p><span id="exm:excontinuous" class="example"><strong>Example 2.6  (Continuous variable example) </strong></span>Response time is continuous. If Alan takes 3.1 seconds and Ben takes 2.3 seconds to respond to a question, then Cameron’s response time can lie in between by taking 3.0 seconds. And, of course, it would also be possible for David to take 3.031 seconds to respond, meaning that his RT would lie in between Cameron’s and Alan’s. And while in practice, it might be impossible to measure RT that precisely, it’s certainly possible in principle. Because we can always find a new value for RT in between any two other ones, we say that RT is continuous.</p>
+</div>
+<div class="definition">
+<p><span id="def:defdiscrete" class="definition"><strong>Definition 2.6  (Discrete variables) </strong></span>A <strong>discrete variable</strong> can take on a limited number of distinct values; there is no possible value in between.</p>
+</div>
+<div class="example">
+<p><span id="exm:exdiscrete" class="example"><strong>Example 2.7  (Discrete variable example) </strong></span>Nominal scale variables are always discrete: there isn’t a type of transportation that falls “in-between” trains and bicycles, not in the strict mathematical way that 2.3 falls in between 2 and 3. So transportation type is discrete.</p>
+<p>Similarly, ordinal scale variables are always discrete: although “2nd place” does fall between “1st place” and “3rd place”, there’s nothing that can logically fall in between “1st place” and “2nd place”.</p>
+<p>Interval scale and ratio scale variables can go either way. Temperature in degrees Celsius (an interval scale variable) is also continuous; however, the year you went to school (an interval scale variable) is discrete. There’s no year between 2002 and 2003. The number of questions you get right on a true-or-false test (a ratio scale variable) is also discrete: since a true-or-false question doesn’t allow you to be “partially correct”, there’s nothing in between 5/10 and 6/10.</p>
+</div>
+<p>Note that some people might say “discrete variable” when they mean “nominal scale variable”. While all nominal scale variables are discrete, not all discrete variables are nominal.</p>
+</div>
+<div id="summaryguidelevels" class="section level3 hasAnchor" number="2.2.7">
+<h3><span class="header-section-number">2.2.7</span> A summary guide for levels of measurement<a href="researchdesign.html#summaryguidelevels" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;font-weight: bold;">
+Variable types
+</th>
+<th style="text-align:left;font-weight: bold;">
+Nominal
+</th>
+<th style="text-align:left;font-weight: bold;">
+Ordinal
+</th>
+<th style="text-align:left;font-weight: bold;">
+Interval
+</th>
+<th style="text-align:left;font-weight: bold;">
+Ratio
+</th>
+</tr>
+</thead>
+<tbody>
+<tr grouplength="4">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Data types</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;min-width: 20%; " indentlevel="1">
+Discrete
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;min-width: 20%; " indentlevel="1">
+</td>
+<td style="text-align:left;">
+gender, birthplace
+</td>
+<td style="text-align:left;">
+education, finishing position
+</td>
+<td style="text-align:left;">
+year of enrolment to university
+</td>
+<td style="text-align:left;">
+number of questions answered correctly
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;min-width: 20%; " indentlevel="1">
+Continuous
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;min-width: 20%; " indentlevel="1">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+attitude
+</td>
+<td style="text-align:left;">
+height, weight, heart rate, distance
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Properties</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;min-width: 20%; " indentlevel="1">
+Can be ordered or ranked
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;min-width: 20%; " indentlevel="1">
+Equidistant units
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;min-width: 20%; " indentlevel="1">
+Has a meaningful, true zero
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+</tr>
+<tr grouplength="2">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Valid operations</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;min-width: 20%; " indentlevel="1">
+<span class="math inline">\(+\)</span> addition, <span class="math inline">\(-\)</span> subtraction
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;min-width: 20%; " indentlevel="1">
+<span class="math inline">\(\times\)</span> multiplication, <span class="math inline">\(\div\)</span> division
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+</tr>
+<tr grouplength="3">
+<td colspan="5" style="border-bottom: 1px solid;">
+<strong>Central tendency measures</strong>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;min-width: 20%; " indentlevel="1">
+Mode
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;min-width: 20%; " indentlevel="1">
+Median
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+</tr>
+<tr>
+<td style="text-align:left;padding-left: 2em;min-width: 20%; " indentlevel="1">
+Mean
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+<td style="text-align:left;">
+<span class="math inline">\(\checkmark\)</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="ivdv" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Independent and dependent variables<a href="researchdesign.html#ivdv" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Usually, when we do some research, we end up with lots of different variables. Then, when we analyse our data, we often try to explain some of the variables in terms of the other variables. It’s essential to keep the two roles, “thing doing the explaining” and “thing being explained”, distinct. So let’s be clear about this now. Firstly, we might as well get used to the idea of using mathematical symbols to describe variables since it’s going to happen repeatedly. Let’s denote the “to be explained” variable <span class="math inline">\(Y\)</span>, and the variables “doing the explaining” as <span class="math inline">\(X_1\)</span>, <span class="math inline">\(X_2\)</span>, etc.</p>
+<p>Now, when we are doing analysis, we have different names for <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, since they play different roles. The classical names for these roles are <strong>independent variable</strong> (IV) and <strong>dependent variable</strong> (DV). The IV is the variable you use to explain (i.e., <span class="math inline">\(X\)</span>) and the DV is the variable being explained (i.e., <span class="math inline">\(Y\)</span>). The logic behind these names goes like this: if there is a relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>, then we can say that <span class="math inline">\(Y\)</span> depends on <span class="math inline">\(X\)</span>, and if we have designed our study “properly”, then <span class="math inline">\(X\)</span> isn’t dependent on anything else. However, those names are horrible: they’re hard to remember, and they’re highly misleading because (a) the IV is never actually “independent of everything else” and (b) if there’s no relationship, then the DV doesn’t actually depend on the IV. And, because we’re not the only people who think that IV and DV are just awful names, there are several alternatives that some find more appealing. The terms used in these notes are <strong><em>predictors</em></strong> and <strong><em>outcomes</em></strong>. The idea here is that you’re trying to use <span class="math inline">\(X\)</span> (the predictors) to make guesses about <span class="math inline">\(Y\)</span> (the outcomes). This is summarised in Table <a href="researchdesign.html#tab:ivdvtable">2.1</a>.</p>
+<table class="table table-hover" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:ivdvtable">Table 2.1: </span>The terminology used to distinguish between
+different roles that a variable can play when analysing a data set
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+role of the variable
+</th>
+<th style="text-align:left;">
+classical name
+</th>
+<th style="text-align:center;">
+modern name
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+to be explained
+</td>
+<td style="text-align:left;">
+dependent variable (DV)
+</td>
+<td style="text-align:center;">
+outcome
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+to do the explaining
+</td>
+<td style="text-align:left;">
+independent variable (IV)
+</td>
+<td style="text-align:center;">
+predictor
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="reliability" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Reliability<a href="researchdesign.html#reliability" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>By applying psychological measures we end up with variables, which can come in many different types. But the inevitable question arises: is the measurement any good? We’ll do this in terms of two related ideas: <em>reliability</em> and <em>validity</em>.</p>
+<div class="definition">
+<p><span id="def:defreliability" class="definition"><strong>Definition 2.7  (Reliability) </strong></span>The <strong>reliability</strong> of a measure is the extent to which it is dependably, consistently, and stably giving the same result when measuring the same observation.</p>
+</div>
+<div class="example">
+<p><span id="exm:exreliability1" class="example"><strong>Example 2.8  (Reliability example A) </strong></span>You are designing a health psychology experiment to test the effect of psilocybin on mood disorders<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a>. You are trying to find the right bodyweight-adjusted dose. You have a scale in the lab in Room A. You ask a participant to step on and you read 65 kg. For some reason, within a minute (in which they didn’t drink, eat or go to the bathroom), you have to ask them to step back, but this time, the scale shows 74 kg. Disbelief creeps in, rightly. You are confused, and you decide to ask them to step on the scale again. This time, the scale shows 65 kg. Can you trust this 65 kg reading?</p>
+<p>You borrow a scale from Room B and ask the same participant to step on it – again, within a minute or two, so no weight shift should occur. This time, the scale shows 68 kg after three consecutive readings. But can you trust this 68 kg reading? You have your doubts. So you go into Room C, which has a different type of scale. The participant steps on the scale three times, and it consistently shows 68 kg.</p>
+</div>
+<div class="example">
+<p><span id="exm:exreliability2" class="example"><strong>Example 2.9  (Reliability example B) </strong></span>You have a patient admitted to a ward, and you and your colleague are asked to evaluate them. You both use the same version of the Questionnaire X, still within the same time of day, but you both end up with different scores and different diagnoses. Can you trust either of your scores?</p>
+<p>A senior colleague provides you with SCID-5, a structured clinical interview for diagnosing mental disorders based on DSM-5. You use it to evaluate the patient. You both get a diagnosis of major depressive disorder.</p>
+</div>
+<p>The examples already hints at different ways of thinking about reliability, but let’s summarise what the different types of reliability might be:</p>
+<ul>
+<li><strong><em>Test-retest</em></strong> or <strong><em>temporal reliability</em></strong>. This relates to consistency over time: if we repeat the measurement on the same thing at a later date, do we get the same answer? In Example <a href="researchdesign.html#exm:exreliability1">2.8</a>, the scale in Room A was not reliable, but the scale in Room B and Room C was.</li>
+<li><strong><em>Interrater reliability</em></strong>. This relates to consistency across people: if someone else repeats the measurement, will they produce the same answer? In Example <a href="researchdesign.html#exm:exreliability2">2.9</a>, the two raters gave different answers with the same Questionnaire X, so clearly it was not reliable in this sense, however the SCID-5 was<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a>. If this fails, the instrument is subjective.</li>
+<li><strong><em>Internal consistency reliability</em></strong> or <strong><em>homogeneity</em></strong>. Suppose a measurement is constructed from many different parts that perform similar functions. Inventories and scales use multiple questions to measure a single concept. If the questions are all measuring the same thing, then they should be consistent with each other. Ideally, items relating to the same concept should be highly correlated with each other, i.e., they should be consistent with each other<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>.</li>
+<li><strong><em>Parallel/alternative forms reliability</em></strong>. This relates to consistency across theoretically-equivalent measurements. In Example <a href="researchdesign.html#exm:exreliability1">2.8</a>, the scales in both Room B and Room C gave the same reading. Two different “versions” of a measurement instrument were used to measure the same concept (human body weight), and they gave the same answer<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a>.</li>
+<li><strong><em>Split-half reliability</em></strong>. This is a very specific concept widely used in survey design: divide a test into two halves, and see if the two halves are consistent with each other by calculating the reliability coefficient.</li>
+</ul>
+<p>Not all measurements need to possess all forms of reliability. Nevertheless, it is important to be aware of reliability as a concept with its forms. CogStat will help you with analysing internal consistency and interrater reliability as of version 2.4+, but we will cover the tutorial once we understand how to compare two groups of data (Chapter <a href="correl.html#correl">6</a>).</p>
+</div>
+<div id="validity" class="section level2 hasAnchor" number="2.5">
+<h2><span class="header-section-number">2.5</span> Validity<a href="researchdesign.html#validity" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>More than any other thing, a scientist wants their research to be “valid”. The conceptual idea behind validity is simple: can you trust the results of your study? In practice, there aredifferent kinds of validity, each of which raises its own issues, and not all forms of validity are relevant to all studies.</p>
+<p>While validity is a research methodology subject and not a statistical one, some forms of validity are measured using statistical methods. So let’s talk about different kinds of validity briefly, in a somewhat particular order.</p>
+<!--
+- Content validity
+- Face validity
+- Construct validity
+- Discriminant validity
+- Convergent validity
+- Internal validity
+- External validity
+- Ecological validity
+- Criterion validity
+- Concurrent validity
+- Predictive validity
+- Postdictive validity
+-->
+<!--
+### Content validity
+-->
+<div class="definition">
+<p><span id="def:defcontentvalidity" class="definition"><strong>Definition 2.8  (Content validity) </strong></span>The <strong>content validity</strong> is the extent to which an instrument measures the desired concept or construct comprehensively (with no gaps or missing aspects) and accurately (with no irrelevant or misleading domains).</p>
+</div>
+<p>Some typical questions would be:</p>
+<ul>
+<li>Are all important domains of the concept we want to measure covered?</li>
+<li>Does the selected instrument measure the same concept that we are trying to measure in all its aspects?</li>
+<li>Are there any items in the instrument that are not relevant to the concept we are trying to measure?</li>
+<li>What biases might be present in the instrument?</li>
+<li>Is the instrument culturally sensitive? Is the instrument reliable and consistent across different subgroups of the population?</li>
+</ul>
+<!--
+### Face validity
+-->
+<p>A subjective judgement of content validity is called face validity.</p>
+<div class="definition">
+<p><span id="def:deffacevalidity" class="definition"><strong>Definition 2.9  (Face validity) </strong></span>The <strong>face validity</strong> of a study is the extent to which the measurement of a variable “looks like” it’s measuring the correct theoretical construct, but it is a subjective judgement.</p>
+</div>
+<p>Types of questions that you might ask:</p>
+<ul>
+<li>Does the instrument look like it’s measuring the right thing?</li>
+<li>Will the participant recognise the construct that we are trying to measure? (This might lead to cases where the participant fakes the response.)</li>
+</ul>
+<!--
+### Construct validity
+-->
+<div class="definition">
+<p><span id="def:defconstructvalidity" class="definition"><strong>Definition 2.10  (Construct validity) </strong></span>The <strong>construct validity</strong> is the extent to which the measurement of a variable is consistent with the theoretical construct that it is supposed to measure.</p>
+</div>
+<p>Typical questions you might consider:</p>
+<ul>
+<li>Is the construct defined in a way that is clear and unambiguous?</li>
+<li>Is the construct defined too broadly or too narrowly?</li>
+<li>Is the sample and method appropriate for the construct?</li>
+<li>How does this instrument relate to other instruments designed to measure the same construct?</li>
+<li>Does the instrument produce the same expected results as other instruments designed to measure the same construct?</li>
+<li>Does the instrument predict other variables that are theoretically related to the construct?</li>
+</ul>
+<!--
+### Discriminant validity
+-->
+<p>To test for construct validity, we can to test for discriminant validity<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a> through correlation and factor analysis.</p>
+<div class="definition">
+<p><span id="def:defdiscriminantvalidity" class="definition"><strong>Definition 2.11  (Discriminant validity) </strong></span>The <strong>discriminant validity</strong> assesses the extent to which a measure is capable of accurately distinguishing the construct variable it is intended to measure from an unrelated construct variables. It is the opposite of convergent validity.</p>
+</div>
+<p>Question:</p>
+<ul>
+<li>What is the correlation between the variable we are measuring and other variables that should not be related to it? <span class="math inline">\(\rightarrow\)</span> <em>discriminant validity coefficient</em></li>
+</ul>
+<!--
+### Convergent validity
+-->
+<div class="definition">
+<p><span id="def:defconvergentvalidity" class="definition"><strong>Definition 2.12  (Convergent validity) </strong></span>The <strong>convergent validity</strong> is the extent to which the measurement of a variable is <em>consistent with other variables</em> that should be theoretically related to it.</p>
+</div>
+<p>Types of questions you might consider:</p>
+<ul>
+<li>What is the correlation between the variable we are measuring and other variables that should be related to it? <span class="math inline">\(\rightarrow\)</span> <em>correlation coefficient</em></li>
+</ul>
+<div class="example">
+<p><span id="exm:exconstructvalidity" class="example"><strong>Example 2.10  (Constructs and validity) </strong></span>You are researching the relationship between socio-economic status and health outcomes. The health outcome is the construct of interest, it is the dependent variable. The socio-economic status is the independent variable. You are interested in the relationship between the two, and you want to know if socio-economic status is a good predictor of health outcomes.</p>
+<p>There are a number of related variables that you could use to measure socio-economic status, such as: personal income, household income, education, occupation, and so on. You could use any of these variables to measure socio-economic status, but you want to know which one is the best predictor of health outcomes. You could test for the relationship between each of these variables and health outcomes, and then choose the one that has the highest correlation coefficient. This is a form of convergent validity.</p>
+<p>There are unrelated variables that have an effect on health outcomes, such as: environment, gender, disability and impairments, minority status, family history of diseases, and so on. If the unrelated variables demonstrate a weak correlation with the socio-economic status variables, then this is a form of discriminant validity.</p>
+<p>You’ll notice that in this particular example, gender<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a>, disability, and minority status as variables would likely have a stronger than weak correlation with socio-economic status. These are called <strong>confounding variables</strong>. They are variables that are related to both the independent and dependent variables, and they can affect the results of the study. You’ll need to control for these variables in your study design.</p>
+</div>
+<!--
+### Internal validity
+-->
+<div class="definition">
+<p><span id="def:definternalvalidity" class="definition"><strong>Definition 2.13  (Internal validity) </strong></span>The <strong>internal validity</strong> is the extent to which the results of the study can be attributed to the cause-and-effect relationships between the variables studied, rather than other factors. I.e., any change in the dependent variable (outcome) is a result of the manipulation of the independent variable (predictor), and not due to other factors.</p>
+</div>
+<p>Typical questions would be:</p>
+<ul>
+<li>Is the relationship between the independent and dependent variables causal?</li>
+<li>Is this cause-and-effect relationship the only one that could explain the results?</li>
+<li>Are there any confounding variables that could affect the results?</li>
+<li>Was the design fit for establishing causality?</li>
+</ul>
+<!--
+### External validity
+-->
+<div class="definition">
+<p><span id="def:defexternalvalidity" class="definition"><strong>Definition 2.14  (External validity) </strong></span>The <strong>external validity</strong> of a study is the extent to which the results of the study can be generalised to other people, other situations, and other times.</p>
+</div>
+<p>Questions to consider:</p>
+<ul>
+<li>To what extent can the results of the study be generalised to other people, other situations, and other times?</li>
+<li>Is the sample representative of the population?</li>
+<li>Is the sample too narrow? (e.g. only psychology students)</li>
+<li>Is this study replicable across different settings?</li>
+<li>Are there any respondent biases that could affect the results? (Hawthorne effect, demand characteristics, etc.)</li>
+</ul>
+<!--
+### Ecological validity
+-->
+<div class="definition">
+<p><span id="def:defecologicalvalidity" class="definition"><strong>Definition 2.15  (Ecological validity) </strong></span>The <strong>ecological validity</strong> of a study is the extent to which the entire study set-up closely approximates the real-world scenario being investigated.</p>
+</div>
+<p>Some typical questions would be:</p>
+<ul>
+<li>Is the lab-based study set-up similar to the real-world scenario?</li>
+<li>Would the study scenario occur naturally in the real world or in other non-controlled environment?</li>
+<li>Are there any environmental or systemic factors that could affect the replicability of results in the real world?</li>
+</ul>
+<!--
+### Criterion validity
+-->
+<div class="definition">
+<p><span id="def:defcriterionvalidity" class="definition"><strong>Definition 2.16  (Criterion validity) </strong></span>The <strong>criterion validity</strong> of an instrument is the extent to which the score results are consistent with other measures of the same construct.</p>
+</div>
+<p>Typical questions would be:</p>
+<ul>
+<li>Does the instrument produce the same expected results as other instruments designed to measure the same construct?</li>
+<li>Is the correlation between the instrument and other instruments designed to measure the same construct high enough?</li>
+</ul>
+<!--
+### Concurrent validity
+-->
+<div class="definition">
+<p><span id="def:defconcurrentvalidity" class="definition"><strong>Definition 2.17  (Concurrent validity) </strong></span>The <strong>concurrent validity</strong> of an instrument is the extent to which the score results are consistent with other criterion measures (where the criterion is measured at the same time as the instrument is administered).</p>
+</div>
+<p>Question:</p>
+<ul>
+<li>What is the correlation between the instrument and other instruments designed to measure the same construct at the same time on the same sample? <span class="math inline">\(\rightarrow\)</span> <em>concurrent validity coefficient</em></li>
+</ul>
+<!--
+### Predictive validity
+-->
+<div class="definition">
+<p><span id="def:defpredictivevalidity" class="definition"><strong>Definition 2.18  (Predictive validity) </strong></span>The <strong>predictive validity</strong> of an instrument is the extent to which the results can be used to make inferences about future criterion outcomes (where the criterion is measured after the instrument is administered).</p>
+</div>
+<!--
+### Postdictive validity
+-->
+<div class="definition">
+<p><span id="def:defpostdictivevalidity" class="definition"><strong>Definition 2.19  (Postdictive validity) </strong></span>The <strong>postdictive validity</strong> or <strong>retrospective validity</strong> of an instrument is the extent to which the results can be used to make inferences about past criterion outcomes (where the criterion is measured before the instrument is administered).</p>
+</div>
+<div id="calloutvalidityterminology" class="callout">
+<div class="callout-title">
+Modern Validity Theory Terminology
+</div>
+<p>The American Educational Research Association (AERA), the American Psychological Association (APA), and the National Council on Measurement in Education (NCME) prepared their Standards for Educational and Psychological Testing <span class="citation">(<a href="#ref-americaneducationalresearchassociationStandardsEducationalPsychological2014">2014</a>)</span>. This standard uses different terminology to describe the different types of validity.</p>
+<p>It does not apply validity to the research instrument but rather the interpretation of it; it is a continuum and not a dichotomy (“valid” or “not valid”) <span class="citation">(<a href="#ref-edwardsFitPurposeModern2018">Edwards et al., 2018</a>)</span>. So in this mindset, we no longer have types of validity but rather <em>types of validity evidence</em>:</p>
+<ul>
+<li>Evidence based on test content</li>
+<li>Evidence based on response processes</li>
+<li>Evidence based on internal structure</li>
+<li>Evidence based on relations to other variables</li>
+</ul>
+<p>However, still many statistics and research methodology textbooks used today, particularly the ones that are used to create this chapter, use the historical terminology.</p>
+</div>
+</div>
+<div id="summary" class="section level2 unnumbered unlisted hasAnchor">
+<h2>Summary<a href="researchdesign.html#summary" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This chapter isn’t really meant to provide a comprehensive discussion of psychological research methods: it would require another volume just as long as this one does justice to the topic. However, in real life, statistics and study design are tightly intertwined, so discussing some key topics is convenient. In this chapter, we’ve briefly discussed the following:</p>
+<ul>
+<li><a href="researchdesign.html#measurement">Measurement</a>. What does it mean to operationalise a theoretical construct? What does it mean to have variables and take measurements?</li>
+<li><a href="researchdesign.html#scales">Scales of measurement and variable types</a>. Remember that there are <em>two</em> different distinctions here: there’s the difference between discrete and continuous data, and there’s the difference between the four different scale types (nominal, ordinal, interval and ratio).</li>
+<li><a href="researchdesign.html#ivdv">Terminology: predictors and outcomes</a>. What roles do variables play in an analysis? Can you remember the difference between predictors and outcomes? Dependent and independent variables? Etc.</li>
+<li><a href="researchdesign.html#reliability">Reliability</a>. Can you trust your results? How do you know that your measurements are consistent?</li>
+<li><a href="researchdesign.html#validity">Validity</a>. Does your study measure what you want it to?</li>
+</ul>
+
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-americaneducationalresearchassociationStandardsEducationalPsychological2014" class="csl-entry">
+American Educational Research Association, American Psychological Association, &amp; National Council on Measurement in Education. (2014). <em>Standards for <span>Educational</span> and <span>Psychological Testing</span></em>. <span>American Educational Research Association</span>.
+</div>
+<div id="ref-bonczResearchMethodologyBasics2015" class="csl-entry">
+Boncz, I. (2015). <em><span>Research methodology basics</span></em> [Kutatásmódszertani alapismeretek]. Pécsi Tudományegyetem.
+</div>
+<div id="ref-brodeyValidationNetSCIDAutomated2016" class="csl-entry">
+Brodey, B. B., First, M., Linthicum, J., Haman, K., Sasiela, J. W., &amp; Ayer, D. (2016). Validation of the <span>NetSCID</span>: An automated web-based adaptive version of the <span>SCID</span>. <em>Comprehensive Psychiatry</em>, <em>66</em>, 67–70. <a href="https://doi.org/10.1016/j.comppsych.2015.10.005">https://doi.org/10.1016/j.comppsych.2015.10.005</a>
+</div>
+<div id="ref-cowanGeorgeMillerMagical2015" class="csl-entry">
+Cowan, N. (2015). George <span>Miller</span>’s magical number of immediate memory in retrospect: <span>Observations</span> on the faltering progression of science. <em>Psychological Review</em>, <em>122</em>(3), 536–541. <a href="https://doi.org/10.1037/a0039035">https://doi.org/10.1037/a0039035</a>
+</div>
+<div id="ref-edwardsFitPurposeModern2018" class="csl-entry">
+Edwards, M. C., Slagle, A., Rubright, J. D., &amp; Wirth, R. J. (2018). Fit for purpose and modern validity theory in clinical outcomes assessment. <em>Quality of Life Research</em>, <em>27</em>(7), 1711–1720. <a href="https://doi.org/10.1007/s11136-017-1644-z">https://doi.org/10.1007/s11136-017-1644-z</a>
+</div>
+<div id="ref-garcia-romeuOptimalDosingPsilocybin2021" class="csl-entry">
+Garcia-Romeu, A., Barrett, F. S., Carbonaro, T. M., Johnson, M. W., &amp; Griffiths, R. R. (2021). Optimal dosing for psilocybin pharmacotherapy: <span>Considering</span> weight-adjusted and fixed dosing approaches. <em>Journal of Psychopharmacology</em>, <em>35</em>(4), 353–361. <a href="https://doi.org/10.1177/0269881121991822">https://doi.org/10.1177/0269881121991822</a>
+</div>
+<div id="ref-howittUnderstandingStatisticsPsychology2020" class="csl-entry">
+Howitt, D., &amp; Cramer, D. (2020). <em>Understanding statistics in psychology with <span>SPSS</span></em> (Eighth edition). <span>Pearson</span>.
+</div>
+<div id="ref-hubleyDivergentValidity2014" class="csl-entry">
+Hubley, A. M. (2014). Divergent <span>Validity</span>. In A. C. Michalos (Ed.), <em>Encyclopedia of <span>Quality</span> of <span>Life</span> and <span>Well-Being Research</span></em> (pp. 1675–1676). <span>Springer Netherlands</span>. <a href="https://doi.org/10.1007/978-94-007-0753-5_766">https://doi.org/10.1007/978-94-007-0753-5_766</a>
+</div>
+<div id="ref-marksResearchMethodsClinical2004" class="csl-entry">
+Marks, D., &amp; Yardley, L. (Eds.). (2004). <em>Research methods for clinical and health psychology</em>. <span>SAGE</span>.
+</div>
+<div id="ref-michalosEncyclopediaQualityLife2014" class="csl-entry">
+Michalos, A. C. (Ed.). (2014). <em>Encyclopedia of quality of life and well-being research</em>. <span>Springer</span>.
+</div>
+<div id="ref-millerMagicalNumberSeven1956" class="csl-entry">
+Miller, G. A. (1956). The magical number seven, plus or minus two: <span>Some</span> limits on our capacity for processing information. <em>Psychological Review</em>, <em>63</em>(2), 81–97. <a href="https://doi.org/10.1037/h0043158">https://doi.org/10.1037/h0043158</a>
+</div>
+<div id="ref-Stevens1946" class="csl-entry">
+Stevens, S. S. (1946). On the theory of scales of measurement. <em>Science</em>, <em>103</em>, 677–680.
+</div>
+<div id="ref-taylorHealthPsychology2021" class="csl-entry">
+Taylor, S. E., &amp; Stanton, A. L. (2021). <em>Health <span>Psychology</span></em> (Eleventh). <span>McGraw-Hill</span>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="6">
+<li id="fn6"><p>Is this most relevant sentence that accurately represents the concept you want to measure?<a href="researchdesign.html#fnref6" class="footnote-back">↩︎</a></p></li>
+<li id="fn7"><p>One of the most famous ones is a digit span test <span class="citation">(<a href="#ref-millerMagicalNumberSeven1956">Miller, 1956</a>)</span>, but the original article is not without its faults <span class="citation">(<a href="#ref-cowanGeorgeMillerMagical2015">Cowan, 2015</a>)</span>.<a href="researchdesign.html#fnref7" class="footnote-back">↩︎</a></p></li>
+<li id="fn8"><p>And you can’t cheat. You can code your Likert scale from 0 to 4 instead of 1 to 5, but these are arbitrary, just like deciding that the freezing temperature is labelled as 0.<a href="researchdesign.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>Read up on actual research on dosing, if interested. At the time of writing, this is an excellent starting point: <span class="citation">Garcia-Romeu et al. (<a href="#ref-garcia-romeuOptimalDosingPsilocybin2021">2021</a>)</span><a href="researchdesign.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>SCID-5 is a golden standard, but it is not fully void of inter-rater reliability issues, particularly among recently trained clinicians <span class="citation">(<a href="#ref-brodeyValidationNetSCIDAutomated2016">Brodey et al., 2016</a>)</span>, however, there are always new tools or versions to help tackle this.<a href="researchdesign.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>Of course if some items are too highly correlated, one or two of them might even be redundant to be dropped while keeping the overall consistency high. However, we won’t cover in detail survey design in this book.<a href="researchdesign.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>Making different versions of the same test, e.g. by switching up the order of items is one possible way to test for reliability.<a href="researchdesign.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p>Sometimes referred to as <em>divergent validity</em>. This, however, is not a universally accepted terminology <span class="citation">(<a href="#ref-hubleyDivergentValidity2014">Hubley, 2014</a>)</span>.<a href="researchdesign.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p>E.g. research suggests that there are a number of reasons why women tend to live longer than men beyond socio-economic status (with which the relationship is negative), like biological protective factors and differences in risk aversion between men and women <span class="citation">(<a href="#ref-taylorHealthPsychology2021">Taylor &amp; Stanton, 2021</a>)</span>.<a href="researchdesign.html#fnref14" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="whywhywhy.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="autostat.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": false,
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": false,
+"toc": {
+"collapse": "section",
+"fig_caption": true,
+"number_sections": true
+},
+"toc_depth": 3,
+"tof": true,
+"tot": true,
+"toolbar": {
+"position": "static"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
