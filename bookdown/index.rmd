@@ -6,6 +6,8 @@ author:
 date: "5 Nov 2022"
 output:
   bookdown::gitbook:
+    mathjax: NULL
+    pandoc_args: --mathml
     config:
       sharing: false
 
@@ -115,7 +117,6 @@ This edition brings in plenty of changes, well beyond 10% of the book, which sho
 - Chapters \@ref(autostat) and \@ref(cogstatintro) were amended and slightly expanded, and now they follow Chapter \@ref(researchdesign), so that the reader can better appreciate automatic statistical analysis.
 - Chapter \@ref(researchdesign) was largely rewritten -- particularly reliability and validity -- to make definitions more accurate, and examples are now related to health and psychology research. The rest of the chapter discussing bias and study design were scrapped due to their lack of relevance to the book's purpose.
 - Chapter \@ref(exploringavariable) was largely revised to tie to other statistics textbooks, also focusing on differentiating between population and sample measures.
-- Chapter \@ref(correl) now includes CogStat tutorial on interrater and internal consistency measures.
 - New: callout boxes added throughout some chapters to explain chart types and other concepts.
 - New: definitions and examples are now presented markedly in the text.
 - New: explanatory charts were added to the text.
